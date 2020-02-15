@@ -1,0 +1,11 @@
+//
+// Created by James Landess on 2/6/20.
+//
+
+#ifndef LANDESSDEVCORE_ISCONVERTIBLE_H
+#define LANDESSDEVCORE_ISCONVERTIBLE_H
+namespace LD
+{
+
+}
+#endif //LANDESSDEVCORE_ISCONVERTIBLE_H

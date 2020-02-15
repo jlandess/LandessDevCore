@@ -1,0 +1,8 @@
+//
+// Created by James Landess on 2/6/20.
+//
+
+#ifndef LANDESSDEVCORE_RESULTOF_H
+#define LANDESSDEVCORE_RESULTOF_H
+
+#endif //LANDESSDEVCORE_RESULTOF_H
