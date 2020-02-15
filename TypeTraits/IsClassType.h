@@ -6,6 +6,7 @@
 #define LANDESSDEVCORE_ISCLASSTYPE_H
 
 #include "TypeTraits/IsIntegralType.h"
+#include "TypeTraits/IsUnion.h"
 namespace LD
 {
     namespace Detail
@@ -20,4 +21,21 @@ namespace LD
         template<typename T> using IsClassType_V = typename IsClassType<T>::value;
     }
 }
+
+namespace LD
+{
+    namespace Detail
+    {
+        template <class T>
+        LD::Detail::IntegralConstant<bool, !LD::Detail::IsUnion<T>::value> test(int T::*);
+
+        template <class>
+        LD::FalseType test(...);
+    }
+}
+
+
+template <class T>
+struct IsClass : decltype(LD::Detail::test<T>(nullptr))
+{};
 #endif //LANDESSDEVCORE_ISCLASSTYPE_H
