@@ -92,27 +92,6 @@ struct ApplyPredicate<Predicate,TypeListType<Arguements...>>: public LD::Detail:
 
 int main()
 {
-
-
-
-
-    /*
-
-    auto str = LD::ToImmutableString("%f %i %d");
-    static constexpr auto delimeterPattern = ctll::fixed_string{"%[a-z]"};
-    for ( auto  match: ctre::range<delimeterPattern>(std::string_view{str.Data()}))
-    {
-
-        std::cout << (match.get_end_position()-str.Data())-2 << std::endl;
-        //delimeterIndices[amountOfDelimeters] = (match.get_end_position()-str.Data())-1;
-        //++amountOfDelimeters;
-    }
-
-     */
-
-    //auto input =  std::string_view {"123,456,768"};
-
-
     auto input = LD::ToImmutableString(("abc"));
     static constexpr auto pattern = ctll::fixed_string{"%[a-z]"};
     LD::StaticArray<LD::UInteger ,20> delimeterIndices = {20};
