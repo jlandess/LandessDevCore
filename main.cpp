@@ -87,8 +87,12 @@ struct ApplyPredicate<Predicate,TypeListType<Arguements...>>: public LD::Detail:
 
 };
 
+
+
+
 int main()
 {
+
 
 
 
@@ -202,7 +206,7 @@ int main()
         LD::Get<LD::TermBoxRenderContext>(applicationExecutionEvent)->Render(LD::Get<LD::Timer>(applicationExecutionEvent)->GetElapsedTimeInSec(),{0,5},3);
         LD::Get<LD::TermBoxRenderContext>(applicationExecutionEvent)->RenderWithFormat(LD::ToImmutableString("{} {} {} {}abcd"),{0,-1},71,'c',22.7,99.73);
         LD::FormattedFloatingPoint<LD::Float > currentNumber{7.7263,2};
-        LD::Get<LD::TermBoxRenderContext>(applicationExecutionEvent)->RenderObject(currentNumber,{0,-2});
+        LD::Get<LD::TermBoxRenderContext>(applicationExecutionEvent)->Render(currentNumber,{0,-2});
     });
 
     termBoxApplication.OnFrameEnded([](const LD::ApplicationFrameEndedEvent<int,double,LD::TermBoxRenderContext,LD::Timer> & applicationFrameEndedEvent)

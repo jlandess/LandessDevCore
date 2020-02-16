@@ -32,10 +32,30 @@ namespace LD
         template <class>
         LD::FalseType test(...);
     }
+
+    template <class T>
+    struct IsClassEx : decltype(LD::Detail::test<T>(nullptr))
+    {};
+}
+
+namespace detail
+{
+    template<typename T>
+    constexpr char test_my_bad_is_class_call(int T::*) { return {}; }
+
+    struct two { char _[2]; };
+
+    template<typename T>
+    constexpr two test_my_bad_is_class_call(...) { return {}; }
 }
 
 
-template <class T>
-struct IsClass : decltype(LD::Detail::test<T>(nullptr))
-{};
+template<typename T>
+struct my_bad_is_class
+        : LD::Detail::IntegralConstant<bool,sizeof(detail::test_my_bad_is_class_call<T>(nullptr)) == 1>
+{
+};
+
+
+
 #endif //LANDESSDEVCORE_ISCLASSTYPE_H
