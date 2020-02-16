@@ -1,5 +1,4 @@
 #include "LandessDevCore.h"
-
 #include "MVC/TermBoxApplication.h"
 #include "MVC/Scheduling.h"
 #include "Chrono/Timer.h"
@@ -9,7 +8,6 @@
 #include "Algorithms/CompileTimeControlFlow.h"
 #include "TypeTraits/TypeList.h"
 #include "MVC/Renderable.h"
-
 namespace LD
 {
     namespace TB
@@ -187,7 +185,7 @@ int main()
 
         LD::FormattedFloatingPoint<LD::Float > currentNumber{7.7263,2};
 
-        LD::Get<LD::TermBoxRenderContext>(applicationExecutionEvent)->RenderWithFormat(LD::ToImmutableString("{}abcd"),{0,-1},currentNumber);
+        LD::Get<LD::TermBoxRenderContext>(applicationExecutionEvent)->RenderWithFormat(LD::ToImmutableString("{} {} {} {} abcd"),{0,-1},71,'c',currentNumber);
 
         LD::Get<LD::TermBoxRenderContext>(applicationExecutionEvent)->Render(currentNumber,{0,-2});
     });

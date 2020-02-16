@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="LandessDevCore"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j16 -f &quot;/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j16 -f &quot;/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j16 -f &quot;/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="LandessDevCore">
+				<Option output="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/cmake-build-debug/LandessDevCore" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/."/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/11.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j16 -f &quot;/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/cmake-build-debug/Makefile&quot;  VERBOSE=1 LandessDevCore"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="LandessDevCore/fast">
+				<Option output="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/cmake-build-debug/LandessDevCore" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/."/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/11.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j16 -f &quot;/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/cmake-build-debug/Makefile&quot;  VERBOSE=1 LandessDevCore/fast"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Algorithms/CompileTimeControlFlow.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Algorithms/Exponential.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Algorithms/Periodic.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Algorithms/Sampler.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Algorithms/fsm.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Algorithms/vdt/asin.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Algorithms/vdt/atan.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Algorithms/vdt/atan2.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Algorithms/vdt/cos.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Algorithms/vdt/exp.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Algorithms/vdt/identity.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Algorithms/vdt/inv.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Algorithms/vdt/log.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Algorithms/vdt/sin.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Algorithms/vdt/sincos.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Algorithms/vdt/sqrt.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Algorithms/vdt/tan.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Algorithms/vdt/vdtcore_common.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Algorithms/vdt/vdtmath.cpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Algorithms/vdt/vdtmath.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Chrono/Timer.cpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Chrono/Timer.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Core/HeteregenousTuple.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Definitions/TimeExtension.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Functor/Lambda.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/LandessDevCore.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/MVC/FormattedFloatingPoint.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/MVC/Renderable.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/MVC/RenderableConcept.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/MVC/RenderingContext.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/MVC/SchedulingQuittingPredicate.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/MVC/TermBoxApplication.cpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/MVC/TermBoxApplication.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/MVC/TermBoxCursorNavigator.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/MVC/TermBoxEnumerations.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/MVC/TermBoxImmutableLabel.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/MVC/TermBoxImmutableTextArea.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/MVC/TermBoxMenu.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Memory/ElementReference.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Memory/Optional.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Primitives/General/Bitmap.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Primitives/General/Hash.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Primitives/General/Immutable.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Primitives/General/ImproperFraction.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Primitives/General/Mat2x2.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Primitives/General/Mat2x3.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Primitives/General/Mat2x4.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Primitives/General/Mat3x2.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Primitives/General/Mat3x3.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Primitives/General/Mat3x4.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Primitives/General/Mat4x2.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Primitives/General/Mat4x3.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Primitives/General/Mat4x4.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Primitives/General/Observer.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Primitives/General/Quaternion.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Primitives/General/StaticArray.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Primitives/General/Tuple.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Primitives/General/Vec2.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Primitives/General/Vec3.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Primitives/General/Vec4.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Primitives/General/ctre.hpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Primitives/General/mapboxoptional.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Primitives/General/mapboxrecursive_wrapper.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Primitives/General/mapboxvariant.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Primitives/General/mapboxvariant_cast.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Primitives/General/mapboxvariant_io.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Primitives/General/mapboxvariantvisitor.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Primitives/General/typestring.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/TermBox/termbox.c">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/TermBox/termbox.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/TermBox/utf8.c">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/TypeTraits/AddLValueReference.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/TypeTraits/AddPointer.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/TypeTraits/AddRValueReference.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/TypeTraits/Calleable.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/TypeTraits/Cast.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/TypeTraits/Conditional.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/TypeTraits/Decay.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/TypeTraits/Declval.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/TypeTraits/Detection.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/TypeTraits/IntegerSequence.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/TypeTraits/IntegralConstant.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/TypeTraits/Invoke.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/TypeTraits/IsArray.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/TypeTraits/IsAssignable.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/TypeTraits/IsBaseOf.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/TypeTraits/IsClassType.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/TypeTraits/IsConst.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/TypeTraits/IsConstructible.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/TypeTraits/IsConvertible.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/TypeTraits/IsDestructible.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/TypeTraits/IsFunction.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/TypeTraits/IsIntegralType.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/TypeTraits/IsKindOf.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/TypeTraits/IsNullPtr.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/TypeTraits/IsReference.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/TypeTraits/IsSame.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/TypeTraits/IsUnion.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/TypeTraits/IsVoid.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/TypeTraits/IsVolatile.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/TypeTraits/Limit.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/TypeTraits/RemoveAllExtents.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/TypeTraits/RemoveCV.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/TypeTraits/RemoveConst.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/TypeTraits/RemoveExtent.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/TypeTraits/RemoveReference.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/TypeTraits/ResultOf.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/TypeTraits/TypeList.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/TypeTraits/VariadicPack.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/TypeTraits/__two.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/main.cpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

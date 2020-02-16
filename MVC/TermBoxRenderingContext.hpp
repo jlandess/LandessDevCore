@@ -314,18 +314,18 @@ namespace LD
             for(LD::UInteger n = 0;n<Size;++n)
             {
 
-                if( (numberOfDelimeters > 0 && currentDelimeterToCheck < numberOfDelimeters) && delimeterIndices[currentDelimeterToCheck] == n)
+                if( ((numberOfDelimeters > 0 && currentDelimeterToCheck < numberOfDelimeters) && delimeterIndices[currentDelimeterToCheck] == n) && (currentDelimeterToCheck < sizeof...(objects)))
                 {
                     LD::Match(arguements[currentDelimeterToCheck],[&](const auto & object)
                     {
                         renderables[n] = object;
                     });
                 }
-                else if((numberOfDelimeters > 0 && currentDelimeterToCheck < numberOfDelimeters) && (delimeterIndices[currentDelimeterToCheck]+(delimeterSize-1) < n))
+                else if(((numberOfDelimeters > 0 && currentDelimeterToCheck < numberOfDelimeters) && (delimeterIndices[currentDelimeterToCheck]+(delimeterSize-1) < n)) && (currentDelimeterToCheck < sizeof...(objects)))
                 {
                     //renderables[n] = LD::ElementReference<char>{buffer1};
 
-                }else if((numberOfDelimeters > 0 && currentDelimeterToCheck < numberOfDelimeters) && (delimeterIndices[currentDelimeterToCheck]+(delimeterSize-1) == n))
+                }else if(((numberOfDelimeters > 0 && currentDelimeterToCheck < numberOfDelimeters) && (delimeterIndices[currentDelimeterToCheck]+(delimeterSize-1) == n)) && (currentDelimeterToCheck < sizeof...(objects)))
                 {
                     currentDelimeterToCheck++;
                     //renderables[n] = LD::ElementReference<char>{buffer2};
@@ -348,17 +348,8 @@ namespace LD
 
                 LD::Match(renderables[Index],[&]( auto && object)->LD::Enable_If_T<LD::Require<!LD::IsSame<LD::Decay_T <decltype(object)>,LD::NullClass>>,void>
                 {
-
-                    instance->Render(*object,translation+PDP::Detail::tVec2<LD::Integer>{Index,0}+offsetTranslation);
-
-
-
-
-
+                    instance->Render(LD::Get(object),translation+PDP::Detail::tVec2<LD::Integer>{Index,0}+offsetTranslation);
                     offsetTranslation.X() += (LD::GetRenderableDimensions(*object).X()-1);
-
-
-
                 },[&](const LD::NullClass&){offsetTranslation.X()-=1;});
                 return true;
             },this,renderables,translation,offsetTranslation,packedArguements);
