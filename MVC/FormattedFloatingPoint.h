@@ -36,7 +36,7 @@ namespace LD
 
         inline   PDP::Detail::tVec2<LD::UInteger > GetRenderableDimensions() const  noexcept
         {
-            auto immutableString = LD::ToImmutableString(this->Value(),this->Precision());
+            auto immutableString = LD::ToImmutableString(this->mCurrentFloatingPointNumber,this->mPrecision);
             return PDP::Detail::tVec2<LD::UInteger >{immutableString.GetSize(),1};
         }
 

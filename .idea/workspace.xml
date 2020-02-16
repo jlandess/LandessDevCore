@@ -37,7 +37,10 @@
   <component name="ChangeListManager">
     <list default="true" id="a2ffdfb1-0050-446c-b0af-d02ece8e31b8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MVC/FormattedFloatingPoint.h" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/FormattedFloatingPoint.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MVC/RenderableConcept.h" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/RenderableConcept.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MVC/TermBoxRenderingContext.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/TermBoxRenderingContext.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Primitives/General/Immutable.h" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/Immutable.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/LandessDevCore" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/LandessDevCore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/LandessDevCore" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/LandessDevCore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
@@ -108,7 +111,7 @@
       <option name="presentableId" value="Default" />
       <updated>1581808480577</updated>
       <workItem from="1581808482243" duration="185000" />
-      <workItem from="1581808685718" duration="12463000" />
+      <workItem from="1581808685718" duration="15920000" />
     </task>
     <servers />
   </component>

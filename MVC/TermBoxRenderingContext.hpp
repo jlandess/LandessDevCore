@@ -349,7 +349,7 @@ namespace LD
                 LD::Match(renderables[Index],[&]( auto && object)->LD::Enable_If_T<LD::Require<!LD::IsSame<LD::Decay_T <decltype(object)>,LD::NullClass>>,void>
                 {
                     instance->Render(LD::Get(object),translation+PDP::Detail::tVec2<LD::Integer>{Index,0}+offsetTranslation);
-                    offsetTranslation.X() += (LD::GetRenderableDimensions(*object).X()-1);
+                    offsetTranslation.X() += (LD::GetRenderableDimensions(LD::Get(object)).X()-1);
                 },[&](const LD::NullClass&){offsetTranslation.X()-=1;});
                 return true;
             },this,renderables,translation,offsetTranslation,packedArguements);

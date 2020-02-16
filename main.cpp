@@ -183,9 +183,12 @@ int main()
         LD::Get<LD::TermBoxRenderContext>(applicationExecutionEvent)->Render("origin",{0,0});
         LD::Get<LD::TermBoxRenderContext>(applicationExecutionEvent)->Render(LD::Get<LD::Timer>(applicationExecutionEvent)->GetElapsedTimeInSec(),{0,5},3);
 
-        LD::FormattedFloatingPoint<LD::Float > currentNumber{7.7263,2};
+        auto stringifiedNumber = LD::ToImmutableString(99.7214,2);
+        LD::FormattedFloatingPoint<LD::Float > currentNumber{99.7214,2};
 
-        LD::Get<LD::TermBoxRenderContext>(applicationExecutionEvent)->RenderWithFormat(LD::ToImmutableString("{} {} {} {} abcd"),{0,-1},71,'c',currentNumber);
+        LD::UInteger size = stringifiedNumber.GetSize();
+        LD::Get<LD::TermBoxRenderContext>(applicationExecutionEvent)->RenderWithFormat(LD::ToImmutableString("{}abc{}abc{}abc{}{}{}"),{0,-1},71,'c',currentNumber,size,stringifiedNumber,
+                                                                                       size);
 
         LD::Get<LD::TermBoxRenderContext>(applicationExecutionEvent)->Render(currentNumber,{0,-2});
     });

@@ -13,19 +13,18 @@ namespace LD
     template<typename T>
     inline  constexpr LD::Enable_If_T<
             LD::Require<
-                    LD::Either<LD::Detail::IsInteger<T>::value,LD::Detail::IsFloatingPoint<T>::value,LD::Detail::IsCharacter<T>::value>,
-                    LD::Detail::IsPrimitiveType<T>::value>
+                    !LD::IsClass<T>>
             ,PDP::Detail::tVec2<LD::UInteger >> GetRenderableDimensions(const T & object) noexcept
     {
         auto immutableString = LD::ToImmutableString(object);
-        return PDP::Detail::tVec2<LD::UInteger >{immutableString.GetSize(),1};
+        return PDP::Detail::tVec2<LD::UInteger >{1,1};
     }
 
 
     template<LD::UInteger Size>
     inline constexpr PDP::Detail::tVec2<LD::UInteger> GetRenderableDimensions(const LD::ImmutableString<Size> & object) noexcept
     {
-        return PDP::Detail::tVec2<LD::UInteger >{Size,1};
+        return PDP::Detail::tVec2<LD::UInteger >{object.GetSize(),1};
     }
 
 

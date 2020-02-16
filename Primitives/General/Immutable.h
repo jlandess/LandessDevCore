@@ -50,7 +50,7 @@ namespace LD
             },this);
         }
 
-        constexpr const LD::UInteger GetSize() const
+         const LD::UInteger GetSize() const
         {
 
             LD::UInteger currentSize = 0;
@@ -484,7 +484,7 @@ namespace LD
             const LD::Integer rem = num % base;
             ret[(amountToAllocate-1)-Index-1] = (((rem > 9)* ((rem-10) + 'a')) + (!(rem > 9)* (rem + '0'))) * (!isInf && !isNan);
             num/=base;
-            return (Index < (amountOfDigits - isNegative));
+            return (Index < (amountOfDigits - isNegative)) && (num != 0);
         },num,base,returnValue,isInf,isNan,amountToAllocate,amountOfDigits,isNegative);
 
         returnValue[amountToAllocate-1] = '.' * (hasDecimal);
@@ -588,8 +588,7 @@ namespace LD
             ret[(amountToAllocate-1)+(Index+1)]= (((rem > 9)* ((rem-10) + 'a')) + (!(rem > 9)* (rem + '0'))) * (!isInf && !isNan);;
             num/=base;
 
-            return true;
-
+            return   true;
         },returnValue,decimalInIntegerPortion,base,isInf,isNan,amountToAllocate);
 
         char * returnStringBuffer = (char*)returnValue;
@@ -601,9 +600,21 @@ namespace LD
             return true;
          },str);
 
+
         LD::For<15>([](auto Index, char * string, const LD::UInteger & precision)
         {
-            string[Index] = (string[Index]*(precision == 0)) + ((precision > 0 && Index < precision)*(string[Index]));
+            if(precision!=0)
+            {
+                //string[Index] = char('\0')*(Index >= precision) + string[Index]*(Index < precision);
+                if(Index <= precision)
+                {
+                    string[Index] = string[Index];
+                }else if(Index > precision)
+                {
+                    string[Index] = 0;
+                }
+            }
+            //string[Index] = (string[Index]*(precision == 0)) + ((precision > 0 && Index < precision)*(string[Index]));
             return true;
          },str,precision);
 
