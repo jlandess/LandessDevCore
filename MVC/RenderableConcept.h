@@ -17,7 +17,7 @@ namespace LD
             ,PDP::Detail::tVec2<LD::UInteger >> GetRenderableDimensions(const T & object) noexcept
     {
         auto immutableString = LD::ToImmutableString(object);
-        return PDP::Detail::tVec2<LD::UInteger >{1,1};
+        return PDP::Detail::tVec2<LD::UInteger >{immutableString.GetSize(),1};
     }
 
 

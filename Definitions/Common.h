@@ -5273,14 +5273,14 @@ namespace LD
         value += temp & 1;
         return value;
     }
-    inline LD::Integer Floor(LD::Float x)
+    inline constexpr LD::Integer Floor(LD::Float x) noexcept
     {
         if(x>0)return (LD::Integer)x;
         return (LD::Integer)(x-((LD::Float)0.9999999999999999));
     }
-    inline LD::UInteger Power(const LD::UInteger & x, const LD::UInteger & y)
+    inline constexpr LD::UInteger Power(const LD::UInteger & x, const LD::UInteger & y) noexcept
     {
-        LD::UInteger temp;
+        LD::UInteger temp = 0;
         if( y == 0)
             return 1;
         temp = LD::Power(x, y/2);
@@ -5289,9 +5289,9 @@ namespace LD
         else
             return x*temp*temp;
     }
-    inline LD::Float Power(const LD::Float & x, const LD::Integer & y)
+    inline constexpr LD::Float Power(const LD::Float & x, const LD::Integer & y) noexcept
     {
-        LD::Float temp;
+        LD::Float temp = 0;
         if( y == 0)
             return 1;
         temp = LD::Power(x, y/2);
@@ -5319,17 +5319,17 @@ namespace LD
     template<> class MaximumDecimalPlaces<float>
     {
     public:
-        static LD::UInteger GetMaximumAmountOfDecimalPlaces()
+        static constexpr LD::UInteger GetMaximumAmountOfDecimalPlaces() noexcept
         {
-            return MAXIMUM_FLOAT_DECIMAL_POINTS;
+            return 7;
         }
     };
     template<> class MaximumDecimalPlaces<double>
     {
     public:
-        static LD::UInteger GetMaximumAmountOfDecimalPlaces()
+        static constexpr LD::UInteger GetMaximumAmountOfDecimalPlaces() noexcept
         {
-            return MAXIMUM_FLOAT_DECIMAL_POINTS;
+            return 15;
         }
     };
 

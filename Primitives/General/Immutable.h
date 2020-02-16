@@ -163,6 +163,23 @@ namespace LD
             return false;
         }
 
+
+        LD::ImmutableString<N> & TrimTrailing(const char & character) noexcept
+        {
+
+            for(LD::Integer n = (N-1);n>=0;n--)
+            {
+                if(string[n] == character || string[n] == '\0')
+                {
+                    string[n] = '\0';
+                }else
+                {
+                    break;
+                }
+            }
+
+            return (*this);
+        }
         const bool operator > (const LD::ImmutableString<N> & string) const
         {
             const bool comparable = true;
@@ -433,6 +450,7 @@ namespace LD
         return str;
     }
 
+
     template<char ... Characters>
     constexpr LD::ImmutableString<sizeof...(Characters)> ToImmutableString(const LD::TypeString<Characters...> & typeString)
     {
@@ -585,7 +603,8 @@ namespace LD
         {
 
             const LD::Integer rem = num % base;
-            ret[(amountToAllocate-1)+(Index+1)]= (((rem > 9)* ((rem-10) + 'a')) + (!(rem > 9)* (rem + '0'))) * (!isInf && !isNan);;
+            char currentDigit = (((rem > 9)* ((rem-10) + 'a')) + (!(rem > 9)* (rem + '0'))) * (!isInf && !isNan);;
+            ret[(amountToAllocate-1)+(Index+1)]= (currentDigit);
             num/=base;
 
             return   true;
@@ -601,11 +620,14 @@ namespace LD
          },str);
 
 
+
+
         LD::For<15>([](auto Index, char * string, const LD::UInteger & precision)
         {
+            /*
             if(precision!=0)
             {
-                //string[Index] = char('\0')*(Index >= precision) + string[Index]*(Index < precision);
+                string[Index] = char('\0')*(Index >= precision) + string[Index]*(Index < precision);
                 if(Index <= precision)
                 {
                     string[Index] = string[Index];
@@ -614,12 +636,13 @@ namespace LD
                     string[Index] = 0;
                 }
             }
-            //string[Index] = (string[Index]*(precision == 0)) + ((precision > 0 && Index < precision)*(string[Index]));
+             */
+            string[Index] = (precision != 0)*((Index <= precision)*string[Index] + (Index>precision)*'\0') + (precision==0)*string[Index];
             return true;
          },str,precision);
 
 
-        return LD::ImmutableString<20+15+2>{returnValue};
+        return LD::ImmutableString<20+15+2>{returnValue}.TrimTrailing('0');
     }
     template<typename T>
     constexpr LD::Enable_If_T<LD::Require<

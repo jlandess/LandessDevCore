@@ -88,8 +88,38 @@ struct ApplyPredicate<Predicate,TypeListType<Arguements...>>: public LD::Detail:
 };
 
 
+inline LD::UInteger GetDecimalPlaces(const LD::Float & dbVal)
+{
+    LD::Float num = dbVal;
+    LD::UInteger count = 0;
+    num = LD::Abs(num);
+    num = num - int(num);
+    while (num != 0)
+    {
+        num = num * 10;
+        count = count + 1;
+        num = num - int(num);
+    }
 
+    return count/10;
+}
 
+/*
+inline LD::UInteger GetDecimalPlaces(LD::Float dbVal)
+{
+    static const constexpr LD::UInteger MAX_DP = LD::MaximumDecimalPlaces<LD::Float>::GetMaximumAmountOfDecimalPlaces();
+    static const constexpr LD::Float THRES = LD::Power((LD::Float)0.1, (LD::Integer)MAX_DP);
+    if (dbVal == 0.0)
+        return 0;
+    LD::UInteger nDecimal = 0;
+    while (dbVal - PDP::Floor(dbVal) > THRES && nDecimal < MAX_DP)
+    {
+        dbVal *= 10.0;
+        nDecimal++;
+    }
+    return nDecimal;
+}
+ */
 int main()
 {
     auto input = LD::ToImmutableString(("abc"));
@@ -183,12 +213,16 @@ int main()
         LD::Get<LD::TermBoxRenderContext>(applicationExecutionEvent)->Render("origin",{0,0});
         LD::Get<LD::TermBoxRenderContext>(applicationExecutionEvent)->Render(LD::Get<LD::Timer>(applicationExecutionEvent)->GetElapsedTimeInSec(),{0,5},3);
 
-        auto stringifiedNumber = LD::ToImmutableString(99.7214,2);
+
+        auto stringifiedNumber = LD::ToImmutableString(99.7214);
+        //stringifiedNumber.TrimTrailing('0');
+
+
+
         LD::FormattedFloatingPoint<LD::Float > currentNumber{99.7214,2};
 
         LD::UInteger size = stringifiedNumber.GetSize();
-        LD::Get<LD::TermBoxRenderContext>(applicationExecutionEvent)->RenderWithFormat(LD::ToImmutableString("{}abc{}abc{}abc{}{}{}"),{0,-1},71,'c',currentNumber,size,stringifiedNumber,
-                                                                                       size);
+        LD::Get<LD::TermBoxRenderContext>(applicationExecutionEvent)->RenderWithFormat(LD::ToImmutableString("{} uWu {}abc{}abc{}abc{}{} uWu {}"),{0,-1},stringifiedNumber);
 
         LD::Get<LD::TermBoxRenderContext>(applicationExecutionEvent)->Render(currentNumber,{0,-2});
     });
