@@ -159,10 +159,10 @@ namespace LD
                 >>>
         {
             template <class F, typename ... Pack>
-            constexpr static void run(F &&f, Pack  && ...arguements) noexcept (noexcept(CompileTimeFoldSteppedRanged<A,1>(LD::Declval<LD::MakeIndexSequence_T<(B-A)/Step>>(),LD::Declval<F>(),LD::Declval<Pack>()...)))
+            constexpr static void run(F &&f, Pack  && ...arguements) noexcept (noexcept(CompileTimeFoldSteppedRanged<A,Step>(LD::Declval<LD::MakeIndexSequence_T<(B-A)/Step>>(),LD::Declval<F>(),LD::Declval<Pack>()...)))
             {
                 //LD::Declval<LD::MakeIndexSequence_T<(B-A)/Step>>();
-                CompileTimeFoldSteppedRanged<A,1>(LD::MakeIndexSequence_T<(B-A)/Step>{},LD::Forward<F>(f),LD::Forward<Pack>(arguements)...);
+                CompileTimeFoldSteppedRanged<A,Step>(LD::MakeIndexSequence_T<(B-A)/Step>{},LD::Forward<F>(f),LD::Forward<Pack>(arguements)...);
             }
 
         };
@@ -170,14 +170,15 @@ namespace LD
         template <LD::UInteger A, LD::UInteger B, LD::UInteger  Step>
         struct Loop<A,B,Step,LD::Enable_If_T <
                 LD::Require<
-                        (B < A),
+                        (A > B),
                         Step>=1
                 >>>
         {
             template <class F, typename ... Pack>
-            constexpr static void run(F &&f, Pack  && ...arguements) noexcept (noexcept(CompileTimeFoldSteppedRangedBackward<A,1>(LD::Declval<LD::MakeIndexSequence_T<(B-A)/Step>>(),LD::Declval<F>(),LD::Declval<Pack>()...)))
+            constexpr static void run(F &&f, Pack  && ...arguements) noexcept(noexcept(CompileTimeFoldSteppedRanged<A,Step>(LD::Declval<LD::MakeIndexSequence_T<(A-B)/Step>>(),LD::Declval<F>(),LD::Declval<Pack>()...)))
             {
-                CompileTimeFoldSteppedRangedBackward<A,1>(LD::MakeIndexSequence_T<(B-A)/Step>{},LD::Forward<F>(f),LD::Forward<Pack>(arguements)...);
+
+                CompileTimeFoldSteppedRangedBackward<A,Step>(LD::MakeIndexSequence_T<(A-B)/Step>{},LD::Forward<F>(f),LD::Forward<Pack>(arguements)...);
             }
 
         };

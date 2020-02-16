@@ -164,7 +164,7 @@ namespace LD
         }
 
 
-        LD::ImmutableString<N> & TrimTrailing(const char & character) noexcept
+        constexpr LD::ImmutableString<N> & TrimTrailing(const char & character) noexcept
         {
 
             for(LD::Integer n = (N-1);n>=0;n--)

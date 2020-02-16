@@ -122,6 +122,10 @@ inline LD::UInteger GetDecimalPlaces(LD::Float dbVal)
  */
 int main()
 {
+    LD::Detail::Loop<15,0,1>::run([](auto Index)
+    {
+        return true;
+    });
     auto input = LD::ToImmutableString(("abc"));
     static constexpr auto pattern = ctll::fixed_string{"%[a-z]"};
     LD::StaticArray<LD::UInteger ,20> delimeterIndices = {20};
