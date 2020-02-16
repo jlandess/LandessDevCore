@@ -38,6 +38,7 @@
 #include "TypeTraits/IsVolatile.h"
 #include "TypeTraits/AddLValueReference.h"
 #include "TypeTraits/AddRValueReference.h"
+#include "TypeTraits/IsClassType.h"
 
 #ifndef _LIBCPP_STD_VER
 #  if  __cplusplus <= 201103L
@@ -7534,15 +7535,18 @@ namespace LD
 
 
 
-    template<typename T>
-    constexpr bool IsClass = LD::Detail::IsClassType<T>::value;
+   // template<typename T>
+    //constexpr bool IsClass = LD::Detail::IsClassType<T>::value;
+
+    //template<typename T>
+    //constexpr bool IsPrimitive =
+            //LD::Require<
+                    //!LD::IsClass<T>,
+                    //LD::Either<LD::IsInteger<T>,LD::IsUnsignedInteger<T>,LD::IsFloatingPoint<T>,LD::IsCharacter<T>>
+           // >;
 
     template<typename T>
-    constexpr bool IsPrimitive =
-            LD::Require<
-                    !LD::IsClass<T>,
-                    LD::Either<LD::IsInteger<T>,LD::IsUnsignedInteger<T>,LD::IsFloatingPoint<T>,LD::IsCharacter<T>>
-            >;
+    constexpr bool IsPrimitive = !LD::IsClass<T>::value;
 
 
 

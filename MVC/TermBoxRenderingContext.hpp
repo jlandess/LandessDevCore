@@ -361,7 +361,7 @@ namespace LD
         template<typename T>
         constexpr LD::Enable_If_T<
          LD::Require<
-         LD::IsClassEx<LD::Decay_T<T>>::value,
+         LD::IsClass<LD::Decay_T<T>>::value,
          !LD::IsImmutableString<LD::Decay_T<T>>
         >,const LD::TermBoxRenderContext&> Render(T && object, const PDP::Detail::tVec2<LD::Integer> & translation) noexcept (noexcept(LD::Declval<LD::Decay_T<T>>()(LD::Declval<const LD::TermBoxRenderContext&>(),LD::Declval<PDP::Detail::tVec2<LD::Integer>>())))
         {
