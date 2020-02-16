@@ -34,5 +34,16 @@ namespace LD
     {
         return PDP::Detail::tVec2<LD::UInteger >{sizeof...(Characters),1};
     }
+
+    template<typename T>
+    using ObjectHasGetRenderableDimensions = decltype(LD::Declval<T>().GetRenderableDimensions());
+
+
+    template<typename T>
+    inline LD::Enable_If_T<LD::Require<LD::Exists<ObjectHasGetRenderableDimensions,LD::Decay_T<T>>>,PDP::Detail::tVec2<LD::UInteger>> GetRenderableDimensions(T && object) noexcept (noexcept(LD::Declval<T>().GetRenderableDimensions()))
+    {
+        return object.GetRenderableDimensions();
+    }
+
 }
 #endif //LANDESSDEVCORE_RENDERABLECONCEPT_H

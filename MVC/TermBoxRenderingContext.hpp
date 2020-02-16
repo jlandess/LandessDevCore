@@ -346,11 +346,19 @@ namespace LD
                     const LD::ReferenceableTuple<Arguements...> & packedArguements)
             {
 
-                LD::Match(renderables[Index],[&](const auto & object)
+                LD::Match(renderables[Index],[&]( auto && object)->LD::Enable_If_T<LD::Require<!LD::IsSame<LD::Decay_T <decltype(object)>,LD::NullClass>>,void>
                 {
 
                     instance->Render(*object,translation+PDP::Detail::tVec2<LD::Integer>{Index,0}+offsetTranslation);
+
+
+
+
+
                     offsetTranslation.X() += (LD::GetRenderableDimensions(*object).X()-1);
+
+
+
                 },[&](const LD::NullClass&){offsetTranslation.X()-=1;});
                 return true;
             },this,renderables,translation,offsetTranslation,packedArguements);
@@ -363,7 +371,7 @@ namespace LD
          LD::Require<
          LD::IsClass<LD::Decay_T<T>>,
          !LD::IsImmutableString<LD::Decay_T<T>>
-        >,const LD::TermBoxRenderContext&> Render(T && object, const PDP::Detail::tVec2<LD::Integer> & translation) noexcept (noexcept(LD::Declval<LD::Decay_T<T>>()(LD::Declval<const LD::TermBoxRenderContext&>(),LD::Declval<PDP::Detail::tVec2<LD::Integer>>())))
+        >,const LD::TermBoxRenderContext&> Render(T && object, const PDP::Detail::tVec2<LD::Integer> & translation) const noexcept (noexcept(LD::Declval<LD::Decay_T<T>>()(LD::Declval<const LD::TermBoxRenderContext&>(),LD::Declval<PDP::Detail::tVec2<LD::Integer>>())))
         {
             return object(*this,translation);
         }

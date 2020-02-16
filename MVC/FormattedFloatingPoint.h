@@ -10,11 +10,11 @@
 #include "TermBoxRenderingContext.hpp"
 namespace LD
 {
-    template<typename T, class sfinae = void>
-    class FormattedFloatingPoint;
+    //template<typename T, class sfinae = void>
+    //class FormattedFloatingPoint;
 
     template<typename T>
-    class FormattedFloatingPoint<T,LD::Enable_If_T<LD::Require<LD::Detail::IsPrimitiveType<T>::value,LD::Detail::IsFloatingPoint<T>::value>>>
+    class FormattedFloatingPoint
      {
      private:
          T mCurrentFloatingPointNumber;
@@ -27,24 +27,31 @@ namespace LD
          inline constexpr const T & Precision() const noexcept {return this->mPrecision;}
          inline constexpr T & Precision() noexcept {return this->mPrecision;}
 
-         const LD::TermBoxRenderContext & operator()(const LD::TermBoxRenderContext & context,const PDP::Detail::tVec2<LD::Integer> & translation) noexcept
+         const LD::TermBoxRenderContext & operator()(const LD::TermBoxRenderContext & context,const PDP::Detail::tVec2<LD::Integer> & translation) const noexcept
         {
              context.Render(LD::ToImmutableString(this->mCurrentFloatingPointNumber,this->mPrecision),translation);
              return context;
+        }
+
+
+        inline   PDP::Detail::tVec2<LD::UInteger > GetRenderableDimensions() const  noexcept
+        {
+            auto immutableString = LD::ToImmutableString(this->Value(),this->Precision());
+            return PDP::Detail::tVec2<LD::UInteger >{immutableString.GetSize(),1};
         }
 
      };
 
 
     template<typename T>
-    inline  constexpr PDP::Detail::tVec2<LD::UInteger > GetRenderableDimensions(const LD::FormattedFloatingPoint<T> & object) noexcept
+    inline   PDP::Detail::tVec2<LD::UInteger > GetRenderableDimensions(const LD::FormattedFloatingPoint<T> & object)  noexcept
     {
         auto immutableString = LD::ToImmutableString(object.Value(),object.Precision());
         return PDP::Detail::tVec2<LD::UInteger >{immutableString.GetSize(),1};
     }
 
     template<typename T>
-    inline const TermBoxRenderContext & Render(const TermBoxRenderContext & context,const PDP::Detail::tVec2<LD::Integer> & translation, const LD::FormattedFloatingPoint<T> & formattedFloatingPointNumber) noexcept
+    inline const TermBoxRenderContext & Render(const TermBoxRenderContext & context,const PDP::Detail::tVec2<LD::Integer> & translation, const LD::FormattedFloatingPoint<T> & formattedFloatingPointNumber)  noexcept
     {
         return context.Render(LD::ToImmutableString(formattedFloatingPointNumber.Value(),formattedFloatingPointNumber.Precision()),translation);
     }

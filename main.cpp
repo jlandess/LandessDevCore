@@ -1,4 +1,5 @@
 #include "LandessDevCore.h"
+
 #include "MVC/TermBoxApplication.h"
 #include "MVC/Scheduling.h"
 #include "Chrono/Timer.h"
@@ -8,6 +9,7 @@
 #include "Algorithms/CompileTimeControlFlow.h"
 #include "TypeTraits/TypeList.h"
 #include "MVC/Renderable.h"
+
 namespace LD
 {
     namespace TB
@@ -98,7 +100,6 @@ int main()
     LD::UInteger amountOfDelimeters;
     for (const auto & match: ctre::range<pattern>(std::string_view {input.Data()}))
     {
-        //std::cout << std::string_view{match.get<0>()} << "\n";
         delimeterIndices[amountOfDelimeters] = (match.get_end_position()-input.Data())-1;
         ++amountOfDelimeters;
     }
@@ -183,8 +184,11 @@ int main()
 
         LD::Get<LD::TermBoxRenderContext>(applicationExecutionEvent)->Render("origin",{0,0});
         LD::Get<LD::TermBoxRenderContext>(applicationExecutionEvent)->Render(LD::Get<LD::Timer>(applicationExecutionEvent)->GetElapsedTimeInSec(),{0,5},3);
-        LD::Get<LD::TermBoxRenderContext>(applicationExecutionEvent)->RenderWithFormat(LD::ToImmutableString("{} {} {} {}abcd"),{0,-1},71,'c',22.7,99.73);
+
         LD::FormattedFloatingPoint<LD::Float > currentNumber{7.7263,2};
+
+        LD::Get<LD::TermBoxRenderContext>(applicationExecutionEvent)->RenderWithFormat(LD::ToImmutableString("{}abcd"),{0,-1},currentNumber);
+
         LD::Get<LD::TermBoxRenderContext>(applicationExecutionEvent)->Render(currentNumber,{0,-2});
     });
 
