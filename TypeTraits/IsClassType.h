@@ -31,11 +31,19 @@ namespace LD
 
         template <class>
         LD::FalseType test(...);
+
+        template <class T>
+        struct IsClass : decltype(LD::Detail::test<T>(nullptr))
+        {};
     }
 
-    template <class T>
-    struct IsClass : decltype(LD::Detail::test<T>(nullptr))
-    {};
+
+    template<typename T>
+    constexpr bool IsClass = LD::Detail::IsClass<T>::value;
+
+
+
+
 }
 
 

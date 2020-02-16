@@ -7546,7 +7546,7 @@ namespace LD
            // >;
 
     template<typename T>
-    constexpr bool IsPrimitive = !LD::IsClass<T>::value;
+    constexpr bool IsPrimitive = !LD::IsClass<T>;
 
 
 
