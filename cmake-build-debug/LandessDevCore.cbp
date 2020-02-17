@@ -250,6 +250,9 @@
 		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Primitives/General/StaticArray.h">
 			<Option target="LandessDevCore"/>
 		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Primitives/General/StringView.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
 		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/Primitives/General/Tuple.h">
 			<Option target="LandessDevCore"/>
 		</Unit>

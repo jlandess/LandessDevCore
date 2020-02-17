@@ -8,6 +8,7 @@
 #include "Definitions/Common.h"
 #include "Primitives/General/Immutable.h"
 #include "Primitives/General/Vec2.h"
+#include "Primitives/General/StringView.h"
 namespace LD
 {
     template<typename T>
@@ -27,6 +28,11 @@ namespace LD
         return PDP::Detail::tVec2<LD::UInteger >{object.GetSize(),1};
     }
 
+
+    inline constexpr PDP::Detail::tVec2<LD::UInteger> GetRenderableDimensions(const LD::StringView & view) noexcept
+    {
+        return PDP::Detail::tVec2<LD::UInteger>{view.size(),1};
+    }
 
     template<char ... Characters>
     inline  constexpr PDP::Detail::tVec2<LD::UInteger> GetRenderableDimensions(const LD::TypeString<Characters...> & object) noexcept

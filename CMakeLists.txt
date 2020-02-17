@@ -104,4 +104,4 @@ add_executable(LandessDevCore
         MVC/SchedulingQuittingPredicate.h
         MVC/FormattedFloatingPoint.h
         MVC/RenderableConcept.h
-        MVC/Renderable.h)
+        MVC/Renderable.h Primitives/General/StringView.h)

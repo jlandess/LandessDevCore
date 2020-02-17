@@ -1343,13 +1343,22 @@ namespace std {
 } // namespace std
 
 
-namespace LD
-{
-    using StringView = nonstd::string_view;
-}
+
 #endif // nssv_HAVE_STD_HASH
 
 nssv_RESTORE_WARNINGS()
 
+
+
 #endif // nssv_HAVE_STD_STRING_VIEW
+
+namespace LD
+{
+    using StringView = nonstd::string_view;
+}
+
+inline constexpr LD::StringView operator "" _sv(const char* p, size_t n) noexcept
+{
+    return LD::StringView{p};
+}
 #endif // NONSTD_SV_LITE_H_INCLUDED

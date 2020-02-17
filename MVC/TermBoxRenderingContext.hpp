@@ -29,6 +29,7 @@
 #include "Primitives/General//ctre.hpp"
 #include "RenderableConcept.h"
 #include "Renderable.h"
+#include "Primitives/General/StringView.h"
 namespace LD
 {
 
@@ -276,6 +277,16 @@ namespace LD
         }
 
 
+        constexpr const TermBoxRenderContext & Render(const LD::StringView & view, const PDP::Detail::tVec2<LD::Integer> & translation) const noexcept
+        {
+            for(LD::UInteger n = 0;n<view.size();++n)
+            {
+                const char & currentCharacter = view[n];
+                this->Write(currentCharacter,translation+PDP::Detail::tVec2<LD::Integer>{n,0});
+            }
+            return (*this);
+        }
+
 
         template<LD::UInteger Size,typename ... Arguements>
         LD::Enable_If_T<
@@ -362,7 +373,8 @@ namespace LD
         constexpr LD::Enable_If_T<
          LD::Require<
          LD::IsClass<LD::Decay_T<T>>,
-         !LD::IsImmutableString<LD::Decay_T<T>>
+         !LD::IsImmutableString<LD::Decay_T<T>>,
+         !LD::IsSame<LD::Decay_T<T>,LD::StringView>
         >,const LD::TermBoxRenderContext&> Render(T && object, const PDP::Detail::tVec2<LD::Integer> & translation) const noexcept (noexcept(LD::Declval<LD::Decay_T<T>>()(LD::Declval<const LD::TermBoxRenderContext&>(),LD::Declval<PDP::Detail::tVec2<LD::Integer>>())))
         {
             return object(*this,translation);

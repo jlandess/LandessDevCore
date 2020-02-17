@@ -248,28 +248,18 @@ namespace LD
 
     }
 
-
-
     template<typename F, typename ... Args>
     auto IF(const bool & predicate,F && functor, Args && ... arguements) -> void
     {
-        //auto packedArguements = LD::MakeReferenceableTuple(LD::Forward<Args>(arguements)...);
-
         PDP::LightWeightDelegate<void(F && functor, Args && ...)> codePaths[2];
-
 
         auto emptyCodePath = [](F && functor, Args && ... arguements){};
 
-        auto usableCodePath = [](F && functor, Args && ... arguements)
-        {
-            functor(LD::Forward<Args>(arguements)...);
-        };
+        auto usableCodePath = [](F && functor, Args && ... arguements){functor(LD::Forward<Args>(arguements)...);};
 
         codePaths[0] = PDP::LightWeightDelegate<void(F && functor, Args && ...)>{&emptyCodePath, &decltype(emptyCodePath)::operator()};
 
         codePaths[1] = PDP::LightWeightDelegate<void(F && functor, Args && ...)>{&usableCodePath, &decltype(usableCodePath)::operator()};
-        //return functor(LD::Forward<Args>(arguements)...);
-
         return codePaths[predicate](LD::Forward<F>(functor),LD::Forward<Args>(arguements)...);
     }
 

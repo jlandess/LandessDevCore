@@ -166,35 +166,23 @@ namespace LD
 
         constexpr LD::ImmutableString<N> & TrimTrailing(const char & character) noexcept
         {
-
-
-            /*
-            LD::For<N,0,1>([](auto Index, char * string,const char & character)
+            bool foundEdgeOfTrim = false;
+            LD::For<15,0,1>([](auto Index, bool & foundEdgeOfTrim, char * str, const char & character)
             {
-                string[Index] = (string[Index] == character || string[Index] == '\0')*'\0' + (!(string[Index] == character || string[Index] == '\0'))*string[Index];
-                return (string[Index-1] != character);
-            },this->string,character);
-             */
-
-
-
-
-
-
-
-            for(LD::Integer n = (N-1);n>=0;n--)
-            {
-                if(string[n] == character || string[n] == '\0')
+                LD::IF(!(str[Index] == character || str[Index] == '\0'),[](bool & foundEdgeOfTrim)
                 {
-                    string[n] = '\0';
-                }else
-                {
-                    break;
-                }
-            }
+                    foundEdgeOfTrim=true;
+
+                },foundEdgeOfTrim);
+
+                bool canAssign = ((str[Index] == character || str[Index] == '\0') && !foundEdgeOfTrim);
 
 
+                str[Index] = (canAssign)*'\0' + (!canAssign)*str[Index];
 
+
+                return true;
+            },foundEdgeOfTrim,this->string,character);
             return (*this);
         }
         const bool operator > (const LD::ImmutableString<N> & string) const
@@ -786,6 +774,11 @@ namespace PDP
 
 
 
+}
+template<char ... Characters>
+inline constexpr LD::ImmutableString<sizeof...(Characters)> operator "" _is() noexcept
+{
+    return LD::ImmutableString<sizeof...(Characters)>{LD::TypeString<Characters...>{}};
 }
 
 #endif /* Immutable_h */
