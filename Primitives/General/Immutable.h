@@ -167,6 +167,21 @@ namespace LD
         constexpr LD::ImmutableString<N> & TrimTrailing(const char & character) noexcept
         {
 
+
+            /*
+            LD::For<N,0,1>([](auto Index, char * string,const char & character)
+            {
+                string[Index] = (string[Index] == character || string[Index] == '\0')*'\0' + (!(string[Index] == character || string[Index] == '\0'))*string[Index];
+                return (string[Index-1] != character);
+            },this->string,character);
+             */
+
+
+
+
+
+
+
             for(LD::Integer n = (N-1);n>=0;n--)
             {
                 if(string[n] == character || string[n] == '\0')
@@ -177,6 +192,8 @@ namespace LD
                     break;
                 }
             }
+
+
 
             return (*this);
         }
@@ -613,14 +630,33 @@ namespace LD
         char * returnStringBuffer = (char*)returnValue;
         char * str = (returnStringBuffer+(amountToAllocate));
 
+
         LD::For<15/2>([](auto Index, char * string)
         {
             LD::Swap(string[Index],string[15-Index-1]);
             return true;
          },str);
 
+        bool foundEdgeOfTrim = false;
 
 
+        LD::For<15,0,1>([](auto Index, bool & foundEdgeOfTrim, char * str)
+        {
+            LD::IF(!(str[Index] == '0' || str[Index] == '\0'),[](bool & foundEdgeOfTrim)
+            {
+                foundEdgeOfTrim=true;
+
+            },foundEdgeOfTrim);
+
+            bool canAssign = ((str[Index] == '0' || str[Index] == '\0') && !foundEdgeOfTrim);
+
+
+            str[Index] = (canAssign)*'\0' + (!canAssign)*str[Index];
+
+
+            return true;
+        },foundEdgeOfTrim,str);
+        
 
         LD::For<15>([](auto Index, char * string, const LD::UInteger & precision)
         {
@@ -637,12 +673,12 @@ namespace LD
                 }
             }
              */
-            string[Index] = (precision != 0)*((Index <= precision)*string[Index] + (Index>precision)*'\0') + (precision==0)*string[Index];
+            string[Index] = (precision != 0)*((Index <= (precision-1))*string[Index] + (Index>(precision-1))*'\0') + (precision==0)*string[Index];
             return true;
          },str,precision);
 
 
-        return LD::ImmutableString<20+15+2>{returnValue}.TrimTrailing('0');
+        return LD::ImmutableString<20+15+2>{returnValue};
     }
     template<typename T>
     constexpr LD::Enable_If_T<LD::Require<

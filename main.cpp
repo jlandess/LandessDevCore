@@ -122,10 +122,14 @@ inline LD::UInteger GetDecimalPlaces(LD::Float dbVal)
  */
 int main()
 {
+    /*
     LD::Detail::Loop<15,0,1>::run([](auto Index)
     {
+        std::cout << Index << std::endl;
         return true;
     });
+     */
+
     auto input = LD::ToImmutableString(("abc"));
     static constexpr auto pattern = ctll::fixed_string{"%[a-z]"};
     LD::StaticArray<LD::UInteger ,20> delimeterIndices = {20};
@@ -210,7 +214,7 @@ int main()
 
         LD::ContextObserver<int> observer = LD::Get<int>(applicationExecutionEvent);
 
-        LD::Get<LD::TermBoxRenderContext>(applicationExecutionEvent)->Render(LD::Get<LD::Timer>(applicationExecutionEvent)->GetElapsedTimeInSec(),{9,8+observer.Value()},3);
+        LD::Get<LD::TermBoxRenderContext>(applicationExecutionEvent)->Render(LD::Get<LD::Timer>(applicationExecutionEvent)->GetElapsedTimeInSec(),{9,8+observer.Value()},1);
         del(applicationExecutionEvent);
         cursorNavigator(applicationExecutionEvent);
 
@@ -250,4 +254,5 @@ int main()
     //double b;
     LD::TermBoxRenderContext currentRenderableContext;
     return LD::MainLoop(termBoxApplication,applicationTimer,int(),double(),currentRenderableContext,secondaryTimer);
+    return true;
 }
