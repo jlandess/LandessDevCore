@@ -36,12 +36,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a2ffdfb1-0050-446c-b0af-d02ece8e31b8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Algorithms/CompileTimeControlFlow.h" beforeDir="false" afterPath="$PROJECT_DIR$/Algorithms/CompileTimeControlFlow.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Primitives/General/Immutable.h" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/Immutable.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/LandessDevCore" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/LandessDevCore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release/LandessDevCore" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/LandessDevCore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,7 +107,7 @@
       <workItem from="1581808482243" duration="185000" />
       <workItem from="1581808685718" duration="18662000" />
       <workItem from="1581883586990" duration="6104000" />
-      <workItem from="1581891243701" duration="8581000" />
+      <workItem from="1581891243701" duration="9054000" />
     </task>
     <servers />
   </component>

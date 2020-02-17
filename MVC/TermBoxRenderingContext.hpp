@@ -281,7 +281,8 @@ namespace LD
         LD::Enable_If_T<
         LD::Require<
                 (LD::IsRenderable2D<Arguements,const LD::TermBoxRenderContext&> && ...),
-                (sizeof...(Arguements) > 0)
+                (sizeof...(Arguements) > 0),
+                (!LD::Detail::IsPointer<Arguements>::value && ...)
         >,const TermBoxRenderContext &> RenderWithFormat(const LD::ImmutableString<Size> & str,const PDP::Detail::tVec2<LD::Integer> & translation,Arguements && ... objects) const noexcept
         {
             using ArguementList = LD::TypeList<LD::Decay_T<Arguements>...>;

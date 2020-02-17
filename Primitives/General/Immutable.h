@@ -656,23 +656,10 @@ namespace LD
 
             return true;
         },foundEdgeOfTrim,str);
-        
+
 
         LD::For<15>([](auto Index, char * string, const LD::UInteger & precision)
         {
-            /*
-            if(precision!=0)
-            {
-                string[Index] = char('\0')*(Index >= precision) + string[Index]*(Index < precision);
-                if(Index <= precision)
-                {
-                    string[Index] = string[Index];
-                }else if(Index > precision)
-                {
-                    string[Index] = 0;
-                }
-            }
-             */
             string[Index] = (precision != 0)*((Index <= (precision-1))*string[Index] + (Index>(precision-1))*'\0') + (precision==0)*string[Index];
             return true;
          },str,precision);
