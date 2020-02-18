@@ -163,6 +163,9 @@
 		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/MVC/FormattedFloatingPoint.h">
 			<Option target="LandessDevCore"/>
 		</Unit>
+		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/MVC/LinearAlgebraRenderable.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
 		<Unit filename="/Volumes/CatalinaDevOps/DevelopmentProjects/LandessDevCore/MVC/Renderable.h">
 			<Option target="LandessDevCore"/>
 		</Unit>

@@ -10,7 +10,7 @@
 #define TermBoxRenderingContext_hpp
 
 
-#include "Primitives/General//Vec2.h"
+#include "Primitives/General/Vec2.h"
 #include "Definitions/Integer.h"
 #include "Definitions/Float.h"
 #include "Definitions/Common.h"
@@ -204,6 +204,27 @@ namespace LD
         tb_event CurrentEvent;
         const TermBoxRenderContext & Write(const char & character, const PDP::Detail::tVec2<LD::Integer> & translation) const;
     public:
+
+
+
+
+        template<typename T>
+        constexpr static LD::Enable_If_T<
+                LD::Require<
+                        LD::ConvertiblyCallable<LD::Decay_T<T>,PDP::Detail::tVec2<LD::UInteger>()>::Value(),
+                        LD::IsClass<T>
+                        >
+        ,PDP::Detail::tVec2<LD::UInteger>> GetRenderableDimensions(T && object) noexcept (noexcept(LD::Declval<T>()(LD::Declval<LD::RenderableDimensionEvent>())))
+        {
+            return object(LD::RenderableDimensionEvent{});
+        }
+
+
+        template<typename T>
+        constexpr static LD::Enable_If_T<LD::Require<!LD::IsClass<T>>,PDP::Detail::tVec2<LD::UInteger>> GetRenderableDimensions(T && object) noexcept
+        {
+            return LD::Detail::GetRenderableDimensions(LD::Forward<T>(object));
+        }
         template<typename T,class sfinae>
         friend class BasicTermBoxApplication;
         TermBoxRenderContext();
@@ -361,7 +382,7 @@ namespace LD
                 LD::Match(renderables[Index],[&]( auto && object)->LD::Enable_If_T<LD::Require<!LD::IsSame<LD::Decay_T <decltype(object)>,LD::NullClass>>,void>
                 {
                     instance->Render(LD::Get(object),translation+PDP::Detail::tVec2<LD::Integer>{Index,0}+offsetTranslation);
-                    offsetTranslation.X() += (LD::GetRenderableDimensions(LD::Get(object)).X()-1);
+                    offsetTranslation.X() += (LD::TermBoxRenderContext::GetRenderableDimensions(LD::Get(object)).X()-1);
                 },[&](const LD::NullClass&){offsetTranslation.X()-=1;});
                 return true;
             },this,renderables,translation,offsetTranslation,packedArguements);
@@ -372,13 +393,13 @@ namespace LD
         template<typename T>
         constexpr LD::Enable_If_T<
          LD::Require<
-         LD::IsClass<LD::Decay_T<T>>,
-         !LD::IsImmutableString<LD::Decay_T<T>>,
-         !LD::IsSame<LD::Decay_T<T>,LD::StringView>
+         LD::ConvertiblyCallable<LD::Decay_T<T>,const LD::TermBoxRenderContext&(const LD::TermBoxRenderContext&, const PDP::Detail::tVec2<LD::Integer> &)>::Value()
         >,const LD::TermBoxRenderContext&> Render(T && object, const PDP::Detail::tVec2<LD::Integer> & translation) const noexcept (noexcept(LD::Declval<LD::Decay_T<T>>()(LD::Declval<const LD::TermBoxRenderContext&>(),LD::Declval<PDP::Detail::tVec2<LD::Integer>>())))
         {
             return object(*this,translation);
         }
     };
+
+
 }
 #endif /* TermBoxRenderingContext_hpp */

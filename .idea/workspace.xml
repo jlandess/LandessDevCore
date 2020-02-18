@@ -36,15 +36,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a2ffdfb1-0050-446c-b0af-d02ece8e31b8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/MVC/LinearAlgebraRenderable.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Algorithms/CompileTimeControlFlow.h" beforeDir="false" afterPath="$PROJECT_DIR$/Algorithms/CompileTimeControlFlow.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MVC/Renderable.h" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/Renderable.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MVC/RenderableConcept.h" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/RenderableConcept.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MVC/TermBoxRenderingContext.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/TermBoxRenderingContext.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Primitives/General/Immutable.h" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/Immutable.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Primitives/General/StringView.h" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/StringView.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/LandessDevCore" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/LandessDevCore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/LandessDevCore.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/LandessDevCore.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/LandessDevCore" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/LandessDevCore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/LandessDevCore.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/LandessDevCore.cbp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
@@ -116,7 +116,7 @@
       <workItem from="1581808482243" duration="185000" />
       <workItem from="1581808685718" duration="18662000" />
       <workItem from="1581883586990" duration="6104000" />
-      <workItem from="1581891243701" duration="14558000" />
+      <workItem from="1581891243701" duration="29460000" />
     </task>
     <servers />
   </component>
@@ -158,9 +158,9 @@
       <screen x="0" y="23" width="1920" height="980" />
     </state>
     <state x="653" y="345" key="com.intellij.ide.util.TipDialog/0.23.1920.980@0.23.1920.980" timestamp="1581883590965" />
-    <state x="625" y="239" width="670" height="676" key="search.everywhere.popup" timestamp="1581821438966">
+    <state x="625" y="239" width="670" height="676" key="search.everywhere.popup" timestamp="1581978472335">
       <screen x="0" y="23" width="1920" height="980" />
     </state>
-    <state x="625" y="239" width="670" height="676" key="search.everywhere.popup/0.23.1920.980@0.23.1920.980" timestamp="1581821438966" />
+    <state x="625" y="239" width="670" height="676" key="search.everywhere.popup/0.23.1920.980@0.23.1920.980" timestamp="1581978472335" />
   </component>
 </project>

@@ -235,7 +235,7 @@ int main()
         LD::FormattedFloatingPoint<LD::Float > currentNumber{99.7214,2};
 
         LD::UInteger size = stringifiedNumber.GetSize();
-        LD::Get<LD::TermBoxRenderContext>(applicationExecutionEvent)->RenderWithFormat(LD::ToImmutableString("{} uWu {}abc{}abc{}abc{}{} uWu {}"),{0,-1},stringifiedNumber);
+        LD::Get<LD::TermBoxRenderContext>(applicationExecutionEvent)->RenderWithFormat(LD::ToImmutableString("{} uWu {}abc{}abc{}abc{}{} uWu {}"),{0,-1},stringifiedNumber,"rawr"_sv);
 
         LD::Get<LD::TermBoxRenderContext>(applicationExecutionEvent)->Render(currentNumber,{0,-2});
     });
