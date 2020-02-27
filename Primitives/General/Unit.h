@@ -11,15 +11,6 @@
 namespace LD
 {
 
-
-    /*
-    template<LD::Integer ExponentValue>
-    class UnitExponent
-    {
-        static const constexpr LD::Integer Value = ExponentValue;
-    };
-     */
-
     template<typename Exponent>
     class UnitExponent;
 
@@ -129,15 +120,35 @@ namespace LD
         }
 
 
-        /*
-        LD::Enable_If_T<LD::Require<LD::Concept::PostfixIncrementable<T>>,Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,
-        LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> &>
+
+        Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> &
         operator++() noexcept
         {
             mUnit.Value()++;
             return (*this);
         };
 
+
+        Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> &
+        operator++(int) noexcept
+        {
+            mUnit.Value()++;
+            return (*this);
+        };
+
+        Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> &
+        operator--() noexcept
+        {
+            mUnit.Value()--;
+            return (*this);
+        };
+        Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> &
+        operator--(int) noexcept
+        {
+            mUnit.Value()--;
+            return (*this);
+        };
+        /*
 
         LD::Enable_If_T<LD::Require<LD::Concept::PrefixIncrementable<T>>,Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,
         LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> &>
