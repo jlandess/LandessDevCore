@@ -7154,6 +7154,10 @@ namespace LD
     {
         template <class T> using PrefixIncrement = decltype(++LD::Declval<T>());
         template <class T> using PostfixIncrement = decltype(LD::Declval<T>()++);
+        template<typename T>
+        using PrefixDecrement = decltype(--LD::Declval<T>());
+        template<typename T>
+        using PostFixDecrement = decltype(LD::Declval<T>()--);
         template <class T> using Dereference = decltype(*LD::Declval<T>());
 
         template <class T, class Index>
@@ -7477,7 +7481,13 @@ namespace LD
         constexpr bool PrefixIncrementable = LD::Exists<LD::Ops::PrefixIncrement,T>;
 
         template<typename T>
+        constexpr bool PrefixDecrementable = LD::Exists<LD::Ops::PrefixDecrement,T>;
+
+        template<typename T>
         constexpr bool PostfixIncrementable = LD::Exists<LD::Ops::PostfixIncrement,T>;
+
+        template<typename T>
+        constexpr bool PostfixDecrementable = LD::Exists<LD::Ops::PostFixDecrement ,T>;
 
         template<typename T>
         constexpr bool Deferenceable = LD::Exists<LD::Ops::Dereference,T>;
