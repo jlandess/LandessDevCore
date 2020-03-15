@@ -7,7 +7,7 @@
 
 #include "Definitions/Common.h"
 #include "Ratio.h"
-
+#include "TypeTraits/ExclusiveOr.h"
 namespace LD
 {
 
@@ -540,14 +540,254 @@ namespace LD
 
 
 
-        template<typename U,typename V = T, typename R = decltype(LD::Declval<V>() * LD::Declval<T>())>
+        template<typename U,LD::UInteger ParamRatioNumerator, LD::UInteger ParamRatioDenominator,LD::UInteger ParamUnitNumerator, LD::UInteger ParamUnitDenominator,template<typename> class Tag ,typename V = T, typename R = decltype(LD::Declval<V>() * LD::Declval<T>())>
         constexpr LD::Enable_If_T<LD::Require<
-        true
+                LD::CT::IsRatioIdentity<LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>>,
+                LD::CT::IsRatioIdentity<LD::CT::Ratio<ParamRatioNumerator,ParamRatioDenominator>>,
+                LD::IsSame<CurrentTag<T>,Tag<T>>,
+                LD::CT::IsRatioEqual<LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::CT::Ratio<ParamRatioNumerator,ParamRatioDenominator>>
         >,
-        Unit<R,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>>
-        operator * (const Unit<U,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> & unit) const noexcept(noexcept(LD::Declval<V>()*LD::Declval<U>()))
+        Unit<R,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<2,1>>>>
+        operator * (const Unit<U,BaseTag,Tag,LD::CT::Ratio<ParamRatioNumerator,ParamRatioDenominator>,LD::UnitExponent<LD::CT::Ratio<ParamUnitNumerator,ParamUnitDenominator>>> & unit) const noexcept(noexcept(LD::Declval<V>()*LD::Declval<U>()))
         {
-            return Unit<R,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>{};
+            return Unit<R,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>{mUnit.Value()*unit.mUnit.Value()};
+        };
+
+        template<typename U,LD::UInteger ParamRatioNumerator,
+                LD::UInteger ParamRatioDenominator,
+                LD::UInteger ParamUnitNumerator,
+                LD::UInteger ParamUnitDenominator,
+                template<typename> class Tag ,
+                        typename V = T,
+                        typename A = decltype(LD::Declval<T>() * LD::Declval<LD::UInteger>()),
+                        typename B = decltype(LD::Declval<A>() / LD::Declval<LD::UInteger>()),
+                        typename C = decltype(LD::Declval<U>() * LD::Declval<LD::UInteger>()),
+                        typename D = decltype(LD::Declval<C>() / LD::Declval<LD::UInteger>()),
+                        typename E = decltype(LD::Declval<B>() * LD::Declval<D>()),
+                        typename F = decltype(LD::Declval<E>() * LD::Declval<LD::UInteger>()),
+                        typename R = decltype(LD::Declval<F>() / LD::Declval<LD::UInteger>())
+        >
+        constexpr LD::Enable_If_T<LD::Require<
+                LD::CT::IsRatioIdentity<LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>>,
+                LD::CT::IsRatioIdentity<LD::CT::Ratio<ParamRatioNumerator,ParamRatioDenominator>>,
+                LD::IsSame<CurrentTag<T>,Tag<T>>,
+                !LD::CT::IsRatioEqual<LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::CT::Ratio<ParamRatioNumerator,ParamRatioDenominator>>
+        >,
+                Unit<R,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<2,1>>>>
+        operator * (const Unit<U,BaseTag,Tag,LD::CT::Ratio<ParamRatioNumerator,ParamRatioDenominator>,LD::UnitExponent<LD::CT::Ratio<ParamUnitNumerator,ParamUnitDenominator>>> & unit) const noexcept(noexcept(LD::Declval<V>()*LD::Declval<U>()))
+        {
+            A multiplicand = mUnit.Value()*PrefixRatioDenom;
+            B instanceAsBaseRatio = multiplicand/PrefixRatioNumerator;
+            C paramMultiplicand = unit.mUnit.Value()*ParamRatioDenominator;
+            D paramAsBaseRatio = instanceAsBaseRatio/ParamRatioNumerator;
+            E resultantAsBaseRatio = instanceAsBaseRatio*paramAsBaseRatio;
+            F resultantmultiplicand = resultantAsBaseRatio*PrefixRatioNumerator;
+            R resultantValue = resultantmultiplicand/PrefixRatioDenom;
+            return Unit<R,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>{resultantValue};
+        };
+
+        template<typename U,LD::UInteger ParamRatioNumerator,
+                LD::UInteger ParamRatioDenominator,
+                LD::UInteger ParamUnitNumerator,
+                LD::UInteger ParamUnitDenominator,
+                template<typename> class Tag ,
+                        typename V = T,
+                        typename R = decltype(LD::Declval<V>() * LD::Declval<T>())>
+        constexpr LD::Enable_If_T<LD::Require<
+                LD::CT::IsRatioIdentity<LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>>,
+                LD::CT::IsRatioIdentity<LD::CT::Ratio<ParamRatioNumerator,ParamRatioDenominator>>,
+                !LD::IsSame<CurrentTag<T>,Tag<T>>,
+                LD::CT::IsRatioEqual<LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::CT::Ratio<ParamRatioNumerator,ParamRatioDenominator>>
+        >,
+                Unit<R,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<2,1>>>>
+        operator * (const Unit<U,BaseTag,Tag,LD::CT::Ratio<ParamRatioNumerator,ParamRatioDenominator>,LD::UnitExponent<LD::CT::Ratio<ParamUnitNumerator,ParamUnitDenominator>>> & unit) const noexcept(noexcept(LD::Declval<V>()*LD::Declval<U>()))
+        {
+            UnitRelationship<BaseTag<T>,CurrentTag<T>> instanceTagConverter;
+            UnitRelationship<BaseTag<U>,Tag<U>> paramTagConverter;
+            UnitRelationship<BaseTag<R>,Tag<R>> resultantTagConverter;
+            BaseTag<T> instanceTagAsBaseTag = instanceTagConverter(this->mUnit);
+            BaseTag<U> paramTagAsBaseTag = paramTagConverter(unit.mUnit);
+            R result = instanceTagAsBaseTag.Value()*paramTagAsBaseTag.Value();
+            CurrentTag<R> resultantTag = resultantTagConverter(BaseTag<R>(result));
+            return Unit<R,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>{resultantTag};
+        };
+
+
+        template<typename U,LD::UInteger ParamRatioNumerator,
+                LD::UInteger ParamRatioDenominator,
+                LD::UInteger ParamUnitNumerator,
+                LD::UInteger ParamUnitDenominator,
+                template<typename> class Tag ,
+                typename V = T,
+                typename A = decltype(LD::Declval<T>() * LD::Declval<LD::UInteger>()),
+                typename B = decltype(LD::Declval<A>() / LD::Declval<LD::UInteger>()),
+                typename C = decltype(LD::Declval<U>() * LD::Declval<LD::UInteger>()),
+                typename D = decltype(LD::Declval<C>() / LD::Declval<LD::UInteger>()),
+                typename E = decltype(LD::Declval<B>() * LD::Declval<D>()),
+                typename F = decltype(LD::Declval<E>() * LD::Declval<LD::UInteger>()),
+                typename R = decltype(LD::Declval<F>() / LD::Declval<LD::UInteger>())
+        >
+        constexpr LD::Enable_If_T<LD::Require<
+                LD::CT::IsRatioIdentity<LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>>,
+                LD::CT::IsRatioIdentity<LD::CT::Ratio<ParamRatioNumerator,ParamRatioDenominator>>,
+                !LD::IsSame<CurrentTag<T>,Tag<T>>,
+                !LD::CT::IsRatioEqual<LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::CT::Ratio<ParamRatioNumerator,ParamRatioDenominator>>
+        >,
+                Unit<R,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<2,1>>>>
+        operator * (const Unit<U,BaseTag,Tag,LD::CT::Ratio<ParamRatioNumerator,ParamRatioDenominator>,LD::UnitExponent<LD::CT::Ratio<ParamUnitNumerator,ParamUnitDenominator>>> & unit) const noexcept(noexcept(LD::Declval<V>()*LD::Declval<U>()))
+        {
+            UnitRelationship<BaseTag<T>,CurrentTag<T>> instanceTagConverter;
+            UnitRelationship<BaseTag<U>,Tag<U>> paramTagConverter;
+            UnitRelationship<BaseTag<R>,Tag<R>> resultantTagConverter;
+            BaseTag<T> instanceTagAsBaseTag = instanceTagConverter(this->mUnit);
+            BaseTag<U> paramTagAsBaseTag = paramTagConverter(unit.mUnit);
+            A multiplicand = instanceTagAsBaseTag.Value()*PrefixRatioDenom;
+            B instanceAsBaseRatio = multiplicand/PrefixRatioNumerator;
+            C paramMultiplicand = paramTagAsBaseTag.Value()*ParamRatioDenominator;
+            D paramAsBaseRatio = paramMultiplicand/ParamRatioNumerator;
+            E resultantAsBaseRatio = instanceAsBaseRatio*paramAsBaseRatio;
+            F resultantMultiplicand = resultantAsBaseRatio*PrefixRatioNumerator;
+            R resultantAsBaseRatioAndBaseTag = resultantMultiplicand/PrefixRatioDenom;
+            CurrentTag<R> resultantTag = resultantTagConverter(BaseTag<R>{resultantAsBaseRatioAndBaseTag});
+            return Unit<R,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>{resultantTag};
+        };
+
+        template<typename U,LD::UInteger ParamRatioNumerator,
+                LD::UInteger ParamRatioDenominator,
+                LD::UInteger ParamUnitNumerator,
+                LD::UInteger ParamUnitDenominator,
+                template<typename> class Tag ,
+                        typename V = T,
+                        typename R = decltype(LD::Declval<V>() * LD::Declval<T>())>
+        constexpr LD::Enable_If_T<LD::Require<
+                !LD::CT::IsRatioIdentity<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>,
+                !LD::CT::IsRatioIdentity<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>,
+                LD::CT::IsRatioRecipricol<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>,LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>,
+                LD::IsSame<CurrentTag<T>,Tag<T>>,
+                LD::CT::IsRatioEqual<LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::CT::Ratio<ParamRatioNumerator,ParamRatioDenominator>>
+        >,
+        R
+        >
+        operator * (const Unit<U,BaseTag,Tag,LD::CT::Ratio<ParamRatioNumerator,ParamRatioDenominator>,LD::UnitExponent<LD::CT::Ratio<ParamUnitNumerator,ParamUnitDenominator>>> & unit) const noexcept(noexcept(LD::Declval<V>()*LD::Declval<U>()))
+        {
+            return R{mUnit.Value() * unit.mUnit.Value()};
+        };
+
+
+        template<typename U,LD::UInteger ParamRatioNumerator,
+                LD::UInteger ParamRatioDenominator,
+                LD::UInteger ParamUnitNumerator,
+                LD::UInteger ParamUnitDenominator,
+                template<typename> class Tag ,
+                typename V = T,
+                typename A = decltype(LD::Declval<T>() * LD::Declval<LD::UInteger>()),
+                typename B = decltype(LD::Declval<A>() / LD::Declval<LD::UInteger>()),
+                typename C = decltype(LD::Declval<U>() * LD::Declval<LD::UInteger>()),
+                typename D = decltype(LD::Declval<C>() / LD::Declval<LD::UInteger>()),
+                typename E = decltype(LD::Declval<B>() * LD::Declval<D>()),
+                typename F = decltype(LD::Declval<E>() * LD::Declval<LD::UInteger>()),
+                typename R = decltype(LD::Declval<F>() / LD::Declval<LD::UInteger>())
+        >
+        constexpr LD::Enable_If_T<LD::Require<
+                !LD::CT::IsRatioIdentity<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>,
+                !LD::CT::IsRatioIdentity<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>,
+                LD::CT::IsRatioRecipricol<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>,LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>,
+                LD::IsSame<CurrentTag<T>,Tag<T>>,
+                !LD::CT::IsRatioEqual<LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::CT::Ratio<ParamRatioNumerator,ParamRatioDenominator>>
+        >,
+        R
+        >
+        operator * (const Unit<U,BaseTag,Tag,LD::CT::Ratio<ParamRatioNumerator,ParamRatioDenominator>,LD::UnitExponent<LD::CT::Ratio<ParamUnitNumerator,ParamUnitDenominator>>> & unit) const noexcept(noexcept(LD::Declval<V>()*LD::Declval<U>()))
+        {
+            A multiplicand = mUnit.Value()*PrefixRatioDenom;
+            B instanceAsBaseRatio = multiplicand/PrefixRatioNumerator;
+            C paramMultiplicand = unit.mUnit.Value()*ParamRatioDenominator;
+            D paramAsBaseRatio = instanceAsBaseRatio/ParamRatioNumerator;
+            E resultantAsBaseRatio = instanceAsBaseRatio*paramAsBaseRatio;
+            F resultantmultiplicand = resultantAsBaseRatio*PrefixRatioNumerator;
+            R resultantValue = resultantmultiplicand/PrefixRatioDenom;
+            return resultantValue;
+        };
+
+
+        template<typename U,LD::UInteger ParamRatioNumerator,
+                LD::UInteger ParamRatioDenominator,
+                LD::UInteger ParamUnitNumerator,
+                LD::UInteger ParamUnitDenominator,
+                template<typename> class Tag ,
+                typename V = T,
+                typename R = decltype(LD::Declval<V>() * LD::Declval<T>())>
+        constexpr LD::Enable_If_T<LD::Require<
+                !LD::CT::IsRatioIdentity<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>,
+                !LD::CT::IsRatioIdentity<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>,
+                LD::CT::IsRatioRecipricol<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>,LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>,
+                !LD::IsSame<CurrentTag<T>,Tag<T>>,
+                LD::CT::IsRatioEqual<LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::CT::Ratio<ParamRatioNumerator,ParamRatioDenominator>>
+        >,
+        R
+        >
+        operator * (const Unit<U,BaseTag,Tag,LD::CT::Ratio<ParamRatioNumerator,ParamRatioDenominator>,LD::UnitExponent<LD::CT::Ratio<ParamUnitNumerator,ParamUnitDenominator>>> & unit) const noexcept(noexcept(LD::Declval<V>()*LD::Declval<U>()))
+        {
+            UnitRelationship<BaseTag<T>,CurrentTag<T>> instanceTagConverter;
+            UnitRelationship<BaseTag<U>,Tag<U>> paramTagConverter;
+            UnitRelationship<BaseTag<R>,Tag<R>> resultantTagConverter;
+            BaseTag<T> instanceTagAsBaseTag = instanceTagConverter(this->mUnit);
+            BaseTag<U> paramTagAsBaseTag = paramTagConverter(unit.mUnit);
+            R result = instanceTagAsBaseTag.Value()*paramTagAsBaseTag.Value();
+            CurrentTag<R> resultantTag = resultantTagConverter(BaseTag<R>(result));
+            return resultantTag.Value();
+        };
+
+        template<typename U,LD::UInteger ParamPrefixRatioNumerator,
+                LD::UInteger ParamPrefixRatioDenominator,
+                LD::UInteger ParamUnitNumerator,
+                LD::UInteger ParamUnitDenominator,
+                template<typename> class Tag ,
+                typename V = T,
+                typename A = decltype(LD::Declval<T>() * LD::Declval<LD::UInteger>()),
+                typename B = decltype(LD::Declval<A>() / LD::Declval<LD::UInteger>()),
+                typename C = decltype(LD::Declval<U>() * LD::Declval<LD::UInteger>()),
+                typename D = decltype(LD::Declval<C>() / LD::Declval<LD::UInteger>()),
+                typename E = decltype(LD::Declval<B>() * LD::Declval<D>()),
+                typename F = decltype(LD::Declval<E>() * LD::Declval<LD::UInteger>()),
+                typename R = decltype(LD::Declval<F>() / LD::Declval<LD::UInteger>())
+        >
+        constexpr LD::Enable_If_T<LD::Require<
+                !LD::CT::IsRatioIdentity<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>,
+                !LD::CT::IsRatioIdentity<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>,
+                LD::CT::IsRatioRecipricol<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>,LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>,
+                !LD::IsSame<CurrentTag<T>,Tag<T>>,
+                !LD::CT::IsRatioEqual<LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::CT::Ratio<ParamPrefixRatioNumerator,ParamPrefixRatioDenominator>>
+        >,
+        R
+        >
+        operator * (const Unit<U,BaseTag,Tag,LD::CT::Ratio<ParamPrefixRatioNumerator,ParamPrefixRatioDenominator>,LD::UnitExponent<LD::CT::Ratio<ParamUnitNumerator,ParamUnitDenominator>>> & instance) const noexcept(noexcept(LD::Declval<V>()*LD::Declval<U>()))
+        {
+            UnitRelationship<BaseTag<T>,CurrentTag<T>> instanceTagConverter;
+            UnitRelationship<BaseTag<U>,Tag<U>> paramToBaseTagConverter;
+            UnitRelationship<BaseTag<R>,Tag<R>> resultantTagConverter;
+
+            BaseTag<T> instanceTagToBaseTag = instanceTagConverter(this->mUnit);
+            BaseTag<T> paramTagToBaseTag = paramToBaseTagConverter(instance);
+
+            A instanceRatioMultiplication = instanceTagToBaseTag.Value()*PrefixRatioDenom;
+            B instanceUnitAsBaseRatio = instanceRatioMultiplication/PrefixRatioNumerator;
+            C paramRationMultiplication = paramTagToBaseTag.Value()*ParamPrefixRatioDenominator;
+            D paramUnitAsBaseRatio = paramRationMultiplication/ParamPrefixRatioNumerator;
+
+
+
+            E resultantAddition = instanceUnitAsBaseRatio - paramUnitAsBaseRatio;
+
+
+
+            F resultantWithRatioNumerator = resultantAddition*PrefixRatioNumerator;
+            R resultantWithCurrentRatioAsBaseTag = resultantWithRatioNumerator/PrefixRatioDenom;
+
+            CurrentTag<R> resultantTag = resultantTagConverter(BaseTag<R>{resultantWithCurrentRatioAsBaseTag});
+
+
+            return resultantTag.Value();
         };
 
     };
