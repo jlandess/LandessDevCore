@@ -52,19 +52,16 @@ namespace LD
 
             static  const constexpr  LD::UInteger Num = s * na / Ratio<Numerator,Denominator>::GCD;
 
-            //constexpr static LD::UInteger Num = Numerator;
-            //constexpr static LD::UInteger Den = Denominator;
-
             static  const LD::UInteger Den = da / Ratio<Numerator,Denominator>::GCD;
         };
 
         namespace Detail
         {
             template<typename T, typename V, class A = void>
-            struct Greater;
+            struct IsRatioGreater;
 
             template<LD::UInteger Num1, LD::UInteger Den1, LD::UInteger Num2, LD::UInteger Den2>
-            struct Greater<LD::CT::Ratio<Num1,Den1>,LD::CT::Ratio<Num2,Den2>,LD::Enable_If_T<true>>
+            struct IsRatioGreater<LD::CT::Ratio<Num1,Den1>,LD::CT::Ratio<Num2,Den2>,LD::Enable_If_T<true>>
             {
                 using R1 = LD::CT::Ratio<Num1*Den2,Den1*Den2>;
                 using R2 = LD::CT::Ratio<Num2*Den1,Den1*Den2>;
@@ -74,10 +71,10 @@ namespace LD
 
 
             template<typename T, typename V, class A = void>
-            struct Less;
+            struct IsRatioLess;
 
             template<LD::UInteger Num1, LD::UInteger Den1, LD::UInteger Num2, LD::UInteger Den2>
-            struct Less<LD::CT::Ratio<Num1,Den1>,LD::CT::Ratio<Num2,Den2>>
+            struct IsRatioLess<LD::CT::Ratio<Num1,Den1>,LD::CT::Ratio<Num2,Den2>>
             {
                 using R1 = LD::CT::Ratio<Num1*Den2,Den1*Den2>;
                 using R2 = LD::CT::Ratio<Num2*Den1,Den1*Den2>;
@@ -85,11 +82,37 @@ namespace LD
                 static constexpr bool value = (R1::Num < R2::Num);
             };
 
+
             template<typename T, typename V>
-            struct IsRecipricol;
+            struct IsRatioEqual;
+
 
             template<LD::UInteger Num1, LD::UInteger Den1, LD::UInteger Num2, LD::UInteger Den2>
-            struct IsRecipricol<LD::CT::Ratio<Num1,Den1>,LD::CT::Ratio<Num2,Den2>>
+            struct IsRatioEqual<LD::CT::Ratio<Num1,Den1>,LD::CT::Ratio<Num2,Den2>>
+            {
+                using R1 = LD::CT::Ratio<Num1*Den2,Den1*Den2>;
+                using R2 = LD::CT::Ratio<Num2*Den1,Den1*Den2>;
+
+                static constexpr bool value = (R1::Num == R2::Num);
+            };
+
+            template<typename T, typename V>
+            struct IsRatioNotEqual;
+
+            template<LD::UInteger Num1, LD::UInteger Den1, LD::UInteger Num2, LD::UInteger Den2>
+            struct IsRatioNotEqual<LD::CT::Ratio<Num1,Den1>,LD::CT::Ratio<Num2,Den2>>
+            {
+                using R1 = LD::CT::Ratio<Num1*Den2,Den1*Den2>;
+                using R2 = LD::CT::Ratio<Num2*Den1,Den1*Den2>;
+
+                static constexpr bool value = (R1::Num != R2::Num);
+            };
+
+            template<typename T, typename V>
+            struct IsRatioRecipricol;
+
+            template<LD::UInteger Num1, LD::UInteger Den1, LD::UInteger Num2, LD::UInteger Den2>
+            struct IsRatioRecipricol<LD::CT::Ratio<Num1,Den1>,LD::CT::Ratio<Num2,Den2>>
             {
                 using R1 = LD::CT::Ratio<Num1*Den2,Den1*Den2>;
                 using R2 = LD::CT::Ratio<Num2*Den1,Den1*Den2>;
@@ -98,26 +121,50 @@ namespace LD
             };
 
             template<typename T>
-            struct IsIdentity;
+            struct IsRatioIdentity;
 
             template<LD::UInteger Num, LD::UInteger Den>
-            struct IsIdentity<LD::CT::Ratio<Num,Den>>
+            struct IsRatioIdentity<LD::CT::Ratio<Num,Den>>
             {
                 using R= LD::CT::Ratio<Num,Den>;
+
+                static constexpr bool value = (R::Num == 1) && (R::Den == 1);
+            };
+
+            template<typename T, typename V>
+            struct AddRatio;
+
+
+            template<LD::UInteger Num1, LD::UInteger Den1, LD::UInteger Num2, LD::UInteger Den2>
+            struct AddRatio<LD::CT::Ratio<Num1,Den1>,LD::CT::Ratio<Num2,Den2>>
+            {
+                using type = LD::CT::Ratio<(Num1*Den2)+(Num2*Den1),Den1*Den2>;
             };
 
         }
 
         template<typename T, typename V>
-        constexpr bool Greater = LD::CT::Detail::Greater<T,V>::value;
+        constexpr bool IsRatioGreater = LD::CT::Detail::IsRatioGreater<T,V>::value;
 
         template<typename T, typename V>
-        constexpr bool Less = LD::CT::Detail::Less<T,V>::value;
+        constexpr bool IsRatioLess = LD::CT::Detail::IsRatioLess<T,V>::value;
 
         template<typename T, typename V>
-        constexpr bool IsRecipricol = LD::CT::Detail::IsRecipricol<T,V>::value;
+        constexpr bool IsRatioEqual = LD::CT::Detail::IsRatioEqual<T,V>::value;
 
-        
+        template<typename T, typename V>
+        constexpr bool IsRatioNotEqual = LD::CT::Detail::IsRatioNotEqual<T,V>::value;
+
+        template<typename T, typename V>
+        constexpr bool IsRatioRecipricol = LD::CT::Detail::IsRatioRecipricol<T,V>::value;
+
+        template<typename T>
+        constexpr bool IsRatioIdentity = LD::CT::Detail::IsRatioIdentity<T>::value;
+
+        template<typename T, typename V>
+        using AddRatio = typename LD::CT::Detail::AddRatio <T,V>::type;
+
+
         /*
    template<LD::UInteger Numerator, LD::UInteger Denominator, LD::UInteger _MixedNum = 0, LD::UInteger _MixedDen = 1>
    class MixedRatio
