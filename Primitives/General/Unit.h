@@ -797,19 +797,24 @@ namespace LD
                 LD::UInteger ParamUnitDenominator,
                 template<typename> class Tag ,
                 typename V = T,
-                typename R = decltype(LD::Declval<V>() * LD::Declval<T>())>
+                typename U1 = LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>,
+                typename U2 = LD::CT::Ratio<ParamUnitNumerator,ParamUnitDenominator>,
+                typename ERatio1 = LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,
+                typename ERatio2 = LD::CT::Ratio<ParamRatioNumerator,ParamRatioDenominator>,
+                typename R = decltype(LD::Declval<V>() * LD::Declval<T>())
+        >
         constexpr LD::Enable_If_T<LD::Require<
-                !LD::CT::IsRatioIdentity<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>,
-                !LD::CT::IsRatioIdentity<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>,
-                !LD::CT::IsRatioRecipricol<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>,LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>,
+                !LD::CT::IsRatioIdentity<U1>,
+                !LD::CT::IsRatioIdentity<U2>,
+                !LD::CT::IsRatioRecipricol<U1,U2>,
                 LD::IsSame<CurrentTag<T>,Tag<T>>,
-                LD::CT::IsRatioEqual<LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::CT::Ratio<ParamRatioNumerator,ParamRatioDenominator>>
+                LD::CT::IsRatioEqual<ERatio1,ERatio2>
         >,
-                R
+        Unit<R,BaseTag,CurrentTag,ERatio1,LD::UnitExponent<LD::CT::AddRatio<U1,U2>>>
         >
         operator * (const Unit<U,BaseTag,Tag,LD::CT::Ratio<ParamRatioNumerator,ParamRatioDenominator>,LD::UnitExponent<LD::CT::Ratio<ParamUnitNumerator,ParamUnitDenominator>>> & unit) const noexcept(noexcept(LD::Declval<V>()*LD::Declval<U>()))
         {
-            return R{mUnit.Value() * unit.mUnit.Value()};
+            return Unit<R,BaseTag,CurrentTag,ERatio1,LD::UnitExponent<LD::CT::AddRatio<U1,U2>>>{mUnit.Value() * unit.mUnit.Value()};
         };
 
     };
