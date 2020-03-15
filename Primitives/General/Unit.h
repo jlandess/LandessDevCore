@@ -790,6 +790,28 @@ namespace LD
             return resultantTag.Value();
         };
 
+
+        template<typename U,LD::UInteger ParamRatioNumerator,
+                LD::UInteger ParamRatioDenominator,
+                LD::UInteger ParamUnitNumerator,
+                LD::UInteger ParamUnitDenominator,
+                template<typename> class Tag ,
+                typename V = T,
+                typename R = decltype(LD::Declval<V>() * LD::Declval<T>())>
+        constexpr LD::Enable_If_T<LD::Require<
+                !LD::CT::IsRatioIdentity<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>,
+                !LD::CT::IsRatioIdentity<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>,
+                !LD::CT::IsRatioRecipricol<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>,LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>,
+                LD::IsSame<CurrentTag<T>,Tag<T>>,
+                LD::CT::IsRatioEqual<LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::CT::Ratio<ParamRatioNumerator,ParamRatioDenominator>>
+        >,
+                R
+        >
+        operator * (const Unit<U,BaseTag,Tag,LD::CT::Ratio<ParamRatioNumerator,ParamRatioDenominator>,LD::UnitExponent<LD::CT::Ratio<ParamUnitNumerator,ParamUnitDenominator>>> & unit) const noexcept(noexcept(LD::Declval<V>()*LD::Declval<U>()))
+        {
+            return R{mUnit.Value() * unit.mUnit.Value()};
+        };
+
     };
 
 
