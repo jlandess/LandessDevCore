@@ -178,7 +178,7 @@ namespace LD
         LD::Enable_If_T <
         LD::Require<
         LD::IsSame<Tag<T>,CurrentTag<T>>,
-        LD::IsSame<LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::CT::Ratio<ParamPrefixRatioNumerator,ParamPrefixRatioDenominator>>,
+        LD::CT::IsRatioEqual<LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::CT::Ratio<ParamPrefixRatioNumerator,ParamPrefixRatioDenominator>>,
         LD::Detail::IsConvertible<decltype(LD::Declval<T>() + LD::Declval<U>()),T>::value
         >,
         Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> &
@@ -245,7 +245,7 @@ namespace LD
         LD::Enable_If_T <
                 LD::Require<
                         LD::IsSame<Tag<T>,CurrentTag<T>>,
-                        !LD::IsSame<LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::CT::Ratio<ParamPrefixRatioNumerator,ParamPrefixRatioDenominator>>,
+                        !LD::CT::IsRatioEqual<LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::CT::Ratio<ParamPrefixRatioNumerator,ParamPrefixRatioDenominator>>,
                         LD::Detail::IsConvertible<decltype(LD::Declval<T>() + LD::Declval<U>()),T>::value
                 >,
                 Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> &
@@ -276,7 +276,7 @@ namespace LD
         constexpr
         LD::Enable_If_T<LD::Require<
                 !LD::IsSame<Tag<T>,CurrentTag<T>>,
-                LD::IsSame<LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::CT::Ratio<ParamPrefixRatioNumerator,ParamPrefixRatioDenominator>>
+                LD::CT::IsRatioEqual<LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::CT::Ratio<ParamPrefixRatioNumerator,ParamPrefixRatioDenominator>>
         >,
                 Unit<R,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>> operator +
                 (const Unit<U,BaseTag,Tag,LD::CT::Ratio<ParamPrefixRatioNumerator,ParamPrefixRatioDenominator>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> & instance) const noexcept
@@ -306,7 +306,7 @@ namespace LD
         LD::Enable_If_T <
                 LD::Require<
                         !LD::IsSame<Tag<T>,CurrentTag<T>>,
-                        LD::IsSame<LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::CT::Ratio<ParamPrefixRatioNumerator,ParamPrefixRatioDenominator>>,
+                        LD::CT::IsRatioEqual<LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::CT::Ratio<ParamPrefixRatioNumerator,ParamPrefixRatioDenominator>>,
                         LD::Detail::IsConvertible<decltype(LD::Declval<T>() + LD::Declval<U>()),T>::value
                 >,
                 Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> &
@@ -340,7 +340,7 @@ namespace LD
         constexpr
         LD::Enable_If_T<LD::Require<
                 !LD::IsSame<Tag<T>,CurrentTag<T>>,
-                !LD::IsSame<LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::CT::Ratio<ParamPrefixRatioNumerator,ParamPrefixRatioDenominator>>
+                !LD::CT::IsRatioEqual<LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::CT::Ratio<ParamPrefixRatioNumerator,ParamPrefixRatioDenominator>>
         >,
                 Unit<R,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>> operator +
                 (const Unit<U,BaseTag,Tag,LD::CT::Ratio<ParamPrefixRatioNumerator,ParamPrefixRatioDenominator>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> & instance) const noexcept
@@ -386,7 +386,7 @@ namespace LD
         LD::Enable_If_T <
                 LD::Require<
                         !LD::IsSame<Tag<T>,CurrentTag<T>>,
-                        !LD::IsSame<LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::CT::Ratio<ParamPrefixRatioNumerator,ParamPrefixRatioDenominator>>,
+                        !LD::CT::IsRatioEqual<LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::CT::Ratio<ParamPrefixRatioNumerator,ParamPrefixRatioDenominator>>,
                         LD::Detail::IsConvertible<decltype(LD::Declval<T>() + LD::Declval<U>()),T>::value
                 >,
                 Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> &
@@ -423,7 +423,7 @@ namespace LD
         constexpr
         LD::Enable_If_T<LD::Require<
                 LD::IsSame<Tag<T>,CurrentTag<T>>,
-                LD::IsSame<LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::CT::Ratio<ParamPrefixRatioNumerator,ParamPrefixRatioDenominator>>
+                LD::CT::IsRatioEqual<LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::CT::Ratio<ParamPrefixRatioNumerator,ParamPrefixRatioDenominator>>
         >,
                 Unit<R,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>> operator -
                 (const Unit<U,BaseTag,Tag,LD::CT::Ratio<ParamPrefixRatioNumerator,ParamPrefixRatioDenominator>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> & instance) const noexcept
@@ -446,7 +446,7 @@ namespace LD
         constexpr
         LD::Enable_If_T<LD::Require<
                 LD::IsSame<Tag<T>,CurrentTag<T>>,
-                !LD::IsSame<LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::CT::Ratio<ParamPrefixRatioNumerator,ParamPrefixRatioDenominator>>
+                !LD::CT::IsRatioEqual<LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::CT::Ratio<ParamPrefixRatioNumerator,ParamPrefixRatioDenominator>>
         >,
                 Unit<R,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>> operator -
                 (const Unit<U,BaseTag,Tag,LD::CT::Ratio<ParamPrefixRatioNumerator,ParamPrefixRatioDenominator>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> & instance) const noexcept
@@ -475,7 +475,7 @@ namespace LD
         constexpr
         LD::Enable_If_T<LD::Require<
                 !LD::IsSame<Tag<T>,CurrentTag<T>>,
-                LD::IsSame<LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::CT::Ratio<ParamPrefixRatioNumerator,ParamPrefixRatioDenominator>>
+                LD::CT::IsRatioEqual<LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::CT::Ratio<ParamPrefixRatioNumerator,ParamPrefixRatioDenominator>>
         >,
                 Unit<R,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>> operator -
                 (const Unit<U,BaseTag,Tag,LD::CT::Ratio<ParamPrefixRatioNumerator,ParamPrefixRatioDenominator>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> & instance) const noexcept
@@ -511,7 +511,7 @@ namespace LD
         constexpr
         LD::Enable_If_T<LD::Require<
                 !LD::IsSame<Tag<T>,CurrentTag<T>>,
-                !LD::IsSame<LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::CT::Ratio<ParamPrefixRatioNumerator,ParamPrefixRatioDenominator>>
+                !LD::CT::IsRatioEqual<LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::CT::Ratio<ParamPrefixRatioNumerator,ParamPrefixRatioDenominator>>
         >,
                 Unit<R,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>> operator -
                 (const Unit<U,BaseTag,Tag,LD::CT::Ratio<ParamPrefixRatioNumerator,ParamPrefixRatioDenominator>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> & instance) const noexcept
