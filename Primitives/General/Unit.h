@@ -155,17 +155,20 @@ namespace LD
                 LD::UInteger ParamPrefixRatioNumerator,
                 LD::UInteger ParamPrefixRatioDenominator,
                 typename V = T ,
-                
+                typename ERatio1 = LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,
+                typename ERatio2 = LD::CT::Ratio<ParamPrefixRatioNumerator,ParamPrefixRatioDenominator>,
+                typename U1 = LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>,
+                typename U2 = LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>,
                 typename R = decltype(LD::Declval<U>() + LD::Declval<V>())>
         constexpr
         LD::Enable_If_T<LD::Require<
         LD::IsSame<Tag<T>,CurrentTag<T>>,
-        LD::IsSame<LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::CT::Ratio<ParamPrefixRatioNumerator,ParamPrefixRatioDenominator>>
+        LD::CT::IsRatioEqual<ERatio1,ERatio2>
         >,
-        Unit<R,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>> operator +
-        (const Unit<U,BaseTag,Tag,LD::CT::Ratio<ParamPrefixRatioNumerator,ParamPrefixRatioDenominator>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> & instance) const noexcept
+        Unit<R,BaseTag,CurrentTag,ERatio1,LD::UnitExponent<U1>>> operator +
+        (const Unit<U,BaseTag,Tag,LD::CT::Ratio<ParamPrefixRatioNumerator,ParamPrefixRatioDenominator>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> & instance)const noexcept(noexcept(LD::Declval<V>() + LD::Declval<U>()))
         {
-            return Unit<R,BaseTag,Tag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>{mUnit.Value() + instance.mUnit.Value()};
+            return Unit<R,BaseTag,Tag,ERatio1,LD::UnitExponent<U1>>{mUnit.Value() + instance.mUnit.Value()};
         }
 
         template<typename U,
