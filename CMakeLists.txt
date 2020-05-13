@@ -104,4 +104,16 @@ add_executable(LandessDevCore
         MVC/SchedulingQuittingPredicate.h
         MVC/FormattedFloatingPoint.h
         MVC/RenderableConcept.h
-        MVC/Renderable.h Primitives/General/StringView.h MVC/LinearAlgebraRenderable.h)
+        MVC/Renderable.h Primitives/General/StringView.h MVC/LinearAlgebraRenderable.h
+        Process/clock.posix.c
+        Process/drain.c
+        Process/error.posix.c
+        Process/handle.posix.c
+        Process/init.posix.c
+        Process/pipe.posix.c
+        Process/process.posix.c
+        Process/redirect.c
+        Process/redirect.posix.c
+        Process/reproc.c
+        Process/run.c
+        Process/options.c)
