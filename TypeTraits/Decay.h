@@ -49,8 +49,8 @@ namespace LD
                 >::type
         >::type type;
     };
-#if _LIBCPP_STD_VER > 11
+//#if _LIBCPP_STD_VER > 11
     template <class _Tp> using Decay_T = typename LD::Detail::Decay<_Tp>::type;
-#endif
+//#endif
 }
 #endif //LANDESSDEVCORE_DECAY_H

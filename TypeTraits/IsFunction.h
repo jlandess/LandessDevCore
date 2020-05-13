@@ -4,8 +4,7 @@
 
 #ifndef LANDESSDEVCORE_ISFUNCTION_H
 #define LANDESSDEVCORE_ISFUNCTION_H
-
-#include "IsClasstype.h"
+#include "IsClassType.h"
 #include "IsUnion.h"
 #include "IsVoid.h"
 #include "IsReference.h"

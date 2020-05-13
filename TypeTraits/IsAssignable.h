@@ -38,10 +38,10 @@ namespace LD
     struct IsAssignable
             : public __is_assignable_imp<_Tp, _Arg> {};
 
-#if _LIBCPP_STD_VER > 14 && !defined(_LIBCPP_HAS_NO_VARIABLE_TEMPLATES)
+//#if _LIBCPP_STD_VER > 14 && !defined(_LIBCPP_HAS_NO_VARIABLE_TEMPLATES)
     template <class _Tp, class _Arg>  bool IsAssignable_V
             = IsAssignable<_Tp, _Arg>::value;
-#endif
+//#endif
 
 
 
@@ -54,10 +54,10 @@ namespace LD
             : public LD::IsAssignable<typename LD::Detail::AddLValueReference<_Tp>::type,
                     typename LD::Detail::AddLValueReference<typename LD::Detail::AddConst<_Tp>::type>::type> {};
 
-#if _LIBCPP_STD_VER > 14 && !defined(_LIBCPP_HAS_NO_VARIABLE_TEMPLATES)
+//#if _LIBCPP_STD_VER > 14 && !defined(_LIBCPP_HAS_NO_VARIABLE_TEMPLATES)
     template <class _Tp>  bool IsCopyAssignable_V
             = IsCopyAssignable<_Tp>::value;
-#endif
+//#endif
 
     // is_move_assignable
 
@@ -69,9 +69,9 @@ namespace LD
     : public LD::IsCopyAssignable<_Tp> {};
 #endif
 
-#if _LIBCPP_STD_VER > 14 && !defined(_LIBCPP_HAS_NO_VARIABLE_TEMPLATES)
+//#if _LIBCPP_STD_VER > 14 && !defined(_LIBCPP_HAS_NO_VARIABLE_TEMPLATES)
     template <class _Tp>  bool IsMoveAssignable_V
             = IsMoveAssignable<_Tp>::value;
-#endif
+//#endif
 }
 #endif //LANDESSDEVCORE_ISASSIGNABLE_H
