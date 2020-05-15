@@ -9,8 +9,8 @@
 #ifndef DataStructures_ElementReference_h
 #define DataStructures_ElementReference_h
 
-#include "Definitions/Common.h"
-#include "Primitives/General/Tuple.h"
+#include "Definitions/Common.hpp"
+#include "Primitives/General/Tuple.hpp"
 namespace PDP
 {
     //

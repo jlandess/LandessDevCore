@@ -36,17 +36,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a2ffdfb1-0050-446c-b0af-d02ece8e31b8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/MVC/LinearAlgebraRenderable.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MVC/Renderable.h" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/Renderable.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MVC/RenderableConcept.h" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/RenderableConcept.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MVC/TermBoxRenderingContext.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/TermBoxRenderingContext.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/LandessDevCore" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/LandessDevCore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Algorithms/vdt/vdtmath.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Algorithms/vdt/vdtmath.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TypeTraits/IsFunction.h" beforeDir="false" afterPath="$PROJECT_DIR$/TypeTraits/IsFunction.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/LandessDevCore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/LandessDevCore.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/LandessDevCore.cbp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release/LandessDevCore" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/LandessDevCore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/LandessDevCore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/LandessDevCore.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/LandessDevCore.cbp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/cmake_install.cmake" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,52 +58,31 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Release" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="IgnoredFileRootStore">
-    <option name="generatedRoots">
-      <set>
-        <option value="$PROJECT_DIR$/.idea" />
-      </set>
-    </option>
-  </component>
-  <component name="MacroExpansionManager">
-    <option name="directoryName" value="lsqwHZku" />
   </component>
   <component name="ProjectId" id="1Xre8P34AHmQde0ufoHsLGG90xi" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="cf.first.check.clang-format" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="CMakeSettings" />
   </component>
   <component name="RunManager">
-    <configuration name="LandessDevCore" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="LandessDevCore" TARGET_NAME="LandessDevCore" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="LandessDevCore" RUN_TARGET_NAME="LandessDevCore">
+    <configuration name="LandessDevCore" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="LandessDevCore" TARGET_NAME="LandessDevCore" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="LandessDevCore" RUN_TARGET_NAME="LandessDevCore">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-  </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -117,11 +98,13 @@
       <workItem from="1581808685718" duration="18662000" />
       <workItem from="1581883586990" duration="6104000" />
       <workItem from="1581891243701" duration="29460000" />
+      <workItem from="1589341366822" duration="21000" />
+      <workItem from="1589341394453" duration="577000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
   </component>
   <component name="Vcs.Log.History.Properties">
     <option name="COLUMN_ORDER">
@@ -134,6 +117,10 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
+    <state x="456" y="264" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1589341583580">
+      <screen x="70" y="27" width="1850" height="1053" />
+    </state>
+    <state x="456" y="264" key="#com.intellij.execution.impl.EditConfigurationsDialog/70.27.1850.1053@70.27.1850.1053" timestamp="1589341583580" />
     <state width="939" height="264" key="GridCell.Tab.0.bottom" timestamp="1581892201648">
       <screen x="0" y="23" width="1920" height="980" />
     </state>
@@ -154,6 +141,10 @@
       <screen x="0" y="23" width="1920" height="980" />
     </state>
     <state x="469" y="152" key="SettingsEditor/0.23.1920.980@0.23.1920.980" timestamp="1581830595491" />
+    <state x="178" y="232" width="1640" height="748" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1589341972355">
+      <screen x="70" y="27" width="1850" height="1053" />
+    </state>
+    <state x="178" y="232" width="1640" height="748" key="com.intellij.history.integration.ui.views.FileHistoryDialog/70.27.1850.1053@70.27.1850.1053" timestamp="1589341972355" />
     <state x="653" y="345" key="com.intellij.ide.util.TipDialog" timestamp="1581883590965">
       <screen x="0" y="23" width="1920" height="980" />
     </state>

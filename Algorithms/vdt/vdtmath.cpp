@@ -1,7 +1,6 @@
 //----------------------------------------------------------------------
 //
-#include "vdtMath.h"
-
+#include "vdtmath.h"
 namespace vdt {
     void acosv(const uint32_t size, double const * __restrict__ iarray, double* __restrict__ oarray) {
         for (uint32_t i=0;i<size;++i)

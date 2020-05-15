@@ -1,8 +1,8 @@
 #ifndef MAPBOX_UTIL_VARIANT_VISITOR_HPP
 #define MAPBOX_UTIL_VARIANT_VISITOR_HPP
 
-#include "Definitions/Common.h"
-#include "mapboxvariant.h"
+#include "Definitions/Common.hpp"
+#include "mapboxvariant.hpp"
 namespace mapbox {
     namespace util {
 

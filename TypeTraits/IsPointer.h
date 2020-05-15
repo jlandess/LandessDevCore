@@ -1,8 +1,0 @@
-//
-// Created by phoenixflower on 5/14/20.
-//
-
-#ifndef LANDESSDEVCORE_ISPOINTER_H
-#define LANDESSDEVCORE_ISPOINTER_H
-
-#endif //LANDESSDEVCORE_ISPOINTER_H

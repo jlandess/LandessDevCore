@@ -9,8 +9,8 @@
 #ifndef TIMER_H_DEF
 #define TIMER_H_DEF
 
-#include <Definitions/Float.h>
-#include <Definitions/Integer.h>
+#include <Definitions/Float.hpp>
+#include <Definitions/Integer.hpp>
 
 #ifdef WIN32   // Windows system specific
 #include <windows.h>

@@ -1,0 +1,8 @@
+//
+// Created by James Landess on 2/6/20.
+//
+
+#ifndef LANDESSDEVCORE_INVOKE_HPP
+#define LANDESSDEVCORE_INVOKE_HPP
+
+#endif //LANDESSDEVCORE_INVOKE_HPP

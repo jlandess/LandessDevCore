@@ -6,7 +6,7 @@
 //  Copyright (c) 2017 James Landess. All rights reserved.
 //
 
-#include "TermBoxConsoleApplication.h"
+#include "TermBoxConsoleApplication.hpp"
 
 
 namespace PDP

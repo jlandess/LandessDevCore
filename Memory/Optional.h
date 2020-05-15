@@ -21,7 +21,7 @@
 #include <cassert>
 #include <stdexcept>
 #include <utility>
-#include "Definitions/Common.h"
+#include "Definitions/Common.hpp"
 #define  optional_lite_VERSION "2.0.0"
 
 // variant-lite alignment configuration:
