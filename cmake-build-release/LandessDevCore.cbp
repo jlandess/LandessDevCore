@@ -162,6 +162,9 @@
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Definitions/TimeExtension.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Examples/ReflectionDemoTypes.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Examples/ReflectionExample.cpp">
 			<Option target="LandessDevCore"/>
 		</Unit>

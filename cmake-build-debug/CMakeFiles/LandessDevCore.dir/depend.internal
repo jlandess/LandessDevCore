@@ -111,11 +111,13 @@ CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o
  /home/phoenixflower/Documents/LandessDevCore/Chrono/Timer.h
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o
  ../Algorithms/CompileTimeControlFlow.hpp
+ ../Algorithms/StringToPrimitive.hpp
  ../Algorithms/Swap.hpp
  ../Definitions/Common.hpp
  ../Definitions/Float.hpp
  ../Definitions/Integer.hpp
  ../Functor/FunctionView.h
+ ../Functor/Lambda.h
  ../Functor/LightWeightDelegate.h
  ../Functor/LightWeightDelegateBase.h
  ../IO/Database.hpp
@@ -123,6 +125,7 @@ CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o
  ../Memory/ElementReference.h
  ../Primitives/General/Hash.hpp
  ../Primitives/General/Immutable.hpp
+ ../Primitives/General/StaticArray.hpp
  ../Primitives/General/StringView.hpp
  ../Primitives/General/Tuple.hpp
  ../Primitives/General/mapboxrecursive_wrapper.hpp
@@ -165,8 +168,9 @@ CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o
  ../TypeTraits/RemoveConst.hpp
  ../TypeTraits/RemoveExtent.hpp
  ../TypeTraits/RemoveReference.hpp
- ../TypeTraits/SearchableVariadicPack.h
+ ../TypeTraits/SearchableVariadicPack.hpp
  ../TypeTraits/__two.hpp
+ /home/phoenixflower/Documents/LandessDevCore/Examples/ReflectionDemoTypes.h
  /home/phoenixflower/Documents/LandessDevCore/Examples/ReflectionExample.cpp
  /home/phoenixflower/Documents/LandessDevCore/Examples/ReflectionExample.hpp
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o
@@ -202,7 +206,7 @@ CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o
  ../Functor/LightWeightDelegate.h
  ../Functor/LightWeightDelegateBase.h
  ../Functor/fixed_size_function.hpp
- ../LandessDevCore.h
+ ../LandessDevCore.hpp
  ../MVC/FormattedFloatingPoint.hpp
  ../MVC/Renderable.hpp
  ../MVC/RenderableConcept.hpp
@@ -265,8 +269,8 @@ CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o
  ../TypeTraits/RemoveConst.hpp
  ../TypeTraits/RemoveExtent.hpp
  ../TypeTraits/RemoveReference.hpp
- ../TypeTraits/TypeList.h
- ../TypeTraits/VariadicPack.h
+ ../TypeTraits/TypeList.hpp
+ ../TypeTraits/VariadicPack.hpp
  ../TypeTraits/__two.hpp
  /home/phoenixflower/Documents/LandessDevCore/Examples/TermBoxMenuExample.cpp
  /home/phoenixflower/Documents/LandessDevCore/Examples/TermBoxMenuExample.hpp
@@ -349,8 +353,8 @@ CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o
  ../TypeTraits/RemoveConst.hpp
  ../TypeTraits/RemoveExtent.hpp
  ../TypeTraits/RemoveReference.hpp
- ../TypeTraits/TypeList.h
- ../TypeTraits/VariadicPack.h
+ ../TypeTraits/TypeList.hpp
+ ../TypeTraits/VariadicPack.hpp
  ../TypeTraits/__two.hpp
  /home/phoenixflower/Documents/LandessDevCore/MVC/Renderable.hpp
  /home/phoenixflower/Documents/LandessDevCore/MVC/RenderableConcept.hpp
