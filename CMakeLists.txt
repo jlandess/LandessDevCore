@@ -121,4 +121,16 @@ add_executable(LandessDevCore
         Examples/ReflectionExample.hpp
         Examples/ReflectionExample.cpp
         Examples/TermBoxMenuExample.hpp
-        Examples/TermBoxMenuExample.cpp TypeTraits/IsPointer.hpp TypeTraits/EnableIf.hpp IO/Database.hpp TypeTraits/IsSwappable.hpp Algorithms/Swap.hpp Algorithms/StringToPrimitive.hpp Examples/ReflectionDemoTypes.h Algorithms/StringAsNumber.h Primitives/General/Pair.h)
+        Examples/TermBoxMenuExample.cpp
+        TypeTraits/IsPointer.hpp
+        TypeTraits/EnableIf.hpp
+        IO/Database.hpp
+        TypeTraits/IsSwappable.hpp
+        Algorithms/Swap.hpp
+        Algorithms/StringToPrimitive.hpp
+        Examples/ReflectionDemoTypes.h
+        Algorithms/StringAsNumber.h
+        Primitives/General/Pair.h
+        Async/Thread.cpp
+        Async/ThreadAffinity.h)
+target_link_libraries(LandessDevCore pthread)

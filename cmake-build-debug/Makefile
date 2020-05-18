@@ -150,6 +150,33 @@ Algorithms/vdt/vdtmath.cpp.s:
 	$(MAKE) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Algorithms/vdt/vdtmath.cpp.s
 .PHONY : Algorithms/vdt/vdtmath.cpp.s
 
+Async/Thread.o: Async/Thread.cpp.o
+
+.PHONY : Async/Thread.o
+
+# target to build an object file
+Async/Thread.cpp.o:
+	$(MAKE) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o
+.PHONY : Async/Thread.cpp.o
+
+Async/Thread.i: Async/Thread.cpp.i
+
+.PHONY : Async/Thread.i
+
+# target to preprocess a source file
+Async/Thread.cpp.i:
+	$(MAKE) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.i
+.PHONY : Async/Thread.cpp.i
+
+Async/Thread.s: Async/Thread.cpp.s
+
+.PHONY : Async/Thread.s
+
+# target to generate assembly for a file
+Async/Thread.cpp.s:
+	$(MAKE) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.s
+.PHONY : Async/Thread.cpp.s
+
 Chrono/Timer.o: Chrono/Timer.cpp.o
 
 .PHONY : Chrono/Timer.o
@@ -702,6 +729,9 @@ help:
 	@echo "... Algorithms/vdt/vdtmath.o"
 	@echo "... Algorithms/vdt/vdtmath.i"
 	@echo "... Algorithms/vdt/vdtmath.s"
+	@echo "... Async/Thread.o"
+	@echo "... Async/Thread.i"
+	@echo "... Async/Thread.s"
 	@echo "... Chrono/Timer.o"
 	@echo "... Chrono/Timer.i"
 	@echo "... Chrono/Timer.s"

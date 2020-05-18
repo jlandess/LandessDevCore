@@ -104,6 +104,76 @@ CMakeFiles/LandessDevCore.dir/Algorithms/vdt/vdtmath.cpp.o
  /home/phoenixflower/Documents/LandessDevCore/Algorithms/vdt/vdtcore_common.h
  /home/phoenixflower/Documents/LandessDevCore/Algorithms/vdt/vdtmath.cpp
  /home/phoenixflower/Documents/LandessDevCore/Algorithms/vdt/vdtmath.h
+CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o
+ ../Algorithms/Swap.hpp
+ ../Async/Atomic/Atomic.h
+ ../Async/Atomic/AtomicCore.h
+ ../Async/Atomic/AtomicPrimitiveImplementation.h
+ ../Async/Atomic/AtomicUnderlyingCore.h
+ ../Async/Atomic/compiler_gcc.h
+ ../Async/Atomic/compiler_msvc.h
+ ../Async/Commitment.h
+ ../Async/Future.h
+ ../Async/Locks/SpinLock.h
+ ../Async/Promise.h
+ ../Async/ThreadAffinity.h
+ ../Async/concurrentqueue.h
+ ../Definitions/Common.hpp
+ ../Definitions/Float.hpp
+ ../Definitions/Integer.hpp
+ ../Definitions/platform_detect.h
+ ../Exceptions/Exception.h
+ ../Exceptions/OutOfThreadsException.h
+ ../Exceptions/OverFlowException.h
+ ../Functor/Delegate.h
+ ../Functor/FastDelegate.h
+ ../Functor/LightWeightDelegate.h
+ ../Functor/LightWeightDelegateBase.h
+ ../Memory/AutomaticReferenceCounting.h
+ ../Memory/ElementReference.h
+ ../Memory/Optional.h
+ ../Memory/shared_ptr.hpp
+ ../Primitives/General/PackagedTask.h
+ ../Primitives/General/Pair.h
+ ../Primitives/General/Tuple.hpp
+ ../Primitives/General/mapboxoptional.hpp
+ ../Primitives/General/mapboxrecursive_wrapper.hpp
+ ../Primitives/General/mapboxvariant.hpp
+ ../TypeTraits/AddLValueReference.hpp
+ ../TypeTraits/AddPointer.hpp
+ ../TypeTraits/AddRValueReference.hpp
+ ../TypeTraits/Conditional.hpp
+ ../TypeTraits/Decay.hpp
+ ../TypeTraits/Declval.hpp
+ ../TypeTraits/EnableIf.hpp
+ ../TypeTraits/IntegerSequence.hpp
+ ../TypeTraits/IntegralConstant.hpp
+ ../TypeTraits/IsArray.hpp
+ ../TypeTraits/IsAssignable.hpp
+ ../TypeTraits/IsBaseOf.hpp
+ ../TypeTraits/IsClassType.hpp
+ ../TypeTraits/IsConst.hpp
+ ../TypeTraits/IsConstructible.hpp
+ ../TypeTraits/IsDestructible.hpp
+ ../TypeTraits/IsFunction.hpp
+ ../TypeTraits/IsIntegralType.hpp
+ ../TypeTraits/IsNullPtr.hpp
+ ../TypeTraits/IsPointer.hpp
+ ../TypeTraits/IsReference.hpp
+ ../TypeTraits/IsSame.hpp
+ ../TypeTraits/IsSwappable.hpp
+ ../TypeTraits/IsUnion.hpp
+ ../TypeTraits/IsVoid.hpp
+ ../TypeTraits/IsVolatile.hpp
+ ../TypeTraits/Limit.hpp
+ ../TypeTraits/RemoveAllExtents.hpp
+ ../TypeTraits/RemoveCV.hpp
+ ../TypeTraits/RemoveConst.hpp
+ ../TypeTraits/RemoveExtent.hpp
+ ../TypeTraits/RemoveReference.hpp
+ ../TypeTraits/__two.hpp
+ /home/phoenixflower/Documents/LandessDevCore/Async/Thread.cpp
+ /home/phoenixflower/Documents/LandessDevCore/Async/Thread.h
 CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o
  ../Definitions/Float.hpp
  ../Definitions/Integer.hpp

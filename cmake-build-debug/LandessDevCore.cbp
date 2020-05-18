@@ -153,6 +153,15 @@
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Algorithms/vdt/vdtmath.h">
 			<Option target="LandessDevCore"/>
 		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Async/Thread.cpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Async/Thread.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Async/ThreadAffinity.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Chrono/Timer.cpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
