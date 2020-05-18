@@ -11,7 +11,7 @@
 
 #include "Thread.h"
 
-namespace PDP
+namespace LD
 {
     LD::ThreadAffinity Thread::GetThreadAffinity()
     {
@@ -399,5 +399,3 @@ namespace PDP
         
 #endif
 }
-
-

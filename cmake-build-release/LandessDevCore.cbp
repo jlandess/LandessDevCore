@@ -297,6 +297,9 @@
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Primitives/General/Quaternion.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Primitives/General/Ratio.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Primitives/General/StaticArray.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
@@ -304,6 +307,9 @@
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Primitives/General/Tuple.hpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Primitives/General/Unit.h">
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Primitives/General/Vec2.hpp">
@@ -445,6 +451,9 @@
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/TypeTraits/EnableIf.hpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/TypeTraits/ExclusiveOr.h">
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/TypeTraits/IntegerSequence.hpp">

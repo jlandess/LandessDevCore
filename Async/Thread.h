@@ -133,7 +133,7 @@ name& operator=(const name&);
 #define thread_local_helper __declspec(thread)
 #endif
 //Simple portable thread library.
-namespace PDP
+namespace LD
 {
     // Related to <ratio> - minimal to be able to support chrono.
     typedef long long __intmax_t;
@@ -718,7 +718,7 @@ namespace PDP
     {
     private:
         PDP::Task * CurrentTask;
-        PDP::CUTThread CurrentThread;
+        LD::CUTThread CurrentThread;
     public:
         static ThreadIdentification _pthread_t_to_ID(const pthread_t &aHandle)
         {
@@ -731,7 +731,7 @@ namespace PDP
                 idMap[aHandle] = idCount ++;
             return ThreadIdentification(idMap[aHandle]);
         }
-        PDP::ThreadIdentification GetIdentification() const
+        LD::ThreadIdentification GetIdentification() const
         {
             //if(!joinable())
                 //return PDP::UInteger();
@@ -757,7 +757,7 @@ namespace PDP
         
         ~ThreadTaskResource()
         {
-            PDP::CutWaitForThreads(&CurrentThread, 1);
+            LD::CutWaitForThreads(&CurrentThread, 1);
             delete CurrentTask;
             
         }
@@ -772,7 +772,7 @@ namespace PDP
             };
             
             
-            PDP::CutStartThread(&PDP::ThreadTaskResource::ThreadFunction, this);
+            LD::CutStartThread(&LD::ThreadTaskResource::ThreadFunction, this);
         }
     };
     class Thread
@@ -905,7 +905,7 @@ namespace PDP
         
         
         
-        inline PDP::ThreadIdentification GetIdentification() const;
+        inline LD::ThreadIdentification GetIdentification() const;
         
     };
     
