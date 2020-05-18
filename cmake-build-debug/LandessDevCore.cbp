@@ -96,6 +96,9 @@
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Algorithms/Sampler.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Algorithms/StringAsNumber.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Algorithms/StringToPrimitive.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
@@ -277,6 +280,9 @@
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Primitives/General/Observer.hpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Primitives/General/Pair.h">
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Primitives/General/Quaternion.hpp">

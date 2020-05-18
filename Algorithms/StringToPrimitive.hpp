@@ -143,7 +143,7 @@ namespace LD
 
     unsigned long atoul (const char *s) noexcept
     {
-        unsigned long r = 0L, d;
+        long r = 0L, d;
         char sign = '+';
 
         if (s == 0)
@@ -158,16 +158,16 @@ namespace LD
         while (isdigit (*s))
         {
             d = *s - '0';
-            if (r > (ULONG_MAX - d) / 10)
+            if (r > (LONG_MAX - d) / 10)
             {
                 //out of range for an integer
                 errno = ERANGE;
-                return (sign == '+') ? ULONG_MAX : 0;
+                return (sign == '+') ? LONG_MAX : LONG_MIN;
             }
             else
                 r = r * 10L + d;
         }
-        return (sign == '+') ? (unsigned long) r : (unsigned long) (r);
+        return (sign == '+') ? (long) r : (long) (r);
     }
 
     long long int atoll (const char *s) noexcept
@@ -350,7 +350,9 @@ namespace LD
             {
                 return {};
             }
-            return {LD::atoul(view.data())};
+            return {std::atol(view.data())};
+            //return {LD::atoul(view.data())};
+            //return {LD::atol(view.data())};
         }
     };
 

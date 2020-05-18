@@ -36,11 +36,84 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a2ffdfb1-0050-446c-b0af-d02ece8e31b8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Examples/ReflectionDemoTypes.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Algorithms/StringAsNumber.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/Atomic/Atomic.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/Atomic/AtomicCore.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/Atomic/AtomicOps.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/Atomic/AtomicPrimitiveImplementation.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/Atomic/AtomicUnderlyingCore.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/Atomic/atomic_gcc_arm.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/Atomic/atomic_gcc_arm.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/Atomic/atomic_gcc_x86-64.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/Atomic/atomic_msvc.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/Atomic/compiler_gcc.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/Atomic/compiler_msvc.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/Commitment.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/ConcurrentStack.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/ConcurrentVector.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/Future.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/GrandCentralDispatch.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/HazardManager.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/HazardPointer.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/LockFreeList.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/Locks/RWLock.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/Locks/RWSpinLock.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/Locks/SpinLock.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/Locks/TatasLock.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/Locks/range_lock.hh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/Locks/spin_lock.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/Promise.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/ReaderWriterQueue.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/Semaphore.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/TaskGroup.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/Thread.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/Thread.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/ThreadAffinity.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/ThreadAffinity.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/ThreadPool.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/blockingconcurrentqueue.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/concurrentqueue.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/coroutine.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/coroutine.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/cuckoohash_config.hh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/cuckoohash_map.hh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/cuckoohash_util.hh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/fcmm.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/hazard.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/libcuckoo_bucket_container.hh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Definitions/platform_detect.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Exceptions/BluetoothException.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Exceptions/EmptyHeapException.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Exceptions/EmptyHeapException.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Exceptions/EmptyQueueException.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Exceptions/EmptyQueueException.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Exceptions/EmptyStackException.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Exceptions/EmptyStackException.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Exceptions/Exception.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Exceptions/Exception.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Exceptions/IndexOutOfBoundsException.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Exceptions/IndexOutOfBoundsException.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Exceptions/InvalidOperationException.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Exceptions/InvalidOperationException.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Exceptions/MemoryException.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Exceptions/MemoryException.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Exceptions/NoSuchElementException.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Exceptions/NoSuchElementException.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Exceptions/OutOfThreadsException.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Exceptions/OutOfThreadsException.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Exceptions/OverFlowException.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Exceptions/OverFlowException.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Exceptions/UnderFlowException.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Exceptions/UnderFlowException.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Memory/AutomaticReferenceCounting.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Memory/AutomaticReferenceCounting.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Memory/OptionalReference.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Memory/shared_ptr.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Primitives/General/PackagedTask.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Primitives/General/Pair.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Algorithms/StringToPrimitive.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Algorithms/StringToPrimitive.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Examples/ReflectionExample.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/ReflectionExample.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/IO/Database.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/IO/Database.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/CXX.includecache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/depend.internal" afterDir="false" />
@@ -53,6 +126,7 @@
       <change beforePath="$PROJECT_DIR$/cmake-build-release/LandessDevCore" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/LandessDevCore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/LandessDevCore.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/LandessDevCore.cbp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/database" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/database" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,8 +152,17 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="cf.first.check.clang-format" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Memory" />
     <property name="settings.editor.selected.configurable" value="CMakeSettings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Memory" />
+      <recent name="$PROJECT_DIR$/Primitives/General" />
+      <recent name="$PROJECT_DIR$/Exceptions" />
+      <recent name="$PROJECT_DIR$/Async" />
+      <recent name="$PROJECT_DIR$/Definitions" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="LandessDevCore" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="LandessDevCore" TARGET_NAME="LandessDevCore" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="LandessDevCore" RUN_TARGET_NAME="LandessDevCore">
@@ -104,7 +187,7 @@
       <workItem from="1581891243701" duration="29460000" />
       <workItem from="1589341366822" duration="21000" />
       <workItem from="1589341394453" duration="577000" />
-      <workItem from="1589650722563" duration="12043000" />
+      <workItem from="1589650722563" duration="41648000" />
     </task>
     <servers />
   </component>
@@ -126,26 +209,26 @@
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
     <state x="456" y="264" key="#com.intellij.execution.impl.EditConfigurationsDialog/70.27.1850.1053@70.27.1850.1053" timestamp="1589341583580" />
-    <state width="897" height="241" key="GridCell.Tab.0.bottom" timestamp="1589678877502">
+    <state width="896" height="241" key="GridCell.Tab.0.bottom" timestamp="1589759982198">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
     <state width="939" height="264" key="GridCell.Tab.0.bottom/0.23.1920.980@0.23.1920.980" timestamp="1581892201648" />
-    <state width="897" height="241" key="GridCell.Tab.0.bottom/70.27.1850.1053@70.27.1850.1053" timestamp="1589678877502" />
-    <state width="897" height="241" key="GridCell.Tab.0.center" timestamp="1589678877501">
+    <state width="896" height="241" key="GridCell.Tab.0.bottom/70.27.1850.1053@70.27.1850.1053" timestamp="1589759982198" />
+    <state width="896" height="241" key="GridCell.Tab.0.center" timestamp="1589759982197">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
     <state width="939" height="264" key="GridCell.Tab.0.center/0.23.1920.980@0.23.1920.980" timestamp="1581892201647" />
-    <state width="897" height="241" key="GridCell.Tab.0.center/70.27.1850.1053@70.27.1850.1053" timestamp="1589678877501" />
-    <state width="897" height="241" key="GridCell.Tab.0.left" timestamp="1589678877500">
+    <state width="896" height="241" key="GridCell.Tab.0.center/70.27.1850.1053@70.27.1850.1053" timestamp="1589759982197" />
+    <state width="896" height="241" key="GridCell.Tab.0.left" timestamp="1589759982197">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
     <state width="939" height="264" key="GridCell.Tab.0.left/0.23.1920.980@0.23.1920.980" timestamp="1581892201646" />
-    <state width="897" height="241" key="GridCell.Tab.0.left/70.27.1850.1053@70.27.1850.1053" timestamp="1589678877500" />
-    <state width="897" height="241" key="GridCell.Tab.0.right" timestamp="1589678877501">
+    <state width="896" height="241" key="GridCell.Tab.0.left/70.27.1850.1053@70.27.1850.1053" timestamp="1589759982197" />
+    <state width="896" height="241" key="GridCell.Tab.0.right" timestamp="1589759982197">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
     <state width="939" height="264" key="GridCell.Tab.0.right/0.23.1920.980@0.23.1920.980" timestamp="1581892201647" />
-    <state width="897" height="241" key="GridCell.Tab.0.right/70.27.1850.1053@70.27.1850.1053" timestamp="1589678877501" />
+    <state width="896" height="241" key="GridCell.Tab.0.right/70.27.1850.1053@70.27.1850.1053" timestamp="1589759982197" />
     <state x="469" y="152" key="SettingsEditor" timestamp="1581830595491">
       <screen x="0" y="23" width="1920" height="980" />
     </state>
