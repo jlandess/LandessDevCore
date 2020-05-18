@@ -5,7 +5,8 @@
 #ifndef LANDESSDEVCORE_COMPILETIMEOPERATIONS_H
 #define LANDESSDEVCORE_COMPILETIMEOPERATIONS_H
 
-#include "Definitions/Integer.h"
+
+#include "Definitions/Integer.hpp"
 namespace LD
 {
     namespace CT

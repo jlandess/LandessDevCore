@@ -971,7 +971,7 @@ inline PDP::Newton<T> operator *(const PDP::MetersPerSecondSquared<T> & accelera
 
 
 //beginning of second literals
-
+/*
 inline PDP::Second<long double>  operator "" _ds(long double a)
 {
     return PDP::Second<long double>(a*(1E-1));
@@ -1028,6 +1028,7 @@ inline PDP::Second<long double> operator "" _s(long double a)
 {
     return PDP::Second<long double>(a);
 }
+ */
 
 
 

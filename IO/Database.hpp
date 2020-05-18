@@ -16,6 +16,7 @@
 #include "Primitives/General/StaticArray.hpp"
 #include "Algorithms/StringAsNumber.h"
 #include "Async/Thread.h"
+#include "Primitives/General/Context.h"
 namespace LD
 {
     template<typename T>
@@ -53,7 +54,7 @@ namespace LD
 
         unqlite * mBackend;
         LD::UInteger mCode;
-        LD::Variant<LD::ImmutableString<25>,LD::Tuple<LD::UInteger,char*>> mClassNameBuffer;
+        //LD::Variant<LD::ImmutableString<25>,LD::Tuple<LD::UInteger,char*>> mClassNameBuffer;
 
         template<typename T, typename Key, typename F, typename ... Args>
         static LD::Enable_If_T <
@@ -166,61 +167,6 @@ namespace LD
         {
             using Type = LD::Decay_T<T>;
             using ClassName = decltype(Type::GetClassNameTypeString());
-
-            LD::UInteger maxClassSize = 0;
-            LD::Variant<LD::NullClass,LD::UInteger> possibleMaxClassSize;
-            auto fetchClassNameSizePredicate = [](const void * data, unsigned int dataSize, void * inputPointer)->int
-            {
-                LD::UInteger * possibleClassSize = (LD::UInteger*)inputPointer;
-                auto resultVariant = LD::StringAsNumber<LD::UInteger>(LD::StringView{(const char*)data});
-                LD::UInteger result = LD::Match(resultVariant,[](const LD::UInteger & obj){ return obj;},[](auto &&){ return LD::UInteger {};});
-                (*possibleClassSize) = result;
-                printf("found it in insert %lu \n",*possibleClassSize);
-                return 0;
-            };
-            constexpr const char * fetchClassMaxSize = "master.classnamesize";
-            unqlite_kv_fetch_callback(this->mBackend,fetchClassMaxSize,sizeof(fetchClassMaxSize),fetchClassNameSizePredicate, &maxClassSize);
-
-            //----------------------------beginning of class name buffer allocation------------------------------------
-
-
-            if (ClassName::size() > maxClassSize)
-            {
-                unqlite_begin(this->mBackend);
-                {
-                    auto value = LD::ToImmutableString(ClassName::size());
-                    unqlite_kv_store(this->mBackend,fetchClassMaxSize,sizeof(fetchClassMaxSize),value.Data(),value.GetSize());
-                }
-                unqlite_commit(this->mBackend);
-
-            }
-
-            const LD::UInteger currentBufferCapacity = LD::Match(this->mClassNameBuffer,
-                    [](const LD::ImmutableString<25> &){return LD::UInteger (25);},
-                    [](const LD::Tuple<LD::UInteger,char*> & buffer){ return LD::UInteger (LD::Get<0>(buffer));}
-            );
-
-            if(maxClassSize > currentBufferCapacity)
-            {
-                auto immutableStringBranch = [&](const LD::ImmutableString<25> &)
-                {
-                    LD::Tuple<LD::UInteger,char*> buffer;
-                    LD::Get<0>(buffer) = maxClassSize;
-                    LD::Get<1>(buffer) = new char[maxClassSize];
-                    this->mClassNameBuffer = buffer;
-                };
-
-                auto charCharBranch = [&](const LD::Tuple<LD::UInteger,char*> & buffer)
-                {
-                    delete [] LD::Get<1>(buffer);
-                    LD::Tuple<LD::UInteger ,char*> newBuffer;
-                    LD::Get<0>(newBuffer) = maxClassSize;
-                    LD::Get<1>(newBuffer) = new char[maxClassSize];
-                    this->mClassNameBuffer = newBuffer;
-                };
-                LD::Match(this->mClassNameBuffer,immutableStringBranch,charCharBranch);
-            }
-            //----------------------------------- end of class name buffer allocation ------------------------------------------
             unqlite_begin(this->mBackend);
             {
                 unqlite_kv_store(this->mBackend,Key::data(),Key::size(),ClassName::data(),ClassName::size());
@@ -234,41 +180,53 @@ namespace LD
             return (*this);
         }
 
-        template<typename T, typename Key>
+
+
+        template<typename T, typename Key, typename ... Context>
         LD::Enable_If_T<
-        LD::Require<
-        LD::IsReflectable<T>,
-        LD::IsTypeString<Key>
-        >
-        ,
-        std::optional<T>> Fetch(const Key & key) const noexcept
+                LD::Require<
+                        LD::IsReflectable<T>,
+                        LD::IsTypeString<Key>
+                >
+                ,
+                LD::Variant<LD::Context<LD::NullClass,Context...>,LD::Context<T,Context...>>> Fetch(const Key & key, Context && ... context) const noexcept
         {
             using Type = LD::Decay_T<T>;
             using ClassName = decltype(Type::GetClassNameTypeString());
-            LD::Variant<LD::NullClass,std::string> keyedObject;
 
 
+            //------------------------------------beginning of fetching class name assoiated with key ----------------------------------------
+            LD::Variant<LD::NullClass,LD::ImmutableString<1024>> keyedObject;
             auto fetchCallback = [](const void * data, unsigned int dataSize, void * inputPointer)->int
             {
-                LD::Variant<LD::NullClass,std::string> * keyedObject = (LD::Variant<LD::NullClass,std::string>*)inputPointer;
-                (*keyedObject) = (char*)data;
+                //LD::Variant<LD::NullClass,std::string> * keyedObject = (LD::Variant<LD::NullClass,std::string>*)inputPointer;
+                LD::Variant<LD::NullClass,LD::ImmutableString<1024>> * keyedObject = (LD::Variant<LD::NullClass,LD::ImmutableString<1024>>*)inputPointer;
+                (*keyedObject) = LD::ImmutableString<1024>{(const char*)data,dataSize};
 
                 return 0;
             };
             unqlite_kv_fetch_callback(this->mBackend,Key::data(),Key::size(),fetchCallback, &keyedObject);
+            //-----------------------------------end of fetching class name associated with key ----------------------------------------------
             std::optional<T> ret;
-            auto foundItClause = [&](const std::string & className)
+            auto foundItClause = [&](const LD::ImmutableString<1024> & className)->LD::Variant<LD::Context<LD::NullClass,Context...>,LD::Context<T,Context...>>
             {
-                if (className == ClassName::data())
+                LD::ImmutableString<1024> targetClassName{ClassName{} };
+                if (className == targetClassName)
                 {
                     T object;
                     Database::RetrieveForObject(key,&object,this->mBackend);
                     ret = object;
+                    //return {object};
+                    return LD::MakeContext(T{object},LD::Forward<Context>(context)...);
                 }
+                return {};
             };
-            auto didNotFinditClause = [](const LD::NullClass &){};
-            LD::Match(keyedObject,foundItClause,didNotFinditClause);
-            return ret;
+            auto didNotFinditClause = [&](const LD::NullClass &)->LD::Variant<LD::Context<LD::NullClass,Context...>,LD::Context<T,Context...>>
+            {
+
+                return LD::MakeContext(LD::NullClass{},LD::Forward<Context>(context)...);
+            };
+            return LD::Match(keyedObject,foundItClause,didNotFinditClause);
         }
 
         Database & InsertEntity();
@@ -276,16 +234,6 @@ namespace LD
         inline ~Database() noexcept
         {
             unqlite_close(this->mBackend);
-
-
-
-            auto removeCharBuffer = [](const LD::Tuple<LD::UInteger,char*> & bufferPair)
-            {
-                delete [] LD::Get<1>(bufferPair);
-            };
-            auto removeImmutableString = [](const LD::ImmutableString<25> &){};
-
-            LD::Match(this->mClassNameBuffer,removeCharBuffer,removeImmutableString);
         }
     };
 

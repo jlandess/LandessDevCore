@@ -175,8 +175,47 @@ CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o
  /home/phoenixflower/Documents/LandessDevCore/Async/Thread.cpp
  /home/phoenixflower/Documents/LandessDevCore/Async/Thread.h
 CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o
+ ../Algorithms/CompileTimeOperations.hpp
+ ../Algorithms/Swap.hpp
+ ../Definitions/Common.hpp
  ../Definitions/Float.hpp
  ../Definitions/Integer.hpp
+ ../Primitives/General/Ratio.hpp
+ ../Primitives/General/Unit.hpp
+ ../TypeTraits/AddLValueReference.hpp
+ ../TypeTraits/AddPointer.hpp
+ ../TypeTraits/AddRValueReference.hpp
+ ../TypeTraits/Conditional.hpp
+ ../TypeTraits/Decay.hpp
+ ../TypeTraits/Declval.hpp
+ ../TypeTraits/EnableIf.hpp
+ ../TypeTraits/ExclusiveOr.hpp
+ ../TypeTraits/IntegerSequence.hpp
+ ../TypeTraits/IntegralConstant.hpp
+ ../TypeTraits/IsArray.hpp
+ ../TypeTraits/IsAssignable.hpp
+ ../TypeTraits/IsBaseOf.hpp
+ ../TypeTraits/IsClassType.hpp
+ ../TypeTraits/IsConst.hpp
+ ../TypeTraits/IsConstructible.hpp
+ ../TypeTraits/IsDestructible.hpp
+ ../TypeTraits/IsFunction.hpp
+ ../TypeTraits/IsIntegralType.hpp
+ ../TypeTraits/IsNullPtr.hpp
+ ../TypeTraits/IsPointer.hpp
+ ../TypeTraits/IsReference.hpp
+ ../TypeTraits/IsSame.hpp
+ ../TypeTraits/IsSwappable.hpp
+ ../TypeTraits/IsUnion.hpp
+ ../TypeTraits/IsVoid.hpp
+ ../TypeTraits/IsVolatile.hpp
+ ../TypeTraits/Limit.hpp
+ ../TypeTraits/RemoveAllExtents.hpp
+ ../TypeTraits/RemoveCV.hpp
+ ../TypeTraits/RemoveConst.hpp
+ ../TypeTraits/RemoveExtent.hpp
+ ../TypeTraits/RemoveReference.hpp
+ ../TypeTraits/__two.hpp
  /home/phoenixflower/Documents/LandessDevCore/Chrono/Timer.cpp
  /home/phoenixflower/Documents/LandessDevCore/Chrono/Timer.h
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o
@@ -231,6 +270,7 @@ CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o
  ../Memory/ElementReference.h
  ../Memory/Optional.h
  ../Memory/shared_ptr.hpp
+ ../Primitives/General/Context.h
  ../Primitives/General/Hash.hpp
  ../Primitives/General/Immutable.hpp
  ../Primitives/General/ImproperFraction.hpp
@@ -288,6 +328,7 @@ CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o
  /home/phoenixflower/Documents/LandessDevCore/Examples/ReflectionExample.hpp
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o
  ../Algorithms/CompileTimeControlFlow.hpp
+ ../Algorithms/CompileTimeOperations.hpp
  ../Algorithms/Exponential.hpp
  ../Algorithms/Sampler.hpp
  ../Algorithms/Swap.hpp
@@ -339,9 +380,11 @@ CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o
  ../Primitives/General/Immutable.hpp
  ../Primitives/General/ImproperFraction.hpp
  ../Primitives/General/Observer.hpp
+ ../Primitives/General/Ratio.hpp
  ../Primitives/General/StaticArray.hpp
  ../Primitives/General/StringView.hpp
  ../Primitives/General/Tuple.hpp
+ ../Primitives/General/Unit.hpp
  ../Primitives/General/Vec2.hpp
  ../Primitives/General/ctre.hpp
  ../Primitives/General/mapboxrecursive_wrapper.hpp
@@ -357,6 +400,7 @@ CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o
  ../TypeTraits/Decay.hpp
  ../TypeTraits/Declval.hpp
  ../TypeTraits/EnableIf.hpp
+ ../TypeTraits/ExclusiveOr.hpp
  ../TypeTraits/IntegerSequence.hpp
  ../TypeTraits/IntegralConstant.hpp
  ../TypeTraits/IsArray.hpp
@@ -389,6 +433,7 @@ CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o
  /home/phoenixflower/Documents/LandessDevCore/Examples/TermBoxMenuExample.hpp
 CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o
  ../Algorithms/CompileTimeControlFlow.hpp
+ ../Algorithms/CompileTimeOperations.hpp
  ../Algorithms/Exponential.hpp
  ../Algorithms/Sampler.hpp
  ../Algorithms/Swap.hpp
@@ -424,9 +469,11 @@ CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o
  ../Primitives/General/Hash.hpp
  ../Primitives/General/Immutable.hpp
  ../Primitives/General/ImproperFraction.hpp
+ ../Primitives/General/Ratio.hpp
  ../Primitives/General/StaticArray.hpp
  ../Primitives/General/StringView.hpp
  ../Primitives/General/Tuple.hpp
+ ../Primitives/General/Unit.hpp
  ../Primitives/General/Vec2.hpp
  ../Primitives/General/ctre.hpp
  ../Primitives/General/mapboxrecursive_wrapper.hpp
@@ -441,6 +488,7 @@ CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o
  ../TypeTraits/Decay.hpp
  ../TypeTraits/Declval.hpp
  ../TypeTraits/EnableIf.hpp
+ ../TypeTraits/ExclusiveOr.hpp
  ../TypeTraits/IntegerSequence.hpp
  ../TypeTraits/IntegralConstant.hpp
  ../TypeTraits/IsArray.hpp
@@ -479,6 +527,7 @@ CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o
  /home/phoenixflower/Documents/LandessDevCore/MVC/TermBoxRenderingContext.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o
  ../Algorithms/CompileTimeControlFlow.hpp
+ ../Algorithms/CompileTimeOperations.hpp
  ../Algorithms/Exponential.hpp
  ../Algorithms/Swap.hpp
  ../Algorithms/vdt/asin.h
@@ -503,9 +552,11 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  ../Functor/LightWeightDelegateBase.h
  ../Memory/ElementReference.h
  ../Primitives/General/ImproperFraction.hpp
+ ../Primitives/General/Ratio.hpp
  ../Primitives/General/StaticArray.hpp
  ../Primitives/General/StringView.hpp
  ../Primitives/General/Tuple.hpp
+ ../Primitives/General/Unit.hpp
  ../Primitives/General/ctre.hpp
  ../Primitives/General/mapboxrecursive_wrapper.hpp
  ../Primitives/General/mapboxvariant.hpp
@@ -517,6 +568,7 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  ../TypeTraits/Decay.hpp
  ../TypeTraits/Declval.hpp
  ../TypeTraits/EnableIf.hpp
+ ../TypeTraits/ExclusiveOr.hpp
  ../TypeTraits/IntegerSequence.hpp
  ../TypeTraits/IntegralConstant.hpp
  ../TypeTraits/IsArray.hpp
@@ -544,6 +596,7 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  ../TypeTraits/RemoveReference.hpp
  ../TypeTraits/__two.hpp
  /home/phoenixflower/Documents/LandessDevCore/Algorithms/StringAsNumber.h
+ /home/phoenixflower/Documents/LandessDevCore/Chrono/Timer.h
  /home/phoenixflower/Documents/LandessDevCore/Examples/ReflectionExample.hpp
  /home/phoenixflower/Documents/LandessDevCore/Examples/TermBoxMenuExample.hpp
  /home/phoenixflower/Documents/LandessDevCore/main.cpp

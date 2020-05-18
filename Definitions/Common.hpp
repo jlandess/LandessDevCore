@@ -5841,15 +5841,22 @@ namespace Detail
 }
 
 
-template <typename P0, typename P1>
+template <typename P0, typename P1, typename Predicate = void>
 struct ArePacksConvertible;
 
 template <typename... T0s, typename... T1s>
-struct ArePacksConvertible<LD::VariadicPack<T0s...>, LD::VariadicPack<T1s...>>
+struct ArePacksConvertible<LD::VariadicPack<T0s...>, LD::VariadicPack<T1s...>,LD::Enable_If_T<(true && (sizeof...(T0s) == sizeof...(T1s)))>>
         : LD::Detail::IntegralConstant<bool,(sizeof...(T0s) == sizeof...(T1s))
                                             && (LD::Detail::IsConvertible<T0s, T1s>::value && ...)>
 {
 };
+
+    template <typename... T0s, typename... T1s>
+    struct ArePacksConvertible<LD::VariadicPack<T0s...>, LD::VariadicPack<T1s...>,LD::Enable_If_T<(true && (sizeof...(T0s) != sizeof...(T1s)))>>
+            : LD::Detail::IntegralConstant<bool, false>
+    {
+
+    };
 
 
 template<typename ... Args>

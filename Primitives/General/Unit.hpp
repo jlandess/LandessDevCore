@@ -1388,6 +1388,24 @@ namespace LD
     using YottaMeter = LD::Unit<T,MeterTag,MeterTag,LD::Yotta ,LD::UnitExponent<LD::CT::Ratio<1,1>>>;
 }
 
+inline LD::Second<LD::Float> operator""_s(long double second) noexcept
+{
+    return LD::Second<LD::Float>{LD::Float {static_cast<LD::Float>(second)}};
+
+}
+
+inline LD::MicroSecond<LD::Float> operator""_us(long double second) noexcept
+{
+    return LD::MicroSecond<LD::Float>{LD::Float {static_cast<LD::Float>(second)}};
+
+}
+
+inline LD::Milisecond<LD::Float> operator""_ms(long double second) noexcept
+{
+    return LD::Milisecond<LD::Float>{LD::Float {static_cast<LD::Float>(second)}};
+
+}
+
 
 
 /*

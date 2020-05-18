@@ -3,11 +3,14 @@
 
 #include "Definitions/Common.hpp"
 #include "mapboxvariant.hpp"
-namespace mapbox {
-    namespace util {
+namespace mapbox
+{
+    namespace util
+    {
 
         template <typename... Fns>
         struct visitor;
+
 
         template <typename Fn>
         struct visitor<Fn> : Fn
@@ -25,16 +28,16 @@ namespace mapbox {
             using visitor<Fns...>::operator();
 
             template<typename T, typename... Ts>
-            visitor(T&& fn, Ts&&... fns)
-                    : Fn(LD::Forward<T>(fn))
-                    , visitor<Fns...>(LD::Forward<Ts>(fns)...) {}
+            visitor(T&& fn, Ts&&... fns): Fn(LD::Forward<T>(fn)), visitor<Fns...>(LD::Forward<Ts>(fns)...)
+            {
+
+            }
         };
 
         template <typename... Fns>
         visitor<typename std::decay<Fns>::type...> make_visitor(Fns&&... fns)
         {
-            return visitor<typename LD::Detail::Decay<Fns>::type...>
-                    (LD::Forward<Fns>(fns)...);
+            return visitor<typename LD::Detail::Decay<Fns>::type...>(LD::Forward<Fns>(fns)...);
         }
 
 

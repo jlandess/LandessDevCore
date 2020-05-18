@@ -25,26 +25,26 @@ namespace LD
             currentSquare["Length"_ts] = 17.96;
             currentData.Insert("key"_ts,currentSquare);
             //currentData.Insert("pyramid"_ts,currentPyramid);
-            auto result = currentData.Fetch<Square>("key"_ts);
+            auto result = currentData.Fetch<Square>("key"_ts,LD::UInteger{32});
 
-            if (result)
-            {
-                std::cout << (*result)["Length"_ts] << std::endl;
-            }
-            //
 
-            auto notFound = [](const LD::NullClass &)
+
+            auto notFound = [](const LD::Context<LD::NullClass,LD::UInteger> &)
             {
                 printf("not found\n");
             };
-            auto found = []( const Square & square)
+            auto found= []( const LD::Context<Square,LD::UInteger> & square)
             {
 
-                printf("%lu \n",square["Length"_ts]);
+                //printf("%lu \n",square["Length"_ts]);
+                std::cout << "Square's Length  1 " << LD::Get<Square>(square)["Length"_ts] << std::endl;
+                std::cout << "context number : " << LD::Get<1>(square) << std::endl;
             };
 
+            
 
-            //LD::Match(result,notFound,found);
+            LD::Match(result,notFound,found);
+
 
             /*
             printf("%s\n","beginning of reflection example");

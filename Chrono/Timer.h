@@ -8,9 +8,9 @@
 
 #ifndef TIMER_H_DEF
 #define TIMER_H_DEF
-
-#include <Definitions/Float.hpp>
-#include <Definitions/Integer.hpp>
+#include "Definitions/Float.hpp"
+#include "Definitions/Integer.hpp"
+#include "Primitives/General/Unit.hpp"
 
 #ifdef WIN32   // Windows system specific
 #include <windows.h>
@@ -34,6 +34,9 @@ namespace LD
         const PDP::Float GetElapsedTimeInMicroSec() const;          // get elapsed time in micro-second
         const bool HasStarted() const;
 
+         LD::MicroSecond<LD::Float> Time() const noexcept ;
+
+
 
     protected:
 
@@ -52,14 +55,6 @@ namespace LD
 #endif
         bool    stopped;
     };
-}
-namespace PDP
-{
-    namespace DataStructures
-    {
-
-    }
-
 }
 
 

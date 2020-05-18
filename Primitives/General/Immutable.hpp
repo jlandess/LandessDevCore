@@ -41,13 +41,32 @@ namespace LD
 
         static constexpr LD::UInteger Length = N;
 
-        constexpr ImmutableString()
+        constexpr ImmutableString() noexcept
         {
             LD::For<0,N+1>([](auto I, LD::ImmutableString<N> * instance)
             {
                 instance->string[I] = '\0';
                 return true;
             },this);
+        }
+
+        constexpr ImmutableString(const char & value) noexcept
+        {
+            LD::For<0,N+1>([](auto I, LD::ImmutableString<N> * instance, const char & value)
+            {
+                instance->string[I] = value;
+                return true;
+            },this,value);
+        }
+
+        template<typename U, typename = typename LD::Enable_If_T<LD::Require<LD::IsInteger<U>,LD::IsUnsignedInteger<U>>>>
+        constexpr ImmutableString(const U & value) noexcept
+        {
+            LD::For<0,N+1>([](auto I, LD::ImmutableString<N> * instance, const U & value)
+            {
+                instance->string[I] = value;
+                return true;
+            },this,value);
         }
 
          const LD::UInteger GetSize() const
@@ -65,7 +84,7 @@ namespace LD
             return currentSize;
         }
 
-        template<char ... Characters,typename = typename PDP::Enable_If_T<sizeof...(Characters) == N>>
+        template<char ... Characters,typename = typename PDP::Enable_If_T<sizeof...(Characters) <= N>>
         constexpr ImmutableString(const LD::TypeString<Characters...> & typeString): ImmutableString()
         {
             (*this) = typeString;
@@ -78,7 +97,23 @@ namespace LD
         }
 
 
-        template<char ... Characters,typename = typename PDP::Enable_If_T<(sizeof...(Characters) == N)>>
+        constexpr ImmutableString(const char * data, const LD::UInteger & size) noexcept:ImmutableString()
+        {
+            LD::IF(data != nullptr,[](const char * data, char * string, const LD::UInteger & size)
+            {
+                const LD::UInteger length = (size>N)*N + (size <= N)*size;
+                for (LD::UInteger i = 0; i < length; ++i)
+                {
+                    string[i] = data[i];
+                }
+
+            },data,this->string,size);
+
+        }
+
+
+
+        template<char ... Characters,typename = typename PDP::Enable_If_T<(sizeof...(Characters) <= N)>>
         constexpr ImmutableString & operator = (const LD::TypeString<Characters...> & typeString)
         {
             LD::For<LD::TypeString<Characters...>::size()>([](auto I,ImmutableString<N> * instance)

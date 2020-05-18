@@ -117,6 +117,10 @@ namespace LD
         return this->GetElapsedTimeInMicroSec() * 0.000001;
     }
 
+     LD::MicroSecond<LD::Float> Timer::Time() const noexcept
+    {
+        return LD::MicroSecond<LD::Float>{LD::Float {this->GetElapsedTimeInMicroSec()}};
+    }
 
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -131,13 +135,5 @@ namespace LD
     {
 
         return stopped == 0;
-    }
-}
-namespace PDP
-{
-    namespace DataStructures
-    {
-
-
     }
 }
