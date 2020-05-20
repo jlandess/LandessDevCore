@@ -220,6 +220,7 @@ CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o
  /home/phoenixflower/Documents/LandessDevCore/Chrono/Timer.h
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o
  ../Algorithms/CompileTimeControlFlow.hpp
+ ../Algorithms/CompileTimeOperations.hpp
  ../Algorithms/Exponential.hpp
  ../Algorithms/StringAsNumber.h
  ../Algorithms/StringToPrimitive.hpp
@@ -251,6 +252,7 @@ CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o
  ../Async/Thread.h
  ../Async/ThreadAffinity.h
  ../Async/concurrentqueue.h
+ ../Chrono/Timer.h
  ../Definitions/Common.hpp
  ../Definitions/Float.hpp
  ../Definitions/Integer.hpp
@@ -271,14 +273,17 @@ CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o
  ../Memory/Optional.h
  ../Memory/shared_ptr.hpp
  ../Primitives/General/Context.h
+ ../Primitives/General/ContextualVariant.h
  ../Primitives/General/Hash.hpp
  ../Primitives/General/Immutable.hpp
  ../Primitives/General/ImproperFraction.hpp
  ../Primitives/General/PackagedTask.h
  ../Primitives/General/Pair.h
+ ../Primitives/General/Ratio.hpp
  ../Primitives/General/StaticArray.hpp
  ../Primitives/General/StringView.hpp
  ../Primitives/General/Tuple.hpp
+ ../Primitives/General/Unit.hpp
  ../Primitives/General/ctre.hpp
  ../Primitives/General/mapboxoptional.hpp
  ../Primitives/General/mapboxrecursive_wrapper.hpp
@@ -295,6 +300,7 @@ CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o
  ../TypeTraits/Decay.hpp
  ../TypeTraits/Declval.hpp
  ../TypeTraits/EnableIf.hpp
+ ../TypeTraits/ExclusiveOr.hpp
  ../TypeTraits/IntegerSequence.hpp
  ../TypeTraits/IntegralConstant.hpp
  ../TypeTraits/IsArray.hpp
@@ -322,6 +328,7 @@ CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o
  ../TypeTraits/RemoveExtent.hpp
  ../TypeTraits/RemoveReference.hpp
  ../TypeTraits/SearchableVariadicPack.hpp
+ ../TypeTraits/TypeList.hpp
  ../TypeTraits/__two.hpp
  /home/phoenixflower/Documents/LandessDevCore/Examples/ReflectionDemoTypes.h
  /home/phoenixflower/Documents/LandessDevCore/Examples/ReflectionExample.cpp

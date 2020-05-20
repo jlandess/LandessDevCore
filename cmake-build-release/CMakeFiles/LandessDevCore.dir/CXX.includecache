@@ -14,6 +14,10 @@ Definitions/Common.hpp
 Memory/ElementReference.h
 ../Algorithms/Memory/ElementReference.h
 
+../Algorithms/CompileTimeOperations.hpp
+Definitions/Integer.hpp
+../Algorithms/Definitions/Integer.hpp
+
 ../Algorithms/Exponential.hpp
 stdio.h
 -
@@ -328,6 +332,18 @@ thread
 internal/concurrentqueue_internal_debug.h
 ../Async/internal/concurrentqueue_internal_debug.h
 
+../Chrono/Timer.h
+Definitions/Float.hpp
+../Chrono/Definitions/Float.hpp
+Definitions/Integer.hpp
+../Chrono/Definitions/Integer.hpp
+Primitives/General/Unit.hpp
+../Chrono/Primitives/General/Unit.hpp
+windows.h
+-
+sys/time.h
+-
+
 ../Definitions/Common.hpp
 climits
 -
@@ -487,6 +503,8 @@ Async/Thread.h
 ../IO/Async/Thread.h
 Primitives/General/Context.h
 ../IO/Primitives/General/Context.h
+TypeTraits/TypeList.hpp
+../IO/TypeTraits/TypeList.hpp
 
 ../IO/unqlite.h
 stdarg.h
@@ -546,6 +564,14 @@ Async/Atomic/Atomic.h
 Memory/ElementReference.h
 ../Primitives/General/Memory/ElementReference.h
 
+../Primitives/General/ContextualVariant.h
+TypeTraits/TypeList.hpp
+../Primitives/General/TypeTraits/TypeList.hpp
+Primitives/General/mapboxvariant.hpp
+../Primitives/General/Primitives/General/mapboxvariant.hpp
+Primitives/General/Context.h
+../Primitives/General/Primitives/General/Context.h
+
 ../Primitives/General/Hash.hpp
 
 ../Primitives/General/Immutable.hpp
@@ -582,6 +608,14 @@ Primitives/General/mapboxoptional.hpp
 PostponedProductions/DataStructures/Pair.h
 -
 
+../Primitives/General/Ratio.hpp
+Definitions/Integer.hpp
+../Primitives/General/Definitions/Integer.hpp
+Algorithms/CompileTimeOperations.hpp
+../Primitives/General/Algorithms/CompileTimeOperations.hpp
+Definitions/Common.hpp
+../Primitives/General/Definitions/Common.hpp
+
 ../Primitives/General/StaticArray.hpp
 Definitions/Integer.hpp
 ../Primitives/General/Definitions/Integer.hpp
@@ -615,6 +649,14 @@ functional
 -
 
 ../Primitives/General/Tuple.hpp
+
+../Primitives/General/Unit.hpp
+Definitions/Common.hpp
+../Primitives/General/Definitions/Common.hpp
+Ratio.hpp
+../Primitives/General/Ratio.hpp
+TypeTraits/ExclusiveOr.hpp
+../Primitives/General/TypeTraits/ExclusiveOr.hpp
 
 ../Primitives/General/ctre.hpp
 utility
@@ -771,6 +813,8 @@ RemoveCV.hpp
 ../TypeTraits/Declval.hpp
 
 ../TypeTraits/EnableIf.hpp
+
+../TypeTraits/ExclusiveOr.hpp
 
 ../TypeTraits/IntegerSequence.hpp
 Definitions/Integer.hpp
@@ -936,6 +980,20 @@ Definitions/Integer.hpp
 Definitions/Common.hpp
 ../TypeTraits/Definitions/Common.hpp
 
+../TypeTraits/TypeList.hpp
+type_traits
+-
+TypeTraits/Conditional.hpp
+../TypeTraits/TypeTraits/Conditional.hpp
+TypeTraits/IntegerSequence.hpp
+../TypeTraits/TypeTraits/IntegerSequence.hpp
+TypeTraits/IntegralConstant.hpp
+../TypeTraits/TypeTraits/IntegralConstant.hpp
+TypeTraits/IsSame.hpp
+../TypeTraits/TypeTraits/IsSame.hpp
+Definitions/Integer.hpp
+../TypeTraits/Definitions/Integer.hpp
+
 ../TypeTraits/__two.hpp
 
 /home/phoenixflower/Documents/LandessDevCore/Examples/ReflectionDemoTypes.h
@@ -961,6 +1019,10 @@ ReflectionDemoTypes.h
 /home/phoenixflower/Documents/LandessDevCore/Examples/ReflectionDemoTypes.h
 iostream
 -
+Chrono/Timer.h
+/home/phoenixflower/Documents/LandessDevCore/Examples/Chrono/Timer.h
+Primitives/General/ContextualVariant.h
+/home/phoenixflower/Documents/LandessDevCore/Examples/Primitives/General/ContextualVariant.h
 
 /home/phoenixflower/Documents/LandessDevCore/Examples/ReflectionExample.hpp
 

@@ -36,24 +36,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a2ffdfb1-0050-446c-b0af-d02ece8e31b8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Primitives/General/Context.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Primitives/General/ContextualVariant.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Algorithms/CompileTimeOperations.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Algorithms/CompileTimeOperations.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Async/GrandCentralDispatch.h" beforeDir="false" afterPath="$PROJECT_DIR$/Async/GrandCentralDispatch.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Async/Thread.h" beforeDir="false" afterPath="$PROJECT_DIR$/Async/Thread.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Chrono/Timer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Chrono/Timer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Chrono/Timer.h" beforeDir="false" afterPath="$PROJECT_DIR$/Chrono/Timer.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Definitions/Common.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Definitions/Common.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Definitions/PDPUnits.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Definitions/PDPUnits.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Examples/ReflectionExample.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/ReflectionExample.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/IO/Database.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/IO/Database.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Memory/ElementReference.h" beforeDir="false" afterPath="$PROJECT_DIR$/Memory/ElementReference.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Primitives/General/Immutable.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/Immutable.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Primitives/General/Ratio.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Primitives/General/Unit.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Primitives/General/Unit.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/Unit.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Primitives/General/mapboxvariantvisitor.h" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/mapboxvariantvisitor.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TypeTraits/ExclusiveOr.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Primitives/General/Ratio.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/Ratio.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/CXX.includecache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/depend.internal" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/depend.make" afterDir="false" />
@@ -64,7 +53,7 @@
       <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/depend.make" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/LandessDevCore" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/LandessDevCore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/LandessDevCore.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/LandessDevCore.cbp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/database" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/database" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +114,7 @@
       <workItem from="1581891243701" duration="29460000" />
       <workItem from="1589341366822" duration="21000" />
       <workItem from="1589341394453" duration="577000" />
-      <workItem from="1589650722563" duration="64024000" />
+      <workItem from="1589650722563" duration="98577000" />
     </task>
     <servers />
   </component>
@@ -151,26 +140,26 @@
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
     <state x="730" y="355" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/70.27.1850.1053@70.27.1850.1053" timestamp="1589769031540" />
-    <state width="896" height="241" key="GridCell.Tab.0.bottom" timestamp="1589830305478">
+    <state width="896" height="241" key="GridCell.Tab.0.bottom" timestamp="1589946918052">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
     <state width="939" height="264" key="GridCell.Tab.0.bottom/0.23.1920.980@0.23.1920.980" timestamp="1581892201648" />
-    <state width="896" height="241" key="GridCell.Tab.0.bottom/70.27.1850.1053@70.27.1850.1053" timestamp="1589830305478" />
-    <state width="896" height="241" key="GridCell.Tab.0.center" timestamp="1589830305477">
+    <state width="896" height="241" key="GridCell.Tab.0.bottom/70.27.1850.1053@70.27.1850.1053" timestamp="1589946918052" />
+    <state width="896" height="241" key="GridCell.Tab.0.center" timestamp="1589946918051">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
     <state width="939" height="264" key="GridCell.Tab.0.center/0.23.1920.980@0.23.1920.980" timestamp="1581892201647" />
-    <state width="896" height="241" key="GridCell.Tab.0.center/70.27.1850.1053@70.27.1850.1053" timestamp="1589830305477" />
-    <state width="896" height="241" key="GridCell.Tab.0.left" timestamp="1589830305476">
+    <state width="896" height="241" key="GridCell.Tab.0.center/70.27.1850.1053@70.27.1850.1053" timestamp="1589946918051" />
+    <state width="896" height="241" key="GridCell.Tab.0.left" timestamp="1589946918051">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
     <state width="939" height="264" key="GridCell.Tab.0.left/0.23.1920.980@0.23.1920.980" timestamp="1581892201646" />
-    <state width="896" height="241" key="GridCell.Tab.0.left/70.27.1850.1053@70.27.1850.1053" timestamp="1589830305476" />
-    <state width="896" height="241" key="GridCell.Tab.0.right" timestamp="1589830305477">
+    <state width="896" height="241" key="GridCell.Tab.0.left/70.27.1850.1053@70.27.1850.1053" timestamp="1589946918051" />
+    <state width="896" height="241" key="GridCell.Tab.0.right" timestamp="1589946918052">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
     <state width="939" height="264" key="GridCell.Tab.0.right/0.23.1920.980@0.23.1920.980" timestamp="1581892201647" />
-    <state width="896" height="241" key="GridCell.Tab.0.right/70.27.1850.1053@70.27.1850.1053" timestamp="1589830305477" />
+    <state width="896" height="241" key="GridCell.Tab.0.right/70.27.1850.1053@70.27.1850.1053" timestamp="1589946918052" />
     <state x="469" y="152" key="SettingsEditor" timestamp="1581830595491">
       <screen x="0" y="23" width="1920" height="980" />
     </state>
@@ -183,6 +172,10 @@
       <screen x="0" y="23" width="1920" height="980" />
     </state>
     <state x="653" y="345" key="com.intellij.ide.util.TipDialog/0.23.1920.980@0.23.1920.980" timestamp="1581883590965" />
+    <state x="823" y="383" width="224" height="436" key="refactoring.ChangeSignatureDialog" timestamp="1589943545413">
+      <screen x="70" y="27" width="1850" height="1053" />
+    </state>
+    <state x="823" y="383" width="224" height="436" key="refactoring.ChangeSignatureDialog/70.27.1850.1053@70.27.1850.1053" timestamp="1589943545413" />
     <state x="625" y="239" width="670" height="676" key="search.everywhere.popup" timestamp="1581978472335">
       <screen x="0" y="23" width="1920" height="980" />
     </state>

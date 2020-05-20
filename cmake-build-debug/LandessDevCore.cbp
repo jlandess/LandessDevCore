@@ -255,6 +255,9 @@
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Primitives/General/Context.h">
 			<Option target="LandessDevCore"/>
 		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Primitives/General/ContextualVariant.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Primitives/General/Hash.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>

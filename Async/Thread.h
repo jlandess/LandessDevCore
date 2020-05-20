@@ -140,10 +140,13 @@ namespace LD
     
     /// Minimal implementation of the @c ratio class. This class provides enough
     /// functionality to implement some basic @c chrono classes.
+
+    /*
     template <__intmax_t N, __intmax_t D = 1> class Ratio {
     public:
         static double _as_double() { return double(N) / double(D); }
     };
+     */
     
 
     class Mutex

@@ -132,5 +132,5 @@ add_executable(LandessDevCore
         Algorithms/StringAsNumber.h
         Primitives/General/Pair.h
         Async/Thread.cpp
-        Async/ThreadAffinity.h Primitives/General/Context.h)
+        Async/ThreadAffinity.h Primitives/General/Context.h Primitives/General/ContextualVariant.h)
 target_link_libraries(LandessDevCore pthread)
