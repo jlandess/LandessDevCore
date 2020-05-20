@@ -18,6 +18,7 @@
 #include "Async/Thread.h"
 #include "Primitives/General/Context.h"
 #include "TypeTraits/TypeList.hpp"
+#include "Primitives/General/ContextualVariant.h"
 namespace LD
 {
     template<typename T>
@@ -154,7 +155,9 @@ namespace LD
                     LD::Variant<LD::Context<LD::DatabaseError,Args...>,LD::Context<DefaultDatabaseSupportedVariant ,Args...>> mooo;
                     //LD::Context<DefaultDatabaseSupportedVariant ,Args...> context = LD::MakeContext(DefaultDatabaseSupportedVariant{LD::ElementReference<LD::Decay_T<MemberType>>{}},LD::Forward<Args>(arguements)...);
 
+                    LD::ContextualVariant<DefaultDatabaseSupportedVariant(Args...)> context;
                     mooo = LD::MakeContext(DefaultDatabaseSupportedVariant{LD::ElementReference<LD::Decay_T<MemberType>>{}},LD::Forward<Args>(arguements)...);
+
 
                     status = unqlite_kv_fetch_callback(backend,MemberKey::data(),MemberKey::size(),fetchCallback, referenceableMember.GetPointer());
                     return (status == UNQLITE_NOTFOUND || status == UNQLITE_OK);

@@ -21,17 +21,14 @@ namespace LD
             var = LD::Context<int,float,double>{};
             //LD::Variant<LD::Context<LD::Variant<int,float>,Cntx...>...>
             LD::ContextualVariant<LD::Variant<int,float>(LD::StringView,LD::StringView)> contextualVariant;
-            LD::ContextualVariant<LD::TypeList<int,float>(LD::StringView,LD::StringView)> contextualVariant1;
-            contextualVariant.Variant() = LD::Context<int,LD::StringView,LD::StringView>{};
             contextualVariant = LD::Context<int,LD::StringView,LD::StringView>{};
-            contextualVariant1 = LD::Context<float,LD::StringView,LD::StringView>{};
 
 
-            LD::Match(contextualVariant1,
+            LD::Match(contextualVariant,
                     [](const LD::Context<int,LD::StringView,LD::StringView> &){ printf("match int made! \n");},
-                      [](const LD::Context<float,LD::StringView,LD::StringView> &){ printf("match float made! \n");}
+                    [](const LD::Context<float,LD::StringView,LD::StringView> &){ printf("match float made! \n");}
             );
-            //contextualVariant = LD::Context<int,StringView>{};
+
             LD::Timer timer;
             timer.Start();
             Database currentData{{"database"}};
