@@ -97,6 +97,9 @@ namespace LD
 
     //using DatabaseReAnimationContext = LD::Context<DefaultDatabaseSupportedVariant,Args...>;
 
+    template<typename T>
+    class DebugTemplate;
+
     class Database
     {
     private:
@@ -148,18 +151,19 @@ namespace LD
                         return 0;
                     };
                     //todo move function call to the parent function
-                    LD::Variant<int,float,double> pack;
                     //OnMember(const LD::StringView & memberKey,const LD::Variant<LD::ElementReference<T>...> & context, Args && ... context) noexcept;
                     LD::ElementReference<LD::Decay_T<MemberType>> referenceableMember(&(*object)[MemberName{}]);
-
-                    LD::Variant<LD::Context<LD::DatabaseError,Args...>,LD::Context<DefaultDatabaseSupportedVariant ,Args...>> mooo;
+                    //LD::Variant<LD::Context<LD::DatabaseError,Args...>,LD::Context<DefaultDatabaseSupportedVariant ,Args...>> mooo;
                     //LD::Context<DefaultDatabaseSupportedVariant ,Args...> context = LD::MakeContext(DefaultDatabaseSupportedVariant{LD::ElementReference<LD::Decay_T<MemberType>>{}},LD::Forward<Args>(arguements)...);
 
-                    LD::ContextualVariant<DefaultDatabaseSupportedVariant(Args...)> context;
-                    mooo = LD::MakeContext(DefaultDatabaseSupportedVariant{LD::ElementReference<LD::Decay_T<MemberType>>{}},LD::Forward<Args>(arguements)...);
+                    LD::ContextualVariant<DefaultDatabaseSupportedVariant(LD::StringView ,Args...)> managedContext = LD::ContextualVariant<DefaultDatabaseSupportedVariant(LD::StringView,Args...)>{LD::MakeContext(LD::ElementReference<MemberType>{referenceableMember},LD::StringView {MemberKey::data(),MemberKey::size()},LD::Forward<Args>(arguements)...)};
+                    //LD::MakeContext(int{},LD::StringView{},LD::StringView{});
+                    //managedContext = LD::MakeContext(LD::ElementReference<MemberType>{},LD::Forward<Args>(arguements)...);
+                    onMember(managedContext);
 
 
-                    status = unqlite_kv_fetch_callback(backend,MemberKey::data(),MemberKey::size(),fetchCallback, referenceableMember.GetPointer());
+
+                    //status = unqlite_kv_fetch_callback(backend,MemberKey::data(),MemberKey::size(),fetchCallback, referenceableMember.GetPointer());
                     return (status == UNQLITE_NOTFOUND || status == UNQLITE_OK);
                 }else if constexpr(LD::IsReflectable<MemberType>)
                 {
@@ -270,25 +274,51 @@ namespace LD
                     T object;
                     LD::UInteger status = UNQLITE_OK;
 
-                    auto onMember = [](const LD::Variant<LD::Context<LD::DatabaseError,LD::StringView,LD::ElementReference<unqlite>>,LD::Context<DefaultDatabaseSupportedVariant ,LD::StringView,LD::ElementReference<unqlite>>> &)
+                    auto onMember = [](const LD::ContextualVariant<DefaultDatabaseSupportedVariant(LD::StringView,LD::ElementReference<unqlite>)> & context)
                     {
+                        auto PeformMemberQuery = [](const auto & object)
+                        {
+                            using MemberType = LD::Decay_T<decltype(LD::Get(LD::Get<0>(object)))>;
+                            auto fetchCallback = [](const void * input, unsigned int dataSize, void * inputPointer)->int
+                            {
+                                MemberType * member = (MemberType*)inputPointer;
+                                const char * data = (const char*)input;
+                                auto resultVariant = LD::StringAsNumber<MemberType>(LD::StringView{data});
+                                MemberType result = LD::Match(resultVariant,[](const MemberType & obj){ return obj;},[](auto &&){ return MemberType{};});
+                                (*member) = result;
+                                return 0;
+                            };
+                            LD::ElementReference<MemberType> instanceVariable = LD::Get<LD::ElementReference<MemberType>>(object);
+                            LD::ElementReference<unqlite> backend = LD::Get<LD::ElementReference<unqlite>>(object);
+                            LD::StringView memberKey = LD::Get<LD::StringView>(object);
+                            LD::UInteger result = unqlite_kv_fetch_callback(backend.GetPointer(),memberKey.data(),memberKey.size(),fetchCallback, instanceVariable.GetPointer());
+                            if((result == UNQLITE_NOTFOUND || result == UNQLITE_OK))
+                            {
+                                //query happened without error
+                            }
+
+                            //return database error
+                        };
+                        LD::Match(context,PeformMemberQuery);
+                        //using MemberType = LD::Decay_T<decltype(LD::Get(LD::Get<0>(context)))>;
+                        auto deserialize = [](auto && passedInObject)
+                        {
+                            /**
+                            using MemberType = LD::Decay_T<decltype(LD::Get(passedInObject))>;
+                            auto fetchCallback = [](const void * input, unsigned int dataSize, void * inputPointer)->int
+                            {
+                                MemberType * member = (MemberType*)inputPointer;
+                                const char * data = (const char*)input;
+                                auto resultVariant = LD::StringAsNumber<MemberType>(LD::StringView{data});
+                                MemberType result = LD::Match(resultVariant,[](const MemberType & obj){ return obj;},[](auto &&){ return MemberType{};});
+                                (*member) = result;
+                                return 0;
+                            };
+                             */
+                            //unqlite_kv_fetch_callback(db,MemberKey::data(),MemberKey::size(),fetchCallback, LD::Get(passedInObject));
                         auto OnCompleteQuery = []()
                         {
-                            auto deserialize = [](auto && passedInObject)
-                            {
-                                /**
-                                using MemberType = LD::Decay_T<decltype(LD::Get(passedInObject))>;
-                                auto fetchCallback = [](const void * input, unsigned int dataSize, void * inputPointer)->int
-                                {
-                                    MemberType * member = (MemberType*)inputPointer;
-                                    const char * data = (const char*)input;
-                                    auto resultVariant = LD::StringAsNumber<MemberType>(LD::StringView{data});
-                                    MemberType result = LD::Match(resultVariant,[](const MemberType & obj){ return obj;},[](auto &&){ return MemberType{};});
-                                    (*member) = result;
-                                    return 0;
-                                };
-                                 */
-                                //unqlite_kv_fetch_callback(db,MemberKey::data(),MemberKey::size(),fetchCallback, LD::Get(passedInObject));
+
                             };
                         };
 
@@ -311,7 +341,7 @@ namespace LD
                         };
                          */
                     };
-                    bool wasSuccessful = Database::RetrieveForObject(key,&object,onMember,this->mBackend,status,this->mBackend);
+                    bool wasSuccessful = Database::RetrieveForObject(key,&object,onMember,this->mBackend,status,LD::ElementReference<unqlite>{this->mBackend});
                     if (wasSuccessful)
                     {
                         return LD::MakeContext(T{object},LD::Forward<Context>(context)...);

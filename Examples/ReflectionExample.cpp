@@ -24,6 +24,7 @@ namespace LD
             contextualVariant = LD::Context<int,LD::StringView,LD::StringView>{};
 
 
+            contextualVariant = LD::MakeContext(int{},LD::StringView{},LD::StringView{});
             LD::Match(contextualVariant,
                     [](const LD::Context<int,LD::StringView,LD::StringView> &){ printf("match int made! \n");},
                     [](const LD::Context<float,LD::StringView,LD::StringView> &){ printf("match float made! \n");}

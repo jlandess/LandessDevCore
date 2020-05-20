@@ -162,5 +162,17 @@ namespace LD
         }
         return {sum};
     }
+
+    template<typename T>
+    constexpr LD::Enable_If_T<
+            LD::Require<
+                    LD::Either<LD::IsSame<T,char>,LD::IsSame<T,unsigned char>>
+            >,
+            LD::Variant<LD::NotANumber,T>> StringAsNumber(const LD::StringView & view) noexcept
+            {
+
+                return view[0];
+            }
+
 }
 #endif //LANDESSDEVCORE_STRINGASNUMBER_H

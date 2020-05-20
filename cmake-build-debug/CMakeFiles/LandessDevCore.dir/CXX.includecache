@@ -505,6 +505,8 @@ Primitives/General/Context.h
 ../IO/Primitives/General/Context.h
 TypeTraits/TypeList.hpp
 ../IO/TypeTraits/TypeList.hpp
+Primitives/General/ContextualVariant.h
+../IO/Primitives/General/ContextualVariant.h
 
 ../IO/unqlite.h
 stdarg.h
