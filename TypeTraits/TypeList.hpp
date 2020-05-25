@@ -5,7 +5,7 @@
 
 
 
-#include <type_traits>
+//#include <type_traits>
 #include "TypeTraits/Conditional.hpp"
 #include "TypeTraits/IntegerSequence.hpp"
 #include "TypeTraits/IntegralConstant.hpp"
@@ -15,6 +15,21 @@
 
 #pragma once
 
+namespace LD
+{
+    namespace CT
+    {
+        template<typename T> class DebugTemplate;
+        template<class A, template<class...> class B>
+        struct RebindList;
+
+        template<template<class...> class A, class... T, template<class...> class B>
+        struct RebindList<A<T...>, B> {
+            using type = B<T...>;
+        };
+    }
+
+}
 namespace LD
 {
 //-----------------------------------------------------------------------------
@@ -41,7 +56,7 @@ namespace LD
         using no  = char(&)[2];
 
         template <typename U, U... Is>
-        static yes Test(type_to_type<std::integer_sequence<U, Is...>>) {}
+        static yes Test(type_to_type<LD::IntegerSequence<U, Is...>>) {}
 
         static no Test(...) {}
 
@@ -58,16 +73,17 @@ namespace LD
     struct iseq_nmb_at_impl;
 
     template <typename U, U head, U... Is>  /// End of search, number is found
-    struct iseq_nmb_at_impl < 0, std::integer_sequence<U, head, Is...> >
+    struct iseq_nmb_at_impl < 0, LD::IntegerSequence<U, head, Is...> >
     {
+
         using type = LD::Detail::IntegralConstant<U, head>;
     };
 
 /// Recursion
     template <LD::UInteger idx, typename U, U head, U...Is>
-    struct iseq_nmb_at_impl<idx, std::integer_sequence<U, head, Is...>>
+    struct iseq_nmb_at_impl<idx, LD::IntegerSequence<U, head, Is...>>
     {
-        using type = typename iseq_nmb_at_impl<idx - 1, std::integer_sequence<U, Is...>>::type;
+        using type = typename iseq_nmb_at_impl<idx - 1, LD::IntegerSequence<U, Is...>>::type;
     };
 
 /// Wrapper; tests the index, has added 'value_type' and 'value' members
@@ -75,13 +91,13 @@ namespace LD
     struct iseq_nmb_at;
 
     template <LD::UInteger idx, typename U, U... Is>
-    struct iseq_nmb_at<idx, std::integer_sequence<U, Is...>>
+    struct iseq_nmb_at<idx, LD::IntegerSequence<U, Is...>>
     {
     private:
-        static_assert(std::integer_sequence<U, Is...>::size() > idx,
+        static_assert(LD::IntegerSequence<U, Is...>::size() > idx,
                       "iseq_nmb_at: Index is out of sequence bounds");
     public:
-        using type = typename iseq_nmb_at_impl<idx, std::integer_sequence<U, Is...>>::type;
+        using type = typename iseq_nmb_at_impl<idx, LD::IntegerSequence<U, Is...>>::type;
         using value_type = typename type::value_type;
         static constexpr value_type value = type::value;
     };
@@ -93,21 +109,21 @@ namespace LD
     struct iseq_index_of_impl;
 
     template <LD::UInteger idx, typename U, U nmb>                  /// Number not the in sequence
-    struct iseq_index_of_impl<idx, U, nmb, std::integer_sequence<U>>
+    struct iseq_index_of_impl<idx, U, nmb, LD::IntegerSequence<U>>
     {
         using type = LD::Detail::IntegralConstant<int, -1>;        /// Stop recursion
     };
 
     template <LD::UInteger idx, typename U, U nmb, U... Ns>        /// Number found
-    struct iseq_index_of_impl<idx, U, nmb, std::integer_sequence<U, nmb, Ns...>>
+    struct iseq_index_of_impl<idx, U, nmb, LD::IntegerSequence<U, nmb, Ns...>>
     {
         using type = LD::Detail::IntegralConstant<int, idx>;
     };
 
     template <LD::UInteger idx, typename U, U nmb, U head, U... Ns>
-    struct iseq_index_of_impl<idx, U, nmb, std::integer_sequence<U, head, Ns...>>
+    struct iseq_index_of_impl<idx, U, nmb, LD::IntegerSequence<U, head, Ns...>>
     {
-        using type = typename iseq_index_of_impl<idx + 1, U, nmb, std::integer_sequence<U, Ns...>>::type;
+        using type = typename iseq_index_of_impl<idx + 1, U, nmb, LD::IntegerSequence<U, Ns...>>::type;
     };
 
 /// Wrapper to test arguments, supply starting index 0, and add members 'value_type' and 'value'
@@ -134,22 +150,22 @@ namespace LD
     struct iseq_remove_nmb_impl;
 
     template <typename U, U nmb, U... Ns>      /// Called on empty sequence or the number not found
-    struct iseq_remove_nmb_impl<U, nmb, std::integer_sequence<U, Ns...>, std::integer_sequence<U>>
+    struct iseq_remove_nmb_impl<U, nmb, LD::IntegerSequence<U, Ns...>, LD::IntegerSequence<U>>
     {
-        using type = std::integer_sequence<U, Ns...>;
+        using type = LD::IntegerSequence<U, Ns...>;
     };
 
     template <typename U, U nmb, U... N1s, U... N2s>  // Number found and removed
-    struct iseq_remove_nmb_impl<U, nmb, std::integer_sequence<U, N1s...>, std::integer_sequence<U, nmb, N2s...>>
+    struct iseq_remove_nmb_impl<U, nmb, LD::IntegerSequence<U, N1s...>, LD::IntegerSequence<U, nmb, N2s...>>
     {
-        using type = std::integer_sequence<U, N1s..., N2s...>;
+        using type = LD::IntegerSequence<U, N1s..., N2s...>;
     };
 
     template <typename U, U nmb, U head, U... N1s, U... N2s>
-    struct iseq_remove_nmb_impl <U, nmb, std::integer_sequence<U, N1s...>, std::integer_sequence<U, head, N2s...>>
+    struct iseq_remove_nmb_impl <U, nmb,LD::IntegerSequence<U, N1s...>, LD::IntegerSequence<U, head, N2s...>>
     {
-        using type = typename iseq_remove_nmb_impl<U, nmb, std::integer_sequence<U, N1s..., head>,
-                std::integer_sequence<U, N2s...>>::type;
+        using type = typename iseq_remove_nmb_impl<U, nmb, LD::IntegerSequence<U, N1s..., head>,
+                LD::IntegerSequence<U, N2s...>>::type;
     };
 
 /// Wrapper
@@ -165,7 +181,7 @@ namespace LD
                       "iseq_remove_nmb: Number must be of the type of sequence numbers");
     public:
         using type =
-        typename iseq_remove_nmb_impl<data_type, nmb, std::integer_sequence<data_type>, ISeq>::type;
+        typename iseq_remove_nmb_impl<data_type, nmb, LD::IntegerSequence<data_type>, ISeq>::type;
     };
 
 //-----------------------------------------------------------------------------
@@ -174,9 +190,9 @@ namespace LD
     struct iseq_push_back_impl;
 
     template <typename T, T nmb, typename U, U... Ns>
-    struct iseq_push_back_impl<T, nmb, U, std::integer_sequence<U, Ns...>>
+    struct iseq_push_back_impl<T, nmb, U, LD::IntegerSequence<U, Ns...>>
     {
-        using type = std::integer_sequence<U, Ns..., nmb>;
+        using type =LD::IntegerSequence<U, Ns..., nmb>;
     };
 
 /// Wrapper to check template arguments
@@ -200,15 +216,15 @@ namespace LD
     struct iseq_sum_impl;
 
     template <typename U, U sum>                               /// End of recursion
-    struct iseq_sum_impl <U, sum, std::integer_sequence< U>>
+    struct iseq_sum_impl <U, sum, LD::IntegerSequence< U>>
     {
         using type = typename LD::Detail::IntegralConstant<U, sum>;
     };
 
     template <typename U, U sum, U head, U... Ns>             /// Recursion
-    struct iseq_sum_impl < U, sum, std::integer_sequence<U, head, Ns...>>
+    struct iseq_sum_impl < U, sum, LD::IntegerSequence<U, head, Ns...>>
     {
-        using type = typename iseq_sum_impl<U, sum + head, std::integer_sequence<U, Ns...>>::type;
+        using type = typename iseq_sum_impl<U, sum + head, LD::IntegerSequence<U, Ns...>>::type;
     };
 
     /// Wrapper to check template arguments and supply initial sum = 0
@@ -242,14 +258,18 @@ namespace LD
 //-----------------------------------------------------------------------------
 /// TypeList definition; defines size similar to  C++ STL containers size
 
-    template <typename... Ts>
-    struct TypeList
+    namespace CT
     {
-        using type = TypeList;
-        static constexpr LD::UInteger size() noexcept { return sizeof...(Ts); }
-    };
+        template <typename... Ts>
+        struct TypeList
+        {
+            using type = TypeList;
+            static constexpr LD::UInteger size() noexcept { return sizeof...(Ts); }
+        };
 
-    using tlist_emptylist = TypeList<>;
+        using tlist_emptylist = TypeList<>;
+    }
+
 
 //-----------------------------------------------------------------------------
 /// Is the list empty? Has 'type', 'value_type' and 'value' members
@@ -265,7 +285,7 @@ namespace LD
 /// Specialization for an empty list
 
     template <>
-    struct IsTypeListEmpty<TypeList<>>
+    struct IsTypeListEmpty<CT::TypeList<>>
     {
         using type = LD::TrueType ; // integral_constant<bool, true>;
         using value_type = type::value_type;
@@ -283,7 +303,7 @@ namespace LD
         using no  = char(&)[2];
 
         template <typename... Ts>
-        static yes Test(type_to_type<TypeList<Ts...>>) {}
+        static yes Test(type_to_type<CT::TypeList<Ts...>>) {}
 
         static no Test(...) {}
 
@@ -305,19 +325,19 @@ namespace LD
     };
 
     template <typename H, typename... ListEls>
-    struct is_listoflists<TypeList<H, ListEls...>>
+    struct is_listoflists<LD::CT::TypeList<H, ListEls...>>
     {
     private:
         static constexpr bool bLst = IsTypeList<H>::value;
     public:
         using type = typename LD::Detail::Conditonal < bLst,
-                typename is_listoflists<TypeList<ListEls...>>::type, LD::Detail::IntegralConstant<bool, false >> ::type;
+                typename is_listoflists<LD::CT::TypeList<ListEls...>>::type, LD::Detail::IntegralConstant<bool, false >> ::type;
         using value_type = typename type::value_type;            // Goes there only not tlist,stops
         static constexpr value_type value = type::value;
     };
 
     template <typename ListEl>                                 // Got to the end of original list
-    struct is_listoflists<TypeList<ListEl>>
+    struct is_listoflists<LD::CT::TypeList<ListEl>>
     {
     private:
         static constexpr bool bLst = IsTypeList<ListEl>::value;
@@ -334,16 +354,16 @@ namespace LD
     struct tlist_type_at_impl;
 
     template <typename T, typename... Ts>  ///> End of search, type is found
-    struct tlist_type_at_impl < 0, TypeList<T, Ts...> >
+    struct tlist_type_at_impl < 0, LD::CT::TypeList<T, Ts...> >
     {
         using type = T;
     };
 
 /// Recursion
     template <LD::UInteger idx, typename T, typename...Ts>
-    struct tlist_type_at_impl <idx, TypeList<T, Ts...>>
+    struct tlist_type_at_impl <idx, LD::CT::TypeList<T, Ts...>>
     {
-        using type = typename tlist_type_at_impl<idx - 1, TypeList<Ts...>>::type;
+        using type = typename tlist_type_at_impl<idx - 1, LD::CT::TypeList<Ts...>>::type;
     };
 
 /// Wrapper
@@ -351,13 +371,13 @@ namespace LD
     struct TypeAtIndex;
 
     template <LD::UInteger idx, typename... Ts>
-    struct TypeAtIndex<idx, TypeList<Ts...>>
+    struct TypeAtIndex<idx, LD::CT::TypeList<Ts...>>
     {
     private:
         static_assert(sizeof...(Ts) > idx,
                       "tlist_type_at: Index out of bounds or called on empty list");
     public:
-        using type = typename tlist_type_at_impl<idx, TypeList<Ts...>>::type;
+        using type = typename tlist_type_at_impl<idx, LD::CT::TypeList<Ts...>>::type;
 
     };
 
@@ -369,21 +389,21 @@ namespace LD
     struct tlist_index_of_impl;
 
     template <LD::UInteger idx, typename T> /// The type T is not in the list
-    struct tlist_index_of_impl <idx, T, TypeList<>>
+    struct tlist_index_of_impl <idx, T, LD::CT::TypeList<>>
     {
         using type = LD::Detail::IntegralConstant<int, -1>;
     };
 
     template <LD::UInteger idx, typename T, typename... Ts>    ///> The type is found
-    struct tlist_index_of_impl <idx, T, TypeList<T, Ts...>>
+    struct tlist_index_of_impl <idx, T, LD::CT::TypeList<T, Ts...>>
     {
         using type = LD::Detail::IntegralConstant<int, idx>;
     };
 
     template <LD::UInteger idx, typename T, typename H, typename... Ts>  ///> Recursion
-    struct tlist_index_of_impl <idx, T, TypeList<H, Ts...>>
+    struct tlist_index_of_impl <idx, T, LD::CT::TypeList<H, Ts...>>
     {
-        using type = typename tlist_index_of_impl<idx + 1, T, TypeList<Ts...>>::type;
+        using type = typename tlist_index_of_impl<idx + 1, T, LD::CT::TypeList<Ts...>>::type;
     };
 
 /// Wrapping to supply initial index 0
@@ -392,9 +412,9 @@ namespace LD
 
 /// Specializing for idx >= 0
     template <typename T, typename... Ts>
-    struct tlist_index_of<T, TypeList<Ts...>>
+    struct tlist_index_of<T, LD::CT::TypeList<Ts...>>
     {
-        using type = typename tlist_index_of_impl<0, T, TypeList<Ts...>>::type;
+        using type = typename tlist_index_of_impl<0, T, LD::CT::TypeList<Ts...>>::type;
         using value_type = typename type::value_type;
         static constexpr value_type value = type::value;
     };
@@ -406,16 +426,16 @@ namespace LD
     struct tlist_index_of_not_impl;
 
     template <LD::UInteger idx, typename T>             // All list's elements are T
-    struct tlist_index_of_not_impl<idx, T, TypeList<>>
+    struct tlist_index_of_not_impl<idx, T, LD::CT::TypeList<>>
     {
         using type = LD::Detail::IntegralConstant<int, -1>;
     };
 
     template <LD::UInteger idx, typename T, typename H, typename... Ts>
-    struct tlist_index_of_not_impl <idx, T, TypeList<H, Ts...>>
+    struct tlist_index_of_not_impl <idx, T, LD::CT::TypeList<H, Ts...>>
     {
         using type = typename LD::Detail::Conditonal < LD::Detail::IsSame<T, H>::value,
-                typename tlist_index_of_not_impl<idx + 1, T, TypeList<Ts...>>::type,
+                typename tlist_index_of_not_impl<idx + 1, T, LD::CT::TypeList<Ts...>>::type,
                 LD::Detail::IntegralConstant<int, idx >> ::type;
     };
 
@@ -424,9 +444,9 @@ namespace LD
     struct tlist_index_of_not;
 
     template <typename T, typename... Ts>
-    struct tlist_index_of_not<T, TypeList<Ts...>>
+    struct tlist_index_of_not<T, LD::CT::TypeList<Ts...>>
     {
-        using type = typename tlist_index_of_not_impl<0, T, TypeList<Ts...>>::type;
+        using type = typename tlist_index_of_not_impl<0, T, LD::CT::TypeList<Ts...>>::type;
         using value_type = typename type::value_type;
         static constexpr value_type value = type::value;
     };
@@ -438,45 +458,61 @@ namespace LD
     struct tlist_front;
 
     template <typename... Ts>
-    struct tlist_front<TypeList<Ts...>>
+    struct tlist_front<LD::CT::TypeList<Ts...>>
     {
     private:
         static_assert(sizeof...(Ts) > 0, "tlist_front: Called on empty list");
     public:
-        using type = typename TypeAtIndex<0, TypeList<Ts...>>::type;
+        using type = typename TypeAtIndex<0, LD::CT::TypeList<Ts...>>::type;
     };
 
     template <class List>
     struct tlist_back;
 
     template <typename... Ts>
-    struct tlist_back<TypeList<Ts...>>
+    struct tlist_back<LD::CT::TypeList<Ts...>>
     {
     private:
         static_assert(sizeof...(Ts) > 0, "tlist_back: Called on empty list");
     public:
-        using type = typename TypeAtIndex< (sizeof...(Ts)) - 1, TypeList<Ts...>>::type;
+        using type = typename TypeAtIndex< (sizeof...(Ts)) - 1, LD::CT::TypeList<Ts...>>::type;
     };
 
 //-----------------------------------------------------------------------------
 /// Push front and push back
 
-    template <typename H, class List>
-    struct tlist_push_front; ;
 
-    template <typename H, typename... Ts>
-    struct tlist_push_front<H, TypeList<Ts...>>
+    namespace CT
     {
-        using type = TypeList<H, Ts...>;
-    };
+        namespace Detail
+        {
+            template <typename H, class List>
+            struct Prepend; ;
+
+            template <typename H, typename... Ts>
+            struct Prepend<H, LD::CT::TypeList<Ts...>>
+            {
+                using type = LD::CT::TypeList<H, Ts...>;
+            };
+        }
+    }
+
+
+    namespace CT
+    {
+        template<typename H, typename ... Ts>
+        using Prepend = typename LD::CT::Detail::Prepend<H,Ts...>::type;
+    }
+
+
 
     template <typename T, class List>
     struct tlist_push_back;
 
     template <typename T, typename... Ts>
-    struct tlist_push_back<T, TypeList<Ts...>>
+    struct tlist_push_back<T, LD::CT::TypeList<Ts...>>
     {
-        using type = TypeList<Ts..., T>;
+        using type = LD::CT::TypeList<Ts..., T>;
     };
 
 //-----------------------------------------------------------------------------
@@ -486,22 +522,22 @@ namespace LD
     struct tlist_erase_type;
 
     template <typename T>
-    struct tlist_erase_type<T, TypeList<>>
+    struct tlist_erase_type<T, LD::CT::TypeList<>>
     {
-        using type = TypeList<>;
+        using type = LD::CT::TypeList<>;
     };
 
     template <typename T, typename... Ts>
-    struct tlist_erase_type <T, TypeList<T, Ts...>>
+    struct tlist_erase_type <T, LD::CT::TypeList<T, Ts...>>
     {
-        using type = TypeList<Ts...>;
+        using type = LD::CT::TypeList<Ts...>;
     };
 
     template <typename T, typename H, typename... Ts>
-    struct tlist_erase_type<T, TypeList<H, Ts...>>
+    struct tlist_erase_type<T, LD::CT::TypeList<H, Ts...>>
     {
         using type =
-        typename tlist_push_front<H, typename tlist_erase_type<T, TypeList<Ts...>>::type>::type;
+        typename LD::CT::Prepend<H, typename tlist_erase_type<T, LD::CT::TypeList<Ts...>>::type>::type;
     };
 
 //-----------------------------------------------------------------------------
@@ -511,16 +547,16 @@ namespace LD
     struct tlist_erase_at_impl;
 
     template <typename T, typename... Ts>
-    struct tlist_erase_at_impl<0, TypeList<T, Ts...>>
+    struct tlist_erase_at_impl<0, LD::CT::TypeList<T, Ts...>>
     {
-        using type = TypeList<Ts...>;
+        using type = LD::CT::TypeList<Ts...>;
     };
 
     template <LD::UInteger idx, typename H, typename... Ts>
-    struct tlist_erase_at_impl<idx, TypeList<H, Ts...>>
+    struct tlist_erase_at_impl<idx, LD::CT::TypeList<H, Ts...>>
     {
         using type =
-        typename tlist_push_front < H, typename tlist_erase_at_impl<idx - 1, TypeList<Ts...>>::type>::type;
+        typename LD::CT::Prepend < H, typename tlist_erase_at_impl<idx - 1, LD::CT::TypeList<Ts...>>::type>::type;
     };
 
 /// Wrapper to assert index is in range
@@ -528,26 +564,36 @@ namespace LD
     struct tlist_erase_at;
 
     template <LD::UInteger idx, typename... Ts>
-    struct tlist_erase_at<idx, TypeList<Ts...>>
+    struct tlist_erase_at<idx, LD::CT::TypeList<Ts...>>
     {
     private:
         static_assert(sizeof...(Ts) > idx, "tlist_erase_at: Index out of bounds");
     public:
-        using type = typename tlist_erase_at_impl<idx, TypeList<Ts...>>::type;
+        using type = typename tlist_erase_at_impl<idx, LD::CT::TypeList<Ts...>>::type;
     };
 
 //-----------------------------------------------------------------------------
 /// Pop front, this can be called on empty list
 
-    template <class List>
-    struct tlist_pop_front;
-
-    template <typename... Ts>
-    struct tlist_pop_front<TypeList<Ts...>>
+    namespace CT
     {
-        using type = typename LD::Detail::Conditonal < sizeof...(Ts) == 0, TypeList<>,
-                typename  tlist_erase_at<0, TypeList<Ts...>>::type> ::type;
-    };
+        namespace Detail
+        {
+            template <class List>
+            struct tlist_pop_front;
+
+            template <typename... Ts>
+            struct tlist_pop_front<LD::CT::TypeList<Ts...>>
+            {
+                using type = typename LD::Detail::Conditonal < sizeof...(Ts) == 0, LD::CT::TypeList<>,
+                        typename  tlist_erase_at<0, LD::CT::TypeList<Ts...>>::type> ::type;
+            };
+        }
+
+        template<typename T>
+        using PopFront = typename LD::CT::Detail::tlist_pop_front<T>::type;
+    }
+
 
 //-----------------------------------------------------------------------------
 /// Pop back, allows an empty list
@@ -556,10 +602,10 @@ namespace LD
     struct tlist_pop_back;
 
     template <typename... Ts>
-    struct tlist_pop_back<TypeList<Ts...>>
+    struct tlist_pop_back<LD::CT::TypeList<Ts...>>
     {
-        using type = typename LD::Detail::Conditonal<sizeof...(Ts) == 0, TypeList<>,
-                typename tlist_erase_at<sizeof...(Ts)-1, TypeList<Ts...>>::type>::type;
+        using type = typename LD::Detail::Conditonal<sizeof...(Ts) == 0, LD::CT::TypeList<>,
+                typename tlist_erase_at<sizeof...(Ts)-1, LD::CT::TypeList<Ts...>>::type>::type;
     };
 
 //-----------------------------------------------------------------------------
@@ -569,21 +615,21 @@ namespace LD
     struct tlist_erase_all;
 
     template <typename T>
-    struct tlist_erase_all<T, TypeList<>>
+    struct tlist_erase_all<T, LD::CT::TypeList<>>
     {
-        using type = TypeList<>;
+        using type = LD::CT::TypeList<>;
     };
 
     template <typename T, typename... Ts>
-    struct tlist_erase_all<T, TypeList<T, Ts...>>
+    struct tlist_erase_all<T, LD::CT::TypeList<T, Ts...>>
     {
-        using type = typename tlist_erase_all<T, TypeList<Ts...>>::type;
+        using type = typename tlist_erase_all<T, LD::CT::TypeList<Ts...>>::type;
     };
 
     template <typename T, typename H, typename... Ts>
-    struct tlist_erase_all<T, TypeList<H, Ts...>>
+    struct tlist_erase_all<T, LD::CT::TypeList<H, Ts...>>
     {
-        using type = typename tlist_push_front < H, typename tlist_erase_all<T, TypeList<Ts...>>::type>::type;
+        using type = typename LD::CT::Prepend < H, typename tlist_erase_all<T, LD::CT::TypeList<Ts...>>::type>::type;
     };
 
 //-----------------------------------------------------------------------------
@@ -593,17 +639,17 @@ namespace LD
     template <typename T, class List>
     struct tlist_erase_all_ll
     {
-        using type = TypeList<>;
+        using type = LD::CT::TypeList<>;
     };
 
     template <typename T, typename... Hs, typename... Ts>
-    struct tlist_erase_all_ll<T, TypeList<TypeList<Hs...>, Ts...>>
+    struct tlist_erase_all_ll<T, LD::CT::TypeList<LD::CT::TypeList<Hs...>, Ts...>>
     {
     private:
-        using el_cleaned = typename tlist_erase_all<T, TypeList<Hs...>>::type;
+        using el_cleaned = typename tlist_erase_all<T, LD::CT::TypeList<Hs...>>::type;
     public:
         using type =
-        typename tlist_push_front<el_cleaned, typename tlist_erase_all_ll<T, TypeList<Ts...>>::type>::type;
+        typename LD::CT::Prepend<el_cleaned, typename tlist_erase_all_ll<T, LD::CT::TypeList<Ts...>>::type>::type;
     };
 
 //-----------------------------------------------------------------------------
@@ -613,37 +659,48 @@ namespace LD
     struct tlist_deeperase_all;
 
     template <typename T, typename... ListEls>
-    struct tlist_deeperase_all<T, TypeList<ListEls...>>
+    struct tlist_deeperase_all<T, LD::CT::TypeList<ListEls...>>
     {
     private:
-        static constexpr bool bLL = is_listoflists <TypeList<ListEls...>>::value;
+        static constexpr bool bLL = is_listoflists <LD::CT::TypeList<ListEls...>>::value;
     public:
         using type = typename LD::Detail::Conditonal < bLL,
-                typename tlist_erase_all_ll<T, TypeList<ListEls...>>::type,
-                typename tlist_erase_all<T, TypeList<ListEls...>>::type>::type;
+                typename tlist_erase_all_ll<T, LD::CT::TypeList<ListEls...>>::type,
+                typename tlist_erase_all<T, LD::CT::TypeList<ListEls...>>::type>::type;
     };
 
 //-----------------------------------------------------------------------------
 /// Erase all duplicates from the list
 
-    template <class List>
-    struct DeDuplicateTypeList;
-
-    template <>
-    struct DeDuplicateTypeList<TypeList<>>
+    namespace CT
     {
-        using type = TypeList<>;
-    };
+        namespace Detail
+        {
+            template <class List>
+            struct DeDuplicateTypeList;
 
-    template <typename H, typename... Ts>
-    struct DeDuplicateTypeList<TypeList<H, Ts...>>
-    {
-    private:
-        using unique_t = typename DeDuplicateTypeList<TypeList<Ts...>>::type;
-        using new_t = typename tlist_erase_type<H, unique_t>::type;
-    public:
-        using type = typename tlist_push_front<H, new_t>::type;
-    };
+            template <>
+            struct DeDuplicateTypeList<LD::CT::TypeList<>>
+            {
+                using type = LD::CT::TypeList<>;
+            };
+
+            template <typename H, typename... Ts>
+            struct DeDuplicateTypeList<LD::CT::TypeList<H, Ts...>>
+            {
+            private:
+                using unique_t = typename DeDuplicateTypeList<LD::CT::TypeList<Ts...>>::type;
+                using new_t = typename tlist_erase_type<H, unique_t>::type;
+            public:
+                using type = typename LD::CT::Prepend<H, new_t>::type;
+            };
+        }
+        template<typename T>
+        using DeDuplicateTypeList = typename LD::CT::Detail::DeDuplicateTypeList<T>::type;
+    }
+
+
+
 
 //---------------------------------------------------------------------------
 /// Erase duplicates in all elements of list of lists
@@ -652,18 +709,18 @@ namespace LD
     template <class List>
     struct tlist_erase_dupl_ll
     {
-        using type = TypeList<>;
+        using type = LD::CT::TypeList<>;
     };
 
     template <typename... Hs, typename... ListEls>
-    struct tlist_erase_dupl_ll<TypeList<TypeList<Hs...>, ListEls...>>
+    struct tlist_erase_dupl_ll<LD::CT::TypeList<LD::CT::TypeList<Hs...>, ListEls...>>
     {
     private:
-        using lst_clean = typename DeDuplicateTypeList < TypeList<Hs...>>::type;
+        using lst_clean = typename LD::CT::Detail::DeDuplicateTypeList < LD::CT::TypeList<Hs...>>::type;
     public:
         using type =
-        typename tlist_push_front<lst_clean,
-                typename tlist_erase_dupl_ll<TypeList<ListEls...>>::type>::type;;
+        typename LD::CT::Prepend<lst_clean,
+                typename tlist_erase_dupl_ll<LD::CT::TypeList<ListEls...>>::type>::type;;
     };
 
 //---------------------------------------------------------------------------
@@ -673,14 +730,14 @@ namespace LD
     struct tlist_deeperase_dupl;
 
     template <typename... ListEls>
-    struct tlist_deeperase_dupl<TypeList<ListEls...>>
+    struct tlist_deeperase_dupl<LD::CT::TypeList<ListEls...>>
     {
     private:
-        static constexpr bool bLL = is_listoflists<TypeList<ListEls...>>::value;
+        static constexpr bool bLL = is_listoflists<LD::CT::TypeList<ListEls...>>::value;
     public:
         using type = typename LD::Detail::Conditonal < bLL,
-                typename tlist_erase_dupl_ll<TypeList<ListEls...>>::type,
-                typename DeDuplicateTypeList<TypeList<ListEls...>>::type>::type;
+                typename tlist_erase_dupl_ll<LD::CT::TypeList<ListEls...>>::type,
+                typename LD::CT::Detail::DeDuplicateTypeList<LD::CT::TypeList<ListEls...>>::type>::type;
     };
 
 //---------------------------------------------------------------------------
@@ -690,24 +747,24 @@ namespace LD
     struct tlist_erase_firsts; //{};
 
     template <LD::UInteger k>
-    struct tlist_erase_firsts<k, TypeList<>>
+    struct tlist_erase_firsts<k, LD::CT::TypeList<>>
     {
-        using type = TypeList<>;
+        using type = LD::CT::TypeList<>;
     };
 
     template <typename... Ts>
-    struct tlist_erase_firsts < 1, TypeList<Ts...>>
+    struct tlist_erase_firsts < 1, LD::CT::TypeList<Ts...>>
     {
-        using type = typename tlist_pop_front < TypeList<Ts...>>::type;
+        using type =  LD::CT::PopFront < LD::CT::TypeList<Ts...>>;
     };
 
     template <LD::UInteger k, typename... Ts>
-    struct tlist_erase_firsts<k, TypeList<Ts...>>
+    struct tlist_erase_firsts<k, LD::CT::TypeList<Ts...>>
     {
     private:
         static_assert(k > 0, "Wrong number of items to erase (k must be > 0)");
     public:
-        using type = typename tlist_erase_firsts<k - 1, typename tlist_pop_front<TypeList<Ts...>>::type>::type;
+        using type = typename tlist_erase_firsts<k - 1, typename LD::CT::Detail::tlist_pop_front<LD::CT::TypeList<Ts...>>::type>::type;
     };
 
 //-----------------------------------------------------------------------------
@@ -717,25 +774,25 @@ namespace LD
     struct tlist_erase_lasts;
 
     template <LD::UInteger k>
-    struct tlist_erase_lasts<k, TypeList<>>
+    struct tlist_erase_lasts<k, LD::CT::TypeList<>>
     {
-        using type = TypeList<>;
+        using type = LD::CT::TypeList<>;
     };
 
     template <typename... Ts>
-    struct tlist_erase_lasts<1, TypeList<Ts...>>
+    struct tlist_erase_lasts<1, LD::CT::TypeList<Ts...>>
     {
-        using type = typename tlist_pop_back<TypeList<Ts...>>::type;
+        using type = typename tlist_pop_back<LD::CT::TypeList<Ts...>>::type;
     };
 
     template <LD::UInteger k, typename... Ts>
-    struct tlist_erase_lasts<k, TypeList<Ts...>>
+    struct tlist_erase_lasts<k, LD::CT::TypeList<Ts...>>
     {
     private:
         static_assert(k > 0, "Wrong number of items to erase (k must be > 0)");
     public:
         using type =
-        typename tlist_erase_lasts<k - 1, typename tlist_pop_back<TypeList<Ts...>>::type>::type;
+        typename tlist_erase_lasts<k - 1, typename tlist_pop_back<LD::CT::TypeList<Ts...>>::type>::type;
     };
 
 //-----------------------------------------------------------------------------
@@ -746,17 +803,17 @@ namespace LD
     struct tlist_replace_first; ;
 
     template <typename R, typename T>
-    struct tlist_replace_first<R, T, TypeList<>>
+    struct tlist_replace_first<R, T, LD::CT::TypeList<>>
     {
-        using type = TypeList<>;
+        using type = LD::CT::TypeList<>;
     };
 
     template <typename R, typename T, typename H, typename... Ts>
-    struct tlist_replace_first<R, T, TypeList<H, Ts...>>
+    struct tlist_replace_first<R, T, LD::CT::TypeList<H, Ts...>>
     {
         using type = typename LD::Detail::Conditonal<LD::Detail::IsSame<T, H>::value,
-                TypeList<R, Ts...>,
-                typename tlist_push_front<H, typename tlist_replace_first<R, T, TypeList<Ts...>>::type>::type>::type;
+                LD::CT::TypeList<R, Ts...>,
+                typename LD::CT::Prepend<H, typename tlist_replace_first<R, T, LD::CT::TypeList<Ts...>>::type>::type>::type;
     };
 
 //-----------------------------------------------------------------------------
@@ -766,16 +823,16 @@ namespace LD
     struct tlist_replace_at_impl;
 
     template <typename R, typename H, typename... Ts>   // Index reached, type replaced
-    struct tlist_replace_at_impl<0, R, TypeList<H, Ts...>>
+    struct tlist_replace_at_impl<0, R, LD::CT::TypeList<H, Ts...>>
     {
-        using type = TypeList<R, Ts...>;
+        using type = LD::CT::TypeList<R, Ts...>;
     };
 
     template <LD::UInteger idx, typename R, typename H, typename... Ts>
-    struct tlist_replace_at_impl<idx, R, TypeList<H, Ts...>>  // Recursion
+    struct tlist_replace_at_impl<idx, R, LD::CT::TypeList<H, Ts...>>  // Recursion
     {
         using type =
-        typename tlist_push_front < H, typename tlist_replace_at_impl<idx - 1, R, TypeList<Ts...>>::type>::type;
+        typename LD::CT::Prepend< H, typename tlist_replace_at_impl<idx - 1, R, LD::CT::TypeList<Ts...>>::type>::type;
     };
 
 /// Wrapper to check the index
@@ -783,12 +840,12 @@ namespace LD
     struct tlist_replace_at;
 
     template <LD::UInteger idx, typename R, typename... Ts>
-    struct tlist_replace_at<idx, R, TypeList<Ts...>>
+    struct tlist_replace_at<idx, R, LD::CT::TypeList<Ts...>>
     {
     private:
         static_assert(sizeof...(Ts) > idx, "tlist_replace_at: Index is out of bounds");
     public:
-        using type = typename tlist_replace_at_impl<idx, R, TypeList<Ts...>>::type;
+        using type = typename tlist_replace_at_impl<idx, R, LD::CT::TypeList<Ts...>>::type;
     };
 
 //-----------------------------------------------------------------------------
@@ -798,21 +855,21 @@ namespace LD
     struct tlist_replace_all;
 
     template <typename R, typename T>
-    struct tlist_replace_all<R, T, TypeList<>>
+    struct tlist_replace_all<R, T, LD::CT::TypeList<>>
     {
-        using type = TypeList<>;
+        using type = LD::CT::TypeList<>;
     };
 
     template <typename R, typename T, typename... Ts>
-    struct tlist_replace_all<R, T, TypeList<T, Ts...>>
+    struct tlist_replace_all<R, T, LD::CT::TypeList<T, Ts...>>
     {
-        using type = typename tlist_push_front<R, typename tlist_replace_all<R, T, TypeList<Ts...>>::type>::type;
+        using type = typename LD::CT::Prepend<R, typename tlist_replace_all<R, T, LD::CT::TypeList<Ts...>>::type>::type;
     };
 
     template <typename R, typename T, typename H, typename... Ts>
-    struct tlist_replace_all<R, T, TypeList<H, Ts...>>
+    struct tlist_replace_all<R, T, LD::CT::TypeList<H, Ts...>>
     {
-        using type = typename tlist_push_front<H, typename tlist_replace_all<R, T, TypeList<Ts...>>::type>::type;
+        using type = typename LD::CT::Prepend<H, typename tlist_replace_all<R, T, LD::CT::TypeList<Ts...>>::type>::type;
     };
 
 //-----------------------------------------------------------------------------
@@ -822,18 +879,18 @@ namespace LD
     template <typename R, typename T, class List>
     struct tlist_replace_all_ll
     {
-        using type = TypeList<>;
+        using type = LD::CT::TypeList<>;
     };
 
     template <typename R, typename T, typename... Hs, typename... ListEls>
-    struct tlist_replace_all_ll<R, T, TypeList<TypeList<Hs...>, ListEls...>>
+    struct tlist_replace_all_ll<R, T, LD::CT::TypeList<LD::CT::TypeList<Hs...>, ListEls...>>
     {
     private:
-        using lst_replaced = typename tlist_replace_all<R, T, TypeList<Hs...>>::type;
+        using lst_replaced = typename tlist_replace_all<R, T, LD::CT::TypeList<Hs...>>::type;
     public:
         using type =
-        typename tlist_push_front < lst_replaced,
-                typename tlist_replace_all_ll<R, T, TypeList<ListEls...>>::type>::type;
+        typename LD::CT::Prepend < lst_replaced,
+                typename tlist_replace_all_ll<R, T, LD::CT::TypeList<ListEls...>>::type>::type;
     };
 
 //-----------------------------------------------------------------------------
@@ -843,14 +900,14 @@ namespace LD
     struct tlist_deepreplace_all;
 
     template <typename R, typename T, typename... ListEls>
-    struct tlist_deepreplace_all<R, T, TypeList<ListEls...>>
+    struct tlist_deepreplace_all<R, T, LD::CT::TypeList<ListEls...>>
     {
     private:
-        static constexpr bool bLL = is_listoflists <TypeList<ListEls...>>::value;
+        static constexpr bool bLL = is_listoflists <LD::CT::TypeList<ListEls...>>::value;
     public:
         using type = typename LD::Detail::Conditonal<bLL,
-                typename tlist_replace_all_ll<R, T, TypeList<ListEls...>>::type,
-                typename tlist_replace_all<R, T, TypeList<ListEls...>>::type>::type;
+                typename tlist_replace_all_ll<R, T, LD::CT::TypeList<ListEls...>>::type,
+                typename tlist_replace_all<R, T, LD::CT::TypeList<ListEls...>>::type>::type;
     };
 
 //-----------------------------------------------------------------------------
@@ -860,18 +917,18 @@ namespace LD
     struct tlist_count_type_impl;
 
     template <LD::UInteger k, typename T >
-    struct tlist_count_type_impl<k, T, TypeList<>>
+    struct tlist_count_type_impl<k, T, LD::CT::TypeList<>>
     {
         using type = LD::Detail::IntegralConstant<LD::UInteger , k>;
     };
 
     template <LD::UInteger k, typename T, typename H, typename... Ts>
-    struct tlist_count_type_impl<k, T, TypeList<H, Ts...>>
+    struct tlist_count_type_impl<k, T, LD::CT::TypeList<H, Ts...>>
     {
     private:
         static constexpr LD::UInteger count = LD::Detail::IsSame<T, H>::value ? k + 1 : k;
     public:
-        using type = typename tlist_count_type_impl<count, T, TypeList<Ts...>>::type;
+        using type = typename tlist_count_type_impl<count, T, LD::CT::TypeList<Ts...>>::type;
     };
 
 /// Wrapper
@@ -879,9 +936,9 @@ namespace LD
     struct GetTypeCountInTypeList;
 
     template <typename T, typename... Ts>
-    struct GetTypeCountInTypeList<T, TypeList<Ts...>>
+    struct GetTypeCountInTypeList<T, LD::CT::TypeList<Ts...>>
     {
-        using type = typename tlist_count_type_impl<0, T, TypeList<Ts...>>::type;
+        using type = typename tlist_count_type_impl<0, T, LD::CT::TypeList<Ts...>>::type;
         using value_type = typename type::value_type;
         static constexpr value_type value = type::value;
     };
@@ -893,25 +950,25 @@ namespace LD
     template <typename T, class ISeq, class List>
     struct tlist_count_type_ll
     {
-        using type = std::integer_sequence<LD::UInteger>;
+        using type = LD::IntegerSequence<LD::UInteger>;
     };
 
     template <typename T, LD::UInteger ... Rs, typename... Hs >
-    struct tlist_count_type_ll<T, std::integer_sequence<LD::UInteger , Rs...>, TypeList<TypeList<Hs...>>>
+    struct tlist_count_type_ll<T, LD::IntegerSequence<LD::UInteger , Rs...>, LD::CT::TypeList<LD::CT::TypeList<Hs...>>>
     {
     private:
-        static constexpr LD::UInteger res_cnt = GetTypeCountInTypeList<T, TypeList<Hs...>>::value;
+        static constexpr LD::UInteger res_cnt = GetTypeCountInTypeList<T, LD::CT::TypeList<Hs...>>::value;
     public:
-        using type = std::integer_sequence<LD::UInteger , Rs..., res_cnt>;
+        using type = LD::IntegerSequence<LD::UInteger , Rs..., res_cnt>;
     };
 
     template <typename T, LD::UInteger ... Rs, typename... Hs, typename... Ls >
-    struct tlist_count_type_ll<T, std::integer_sequence<LD::UInteger , Rs...>, TypeList<TypeList<Hs...>, Ls...>>
+    struct tlist_count_type_ll<T, LD::IntegerSequence<LD::UInteger , Rs...>, LD::CT::TypeList<LD::CT::TypeList<Hs...>, Ls...>>
     {
     private:
-        static constexpr LD::UInteger res_cnt = GetTypeCountInTypeList<T, TypeList<Hs...>>::value;
+        static constexpr LD::UInteger res_cnt = GetTypeCountInTypeList<T, LD::CT::TypeList<Hs...>>::value;
     public:
-        using type = typename tlist_count_type_ll<T, std::integer_sequence<LD::UInteger , Rs..., res_cnt>, TypeList<Ls...>>::type;
+        using type = typename tlist_count_type_ll<T, LD::IntegerSequence<LD::UInteger , Rs..., res_cnt>, LD::CT::TypeList<Ls...>>::type;
     };
 
 //-----------------------------------------------------------------------------
@@ -922,15 +979,15 @@ namespace LD
     struct tlist_deepcount_type;
 
     template <typename T, typename... Ls>
-    struct tlist_deepcount_type<T, TypeList<Ls...>>
+    struct tlist_deepcount_type<T, LD::CT::TypeList<Ls...>>
     {
 /// Condition to select path
     private:
-        static constexpr bool bLL = is_listoflists<TypeList<Ls...>>::value;
+        static constexpr bool bLL = is_listoflists<LD::CT::TypeList<Ls...>>::value;
     public:
         using type = typename LD::Detail::Conditonal<bLL,
-                typename tlist_count_type_ll<T, std::integer_sequence<LD::UInteger>, TypeList<Ls...>>::type,
-                typename GetTypeCountInTypeList<T, TypeList<Ls...>>::type>::type;
+                typename tlist_count_type_ll<T, LD::IntegerSequence<LD::UInteger>, LD::CT::TypeList<Ls...>>::type,
+                typename GetTypeCountInTypeList<T, LD::CT::TypeList<Ls...>>::type>::type;
     };
 
 //-----------------------------------------------------------------------------
@@ -941,23 +998,23 @@ namespace LD
     struct tlist_all_idx_impl;
 
     template <LD::UInteger k, typename T, LD::UInteger ... Idx>                    // End of search
-    struct tlist_all_idx_impl<k, T, TypeList<>, std::integer_sequence<LD::UInteger , Idx...>>
+    struct tlist_all_idx_impl<k, T, LD::CT::TypeList<>, LD::IntegerSequence<LD::UInteger , Idx...>>
     {
-        using type = std::integer_sequence<LD::UInteger , Idx...>;
+        using type = LD::IntegerSequence<LD::UInteger , Idx...>;
     };
 
     template <LD::UInteger k, typename T, typename... Ts, LD::UInteger ... Idx>    // Type found at k
-    struct tlist_all_idx_impl<k, T, TypeList<T, Ts...>, std::integer_sequence<LD::UInteger , Idx...>>
+    struct tlist_all_idx_impl<k, T, LD::CT::TypeList<T, Ts...>, LD::IntegerSequence<LD::UInteger , Idx...>>
     {
         using type =
-        typename tlist_all_idx_impl<k + 1, T, TypeList<Ts...>, std::integer_sequence<LD::UInteger , Idx..., k>>::type;
+        typename tlist_all_idx_impl<k + 1, T, LD::CT::TypeList<Ts...>, LD::IntegerSequence<LD::UInteger , Idx..., k>>::type;
     };
 
     template <LD::UInteger k, typename T, typename H, typename... Ts, LD::UInteger ... Idx> // Different type, continue
-    struct tlist_all_idx_impl<k, T, TypeList<H, Ts...>, std::integer_sequence<LD::UInteger , Idx...>>
+    struct tlist_all_idx_impl<k, T, LD::CT::TypeList<H, Ts...>, LD::IntegerSequence<LD::UInteger , Idx...>>
     {
         using type =
-        typename tlist_all_idx_impl<k + 1, T, TypeList<Ts...>, std::integer_sequence<LD::UInteger , Idx...>>::type;
+        typename tlist_all_idx_impl<k + 1, T, LD::CT::TypeList<Ts...>, LD::IntegerSequence<LD::UInteger , Idx...>>::type;
     };
 
 /// Wrapper;; Supply the start index zero
@@ -965,9 +1022,9 @@ namespace LD
     struct tlist_all_idx;
 
     template <typename T, typename... Ts>
-    struct tlist_all_idx<T, TypeList<Ts...>>
+    struct tlist_all_idx<T, LD::CT::TypeList<Ts...>>
     {
-        using type = typename tlist_all_idx_impl<0, T, TypeList<Ts...>, std::integer_sequence<LD::UInteger>>::type;
+        using type = typename tlist_all_idx_impl<0, T, LD::CT::TypeList<Ts...>, LD::IntegerSequence<LD::UInteger>>::type;
     };
 
 //-----------------------------------------------------------------------------
@@ -977,26 +1034,26 @@ namespace LD
     template <typename T, class Res, class List>
     struct tlist_all_idx_ll
     {
-        using type = TypeList<std::integer_sequence<LD::UInteger>>;          // Will never called
+        using type = LD::CT::TypeList<LD::IntegerSequence<LD::UInteger>>;          // Will never called
     };
 
     template <typename T, typename... Rs, typename... Hs>         // End of search
-    struct tlist_all_idx_ll<T, TypeList<Rs...>, TypeList<TypeList<Hs...>>>
+    struct tlist_all_idx_ll<T, LD::CT::TypeList<Rs...>, LD::CT::TypeList<LD::CT::TypeList<Hs...>>>
     {
     private:
-        using iseq = typename tlist_all_idx_impl<0, T, TypeList<Hs...>, std::integer_sequence<LD::UInteger>>::type;
+        using iseq = typename tlist_all_idx_impl<0, T, LD::CT::TypeList<Hs...>, LD::IntegerSequence<LD::UInteger>>::type;
     public:
-        using type = TypeList<Rs..., iseq>;
+        using type = LD::CT::TypeList<Rs..., iseq>;
     };
 
     template <typename T, typename... Rs, typename... Hs, typename... ListEls>
-    struct tlist_all_idx_ll<T, TypeList<Rs...>, TypeList<TypeList<Hs...>, ListEls...>>
+    struct tlist_all_idx_ll<T, LD::CT::TypeList<Rs...>, LD::CT::TypeList<LD::CT::TypeList<Hs...>, ListEls...>>
     {
     private:
-        using iseq = typename tlist_all_idx_impl<0, T, TypeList<Hs...>, std::integer_sequence<LD::UInteger>>::type;
+        using iseq = typename tlist_all_idx_impl<0, T, LD::CT::TypeList<Hs...>, LD::IntegerSequence<LD::UInteger>>::type;
     public:
         using type =
-        typename tlist_all_idx_ll<T, TypeList<Rs..., iseq>, TypeList<ListEls...>>::type;
+        typename tlist_all_idx_ll<T, LD::CT::TypeList<Rs..., iseq>, LD::CT::TypeList<ListEls...>>::type;
     };
 
 //-----------------------------------------------------------------------------
@@ -1006,14 +1063,14 @@ namespace LD
     struct tlist_all_deepidx;
 
     template <typename T, typename... ListEls>
-    struct tlist_all_deepidx<T, TypeList<ListEls...>>
+    struct tlist_all_deepidx<T, LD::CT::TypeList<ListEls...>>
     {
     private:
-        static constexpr bool bLL = is_listoflists < TypeList<ListEls...>>::value;
+        static constexpr bool bLL = is_listoflists < LD::CT::TypeList<ListEls...>>::value;
     public:
         using type = typename LD::Detail::Conditonal < bLL,
-                typename tlist_all_idx_ll<T, TypeList<>, TypeList<ListEls...>>::type,
-                typename tlist_all_idx_impl<0, T, TypeList<ListEls...>, std::integer_sequence<LD::UInteger>>::type>::type;
+                typename tlist_all_idx_ll<T, LD::CT::TypeList<>, LD::CT::TypeList<ListEls...>>::type,
+                typename tlist_all_idx_impl<0, T, LD::CT::TypeList<ListEls...>, LD::IntegerSequence<LD::UInteger>>::type>::type;
     };
 
 //-----------------------------------------------------------------------------
@@ -1028,7 +1085,7 @@ namespace LD
     };
 
     template <>
-    struct is_listofiseqs<TypeList<>>
+    struct is_listofiseqs<LD::CT::TypeList<>>
     {
         using type = LD::Detail::IntegralConstant<bool, false>;
         using value_type = type::value_type;
@@ -1036,7 +1093,7 @@ namespace LD
     };
 
     template <typename H>
-    struct is_listofiseqs<TypeList<H>>
+    struct is_listofiseqs<LD::CT::TypeList<H>>
     {
     private:
         static constexpr bool bISeq = is_iseq<H>::value;
@@ -1047,13 +1104,13 @@ namespace LD
     };
 
     template <typename H, typename... ISeqs>
-    struct is_listofiseqs<TypeList<H, ISeqs...>>
+    struct is_listofiseqs<LD::CT::TypeList<H, ISeqs...>>
     {
     private:
         static constexpr bool bISeq = is_iseq<H>::value;
     public:
         using type = typename LD::Detail::Conditonal < bISeq,
-                typename is_listofiseqs<TypeList<ISeqs...>>::type, LD::Detail::IntegralConstant<bool, false>>::type;
+                typename is_listofiseqs<LD::CT::TypeList<ISeqs...>>::type, LD::Detail::IntegralConstant<bool, false>>::type;
         using value_type = typename type::value_type;
         static constexpr value_type value = type::value;
     };
@@ -1065,21 +1122,21 @@ namespace LD
     struct tlist_reverse_impl;
 
     template <typename... Rs>
-    struct tlist_reverse_impl<TypeList<>, TypeList<Rs...>>
+    struct tlist_reverse_impl<LD::CT::TypeList<>, LD::CT::TypeList<Rs...>>
     {
-        using type = TypeList<Rs...>;
+        using type = LD::CT::TypeList<Rs...>;
     };
 
     template <class H, class... Rs >
-    struct tlist_reverse_impl<TypeList<H>, TypeList<Rs...>>
+    struct tlist_reverse_impl<LD::CT::TypeList<H>, LD::CT::TypeList<Rs...>>
     {
-        using type = TypeList <H, Rs... >;
+        using type = LD::CT::TypeList <H, Rs... >;
     };
 
     template <class H, class... Ts, class... Rs>
-    struct tlist_reverse_impl<TypeList<H, Ts...>, TypeList<Rs...>>
+    struct tlist_reverse_impl<LD::CT::TypeList<H, Ts...>, LD::CT::TypeList<Rs...>>
     {
-        using type = typename tlist_reverse_impl <  TypeList<Ts...>, TypeList<H, Rs...>>::type;
+        using type = typename tlist_reverse_impl <  LD::CT::TypeList<Ts...>, LD::CT::TypeList<H, Rs...>>::type;
     };
 
 /// Wrapper to hide starting empty resulting list inside the wrapper
@@ -1088,9 +1145,9 @@ namespace LD
     struct tlist_reverse;
 
     template <typename... Ts>
-    struct tlist_reverse<TypeList<Ts...>>
+    struct tlist_reverse<LD::CT::TypeList<Ts...>>
     {
-        using type = typename tlist_reverse_impl<TypeList<Ts...>, TypeList<>>::type;
+        using type = typename tlist_reverse_impl<LD::CT::TypeList<Ts...>, LD::CT::TypeList<>>::type;
     };
 
 
@@ -1102,15 +1159,15 @@ namespace LD
     struct tlist_concat_lists_impl;
 
     template <typename... Rs, typename... Ts>                     // Last OrigList
-    struct tlist_concat_lists_impl<TypeList<Rs...>, TypeList<Ts...>>
+    struct tlist_concat_lists_impl<LD::CT::TypeList<Rs...>, LD::CT::TypeList<Ts...>>
     {
-        using type = TypeList<Rs..., Ts...>;
+        using type = LD::CT::TypeList<Rs..., Ts...>;
     };
 
     template <typename... Rs, typename... Ts, typename... Rests>  // Recursion
-    struct tlist_concat_lists_impl<TypeList<Rs...>, TypeList<TypeList<Ts...>, Rests...>>
+    struct tlist_concat_lists_impl<LD::CT::TypeList<Rs...>, LD::CT::TypeList<LD::CT::TypeList<Ts...>, Rests...>>
     {
-        using type = typename tlist_concat_lists_impl<TypeList<Rs..., Ts...>, TypeList<Rests...>>::type;
+        using type = typename tlist_concat_lists_impl<LD::CT::TypeList<Rs..., Ts...>, LD::CT::TypeList<Rests...>>::type;
     };
 
 /// Flatten a list of lists (convert it to a plain list) - is used as standalone and in a wrapper
@@ -1118,20 +1175,20 @@ namespace LD
     struct tlist_flatten_list;
 
     template <typename... Lists>
-    struct tlist_flatten_list<TypeList<Lists...>>
+    struct tlist_flatten_list<LD::CT::TypeList<Lists...>>
     {
     private:
-        static_assert(is_listoflists<TypeList<Lists...>>::value,
+        static_assert(is_listoflists<LD::CT::TypeList<Lists...>>::value,
                       "tlist_flatten: Argument is not a tlist of lists");
     public:
-        using type = typename tlist_concat_lists_impl<TypeList<>, TypeList<Lists...>>::type;
+        using type = typename tlist_concat_lists_impl<LD::CT::TypeList<>, LD::CT::TypeList<Lists...>>::type;
     };
 
     template <typename... Lists>
     struct tlist_concat_lists
     {
     private:
-        using temp_list = TypeList<Lists...>;
+        using temp_list = LD::CT::TypeList<Lists...>;
         static_assert(is_listoflists<temp_list>::value, "Not all arguments are lists");
     public:
         using type = typename tlist_flatten_list<temp_list>::type;
@@ -1145,16 +1202,16 @@ namespace LD
     struct tlist_move_firsts;
 
     template <typename H, typename... T1s, typename... T2s>
-    struct tlist_move_firsts<1, TypeList<T1s...>, TypeList<H, T2s...>>
+    struct tlist_move_firsts<1, LD::CT::TypeList<T1s...>, LD::CT::TypeList<H, T2s...>>
     {
-        using type = TypeList < TypeList<T1s..., H>, TypeList<T2s... >>;
+        using type = LD::CT::TypeList < LD::CT::TypeList<T1s..., H>, LD::CT::TypeList<T2s... >>;
     };
 
     template <LD::UInteger k, typename H, typename... T1s, typename... T2s>
-    struct tlist_move_firsts<k, TypeList<T1s...>, TypeList<H, T2s...>>
+    struct tlist_move_firsts<k, LD::CT::TypeList<T1s...>, LD::CT::TypeList<H, T2s...>>
     {
         static_assert (k > 0, "Number of elements to transfer must be > 0");
-        using type = typename tlist_move_firsts<k - 1, TypeList<T1s..., H>, TypeList<T2s...>>::type;
+        using type = typename tlist_move_firsts<k - 1, LD::CT::TypeList<T1s..., H>, LD::CT::TypeList<T2s...>>::type;
     };
 
 //---------------------------------------------------------------------------
@@ -1165,26 +1222,26 @@ namespace LD
     struct tlist_split_impl;
 
     template <LD::UInteger l, typename... Lists, typename... Tails>
-    struct tlist_split_impl<std::integer_sequence<LD::UInteger , l>, TypeList<Lists...>, TypeList<Tails...>>
+    struct tlist_split_impl<LD::IntegerSequence<LD::UInteger , l>, LD::CT::TypeList<Lists...>, LD::CT::TypeList<Tails...>>
     {
     private:
-        using lst_split_2 = typename tlist_move_firsts<l, TypeList<>, TypeList<Tails...>>::type;
+        using lst_split_2 = typename tlist_move_firsts<l, LD::CT::TypeList<>, LD::CT::TypeList<Tails...>>::type;
         using first = typename TypeAtIndex<0, lst_split_2>::type;
         using second = typename TypeAtIndex<1, lst_split_2>::type;
     public:
-        using type = TypeList<Lists..., first, second>;
+        using type = LD::CT::TypeList<Lists..., first, second>;
     };
 
     template <LD::UInteger l, LD::UInteger ... Ls, typename ... Lists, typename... Tails>
-    struct tlist_split_impl < std::integer_sequence<LD::UInteger , l, Ls...>, TypeList<Lists...>, TypeList<Tails...>>
+    struct tlist_split_impl < LD::IntegerSequence<LD::UInteger , l, Ls...>, LD::CT::TypeList<Lists...>, LD::CT::TypeList<Tails...>>
     {
     private:
-        using lst_split_2 = typename tlist_move_firsts<l, TypeList<>, TypeList<Tails...>>::type;
+        using lst_split_2 = typename tlist_move_firsts<l, LD::CT::TypeList<>, LD::CT::TypeList<Tails...>>::type;
         using first = typename TypeAtIndex<0, lst_split_2>::type;
         using second = typename TypeAtIndex<1, lst_split_2>::type;
-        using lst_res = TypeList<Lists..., first>;
+        using lst_res = LD::CT::TypeList<Lists..., first>;
     public:
-        using type = typename tlist_split_impl<std::integer_sequence<LD::UInteger , Ls...>, lst_res, second>::type;
+        using type = typename tlist_split_impl<LD::IntegerSequence<LD::UInteger , Ls...>, lst_res, second>::type;
     };
 
 /// Wrapper to save the user from generating std::integer_sequence; will do it inside the structure
@@ -1193,19 +1250,19 @@ namespace LD
     struct tlist_split;
 
     template <typename... Ts, LD::UInteger ... Ls>
-    struct tlist_split<TypeList<Ts...>, Ls...>
+    struct tlist_split<LD::CT::TypeList<Ts...>, Ls...>
     {
     private:
 // Check the sum of component lengths; must be less than size of original list
-        using lengths = std::integer_sequence<LD::UInteger , Ls...>;
+        using lengths = LD::IntegerSequence<LD::UInteger , Ls...>;
         using lengths_sum = typename iseq_sum<lengths>::type;
-        static_assert(lengths_sum::value < TypeList<Ts...>::size(),
+        static_assert(lengths_sum::value < LD::CT::TypeList<Ts...>::size(),
                       "tlist_split: Length of a last component must be greater than zero; check the sum of component sizes");
 // No zero lengths are allowed
         static_assert(iseq_index_of<LD::UInteger , 0, lengths>::value == -1,
                       "Multi_Split: Remove components with zero size from the sequence of sizes");
     public:   // Go
-        using type = typename tlist_split_impl<std::integer_sequence<LD::UInteger , Ls...>, TypeList<>, TypeList<Ts...>>::type;
+        using type = typename tlist_split_impl<LD::IntegerSequence<LD::UInteger , Ls...>, LD::CT::TypeList<>, LD::CT::TypeList<Ts...>>::type;
     };
 
 //-----------------------------------------------------------------------------
@@ -1215,19 +1272,19 @@ namespace LD
     struct tlist_max_type_impl;
 
     template <typename T>                   // End of recursion
-    struct tlist_max_type_impl<T, TypeList<>>
+    struct tlist_max_type_impl<T, LD::CT::TypeList<>>
     {
         using max_type = T;
     };
 
     template <typename T, typename H, typename... Ts>
-    struct tlist_max_type_impl<T, TypeList<H, Ts...>>
+    struct tlist_max_type_impl<T, LD::CT::TypeList<H, Ts...>>
     {
     private:
         static constexpr bool  bRes = Sizeof<T>::value >= Sizeof<H>::value ? true : false;
         using selected = typename LD::Detail::Conditonal<bRes, T, H>::type;
     public:
-        using max_type = typename tlist_max_type_impl<selected, TypeList<Ts...>>::max_type;
+        using max_type = typename tlist_max_type_impl<selected, LD::CT::TypeList<Ts...>>::max_type;
     };
 
 /// Wrapper to apply to a plain list (Starts from a NullType, size = 0
@@ -1235,10 +1292,10 @@ namespace LD
     struct tlist_max_type_size;
 
     template <typename... Ts>
-    struct tlist_max_type_size<TypeList<Ts...>>
+    struct tlist_max_type_size<LD::CT::TypeList<Ts...>>
     {
     private:
-        using max_type = typename tlist_max_type_impl < NullType, TypeList<Ts... >> ::max_type;
+        using max_type = typename tlist_max_type_impl < NullType, LD::CT::TypeList<Ts... >> ::max_type;
     public:
         using type = LD::Detail::IntegralConstant<LD::UInteger , Sizeof<max_type>::value>;
         using value_type = typename type::value_type;
@@ -1251,26 +1308,26 @@ namespace LD
     template <class ISeq, class List>
     struct tlist_max_type_size_ll    // Never executed, but needed for std::std::conditional
     {
-        using type = std::integer_sequence<LD::UInteger>;
+        using type = LD::IntegerSequence<LD::UInteger>;
     };
 
     template <LD::UInteger ... Ids, typename... Hs>             // End of recursion
-    struct tlist_max_type_size_ll<std::integer_sequence<LD::UInteger , Ids...>, TypeList<TypeList<Hs...>>>
+    struct tlist_max_type_size_ll<LD::IntegerSequence<LD::UInteger , Ids...>, LD::CT::TypeList<LD::CT::TypeList<Hs...>>>
     {
     private:
-        static constexpr LD::UInteger loc_max = tlist_max_type_size<TypeList<Hs...>>::value;
+        static constexpr LD::UInteger loc_max = tlist_max_type_size<LD::CT::TypeList<Hs...>>::value;
     public:
-        using type = std::integer_sequence<LD::UInteger , Ids..., loc_max>;
+        using type = LD::IntegerSequence<LD::UInteger , Ids..., loc_max>;
     };
 
     template <LD::UInteger ... Ids, typename... Hs, typename... ListEls>
-    struct tlist_max_type_size_ll<std::integer_sequence<LD::UInteger , Ids...>, TypeList<TypeList<Hs...>, ListEls...>>
+    struct tlist_max_type_size_ll<LD::IntegerSequence<LD::UInteger , Ids...>, LD::CT::TypeList<LD::CT::TypeList<Hs...>, ListEls...>>
     {
     private:
-        static constexpr LD::UInteger loc_max = tlist_max_type_size<TypeList<Hs...>>::value;
+        static constexpr LD::UInteger loc_max = tlist_max_type_size<LD::CT::TypeList<Hs...>>::value;
     public:
         using type =
-        typename tlist_max_type_size_ll<std::integer_sequence<LD::UInteger , Ids..., loc_max>, TypeList<ListEls...>>::type;
+        typename tlist_max_type_size_ll<LD::IntegerSequence<LD::UInteger , Ids..., loc_max>, LD::CT::TypeList<ListEls...>>::type;
     };
 
 //-----------------------------------------------------------------------------
@@ -1281,14 +1338,14 @@ namespace LD
     struct tlist_max_type_deepsize;
 
     template <typename... ListEls>
-    struct tlist_max_type_deepsize<TypeList<ListEls...>>
+    struct tlist_max_type_deepsize<LD::CT::TypeList<ListEls...>>
     {
     private:
-        static constexpr bool bLL = is_listoflists<TypeList<ListEls...>>::value;
+        static constexpr bool bLL = is_listoflists<LD::CT::TypeList<ListEls...>>::value;
     public:
         using type = typename LD::Detail::Conditonal < bLL,
-                typename tlist_max_type_size_ll < std::integer_sequence<LD::UInteger>, TypeList<ListEls...>>::type,
-                typename tlist_max_type_size<TypeList<ListEls...>>::type > ::type;
+                typename tlist_max_type_size_ll < LD::IntegerSequence<LD::UInteger>, LD::CT::TypeList<ListEls...>>::type,
+                typename tlist_max_type_size<LD::CT::TypeList<ListEls...>>::type > ::type;
     };
 
 //-----------------------------------------------------------------------------
@@ -1298,17 +1355,17 @@ namespace LD
     struct tlist_firsttype_of_size;
 
     template <LD::UInteger k>
-    struct tlist_firsttype_of_size<k, TypeList<>>
+    struct tlist_firsttype_of_size<k, LD::CT::TypeList<>>
     {
         using type = LD::FalseType ;
     };
 
     template <LD::UInteger k, typename H, typename... Ts>
-    struct tlist_firsttype_of_size< k, TypeList<H, Ts...>>
+    struct tlist_firsttype_of_size< k, LD::CT::TypeList<H, Ts...>>
     {
         using type =
         typename LD::Detail::Conditonal < Sizeof<H>::value == k, H,
-                typename tlist_firsttype_of_size<k, TypeList<Ts...>>::type>::type;
+                typename tlist_firsttype_of_size<k, LD::CT::TypeList<Ts...>>::type>::type;
     };
 
 //------------------------------------------------------------------------------
@@ -1317,26 +1374,26 @@ namespace LD
     template <LD::UInteger k, class ResLst, class List> /// It is only to compile;
     struct tlist_firstltype_of_size                /// a branch in the wrapper
     {                                             /// is never called
-        using type = TypeList<>;
+        using type = LD::CT::TypeList<>;
     };
 
 
     template <LD::UInteger k, typename... Rs, typename... Hs>           // Stop recursion
-    struct tlist_firstltype_of_size<k, TypeList<Rs...>, TypeList<TypeList<Hs...>>>
+    struct tlist_firstltype_of_size<k, LD::CT::TypeList<Rs...>, LD::CT::TypeList<LD::CT::TypeList<Hs...>>>
     {
     private:
-        using type_found = typename tlist_firsttype_of_size<k, TypeList<Hs...>>::type;
+        using type_found = typename tlist_firsttype_of_size<k, LD::CT::TypeList<Hs...>>::type;
     public:
-        using type = TypeList<Rs..., type_found>;
+        using type = LD::CT::TypeList<Rs..., type_found>;
     };
 
     template <LD::UInteger k, typename... Rs, typename... Hs, typename... Ts>
-    struct tlist_firstltype_of_size < k, TypeList <Rs...>, TypeList<TypeList<Hs...>, Ts...>>
+    struct tlist_firstltype_of_size < k, LD::CT::TypeList <Rs...>, LD::CT::TypeList<LD::CT::TypeList<Hs...>, Ts...>>
     {
     private:
-        using type_found = typename tlist_firsttype_of_size < k, TypeList<Hs...>>::type;
+        using type_found = typename tlist_firsttype_of_size < k, LD::CT::TypeList<Hs...>>::type;
     public:
-        using type = typename tlist_firstltype_of_size<k, TypeList<Rs..., type_found>, TypeList<Ts...>>::type;
+        using type = typename tlist_firstltype_of_size<k, LD::CT::TypeList<Rs..., type_found>, LD::CT::TypeList<Ts...>>::type;
     };
 
 //---------------------------------------------------------------------------
@@ -1346,14 +1403,14 @@ namespace LD
     struct tlist_first_typedeep_of_size;
 
     template <LD::UInteger k, typename... ListEls>
-    struct tlist_first_typedeep_of_size<k, TypeList<ListEls...>>
+    struct tlist_first_typedeep_of_size<k, LD::CT::TypeList<ListEls...>>
     {
     private:
-        static constexpr bool bLs = is_listoflists<TypeList<ListEls...>>::value;
+        static constexpr bool bLs = is_listoflists<LD::CT::TypeList<ListEls...>>::value;
     public:
         using type = typename LD::Detail::Conditonal < bLs,
-                typename tlist_firstltype_of_size < k, TypeList<>, TypeList<ListEls...>>::type,
-                typename tlist_firsttype_of_size<k, TypeList<ListEls...>>::type>::type;
+                typename tlist_firstltype_of_size < k, LD::CT::TypeList<>, LD::CT::TypeList<ListEls...>>::type,
+                typename tlist_firsttype_of_size<k, LD::CT::TypeList<ListEls...>>::type>::type;
     };
 
 //-----------------------------------------------------------------------------
@@ -1363,19 +1420,19 @@ namespace LD
     struct tlist_all_ttypes_of_size;
 
     template <LD::UInteger k, typename... Rs>
-    struct tlist_all_ttypes_of_size<k, TypeList<Rs...>, TypeList<>>
+    struct tlist_all_ttypes_of_size<k, LD::CT::TypeList<Rs...>, LD::CT::TypeList<>>
     {
-        using type = typename DeDuplicateTypeList<TypeList<Rs...>>::type;
+        using type = typename LD::CT::Detail::DeDuplicateTypeList<LD::CT::TypeList<Rs...>>::type;
     };
 
     template <LD::UInteger k, typename H, typename... Rs, typename... Ts>
-    struct tlist_all_ttypes_of_size<k, TypeList<Rs...>, TypeList<H, Ts...>>
+    struct tlist_all_ttypes_of_size<k, LD::CT::TypeList<Rs...>, LD::CT::TypeList<H, Ts...>>
     {
     private:
-        using res_lst = typename LD::Detail::Conditonal < Sizeof<H>::value == k, TypeList<Rs..., H>, TypeList < Rs...>>::type;
+        using res_lst = typename LD::Detail::Conditonal < Sizeof<H>::value == k, LD::CT::TypeList<Rs..., H>, LD::CT::TypeList < Rs...>>::type;
     public:
         using type =
-        typename tlist_all_ttypes_of_size<k, res_lst, TypeList<Ts...>>::type;
+        typename tlist_all_ttypes_of_size<k, res_lst, LD::CT::TypeList<Ts...>>::type;
     };
 
 //---------------------------------------------------------------------------
@@ -1385,10 +1442,10 @@ namespace LD
     struct tlist_all_types_of_size;
 
     template <LD::UInteger k, typename... Ts>
-    struct tlist_all_types_of_size<k, TypeList<Ts...>>
+    struct tlist_all_types_of_size<k, LD::CT::TypeList<Ts...>>
     {
         using type =
-        typename tlist_all_ttypes_of_size<k, TypeList<>, TypeList<Ts...>>::type;
+        typename tlist_all_ttypes_of_size<k, LD::CT::TypeList<>, LD::CT::TypeList<Ts...>>::type;
     };
 //---------------------------------------------------------------------------
 /// Get all types of size k from a list of lists
@@ -1396,26 +1453,26 @@ namespace LD
     template <LD::UInteger k, class ListRes, class ListSource>
     struct tlist_all_ltypes_of_size
     {
-        using type = TypeList<>;
+        using type = LD::CT::TypeList<>;
     };
 
     template <LD::UInteger k, typename... RLs, typename... Hs>
-    struct tlist_all_ltypes_of_size<k, TypeList<RLs...>, TypeList<TypeList<Hs...>>>
+    struct tlist_all_ltypes_of_size<k, LD::CT::TypeList<RLs...>, LD::CT::TypeList<LD::CT::TypeList<Hs...>>>
     {
     private:
-        using types_found = typename tlist_all_types_of_size < k, TypeList<Hs...>>::type;
+        using types_found = typename tlist_all_types_of_size < k, LD::CT::TypeList<Hs...>>::type;
     public:
-        using type = TypeList<RLs..., types_found>;
+        using type = LD::CT::TypeList<RLs..., types_found>;
     };
 
     template <LD::UInteger k, typename... RLs, typename... Hs, typename... Ts>
-    struct tlist_all_ltypes_of_size<k, TypeList<RLs...>, TypeList<TypeList<Hs...>, Ts...>>
+    struct tlist_all_ltypes_of_size<k, LD::CT::TypeList<RLs...>, LD::CT::TypeList<LD::CT::TypeList<Hs...>, Ts...>>
     {
     private:
-        using types_found = typename tlist_all_types_of_size<k, TypeList<Hs...>>::type;
+        using types_found = typename tlist_all_types_of_size<k, LD::CT::TypeList<Hs...>>::type;
     public:
         using type =
-        typename tlist_all_ltypes_of_size < k, TypeList<RLs..., types_found>, TypeList<Ts...>>::type;
+        typename tlist_all_ltypes_of_size < k, LD::CT::TypeList<RLs..., types_found>, LD::CT::TypeList<Ts...>>::type;
     };
 
 //---------------------------------------------------------------------------
@@ -1425,14 +1482,14 @@ namespace LD
     struct tlist_all_typesdeep_of_size;
 
     template <LD::UInteger k, typename... ListEls>
-    struct tlist_all_typesdeep_of_size<k, TypeList<ListEls...>>
+    struct tlist_all_typesdeep_of_size<k, LD::CT::TypeList<ListEls...>>
     {
     private:
-        static constexpr bool bLs = is_listoflists<TypeList<ListEls...>>::value;
+        static constexpr bool bLs = is_listoflists<LD::CT::TypeList<ListEls...>>::value;
     public:
         using type = typename LD::Detail::Conditonal < bLs,
-                typename tlist_all_ltypes_of_size < k, TypeList<>, TypeList<ListEls...>>::type,
-                typename tlist_all_ttypes_of_size<k, TypeList<>, TypeList<ListEls...>>::type>::type;
+                typename tlist_all_ltypes_of_size < k, LD::CT::TypeList<>, LD::CT::TypeList<ListEls...>>::type,
+                typename tlist_all_ttypes_of_size<k, LD::CT::TypeList<>, LD::CT::TypeList<ListEls...>>::type>::type;
     };
 
 //-----------------------------------------------------------------------------
@@ -1443,21 +1500,21 @@ namespace LD
     struct tlist_all_ttypes_greater;
 
     template <bool bEqual, LD::UInteger k, typename... Rs>
-    struct tlist_all_ttypes_greater<bEqual, k, TypeList<Rs...>, TypeList<>>
+    struct tlist_all_ttypes_greater<bEqual, k, LD::CT::TypeList<Rs...>, LD::CT::TypeList<>>
     {
-        using type = typename DeDuplicateTypeList<TypeList<Rs...>>::type;
+        using type = typename LD::CT::Detail::DeDuplicateTypeList<LD::CT::TypeList<Rs...>>::type;
     };
 
     template <bool bEqual, LD::UInteger k, typename H, typename... Rs, typename... Ts>
-    struct tlist_all_ttypes_greater<bEqual, k, TypeList<Rs...>, TypeList<H, Ts...>>
+    struct tlist_all_ttypes_greater<bEqual, k, LD::CT::TypeList<Rs...>, LD::CT::TypeList<H, Ts...>>
     {
     private:
         static constexpr bool bComp = bEqual ? (Sizeof<H>::value) >= k : (Sizeof<H>::value) > k;
         using res_lst =
-        typename LD::Detail::Conditonal < bComp, TypeList<Rs..., H>, TypeList < Rs...>>::type;
+        typename LD::Detail::Conditonal < bComp, LD::CT::TypeList<Rs..., H>, LD::CT::TypeList < Rs...>>::type;
     public:
         using type =
-        typename tlist_all_ttypes_greater<bEqual, k, res_lst, TypeList<Ts...>>::type;
+        typename tlist_all_ttypes_greater<bEqual, k, res_lst, LD::CT::TypeList<Ts...>>::type;
     };
 
 /// Wrapper to provide initial empty list for result
@@ -1465,9 +1522,9 @@ namespace LD
     struct tlist_all_types_greater;
 
     template <bool bEqual, LD::UInteger k, typename... Ts>
-    struct tlist_all_types_greater<bEqual, k, TypeList<Ts...>>
+    struct tlist_all_types_greater<bEqual, k, LD::CT::TypeList<Ts...>>
     {
-        using type = typename tlist_all_ttypes_greater<bEqual, k, TypeList<>, TypeList<Ts...>>::type;
+        using type = typename tlist_all_ttypes_greater<bEqual, k, LD::CT::TypeList<>, LD::CT::TypeList<Ts...>>::type;
     };
 
 //-----------------------------------------------------------------------------
@@ -1476,26 +1533,26 @@ namespace LD
     template <bool bEqual, LD::UInteger k, class ListRes, class ListSource>
     struct tlist_all_ltypes_greater
     {
-        using type = TypeList<>;
+        using type = LD::CT::TypeList<>;
     };
 
     template <bool bEqual, LD::UInteger k, typename... RLs, typename... Hs>
-    struct tlist_all_ltypes_greater<bEqual, k, TypeList<RLs...>, TypeList<TypeList<Hs...>>>
+    struct tlist_all_ltypes_greater<bEqual, k, LD::CT::TypeList<RLs...>, LD::CT::TypeList<LD::CT::TypeList<Hs...>>>
     {
     private:
-        using types_found = typename tlist_all_types_greater<bEqual, k, TypeList<Hs...>>::type;
+        using types_found = typename tlist_all_types_greater<bEqual, k, LD::CT::TypeList<Hs...>>::type;
     public:
-        using type = TypeList<RLs..., types_found>; ;
+        using type = LD::CT::TypeList<RLs..., types_found>; ;
     };
 
     template <bool bEqual, LD::UInteger k, typename... RLs, typename... Hs, typename... Ts>
-    struct tlist_all_ltypes_greater<bEqual, k, TypeList<RLs...>, TypeList<TypeList<Hs...>, Ts...>>
+    struct tlist_all_ltypes_greater<bEqual, k, LD::CT::TypeList<RLs...>, LD::CT::TypeList<LD::CT::TypeList<Hs...>, Ts...>>
     {
     private:
-        using types_found = typename tlist_all_types_greater<bEqual, k, TypeList<Hs...>>::type;
+        using types_found = typename tlist_all_types_greater<bEqual, k, LD::CT::TypeList<Hs...>>::type;
     public:
         using type =
-        typename tlist_all_ltypes_greater <bEqual, k, TypeList<RLs..., types_found>, TypeList<Ts...>>::type;
+        typename tlist_all_ltypes_greater <bEqual, k, LD::CT::TypeList<RLs..., types_found>, LD::CT::TypeList<Ts...>>::type;
     };
 
 //-----------------------------------------------------------------------------
@@ -1505,14 +1562,14 @@ namespace LD
     struct tlist_all_typesdeep_greater;
 
     template <bool bEqual, LD::UInteger k, typename... ListEls>
-    struct tlist_all_typesdeep_greater<bEqual, k, TypeList<ListEls...>>
+    struct tlist_all_typesdeep_greater<bEqual, k, LD::CT::TypeList<ListEls...>>
     {
     private:
-        static constexpr bool bLs = is_listoflists<TypeList<ListEls...>>::value;
+        static constexpr bool bLs = is_listoflists<LD::CT::TypeList<ListEls...>>::value;
     public:
         using type = typename LD::Detail::Conditonal < bLs,
-                typename tlist_all_ltypes_greater <bEqual, k, TypeList<>, TypeList<ListEls...>>::type,
-                typename tlist_all_ttypes_greater<bEqual, k, TypeList<>, TypeList<ListEls...>>::type>::type;
+                typename tlist_all_ltypes_greater <bEqual, k, LD::CT::TypeList<>, LD::CT::TypeList<ListEls...>>::type,
+                typename tlist_all_ttypes_greater<bEqual, k, LD::CT::TypeList<>, LD::CT::TypeList<ListEls...>>::type>::type;
     };
 
 //-----------------------------------------------------------------------------
@@ -1523,21 +1580,21 @@ namespace LD
     struct tlist_all_ttypes_less;
 
     template <bool bEqual, LD::UInteger k, typename... Rs>
-    struct tlist_all_ttypes_less<bEqual, k, TypeList<Rs...>, TypeList<>>
+    struct tlist_all_ttypes_less<bEqual, k, LD::CT::TypeList<Rs...>, LD::CT::TypeList<>>
     {
-        using type = typename DeDuplicateTypeList<TypeList<Rs...>>::type;
+        using type = typename LD::CT::Detail::DeDuplicateTypeList<LD::CT::TypeList<Rs...>>::type;
     };
 
     template <bool bEqual, LD::UInteger k, typename H, typename... Rs, typename... Ts>
-    struct tlist_all_ttypes_less<bEqual, k, TypeList<Rs...>, TypeList<H, Ts...>>
+    struct tlist_all_ttypes_less<bEqual, k, LD::CT::TypeList<Rs...>, LD::CT::TypeList<H, Ts...>>
     {
     private:
         static constexpr bool bComp = bEqual ? (Sizeof<H>::value) <= k : (Sizeof<H>::value) < k;
         using res_lst =
-        typename LD::Detail::Conditonal < bComp, TypeList<Rs..., H>, TypeList < Rs...>>::type;
+        typename LD::Detail::Conditonal < bComp, LD::CT::TypeList<Rs..., H>, LD::CT::TypeList < Rs...>>::type;
     public:
         using type =
-        typename tlist_all_ttypes_less<bEqual, k, res_lst, TypeList<Ts...>>::type;
+        typename tlist_all_ttypes_less<bEqual, k, res_lst, LD::CT::TypeList<Ts...>>::type;
     };
 
 // Initial result list wrapped
@@ -1545,9 +1602,9 @@ namespace LD
     struct tlist_all_types_less;
 
     template <bool bEqual, LD::UInteger k, typename... Ts>
-    struct tlist_all_types_less<bEqual, k, TypeList<Ts...>>
+    struct tlist_all_types_less<bEqual, k, LD::CT::TypeList<Ts...>>
     {
-        using type = typename tlist_all_ttypes_less<bEqual, k, TypeList<>, TypeList<Ts...>>::type;
+        using type = typename tlist_all_ttypes_less<bEqual, k, LD::CT::TypeList<>, LD::CT::TypeList<Ts...>>::type;
     };
 
 //-----------------------------------------------------------------------------
@@ -1556,26 +1613,26 @@ namespace LD
     template <bool bEqual, LD::UInteger k, class ListRes, class ListSource>
     struct tlist_all_ltypes_less
     {
-        using type = TypeList<>;
+        using type = LD::CT::TypeList<>;
     };
 
     template <bool bEqual, LD::UInteger k, typename... RLs, typename... Hs>
-    struct tlist_all_ltypes_less<bEqual, k, TypeList<RLs...>, TypeList<TypeList<Hs...>>>
+    struct tlist_all_ltypes_less<bEqual, k, LD::CT::TypeList<RLs...>, LD::CT::TypeList<LD::CT::TypeList<Hs...>>>
     {
     private:
-        using types_found = typename tlist_all_types_less<bEqual, k, TypeList<Hs...>>::type;
+        using types_found = typename tlist_all_types_less<bEqual, k, LD::CT::TypeList<Hs...>>::type;
     public:
-        using type = TypeList<RLs..., types_found>; ;
+        using type = LD::CT::TypeList<RLs..., types_found>; ;
     };
 
     template <bool bEqual, LD::UInteger k, typename... RLs, typename... Ts, typename... Hs>
-    struct tlist_all_ltypes_less<bEqual, k, TypeList<RLs...>, TypeList<TypeList<Hs...>, Ts...>>
+    struct tlist_all_ltypes_less<bEqual, k, LD::CT::TypeList<RLs...>, LD::CT::TypeList<LD::CT::TypeList<Hs...>, Ts...>>
     {
     private:
-        using types_found = typename tlist_all_ttypes_less<bEqual, k, TypeList<>, TypeList<Hs...>>::type;
+        using types_found = typename tlist_all_ttypes_less<bEqual, k, LD::CT::TypeList<>, LD::CT::TypeList<Hs...>>::type;
     public:
         using type =
-        typename tlist_all_ltypes_less <bEqual, k, TypeList<RLs..., types_found>, TypeList<Ts...>>::type;
+        typename tlist_all_ltypes_less <bEqual, k, LD::CT::TypeList<RLs..., types_found>, LD::CT::TypeList<Ts...>>::type;
     };
 
 //-----------------------------------------------------------------------------
@@ -1585,14 +1642,14 @@ namespace LD
     struct tlist_all_typesdeep_less;
 
     template <bool bEqual, LD::UInteger k, typename... ListEls>
-    struct tlist_all_typesdeep_less<bEqual, k, TypeList<ListEls...>>
+    struct tlist_all_typesdeep_less<bEqual, k, LD::CT::TypeList<ListEls...>>
     {
     private:
-        static constexpr bool bLs = is_listoflists<TypeList<ListEls...>>::value;
+        static constexpr bool bLs = is_listoflists<LD::CT::TypeList<ListEls...>>::value;
     public:
         using type = typename LD::Detail::Conditonal < bLs,
-                typename tlist_all_ltypes_less <bEqual, k, TypeList<>, TypeList<ListEls...>>::type,
-                typename tlist_all_ttypes_less<bEqual, k, TypeList<>, TypeList<ListEls...>>::type>::type;
+                typename tlist_all_ltypes_less <bEqual, k, LD::CT::TypeList<>, LD::CT::TypeList<ListEls...>>::type,
+                typename tlist_all_ttypes_less<bEqual, k, LD::CT::TypeList<>, LD::CT::TypeList<ListEls...>>::type>::type;
     };
 
 

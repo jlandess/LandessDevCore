@@ -782,6 +782,10 @@ namespace LD
                 buffer[0] = character;
         return LD::ImmutableString<1>(buffer);
     }
+
+
+    template<typename T>
+    using CanBeImmutableString = decltype(LD::ToImmutableString(LD::Declval<T>()));
 }
 
 namespace PDP
@@ -809,11 +813,13 @@ namespace PDP
 
 
 
+
 }
 template<char ... Characters>
 inline constexpr LD::ImmutableString<sizeof...(Characters)> operator "" _is() noexcept
 {
     return LD::ImmutableString<sizeof...(Characters)>{LD::TypeString<Characters...>{}};
 }
+
 
 #endif /* Immutable_h */

@@ -266,11 +266,15 @@ CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o
  ../Functor/Lambda.h
  ../Functor/LightWeightDelegate.h
  ../Functor/LightWeightDelegateBase.h
+ ../Functor/fixed_size_function.hpp
  ../IO/Database.hpp
+ ../IO/DatabaseOpenMode.h
+ ../IO/DatabaseOperationResult.h
  ../IO/unqlite.h
  ../Memory/AutomaticReferenceCounting.h
  ../Memory/ElementReference.h
  ../Memory/Optional.h
+ ../Memory/UniquePointer.h
  ../Memory/shared_ptr.hpp
  ../Primitives/General/Context.h
  ../Primitives/General/ContextualVariant.h
@@ -280,6 +284,7 @@ CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o
  ../Primitives/General/PackagedTask.h
  ../Primitives/General/Pair.h
  ../Primitives/General/Ratio.hpp
+ ../Primitives/General/Span.hpp
  ../Primitives/General/StaticArray.hpp
  ../Primitives/General/StringView.hpp
  ../Primitives/General/Tuple.hpp
@@ -321,6 +326,7 @@ CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o
  ../TypeTraits/IsUnion.hpp
  ../TypeTraits/IsVoid.hpp
  ../TypeTraits/IsVolatile.hpp
+ ../TypeTraits/Iterable.h
  ../TypeTraits/Limit.hpp
  ../TypeTraits/RemoveAllExtents.hpp
  ../TypeTraits/RemoveCV.hpp
@@ -558,6 +564,8 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  ../Functor/LightWeightDelegate.h
  ../Functor/LightWeightDelegateBase.h
  ../Memory/ElementReference.h
+ ../Primitives/General/Context.h
+ ../Primitives/General/Hash.hpp
  ../Primitives/General/ImproperFraction.hpp
  ../Primitives/General/Ratio.hpp
  ../Primitives/General/StaticArray.hpp
@@ -568,6 +576,7 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  ../Primitives/General/mapboxrecursive_wrapper.hpp
  ../Primitives/General/mapboxvariant.hpp
  ../Primitives/General/mapboxvariantvisitor.h
+ ../Primitives/General/typestring.hpp
  ../TypeTraits/AddLValueReference.hpp
  ../TypeTraits/AddPointer.hpp
  ../TypeTraits/AddRValueReference.hpp
@@ -587,6 +596,7 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  ../TypeTraits/IsDestructible.hpp
  ../TypeTraits/IsFunction.hpp
  ../TypeTraits/IsIntegralType.hpp
+ ../TypeTraits/IsMemberPointer.hpp
  ../TypeTraits/IsNullPtr.hpp
  ../TypeTraits/IsPointer.hpp
  ../TypeTraits/IsReference.hpp
@@ -595,15 +605,27 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  ../TypeTraits/IsUnion.hpp
  ../TypeTraits/IsVoid.hpp
  ../TypeTraits/IsVolatile.hpp
+ ../TypeTraits/Iterable.h
  ../TypeTraits/Limit.hpp
  ../TypeTraits/RemoveAllExtents.hpp
  ../TypeTraits/RemoveCV.hpp
  ../TypeTraits/RemoveConst.hpp
  ../TypeTraits/RemoveExtent.hpp
  ../TypeTraits/RemoveReference.hpp
+ ../TypeTraits/SearchableVariadicPack.hpp
+ ../TypeTraits/TypeList.hpp
  ../TypeTraits/__two.hpp
  /home/phoenixflower/Documents/LandessDevCore/Algorithms/StringAsNumber.h
  /home/phoenixflower/Documents/LandessDevCore/Chrono/Timer.h
  /home/phoenixflower/Documents/LandessDevCore/Examples/ReflectionExample.hpp
  /home/phoenixflower/Documents/LandessDevCore/Examples/TermBoxMenuExample.hpp
+ /home/phoenixflower/Documents/LandessDevCore/Primitives/General/ContextualVariant.h
+ /home/phoenixflower/Documents/LandessDevCore/Primitives/General/Immutable.hpp
+ /home/phoenixflower/Documents/LandessDevCore/Primitives/General/Span.hpp
+ /home/phoenixflower/Documents/LandessDevCore/Primitives/General/span.hpp
+ /home/phoenixflower/Documents/LandessDevCore/Reflection/ConstexprFor.hpp
+ /home/phoenixflower/Documents/LandessDevCore/Reflection/reflectable.hpp
+ /home/phoenixflower/Documents/LandessDevCore/Reflection/tagged_tuple.hpp
+ /home/phoenixflower/Documents/LandessDevCore/TypeTraits/IntegralConstant.hpp
+ /home/phoenixflower/Documents/LandessDevCore/TypeTraits/IsArray.hpp
  /home/phoenixflower/Documents/LandessDevCore/main.cpp

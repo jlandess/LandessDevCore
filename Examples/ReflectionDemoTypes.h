@@ -7,6 +7,7 @@
 #include "Reflection/reflectable.hpp"
 #include "Definitions/Float.hpp"
 #include "Functor/FunctionView.h"
+#include "Primitives/General/StaticArray.hpp"
 namespace LD
 {
     class Square: public LD::Reflectable<
@@ -25,6 +26,30 @@ namespace LD
         {
             (*this)["Length"_ts] = length;
             (*this)["area"_ts] = LD::FunctionView<LD::Float()>(this,&Square::GetArea);
+        }
+        LD::Float GetArea() const
+        {
+            return (*this)["Length"_ts] * (*this)["Length"_ts];
+        }
+    };
+
+    class ArrayTest: public LD::Reflectable<
+            decltype("Square"_ts)(
+                    decltype("Length"_ts),      LD::Float,
+                    decltype("area"_ts),LD::FunctionView<LD::Float ()>,
+                    decltype("array"_ts),LD::StaticArray<int,55>)>
+    {
+    public:
+        inline ArrayTest()
+        {
+            (*this)["Length"_ts] = 0;
+            (*this)["area"_ts] = LD::FunctionView<LD::Float()>(this,&ArrayTest::GetArea);
+        }
+
+        inline ArrayTest(const LD::Float & length)
+        {
+            (*this)["Length"_ts] = length;
+            (*this)["area"_ts] = LD::FunctionView<LD::Float()>(this,&ArrayTest::GetArea);
         }
         LD::Float GetArea() const
         {

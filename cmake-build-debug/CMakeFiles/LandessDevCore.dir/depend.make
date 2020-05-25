@@ -265,11 +265,15 @@ CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Functor/Funct
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Functor/Lambda.h
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Functor/LightWeightDelegate.h
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Functor/LightWeightDelegateBase.h
+CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Functor/fixed_size_function.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../IO/Database.hpp
+CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../IO/DatabaseOpenMode.h
+CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../IO/DatabaseOperationResult.h
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../IO/unqlite.h
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Memory/AutomaticReferenceCounting.h
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Memory/ElementReference.h
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Memory/Optional.h
+CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Memory/UniquePointer.h
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Memory/shared_ptr.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Primitives/General/Context.h
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Primitives/General/ContextualVariant.h
@@ -279,6 +283,7 @@ CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Primitives/Ge
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Primitives/General/PackagedTask.h
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Primitives/General/Pair.h
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Primitives/General/Ratio.hpp
+CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Primitives/General/Span.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Primitives/General/StaticArray.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Primitives/General/StringView.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Primitives/General/Tuple.hpp
@@ -320,6 +325,7 @@ CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/Is
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/IsUnion.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/IsVoid.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/IsVolatile.hpp
+CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/Iterable.h
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/Limit.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/RemoveAllExtents.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/RemoveCV.hpp
@@ -557,6 +563,8 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Functor/Lambda.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Functor/LightWeightDelegate.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Functor/LightWeightDelegateBase.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Memory/ElementReference.h
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Primitives/General/Context.h
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Primitives/General/Hash.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Primitives/General/ImproperFraction.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Primitives/General/Ratio.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Primitives/General/StaticArray.hpp
@@ -567,6 +575,7 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Primitives/General/ctre.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Primitives/General/mapboxrecursive_wrapper.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Primitives/General/mapboxvariant.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Primitives/General/mapboxvariantvisitor.h
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Primitives/General/typestring.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/AddLValueReference.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/AddPointer.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/AddRValueReference.hpp
@@ -586,6 +595,7 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsConstructible.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsDestructible.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsFunction.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsIntegralType.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsMemberPointer.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsNullPtr.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsPointer.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsReference.hpp
@@ -594,16 +604,28 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsSwappable.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsUnion.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsVoid.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsVolatile.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/Iterable.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/Limit.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/RemoveAllExtents.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/RemoveCV.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/RemoveConst.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/RemoveExtent.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/RemoveReference.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/SearchableVariadicPack.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/TypeList.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/__two.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Algorithms/StringAsNumber.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Chrono/Timer.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Examples/ReflectionExample.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Examples/TermBoxMenuExample.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Primitives/General/ContextualVariant.h
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Primitives/General/Immutable.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Primitives/General/Span.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Primitives/General/span.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Reflection/ConstexprFor.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Reflection/reflectable.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Reflection/tagged_tuple.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IntegralConstant.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsArray.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../main.cpp
 

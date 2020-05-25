@@ -4571,14 +4571,7 @@ struct ConcatTuple<a, b, n, false>
 
 
 
-template<typename T> class Debug_T;
-template<class A, template<class...> class B>
-struct Rebind;
 
-template<template<class...> class A, class... T, template<class...> class B>
-struct Rebind<A<T...>, B> {
-    using type = B<T...>;
-};
 
 /*
      template<typename T>
@@ -7107,6 +7100,9 @@ namespace LD
         template <class T>
         constexpr bool Pointer = LD::Detail::IsPointer<T>::value;
 
+        template<typename T>
+        constexpr bool Indexable = LD::Exists<LD::Ops::Subscript,T,LD::UInteger>;
+
 
         template<typename F , typename T ,typename ... Args>
         constexpr bool Calleable = LD::Ops::CalleableOperator<F, T, Args...>::value;
@@ -7181,6 +7177,19 @@ namespace LD
                 LD::Concept::PrefixIncrementable<T>,
                 LD::Concept::Deferenceable<T>
         >>;
+
+        template<typename T>
+        constexpr bool ContinuousIterable = LD::Either<
+                LD::Concept::Pointer<T>,
+                LD::Require<
+                    LD::Concept::CopyConstructible<T>,
+                    LD::Concept::CopyAssignable<T>,
+                    LD::Concept::Destructible<T>,
+                    LD::Concept::Swappable<T>,
+                    LD::Concept::PrefixIncrementable<T>,
+                    LD::Concept::Deferenceable<T>,
+                    LD::Concept::Indexable<T>
+                >>;
 
 
 

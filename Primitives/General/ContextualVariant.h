@@ -22,6 +22,8 @@ namespace LD
         {
             (*this) = var;
         }
+
+
         ContextualVariant & operator = (const LD::Variant<LD::Context<Variance,Cntx...>...> & var) noexcept
         {
             LD::Variant<LD::Context<Variance,Cntx...>...>::operator=(var);

@@ -7,6 +7,7 @@
 #include "TypeTraits/SearchableVariadicPack.hpp"
 #include "ConstexprFor.hpp"
 #include "TypeTraits/IsMemberPointer.hpp"
+#include "Primitives/General/mapboxvariant.hpp"
 namespace LD
 {
 #define RecflectableStringification( x ) #x
@@ -59,6 +60,7 @@ namespace LD
             using SearchablePack = LD::SearchableVariadicPack<A...>;
 
 
+
             constexpr static const bool IsNamed()
             {
                 if constexpr (sizeof...(A) > 0 && sizeof...(A)%2 == 0)//make sure the number of arguements are even and a positive number
@@ -103,6 +105,8 @@ namespace LD
     {
     public:
 
+        using ValueTypeList = typename LD::tagged_tuple<decltype("ClassName"_ts),const char *,Args...>::ValueTypeList;
+        using KeyTypeList = typename LD::tagged_tuple<decltype("ClassName"_ts),const char *,Args...>::KeyTypeList;
         typedef  LD::SearchableVariadicPack<decltype("ClassName"_ts),const char *,Args...> SearchableReflectionList;
 
         constexpr static LD::UInteger NumberOfMembers = {(sizeof...(Args)/2)+1};

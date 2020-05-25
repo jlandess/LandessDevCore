@@ -10,13 +10,86 @@
 #include <iostream>
 #include "Chrono/Timer.h"
 #include "Primitives/General/ContextualVariant.h"
+#include "IO/DatabaseOperationResult.h"
+#include "Primitives/General/Span.hpp"
 namespace LD
 {
 
+
+    namespace CT
+    {
+
+
+        namespace Detail
+        {
+            template <typename... T1s, typename... T2s>
+            constexpr auto concatenate(LD::CT::TypeList<T1s...>, LD::CT::TypeList<T2s...>) {
+                return LD::CT::TypeList<T1s..., T2s...>{};
+            }
+
+            template <template <typename> typename Condition, typename Result>
+            constexpr auto filter_types(Result result, LD::CT::TypeList<>) {
+                return result;
+            }
+
+            template <template <typename> typename Condition, typename Result, typename T, typename... Ts>
+            constexpr auto filter_types(Result result, LD::CT::TypeList<T, Ts...>) {
+                if constexpr (Condition<T>{})
+                    return filter_types<Condition>(concatenate(result, LD::CT::TypeList<T>{}), LD::CT::TypeList<Ts...>{});
+                else
+                    return filter_types<Condition>(result, LD::CT::TypeList<Ts...>{});
+            }
+        }
+
+        template <template <typename> typename Condition, typename... Types>
+        using FilterPack = LD::Decay_T<decltype(LD::CT::Detail::filter_types<Condition>(LD::CT::TypeList<>{}, LD::CT::TypeList<Types...>{}))>;
+
+        template <typename TL,template <typename> typename Condition>
+        using Filter = LD::Decay_T<decltype(LD::CT::Detail::filter_types<Condition>(LD::CT::TypeList<>{}, TL{}))>;
+
+        namespace Detail
+        {
+
+            template<typename TypeList, template<typename> class Transformation>
+            class Transform;
+            template<template<typename> class Transformation,typename ... Args>
+            struct Transform<LD::CT::TypeList<Args...>,Transformation>
+            {
+                using type = LD::CT::TypeList<Transformation<Args>...>;
+            };
+        }
+
+        template<typename T>
+        using ReadOnlyTransform =  LD::Conditonal<LD::IsPrimitive<T>,LD::ElementReference<T>,
+                                                  LD::Conditonal<LD::Concept::ContinuousIterable<T>,LD::Span<T>,
+                                                  LD::Conditonal<LD::Concept::Iterable<T>,LD::Pair<LD::ConstBeginIterator<T>,LD::ConstEndIterator<T>>,T>>>;
+
+
+        template<typename T>
+        using WriteOnlyTransform = LD::Conditonal<LD::IsPrimitive<T>,LD::ElementReference<T>,
+                                                  LD::Conditonal<LD::Concept::Iterable<T>,LD::BackInserter<T>,T>>;
+
+
+        template<typename T>
+        using ReadWriteTransform = void;
+
+
+
+        template<typename T, template<typename> class Transformation>
+        using Tranform = typename LD::CT::Detail::Transform<T,Transformation>::type;
+
+    }
     namespace Example
     {
         void ReflectionExample()
         {
+
+
+            using list = LD::tlist_erase_at<0,LD::CT::RebindList<ArrayTest::ValueTypeList,LD::CT::TypeList>::type>::type;
+
+            using transformedList = LD::CT::Tranform<list,LD::CT::ReadOnlyTransform>;
+            //LD::CT::DebugTemplate<transformedList>{};
+            LD::ContextualVariant<LD::DatabaseOpenMode()> context = LD::ContextualVariant<LD::DatabaseOpenMode()>{LD::MakeContext(LD::OpenReadAndWrite{})};
             LD::Variant<LD::Context<int,float,double>,LD::Context<float,LD::StringView>> var;
             var = LD::Context<int,float,double>{};
             //LD::Variant<LD::Context<LD::Variant<int,float>,Cntx...>...>
@@ -34,6 +107,8 @@ namespace LD
             timer.Start();
             Database currentData{{"database"}};
             Square currentSquare;
+
+            //LD::DebugTemplate<Square::ValueTypeList>{};
             currentSquare["Length"_ts] = 64.3;
 
             Pyramid currentPyramid;
@@ -56,7 +131,7 @@ namespace LD
             {
 
                 //printf("%lu \n",square["Length"_ts]);
-                std::cout << "Square's Length  1 " << LD::Get<Square>(square)["Length"_ts] << std::endl;
+                std::cout << "Square's Length   " << LD::Get<Square>(square)["Length"_ts] << std::endl;
                 std::cout << "context number : " << LD::Get<1>(square) << std::endl;
             };
             LD::Match(result,notFound,found);

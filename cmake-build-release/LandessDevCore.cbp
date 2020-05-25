@@ -195,6 +195,15 @@
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/IO/Database.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/IO/DatabaseOpenMode.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/IO/DatabaseOperationResult.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/IO/UnqliteDatabaseBackend.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/IO/unqlite.c">
 			<Option target="LandessDevCore"/>
 		</Unit>
@@ -258,6 +267,9 @@
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Primitives/General/ContextualVariant.h">
 			<Option target="LandessDevCore"/>
 		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Primitives/General/GenericIterator.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Primitives/General/Hash.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
@@ -301,6 +313,9 @@
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Primitives/General/Quaternion.hpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Primitives/General/Span.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Primitives/General/StaticArray.hpp">
@@ -492,6 +507,9 @@
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/TypeTraits/IsIntegralType.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/TypeTraits/IsIterable.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/TypeTraits/IsKindOf.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
@@ -517,6 +535,9 @@
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/TypeTraits/IsVolatile.hpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/TypeTraits/Iterable.h">
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/TypeTraits/Limit.hpp">

@@ -476,6 +476,8 @@ Definitions/Common.hpp
 memory.h
 -
 
+../Functor/fixed_size_function.hpp
+
 ../IO/Database.hpp
 TypeTraits/EnableIf.hpp
 ../IO/TypeTraits/EnableIf.hpp
@@ -507,6 +509,22 @@ TypeTraits/TypeList.hpp
 ../IO/TypeTraits/TypeList.hpp
 Primitives/General/ContextualVariant.h
 ../IO/Primitives/General/ContextualVariant.h
+Memory/UniquePointer.h
+../IO/Memory/UniquePointer.h
+Functor/fixed_size_function.hpp
+../IO/Functor/fixed_size_function.hpp
+DatabaseOperationResult.h
+../IO/DatabaseOperationResult.h
+DatabaseOpenMode.h
+../IO/DatabaseOpenMode.h
+
+../IO/DatabaseOpenMode.h
+Primitives/General/mapboxvariant.hpp
+../IO/Primitives/General/mapboxvariant.hpp
+
+../IO/DatabaseOperationResult.h
+Primitives/General/mapboxvariant.hpp
+../IO/Primitives/General/mapboxvariant.hpp
 
 ../IO/unqlite.h
 stdarg.h
@@ -546,6 +564,22 @@ initializer_list
 type_traits
 -
 tr1/type_traits
+-
+
+../Memory/UniquePointer.h
+Definitions/Common.hpp
+../Memory/Definitions/Common.hpp
+cstddef
+-
+algorithm
+-
+Async/Atomic/Atomic.h
+../Memory/Async/Atomic/Atomic.h
+Functor/LightWeightDelegate.h
+../Memory/Functor/LightWeightDelegate.h
+ElementReference.h
+../Memory/ElementReference.h
+cassert
 -
 
 ../Memory/shared_ptr.hpp
@@ -617,6 +651,14 @@ Algorithms/CompileTimeOperations.hpp
 ../Primitives/General/Algorithms/CompileTimeOperations.hpp
 Definitions/Common.hpp
 ../Primitives/General/Definitions/Common.hpp
+
+../Primitives/General/Span.hpp
+Definitions/Integer.hpp
+../Primitives/General/Definitions/Integer.hpp
+Definitions/Common.hpp
+../Primitives/General/Definitions/Common.hpp
+TypeTraits/Iterable.h
+../Primitives/General/TypeTraits/Iterable.h
 
 ../Primitives/General/StaticArray.hpp
 Definitions/Integer.hpp
@@ -777,10 +819,18 @@ ConstexprFor.hpp
 ../Reflection/ConstexprFor.hpp
 TypeTraits/IsMemberPointer.hpp
 ../Reflection/TypeTraits/IsMemberPointer.hpp
+Primitives/General/mapboxvariant.hpp
+../Reflection/Primitives/General/mapboxvariant.hpp
 
 ../Reflection/tagged_tuple.hpp
 Definitions/Common.hpp
 -
+Primitives/General/mapboxvariant.hpp
+../Reflection/Primitives/General/mapboxvariant.hpp
+TypeTraits/TypeList.hpp
+../Reflection/TypeTraits/TypeList.hpp
+Primitives/General/Tuple.hpp
+../Reflection/Primitives/General/Tuple.hpp
 
 ../TypeTraits/AddLValueReference.hpp
 
@@ -958,6 +1008,12 @@ RemoveCV.hpp
 IntegralConstant.hpp
 ../TypeTraits/IntegralConstant.hpp
 
+../TypeTraits/Iterable.h
+Declval.hpp
+../TypeTraits/Declval.hpp
+Conditional.hpp
+../TypeTraits/Conditional.hpp
+
 ../TypeTraits/Limit.hpp
 climits
 -
@@ -983,8 +1039,6 @@ Definitions/Common.hpp
 ../TypeTraits/Definitions/Common.hpp
 
 ../TypeTraits/TypeList.hpp
-type_traits
--
 TypeTraits/Conditional.hpp
 ../TypeTraits/TypeTraits/Conditional.hpp
 TypeTraits/IntegerSequence.hpp
@@ -1005,6 +1059,8 @@ Definitions/Float.hpp
 /home/phoenixflower/Documents/LandessDevCore/Examples/Definitions/Float.hpp
 Functor/FunctionView.h
 /home/phoenixflower/Documents/LandessDevCore/Examples/Functor/FunctionView.h
+Primitives/General/StaticArray.hpp
+/home/phoenixflower/Documents/LandessDevCore/Examples/Primitives/General/StaticArray.hpp
 
 /home/phoenixflower/Documents/LandessDevCore/Examples/ReflectionExample.cpp
 ReflectionExample.hpp
@@ -1025,6 +1081,10 @@ Chrono/Timer.h
 /home/phoenixflower/Documents/LandessDevCore/Examples/Chrono/Timer.h
 Primitives/General/ContextualVariant.h
 /home/phoenixflower/Documents/LandessDevCore/Examples/Primitives/General/ContextualVariant.h
+IO/DatabaseOperationResult.h
+/home/phoenixflower/Documents/LandessDevCore/Examples/IO/DatabaseOperationResult.h
+Primitives/General/Span.hpp
+/home/phoenixflower/Documents/LandessDevCore/Examples/Primitives/General/Span.hpp
 
 /home/phoenixflower/Documents/LandessDevCore/Examples/ReflectionExample.hpp
 

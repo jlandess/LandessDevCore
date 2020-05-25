@@ -317,12 +317,12 @@ namespace LD
                 (!LD::Detail::IsPointer<Arguements>::value && ...)
         >,const TermBoxRenderContext &> RenderWithFormat(const LD::ImmutableString<Size> & str,const PDP::Detail::tVec2<LD::Integer> & translation,Arguements && ... objects) const noexcept
         {
-            using ArguementList = LD::TypeList<LD::Decay_T<Arguements>...>;
-            using RenderableContextTypeList = LD::TypeList<LD::NullClass,LD::ElementReference <LD::Decay_T<Arguements>>...,LD::ElementReference <char>>;
-            using DeDuplicatedRederableContextTypeList = typename LD::DeDuplicateTypeList<RenderableContextTypeList>::type ;
+            using ArguementList = LD::CT::TypeList<LD::Decay_T<Arguements>...>;
+            using RenderableContextTypeList = LD::CT::TypeList<LD::NullClass,LD::ElementReference <LD::Decay_T<Arguements>>...,LD::ElementReference <char>>;
+            using DeDuplicatedRederableContextTypeList = typename LD::CT::DeDuplicateTypeList<RenderableContextTypeList> ;
             using Renderable = LD::Rebind<DeDuplicatedRederableContextTypeList,LD::Variant>;
-            using ContextTypeList = LD::TypeList<LD::ElementReference<LD::Decay_T <Arguements>>...>;
-            using DeDuplicatedContextTypeList = typename LD::DeDuplicateTypeList<ContextTypeList>::type ;
+            using ContextTypeList = LD::CT::TypeList<LD::ElementReference<LD::Decay_T <Arguements>>...>;
+            using DeDuplicatedContextTypeList =  LD::CT::DeDuplicateTypeList<ContextTypeList> ;
             using Arguement = LD::Rebind<DeDuplicatedContextTypeList,LD::Variant>;
 
             LD::StaticArray<LD::UInteger ,Size> delimeterIndices = {Size};

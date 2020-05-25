@@ -403,6 +403,73 @@ namespace LD
         //unsigned char InternalBuffer[PDP::CompileTimeAlignmentSize<sizeof(T)*Amount + sizeof(PDP::UInteger)>::value];
     public:
 
+
+        class Iterator
+        {
+        private:
+            T * mBuffer;
+            LD::UInteger mIndex;
+        public:
+            constexpr Iterator() noexcept:mBuffer(nullptr),mIndex(0)
+            {
+
+            }
+
+
+
+            const bool operator == (const Iterator & iterator)
+            {
+                return (this->mBuffer+this->mIndex) == (iterator.mBuffer + iterator.mIndex);
+            }
+
+            const bool operator != (const Iterator & iterator)
+            {
+                return (this->mBuffer+this->mIndex) != (iterator.mBuffer + iterator.mIndex);
+            }
+
+            constexpr Iterator(T * currentIndex, const LD::UInteger & index) noexcept :mBuffer(currentIndex),mIndex(index)
+            {
+
+            }
+
+            T & operator *() noexcept
+            {
+                return *(this->mBuffer + this->mIndex);
+            }
+
+            T & operator[](const LD::UInteger & index) noexcept
+            {
+                return *(this->mBuffer + index);
+            }
+            Iterator & operator++() noexcept
+            {
+                return Iterator{this->mBuffer,this->mIndex+1};
+            }
+
+            Iterator & operator++(int) noexcept
+            {
+                return Iterator{this->mBuffer,this->mIndex+1};
+            }
+
+            Iterator & operator--() noexcept
+            {
+                return Iterator{this->mBuffer,this->mIndex-1};
+            }
+
+            Iterator & operator--(int) noexcept
+            {
+                return Iterator{this->mBuffer,this->mIndex-1};
+            }
+        };
+
+        Iterator Begin()
+        {
+            return Iterator{this->InternalBuffer,0};
+        }
+        Iterator End()
+        {
+            return Iterator{nullptr,this->Size};
+        }
         template<typename U,LD::UInteger Index, LD::UInteger A>
         friend constexpr U & Get(LD::StaticArray<U,Amount> & array) noexcept ;
         template<typename U,LD::UInteger Index, LD::UInteger A>

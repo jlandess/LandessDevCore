@@ -18,5 +18,8 @@ namespace LD
         template <bool _Bp, class _If, class _Then> using Conditional_T = typename Conditonal<_Bp, _If, _Then>::type;
 //#endif
     }
+
+    template<bool value, typename If, typename Then>
+    using Conditonal = typename LD::Detail::Conditonal<value,If,Then>::type ;
 }
 #endif //LANDESSDEVCORE_CONDITIONAL_HPP
