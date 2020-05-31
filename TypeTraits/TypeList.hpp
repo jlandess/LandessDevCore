@@ -3,15 +3,11 @@
 #ifndef LANDESSDEVCORE_VARIADICPACKLIST_H
 #define LANDESSDEVCORE_VARIADICPACKLIST_H
 
-
-
-//#include <type_traits>
 #include "TypeTraits/Conditional.hpp"
 #include "TypeTraits/IntegerSequence.hpp"
 #include "TypeTraits/IntegralConstant.hpp"
 #include "TypeTraits/IsSame.hpp"
 #include "Definitions/Integer.hpp"
-//#include <tuple>
 
 #pragma once
 

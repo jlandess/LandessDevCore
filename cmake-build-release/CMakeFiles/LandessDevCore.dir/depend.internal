@@ -228,7 +228,6 @@ CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o
  /home/phoenixflower/Documents/LandessDevCore/Chrono/Timer.h
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o
  ../Algorithms/CompileTimeControlFlow.hpp
- ../Algorithms/CompileTimeOperations.hpp
  ../Algorithms/Exponential.hpp
  ../Algorithms/StringAsNumber.h
  ../Algorithms/StringToPrimitive.hpp
@@ -247,29 +246,9 @@ CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o
  ../Algorithms/vdt/tan.h
  ../Algorithms/vdt/vdtcore_common.h
  ../Algorithms/vdt/vdtmath.h
- ../Async/Atomic/Atomic.h
- ../Async/Atomic/AtomicCore.h
- ../Async/Atomic/AtomicPrimitiveImplementation.h
- ../Async/Atomic/AtomicUnderlyingCore.h
- ../Async/Atomic/compiler_gcc.h
- ../Async/Atomic/compiler_msvc.h
- ../Async/Commitment.h
- ../Async/Future.h
- ../Async/Locks/SpinLock.h
- ../Async/Promise.h
- ../Async/Thread.h
- ../Async/ThreadAffinity.h
- ../Async/concurrentqueue.h
- ../Chrono/Timer.h
  ../Definitions/Common.hpp
  ../Definitions/Float.hpp
  ../Definitions/Integer.hpp
- ../Definitions/platform_detect.h
- ../Exceptions/Exception.h
- ../Exceptions/OutOfThreadsException.h
- ../Exceptions/OverFlowException.h
- ../Functor/Delegate.h
- ../Functor/FastDelegate.h
  ../Functor/FunctionView.h
  ../Functor/Lambda.h
  ../Functor/LightWeightDelegate.h
@@ -280,26 +259,18 @@ CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o
  ../IO/DatabaseOperationResult.h
  ../IO/UnqliteDatabaseBackend.h
  ../IO/unqlite.h
- ../Memory/AutomaticReferenceCounting.h
  ../Memory/ElementReference.h
- ../Memory/Optional.h
- ../Memory/UniquePointer.h
- ../Memory/shared_ptr.hpp
  ../Primitives/General/Context.h
  ../Primitives/General/ContextualVariant.h
  ../Primitives/General/Hash.hpp
  ../Primitives/General/Immutable.hpp
  ../Primitives/General/ImproperFraction.hpp
- ../Primitives/General/PackagedTask.h
  ../Primitives/General/Pair.h
- ../Primitives/General/Ratio.hpp
  ../Primitives/General/Span.hpp
  ../Primitives/General/StaticArray.hpp
  ../Primitives/General/StringView.hpp
  ../Primitives/General/Tuple.hpp
- ../Primitives/General/Unit.hpp
  ../Primitives/General/ctre.hpp
- ../Primitives/General/mapboxoptional.hpp
  ../Primitives/General/mapboxrecursive_wrapper.hpp
  ../Primitives/General/mapboxvariant.hpp
  ../Primitives/General/mapboxvariantvisitor.h
@@ -315,7 +286,6 @@ CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o
  ../TypeTraits/Declval.hpp
  ../TypeTraits/Detection.hpp
  ../TypeTraits/EnableIf.hpp
- ../TypeTraits/ExclusiveOr.hpp
  ../TypeTraits/IntegerSequence.hpp
  ../TypeTraits/IntegralConstant.hpp
  ../TypeTraits/IsArray.hpp

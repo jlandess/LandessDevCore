@@ -110,18 +110,41 @@ namespace LD
                     decltype("Side"_ts),      LD::Triangle,
                     decltype("area"_ts),LD::FunctionView<LD::Float ()>)>
     {
+    private:
+        LD::Square & mBase;
+        LD::Triangle & mSide;
     public:
-        inline Pyramid()
+        inline Pyramid() noexcept :mBase((*this)["Base"_ts]),mSide((*this)["Side"_ts])
         {
             (*this)["Base"_ts] = LD::Square{};
             (*this)["Side"_ts] =  LD::Triangle{};
             (*this)["area"_ts] = LD::FunctionView<LD::Float()>(this,&Pyramid::GetArea);
         }
-        inline Pyramid(const LD::Square & width, const LD::Triangle & height)
+        inline Pyramid(const LD::Square & width, const LD::Triangle & height) noexcept : Pyramid()
         {
             (*this)["Base"_ts] = LD::Square{width};
             (*this)["Side"_ts] =  LD::Triangle{height};
             (*this)["area"_ts] = LD::FunctionView<LD::Float()>(this,&Pyramid::GetArea);
+        }
+
+        LD::Square & Base() noexcept
+        {
+            return this->mBase;
+        }
+
+        LD::Triangle & Side() noexcept
+        {
+            return this->mSide;
+        }
+
+        const LD::Square & Base() const noexcept
+        {
+            return this->mBase;
+        }
+
+        const LD::Triangle & Side() const noexcept
+        {
+            return this->mSide;
         }
         LD::Float GetArea() const
         {
