@@ -18,11 +18,27 @@ namespace LD
             constexpr value_type operator ()() const {return value;}
 
         };
+
+        template<typename T>
+        struct IsIntegralConstant: public LD::Detail::IntegralConstant<bool,false>
+        {
+
+        };
+
+        template<typename T, T value>
+        struct IsIntegralConstant<LD::Detail::IntegralConstant<T,value>>: public LD::Detail::IntegralConstant<bool,true>
+        {
+
+        };
     }
 
 
+    template<typename T>
+    constexpr bool IsIntegralConstant = LD::Detail::IsIntegralConstant<T>::value;
 
     typedef LD::Detail::IntegralConstant<bool, true>  TrueType;
     typedef LD::Detail::IntegralConstant<bool, false> FalseType;
+
+
 }
 #endif //LANDESSDEVCORE_INTEGRALCONSTANT_HPP

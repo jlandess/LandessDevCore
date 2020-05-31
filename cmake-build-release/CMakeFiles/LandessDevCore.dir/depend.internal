@@ -145,6 +145,7 @@ CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o
  ../TypeTraits/Conditional.hpp
  ../TypeTraits/Decay.hpp
  ../TypeTraits/Declval.hpp
+ ../TypeTraits/Detection.hpp
  ../TypeTraits/EnableIf.hpp
  ../TypeTraits/IntegerSequence.hpp
  ../TypeTraits/IntegralConstant.hpp
@@ -154,6 +155,7 @@ CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o
  ../TypeTraits/IsClassType.hpp
  ../TypeTraits/IsConst.hpp
  ../TypeTraits/IsConstructible.hpp
+ ../TypeTraits/IsConvertible.hpp
  ../TypeTraits/IsDestructible.hpp
  ../TypeTraits/IsFunction.hpp
  ../TypeTraits/IsIntegralType.hpp
@@ -171,6 +173,8 @@ CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o
  ../TypeTraits/RemoveConst.hpp
  ../TypeTraits/RemoveExtent.hpp
  ../TypeTraits/RemoveReference.hpp
+ ../TypeTraits/TypeList.hpp
+ ../TypeTraits/VariadicPack.hpp
  ../TypeTraits/__two.hpp
  /home/phoenixflower/Documents/LandessDevCore/Async/Thread.cpp
  /home/phoenixflower/Documents/LandessDevCore/Async/Thread.h
@@ -188,6 +192,7 @@ CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o
  ../TypeTraits/Conditional.hpp
  ../TypeTraits/Decay.hpp
  ../TypeTraits/Declval.hpp
+ ../TypeTraits/Detection.hpp
  ../TypeTraits/EnableIf.hpp
  ../TypeTraits/ExclusiveOr.hpp
  ../TypeTraits/IntegerSequence.hpp
@@ -198,6 +203,7 @@ CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o
  ../TypeTraits/IsClassType.hpp
  ../TypeTraits/IsConst.hpp
  ../TypeTraits/IsConstructible.hpp
+ ../TypeTraits/IsConvertible.hpp
  ../TypeTraits/IsDestructible.hpp
  ../TypeTraits/IsFunction.hpp
  ../TypeTraits/IsIntegralType.hpp
@@ -215,6 +221,8 @@ CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o
  ../TypeTraits/RemoveConst.hpp
  ../TypeTraits/RemoveExtent.hpp
  ../TypeTraits/RemoveReference.hpp
+ ../TypeTraits/TypeList.hpp
+ ../TypeTraits/VariadicPack.hpp
  ../TypeTraits/__two.hpp
  /home/phoenixflower/Documents/LandessDevCore/Chrono/Timer.cpp
  /home/phoenixflower/Documents/LandessDevCore/Chrono/Timer.h
@@ -270,6 +278,7 @@ CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o
  ../IO/Database.hpp
  ../IO/DatabaseOpenMode.h
  ../IO/DatabaseOperationResult.h
+ ../IO/UnqliteDatabaseBackend.h
  ../IO/unqlite.h
  ../Memory/AutomaticReferenceCounting.h
  ../Memory/ElementReference.h
@@ -304,6 +313,7 @@ CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o
  ../TypeTraits/Conditional.hpp
  ../TypeTraits/Decay.hpp
  ../TypeTraits/Declval.hpp
+ ../TypeTraits/Detection.hpp
  ../TypeTraits/EnableIf.hpp
  ../TypeTraits/ExclusiveOr.hpp
  ../TypeTraits/IntegerSequence.hpp
@@ -314,8 +324,10 @@ CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o
  ../TypeTraits/IsClassType.hpp
  ../TypeTraits/IsConst.hpp
  ../TypeTraits/IsConstructible.hpp
+ ../TypeTraits/IsConvertible.hpp
  ../TypeTraits/IsDestructible.hpp
  ../TypeTraits/IsFunction.hpp
+ ../TypeTraits/IsImmutable.h
  ../TypeTraits/IsIntegralType.hpp
  ../TypeTraits/IsMemberPointer.hpp
  ../TypeTraits/IsNullPtr.hpp
@@ -335,6 +347,7 @@ CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o
  ../TypeTraits/RemoveReference.hpp
  ../TypeTraits/SearchableVariadicPack.hpp
  ../TypeTraits/TypeList.hpp
+ ../TypeTraits/VariadicPack.hpp
  ../TypeTraits/__two.hpp
  /home/phoenixflower/Documents/LandessDevCore/Examples/ReflectionDemoTypes.h
  /home/phoenixflower/Documents/LandessDevCore/Examples/ReflectionExample.cpp
@@ -412,6 +425,7 @@ CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o
  ../TypeTraits/Conditional.hpp
  ../TypeTraits/Decay.hpp
  ../TypeTraits/Declval.hpp
+ ../TypeTraits/Detection.hpp
  ../TypeTraits/EnableIf.hpp
  ../TypeTraits/ExclusiveOr.hpp
  ../TypeTraits/IntegerSequence.hpp
@@ -422,8 +436,10 @@ CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o
  ../TypeTraits/IsClassType.hpp
  ../TypeTraits/IsConst.hpp
  ../TypeTraits/IsConstructible.hpp
+ ../TypeTraits/IsConvertible.hpp
  ../TypeTraits/IsDestructible.hpp
  ../TypeTraits/IsFunction.hpp
+ ../TypeTraits/IsImmutable.h
  ../TypeTraits/IsIntegralType.hpp
  ../TypeTraits/IsNullPtr.hpp
  ../TypeTraits/IsPointer.hpp
@@ -500,6 +516,7 @@ CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o
  ../TypeTraits/Conditional.hpp
  ../TypeTraits/Decay.hpp
  ../TypeTraits/Declval.hpp
+ ../TypeTraits/Detection.hpp
  ../TypeTraits/EnableIf.hpp
  ../TypeTraits/ExclusiveOr.hpp
  ../TypeTraits/IntegerSequence.hpp
@@ -510,8 +527,10 @@ CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o
  ../TypeTraits/IsClassType.hpp
  ../TypeTraits/IsConst.hpp
  ../TypeTraits/IsConstructible.hpp
+ ../TypeTraits/IsConvertible.hpp
  ../TypeTraits/IsDestructible.hpp
  ../TypeTraits/IsFunction.hpp
+ ../TypeTraits/IsImmutable.h
  ../TypeTraits/IsIntegralType.hpp
  ../TypeTraits/IsNullPtr.hpp
  ../TypeTraits/IsPointer.hpp
@@ -567,6 +586,7 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  ../Primitives/General/Context.h
  ../Primitives/General/Hash.hpp
  ../Primitives/General/ImproperFraction.hpp
+ ../Primitives/General/Pair.h
  ../Primitives/General/Ratio.hpp
  ../Primitives/General/StaticArray.hpp
  ../Primitives/General/StringView.hpp
@@ -583,6 +603,7 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  ../TypeTraits/Conditional.hpp
  ../TypeTraits/Decay.hpp
  ../TypeTraits/Declval.hpp
+ ../TypeTraits/Detection.hpp
  ../TypeTraits/EnableIf.hpp
  ../TypeTraits/ExclusiveOr.hpp
  ../TypeTraits/IntegerSequence.hpp
@@ -593,8 +614,10 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  ../TypeTraits/IsClassType.hpp
  ../TypeTraits/IsConst.hpp
  ../TypeTraits/IsConstructible.hpp
+ ../TypeTraits/IsConvertible.hpp
  ../TypeTraits/IsDestructible.hpp
  ../TypeTraits/IsFunction.hpp
+ ../TypeTraits/IsImmutable.h
  ../TypeTraits/IsIntegralType.hpp
  ../TypeTraits/IsMemberPointer.hpp
  ../TypeTraits/IsNullPtr.hpp
@@ -614,6 +637,7 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  ../TypeTraits/RemoveReference.hpp
  ../TypeTraits/SearchableVariadicPack.hpp
  ../TypeTraits/TypeList.hpp
+ ../TypeTraits/VariadicPack.hpp
  ../TypeTraits/__two.hpp
  /home/phoenixflower/Documents/LandessDevCore/Algorithms/StringAsNumber.h
  /home/phoenixflower/Documents/LandessDevCore/Chrono/Timer.h
@@ -622,7 +646,6 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  /home/phoenixflower/Documents/LandessDevCore/Primitives/General/ContextualVariant.h
  /home/phoenixflower/Documents/LandessDevCore/Primitives/General/Immutable.hpp
  /home/phoenixflower/Documents/LandessDevCore/Primitives/General/Span.hpp
- /home/phoenixflower/Documents/LandessDevCore/Primitives/General/span.hpp
  /home/phoenixflower/Documents/LandessDevCore/Reflection/ConstexprFor.hpp
  /home/phoenixflower/Documents/LandessDevCore/Reflection/reflectable.hpp
  /home/phoenixflower/Documents/LandessDevCore/Reflection/tagged_tuple.hpp

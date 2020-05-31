@@ -13,6 +13,13 @@ namespace LD
         template<typename T>
         using CamelCaseBegin = decltype(LD::Declval<T>().begin());
 
+
+        template<typename T>
+        using StandardValueType = typename T::value_type;
+
+        template<typename T>
+        using LDValueType =   typename T::Type;
+
         template<typename T>
         using CameCaseEnd = decltype(LD::Declval<T>().end());
 
@@ -39,25 +46,6 @@ namespace LD
         template<typename T, typename = void >
         struct ConstBeginIterator;
 
-        template<typename T>
-        struct BeginIterator<T,LD::Enable_If_T<
-                LD::Require<
-                LD::Negate<LD::Exists<CamelCaseBegin,T>>,
-                LD::Negate<LD::Exists<ReverseCamelCaseBegin,T>>
-        >>>
-        {
-            using type = void;
-        };
-
-        template<typename T>
-        struct ConstBeginIterator<T,LD::Enable_If_T<
-                LD::Require<
-                        LD::Negate<LD::Exists<ConstCamelCaseBegin,T>>,
-                        LD::Negate<LD::Exists<ConstReverseCamelCaseBegin,T>>
-                >>>
-        {
-            using type = void;
-        };
 
         template<typename T>
         struct BeginIterator<T,LD::Enable_If_T<LD::Require<LD::Exists<CamelCaseBegin,T>>>>
@@ -88,25 +76,9 @@ namespace LD
         template<typename T, typename = void>
         struct ConstEndIterator;
 
-        template<typename T>
-        struct EndIterator<T,LD::Enable_If_T<
-                LD::Require<
-                        LD::Negate<LD::Exists<CameCaseEnd,T>>,
-                        LD::Negate<LD::Exists<ReverseCamelCaseEnd,T>>
-        >>>
-        {
-            using type = void;
-        };
 
-        template<typename T>
-        struct ConstEndIterator<T,LD::Enable_If_T<
-                LD::Require<
-                        LD::Negate<LD::Exists<ConstCameCaseEnd,T>>,
-                        LD::Negate<LD::Exists<ConstReverseCamelCaseEnd,T>>
-                >>>
-        {
-            using type = void;
-        };
+
+
         template<typename T>
         struct EndIterator<T,LD::Enable_If_T<LD::Require<LD::Exists<CameCaseEnd,T>>>>
         {
@@ -130,7 +102,32 @@ namespace LD
         {
             using type = decltype(LD::Declval<T>().CEnd());
         };
+
+        template<typename T, class = void>
+        struct ValueType;
+
+
+        template<typename T>
+        struct ValueType<T,LD::Enable_If_T<
+                LD::Require<
+                        LD::Exists<LD::Detail::StandardValueType,T>
+                >>>
+        {
+            using type = typename T::value_type;
+        };
+
+        template<typename T>
+        struct ValueType<T,LD::Enable_If_T<
+                LD::Require<
+                        LD::Exists<LD::Detail::LDValueType,T>
+                >>>
+        {
+            using type = typename T::Type;
+        };
     }
+
+    template<typename T>
+    using ValueType = typename LD::Detail::ValueType<T>::type;
     template<typename T>
     using BeginIterator = typename LD::Detail::BeginIterator<T>::type;
 

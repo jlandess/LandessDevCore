@@ -103,7 +103,7 @@ namespace PDP
         template<typename ...A>
         R operator()(A&&... args) const
         {
-            return (closure_.GetClosureThis()->*(closure_.GetClosureMemPtr()))(PDP::Forward<A>(args)...);
+            return (closure_.GetClosureThis()->*(closure_.GetClosureMemPtr()))(LD::Forward<A>(args)...);
         }
         
     private:

@@ -16,6 +16,7 @@
 #include "Async/Commitment.h"
 #include "Functor/Delegate.h"
 #include "Primitives/General/mapboxoptional.hpp"
+#include "TypeTraits/Decay.hpp"
 
 //#include <tuple>
 
@@ -194,7 +195,7 @@ namespace PDP
         }
     public:
 
-        TypedTask(const PDP::Promise<Ret> & promise, const Object & object, const MemberPointer & memberPointer ,Args  && ...arguements):Arguements(PDP::Forward<Args>(arguements)...),CurrentObject(object),CurrentPromise(promise),CurrentMemberPointer(memberPointer)
+        TypedTask(const PDP::Promise<Ret> & promise, const Object & object, const MemberPointer & memberPointer ,Args  && ...arguements):Arguements(LD::Forward<Args>(arguements)...),CurrentObject(object),CurrentPromise(promise),CurrentMemberPointer(memberPointer)
         {
 
         }
@@ -203,9 +204,9 @@ namespace PDP
         virtual void Run()
         {
 
-            Ret returnValue = PDP::Move(callFunc(typename gens<sizeof...(Args)>::type()));
+            Ret returnValue = LD::Move(callFunc(typename gens<sizeof...(Args)>::type()));
 
-            CurrentPromise.SetValue(PDP::Move(returnValue));
+            CurrentPromise.SetValue(LD::Move(returnValue));
         }
 
     };
@@ -239,7 +240,7 @@ namespace PDP
     public:
 
 
-        ConstTypedTask(const PDP::Promise<Ret> & promise, const Object & object, const MemberPointer & memberPointer ,Args  && ...arguements):Arguements(PDP::Forward<Args>(arguements)...),CurrentObject(object),CurrentPromise(promise),CurrentMemberPointer(memberPointer)
+        ConstTypedTask(const PDP::Promise<Ret> & promise, const Object & object, const MemberPointer & memberPointer ,Args  && ...arguements):Arguements(LD::Forward<Args>(arguements)...),CurrentObject(object),CurrentPromise(promise),CurrentMemberPointer(memberPointer)
         {
 
         }
@@ -248,9 +249,9 @@ namespace PDP
         virtual void Run()
         {
 
-            Ret returnValue = PDP::Move(callFunc(typename gens<sizeof...(Args)>::type()));
+            Ret returnValue = LD::Move(callFunc(typename gens<sizeof...(Args)>::type()));
 
-            CurrentPromise.SetValue(PDP::Move(returnValue));
+            CurrentPromise.SetValue(LD::Move(returnValue));
         }
     };
 
@@ -277,7 +278,7 @@ namespace PDP
 
     public:
 
-        DelegatedPackageTask(const PDP::Promise<T> & promise,const PDP::Delegate<T(Args...)> & delegate, Args  && ...arguements):Arguements(PDP::Forward<Args>(arguements)...),Delegate(delegate),CurrentPromise(promise)
+        DelegatedPackageTask(const PDP::Promise<T> & promise,const PDP::Delegate<T(Args...)> & delegate, Args  && ...arguements):Arguements(LD::Forward<Args>(arguements)...),Delegate(delegate),CurrentPromise(promise)
         {
 
         }
@@ -285,8 +286,8 @@ namespace PDP
 
         virtual void Run()
         {
-            T returnValue =  PDP::Move(callFunc(typename gens<sizeof...(Args)>::type()));
-            CurrentPromise.SetValue(PDP::Move(returnValue));
+            T returnValue =  LD::Move(callFunc(typename gens<sizeof...(Args)>::type()));
+            CurrentPromise.SetValue(LD::Move(returnValue));
 
         }
 
@@ -312,7 +313,7 @@ namespace PDP
         }
     public:
 
-        FastDelegatedPackageTask(const PDP::Promise<T> & promise,const PDP::FastDelegate<T(Args...)> & delegate, Args  && ...arguements):Arguements(PDP::Forward<Args>(arguements)...),Delegate(delegate),CurrentPromise(promise)
+        FastDelegatedPackageTask(const PDP::Promise<T> & promise,const PDP::FastDelegate<T(Args...)> & delegate, Args  && ...arguements):Arguements(LD::Forward<Args>(arguements)...),Delegate(delegate),CurrentPromise(promise)
         {
 
         }
@@ -320,8 +321,8 @@ namespace PDP
 
         virtual void Run()
         {
-            T returnValue =  PDP::Move(callFunc(typename gens<sizeof...(Args)>::type()));
-            CurrentPromise.SetValue(PDP::Move(returnValue));
+            T returnValue =  LD::Move(callFunc(typename gens<sizeof...(Args)>::type()));
+            CurrentPromise.SetValue(LD::Move(returnValue));
 
         }
     };
@@ -349,7 +350,7 @@ namespace PDP
             return Delegate(std::get<S>(Arguements) ...);
         }
     public:
-        LightWeightCommittedLightWeightPackagedTask(const PDP::Commitment<T> & promise,const PDP::LightWeightDelegate<T(Args...)> & delegate, Args && ... arguements):Arguements(PDP::Forward<Args>(arguements)...),Delegate(delegate),CurrentCommittment(promise)
+        LightWeightCommittedLightWeightPackagedTask(const PDP::Commitment<T> & promise,const PDP::LightWeightDelegate<T(Args...)> & delegate, Args && ... arguements):Arguements(LD::Forward<Args>(arguements)...),Delegate(delegate),CurrentCommittment(promise)
         {
 
         }
@@ -357,8 +358,8 @@ namespace PDP
         virtual void Run()
         {
 
-            T returnValue =  PDP::Move(callFunc(typename gens<sizeof...(Args)>::type()));
-            CurrentCommittment.AddValue(PDP::Move(returnValue));
+            T returnValue =  LD::Move(callFunc(typename gens<sizeof...(Args)>::type()));
+            CurrentCommittment.AddValue(LD::Move(returnValue));
         }
     };
 
@@ -383,15 +384,15 @@ namespace PDP
             return Delegate(std::get<S>(Arguements) ...);
         }
     public:
-        LightWeightDelegatedPackageTask(const PDP::Promise<T> & promise,const PDP::LightWeightDelegate<T(Args...)> & delegate, Args && ... arguements):Arguements(PDP::Forward<Args>(arguements)...),Delegate(delegate),CurrentPromise(promise)
+        LightWeightDelegatedPackageTask(const PDP::Promise<T> & promise,const PDP::LightWeightDelegate<T(Args...)> & delegate, Args && ... arguements):Arguements(LD::Forward<Args>(arguements)...),Delegate(delegate),CurrentPromise(promise)
         {
 
         }
         virtual void Run()
         {
 
-            T returnValue =  PDP::Move(callFunc(typename gens<sizeof...(Args)>::type()));
-            CurrentPromise.SetValue(PDP::Move(returnValue));
+            T returnValue =  LD::Move(callFunc(typename gens<sizeof...(Args)>::type()));
+            CurrentPromise.SetValue(LD::Move(returnValue));
             //CurrentPromise.SetFinishedState(true);
         }
 
@@ -409,14 +410,14 @@ namespace PDP
      @brief Serves as the primary implementation of PDP::PackagedTask where you have a non-void return type and do not expected to utilized PDP::Commitment to stream data
      */
     template<typename T, template<typename> class Functor, typename ... Args>
-    class PackagedTask<T(Args...),Functor,PDP::Enable_If_T<!PDP::IsSame<PDP::Decay_T<T>, void>::value>>: public PDP::Task
+    class PackagedTask<T(Args...),Functor,LD::Enable_If_T<!LD::Detail::IsSame<LD::Detail::Decay_T<T>, void>::value>>: public PDP::Task
     {
     public:
         typedef Functor<T(Args...)> FunctorType;
     private:
         PDP::Promise<T> CurrentPromise;
         Functor<T(Args...)> Delegate;
-        PDP::Tuple<PDP::Decay_T<Args>...> Arguements;
+        LD::Tuple<LD::Detail::Decay_T<Args>...> Arguements;
 
 
         template<int ...S>
@@ -424,14 +425,14 @@ namespace PDP
         {
             //return Delegate(std::get<S>(Arguements) ...);
 
-            return Delegate(PDP::Get<S>(Arguements) ...);
+            return Delegate(LD::Get<S>(Arguements) ...);
         }
     public:
         PackagedTask()
         {
 
         }
-        PackagedTask(const PDP::Promise<T> & promise,const Functor<T(Args...)> & delegate, const PDP::Decay_T<Args> & ... arguements):Arguements(PDP::Forward<Args>(arguements)...),Delegate(delegate),CurrentPromise(promise)
+        PackagedTask(const PDP::Promise<T> & promise,const Functor<T(Args...)> & delegate, const LD::Detail::Decay_T<Args> & ... arguements):Arguements(LD::Forward<Args>(arguements)...),Delegate(delegate),CurrentPromise(promise)
         {
 
         }
@@ -441,9 +442,9 @@ namespace PDP
             this->CurrentPromise = currentPromise;
         }
 
-        inline void SetArguements( const PDP::Decay_T<Args> & ... arguements)
+        inline void SetArguements( const LD::Detail::Decay_T<Args> & ... arguements)
         {
-            this->Arguements = PDP::Tuple<PDP::Decay_T<Args>...>(PDP::MakeTuple(arguements...));
+            this->Arguements = LD::Tuple<LD::Detail::Decay_T<Args>...>(LD::MakeTuple(arguements...));
         }
 
         inline void SetDelegate(const Functor<T(Args...)> & delegate)
@@ -454,8 +455,8 @@ namespace PDP
         {
             try
             {
-                T returnValue =  PDP::Move(callFunc(typename PDP::gens<sizeof...(Args)>::type()));
-                CurrentPromise.SetValue(PDP::Move(returnValue));
+                T returnValue =  LD::Move(callFunc(typename PDP::gens<sizeof...(Args)>::type()));
+                CurrentPromise.SetValue(LD::Move(returnValue));
 
             }catch(...)
             {
@@ -527,7 +528,7 @@ namespace PDP
      @brief - This class's expected uses is when you wish to dispatch a function which has a return type of void and simply want to monitor progress or get data streamed back to you from the thread
      */
     template<typename T, template<typename> class Functor, typename ... Args>
-    class PackagedTask<T(PDP::Commitment<T>,Args...),Functor,PDP::Enable_If_T<PDP::IsSame<PDP::Decay_T<T>, void>::value>>: public PDP::Task
+    class PackagedTask<T(PDP::Commitment<T>,Args...),Functor,LD::Enable_If_T<LD::Detail::IsSame<LD::Detail::Decay_T<T>, void>::value>>: public PDP::Task
     {
     private:
 
@@ -535,7 +536,7 @@ namespace PDP
         Functor<T(PDP::Commitment<T>,Args...)> Delegate;
 
 
-        PDP::Tuple<PDP::Commitment<T>,PDP::Decay_T<Args>...> Arguements;
+        LD::Tuple<PDP::Commitment<T>,LD::Detail::Decay_T<Args>...> Arguements;
 
 
         //PDP::Commitment<T> CurrentCommitment;
@@ -544,7 +545,7 @@ namespace PDP
         {
             //return Delegate(std::get<S>(Arguements) ...);
 
-            return Delegate(PDP::Get<S>(Arguements) ...);
+            return Delegate(LD::Get<S>(Arguements) ...);
 
         }
     public:
@@ -553,20 +554,20 @@ namespace PDP
         {
 
         }
-        PackagedTask(const PDP::Commitment<T> &currentCommitment ,const Functor<T(PDP::Commitment<T> &,Args...)> & delegate, const PDP::Decay_T<Args> & ... arguements):Arguements(PDP::Forward<Args>(arguements)...),Delegate(delegate)
+        PackagedTask(const PDP::Commitment<T> &currentCommitment ,const Functor<T(PDP::Commitment<T> &,Args...)> & delegate, const LD::Detail::Decay_T<Args> & ... arguements):Arguements(LD::Forward<Args>(arguements)...),Delegate(delegate)
         {
-            PDP::Get<0>(Arguements) = currentCommitment;
+            LD::Get<0>(Arguements) = currentCommitment;
         }
 
-        inline void SetArguements(const PDP::Commitment<T> &currentCommitment, const PDP::Decay_T<Args> & ... arguements)
+        inline void SetArguements(const PDP::Commitment<T> &currentCommitment, const LD::Detail::Decay_T<Args> & ... arguements)
         {
-            this->Arguements = PDP::Tuple<PDP::Decay_T<Args>...>(currentCommitment,arguements...);
+            this->Arguements = LD::Tuple<LD::Detail::Decay_T<Args>...>(currentCommitment,arguements...);
         }
 
 
         inline void SetCommitment(const PDP::Commitment<T> & currentCommitment)
         {
-            PDP::Get<0>(Arguements) = currentCommitment;
+            LD::Get<0>(Arguements) = currentCommitment;
             //this->CurrentCommitment = currentCommitment;
         }
 
@@ -584,7 +585,7 @@ namespace PDP
 
             }catch(...)
             {
-                PDP::Get<0>(Arguements).SetExceptionOccured();//the Commitment is the first arguement in the arguement compile time variadic list, and indicate something has gone wrong
+                LD::Get<0>(Arguements).SetExceptionOccured();//the Commitment is the first arguement in the arguement compile time variadic list, and indicate something has gone wrong
                 //in the future this should actually get the exception and help forward it along
             }
 
@@ -599,11 +600,11 @@ namespace PDP
      @brief - This implementation of PDP::PackagedTask is exptected to be used when you want to stream data (such as a progress indicators) and want a final value at the end.  An example of this is when you download a file.  You would like to get progress indicators while the file downloads and then you want the file at the end
      */
     template<typename T, typename U, template<typename> class Functor, typename ... Args>
-    class PackagedTask<T(PDP::Commitment<U> ,Args...),Functor,PDP::Enable_If_T<!PDP::IsSame<PDP::Decay_T<T>, void>::value>>: public PDP::Task
+    class PackagedTask<T(PDP::Commitment<U> ,Args...),Functor,LD::Enable_If_T<!LD::Detail::IsSame<LD::Detail::Decay_T<T>, void>::value>>: public PDP::Task
     {
     private:
         Functor<T(PDP::Commitment<U>,Args...)> Delegate;
-        PDP::Tuple<PDP::Commitment<U>,PDP::Decay_T<Args>...> Arguements;
+        LD::Tuple<PDP::Commitment<U>,LD::Detail::Decay_T<Args>...> Arguements;
         PDP::Promise<T> CurrentPromise;
 
 
@@ -613,7 +614,7 @@ namespace PDP
         {
             //return Delegate(std::get<S>(Arguements) ...);
 
-            return Delegate(PDP::Get<S>(Arguements) ...);
+            return Delegate(LD::Get<S>(Arguements) ...);
 
             //return T();
         }
@@ -623,10 +624,10 @@ namespace PDP
         {
 
         }
-        PackagedTask(const PDP::Promise<T> & currentPromise,const PDP::Commitment<U> &currentCommitment ,const Functor<T(PDP::Commitment<T> &,Args...)> & delegate, const PDP::Decay_T<Args> & ... arguements):Arguements(PDP::Forward<Args>(arguements)...),Delegate(delegate),CurrentPromise(currentPromise)
+        PackagedTask(const PDP::Promise<T> & currentPromise,const PDP::Commitment<U> &currentCommitment ,const Functor<T(PDP::Commitment<T> &,Args...)> & delegate, const LD::Detail::Decay_T<Args> & ... arguements):Arguements(LD::Forward<Args>(arguements)...),Delegate(delegate),CurrentPromise(currentPromise)
         {
 
-            PDP::Get<0>(Arguements) = currentCommitment;
+            LD::Get<0>(Arguements) = currentCommitment;
         }
 
 
@@ -638,13 +639,13 @@ namespace PDP
         inline void SetCommitment(const PDP::Commitment<U> & currentCommitment)
         {
             //this->CurrentCommitment = currentCommitment;
-            PDP::Get<0>(Arguements) = currentCommitment;
+            LD::Get<0>(Arguements) = currentCommitment;
         }
 
 
-        inline void SetArguements(const PDP::Commitment<U> & commitment, const PDP::Decay_T<Args> & ... arguements)
+        inline void SetArguements(const PDP::Commitment<U> & commitment, const LD::Detail::Decay_T<Args> & ... arguements)
         {
-            this->Arguements = PDP::Tuple<PDP::Decay_T<Args>...>(commitment,arguements...);
+            this->Arguements = LD::Tuple<LD::Detail::Decay_T<Args>...>(commitment,arguements...);
         }
 
         inline void SetDelegate(const Functor<T(PDP::Commitment<U> , Args...)> & delegate)
@@ -657,13 +658,13 @@ namespace PDP
         {
             try
             {
-                T returnValue =  PDP::Move(callFunc(typename PDP::gens<sizeof...(Args)+1>::type()));//it's +1 because the Tuple has a tparam which is not specified by the size of the compile time variadic arguement list
-                CurrentPromise.SetValue(PDP::Move(returnValue));
+                T returnValue =  LD::Move(callFunc(typename PDP::gens<sizeof...(Args)+1>::type()));//it's +1 because the Tuple has a tparam which is not specified by the size of the compile time variadic arguement list
+                CurrentPromise.SetValue(LD::Move(returnValue));
 
 
             }catch(...)
             {
-                PDP::Get<0>(Arguements).SetExceptionOccured();
+                LD::Get<0>(Arguements).SetExceptionOccured();
                 //the Commitment is the first arguement in the arguement compile time variadic list, and indicate something has gone wrong
                 //in the future this should actually get the exception and help forward it along
                 CurrentPromise.ExceptionWasThrown();

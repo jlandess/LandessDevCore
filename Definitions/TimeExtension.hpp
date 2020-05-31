@@ -94,7 +94,7 @@ inline int nanosleep (const struct timespec *req, struct timespec *rem)
 #include <unistd.h>
 #endif
 template<typename T>
-PDP::Enable_If_T<PDP::IsPrimitiveType<T>::value,void> usleep(const PDP::Second<T> & time)
+LD::Enable_If_T<LD::Detail::IsPrimitiveType<T>::value,void> usleep(const PDP::Second<T> & time)
 {
     usleep(time.GetValue()*1E6);
 }

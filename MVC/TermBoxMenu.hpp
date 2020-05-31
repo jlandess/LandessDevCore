@@ -12,6 +12,7 @@
 #include "MVC/TermBoxRenderingContext.hpp"
 #include "Functor/LightWeightDelegate.h"
 #include "Memory/ElementReference.h"
+#include "TypeTraits/Decay.hpp"
 namespace LD
 {
     namespace TB
@@ -23,7 +24,7 @@ namespace LD
         template<typename ... Context ,typename ... ImmutableStrings,typename Predicate>
         class ImmutableMenu<LD::VariadicPack<Context...>,LD::VariadicPack<ImmutableStrings...>,Predicate,LD::Enable_If_T<
                 LD::Require<
-                        (LD::IsImmutableString<LD::Decay_T<ImmutableStrings>> && ...),
+                        (LD::IsImmutableString<LD::Detail::Decay_T<ImmutableStrings>> && ...),
                         LD::IsInTuple<LD::TermBoxRenderContext,LD::VariadicPack<typename LD::Decay<Context>::type...>>::value,
                         (sizeof...(ImmutableStrings) > 0),
                         ((LD::ConvertiblyCallable<Predicate,bool(const LD::ApplicationExecutionEvent<Context...> & )>::Value()))
@@ -203,18 +204,18 @@ namespace LD
 
 
         template<typename ... Context,typename ... ImmutableStrings, typename Predicate>
-        auto MakeMenu(Predicate &&,ImmutableStrings  && ... titles) noexcept -> ImmutableMenu<LD::VariadicPack<Context...> ,LD::VariadicPack<LD::Decay_T<ImmutableStrings>...>,Predicate>
+        auto MakeMenu(Predicate &&,ImmutableStrings  && ... titles) noexcept -> ImmutableMenu<LD::VariadicPack<Context...> ,LD::VariadicPack<LD::Detail::Decay_T<ImmutableStrings>...>,Predicate>
         {
 
-            return ImmutableMenu<LD::VariadicPack<Context...> ,LD::VariadicPack<LD::Decay_T<ImmutableStrings>...>,Predicate>{LD::Forward<LD::Decay_T<ImmutableStrings>>(titles)...,{0,0}};
+            return ImmutableMenu<LD::VariadicPack<Context...> ,LD::VariadicPack<LD::Detail::Decay_T<ImmutableStrings>...>,Predicate>{LD::Forward<LD::Detail::Decay_T<ImmutableStrings>>(titles)...,{0,0}};
         }
 
 
         template<typename ... Context,typename ... ImmutableStrings,typename Predicate>
-        auto MakeImmutableMenu(Predicate &&,const PDP::Detail::tVec2<LD::Integer> & origin,ImmutableStrings  && ... titles) noexcept -> ImmutableMenu<LD::VariadicPack<Context...> ,LD::VariadicPack<LD::Decay_T<ImmutableStrings>...>,Predicate>
+        auto MakeImmutableMenu(Predicate &&,const PDP::Detail::tVec2<LD::Integer> & origin,ImmutableStrings  && ... titles) noexcept -> ImmutableMenu<LD::VariadicPack<Context...> ,LD::VariadicPack<LD::Detail::Decay_T<ImmutableStrings>...>,Predicate>
         {
 
-            return ImmutableMenu<LD::VariadicPack<Context...> ,LD::VariadicPack<LD::Decay_T<ImmutableStrings>...>,Predicate>{LD::Forward<LD::Decay_T<ImmutableStrings>>(titles)...,origin};
+            return ImmutableMenu<LD::VariadicPack<Context...> ,LD::VariadicPack<LD::Detail::Decay_T<ImmutableStrings>...>,Predicate>{LD::Forward<LD::Detail::Decay_T<ImmutableStrings>>(titles)...,origin};
         }
 
         template<typename ... Context,typename ... ImmutableStrings, typename ... Functors, typename Predicate>
@@ -223,10 +224,10 @@ namespace LD
         ((LD::Detail::IsLValueReference<Functors>::value || LD::Detail::IsPointer<Functors>::value) && ...),
         sizeof...(Functors) == sizeof...(ImmutableStrings)
         >
-        , ImmutableMenu<LD::VariadicPack<Context...> ,LD::VariadicPack<LD::Decay_T<ImmutableStrings>...>,Predicate>> MakeImmutableMenu(Predicate & predicate,LD::Tuple<Functors...> && tuple,const PDP::Detail::tVec2<LD::Integer> & origin,ImmutableStrings  && ... titles) noexcept
+        , ImmutableMenu<LD::VariadicPack<Context...> ,LD::VariadicPack<LD::Detail::Decay_T<ImmutableStrings>...>,Predicate>> MakeImmutableMenu(Predicate & predicate,LD::Tuple<Functors...> && tuple,const PDP::Detail::tVec2<LD::Integer> & origin,ImmutableStrings  && ... titles) noexcept
         {
 
-            return ImmutableMenu<LD::VariadicPack<Context...> ,LD::VariadicPack<LD::Decay_T<ImmutableStrings>...>,Predicate>{LD::Forward<LD::Decay_T<ImmutableStrings>>(titles)...,origin,LD::Forward<LD::Tuple<Functors...>>(tuple),predicate};
+            return ImmutableMenu<LD::VariadicPack<Context...> ,LD::VariadicPack<LD::Detail::Decay_T<ImmutableStrings>...>,Predicate>{LD::Forward<LD::Detail::Decay_T<ImmutableStrings>>(titles)...,origin,LD::Forward<LD::Tuple<Functors...>>(tuple),predicate};
         }
 
         template<typename ... Context,typename ... ImmutableStrings, typename ... Functors, typename Predicate>
@@ -235,10 +236,10 @@ namespace LD
                         ((LD::Detail::IsLValueReference<Functors>::value || LD::Detail::IsPointer<Functors>::value) && ...),
                         sizeof...(Functors) == sizeof...(ImmutableStrings)
                 >
-                , ImmutableMenu<LD::VariadicPack<Context...> ,LD::VariadicPack<LD::Decay_T<ImmutableStrings>...>,Predicate>> MakeImmutableMenu(const LD::TermBoxApplication<Context...> &,Predicate & predicate,LD::Tuple<Functors...> && tuple,const PDP::Detail::tVec2<LD::Integer> & origin,ImmutableStrings  && ... titles) noexcept
+                , ImmutableMenu<LD::VariadicPack<Context...> ,LD::VariadicPack<LD::Detail::Decay_T<ImmutableStrings>...>,Predicate>> MakeImmutableMenu(const LD::TermBoxApplication<Context...> &,Predicate & predicate,LD::Tuple<Functors...> && tuple,const PDP::Detail::tVec2<LD::Integer> & origin,ImmutableStrings  && ... titles) noexcept
         {
 
-            return ImmutableMenu<LD::VariadicPack<Context...> ,LD::VariadicPack<LD::Decay_T<ImmutableStrings>...>,Predicate>{LD::Forward<LD::Decay_T<ImmutableStrings>>(titles)...,origin,LD::Forward<LD::Tuple<Functors...>>(tuple),predicate};
+            return ImmutableMenu<LD::VariadicPack<Context...> ,LD::VariadicPack<LD::Detail::Decay_T<ImmutableStrings>...>,Predicate>{LD::Forward<LD::Detail::Decay_T<ImmutableStrings>>(titles)...,origin,LD::Forward<LD::Tuple<Functors...>>(tuple),predicate};
         }
     }
 }

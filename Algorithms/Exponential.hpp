@@ -54,7 +54,7 @@ namespace LD
 
 
     template<typename T, typename U>
-    PDP::Enable_If_T<(PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value) && (PDP::IsInteger<U>::value || PDP::IsUnsignedInteger<U>::value),T> GCD(const T & a, const U & b)
+    LD::Enable_If_T<(LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value) && (LD::Detail::IsInteger<U>::value || LD::Detail::IsUnsignedInteger<U>::value),T> GCD(const T & a, const U & b)
     {
         auto firstPath = [](const T & a, const U & b)
         {
@@ -102,10 +102,10 @@ namespace LD
     //PDP::IsConvertible<const char *, PDP::DataStructures::BasicString<char>>::value
 
     template<typename T, typename U>
-    PDP::Enable_If_T<PDP::IsFloatingPoint<T>::value && PDP::IsFloatingPoint<U>::value && PDP::IsConvertible<U, T>::value && PDP::IsConvertible<T, U>::value,T> GCD(const T & a, const U & b)
+    LD::Enable_If_T<LD::Detail::IsFloatingPoint<T>::value && LD::Detail::IsFloatingPoint<U>::value && LD::Detail::IsConvertible<U, T>::value && LD::Detail::IsConvertible<T, U>::value,T> GCD(const T & a, const U & b)
     {
 
-        using FractionType = PDP::ImProperFraction<typename PDP::UnsignedIntegerVariantForInteger<T>::UnsignedVariant>;
+        using FractionType = PDP::ImProperFraction<LD::UInteger>;
         FractionType first(a);
         FractionType second(b);
 
@@ -123,9 +123,9 @@ namespace LD
         auto thirdCodePath = [](const T & a, const U & b, const FractionType & firstInput, const FractionType & secondInput)->T
         {
 
-            FractionType first = FractionType {firstInput.GetNumerator()*second.GetDenominator(),firstInput.GetDenominator()};
-            FractionType second = FractionType {secondInput.GetNumerator(),second.GetNumerator()*first.GetDenominator()};
-            typename PDP::UnsignedIntegerVariantForInteger<T>::UnsignedVariant resultant = LD::GCD(first.GetNumerator(), second.GetNumerator());
+            FractionType first = FractionType {firstInput.GetNumerator()*secondInput.GetDenominator(),firstInput.GetDenominator()};
+            FractionType second = FractionType {secondInput.GetNumerator(),secondInput.GetNumerator()*first.GetDenominator()};
+            LD::UInteger resultant = LD::GCD(first.GetNumerator(), second.GetNumerator());
             return T(T(resultant)/T(first.GetDenominator()*second.GetDenominator()));
         };
 
@@ -149,7 +149,7 @@ namespace LD
         second.GetNumerator()*=first.GetDenominator();
 
 
-        typename PDP::UnsignedIntegerVariantForInteger<T>::UnsignedVariant resultant = LD::GCD(first.GetNumerator(), second.GetNumerator());
+        LD::UInteger resultant = LD::GCD(first.GetNumerator(), second.GetNumerator());
 
         return T(T(resultant)/T(first.GetDenominator()*second.GetDenominator()));
 
@@ -157,11 +157,11 @@ namespace LD
 
 
     template<typename T, typename U>
-    PDP::Enable_If_T<PDP::IsFloatingPoint<T>::value && PDP::IsFloatingPoint<U>::value && PDP::IsConvertible<U, T>::value && !PDP::IsConvertible<T, U>::value,T> GCD(const T & a, const U & b)
+    LD::Enable_If_T<LD::Detail::IsFloatingPoint<T>::value && LD::Detail::IsFloatingPoint<U>::value && LD::Detail::IsConvertible<U, T>::value && !LD::Detail::IsConvertible<T, U>::value,T> GCD(const T & a, const U & b)
     {
 
-        PDP::ImProperFraction<typename PDP::UnsignedIntegerVariantForInteger<T>::UnsignedVariant> first(a);
-        PDP::ImProperFraction<typename PDP::UnsignedIntegerVariantForInteger<T>::UnsignedVariant> second(b);
+        PDP::ImProperFraction<LD::UInteger> first(a);
+        PDP::ImProperFraction<LD::UInteger> second(b);
 
         if (first.GetNumerator() == 0 && first.GetDenominator() == 0)
         {
@@ -176,17 +176,17 @@ namespace LD
         second.GetNumerator()*=first.GetDenominator();
 
 
-        typename PDP::UnsignedIntegerVariantForInteger<T>::UnsignedVariant resultant = LD::GCD(first.GetNumerator(), second.GetNumerator());
+        LD::UInteger resultant = LD::GCD(first.GetNumerator(), second.GetNumerator());
 
         return T(T(resultant)/T(first.GetDenominator()*second.GetDenominator()));
     }
 
     template<typename T, typename U>
-    PDP::Enable_If_T<PDP::IsFloatingPoint<T>::value && PDP::IsFloatingPoint<U>::value && !PDP::IsConvertible<U, T>::value && PDP::IsConvertible<T, U>::value,T> GCD(const T & a, const U & b)
+    LD::Enable_If_T<LD::Detail::IsFloatingPoint<T>::value && LD::Detail::IsFloatingPoint<U>::value && !LD::Detail::IsConvertible<U, T>::value && LD::Detail::IsConvertible<T, U>::value,T> GCD(const T & a, const U & b)
     {
 
-        PDP::ImProperFraction<typename PDP::UnsignedIntegerVariantForInteger<U>::UnsignedVariant> first(a);
-        PDP::ImProperFraction<typename PDP::UnsignedIntegerVariantForInteger<U>::UnsignedVariant> second(b);
+        PDP::ImProperFraction<LD::UInteger> first(a);
+        PDP::ImProperFraction<LD::UInteger> second(b);
 
         if (first.GetNumerator() == 0 && first.GetDenominator() == 0)
         {
@@ -201,26 +201,26 @@ namespace LD
         second.GetNumerator()*=first.GetDenominator();
 
 
-        typename PDP::UnsignedIntegerVariantForInteger<T>::UnsignedVariant resultant = LD::GCD(first.GetNumerator(), second.GetNumerator());
+        LD::UInteger resultant = LD::GCD(first.GetNumerator(), second.GetNumerator());
 
         return T(T(resultant)/T(first.GetDenominator()*second.GetDenominator()));
     }
 
     template<typename T, typename U>
-    PDP::Enable_If_T<PDP::IsConvertible<U, T>::value && PDP::IsConvertible<T, U>::value, T> LCM(const T & a, const U & b)
+    LD::Enable_If_T<LD::Detail::IsConvertible<U, T>::value && LD::Detail::IsConvertible<T, U>::value, T> LCM(const T & a, const U & b)
     {
         return (a*b)/(LD::GCD(a, b));
     }
 
 
     template<typename T, typename U>
-    PDP::Enable_If_T<PDP::IsConvertible<U, T>::value && !PDP::IsConvertible<T, U>::value, T> LCM(const T & a, const U & b)
+    LD::Enable_If_T<LD::Detail::IsConvertible<U, T>::value && !LD::Detail::IsConvertible<T, U>::value, T> LCM(const T & a, const U & b)
     {
         return (a*b)/(LD::GCD(a, b));
     }
 
     template<typename T, typename U>
-    PDP::Enable_If_T<!PDP::IsConvertible<U, T>::value && PDP::IsConvertible<T, U>::value, U> LCM(const T & a, const U & b)
+    LD::Enable_If_T<!LD::Detail::IsConvertible<U, T>::value && LD::Detail::IsConvertible<T, U>::value, U> LCM(const T & a, const U & b)
     {
         return (a*b)/(LD::GCD(a, b));
     }
@@ -345,7 +345,7 @@ namespace LD
 
 
     template<typename T>
-    inline PDP::Enable_If_T<PDP::IsFloatingPoint<T>::value,T> Round(const T & number)
+    inline LD::Enable_If_T<LD::Detail::IsFloatingPoint<T>::value,T> Round(const T & number)
     {
         LD::UInteger temp = number;
         T floatingPoint = number-temp;
@@ -354,7 +354,7 @@ namespace LD
     }
 
     template<typename T>
-    inline PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value,T> Round(const T & number)
+    inline LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value,T> Round(const T & number)
     {
         return number;
     }

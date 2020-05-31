@@ -200,7 +200,7 @@ namespace LD
     }
 
     template<typename ... Arguements,
-            typename R = LD::Tuple<LD::Detail::Conditional_T<(LD::Detail::IsLValueReference<Arguements>::value),LD::ElementReference <LD::Decay_T<Arguements>>,LD::Decay_T<Arguements>>...>>
+            typename R = LD::Tuple<LD::Detail::Conditional_T<(LD::Detail::IsLValueReference<Arguements>::value),LD::ElementReference <LD::Detail::Decay_T<Arguements>>,LD::Detail::Decay_T<Arguements>>...>>
     constexpr auto MakeReferenceableTuple(Arguements && ... arguements) noexcept -> R
     {
 
@@ -209,7 +209,7 @@ namespace LD
     }
 
     template<typename ... Arguements>
-    using ReferenceableTuple = LD::Tuple<LD::Detail::Conditional_T<(LD::Detail::IsLValueReference<Arguements>::value),LD::ElementReference <LD::Decay_T<Arguements>>,LD::Decay_T<Arguements>>...>;
+    using ReferenceableTuple = LD::Tuple<LD::Detail::Conditional_T<(LD::Detail::IsLValueReference<Arguements>::value),LD::ElementReference <LD::Detail::Decay_T<Arguements>>,LD::Detail::Decay_T<Arguements>>...>;
 
 }
 #endif

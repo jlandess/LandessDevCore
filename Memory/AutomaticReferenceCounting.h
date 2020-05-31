@@ -56,7 +56,7 @@ namespace PDP
         template<typename T, class = void> class AutomaticReferenceCounter{};
         
         
-        template <typename T> class AutomaticReferenceCounter<T,PDP::Enable_If_T<PDP::IsKindOf<PDP::Memory::AutomaticReferencedCountingObject, T>::value>>
+        template <typename T> class AutomaticReferenceCounter<T,LD::Enable_If_T<LD::Detail::IsKindOf<PDP::Memory::AutomaticReferencedCountingObject, T>::value>>
         {
         public:
             
@@ -78,7 +78,7 @@ namespace PDP
              @param arcShared - The instansiation of a PDP::Memory::AutomaticReferenceCounter which satisfies the requirement of holding an object which is either of type of T or a derived class of type T
              @brief The SFINAE of the constructor allows the PDP::Memory::AutomaticReferenceCounter allows polymorphic assignments between instances.
              */
-            template <typename DerivedType, class = PDP::Enable_If_T<PDP::IsKindOf<T, DerivedType>::value>>
+            template <typename DerivedType, class = LD::Enable_If_T<LD::Detail::IsKindOf<T, DerivedType>::value>>
             explicit AutomaticReferenceCounter(const PDP::Memory::AutomaticReferenceCounter<DerivedType> & arcShared): m_ptr((T*)arcShared.Get())
             {
                 if (m_ptr)
@@ -110,7 +110,7 @@ namespace PDP
              @param arcShared - The instansiation of a PDP::Memory::AutomaticReferenceCounter which satisfies the requirement of holding an object which is either of type of T or a derived class of type T
              @brief The SFINAE of the constructor allows the PDP::Memory::AutomaticReferenceCounter allows polymorphic assignments between instances.
              */
-            template <typename DerivedType, class = PDP::Enable_If_T<PDP::IsKindOf<T, DerivedType>::value>>
+            template <typename DerivedType, class = LD::Enable_If_T<LD::Detail::IsKindOf<T, DerivedType>::value>>
             explicit AutomaticReferenceCounter(PDP::Memory::AutomaticReferenceCounter<DerivedType> && arcShared): m_ptr(arcShared.m_ptr)
             {
                 arcShared.m_ptr = nullptr;
@@ -130,7 +130,7 @@ namespace PDP
              @param arcShared - The instansiation of a PDP::Memory::AutomaticReferenceCounter which satisfies the requirement of holding an object which is either of type of T or a derived class of type T
              @brief The SFINAE of the constructor allows the PDP::Memory::AutomaticReferenceCounter allows polymorphic assignments between instances.
              */
-            template <typename DerivedType, class = PDP::Enable_If_T<PDP::IsKindOf<T, DerivedType>::value>>
+            template <typename DerivedType, class = LD::Enable_If_T<LD::Detail::IsKindOf<T, DerivedType>::value>>
             AutomaticReferenceCounter<T> operator=(PDP::Memory::AutomaticReferenceCounter<DerivedType> && r) noexcept
             {
                 if (&r != this)
@@ -164,7 +164,7 @@ namespace PDP
              @param arcShared - The instansiation of a PDP::Memory::AutomaticReferenceCounter which satisfies the requirement of holding an object which is either of type of T or a derived class of type T
              @brief The SFINAE of the constructor allows the PDP::Memory::AutomaticReferenceCounter allows polymorphic assignments between instances.
              */
-            template <typename DerivedType, class = PDP::Enable_If_T<PDP::IsKindOf<T, DerivedType>::value>>
+            template <typename DerivedType, class = LD::Enable_If_T<LD::Detail::IsKindOf<T, DerivedType>::value>>
             AutomaticReferenceCounter<T> operator=(const PDP::Memory::AutomaticReferenceCounter<DerivedType> & r) noexcept
             {
                 if (m_ptr != r.m_ptr)
@@ -249,7 +249,7 @@ namespace PDP
 
         
         template<typename T>
-        PDP::Enable_If_T<PDP::IsKindOf<PDP::Memory::AutomaticReferencedCountingObject, T>::value,PDP::Memory::AutomaticReferenceCounter<T>>
+        LD::Enable_If_T<LD::Detail::IsKindOf<PDP::Memory::AutomaticReferencedCountingObject, T>::value,PDP::Memory::AutomaticReferenceCounter<T>>
          MakeARCShared(const T & object)
         {
             return PDP::Memory::AutomaticReferenceCounter<T>(new T(object));

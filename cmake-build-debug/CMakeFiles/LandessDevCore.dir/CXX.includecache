@@ -9,10 +9,12 @@
 ../Algorithms/CompileTimeControlFlow.hpp
 Functor/LightWeightDelegate.h
 -
-Definitions/Common.hpp
-../Algorithms/Definitions/Common.hpp
 Memory/ElementReference.h
 ../Algorithms/Memory/ElementReference.h
+TypeTraits/Declval.hpp
+../Algorithms/TypeTraits/Declval.hpp
+TypeTraits/Detection.hpp
+../Algorithms/TypeTraits/Detection.hpp
 
 ../Algorithms/CompileTimeOperations.hpp
 Definitions/Integer.hpp
@@ -345,8 +347,6 @@ sys/time.h
 -
 
 ../Definitions/Common.hpp
-climits
--
 Float.hpp
 ../Definitions/Float.hpp
 Integer.hpp
@@ -415,6 +415,10 @@ TypeTraits/IsSwappable.hpp
 ../Definitions/TypeTraits/IsSwappable.hpp
 TypeTraits/IsConstructible.hpp
 ../Definitions/TypeTraits/IsConstructible.hpp
+TypeTraits/IsConvertible.hpp
+../Definitions/TypeTraits/IsConvertible.hpp
+TypeTraits/VariadicPack.hpp
+../Definitions/TypeTraits/VariadicPack.hpp
 
 ../Definitions/Float.hpp
 
@@ -517,6 +521,8 @@ DatabaseOperationResult.h
 ../IO/DatabaseOperationResult.h
 DatabaseOpenMode.h
 ../IO/DatabaseOpenMode.h
+Primitives/General/Span.hpp
+../IO/Primitives/General/Span.hpp
 
 ../IO/DatabaseOpenMode.h
 Primitives/General/mapboxvariant.hpp
@@ -525,6 +531,32 @@ Primitives/General/mapboxvariant.hpp
 ../IO/DatabaseOperationResult.h
 Primitives/General/mapboxvariant.hpp
 ../IO/Primitives/General/mapboxvariant.hpp
+
+../IO/UnqliteDatabaseBackend.h
+Primitives/General/StringView.hpp
+../IO/Primitives/General/StringView.hpp
+Memory/ElementReference.h
+../IO/Memory/ElementReference.h
+Primitives/General/mapboxvariant.hpp
+../IO/Primitives/General/mapboxvariant.hpp
+Primitives/General/mapboxvariantvisitor.h
+../IO/Primitives/General/mapboxvariantvisitor.h
+unqlite.h
+../IO/unqlite.h
+Algorithms/CompileTimeControlFlow.hpp
+../IO/Algorithms/CompileTimeControlFlow.hpp
+Primitives/General/ContextualVariant.h
+../IO/Primitives/General/ContextualVariant.h
+DatabaseOperationResult.h
+../IO/DatabaseOperationResult.h
+Functor/fixed_size_function.hpp
+../IO/Functor/fixed_size_function.hpp
+Primitives/General/Pair.h
+../IO/Primitives/General/Pair.h
+DatabaseOpenMode.h
+../IO/DatabaseOpenMode.h
+TypeTraits/IsConstructible.hpp
+../IO/TypeTraits/IsConstructible.hpp
 
 ../IO/unqlite.h
 stdarg.h
@@ -579,6 +611,8 @@ Functor/LightWeightDelegate.h
 ../Memory/Functor/LightWeightDelegate.h
 ElementReference.h
 ../Memory/ElementReference.h
+TypeTraits/RemoveExtent.hpp
+../Memory/TypeTraits/RemoveExtent.hpp
 cassert
 -
 
@@ -589,12 +623,12 @@ algorithm
 -
 cassert
 -
-Definitions/Common.hpp
-../Memory/Definitions/Common.hpp
 Memory/Optional.h
 ../Memory/Memory/Optional.h
 Async/Atomic/Atomic.h
 ../Memory/Async/Atomic/Atomic.h
+TypeTraits/Detection.hpp
+../Memory/TypeTraits/Detection.hpp
 
 ../Primitives/General/Context.h
 Memory/ElementReference.h
@@ -619,6 +653,8 @@ Algorithms/CompileTimeControlFlow.hpp
 ../Primitives/General/Algorithms/CompileTimeControlFlow.hpp
 Primitives/General/Hash.hpp
 ../Primitives/General/Primitives/General/Hash.hpp
+TypeTraits/IsImmutable.h
+../Primitives/General/TypeTraits/IsImmutable.h
 
 ../Primitives/General/ImproperFraction.hpp
 Definitions/Common.hpp
@@ -639,6 +675,8 @@ Functor/Delegate.h
 ../Primitives/General/Functor/Delegate.h
 Primitives/General/mapboxoptional.hpp
 ../Primitives/General/Primitives/General/mapboxoptional.hpp
+TypeTraits/Decay.hpp
+../Primitives/General/TypeTraits/Decay.hpp
 
 ../Primitives/General/Pair.h
 PostponedProductions/DataStructures/Pair.h
@@ -649,8 +687,8 @@ Definitions/Integer.hpp
 ../Primitives/General/Definitions/Integer.hpp
 Algorithms/CompileTimeOperations.hpp
 ../Primitives/General/Algorithms/CompileTimeOperations.hpp
-Definitions/Common.hpp
-../Primitives/General/Definitions/Common.hpp
+TypeTraits/Detection.hpp
+../Primitives/General/TypeTraits/Detection.hpp
 
 ../Primitives/General/Span.hpp
 Definitions/Integer.hpp
@@ -659,6 +697,8 @@ Definitions/Common.hpp
 ../Primitives/General/Definitions/Common.hpp
 TypeTraits/Iterable.h
 ../Primitives/General/TypeTraits/Iterable.h
+TypeTraits/Detection.hpp
+../Primitives/General/TypeTraits/Detection.hpp
 
 ../Primitives/General/StaticArray.hpp
 Definitions/Integer.hpp
@@ -669,6 +709,8 @@ Definitions/Common.hpp
 ../Primitives/General/Definitions/Common.hpp
 Algorithms/CompileTimeControlFlow.hpp
 ../Primitives/General/Algorithms/CompileTimeControlFlow.hpp
+TypeTraits/IsImmutable.h
+../Primitives/General/TypeTraits/IsImmutable.h
 
 ../Primitives/General/StringView.hpp
 string_view
@@ -821,6 +863,22 @@ TypeTraits/IsMemberPointer.hpp
 ../Reflection/TypeTraits/IsMemberPointer.hpp
 Primitives/General/mapboxvariant.hpp
 ../Reflection/Primitives/General/mapboxvariant.hpp
+TypeTraits/Iterable.h
+../Reflection/TypeTraits/Iterable.h
+Primitives/General/Pair.h
+../Reflection/Primitives/General/Pair.h
+Primitives/General/Span.hpp
+../Reflection/Primitives/General/Span.hpp
+TypeTraits/TypeList.hpp
+../Reflection/TypeTraits/TypeList.hpp
+TypeTraits/IsImmutable.h
+../Reflection/TypeTraits/IsImmutable.h
+Primitives/General/Context.h
+../Reflection/Primitives/General/Context.h
+Primitives/General/ContextualVariant.h
+../Reflection/Primitives/General/ContextualVariant.h
+Primitives/General/StringView.hpp
+../Reflection/Primitives/General/StringView.hpp
 
 ../Reflection/tagged_tuple.hpp
 Definitions/Common.hpp
@@ -863,6 +921,32 @@ RemoveCV.hpp
 ../TypeTraits/RemoveCV.hpp
 
 ../TypeTraits/Declval.hpp
+
+../TypeTraits/Detection.hpp
+IsSame.hpp
+../TypeTraits/IsSame.hpp
+IsVoid.hpp
+../TypeTraits/IsVoid.hpp
+IsClassType.hpp
+../TypeTraits/IsClassType.hpp
+IsConvertible.hpp
+../TypeTraits/IsConvertible.hpp
+Declval.hpp
+../TypeTraits/Declval.hpp
+Conditional.hpp
+../TypeTraits/Conditional.hpp
+EnableIf.hpp
+../TypeTraits/EnableIf.hpp
+Decay.hpp
+../TypeTraits/Decay.hpp
+IsSwappable.hpp
+../TypeTraits/IsSwappable.hpp
+VariadicPack.hpp
+../TypeTraits/VariadicPack.hpp
+IsPointer.hpp
+../TypeTraits/IsPointer.hpp
+IsDestructible.hpp
+../TypeTraits/IsDestructible.hpp
 
 ../TypeTraits/EnableIf.hpp
 
@@ -929,6 +1013,12 @@ IsBaseOf.hpp
 ../TypeTraits/IsBaseOf.hpp
 IsSwappable.hpp
 ../TypeTraits/IsSwappable.hpp
+Declval.hpp
+../TypeTraits/Declval.hpp
+IntegralConstant.hpp
+../TypeTraits/IntegralConstant.hpp
+
+../TypeTraits/IsConvertible.hpp
 
 ../TypeTraits/IsDestructible.hpp
 IsReference.hpp
@@ -953,6 +1043,8 @@ IsNullPtr.hpp
 ../TypeTraits/IsNullPtr.hpp
 IsConst.hpp
 ../TypeTraits/IsConst.hpp
+
+../TypeTraits/IsImmutable.h
 
 ../TypeTraits/IsIntegralType.hpp
 
@@ -1050,6 +1142,14 @@ TypeTraits/IsSame.hpp
 Definitions/Integer.hpp
 ../TypeTraits/Definitions/Integer.hpp
 
+../TypeTraits/VariadicPack.hpp
+Decay.hpp
+../TypeTraits/Decay.hpp
+Conditional.hpp
+../TypeTraits/Conditional.hpp
+TypeTraits/TypeList.hpp
+../TypeTraits/TypeTraits/TypeList.hpp
+
 ../TypeTraits/__two.hpp
 
 /home/phoenixflower/Documents/LandessDevCore/Examples/ReflectionDemoTypes.h
@@ -1085,6 +1185,12 @@ IO/DatabaseOperationResult.h
 /home/phoenixflower/Documents/LandessDevCore/Examples/IO/DatabaseOperationResult.h
 Primitives/General/Span.hpp
 /home/phoenixflower/Documents/LandessDevCore/Examples/Primitives/General/Span.hpp
+IO/UnqliteDatabaseBackend.h
+/home/phoenixflower/Documents/LandessDevCore/Examples/IO/UnqliteDatabaseBackend.h
+TypeTraits/IsClassType.hpp
+/home/phoenixflower/Documents/LandessDevCore/Examples/TypeTraits/IsClassType.hpp
+Algorithms/StringAsNumber.h
+/home/phoenixflower/Documents/LandessDevCore/Examples/Algorithms/StringAsNumber.h
 
 /home/phoenixflower/Documents/LandessDevCore/Examples/ReflectionExample.hpp
 

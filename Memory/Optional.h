@@ -566,7 +566,7 @@ namespace PDP
 
                 {
 
-                    construct_value( PDP::Move( v ) );
+                    construct_value( LD::Move( v ) );
 
                 }
 
@@ -575,7 +575,7 @@ namespace PDP
 
                 {
 
-                    ::new( value_ptr() ) value_type( PDP::Move( v ) );
+                    ::new( value_ptr() ) value_type( LD::Move( v ) );
 
                 }
 
@@ -799,7 +799,7 @@ namespace PDP
             {
 
                 if ( rhs.HasValue() )
-                    contained.construct_value( PDP::Move( rhs.contained.GetValue() ) );
+                    contained.construct_value( LD::Move( rhs.contained.GetValue() ) );
 
             }
 #endif
@@ -811,7 +811,7 @@ namespace PDP
 #if optional_CPP11_OR_GREATER
 
 
-            optional_constexpr Optional( value_type && value ): has_value_( true ), contained( PDP::Move( value ) )
+            optional_constexpr Optional( value_type && value ): has_value_( true ), contained( LD::Move( value ) )
             {}
 
 
@@ -870,8 +870,8 @@ namespace PDP
             {
 
                 if      ( HasValue() == true  && rhs.HasValue() == false ) reset();
-                else if ( HasValue() == false && rhs.HasValue() == true  ) initialize( PDP::Move( *rhs ) );
-                else if ( HasValue() == true  && rhs.HasValue() == true  ) contained.GetValue() = PDP::Move( *rhs );
+                else if ( HasValue() == false && rhs.HasValue() == true  ) initialize( LD::Move( *rhs ) );
+                else if ( HasValue() == true  && rhs.HasValue() == true  ) contained.GetValue() = LD::Move( *rhs );
                 return *this;
 
             }
@@ -977,7 +977,7 @@ namespace PDP
 
                 assert( HasValue() );
 
-                return PDP::Move( contained.GetValue() );
+                return LD::Move( contained.GetValue() );
 
             }
 
@@ -987,7 +987,7 @@ namespace PDP
             {
 
                 assert( HasValue() );
-                return PDP::Move( contained.GetValue() );
+                return LD::Move( contained.GetValue() );
 
             }
 
@@ -1059,7 +1059,7 @@ namespace PDP
                     throw bad_optional_access();
 
 
-                return PDP::Move( contained.GetValue() );
+                return LD::Move( contained.GetValue() );
 
             }
 
@@ -1072,7 +1072,7 @@ namespace PDP
                     throw bad_optional_access();
 
 
-                return PDP::Move( contained.GetValue() );
+                return LD::Move( contained.GetValue() );
 
             }
 
@@ -1098,7 +1098,7 @@ namespace PDP
 
             {
 
-                return HasValue() ? PDP::Move( contained.GetValue() ) : static_cast<T>(std::forward<U>( v ) );
+                return HasValue() ? LD::Move( contained.GetValue() ) : static_cast<T>(std::forward<U>( v ) );
 
             }
 
@@ -1160,7 +1160,7 @@ namespace PDP
 
                 assert( ! HasValue()  );
 
-                contained.construct_value( PDP::Move( value ) );
+                contained.construct_value( LD::Move( value ) );
 
                 has_value_ = true;
 

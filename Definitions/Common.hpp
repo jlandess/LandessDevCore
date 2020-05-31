@@ -9,7 +9,7 @@
 #ifndef DataStructures_CommonAlgorithms_h
 #define DataStructures_CommonAlgorithms_h
 
-#include <climits>
+//#include <climits>
 #include "Float.hpp"
 #include "Integer.hpp"
 #include "TypeTraits/RemoveReference.hpp"
@@ -44,7 +44,10 @@
 #include "TypeTraits/IsBaseOf.hpp"
 #include "TypeTraits/IsSwappable.hpp"
 #include "TypeTraits/IsConstructible.hpp"
+#include "TypeTraits/IsConvertible.hpp"
+#include "TypeTraits/VariadicPack.hpp"
 
+/*
 #ifndef _LIBCPP_STD_VER
 #  if  __cplusplus <= 201103L
 #    define _LIBCPP_STD_VER 11
@@ -70,13 +73,15 @@
 
 #define MAXIMUM_FLOAT_DECIMAL_POINTS 23
 #define MAXIMUM_DOUBLE_DECIMAL_POINTS 56
+ */
+
 namespace PDP
 {
 
 
 
 
-
+/*
 
 #if !defined(SIMDPP_ARCH_X86_SSE2) && !defined(PDP_SIMD_X86_SSE3) && !defined(PDP_SIMD_X86_SSE4_1) && !defined(PDP_SIMD_X86_AVX) && !defined(PDP_SIMD_X86_AVX2) && !defined(PDP_SIMD_X86_FMA3) && !defined(PDP_SIMD_X86_FMA4) && !defined(PDP_SIMD_X86_XOP) && !defined(PDP_SIMD_X86_ARM_NEON) && !defined(PDP_SIMD_NEON_FLT_SP) && !defined(PDP_SIMD_POWER_ALTIVEC)
 #define PDP_SIMD_NONE
@@ -162,16 +167,18 @@ namespace PDP
 
     };
 #endif
-
+*/
+/*
     template <bool, class _Tp = void> struct  EnableIf {};
     template <class _Tp> struct  EnableIf<true, _Tp> {typedef _Tp type;};
 
 #if _LIBCPP_STD_VER > 11
     template <bool _Bp, class _Tp = void> using Enable_If_T = typename EnableIf<_Bp, _Tp>::type;
 #endif
+ */
 
 
-
+/*
 template <class _Tp> struct  IsVolatile               : public LD::FalseType {};
 template <class _Tp> struct  IsVolatile<_Tp volatile> : public LD::TrueType {};
 
@@ -185,7 +192,8 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
 #if _LIBCPP_STD_VER > 11
     template <class First, class Second> using IsSame_V = typename IsSame<First,Second>::value;
 #endif
-
+*/
+    /*
 
     template<class _Ty>
     struct _Remove_reference
@@ -231,6 +239,7 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
 
 
 
+    /*
     namespace Detail
     {
         template <class F, class... Args>
@@ -280,11 +289,12 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         using type = decltype(Detail::INVOKE(Declval<F>(),Declval<ArgTypes>()...));
     };
 
-
+/*
 #if _LIBCPP_STD_VER > 11
     template <class F, class... ArgTypes> using ResultOf_T = typename ResultOf<F(ArgTypes...)>::type;
 #endif
-
+ */
+/*
     enum TreeTraversal{ePreOrder,eInOrder,ePostOrder,eReverseOrder,eLevel,eBreadthFirst};
     enum HeapType{eMaxHeap = 0, eMinHeap = 1};
     enum LinearTraveral{eFoward,eBackward};
@@ -299,12 +309,14 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
     {
         return (integer<0)?integer*-1:integer;
     }
+    */
 /*
     inline UInteger Max( UInteger lhs, UInteger rhs )
     {
         return lhs > rhs ? lhs : rhs;
     }
  */
+/*
     template<typename T> class MaximumDecimalPlaces
     {
     public:
@@ -331,7 +343,8 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         }
     };
 
-
+*/
+    /*
     template<typename T>
     class Limit;
 
@@ -544,6 +557,9 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
             return 1.7976931348623157E+308;
         }
     };
+     */
+
+    /*
     inline bool IsNan(const float & f)
     {
         const unsigned int u = *(unsigned int*)&f;
@@ -646,9 +662,11 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
 
         return y;
     }
+     */
 
 
 
+    /*
     template <LD::UInteger N, LD::UInteger base=2>
     struct CompileTimeLog
     {
@@ -733,12 +751,14 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
     template<LD::UInteger Size, LD::UInteger Alignment> using CompileTimeAlignmentSize_V = typename CompileTimeAlignmentSize<Size,Alignment>::value;
 
 
+     */
 
 
 
 
 
 
+    /*
     template<typename T>
     struct IsCharacter
     {
@@ -755,8 +775,10 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
 
 
     template<typename T> using IsCharacter_V = typename IsCharacter<T>::value;
+     */
 
 
+    /*
     template<typename T>
     struct IsUnsignedCharacter
     {
@@ -772,8 +794,10 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
 
 
     template<typename T> using IsUnsignedCharacter_V = typename IsUnsignedCharacter<T>::value;
+     */
 
 
+    /*
     template<typename T>
     struct Is16BitInteger
     {
@@ -789,8 +813,10 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
 
 
     template<typename T> using Is16BitInteger_V = typename Is16BitInteger<T>::value;
+     */
 
 
+    /*
     template<typename T>
     struct Is16Extended32BitInteger
     {
@@ -927,6 +953,7 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
 
     template<typename T> using IsUnsigned64Bit32BitExtended_V = typename IsUnsigned64Bit32BitExtended<T>::value;
 
+    /*
     template<typename T>
     struct Is64Bit64BitExtended
     {
@@ -940,7 +967,9 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
     };
 
     template<typename T> using Is64Bit64BitExtended_V = typename Is64Bit64BitExtended<T>::value;
+     */
 
+    /*
     template<typename T>
     struct IsUnsigned64Bit64BitExtended
     {
@@ -955,7 +984,9 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
 
     template<typename T> using IsUnsigned64Bit64BitExtended_V = typename IsUnsigned64Bit64BitExtended<T>::value;
 
+     */
 
+    /*
     template<typename T>
     struct Is64Bit64Bit32BitExtended
     {
@@ -981,7 +1012,9 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
     };
 
     template<typename T> using IsUnsigned64Bit64Bit32BitExtended_V = typename IsUnsigned64Bit64Bit32BitExtended<T>::value;
+     */
 
+    /*
     template<typename T>
     struct IsBoolean
     {
@@ -996,8 +1029,10 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
 
 
     template<typename T> using IsBoolean_V = typename IsBoolean<T>::value;
+     */
 
 
+    /*
     template<typename T>
     struct IsDouble
     {
@@ -1020,10 +1055,12 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         static const bool value = false;
     };
 
+     */
 
 
 
 
+    /*
     template<>
     struct IsFloat<float>
     {
@@ -1046,8 +1083,10 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
     };
 
     template<typename T> using IsDoubleExtended64Bit_V = typename IsDoubleExtended64Bit<T>::value;
+     */
 
 
+    /*
     template<typename T>
     struct IsIntegrelType
     {
@@ -1061,7 +1100,9 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
                                   Is64Bit64Bit32BitExtended<T>::value || IsUnsigned64Bit64Bit32BitExtended<T>::value ||
                                   IsBoolean<T>::value || IsDouble<T>::value || IsFloat<T>::value || IsDoubleExtended64Bit<T>::value;
     };
+     */
 
+    /*
     template<typename T>
     struct IsInteger
     {
@@ -1070,19 +1111,25 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
                                   Is64Bit32BitExtended<T>::value||Is64Bit64BitExtended<T>::value||
                                   Is64Bit64Bit32BitExtended<T>::value;
     };
+     */
 
+    /*
     template<typename T>
     struct Is32BitSignedInteger
     {
         static const bool value = Is32BitInteger<T>::value;
     };
+     */
 
+    /*
     template<typename T>
     struct Is16BitSignedInteger
     {
         static const bool value = Is16BitInteger<T>::value||Is16Extended32BitInteger<T>::value;
     };
+     */
 
+    /*
     template<typename T>
     struct Is64BitSignedInteger
     {
@@ -1090,8 +1137,10 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
                                   Is64Bit32BitExtended<T>::value||Is64Bit64BitExtended<T>::value||
                                   Is64Bit64Bit32BitExtended<T>::value;
     };
+     */
 
 
+    /*
     template<typename T>
     struct IsFloatingPoint
     {
@@ -1128,16 +1177,17 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
                                  IsUnsigned32BitInteger<T>::value;
     };
 
+
     template<typename T>
     struct Is64BitUnsignedInteger
     {
         static const bool value =IsUnsigned64BitInteger<T>::value || IsUnsigned64Bit32BitExtended<T>::value||
                                  IsUnsigned64Bit64BitExtended<T>::value || IsUnsigned64Bit64Bit32BitExtended<T>::value;
     };
+*/
+    //template<typename T> using IsIntegrelType_T = typename IsIntegrelType<T>::value;
 
-    template<typename T> using IsIntegrelType_T = typename IsIntegrelType<T>::value;
-
-
+/*
     template<typename T>
     struct IsPrimitiveType
     {
@@ -1154,14 +1204,18 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
 
 
     template<typename T> using IsPrimitiveType_V = typename IsPrimitiveType<T>::value;
+    */
 
+    /*
     template <typename B, typename D>
     struct Host
     {
         operator B*() const;
         operator D*();
     };
+     */
 
+    /*
     template <typename B, typename D>
     struct IsBaseOf
     {
@@ -1177,6 +1231,7 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
 
 
     template<typename B, typename D>  using IsBaseOf_V = typename IsBaseOf<B,D>::value;
+     */
 
 
 
@@ -1193,6 +1248,7 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
 
 
 
+    /*
     template<typename B, typename D>
     class IsKindOf
     {
@@ -1202,6 +1258,9 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
 
 
     template<typename B, typename D>  using IsKindOf_V = typename IsKindOf<B,D>::value;
+     */
+
+    /*
     template<typename T>
     struct IsClassType
     {
@@ -1210,8 +1269,10 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
 
     //template <bool _Bp, class _Tp = void> using Enable_If_T = typename EnableIf<_Bp, _Tp>::type;
     template<typename T> using IsClassType_V = typename IsClassType<T>::value;
+     */
 
 
+    /*
     template <typename T>
     struct HasFractionalTypeDefinition
     {
@@ -1232,8 +1293,10 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
     };
 
     template<typename T> using HasFractionalTypeDefinition_V = typename HasFractionalTypeDefinition<T>::value;
+     */
 
 
+    /*
     template <typename T>
     struct HasComparisonEqualOperand
     {
@@ -1254,18 +1317,20 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<const bool (C::*)(const C & a), (&C::operator==)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<const bool (C::*)(const C & a) const, (&C::operator==)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<const bool (C::*)(const C & a), (&C::operator==)>* ) { }
+        template <typename C> static yes& test(reallyHas<const bool (C::*)(const C & a) const, (&C::operator==)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) { }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
         static const bool value = (sizeof(test<T>(0)) == sizeof(yes) || PDP::IsPrimitiveType<T>::value);
     };
+     */
 
+    /*
     template <typename T, typename V>
     struct HasComparisonEqualOperandPair
     {
@@ -1286,18 +1351,20 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<const bool (C::*)(const V & a), (&C::operator==)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<const bool (C::*)(const V & a) const, (&C::operator==)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<const bool (C::*)(const V & a), (&C::operator==)>* ) { }
+        template <typename C> static yes& test(reallyHas<const bool (C::*)(const V & a) const, (&C::operator==)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) { }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
         static const bool value = (sizeof(test<T>(0)) == sizeof(yes) || PDP::IsPrimitiveType<T>::value);
     };
+     */
 
+    /*
     template<typename T, typename V>
     struct HasComparisonEqualOperandPair<T, V*>
     {
@@ -1318,12 +1385,12 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<const bool (C::*)(V * a), (&C::operator==)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<const bool (C::*)(V * a) const, (&C::operator==)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<const bool (C::*)(V * a), (&C::operator==)>* ) { }
+        template <typename C> static yes& test(reallyHas<const bool (C::*)(V * a) const, (&C::operator==)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) { }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
@@ -1331,7 +1398,9 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
     };
 
     template<typename T> using HasComparisonEqualOperand_V = typename HasComparisonEqualOperand<T>::value;
+     */
 
+    /*
     template<typename T>
     struct HasComparisonNotEqualOperand
     {
@@ -1352,18 +1421,20 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<const bool (C::*)(const C & a), (&C::operator!=)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<const bool (C::*)(const C & a) const, (&C::operator!=)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<const bool (C::*)(const C & a), (&C::operator!=)>* ) { }
+        template <typename C> static yes& test(reallyHas<const bool (C::*)(const C & a) const, (&C::operator!=)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) { }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
         static const bool value = (sizeof(test<T>(0)) == sizeof(yes) || PDP::IsPrimitiveType<T>::value);
     };
 
+     */
+    /*
     template<typename T, typename V>
     struct HasComparisonNotEqualOperandPair
     {
@@ -1384,12 +1455,12 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<const bool (C::*)(const V & a), (&C::operator!=)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<const bool (C::*)(const V & a) const, (&C::operator!=)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<const bool (C::*)(const V & a), (&C::operator!=)>* ) { }
+        template <typename C> static yes& test(reallyHas<const bool (C::*)(const V & a) const, (&C::operator!=)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) { }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
@@ -1398,8 +1469,10 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
 
     template<typename T> using HasComparisonNotEqualOperand_V = typename HasComparisonNotEqualOperand<T>::value;
 
+     */
 
 
+    /*
     template<typename T>
     struct HasComparisonGreaterThanOperand
     {
@@ -1420,19 +1493,21 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<const bool (C::*)(const C & a), (&C::operator>)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<const bool (C::*)(const C & a) const, (&C::operator>)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<const bool (C::*)(const C & a), (&C::operator>)>* ) { }
+        template <typename C> static yes& test(reallyHas<const bool (C::*)(const C & a) const, (&C::operator>)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) {  }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
         static const bool value = (sizeof(test<T>(0)) == sizeof(yes) || PDP::IsPrimitiveType<T>::value);
     };
+     */
 
 
+    /*
     template<typename T, typename V>
     struct HasComparisonGreaterThanOperandPair
     {
@@ -1453,12 +1528,12 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<const bool (C::*)(const V & a), (&C::operator>)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<const bool (C::*)(const V & a) const, (&C::operator>)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<const bool (C::*)(const V & a), (&C::operator>)>* ) { }
+        template <typename C> static yes& test(reallyHas<const bool (C::*)(const V & a) const, (&C::operator>)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) {  }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
@@ -1466,7 +1541,9 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
     };
 
     template<typename T> using HasComparisonGreaterThanOperand_V = typename HasComparisonGreaterThanOperand<T>::value;
+     */
 
+    /*
     template<typename T>
     struct HasComparisonGreaterThanEqualOperand
     {
@@ -1487,18 +1564,20 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<const bool (C::*)(const C & a), (&C::operator>=)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<const bool (C::*)(const C & a) const, (&C::operator>=)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<const bool (C::*)(const C & a), (&C::operator>=)>* ) { }
+        template <typename C> static yes& test(reallyHas<const bool (C::*)(const C & a) const, (&C::operator>=)>*) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) { / }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
         static const bool value = (sizeof(test<T>(0)) == sizeof(yes) || PDP::IsPrimitiveType<T>::value);
     };
+     */
 
+    /*
     template<typename T, typename V>
     struct HasComparisonGreaterThanEqualOperandPair
     {
@@ -1519,12 +1598,12 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<const bool (C::*)(const V & a), (&C::operator>=)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<const bool (C::*)(const V & a) const, (&C::operator>=)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<const bool (C::*)(const V & a), (&C::operator>=)>* ) { }
+        template <typename C> static yes& test(reallyHas<const bool (C::*)(const V & a) const, (&C::operator>=)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) {  }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
@@ -1533,7 +1612,9 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
 
 
     template<typename T> using HasComparisonGreaterThanEqualOperand_V = typename HasComparisonGreaterThanEqualOperand<T>::value;
+     */
 
+    /*
     template<typename T>
     struct HasComparisonLessThanOperand
     {
@@ -1554,18 +1635,20 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<const bool (C::*)(const C & a), (&C::operator<)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<const bool (C::*)(const C & a) const, (&C::operator<)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<const bool (C::*)(const C & a), (&C::operator<)>* ) { }
+        template <typename C> static yes& test(reallyHas<const bool (C::*)(const C & a) const, (&C::operator<)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) { }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
         static const bool value = (sizeof(test<T>(0)) == sizeof(yes) || PDP::IsPrimitiveType<T>::value);
     };
+     */
 
+    /*
     template<typename T, typename V>
     struct HasComparisonLessThanOperandPair
     {
@@ -1586,12 +1669,12 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<const bool (C::*)(const V & a), (&C::operator<)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<const bool (C::*)(const V & a) const, (&C::operator<)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<const bool (C::*)(const V & a), (&C::operator<)>* ) { }
+        template <typename C> static yes& test(reallyHas<const bool (C::*)(const V & a) const, (&C::operator<)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) {  }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
@@ -1599,8 +1682,10 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
     };
 
     template<typename T> using HasComparisonLessThanOperand_V = typename HasComparisonLessThanOperand<T>::value;
+     */
 
 
+    /*
     template<typename T>
     struct HasComparisonLessThanEqualOperand
     {
@@ -1621,18 +1706,20 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<const bool (C::*)(const C & a), (&C::operator<=)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<const bool (C::*)(const C & a) const, (&C::operator<=)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<const bool (C::*)(const C & a), (&C::operator<=)>* ) { }
+        template <typename C> static yes& test(reallyHas<const bool (C::*)(const C & a) const, (&C::operator<=)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) {  }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
         static const bool value = (sizeof(test<T>(0)) == sizeof(yes) || PDP::IsPrimitiveType<T>::value);
     };
+     */
 
+    /*
     template<typename T, typename V>
     struct HasComparisonLessThanEqualOperandPair
     {
@@ -1653,12 +1740,12 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<const bool (C::*)(const V & a), (&C::operator<=)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<const bool (C::*)(const V & a) const, (&C::operator<=)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<const bool (C::*)(const V & a), (&C::operator<=)>* ) { }
+        template <typename C> static yes& test(reallyHas<const bool (C::*)(const V & a) const, (&C::operator<=)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) { }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
@@ -1666,7 +1753,9 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
     };
 
     template<typename T> using HasComparisonLessThanEqualOperand_V = typename HasComparisonLessThanEqualOperand<T>::value;
+     */
 
+    /*
     template <typename T>
     struct HasAdditionOperand
     {
@@ -1687,19 +1776,21 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<C (C::*)(const C & a), (&C::operator+)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<C (C::*)(const C & a) const, (&C::operator+)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<C (C::*)(const C & a), (&C::operator+)>* ) { }
+        template <typename C> static yes& test(reallyHas<C (C::*)(const C & a) const, (&C::operator+)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) {  }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
         static const bool value = (sizeof(test<T>(0)) == sizeof(yes) || PDP::IsPrimitiveType<T>::value);
     };
+     */
 
 
+    /*
     template <typename T, typename V>
     struct HasAdditionOperandPair
     {
@@ -1720,12 +1811,12 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<C (C::*)(const V & a), (&C::operator+)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<C (C::*)(const V & a) const, (&C::operator+)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<C (C::*)(const V & a), (&C::operator+)>* ) { }
+        template <typename C> static yes& test(reallyHas<C (C::*)(const V & a) const, (&C::operator+)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) { }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
@@ -1733,8 +1824,10 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
     };
 
     template<typename T> using HasAdditionOperand_V = typename HasAdditionOperand<T>::value;
+     */
 
 
+    /*
     template <typename T>
     struct HasCompoundAdditionOperand
     {
@@ -1755,18 +1848,20 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<C & (C::*)(const C & a), (&C::operator+=)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<C & (C::*)(const C & a) const, (&C::operator+=)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<C & (C::*)(const C & a), (&C::operator+=)>* ) { }
+        template <typename C> static yes& test(reallyHas<C & (C::*)(const C & a) const, (&C::operator+=)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) {  }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
         static const bool value = (sizeof(test<T>(0)) == sizeof(yes) || PDP::IsPrimitiveType<T>::value);
     };
+     */
 
+    /*
     template <typename T, typename V>
     struct HasCompoundAdditionOperandPair
     {
@@ -1787,12 +1882,12 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<C & (C::*)(const V & a), (&C::operator+=)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<C & (C::*)(const V & a) const, (&C::operator+=)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<C & (C::*)(const V & a), (&C::operator+=)>* ) { }
+        template <typename C> static yes& test(reallyHas<C & (C::*)(const V & a) const, (&C::operator+=)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) {  }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
@@ -1801,7 +1896,9 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
 
 
     template<typename T> using HasCompoundAdditionOperand_V = typename HasCompoundAdditionOperand<T>::value;
+     */
 
+    /*
     template <typename T>
     struct HasSubtractionOperand
     {
@@ -1822,19 +1919,21 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<C (C::*)(const C & a), (&C::operator-)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<C (C::*)(const C & a) const, (&C::operator-)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<C (C::*)(const C & a), (&C::operator-)>* ) { }
+        template <typename C> static yes& test(reallyHas<C (C::*)(const C & a) const, (&C::operator-)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) { }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
         static const bool value = (sizeof(test<T>(0)) == sizeof(yes) || PDP::IsPrimitiveType<T>::value);
     };
 
+     */
 
+    /*
     template <typename T, typename V>
     struct HasSubtractionOperandPair
     {
@@ -1855,12 +1954,12 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<C (C::*)(const V & a), (&C::operator-)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<C (C::*)(const V & a) const, (&C::operator-)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<C (C::*)(const V & a), (&C::operator-)>* ) { }
+        template <typename C> static yes& test(reallyHas<C (C::*)(const V & a) const, (&C::operator-)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) {  }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
@@ -1868,8 +1967,10 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
     };
 
     template<typename T> using HasSubtractionOperand_V = typename HasSubtractionOperand<T>::value;
+     */
 
 
+    /*
     template <typename T>
     struct HasCompoundSubtractionOperand
     {
@@ -1890,19 +1991,21 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<C & (C::*)(const C & a), (&C::operator-=)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<C & (C::*)(const C & a) const, (&C::operator-=)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<C & (C::*)(const C & a), (&C::operator-=)>* ) { }
+        template <typename C> static yes& test(reallyHas<C & (C::*)(const C & a) const, (&C::operator-=)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) { }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
         static const bool value = (sizeof(test<T>(0)) == sizeof(yes) || PDP::IsPrimitiveType<T>::value);
     };
 
+     */
 
+    /*
     template <typename T, typename V>
     struct HasCompoundSubtractionOperandPair
     {
@@ -1923,12 +2026,12 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<C & (C::*)(const V & a), (&C::operator-=)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<C & (C::*)(const V & a) const, (&C::operator-=)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<C & (C::*)(const V & a), (&C::operator-=)>* ) { }
+        template <typename C> static yes& test(reallyHas<C & (C::*)(const V & a) const, (&C::operator-=)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) {  }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
@@ -1936,8 +2039,10 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
     };
 
     template<typename T> using HasCompoundSubtractionOperand_V = typename HasCompoundSubtractionOperand<T>::value;
+     */
 
 
+    /*
     template <typename T>
     struct HasMultiplicationOperand
     {
@@ -1958,19 +2063,21 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<C (C::*)(const C & a), (&C::operator*)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<C (C::*)(const C & a) const, (&C::operator*)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<C (C::*)(const C & a), (&C::operator*)>* ) { }
+        template <typename C> static yes& test(reallyHas<C (C::*)(const C & a) const, (&C::operator*)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) { }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
         static const bool value = (sizeof(test<T>(0)) == sizeof(yes) || PDP::IsPrimitiveType<T>::value);
     };
+     */
 
 
+    /*
     template <typename T, typename V>
     struct HasMultiplicationOperandPair
     {
@@ -1991,12 +2098,12 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<C (C::*)(const V & a), (&C::operator*)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<C (C::*)(const V & a) const, (&C::operator*)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<C (C::*)(const V & a), (&C::operator*)>* ) { }
+        template <typename C> static yes& test(reallyHas<C (C::*)(const V & a) const, (&C::operator*)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) { }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
@@ -2004,8 +2111,10 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
     };
 
     template<typename T> using HasMultiplicationOperand_V = typename HasMultiplicationOperand<T>::value;
+     */
 
 
+    /*
     template <typename T>
     struct HasCompoundMultiplicationOperand
     {
@@ -2026,19 +2135,21 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<C & (C::*)(const C & a), (&C::operator*=)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<C & (C::*)(const C & a) const, (&C::operator*=)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<C & (C::*)(const C & a), (&C::operator*=)>* ) { }
+        template <typename C> static yes& test(reallyHas<C & (C::*)(const C & a) const, (&C::operator*=)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) { }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
         static const bool value = (sizeof(test<T>(0)) == sizeof(yes) || PDP::IsPrimitiveType<T>::value);
     };
+     */
 
 
+    /*
     template <typename T, typename V>
     struct HasCompoundMultiplicationOperandPair
     {
@@ -2059,12 +2170,12 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<C & (C::*)(const V & a), (&C::operator*=)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<C & (C::*)(const V & a) const, (&C::operator*=)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<C & (C::*)(const V & a), (&C::operator*=)>* ) { }
+        template <typename C> static yes& test(reallyHas<C & (C::*)(const V & a) const, (&C::operator*=)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) {  }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
@@ -2072,7 +2183,9 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
     };
 
     template<typename T> using HasCompoundMultiplicationOperand_V = typename HasCompoundMultiplicationOperand<T>::value;
+     */
 
+    /*
     template <typename T>
     struct HasDivisionOperand
     {
@@ -2093,18 +2206,20 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<C (C::*)(const C & a), (&C::operator/)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<C (C::*)(const C & a) const, (&C::operator/)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<C (C::*)(const C & a), (&C::operator/)>* ) { }
+        template <typename C> static yes& test(reallyHas<C (C::*)(const C & a) const, (&C::operator/)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) { }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
         static const bool value = (sizeof(test<T>(0)) == sizeof(yes) || PDP::IsPrimitiveType<T>::value);
     };
 
+     */
+    /*
     template <typename T, typename V>
     struct HasDivisionOperandPair
     {
@@ -2125,12 +2240,12 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<C (C::*)(const V & a), (&C::operator/)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<C (C::*)(const V & a) const, (&C::operator/)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<C (C::*)(const V & a), (&C::operator/)>* ) { }
+        template <typename C> static yes& test(reallyHas<C (C::*)(const V & a) const, (&C::operator/)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) {  }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
@@ -2138,8 +2253,10 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
     };
 
     template<typename T> using HasDivisionOperand_V = typename HasDivisionOperand<T>::value;
+     */
 
 
+    /*
     template <typename T>
     struct HasCompoundDivisionOperand
     {
@@ -2160,19 +2277,21 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<C & (C::*)(const C & a), (&C::operator/=)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<C & (C::*)(const C & a) const, (&C::operator/=)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<C & (C::*)(const C & a), (&C::operator/=)>* ) { }
+        template <typename C> static yes& test(reallyHas<C & (C::*)(const C & a) const, (&C::operator/=)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) { }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
         static const bool value = (sizeof(test<T>(0)) == sizeof(yes) || PDP::IsPrimitiveType<T>::value);
     };
+     */
 
 
+    /*
     template <typename T, typename V>
     struct HasCompoundDivisionOperandPair
     {
@@ -2193,12 +2312,12 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<C & (C::*)(const V & a), (&C::operator/=)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<C & (C::*)(const V & a) const, (&C::operator/=)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<C & (C::*)(const V & a), (&C::operator/=)>* ) { }
+        template <typename C> static yes& test(reallyHas<C & (C::*)(const V & a) const, (&C::operator/=)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) { }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
@@ -2206,8 +2325,10 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
     };
 
     template<typename T> using HasCompoundDivisionOperand_V = typename HasCompoundDivisionOperand<T>::value;
+     */
 
     //|| (PDP::IsIntegrelType<T>::value && !PDP::IsFloat<T>::value && !PDP::IsDoubleExtended64Bit<T>::value && !PDP::IsDouble<T>::value)
+    /*
     template <typename T>
     struct HasModulusOperand
     {
@@ -2228,18 +2349,20 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<C (C::*)(const C & a), (&C::operator%)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<C  (C::*)(const C & a) const, (&C::operator%)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<C (C::*)(const C & a), (&C::operator%)>* ) { }
+        template <typename C> static yes& test(reallyHas<C  (C::*)(const C & a) const, (&C::operator%)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) { }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
         static const bool value = (sizeof(test<T>(0)) == sizeof(yes) ||(PDP::IsPrimitiveType<T>::value && !PDP::IsFloat<T>::value && !PDP::IsDouble<T>::value && ~PDP::IsDoubleExtended64Bit<T>::value));
     };
+     */
 
+    /*
     template <typename T, typename V>
     struct HasModulusOperandPair
     {
@@ -2260,12 +2383,12 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<C (C::*)(const V & a), (&C::operator%)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<C  (C::*)(const V & a) const, (&C::operator%)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<C (C::*)(const V & a), (&C::operator%)>* ) { }
+        template <typename C> static yes& test(reallyHas<C  (C::*)(const V & a) const, (&C::operator%)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) {  }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
@@ -2273,8 +2396,10 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
     };
 
     template<typename T> using HasModulusOperand_V = typename HasModulusOperand<T>::value;
+     */
 
 
+    /*
     template <typename T>
     struct HasCompoundModulusOperand
     {
@@ -2295,19 +2420,21 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<C & (C::*)(const C & a), (&C::operator%=)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<C & (C::*)(const C & a) const, (&C::operator%=)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<C & (C::*)(const C & a), (&C::operator%=)>* ) { }
+        template <typename C> static yes& test(reallyHas<C & (C::*)(const C & a) const, (&C::operator%=)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) { }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
         static const bool value = (sizeof(test<T>(0)) == sizeof(yes) ||(PDP::IsPrimitiveType<T>::value && !PDP::IsFloat<T>::value && !PDP::IsDouble<T>::value && ~PDP::IsDoubleExtended64Bit<T>::value));
     };
+     */
 
 
+    /*
     template <typename T, typename V>
     struct HasCompoundModulusOperandPair
     {
@@ -2328,12 +2455,12 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<C & (C::*)(const V & a), (&C::operator%=)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<C & (C::*)(const V & a) const, (&C::operator%=)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<C & (C::*)(const V & a), (&C::operator%=)>* ) { }
+        template <typename C> static yes& test(reallyHas<C & (C::*)(const V & a) const, (&C::operator%=)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) {  }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
@@ -2341,7 +2468,9 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
     };
 
     template<typename T> using HasCompoundModulusOperand_V = typename HasCompoundModulusOperand<T>::value;
+     */
 
+    /*
     template<typename T>
     struct HasBitWiseNotOperand
     {
@@ -2362,18 +2491,20 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<C  (C::*)(const C & a), (&C::operator!)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<C  (C::*)(const C & a) const, (&C::operator!)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<C  (C::*)(const C & a), (&C::operator!)>* ) { }
+        template <typename C> static yes& test(reallyHas<C  (C::*)(const C & a) const, (&C::operator!)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) { }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
         static const bool value = (sizeof(test<T>(0)) == sizeof(yes) ||(PDP::IsPrimitiveType<T>::value && !PDP::IsFloat<T>::value && !PDP::IsDouble<T>::value && ~PDP::IsDoubleExtended64Bit<T>::value));
     };
+     */
 
+    /*
     template<typename T, typename V>
     struct HasBitWiseNotOperandPair
     {
@@ -2394,12 +2525,12 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<C  (C::*)(const V & a), (&C::operator!)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<C  (C::*)(const V & a) const, (&C::operator!)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<C  (C::*)(const V & a), (&C::operator!)>* ) { }
+        template <typename C> static yes& test(reallyHas<C  (C::*)(const V & a) const, (&C::operator!)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) {  }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
@@ -2407,7 +2538,9 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
     };
 
     template<typename T> using HasBitWiseNotOperand_V = typename HasBitWiseNotOperand<T>::value;
+     */
 
+    /*
     template<typename T>
     struct HasBitWiseAndOperand
     {
@@ -2428,19 +2561,21 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<C  (C::*)(const C & a), (&C::operator&)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<C  (C::*)(const C & a) const, (&C::operator&)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<C  (C::*)(const C & a), (&C::operator&)>* ) { }
+        template <typename C> static yes& test(reallyHas<C  (C::*)(const C & a) const, (&C::operator&)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) {  }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
         static const bool value = (sizeof(test<T>(0)) == sizeof(yes) || PDP::IsPrimitiveType<T>::value);
     };
+     */
 
 
+    /*
     template<typename T, typename V>
     struct HasBitWiseAndOperandPair
     {
@@ -2461,12 +2596,12 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<C  (C::*)(const V & a), (&C::operator&)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<C  (C::*)(const V & a) const, (&C::operator&)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<C  (C::*)(const V & a), (&C::operator&)>* ) { }
+        template <typename C> static yes& test(reallyHas<C  (C::*)(const V & a) const, (&C::operator&)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) {  }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
@@ -2474,7 +2609,9 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
     };
 
     template<typename T> using HasBitWiseAndOperand_V = typename HasBitWiseAndOperand<T>::value;
+     */
 
+    /*
     template<typename T>
     struct HasCompoundBitWiseAndOperand
     {
@@ -2495,19 +2632,21 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<C &  (C::*)(const C & a), (&C::operator&=)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<C & (C::*)(const C & a) const, (&C::operator&=)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<C &  (C::*)(const C & a), (&C::operator&=)>* ) { }
+        template <typename C> static yes& test(reallyHas<C & (C::*)(const C & a) const, (&C::operator&=)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) { }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
         static const bool value = (sizeof(test<T>(0)) == sizeof(yes) || PDP::IsPrimitiveType<T>::value);
     };
+     */
 
 
+    /*
     template<typename T, typename V>
     struct HasCompoundBitWiseAndOperandPair
     {
@@ -2528,19 +2667,21 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<C &  (C::*)(const V & a), (&C::operator&=)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<C & (C::*)(const V & a) const, (&C::operator&=)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<C &  (C::*)(const V & a), (&C::operator&=)>* ) { }
+        template <typename C> static yes& test(reallyHas<C & (C::*)(const V & a) const, (&C::operator&=)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) {  }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
         static const bool value = (sizeof(test<T>(0)) == sizeof(yes) || PDP::IsPrimitiveType<T>::value);
     };
     template<typename T> using HasCompoundBitWiseAndOperand_V = typename HasCompoundBitWiseAndOperand<T>::value;
+     */
 
+    /*
     template<typename T>
     struct HasBitWiseOrOperand
     {
@@ -2561,18 +2702,20 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<C   (C::*)(const C & a), (&C::operator|)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<C  (C::*)(const C & a) const, (&C::operator|)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<C   (C::*)(const C & a), (&C::operator|)>* ) { }
+        template <typename C> static yes& test(reallyHas<C  (C::*)(const C & a) const, (&C::operator|)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) {  }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
         static const bool value = (sizeof(test<T>(0)) == sizeof(yes) || PDP::IsPrimitiveType<T>::value);
     };
 
+     */
+    /*
     template<typename T, typename V>
     struct HasBitWiseOrOperandPair
     {
@@ -2593,12 +2736,12 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<C   (C::*)(const V & a), (&C::operator|)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<C  (C::*)(const V & a) const, (&C::operator|)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<C   (C::*)(const V & a), (&C::operator|)>* ) { }
+        template <typename C> static yes& test(reallyHas<C  (C::*)(const V & a) const, (&C::operator|)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) {  }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
@@ -2606,7 +2749,9 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
     };
 
     template<typename T> using HasBitWiseOrOperand_V = typename HasBitWiseOrOperand<T>::value;
+     */
 
+    /*
     template<typename T>
     struct HasCompoundBitWiseOrOperand
     {
@@ -2627,19 +2772,21 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<C &   (C::*)(const C & a), (&C::operator|=)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<C & (C::*)(const C & a) const, (&C::operator|=)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<C &   (C::*)(const C & a), (&C::operator|=)>* ) { }
+        template <typename C> static yes& test(reallyHas<C & (C::*)(const C & a) const, (&C::operator|=)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) {  }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
         static const bool value = (sizeof(test<T>(0)) == sizeof(yes) || PDP::IsPrimitiveType<T>::value);
     };
+     */
 
 
+    /*
     template<typename T, typename V>
     struct HasCompoundBitWiseOrOperandPair
     {
@@ -2660,12 +2807,12 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<C &   (C::*)(const V & a), (&C::operator|=)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<C & (C::*)(const V & a) const, (&C::operator|=)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<C &   (C::*)(const V & a), (&C::operator|=)>* ) { }
+        template <typename C> static yes& test(reallyHas<C & (C::*)(const V & a) const, (&C::operator|=)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) {  }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
@@ -2673,8 +2820,10 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
     };
 
     template<typename T> using HasCompoundBitWiseOrOperand_V = typename HasCompoundBitWiseOrOperand<T>::value;
+     */
 
 
+    /*
     template<typename T>
     struct HasBitWiseXorOperand
     {
@@ -2695,18 +2844,20 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<C    (C::*)(const C & a), (&C::operator^)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<C  (C::*)(const C & a) const, (&C::operator^)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<C    (C::*)(const C & a), (&C::operator^)>* ) { }
+        template <typename C> static yes& test(reallyHas<C  (C::*)(const C & a) const, (&C::operator^)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) { }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
         static const bool value = (sizeof(test<T>(0)) == sizeof(yes) || PDP::IsPrimitiveType<T>::value);
     };
+     */
 
+    /*
     template<typename T, typename V>
     struct HasBitWiseXorOperandPair
     {
@@ -2727,12 +2878,12 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<C    (C::*)(const V & a), (&C::operator^)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<C  (C::*)(const V & a) const, (&C::operator^)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<C    (C::*)(const V & a), (&C::operator^)>* ) { }
+        template <typename C> static yes& test(reallyHas<C  (C::*)(const V & a) const, (&C::operator^)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) {  }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
@@ -2741,8 +2892,10 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
 
 
     template<typename T> using HasBitWiseXorOperand_V = typename HasBitWiseXorOperand<T>::value;
+     */
 
 
+    /*
     template<typename T>
     struct HasCompoundBitWiseXorOperand
     {
@@ -2763,19 +2916,21 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<C &    (C::*)(const C & a), (&C::operator^=)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<C &  (C::*)(const C & a) const, (&C::operator^=)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<C &    (C::*)(const C & a), (&C::operator^=)>* ) { }
+        template <typename C> static yes& test(reallyHas<C &  (C::*)(const C & a) const, (&C::operator^=)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) { }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
         static const bool value = (sizeof(test<T>(0)) == sizeof(yes) || PDP::IsPrimitiveType<T>::value);
     };
+     */
 
 
+    /*
     template<typename T, typename V>
     struct HasCompoundBitWiseXorOperandPair
     {
@@ -2796,12 +2951,12 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<C &    (C::*)(const V & a), (&C::operator^=)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<C &  (C::*)(const V & a) const, (&C::operator^=)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<C &    (C::*)(const V & a), (&C::operator^=)>* ) { }
+        template <typename C> static yes& test(reallyHas<C &  (C::*)(const V & a) const, (&C::operator^=)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) { }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
@@ -2810,8 +2965,10 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
 
 
     template<typename T> using HasCompoundBitWiseXorOperand_V = typename HasCompoundBitWiseXorOperand<T>::value;
+     */
 
 
+    /*
     template <class _Tp> struct  RemoveExtent
     {typedef _Tp type;};
     template <class _Tp> struct  RemoveExtent<_Tp[]>
@@ -2822,8 +2979,10 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
 #if _LIBCPP_STD_VER > 11
     template <class _Tp> using RemoveExtent_T = typename RemoveExtent<_Tp>::type;
 #endif
+     */
 
 
+    /*
     template<typename T>
     struct HasLeftBitShiftOperand
     {
@@ -2844,18 +3003,20 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<C     (C::*)(const C & a), (&C::operator<<)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<C   (C::*)(const C & a) const, (&C::operator<<)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<C     (C::*)(const C & a), (&C::operator<<)>* ) { }
+        template <typename C> static yes& test(reallyHas<C   (C::*)(const C & a) const, (&C::operator<<)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) { }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
         static const bool value = (sizeof(test<T>(0)) == sizeof(yes) || PDP::IsPrimitiveType<T>::value);
     };
+     */
 
+    /*
     template<typename T, typename V>
     struct HasLeftBitShiftOperandPair
     {
@@ -2876,12 +3037,12 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<C     (C::*)(const V & a), (&C::operator<<)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<C   (C::*)(const V & a) const, (&C::operator<<)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<C     (C::*)(const V & a), (&C::operator<<)>* ) { }
+        template <typename C> static yes& test(reallyHas<C   (C::*)(const V & a) const, (&C::operator<<)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) {  }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
@@ -2889,7 +3050,9 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
     };
 
     template<typename T> using HasLeftBitShiftOperand_V = typename HasLeftBitShiftOperand<T>::value;
+     */
 
+    /*
     template<typename T>
     struct HasCompoundLeftBitShiftOperand
     {
@@ -2910,19 +3073,21 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<C &    (C::*)(const C & a), (&C::operator<<=)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<C &  (C::*)(const C & a) const, (&C::operator<<=)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<C &    (C::*)(const C & a), (&C::operator<<=)>* ) { }
+        template <typename C> static yes& test(reallyHas<C &  (C::*)(const C & a) const, (&C::operator<<=)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) {  }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
         static const bool value = (sizeof(test<T>(0)) == sizeof(yes) || PDP::IsPrimitiveType<T>::value);
     };
+     */
 
 
+    /*
     template<typename T, typename V>
     struct HasCompoundLeftBitShiftOperandPair
     {
@@ -2943,12 +3108,12 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<C &    (C::*)(const V & a), (&C::operator<<=)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<C &  (C::*)(const V & a) const, (&C::operator<<=)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<C &    (C::*)(const V & a), (&C::operator<<=)>* ) { }
+        template <typename C> static yes& test(reallyHas<C &  (C::*)(const V & a) const, (&C::operator<<=)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) { }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
@@ -2956,7 +3121,9 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
     };
 
     template<typename T> using HasCompoundLeftBitShiftOperand_V = typename HasCompoundLeftBitShiftOperand<T>::value;
+     */
 
+    /*
     template<typename T>
     struct HasRightBitShiftOperand
     {
@@ -2977,19 +3144,21 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<C &    (C::*)(const C & a), (&C::operator>>)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<C &  (C::*)(const C & a) const, (&C::operator>>)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<C &    (C::*)(const C & a), (&C::operator>>)>* ) { }
+        template <typename C> static yes& test(reallyHas<C &  (C::*)(const C & a) const, (&C::operator>>)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) {  }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
         static const bool value = (sizeof(test<T>(0)) == sizeof(yes) || PDP::IsPrimitiveType<T>::value);
     };
 
+     */
 
+    /*
     template<typename T, typename V>
     struct HasRightBitShiftOperandPair
     {
@@ -3010,12 +3179,12 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<C &    (C::*)(const V & a), (&C::operator>>)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<C &  (C::*)(const V & a) const, (&C::operator>>)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<C &    (C::*)(const V & a), (&C::operator>>)>* ) { }
+        template <typename C> static yes& test(reallyHas<C &  (C::*)(const V & a) const, (&C::operator>>)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) { }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
@@ -3023,9 +3192,11 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
     };
 
     template<typename T> using HasRightBitShiftOperand_V = typename HasRightBitShiftOperand<T>::value;
+     */
 
 
 
+    /*
     template<typename T>
     struct HasCompoundRightBitShiftOperand
     {
@@ -3046,19 +3217,21 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<C &    (C::*)(const C & a), (&C::operator>>)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<C &  (C::*)(const C & a) const, (&C::operator>>)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<C &    (C::*)(const C & a), (&C::operator>>)>* ) { }
+        template <typename C> static yes& test(reallyHas<C &  (C::*)(const C & a) const, (&C::operator>>)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) {  }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
         static const bool value = (sizeof(test<T>(0)) == sizeof(yes) || PDP::IsPrimitiveType<T>::value);
     };
+     */
 
 
+    /*
     template<typename T, typename V>
     struct HasCompoundRightBitShiftOperandPair
     {
@@ -3079,12 +3252,12 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<C &    (C::*)(const V & a), (&C::operator>>)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<C &  (C::*)(const V & a) const, (&C::operator>>)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<C &    (C::*)(const V & a), (&C::operator>>)>* ) { }
+        template <typename C> static yes& test(reallyHas<C &  (C::*)(const V & a) const, (&C::operator>>)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) {  }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
@@ -3092,7 +3265,9 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
     };
     template<typename T> using HasCompoundRightBitShiftOperand_V = typename HasCompoundRightBitShiftOperand<T>::value;
 
+     */
 
+    /*
     template<typename T>
     struct HasLogicalAndOperand
     {
@@ -3113,19 +3288,21 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<const bool    (C::*)(const C & a), (&C::operator&&)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<const bool  (C::*)(const C & a) const, (&C::operator&&)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<const bool    (C::*)(const C & a), (&C::operator&&)>* ) { }
+        template <typename C> static yes& test(reallyHas<const bool  (C::*)(const C & a) const, (&C::operator&&)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) {  }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
         static const bool value = (sizeof(test<T>(0)) == sizeof(yes) || PDP::IsPrimitiveType<T>::value);
     };
+     */
 
 
+    /*
     template<typename T, typename V>
     struct HasLogicalAndOperandPair
     {
@@ -3146,12 +3323,12 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<const bool    (C::*)(const V & a), (&C::operator&&)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<const bool  (C::*)(const V & a) const, (&C::operator&&)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<const bool    (C::*)(const V & a), (&C::operator&&)>* ) { }
+        template <typename C> static yes& test(reallyHas<const bool  (C::*)(const V & a) const, (&C::operator&&)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) {  }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
@@ -3160,8 +3337,11 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
 
     template<typename T> using HasLogicalAndOperand_V = typename HasLogicalAndOperand<T>::value;
 
+     */
 
 
+
+    /*
     template<typename T>
     struct HasLogicalOrOperand
     {
@@ -3182,19 +3362,21 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<const bool    (C::*)(const C & a), (&C::operator||)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<const bool  (C::*)(const C & a) const, (&C::operator||)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<const bool    (C::*)(const C & a), (&C::operator||)>* ) { }
+        template <typename C> static yes& test(reallyHas<const bool  (C::*)(const C & a) const, (&C::operator||)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) { }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
         static const bool value = (sizeof(test<T>(0)) == sizeof(yes) || PDP::IsPrimitiveType<T>::value);
     };
+     */
 
 
+    /*
     template<typename T, typename V>
     struct HasLogicalOrOperandPair
     {
@@ -3215,20 +3397,22 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<const bool    (C::*)(const V & a), (&C::operator||)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<const bool  (C::*)(const V & a) const, (&C::operator||)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<const bool    (C::*)(const V & a), (&C::operator||)>* ) { }
+        template <typename C> static yes& test(reallyHas<const bool  (C::*)(const V & a) const, (&C::operator||)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) {  }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
         static const bool value = (sizeof(test<T>(0)) == sizeof(yes) || PDP::IsPrimitiveType<T>::value);
     };
     template<typename T> using HasLogicalOrOperand_V = typename HasLogicalOrOperand<T>::value;
+     */
 
 
+    /*
     template<typename T>
     struct HasLogicalNotOperand
     {
@@ -3249,19 +3433,21 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<const bool    (C::*)(const C & a), (&C::operator!)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<const bool  (C::*)(const C & a) const, (&C::operator!)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<const bool    (C::*)(const C & a), (&C::operator!)>* ) { }
+        template <typename C> static yes& test(reallyHas<const bool  (C::*)(const C & a) const, (&C::operator!)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) {  }
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
         static const bool value = (sizeof(test<T>(0)) == sizeof(yes) || PDP::IsPrimitiveType<T>::value);
     };
+     */
 
 
+    /*
     template<typename T, typename V>
     struct HasLogicalNotOperandPair
     {
@@ -3282,12 +3468,12 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
         // Two overloads for yes: one for the signature of a normal method, one is for the signature of a const method.
         // We accept a pointer to our helper struct, in order to avoid to instantiate a real instance of this type.
         // std::string (C::*)() is function pointer declaration.
-        template <typename C> static yes& test(reallyHas<const bool    (C::*)(const V & a), (&C::operator!)>* /*unused*/) { }
-        template <typename C> static yes& test(reallyHas<const bool  (C::*)(const V & a) const, (&C::operator!)>* /*unused*/) { }
+        template <typename C> static yes& test(reallyHas<const bool    (C::*)(const V & a), (&C::operator!)>* ) { }
+        template <typename C> static yes& test(reallyHas<const bool  (C::*)(const V & a) const, (&C::operator!)>* ) { }
         // The famous C++ sink-hole.
         // Note that sink-hole must be templated too as we are testing test<T>(0).
         // If the method serialize isn't available, we will end up in this method.
-        template <typename> static no& test(...) { /* dark matter */ }
+        template <typename> static no& test(...) {  }// dark matter
 
         // The constant used as a return value for the test.
         // The test is actually done here, thanks to the sizeof compile-time evaluation.
@@ -3296,8 +3482,10 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
 
 
     template<typename T> using HasLogicalNotOperand_V = typename HasLogicalNotOperand<T>::value;
+     */
 
 
+    /*
     namespace Detail
     {
         struct IsConvertible
@@ -3325,8 +3513,9 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
     template <class _Tp> struct __libcpp_is_pointer       : public LD::FalseType {};
 
     template <class _Tp> struct __libcpp_is_pointer<_Tp*> : public LD::TrueType {};
+    */
 
-
+/*
     template <class _Tp> struct  RemoveCV
 
     {typedef typename remove_volatile<typename remove_const<_Tp>::type>::type type;};
@@ -3335,7 +3524,7 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
     template <class _Tp> struct  IsPointer : public __libcpp_is_pointer<typename RemoveCV<_Tp>::type> {};
 
 
-
+/*
     template <bool _Bp, class _If, class _Then>
     struct  Conditonal {typedef _If type;};
     template <class _If, class _Then>
@@ -3348,7 +3537,7 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
 
 
 
-
+/*
     template <class _Tp> struct  IsLValueReference       : public LD::FalseType {};
     template <class _Tp> struct  IsLValueReference<_Tp&> : public LD::TrueType {};
 
@@ -3389,7 +3578,7 @@ template <class _Tp>            struct  IsA<_Tp, _Tp> : public LD::TrueType {};
     template <class _Tp> using AddLValueReference_T = typename AddLValueReference<_Tp>::type;
 #endif
 
-
+/*
     typedef decltype(nullptr) nullptr_t;
 
 
@@ -3427,7 +3616,7 @@ template <class _Tp> struct __libcpp_union : public PDP::FalseType {};
 
 
 // is_void
-
+/*
 template <class _Tp> struct __libcpp_is_void       : public LD::FalseType {};
 template <>          struct __libcpp_is_void<void> : public LD::TrueType {};
 
@@ -3439,7 +3628,7 @@ template <class _Tp>  bool IsVoid_V
         = IsVoid<_Tp>::value;
 #endif
 
-
+/*
 namespace __libcpp_is_function_imp
 {
     struct __dummy_type {};
@@ -3467,7 +3656,7 @@ template <class _Tp> struct IsFunction
 template <class _Tp>  bool is_function_v
         = IsFunction<_Tp>::value;
 #endif
-
+/*
 template <class _Tp> struct  IsConst            : public LD::FalseType {};
 template <class _Tp> struct  IsConst<_Tp const> : public LD::TrueType {};
 
@@ -3485,7 +3674,8 @@ struct __add_const<_Tp, false> {typedef const _Tp type;};
 template <class _Tp> struct AddConst
 {typedef typename __add_const<_Tp>::type type;};
 
-
+*/
+/*
 template<typename T>
 class IntegerVariantForFloatingPointNumber
 {
@@ -3519,8 +3709,8 @@ public:
 
 
 };
-
-
+*/
+/*
 template<>
 class IntegerVariantForFloatingPointNumber<long double>
 
@@ -3542,8 +3732,8 @@ class FloatingPointVariantForNumber
 
 
 };
-
-
+*/
+/*
 template<typename T>
 class FloatingPointVariantForNumber<T,PDP::Enable_If_T<PDP::Is32BitInteger<T>::value>>
 {
@@ -3567,8 +3757,8 @@ public:
     typedef float FloatingPointVariant;
 
 };
-
-
+*/
+/*
 template<typename T>
 class FloatingPointVariantForNumber<T,PDP::Enable_If_T<PDP::IsSame<T, double>::value>>
 {
@@ -3587,7 +3777,9 @@ public:
 
     typedef float FloatingPointVariant;
 };
+ */
 
+/*
 template<typename T>
 class FloatingPointVariantForNumber<T,PDP::Enable_If_T<PDP::Is64BitSignedInteger<T>::value || PDP::Is64BitUnsignedInteger<T>::value>>
 {
@@ -3595,13 +3787,16 @@ public:
 
     typedef double FloatingPointVariant;
 };
+ */
 
+/*
 template<typename T, class = void>
 class UnsignedIntegerVariantForInteger
 {
 
 };
-
+ */
+/*
 template<typename T>
 class UnsignedIntegerVariantForInteger<T,PDP::Enable_If_T<PDP::IsIntegrelType<T>::value>>
 {
@@ -3613,7 +3808,7 @@ public:
 
 
 
-
+/*
 template <class _Tp> struct  RemoveConst            {typedef _Tp type;};
 template <class _Tp> struct  RemoveConst<const _Tp> {typedef _Tp type;};
 template<typename T>
@@ -3628,7 +3823,7 @@ struct RemoveConst<const volatile T> {
 template <class _Tp> using RemoveConst_T = typename RemoveConst<_Tp>::type;
 #endif
 
-
+/*
 
 template < bool... > struct All;
 template < > struct All<> : LD::TrueType {};
@@ -3636,10 +3831,10 @@ template < bool B, bool... Rest > struct All<B,Rest...>
 {
     constexpr static bool value = B && All<Rest...>::value;
 };
-/*
-     template< bool... Bs >
-     using is_all = std::integral_constant< bool, std::is_same< integer_sequence< bool, true, Bs... >, integer_sequence< bool, Bs..., true > >::value >;
-     */
+
+     //template< bool... Bs >
+     //using is_all = std::integral_constant< bool, std::is_same< integer_sequence< bool, true, Bs... >, integer_sequence< bool, Bs..., true > >::value >;
+
 #if _LIBCPP_STD_VER > 11
 template< bool... Bs > using IsAll_V = typename All<Bs...>::value;
 #endif
@@ -3669,7 +3864,7 @@ template <class _Tp> using Decay_T = typename Decay<_Tp>::type;
      }
     */
 
-
+/*
 template <class _Tp> _Tp&& __Declval(int);
 template <class _Tp> _Tp   __Declval(long);
 
@@ -3681,7 +3876,7 @@ Declval() _NOEXCEPT;
 
 
 
-
+/*
 
 template <bool, typename T, typename>
 struct Conditional
@@ -3693,7 +3888,7 @@ struct Conditional<false, T, U> {
     typedef U type;
 };
 
-
+/*
 namespace Detail
 {
 
@@ -3724,17 +3919,10 @@ namespace Detail
             : public LD::FalseType
     {
     };
-
-
-
-
-
-
-
 }
 
 
-
+/*
 template <class _Tp, class _Arg>
 struct IsAssignable
         : public Detail::__is_assignable_imp<_Tp, _Arg> {};
@@ -3775,7 +3963,7 @@ template <class _Tp> struct  IsMoveAssignable
 
 
 
-
+/*
 template<class _Tp, _Tp... _Ip>
 struct  IntegerSequence
 {
@@ -3837,16 +4025,16 @@ struct MakeIndexSequence<0>
     using type = IndexSequence<>;
 };
 
+*/
 
 
 
-template <typename... Ts> struct VariadicPack { static const unsigned int size = sizeof...(Ts);};
-
+/*
 template <typename P0, typename P1>
 struct ArePacksSame;
 
 template <typename... T0s, typename... T1s>
-struct ArePacksSame<VariadicPack<T0s...>, VariadicPack<T1s...>>
+struct ArePacksSame<LD::VariadicPack<T0s...>, LD::VariadicPack<T1s...>>
         : LD::Detail::IntegralConstant<bool,(sizeof...(T0s) == sizeof...(T1s))
                                      && (PDP::IsSame<T0s, T1s>::value && ...)>
 {
@@ -3856,39 +4044,32 @@ template <typename P0, typename P1>
 struct ArePacksConvertible;
 
 template <typename... T0s, typename... T1s>
-struct ArePacksConvertible<VariadicPack<T0s...>, VariadicPack<T1s...>>: public LD::Detail::IntegralConstant<bool,(sizeof...(T0s) == sizeof...(T1s))
+struct ArePacksConvertible<LD::VariadicPack<T0s...>, LD::VariadicPack<T1s...>>: public LD::Detail::IntegralConstant<bool,(sizeof...(T0s) == sizeof...(T1s))
                                      && (PDP::IsConvertible<T0s, T1s>::value && ...)>
 {
 };
+ */
 
 
-template<typename P0, typename P1>
-struct IsPackConvertible;
 
 
-template <typename... T0s, typename T1s>
-struct IsPackConvertible<VariadicPack<T0s...>, T1s>
-        : LD::Detail::IntegralConstant<bool,
-                (PDP::IsConvertible<T0s, T1s>::value && ...)>
-{
-};
-
+/*
 template <typename P0, typename P1>
 struct ArePacksAssignable;
 
 template <typename... T0s, typename... T1s>
-struct ArePacksAssignable<VariadicPack<T0s...>, VariadicPack<T1s...>>
+struct ArePacksAssignable<LD::VariadicPack<T0s...>, LD::VariadicPack<T1s...>>
         : LD::Detail::IntegralConstant<bool,(sizeof...(T0s) == sizeof...(T1s))
                                      && (PDP::IsAssignable<T0s, T1s>::value && ...)>
 {
 };
 
-
+/*
 template <typename P0>
 struct ArePacksMoveAssignable;
 
 template <typename... T0s>
-struct ArePacksMoveAssignable<VariadicPack<T0s...>>
+struct ArePacksMoveAssignable<LD::VariadicPack<T0s...>>
         : LD::Detail::IntegralConstant<bool,
                 (PDP::IsMoveAssignable<T0s>::value && ...)>
 {
@@ -3899,12 +4080,12 @@ template <typename P0>
 struct ArePacksCopyAssignable;
 
 template <typename... T0s>
-struct ArePacksCopyAssignable<VariadicPack<T0s...>>
+struct ArePacksCopyAssignable<LD::VariadicPack<T0s...>>
         : LD::Detail::IntegralConstant<bool,
                 (PDP::IsCopyAssignable<T0s>::value && ...)>
 {
 };
-
+/*
 namespace Detail
 {
     namespace Fibonnaci
@@ -3921,9 +4102,7 @@ namespace Detail
             F[1][1] = w;
         }
 
-        /*
-             * function to calculate power of a matrix
-             */
+
         inline void power(LD::UInteger F[2][2], LD::UInteger n)
         {
             if (n == 0 || n == 1)
@@ -3938,9 +4117,9 @@ namespace Detail
         /*
              * function that returns nth Fibonacci number
              */
-    }
-}
-
+    //}
+//}
+/*
 inline LD::UInteger Fibonnaci(LD::UInteger n)
 {
     LD::UInteger F[2][2] = {{1,1},{1,0}};
@@ -3950,10 +4129,10 @@ inline LD::UInteger Fibonnaci(LD::UInteger n)
     return F[0][0];
 }
 
-template<class ...> using Void_T = void;
+//template<class ...> using Void_T = void;
 
 
-
+/*
 namespace Detail
 {
     template <class Default, class AlwaysVoid,
@@ -3972,8 +4151,10 @@ namespace Detail
     };
 
 } // namespace detail
+ */
 
 // special type to indicate detection failure
+/*
 struct nonesuch {
     nonesuch() = delete;
     ~nonesuch() = delete;
@@ -3996,9 +4177,10 @@ using Subscript_T = LD::Detail::IntegralConstant<Ret (T::*) (Index), & T::operat
 
 template <typename T, typename Ret, typename Index>
 using Has_Subscript = Is_Detected<Subscript_T, T, Ret, Index>;
+ */
 
 
-
+/*
 template<typename ... Args> class Tuple;
 
 namespace Detail
@@ -4142,7 +4324,7 @@ namespace Detail
     }
 
     template<LD::UInteger ... Index, typename ... Args>
-    void AssignTupleElement(PDP::IndexSequence<Index...>,Tuple<typename PDP::Decay<Args>::type...> & tuple, Args && ... arguements)
+    void AssignTupleElement(LD::IndexSequence<Index...>,Tuple<typename PDP::Decay<Args>::type...> & tuple, Args && ... arguements)
     {
         (...,AssignTupleElementImpl(Get<Index>(tuple),PDP::Forward<Args>(arguements)));
     }
@@ -4150,7 +4332,7 @@ namespace Detail
     template<typename ... Args>
     void AssignTuple(Tuple<typename PDP::Decay<Args>::type...> & tuple, Args && ... arguements)
     {
-        AssignTupleElement(typename PDP::MakeIndexSequence<sizeof...(Args)>::type{},tuple,PDP::Forward<Args>(arguements)...);
+        AssignTupleElement(typename LD::MakeIndexSequence<sizeof...(Args)>::type{},tuple,PDP::Forward<Args>(arguements)...);
     }
 
     template<typename T, typename U>
@@ -4166,7 +4348,7 @@ namespace Detail
     }
 
     template<LD::UInteger ... Index, typename ... Args, typename ... B>
-    void AssignTupleElement1(PDP::IndexSequence<Index...>,Tuple<Args...> & tuple, B && ... arguements)
+    void AssignTupleElement1(LD::IndexSequence<Index...>,Tuple<Args...> & tuple, B && ... arguements)
     {
         (...,AssignTupleElementImpl1(Get<Index>(tuple),PDP::Forward<Args>(arguements)));
     }
@@ -4174,7 +4356,7 @@ namespace Detail
     template<typename ... Args, typename ... B>
     void AssignTuple1(Tuple<Args...> & tuple, B && ... arguements)
     {
-        AssignTupleElement1(typename PDP::MakeIndexSequence<sizeof...(Args)>::type{},tuple,PDP::Forward<B>(arguements)...);
+        AssignTupleElement1(typename LD::MakeIndexSequence<sizeof...(Args)>::type{},tuple,PDP::Forward<B>(arguements)...);
     }
 
     template<LD::UInteger Index, typename T, typename U>
@@ -4184,61 +4366,61 @@ namespace Detail
     }
 
     template<typename T, typename U, LD::UInteger ... Index>
-    void AssignTupleFromTupleRec(PDP::IndexSequence<Index...>, T && a, const U & b)
+    void AssignTupleFromTupleRec(LD::IndexSequence<Index...>, T && a, const U & b)
     {
         (...,AssignTupelFromTupleBase<Index>(a,b));
     }
     template<typename ... A, typename ... B>
     void AssignTupleFromTuple(Tuple<A...> & a, const Tuple<B...> & b)
     {
-        return AssignTupleFromTupleRec(typename PDP::MakeIndexSequence<sizeof...(A)>::type{},a,b);
+        return AssignTupleFromTupleRec(typename LD::MakeIndexSequence<sizeof...(A)>::type{},a,b);
     }
 
     template<template<typename> class Functor ,typename ... Args, int ...S>
-    void InternalInvoke(const Functor<void(Args...)> & function, const Tuple<typename PDP::Decay<Args>::type...> & tuple,PDP::IndexSequence<S...>)
+    void InternalInvoke(const Functor<void(Args...)> & function, const Tuple<typename PDP::Decay<Args>::type...> & tuple,LD::IndexSequence<S...>)
     {
         function(Get<S>(tuple) ...);
     }
     template<template<typename> class Functor, typename T ,typename ... Args,int ...S>
-    T InternalInvoke(const Functor<T(Args...)> & function, const Tuple<typename PDP::Decay<Args>::type...> & tuple,PDP::IndexSequence<S...>)
+    T InternalInvoke(const Functor<T(Args...)> & function, const Tuple<typename PDP::Decay<Args>::type...> & tuple,LD::IndexSequence<S...>)
     {
         return PDP::Move(function(Get<S>(tuple) ...));
     }
 
     template<typename T, typename F, LD::UInteger... Is>
-    void for_each(T&& t, F f, PDP::IndexSequence<Is...>)
+    void for_each(T&& t, F f, LD::IndexSequence<Is...>)
     {
         auto l = { (f(Get<Is>(t)), 0)... };
     }
 
     template<typename T, typename F, typename U, template<typename> class Functor,  LD::UInteger... Is>
-    void for_each(T&& t, F f,T & state, const Functor<U(const U & a, const U & b)> & accumulator, PDP::IndexSequence<Is...>)
+    void for_each(T&& t, F f,T & state, const Functor<U(const U & a, const U & b)> & accumulator, LD::IndexSequence<Is...>)
     {
         T retValue = PDP::Move({ (f(Get<Is>(t)), 0)... });
         state = PDP::Move(accumulator(state,retValue));
     }
 }
-
+/*
 template<typename ... Args>
 class Tuple: public Detail::TupleImpl<Args...>
 {
 public:
     inline Tuple(){}
     inline Tuple(Args && ... arguements);
-    template <typename ... B ,typename = PDP::Enable_If_T< PDP::ArePacksConvertible<PDP::VariadicPack<B...>, PDP::VariadicPack<Args...>>::value>>
+    template <typename ... B ,typename = PDP::Enable_If_T< PDP::ArePacksConvertible<LD::VariadicPack<B...>, LD::VariadicPack<Args...>>::value>>
     explicit Tuple(const Tuple<B...> & tuple)
     {
         (*this) = tuple;
     }
 
-    template <typename ... B ,typename = PDP::Enable_If_T< PDP::ArePacksConvertible<PDP::VariadicPack<Args...>, PDP::VariadicPack<B...>>::value>>
+    template <typename ... B ,typename = PDP::Enable_If_T< PDP::ArePacksConvertible<LD::VariadicPack<Args...>, LD::VariadicPack<B...>>::value>>
     Tuple<Args...> & operator = (const Tuple<B...> & tuple)
     {
         return Assignment(tuple);
     }
 
     template<typename ... B>
-    PDP::Enable_If_T< PDP::ArePacksConvertible<PDP::VariadicPack<Args...>, PDP::VariadicPack<B...>>::value,Tuple<Args...> &> Assignment(const Tuple<B...> & tuple);
+    PDP::Enable_If_T< PDP::ArePacksConvertible<LD::VariadicPack<Args...>, LD::VariadicPack<B...>>::value,Tuple<Args...> &> Assignment(const Tuple<B...> & tuple);
 };
 
 template <> struct Tuple<> {};
@@ -4355,26 +4537,7 @@ Tuple<typename PDP::Decay<Args>::type...> MakeTuple(Args && ... arguements)
     Detail::AssignTuple(tuple, PDP::Forward<Args>(arguements)...);
     return tuple;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/*
 template<typename ... Args>
 Tuple<Args...>::Tuple(Args && ... arguements):Detail::TupleImpl<Args...>(arguements...)
 {
@@ -4382,7 +4545,7 @@ Tuple<Args...>::Tuple(Args && ... arguements):Detail::TupleImpl<Args...>(argueme
 
 template<typename ... Args>
 template<typename ... B>
-PDP::Enable_If_T< PDP::ArePacksConvertible<PDP::VariadicPack<Args...>, PDP::VariadicPack<B...>>::value,Tuple<Args...> &> Tuple<Args...>::Assignment(const Tuple<B...> & tuple)
+PDP::Enable_If_T< PDP::ArePacksConvertible<LD::VariadicPack<Args...>, LD::VariadicPack<B...>>::value,Tuple<Args...> &> Tuple<Args...>::Assignment(const Tuple<B...> & tuple)
 {
     Detail::AssignTupleFromTuple(*this,tuple);
     return (*this);
@@ -4398,7 +4561,7 @@ template<typename... Ts, typename F>
 void Invoke(Tuple<Ts...> const& t, F && f)
 {
 
-    Detail::for_each(t, f, typename PDP::MakeIndexSequence<sizeof...(Ts)>::type{});
+    Detail::for_each(t, f, typename LD::MakeIndexSequence<sizeof...(Ts)>::type{});
 }
 
 template<typename... Ts, typename T, typename F, template<typename> class Functor>
@@ -4406,7 +4569,7 @@ T Invoke(Tuple<Ts...> const& t, F f,const T & initialState,const Functor<T(const
 {
     T result = initialState;
 
-    Detail::for_each(t, f, result,accumulator,typename PDP::MakeIndexSequence<sizeof...(Ts)>::type{});
+    Detail::for_each(t, f, result,accumulator,typename LD::MakeIndexSequence<sizeof...(Ts)>::type{});
 
     return result;
 }
@@ -4414,12 +4577,12 @@ T Invoke(Tuple<Ts...> const& t, F f,const T & initialState,const Functor<T(const
 template<template<typename> class Functor ,typename ... Args>
 void Invoke(const Functor<void(Args...)> & function, const Tuple<typename PDP::Decay<Args>::type...> & tuple)
 {
-    Detail::InternalInvoke(function,tuple,typename PDP::MakeIndexSequence<sizeof...(Args)>::type{});
+    Detail::InternalInvoke(function,tuple,typename LD::MakeIndexSequence<sizeof...(Args)>::type{});
 }
 template<template<typename> class Functor, typename T ,typename ... Args>
 T Invoke(const Functor<T(Args...)> & function, const Tuple<typename PDP::Decay<Args>::type...> & tuple)
 {
-    return PDP::Move(Detail::InternalInvoke(function,tuple,typename PDP::MakeIndexSequence<sizeof...(Args)>::type{}));;
+    return PDP::Move(Detail::InternalInvoke(function,tuple,typename LD::MakeIndexSequence<sizeof...(Args)>::type{}));;
 }
 
 /*
@@ -4429,7 +4592,7 @@ void Swap(Tuple<Args...> & x, Tuple<Args...> & y)
     return Detail::TupleSwapImpl(x,y,typename PDP::MakeIndexSequence<sizeof...(Args)>::type{});
 }
  */
-
+/*
 template <class ..._Tp>
 inline
 Tuple<_Tp&...>
@@ -4450,12 +4613,12 @@ struct HasType<T, PDP::Tuple<U, Ts...>> : HasType<T, PDP::Tuple<Ts...>> {};
 template <typename T, typename... Ts>
 struct HasType<T, PDP::Tuple<T, Ts...>> : LD::TrueType {};
 
-
+/*
 template <typename P0, typename P1>
 struct HasTypes;
 
 template <typename... T0s, typename... T1s>
-struct HasTypes<VariadicPack<T0s...>, PDP::Tuple<T1s...>>
+struct HasTypes<LD::VariadicPack<T0s...>, PDP::Tuple<T1s...>>
         : LD::Detail::IntegralConstant<bool,(PDP::HasType<T0s, PDP::Tuple<T1s...>>::value && ...)>
 {
 };
@@ -4465,48 +4628,48 @@ template <typename V, typename T>
 struct IsInTuple;
 
 template <typename V, typename T0, typename... T>
-struct IsInTuple <V, VariadicPack<T0, T...> >
+struct IsInTuple <V, LD::VariadicPack<T0, T...> >
 {
-    static const bool value = IsInTuple<typename PDP::Decay<V>::type, VariadicPack<typename PDP::Decay<T>::type...> >::value;
+    static const bool value = IsInTuple<typename PDP::Decay<V>::type, LD::VariadicPack<typename PDP::Decay<T>::type...> >::value;
 };
 
 template <typename V, typename... T>
-struct IsInTuple <V, VariadicPack<V, T...> >
+struct IsInTuple <V, LD::VariadicPack<V, T...> >
 {
     static const bool value = true;
 };
 
 template <typename V>
-struct IsInTuple <V, VariadicPack<> >
+struct IsInTuple <V, LD::VariadicPack<> >
 {
     static const bool value = false;
 };
-
+/*
 template <typename P0, typename P1>
 struct Contained;
 
 template <typename... T0s, typename... T1s>
-struct Contained<VariadicPack<T0s...>, VariadicPack<T1s...>>
-        : LD::Detail::IntegralConstant<bool,(IsInTuple<typename PDP::Decay<T0s>::type, VariadicPack<typename PDP::Decay<T1s>::type...>>::value && ...)>
+struct Contained<LD::VariadicPack<T0s...>, LD::VariadicPack<T1s...>>
+        : LD::Detail::IntegralConstant<bool,(IsInTuple<typename PDP::Decay<T0s>::type, LD::VariadicPack<typename PDP::Decay<T1s>::type...>>::value && ...)>
 {
 
 };
 
 template <typename T0s, typename... T1s>
-struct Contained<T0s, VariadicPack<T1s...>>
-        : Contained<VariadicPack<T0s>, VariadicPack<T1s...>>
+struct Contained<T0s, LD::VariadicPack<T1s...>>
+        : Contained<LD::VariadicPack<T0s>, LD::VariadicPack<T1s...>>
 {
 
 };
 
 
 template <typename... T0s, typename T1s>
-struct Contained<VariadicPack<T0s...>, T1s>
-        : Contained<VariadicPack<T1s>, VariadicPack<T0s...>>
+struct Contained<LD::VariadicPack<T0s...>, T1s>
+        : Contained<LD::VariadicPack<T1s>, LD::VariadicPack<T0s...>>
 {
 
 };
-
+/*
 namespace Detail
 {
     // Get i-th element of parameter pack
@@ -4528,7 +4691,7 @@ namespace Detail
     };
 
     template<int n, typename... T>
-    struct Element<n, VariadicPack<T...>>
+    struct Element<n, LD::VariadicPack<T...>>
     {
         typedef typename ElementAt<n, T...>::type type;
     };
@@ -4540,19 +4703,19 @@ namespace Detail
     };
 
     template<typename a, typename... b>
-    struct TupleConcatLeft<a, VariadicPack<b...>,PDP::Enable_If_T<Contained<a, VariadicPack<b...>>::value>>
+    struct TupleConcatLeft<a, LD::VariadicPack<b...>,PDP::Enable_If_T<Contained<a, LD::VariadicPack<b...>>::value>>
     {
-        typedef VariadicPack<a, b...> type;
+        typedef LD::VariadicPack<a, b...> type;
     };
 
     template<typename a, typename... b>
-    struct TupleConcatLeft<a, VariadicPack<b...>,PDP::Enable_If_T<!Contained<a, VariadicPack<b...>>::value>>
+    struct TupleConcatLeft<a, LD::VariadicPack<b...>,PDP::Enable_If_T<!Contained<a, LD::VariadicPack<b...>>::value>>
     {
-        typedef VariadicPack<b...> type;
+        typedef LD::VariadicPack<b...> type;
     };
 }
 
-
+/*
 // Concat 2 tuples
 template<typename a, typename b, int n = 0, bool ok = (n < a::size)>
 struct ConcatTuple : public ConcatTuple<a, b, n+1>
@@ -4589,18 +4752,19 @@ struct ConcatTuple<a, b, n, false>
      };
      */
 //
+/*
 template<typename T, class = void>
 struct NumericSize
 {
 
 };
-
+/*
 template<typename T>
 struct NumericSize<T,PDP::Enable_If_T<PDP::IsPrimitiveType<T>::value>>
 {
     static const LD::UInteger value = sizeof(T);
 };
-
+/*
 template<typename T, typename U, class = void>
 struct Cast;
 
@@ -4910,13 +5074,11 @@ struct has_member_##member                                                      
 
 
 
-#if false
-#error Mooo
-#endif
 
 
 
 
+/*
 #define DEFINE_HAS_SIGNATURE(traitsName, funcName, signature)               \
 template <typename U>                                                   \
 class traitsName                                                        \
@@ -4933,10 +5095,22 @@ constexpr bool value = sizeof(check<U>(0)) == sizeof(unsigned char); \
 
 
 DEFINE_HAS_SIGNATURE(has_foo, T::foo, void (*)(void));
+ */
 }
 
 namespace LD
 {
+
+    template<typename P0, typename P1>
+    struct IsPackConvertible;
+
+
+    template <typename... T0s, typename T1s>
+    struct IsPackConvertible<LD::VariadicPack<T0s...>, T1s>
+            : LD::Detail::IntegralConstant<bool,
+                    (LD::Detail::IsConvertible<T0s, T1s>::value && ...)>
+    {
+    };
 
     /**
      @breif An empty class to help differentiate between functioning functors and placeholder functors.  This is a necessary evil due to the type heavyness of C++
@@ -4963,7 +5137,7 @@ namespace LD
 
 
 
-    template <typename... Ts> struct VariadicPack { static const unsigned int size = sizeof...(Ts);};
+    //template <typename... Ts> struct VariadicPack { static const unsigned int size = sizeof...(Ts);};
 
 
 
@@ -5103,39 +5277,7 @@ namespace LD
     {
 
 
-        struct IsConvertibleImpl
-        {
-            template <typename _Type, typename _OtherType>
-            static void convert(_OtherType);
-            template <typename _Type, typename _OtherType>
-            static auto test(_Type&&, _OtherType&&) -> decltype(convert<_Type, _OtherType>(LD::Declval<_Type>()), LD::TrueType());
-            static auto test(...) -> decltype(LD::FalseType());
 
-
-            typedef char small_;
-
-            struct big_ {
-                char dummy[2];
-            };
-
-            template <class U> static small_ tester(void (U::*)());
-            template <class U> static big_ tester(...);
-            //static const bool value = sizeof(tester<T>(0)) == sizeof(small_);
-
-
-            template <typename From, typename To>
-            struct ConvertHelper {
-                static small_ Test(To);
-                static big_ Test(...);
-                static From Create();
-            };
-        };
-
-
-
-        template <typename _Type, typename _OtherType>
-        struct IsConvertible : public decltype(Detail::IsConvertibleImpl::test(LD::Declval<_Type>(), LD::Declval<_OtherType>()))
-        {};
 
 
 
@@ -5170,8 +5312,6 @@ namespace LD
                 static From Create();
             };
         }
-
-
         /*
         // Inherits from true_type if From is convertible to To, false_type otherwise.
         template <typename From, typename To>
@@ -5182,76 +5322,9 @@ namespace LD
 
         };
          */
-
-
-
-
-
         //template <class _Tp> struct  IsPointer : public LD::Detail::__libcpp_is_pointer<typename LD::Detail::RemoveCV<_Tp>::type> {};
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     // is_void
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #if _LIBCPP_STD_VER > 14 && !defined(_LIBCPP_HAS_NO_VARIABLE_TEMPLATES)
 template <class _Tp>  bool IsConst_V
         = IsConst<_Tp>::value;
@@ -5499,11 +5572,6 @@ template <class _Tp> struct  RemoveReference        {typedef _Tp type;};
         template <class _Tp> struct  RemoveReference<_Tp&>        {typedef _Tp type;};
         template <class _Tp> struct  RemoveReference<_Tp&&>        {typedef _Tp type;};
         */
-
-
-
-
-
 }
 
 
@@ -5519,7 +5587,7 @@ template<class _Ty> inline LD::Enable_If_T<!LD::Detail::IsSame<_Ty, void>::value
 }
 template <class _Tp>
 inline
-_Tp&& Forward(typename LD::Detail::RemoveReference<_Tp>::type& __t) _NOEXCEPT
+_Tp&& Forward(typename LD::Detail::RemoveReference<_Tp>::type& __t) noexcept
 {
     return static_cast<_Tp&&>(__t);
 }
@@ -5649,22 +5717,6 @@ namespace Detail
         static_assert(Index == -1, "Type not found");
     };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /*
     template <typename T>
     struct Decay
@@ -5680,9 +5732,9 @@ namespace Detail
 
 
 
-#if _LIBCPP_STD_VER > 11
-    template <class _Tp> using Decay_T = typename Decay<_Tp>::type;
-#endif
+//#if _LIBCPP_STD_VER > 11
+    //template <class _Tp> using Decay_T = typename Decay<_Tp>::type;
+//#endif
 
 
     template <class Head, class T, LD::UInteger Index>
@@ -5992,7 +6044,7 @@ Tuple<typename LD::Detail::Decay<Args>::type...> MakeTuple(Args && ... arguement
 
 
 template <class ..._Tp>
-inline constexpr Tuple<_Tp&...> Tie(_Tp&... __t) _NOEXCEPT
+inline constexpr Tuple<_Tp&...> Tie(_Tp&... __t) noexcept
 {
     return Tuple<_Tp&...>(__t...);
 }
@@ -6163,7 +6215,7 @@ LD::Enable_If_T< LD::ArePacksConvertible<LD::VariadicPack<Args...>, LD::Variadic
 }
 template <class... _Tp>
 Tuple<_Tp&&...>
-ForwardAsTuple(_Tp&&... __t) _NOEXCEPT
+ForwardAsTuple(_Tp&&... __t) noexcept
 {
     return Tuple<_Tp&&...>(LD::Forward<_Tp>(__t)...);
 }
@@ -6245,29 +6297,33 @@ namespace Detail
 
 
 
-
+/*
 template <class> struct ResultOf;
 template <class F, class... ArgTypes>
 struct ResultOf<F(ArgTypes...)>
 {
     using type = decltype(Detail::INVOKE(LD::Declval<F>(),LD::Declval<ArgTypes>()...));
 };
+ */
 
 
-
+/*
 template<typename T>
-inline T Abs(const T & integer)
-{
-    //return (integer<0)?integer*-1:integer;
 
-    return (integer < 0)*(integer*-1) + (integer>=0)*integer;
-}
+ */
 
 }
 
 namespace LD
 {
 
+    template<typename T>
+    inline constexpr T Abs(const T & integer) noexcept
+    {
+        //return (integer<0)?integer*-1:integer;
+
+        return (integer < 0)*(integer*-1) + (integer>=0)*integer;
+    }
     template<typename T, class = void>
     struct NumericSize
     {
@@ -6561,7 +6617,7 @@ namespace LD
 
 
 
-
+/*
 #if !defined(_LIBCPP_CXX03_LANG) && (!__has_feature(is_constructible) || \
 defined(_LIBCPP_TESTING_FALLBACK_IS_CONSTRUCTIBLE))
 
@@ -6691,565 +6747,9 @@ namespace LD
 
 
 #endif
+*/
 
 
-
-
-
-
-namespace LD
-{
-    template <class _Tp>
-    struct  IsCopyConstructible
-            : public LD::IsConstructible<_Tp,
-                    typename LD::Detail::AddLValueReference<typename LD::Detail::AddConst<_Tp>::type>::type> {};
-}
-
-
-
-namespace LD
-{
-
-
-
-
-
-    namespace Detail
-    {
-
-        struct nonesuch {
-            ~nonesuch() = delete;
-            nonesuch(nonesuch const&) = delete;
-            void operator=(nonesuch const&) = delete;
-        };
-        template <class Default, class AlwaysVoid,
-                template<class...> class Op, class... Args>
-        struct Detector {
-            using value = LD::FalseType;
-            using type = Default;
-        };
-
-        template <class Default, template<class...> class Op, class... Args>
-        struct Detector<Default, LD::Void_T<Op<Args...>>, Op, Args...> {
-            // Note that std::void_t is a C++17 feature
-            using value = LD::TrueType;
-            using type = Op<Args...>;
-        };
-
-    } // namespace detail
-
-    template <template<class...> class Op, class... Args>
-    using Is_Detected = typename Detail::Detector<Detail::nonesuch, void, Op, Args...>::value;
-
-    template <template<class...> class Op, class... Args>
-    using Detected_T = typename Detail::Detector<Detail::nonesuch, void, Op, Args...>::type;
-
-    template <class Default, template<class...> class Op, class... Args>
-    using Detected_Or = Detail::Detector<Default, void, Op, Args...>;
-
-
-    template <class To, template<class...> class Op, class... Args>
-    using Is_Detected_Convertible = LD::Detail::IsConvertible<Detected_T<Op, Args...>, To>;
-
-    template <class Expected, template<class...> class Op, class... Args>
-    using Is_Detected_Exact = LD::Detail::IsSame<Expected, Detected_T<Op, Args...>>;
-
-
-    template <template <class...> class Op, class... Args>
-    constexpr bool Exists = LD::Is_Detected<Op, Args...>::value;
-
-    template <template <class...> class Op, class... Args>
-    using CanCompile = LD::Is_Detected<Op, Args...>;
-
-    template <class To, template <class...> class Op, class... Args>
-    constexpr bool Coverts_To = LD::Is_Detected_Convertible<To, Op, Args...>::value;
-
-    template <class Exact, template <class...> class Op, class... Args>
-    constexpr bool Identical_To = LD::Is_Detected_Exact<Exact, Op, Args...>::value;
-
-
-    namespace adl {
-        using LD::Swap;
-
-        template <class T, class U=T>
-        using swap_with = decltype(Swap(LD::Declval<T>(), LD::Declval<U>()));
-    };
-
-
-
-
-    template<class...> struct Conjunction : LD::TrueType { };
-    template<class B1> struct Conjunction<B1> : B1 { };
-    template<class B1, class... Bn>
-    struct Conjunction<B1, Bn...>
-            : LD::Detail::Conditional_T<bool(B1::value), Conjunction<Bn...>, B1> {};
-
-
-
-    template<class...> struct Disjunction : LD::FalseType { };
-    template<class B1> struct Disjunction<B1> : B1 { };
-    template<class B1, class... Bn>
-    struct Disjunction<B1, Bn...>
-            : LD::Detail::Conditional_T<bool(B1::value), B1, Disjunction<Bn...>>  { };
-
-    template<class B>
-    struct Negation : LD::Detail::IntegralConstant<bool, !bool(B::value)> { };
-
-
-    template <typename ResultType, typename CheckType, template <typename> class ... Values>
-    using Requires = LD::Enable_If_T<Conjunction<Values<CheckType>...>::value, ResultType>;
-
-    template <typename ResultType, typename CheckType, template <typename> class ... Values>
-    using FallsBack = LD::Enable_If_T<Conjunction<Negation<Values<CheckType>>...>::value, ResultType>;
-
-
-    template <bool... Bs>
-    constexpr bool Require = LD::Conjunction<LD::Detail::IntegralConstant<bool,Bs>...>::value;
-
-
-    template <bool... Bs>
-    constexpr bool FallBack = LD::Conjunction<LD::Negation<LD::Detail::IntegralConstant<bool,Bs>>...>::value;
-
-    template <bool... Bs>
-    constexpr bool Negate = not LD::Require<Bs...>;
-
-    template <bool... Bs>
-    constexpr bool Either = LD::Disjunction<LD::Detail::IntegralConstant<bool,Bs>...>::value;
-
-    template <bool... Bs>
-    constexpr bool Disallow = not LD::Require<Bs...>;
-
-
-    namespace Ops
-    {
-        template <class T> using PrefixIncrement = decltype(++LD::Declval<T>());
-        template <class T> using PostfixIncrement = decltype(LD::Declval<T>()++);
-        template<typename T>
-        using PrefixDecrement = decltype(--LD::Declval<T>());
-        template<typename T>
-        using PostFixDecrement = decltype(LD::Declval<T>()--);
-        template <class T> using Dereference = decltype(*LD::Declval<T>());
-
-        template <class T, class Index>
-        using Subscript = decltype(LD::Declval<T>()[LD::Declval<Index>()]);
-
-
-        template <class T, class U>
-        using Addition = decltype(LD::Declval<T>()+LD::Declval<U>());
-
-        template <class T, class U>
-        using AssignableAddition = decltype((LD::Declval<T&>()+=LD::Declval<U>()));
-
-        template <class T, class U>
-        using Subtraction = decltype(LD::Declval<T>()-LD::Declval<U>());
-
-        template <class T, class U>
-        using AssignableSubtraction = decltype(LD::Declval<T&>()-=LD::Declval<U>());
-
-        template <class T, class U>
-        using Multiplication = decltype(LD::Declval<T>()*LD::Declval<U>());
-
-        template <class T, class U>
-        using AssignableMultiplication = decltype(LD::Declval<T&>()*=LD::Declval<U>());
-
-        template <class T, class U>
-        using Division = decltype(LD::Declval<T>()/LD::Declval<U>());
-
-        template <class T, class U>
-        using AssignableDivision = decltype(LD::Declval<T&>()/=LD::Declval<U>());
-
-        //decltype(std::declval<T &>() << std::declval<U const&>())
-        template<typename T, typename U>
-        using QuickCheck = decltype(LD::Declval<LD::Decay_T <T> &>() << LD::Declval<LD::Decay_T <U> const&>());
-
-        template <class T, class U>
-        using RightShift = decltype(LD::Declval<T>()<<LD::Declval<U>());
-
-        template <class T, class U>
-        using LessThan = decltype(LD::Declval<T>() < LD::Declval<U>());
-
-        template <class T, class U = T>
-        using LessEqualThan = decltype(LD::Declval<T>() <= LD::Declval<U>());
-
-        template <class T, class U = T>
-        using GreaterThan = decltype(LD::Declval<T>() > LD::Declval<U>());
-
-        template <class T, class U = T>
-        using GreaterEqualThan = decltype(LD::Declval<T>() >= LD::Declval<U>());
-
-        template <class T, class U = T>
-        using Equality = decltype(LD::Declval<T>() == LD::Declval<U>());
-
-        template <class T, class U = T>
-        using NotEqual = decltype(LD::Declval<T>() != LD::Declval<U>());
-
-        //template <class T ,typename ... Args>
-        //using CalleableOperator = decltype(LD::Declval<T>()(LD::Declval<Args>()...));
-        template <class F , typename T ,typename ... Args>
-        using CalleableOperator =LD::Detail::IsConvertible<decltype(LD::Declval<F>()(LD::Declval<Args>()...)  ), T>;
-        template <class T , typename U>
-        using FunctionalAssignmentOperator = decltype(LD::Declval<U>() =  LD::Declval<T>()());
-
-
-        template<typename F, typename ... Args>
-        using CallableFunction = decltype(LD::Declval<F>()(LD::Declval<Args>()...));
-
-
-
-    }
-
-
-
-    template<typename T, typename U>
-    constexpr bool HasLessThan = LD::Exists<LD::Ops::LessThan,T,U>;
-
-
-    template<typename T, typename U>
-    constexpr bool HasGreaterThan = LD::Exists<LD::Ops::GreaterThan,T,U>;
-
-    template<typename T, typename U>
-    constexpr bool HasEquality = LD::Exists<LD::Ops::Equality,T,U>;
-
-    template<typename T, typename U>
-    constexpr bool HasNotEqual = LD::Exists<LD::Ops::NotEqual,T,U>;
-
-    template<typename F, typename T>
-    struct ConvertiblyCallable;
-
-
-
-
-    template<typename F,typename T, typename ... Args>
-    struct ConvertiblyCallable<F,T(Args...)>
-    {
-        static constexpr bool Value()
-        {
-            return LD::Coverts_To<T,LD::Ops::CallableFunction, F,Args...>;
-        }
-
-
-        constexpr  bool operator()() const { return  LD::Coverts_To<T,LD::Ops::CallableFunction, F,Args...>; }
-
-        constexpr operator const bool () const
-        {
-            return LD::Coverts_To<T,LD::Ops::CallableFunction, F,Args...>;
-        }
-    };
-
-
-
-
-    template<typename F, typename ... Args>
-    struct ConvertiblyCallable<F,void(Args...)>
-    {
-        static constexpr bool Value()
-        {
-            return LD::Exists<LD::Ops::CallableFunction, F,Args...>;
-        }
-
-
-        constexpr  bool operator()() const { return  LD::Exists<LD::Ops::CallableFunction, F,Args...>; }
-
-        constexpr operator const bool () const
-        {
-            return LD::Exists<LD::Ops::CallableFunction, F,Args...>;
-        }
-    };
-
-
-
-    //template<typename F, typename T>
-    //struct AreConvertiblyCallable;
-
-    template<typename F, typename ... Args>
-    using CallableType = decltype(LD::Declval<F>()(LD::Declval<Args>()...)  );
-
-
-    template<typename ... F, typename T, typename ... Args>
-    struct ConvertiblyCallable<LD::VariadicPack<F...>, T(Args...)>
-    {
-        static constexpr bool Value()
-        {
-
-            return ((LD::Coverts_To<T,LD::Ops::CallableFunction, F,Args...>) && ... );
-        }
-
-        constexpr  bool operator()() const
-        {
-            return ((LD::Coverts_To<T,LD::Ops::CallableFunction, F,Args...>) && ... );
-
-        }
-
-        constexpr operator const bool () const
-        {
-            return ((LD::Coverts_To<T,LD::Ops::CallableFunction, F,Args...>) && ... );
-        }
-    };
-
-    template<typename ... F, typename ... Args>
-    struct ConvertiblyCallable<LD::VariadicPack<F...>, void(Args...)>
-    {
-        static constexpr bool Value()
-        {
-
-            return ((LD::Exists<LD::Ops::CallableFunction, F,Args...>) && ... );
-        }
-
-        constexpr  bool operator()() const
-        {
-            return ((LD::Exists<LD::Ops::CallableFunction, F,Args...>) && ... );
-
-        }
-
-        constexpr operator const bool () const
-        {
-            return ((LD::Exists<LD::Ops::CallableFunction, F,Args...>) && ... );
-        }
-    };
-
-
-    template<typename F, typename T>
-    struct IdenticallyCallable;
-
-
-    template<typename F,typename T, typename ... Args>
-    struct IdenticallyCallable<F,T(Args...)>
-    {
-        static constexpr bool Value()
-        {
-            return LD::Identical_To<T,LD::Ops::CallableFunction, F,Args...>;
-        }
-
-
-        constexpr bool operator()() const { return  LD::Identical_To<T,LD::Ops::CallableFunction, F,Args...>; }
-
-        operator auto () const
-        {
-            return LD::Identical_To<T,LD::Ops::CallableFunction, F,Args...>;
-        }
-    };
-
-
-    namespace Detail
-    {
-        template <typename P0>
-        struct ContainsFloatingPoint;
-
-        template <typename... T0s>
-        struct ContainsFloatingPoint<VariadicPack<T0s...>>
-                : LD::Detail::IntegralConstant<bool,(LD::Detail::IsFloatingPoint<T0s>::value || ...)>
-        {
-        };
-    }
-
-    template<typename ... Args>
-    constexpr bool ContainsFloatingPoint = LD::Detail::ContainsFloatingPoint<LD::VariadicPack<Args...>>::value;
-
-    template<typename F,typename T>
-    struct Callable;
-
-
-    template<typename F,typename T, typename ... Args>
-    struct Callable<F,T(Args...)>
-    {
-        static const bool value = LD::Detail::IsConvertible<decltype(LD::Declval<F>()(LD::Declval<Args>()...)  ), T>::value;
-    };
-
-
-    template<typename F, typename T, typename ... Args>
-    struct Calling
-    {
-        static const bool value = LD::Detail::IsConvertible<decltype(LD::Declval<F>()(LD::Declval<Args>()...)  ), T>::value;
-    };
-
-
-    template<typename U>
-    using CanDestruct = decltype(LD::Declval<U>().~U());
-
-
-    class NL
-    {
-
-    };
-
-    class NewLine
-    {
-
-    };
-
-    class Tab
-    {
-
-    };
-
-    class Space
-    {
-
-    };
-    namespace Concept
-    {
-        template <class T>
-        constexpr bool CopyConstructible = LD::IsCopyConstructible<T>::value;
-
-        template <class T>
-        constexpr bool CopyAssignable = LD::IsCopyAssignable<T>::value;
-
-        template <class T>
-        constexpr bool Destructible = LD::IsDestructible<T>::value;
-
-        template <class T>
-        constexpr bool Pointer = LD::Detail::IsPointer<T>::value;
-
-        template<typename T>
-        constexpr bool Indexable = LD::Exists<LD::Ops::Subscript,T,LD::UInteger>;
-
-
-        template<typename F , typename T ,typename ... Args>
-        constexpr bool Calleable = LD::Ops::CalleableOperator<F, T, Args...>::value;
-
-        template<typename F, typename U>
-        constexpr bool FunctionalAssignment = LD::Exists<LD::Ops::FunctionalAssignmentOperator, F,U>;
-
-
-        template <class T, class U>
-        constexpr bool SwappableWith = Exists<adl::swap_with, T, U>;
-
-        template <class T, class U>
-        constexpr bool Addable = Exists<LD::Ops::Addition, T, U>;
-
-        template <class T, class U>
-        constexpr bool AssignablyAddiditive = Exists<LD::Ops::AssignableAddition, T, U>;
-
-        template <class T, class U>
-        constexpr bool Insertable = Exists<LD::Ops::QuickCheck , T, U>;
-
-        template <class T, class U>
-        constexpr bool Extractable = Exists<LD::Ops::RightShift, T, U>;
-
-        //subtractable
-        template <class T, class U>
-        constexpr bool Subtractable = Exists<LD::Ops::Subtraction, T, U>;
-
-        template <class T, class U>
-        constexpr bool AssignablySubtractable = Exists<LD::Ops::AssignableSubtraction , T, U>;
-
-        template <class T, class U>
-        constexpr bool Multipliable = Exists<LD::Ops::Multiplication, T, U>;
-
-        template <class T, class U>
-        constexpr bool AssignablyMultipliable = Exists<LD::Ops::AssignableMultiplication , T, U>;
-
-        template <class T, class U>
-        constexpr bool Divisible = Exists<LD::Ops::Division, T, U>;
-
-        template <class T, class U>
-        constexpr bool AssignablyDivisible = Exists<LD::Ops::AssignableDivision , T, U>;
-
-
-        template <class T>
-        constexpr bool Swappable = SwappableWith<T&, T&>;
-
-
-        template<typename T>
-        constexpr bool PrefixIncrementable = LD::Exists<LD::Ops::PrefixIncrement,T>;
-
-        template<typename T>
-        constexpr bool PrefixDecrementable = LD::Exists<LD::Ops::PrefixDecrement,T>;
-
-        template<typename T>
-        constexpr bool PostfixIncrementable = LD::Exists<LD::Ops::PostfixIncrement,T>;
-
-        template<typename T>
-        constexpr bool PostfixDecrementable = LD::Exists<LD::Ops::PostFixDecrement ,T>;
-
-        template<typename T>
-        constexpr bool Deferenceable = LD::Exists<LD::Ops::Dereference,T>;
-
-
-
-
-        template <class T>
-        constexpr bool Iterable = LD::Either<LD::Concept::Pointer<T>, LD::Require<
-                LD::Concept::CopyConstructible<T>,
-                LD::Concept::CopyAssignable<T>,
-                LD::Concept::Destructible<T>,
-                LD::Concept::Swappable<T>,
-                LD::Concept::PrefixIncrementable<T>,
-                LD::Concept::Deferenceable<T>
-        >>;
-
-        template<typename T>
-        constexpr bool ContinuousIterable = LD::Either<
-                LD::Concept::Pointer<T>,
-                LD::Require<
-                    LD::Concept::CopyConstructible<T>,
-                    LD::Concept::CopyAssignable<T>,
-                    LD::Concept::Destructible<T>,
-                    LD::Concept::Swappable<T>,
-                    LD::Concept::PrefixIncrementable<T>,
-                    LD::Concept::Deferenceable<T>,
-                    LD::Concept::Indexable<T>
-                >>;
-
-
-
-
-        template<typename T, typename U = T>
-        constexpr bool Arithmetical = LD::Require<
-                LD::Concept::Addable<T, U>,
-                LD::Concept::Subtractable<T, U>,
-                LD::Concept::Multipliable<T, U>,
-                LD::Concept::Divisible<T, U>
-        >;
-
-        template<typename T, typename U>
-        constexpr bool Streamable = LD::Require<
-                LD::Concept::Insertable<T, U>,
-                LD::Concept::Extractable<T, U>
-        >;
-
-        template<typename F, typename T, typename ... Args>
-        constexpr bool Executable = LD::Require<
-                LD::Concept::Calleable<F, Args...>
-        >;
-    }
-
-
-
-    template<typename T>
-    constexpr bool IsInteger = LD::Detail::IsInteger<T>::value;
-
-    template<typename T>
-    constexpr bool IsUnsignedInteger = LD::Detail::IsUnsignedInteger<T>::value;
-
-
-    template<typename T>
-    constexpr bool IsFloatingPoint = LD::Detail::IsFloatingPoint<T>::value;
-
-    template<typename T>
-    constexpr bool IsCharacter = LD::Detail::IsCharacter<T>::value;
-
-
-
-   // template<typename T>
-    //constexpr bool IsClass = LD::Detail::IsClassType<T>::value;
-
-    //template<typename T>
-    //constexpr bool IsPrimitive =
-            //LD::Require<
-                    //!LD::IsClass<T>,
-                    //LD::Either<LD::IsInteger<T>,LD::IsUnsignedInteger<T>,LD::IsFloatingPoint<T>,LD::IsCharacter<T>>
-           // >;
-
-    template<typename T>
-    constexpr bool IsPrimitive = !LD::IsClass<T>;
-
-
-
-
-    template<typename T, typename U>
-    constexpr bool IsSame = LD::Detail::IsSame<T,U>::value;
-}
 
 
 namespace foonathan {

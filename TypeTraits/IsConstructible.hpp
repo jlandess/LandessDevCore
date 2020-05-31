@@ -15,6 +15,8 @@
 #include "RemoveConst.hpp"
 #include "IsBaseOf.hpp"
 #include "IsSwappable.hpp"
+#include "Declval.hpp"
+#include "IntegralConstant.hpp"
 
 /*
  * #if __has_feature(is_constructible)
@@ -33,6 +35,7 @@ namespace LD
  */
 namespace LD
 {
+    /*
     namespace Detail
     {
         template<class T>
@@ -134,6 +137,7 @@ namespace LD
             };
         };
     }
+
     template<typename T, typename Arg1 = void, typename Arg2 = void>
     struct IsConstructible : LD::Detail::IntegralConstant<bool, Detail::is_constructible_2<T, Arg1, Arg2>::value> {
 
@@ -147,6 +151,26 @@ namespace LD
     struct IsConstructible<T> : LD::Detail::IntegralConstant<bool, Detail::is_default_constructible<T>::value> {
 
     };
+     */
+
+
+
+    template <class, class T, class... Args>
+    struct IsConstructible_ : LD::FalseType {};
+
+
+    template <class T, class... Args>
+    struct IsConstructible_<
+            LD::Void_T<decltype(T(LD::Declval<Args>()...))>,
+            T, Args...> : LD::TrueType {};
+
+    template <class T, class... Args>
+    using IsConstructible = IsConstructible_<LD::Void_T<>, T, Args...>;
+
+    template <class _Tp>
+    struct  IsCopyConstructible
+            : public LD::IsConstructible<_Tp,
+                    typename LD::Detail::AddLValueReference<typename LD::Detail::AddConst<_Tp>::type>::type> {};
 
 
 

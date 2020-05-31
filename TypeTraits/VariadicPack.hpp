@@ -11,6 +11,7 @@
 namespace LD
 {
 
+    template <typename... Ts> struct VariadicPack { static const unsigned int size = sizeof...(Ts);};
     template<typename ...>
     class Pack
     {
@@ -49,7 +50,7 @@ namespace LD
         struct UniqueInsert<VariantType<T...>,TypeToInsert>
         {
         public:
-           using type = typename LD::Detail::Conditonal<LD::Detail::IsInPack<LD::Decay_T<TypeToInsert>,LD::Pack<LD::Decay_T<T>...>>::value,LD::Pack<LD::Decay_T<T>...>,LD::Pack<LD::Decay_T<T>...,LD::Decay_T<TypeToInsert>>>::type ;
+           using type = typename LD::Detail::Conditonal<LD::Detail::IsInPack<LD::Detail::Decay_T<TypeToInsert>,LD::Pack<LD::Detail::Decay_T<T>...>>::value,LD::Pack<LD::Detail::Decay_T<T>...>,LD::Pack<LD::Detail::Decay_T<T>...,LD::Detail::Decay_T<TypeToInsert>>>::type ;
         };
 
         template<class A, template<class...> class B>

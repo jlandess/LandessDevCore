@@ -7,13 +7,19 @@
 #include "Definitions/Integer.hpp"
 #include "Definitions/Common.hpp"
 #include "TypeTraits/Iterable.h"
+#include "TypeTraits/Detection.hpp"
 namespace LD
 {
 
+    template<typename T>
+    class Span;
     namespace Detail
     {
         template<typename T, class = void>
-        struct Spannable;
+        struct Spannable
+        {
+            constexpr static const bool value = false;
+        };
         template<typename T>
         struct Spannable<T,LD::EnableIf<
                 LD::Require<
@@ -73,6 +79,8 @@ namespace LD
             {
                 return this->mSize;
             }
+
+
         };
 
         template<typename T>
@@ -112,8 +120,24 @@ namespace LD
 
         };
 
+        template<typename T>
+        struct IsSpan: public LD::Detail::IntegralConstant<bool,false>
+        {
+
+        };
+
+        template<typename T>
+        struct IsSpan<LD::Span<T>>: public LD::Detail::IntegralConstant<bool,true>
+        {
+
+        };
+
+
+
     }
 
+    template<typename T>
+    constexpr const bool IsSpan = LD::Detail::IsSpan<T>::value;
     template<typename T>
     constexpr const bool Spannable = LD::Detail::Spannable<T>::value;
 

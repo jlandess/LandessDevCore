@@ -13,6 +13,7 @@
 #include "Functor/Lambda.h"
 #include "Definitions/Common.hpp"
 #include "Algorithms/CompileTimeControlFlow.hpp"
+#include "TypeTraits/IsImmutable.h"
 namespace LD
 {
 
@@ -410,7 +411,14 @@ namespace LD
             T * mBuffer;
             LD::UInteger mIndex;
         public:
+
+            typedef T Type;
             constexpr Iterator() noexcept:mBuffer(nullptr),mIndex(0)
+            {
+
+            }
+
+            constexpr Iterator(const Iterator & it) noexcept:mBuffer(it.mBuffer),mIndex(it.mIndex)
             {
 
             }
@@ -594,4 +602,15 @@ namespace LD
     }
 }
 
+namespace LD
+{
+    namespace Detail
+    {
+        template<typename T, LD::UInteger Size>
+        struct IsImmutable<LD::StaticArray<T,Size>>
+        {
+            constexpr static bool value = true;
+        };
+    }
+}
 #endif

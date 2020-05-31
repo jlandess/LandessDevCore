@@ -7,7 +7,8 @@
 
 #include "Definitions/Integer.hpp"
 #include "Algorithms/CompileTimeOperations.hpp"
-#include "Definitions/Common.hpp"
+//#include "Definitions/Common.hpp"
+#include "TypeTraits/Detection.hpp"
 namespace LD
 {
 

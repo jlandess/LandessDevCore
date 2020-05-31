@@ -132,5 +132,5 @@ add_executable(LandessDevCore
         Algorithms/StringAsNumber.h
         Primitives/General/Pair.h
         Async/Thread.cpp
-        Async/ThreadAffinity.h Primitives/General/Context.h Primitives/General/ContextualVariant.h IO/UnqliteDatabaseBackend.h IO/DatabaseOperationResult.h IO/DatabaseOpenMode.h Primitives/General/Span.hpp TypeTraits/IsIterable.h Primitives/General/GenericIterator.h TypeTraits/Iterable.h)
+        Async/ThreadAffinity.h Primitives/General/Context.h Primitives/General/ContextualVariant.h IO/UnqliteDatabaseBackend.h IO/DatabaseOperationResult.h IO/DatabaseOpenMode.h Primitives/General/Span.hpp TypeTraits/IsIterable.h Primitives/General/GenericIterator.h TypeTraits/Iterable.h TypeTraits/IsImmutable.h TypeTraits/Resizeable.h)
 target_link_libraries(LandessDevCore pthread)

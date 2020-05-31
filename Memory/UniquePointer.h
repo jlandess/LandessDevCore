@@ -16,6 +16,7 @@
 #include "Async/Atomic/Atomic.h"
 #include "Functor/LightWeightDelegate.h"
 #include "ElementReference.h"
+#include "TypeTraits/RemoveExtent.hpp"
 // can be replaced by other error mechanism
 #include <cassert>
 #define SHARED_ASSERT(x)    assert(x)
@@ -200,7 +201,7 @@ namespace LD
     typename _Unique_if<T>::_Single_object MakeUnique(Args&&... args)
     {
         
-        return UniquePointer<T>(new T(PDP::Forward<Args>(args)...));
+        return UniquePointer<T>(new T(LD::Forward<Args>(args)...));
     }
     
     
@@ -208,7 +209,7 @@ namespace LD
     typename _Unique_if<T>::_Single_object MakeUnique(Args&&... args,const PDP::ElementReference<Allocator> & currentAllocator)
     {
         
-        return UniquePointer<T>(new T(PDP::Forward<Args>(args)...));
+        return UniquePointer<T>(new T(LD::Forward<Args>(args)...));
     }
     
     
@@ -216,7 +217,7 @@ namespace LD
     typename _Unique_if<T>::_Unknown_bound MakeUnique(const PDP::UInteger & n)
     {
         
-        typedef typename PDP::RemoveExtent<T>::type U;
+        typedef typename LD::Detail::RemoveExtent<T>::type U;
         
         return UniquePointer<T>(new U[n]());
         
@@ -226,7 +227,7 @@ namespace LD
     typename _Unique_if<T>::_Unknown_bound MakeUnique(const PDP::UInteger &  n,const PDP::ElementReference<Allocator> & currentAllocator)
     {
         
-        typedef typename PDP::RemoveExtent<T>::type U;
+        typedef typename LD::Detail::RemoveExtent<T>::type U;
         
         return UniquePointer<T>(new U[n]());
         

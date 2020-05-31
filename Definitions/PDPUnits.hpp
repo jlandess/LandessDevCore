@@ -12,7 +12,7 @@
 #include "Common.hpp"
 namespace PDP
 {
-#define CreateUnitsClassImplementation(name) private: T CurrentValue; public: inline name():CurrentValue(PDP::Move(T())){} inline name(const T & value):CurrentValue(value){} inline name & operator = (const T & value){this->CurrentValue = value; return(*this);}  inline const T & Get##name() const {return this->CurrentValue;} inline void Set##name(const T & value){this->CurrentValue = value;} inline void SetValue(const T & value){this->CurrentValue = value;} virtual const T & GetValue() const {return this->CurrentValue;}
+#define CreateUnitsClassImplementation(name) private: T CurrentValue; public: inline name():CurrentValue(LD::Move(T())){} inline name(const T & value):CurrentValue(value){} inline name & operator = (const T & value){this->CurrentValue = value; return(*this);}  inline const T & Get##name() const {return this->CurrentValue;} inline void Set##name(const T & value){this->CurrentValue = value;} inline void SetValue(const T & value){this->CurrentValue = value;} virtual const T & GetValue() const {return this->CurrentValue;}
     
     
     
@@ -73,7 +73,7 @@ namespace PDP
     };
     
     template<PDP::UInteger Numerator, PDP::UInteger Denominator, template<typename> class UnitType, typename FloatingPointType>
-    class RadicandUnit<Numerator, Denominator, UnitType, FloatingPointType, PDP::Enable_If_T<PDP::IsBaseOf<PDP::Unit<FloatingPointType>, UnitType<FloatingPointType>>::value>>
+    class RadicandUnit<Numerator, Denominator, UnitType, FloatingPointType, LD::Enable_If_T<LD::Detail::IsBaseOf<PDP::Unit<FloatingPointType>, UnitType<FloatingPointType>>::value>>
     {
     private:
         
@@ -83,25 +83,25 @@ namespace PDP
         inline RadicandUnit();
         
         template<PDP::UInteger Numerator1,PDP::UInteger Denominator1>
-        RadicandUnit<Numerator*Numerator1, Denominator*Denominator1, UnitType, FloatingPointType, PDP::Enable_If_T<PDP::IsBaseOf<PDP::Unit<FloatingPointType>, UnitType<FloatingPointType>>::value>>
-        operator * (const RadicandUnit<Numerator1, Denominator1, UnitType, FloatingPointType, PDP::Enable_If_T<PDP::IsBaseOf<PDP::Unit<FloatingPointType>, UnitType<FloatingPointType>>::value>> & a);
+        RadicandUnit<Numerator*Numerator1, Denominator*Denominator1, UnitType, FloatingPointType, LD::Enable_If_T<LD::Detail::IsBaseOf<PDP::Unit<FloatingPointType>, UnitType<FloatingPointType>>::value>>
+        operator * (const RadicandUnit<Numerator1, Denominator1, UnitType, FloatingPointType, LD::Enable_If_T<LD::Detail::IsBaseOf<PDP::Unit<FloatingPointType>, UnitType<FloatingPointType>>::value>> & a);
         
         
         
         
         template<PDP::UInteger Numerator1,PDP::UInteger Denominator1>
-        RadicandUnit<Numerator+Numerator1, Denominator*Denominator1, UnitType, FloatingPointType, PDP::Enable_If_T<PDP::IsBaseOf<PDP::Unit<FloatingPointType>, UnitType<FloatingPointType>>::value>>
-        operator *= (const RadicandUnit<Numerator1, Denominator1, UnitType, FloatingPointType, PDP::Enable_If_T<PDP::IsBaseOf<PDP::Unit<FloatingPointType>, UnitType<FloatingPointType>>::value>> & a);
+        RadicandUnit<Numerator+Numerator1, Denominator*Denominator1, UnitType, FloatingPointType, LD::Enable_If_T<LD::Detail::IsBaseOf<PDP::Unit<FloatingPointType>, UnitType<FloatingPointType>>::value>>
+        operator *= (const RadicandUnit<Numerator1, Denominator1, UnitType, FloatingPointType, LD::Enable_If_T<LD::Detail::IsBaseOf<PDP::Unit<FloatingPointType>, UnitType<FloatingPointType>>::value>> & a);
         
         
         template<PDP::UInteger Numerator1,PDP::UInteger Denominator1>
-        RadicandUnit<Numerator*Numerator1, Denominator*Denominator1, UnitType, FloatingPointType, PDP::Enable_If_T<PDP::IsBaseOf<PDP::Unit<FloatingPointType>, UnitType<FloatingPointType>>::value>>
-        operator / (const RadicandUnit<Numerator1, Denominator1, UnitType, FloatingPointType, PDP::Enable_If_T<PDP::IsBaseOf<PDP::Unit<FloatingPointType>, UnitType<FloatingPointType>>::value>> & a);
+        RadicandUnit<Numerator*Numerator1, Denominator*Denominator1, UnitType, FloatingPointType, LD::Enable_If_T<LD::Detail::IsBaseOf<PDP::Unit<FloatingPointType>, UnitType<FloatingPointType>>::value>>
+        operator / (const RadicandUnit<Numerator1, Denominator1, UnitType, FloatingPointType, LD::Enable_If_T<LD::Detail::IsBaseOf<PDP::Unit<FloatingPointType>, UnitType<FloatingPointType>>::value>> & a);
         
         
         template<PDP::UInteger Numerator1,PDP::UInteger Denominator1>
-        RadicandUnit<Numerator*Numerator1, Denominator*Denominator1, UnitType, FloatingPointType, PDP::Enable_If_T<PDP::IsBaseOf<PDP::Unit<FloatingPointType>, UnitType<FloatingPointType>>::value>>
-        operator /= (const RadicandUnit<Numerator1, Denominator1, UnitType, FloatingPointType, PDP::Enable_If_T<PDP::IsBaseOf<PDP::Unit<FloatingPointType>, UnitType<FloatingPointType>>::value>> & a);
+        RadicandUnit<Numerator*Numerator1, Denominator*Denominator1, UnitType, FloatingPointType, LD::Enable_If_T<LD::Detail::IsBaseOf<PDP::Unit<FloatingPointType>, UnitType<FloatingPointType>>::value>>
+        operator /= (const RadicandUnit<Numerator1, Denominator1, UnitType, FloatingPointType, LD::Enable_If_T<LD::Detail::IsBaseOf<PDP::Unit<FloatingPointType>, UnitType<FloatingPointType>>::value>> & a);
 
         
     };
@@ -118,7 +118,7 @@ namespace PDP
     
     
     template<template<typename> class IndexUnitType, typename PrimaryFloatingPointType ,template<typename> class RadicanUnitType, typename SecondaryFloatingPointType>
-    class RadicalUnit<IndexUnitType, PrimaryFloatingPointType, RadicanUnitType, SecondaryFloatingPointType, PDP::Enable_If_T<PDP::IsBaseOf<PDP::Unit<PrimaryFloatingPointType>, IndexUnitType<PrimaryFloatingPointType>>::value && PDP::IsBaseOf<PDP::Unit<SecondaryFloatingPointType>, RadicanUnitType<SecondaryFloatingPointType>>::value>>
+    class RadicalUnit<IndexUnitType, PrimaryFloatingPointType, RadicanUnitType, SecondaryFloatingPointType, LD::Enable_If_T<LD::Detail::IsBaseOf<PDP::Unit<PrimaryFloatingPointType>, IndexUnitType<PrimaryFloatingPointType>>::value && LD::Detail::IsBaseOf<PDP::Unit<SecondaryFloatingPointType>, RadicanUnitType<SecondaryFloatingPointType>>::value>>
     {
     private:
         IndexUnitType<PrimaryFloatingPointType> Index;
@@ -140,10 +140,10 @@ namespace PDP
      @return A Radical that represents the multiplication of the constant and the radicand
      */
     template<PDP::UInteger Numerator, PDP::UInteger Denominator,typename PrimaryFloatingPointType ,template<typename> class RadicanUnitType, typename SecondaryFloatingPointType>
-    RadicalUnit<PDP::ConstantUnit, PrimaryFloatingPointType, RadicanUnitType, SecondaryFloatingPointType, PDP::Enable_If_T<PDP::IsBaseOf<PDP::Unit<SecondaryFloatingPointType>, RadicanUnitType<SecondaryFloatingPointType>>::value>>
-    operator * (const PDP::ConstantUnit<PrimaryFloatingPointType> & constant, const PDP::RadicandUnit<Numerator, Denominator, RadicanUnitType, SecondaryFloatingPointType, typename PDP::IsBaseOf<PDP::Unit<SecondaryFloatingPointType>, RadicanUnitType<SecondaryFloatingPointType>>::value> & radicand)
+    RadicalUnit<PDP::ConstantUnit, PrimaryFloatingPointType, RadicanUnitType, SecondaryFloatingPointType, LD::Enable_If_T<LD::Detail::IsBaseOf<PDP::Unit<SecondaryFloatingPointType>, RadicanUnitType<SecondaryFloatingPointType>>::value>>
+    operator * (const PDP::ConstantUnit<PrimaryFloatingPointType> & constant, const PDP::RadicandUnit<Numerator, Denominator, RadicanUnitType, SecondaryFloatingPointType, typename LD::Detail::IsBaseOf<PDP::Unit<SecondaryFloatingPointType>, RadicanUnitType<SecondaryFloatingPointType>>::value> & radicand)
     {
-        return RadicalUnit<PDP::ConstantUnit, PrimaryFloatingPointType, RadicanUnitType, SecondaryFloatingPointType, PDP::Enable_If_T<PDP::IsBaseOf<PDP::Unit<SecondaryFloatingPointType>, RadicanUnitType<SecondaryFloatingPointType>>::value>>();
+        return RadicalUnit<PDP::ConstantUnit, PrimaryFloatingPointType, RadicanUnitType, SecondaryFloatingPointType, LD::Enable_If_T<LD::Detail::IsBaseOf<PDP::Unit<SecondaryFloatingPointType>, RadicanUnitType<SecondaryFloatingPointType>>::value>>();
     }
     
     
@@ -209,27 +209,27 @@ namespace PDP
     {
         CreateUnitsClassImplementation(SecondSquared)
         
-        template<typename _T = T, typename = PDP::Enable_If_T<!PDP::IsSame<_T, long double>::value>>
+        template<typename _T = T, typename = LD::Enable_If_T<!LD::Detail::IsSame<_T, long double>::value>>
         SecondSquared(long double abc)
         {
             (*this) = abc;
         }
         
-        template<typename _T = T, typename = PDP::Enable_If_T<!PDP::IsSame<_T, long double>::value>>
+        template<typename _T = T, typename = LD::Enable_If_T<!LD::Detail::IsSame<_T, long double>::value>>
         SecondSquared(const SecondSquared<long double> & abc)
         {
             (*this) = abc;
         }
         
         template<typename _T = T>
-        inline PDP::Enable_If_T<!PDP::IsSame<_T, long double>::value,SecondSquared<_T>&> operator = (long double abc)
+        inline LD::Enable_If_T<!LD::Detail::IsSame<_T, long double>::value,SecondSquared<_T>&> operator = (long double abc)
         {
             this->CurrentValue = abc;
             return (*this);
         }
         
         template<typename _T = T>
-        inline PDP::Enable_If_T<!PDP::IsSame<_T, long double>::value,SecondSquared<_T>&> operator = (const SecondSquared<long double> & abc)
+        inline LD::Enable_If_T<!LD::Detail::IsSame<_T, long double>::value,SecondSquared<_T>&> operator = (const SecondSquared<long double> & abc)
         {
             this->CurrentValue = abc.GetValue();
             return (*this);
@@ -453,38 +453,38 @@ namespace PDP
     
     //beginning of second comparison operands
     template<typename T,typename U>
-    PDP::Enable_If_T<PDP::IsConvertible<U, T>::value,const bool> operator < (const Second<T> & a,const Second<U> & b)
+    LD::Enable_If_T<LD::Detail::IsConvertible<U, T>::value,const bool> operator < (const Second<T> & a,const Second<U> & b)
     {
         return a.GetValue() < b.GetValue();
     }
     
     template<typename T,typename U>
-    PDP::Enable_If_T<PDP::IsConvertible<U, T>::value,const bool> operator > (const Second<T> & a,const Second<U> & b)
+    LD::Enable_If_T<LD::Detail::IsConvertible<U, T>::value,const bool> operator > (const Second<T> & a,const Second<U> & b)
     {
         return a.GetValue() > b.GetValue();
     }
     
     
     template<typename T,typename U>
-    PDP::Enable_If_T<PDP::IsConvertible<U, T>::value,const bool> operator == (const Second<T> & a,const Second<U> & b)
+    LD::Enable_If_T<LD::Detail::IsConvertible<U, T>::value,const bool> operator == (const Second<T> & a,const Second<U> & b)
     {
         return a.GetValue() == b.GetValue();
     }
     
     template<typename T,typename U>
-    PDP::Enable_If_T<PDP::IsConvertible<U, T>::value,const bool> operator != (const Second<T> & a,const Second<U> & b)
+    LD::Enable_If_T<LD::Detail::IsConvertible<U, T>::value,const bool> operator != (const Second<T> & a,const Second<U> & b)
     {
         return a.GetValue() != b.GetValue();
     }
     
     template<typename T,typename U>
-    PDP::Enable_If_T<PDP::IsConvertible<U, T>::value,const bool> operator <= (const Second<T> & a,const Second<U> & b)
+    LD::Enable_If_T<LD::Detail::IsConvertible<U, T>::value,const bool> operator <= (const Second<T> & a,const Second<U> & b)
     {
         return a.GetValue() <= b.GetValue();
     }
     
     template<typename T,typename U>
-    PDP::Enable_If_T<PDP::IsConvertible<U, T>::value,const bool> operator >= (const Second<T> & a,const Second<U> & b)
+    LD::Enable_If_T<LD::Detail::IsConvertible<U, T>::value,const bool> operator >= (const Second<T> & a,const Second<U> & b)
     {
         return a.GetValue() >= b.GetValue();
     }
@@ -497,32 +497,32 @@ namespace PDP
     
     //beginning of periodic functions
     template<template<typename> class UnitType, typename TypeOfUnit>
-    PDP::Enable_If_T<PDP::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> Sin(const UnitType<TypeOfUnit> & currentUnit)
+    LD::Enable_If_T<LD::Detail::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> Sin(const UnitType<TypeOfUnit> & currentUnit)
     {
         return UnitType<TypeOfUnit>(PDP::Sin(currentUnit.GetValue()));
     }
     
     template<template<typename> class UnitType, typename TypeOfUnit>
-    PDP::Enable_If_T<PDP::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> Cos(const UnitType<TypeOfUnit> & currentUnit)
+    LD::Enable_If_T<LD::Detail::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> Cos(const UnitType<TypeOfUnit> & currentUnit)
     {
         return UnitType<TypeOfUnit>(PDP::Cos(currentUnit.GetValue()));
     }
     
     template<template<typename> class UnitType, typename TypeOfUnit>
-    PDP::Enable_If_T<PDP::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> Tan(const UnitType<TypeOfUnit> & currentUnit)
+    LD::Enable_If_T<LD::Detail::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> Tan(const UnitType<TypeOfUnit> & currentUnit)
     {
         return UnitType<TypeOfUnit>(PDP::Tan(currentUnit.GetValue()));
     }
     
     template<template<typename> class UnitType, typename TypeOfUnit>
-    PDP::Enable_If_T<PDP::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> CsC(const UnitType<TypeOfUnit> & currentUnit)
+    LD::Enable_If_T<LD::Detail::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> CsC(const UnitType<TypeOfUnit> & currentUnit)
     {
         return UnitType<TypeOfUnit>(PDP::CsC(currentUnit.GetValue()));
     }
     
     
     template<template<typename> class UnitType, typename TypeOfUnit>
-    PDP::Enable_If_T<PDP::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> Sec(const UnitType<TypeOfUnit> & currentUnit)
+    LD::Enable_If_T<LD::Detail::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> Sec(const UnitType<TypeOfUnit> & currentUnit)
     {
         return UnitType<TypeOfUnit>(PDP::Sec(currentUnit.GetValue()));
     }
@@ -530,86 +530,86 @@ namespace PDP
     
     
     template<template<typename> class UnitType, typename TypeOfUnit>
-    PDP::Enable_If_T<PDP::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> CoTan(const UnitType<TypeOfUnit> & currentUnit)
+    LD::Enable_If_T<LD::Detail::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> CoTan(const UnitType<TypeOfUnit> & currentUnit)
     {
         return UnitType<TypeOfUnit>(PDP::CoTan(currentUnit.GetValue()));
     }
     
     
     template<template<typename> class UnitType, typename TypeOfUnit>
-    PDP::Enable_If_T<PDP::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> ASin(const UnitType<TypeOfUnit> & currentUnit)
+    LD::Enable_If_T<LD::Detail::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> ASin(const UnitType<TypeOfUnit> & currentUnit)
     {
         return UnitType<TypeOfUnit>(PDP::ASin(currentUnit.GetValue()));
     }
     
     template<template<typename> class UnitType, typename TypeOfUnit>
-    PDP::Enable_If_T<PDP::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> ACos(const UnitType<TypeOfUnit> & currentUnit)
+    LD::Enable_If_T<LD::Detail::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> ACos(const UnitType<TypeOfUnit> & currentUnit)
     {
         return UnitType<TypeOfUnit>(PDP::ACos(currentUnit.GetValue()));
     }
     
     template<template<typename> class UnitType, typename TypeOfUnit>
-    PDP::Enable_If_T<PDP::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> ATan(const UnitType<TypeOfUnit> & currentUnit)
+    LD::Enable_If_T<LD::Detail::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> ATan(const UnitType<TypeOfUnit> & currentUnit)
     {
         return UnitType<TypeOfUnit>(PDP::ATan(currentUnit.GetValue()));
     }
     
     template<template<typename> class UnitType, typename TypeOfUnit>
-    PDP::Enable_If_T<PDP::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> ACsC(const UnitType<TypeOfUnit> & currentUnit)
+    LD::Enable_If_T<LD::Detail::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> ACsC(const UnitType<TypeOfUnit> & currentUnit)
     {
         return UnitType<TypeOfUnit>(PDP::ACsC(currentUnit.GetValue()));
     }
     
     template<template<typename> class UnitType, typename TypeOfUnit>
-    PDP::Enable_If_T<PDP::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> ASec(const UnitType<TypeOfUnit> & currentUnit)
+    LD::Enable_If_T<LD::Detail::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> ASec(const UnitType<TypeOfUnit> & currentUnit)
     {
         return UnitType<TypeOfUnit>(PDP::ASec(currentUnit.GetValue()));
     }
     
     template<template<typename> class UnitType, typename TypeOfUnit>
-    PDP::Enable_If_T<PDP::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> ACoTan(const UnitType<TypeOfUnit> & currentUnit)
+    LD::Enable_If_T<LD::Detail::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> ACoTan(const UnitType<TypeOfUnit> & currentUnit)
     {
         return UnitType<TypeOfUnit>(PDP::CoTan(currentUnit.GetValue()));
     }
     
     template<template<typename> class UnitType, typename TypeOfUnit>
-    PDP::Enable_If_T<PDP::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> Sinh(const UnitType<TypeOfUnit> & currentUnit)
+    LD::Enable_If_T<LD::Detail::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> Sinh(const UnitType<TypeOfUnit> & currentUnit)
     {
         return UnitType<TypeOfUnit>(PDP::Sinh(currentUnit.GetValue()));
     }
     
     template<template<typename> class UnitType, typename TypeOfUnit>
-    PDP::Enable_If_T<PDP::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> Cosh(const UnitType<TypeOfUnit> & currentUnit)
+    LD::Enable_If_T<LD::Detail::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> Cosh(const UnitType<TypeOfUnit> & currentUnit)
     {
         return UnitType<TypeOfUnit>(PDP::Cosh(currentUnit.GetValue()));
     }
     
     template<template<typename> class UnitType, typename TypeOfUnit>
-    PDP::Enable_If_T<PDP::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> Tanh(const UnitType<TypeOfUnit> & currentUnit)
+    LD::Enable_If_T<LD::Detail::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> Tanh(const UnitType<TypeOfUnit> & currentUnit)
     {
         return UnitType<TypeOfUnit>(PDP::Tanh(currentUnit.GetValue()));
     }
     
     template<template<typename> class UnitType, typename TypeOfUnit>
-    PDP::Enable_If_T<PDP::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> ASinh(const UnitType<TypeOfUnit> & currentUnit)
+    LD::Enable_If_T<LD::Detail::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> ASinh(const UnitType<TypeOfUnit> & currentUnit)
     {
         return UnitType<TypeOfUnit>(PDP::ASinh(currentUnit.GetValue()));
     }
     
     template<template<typename> class UnitType, typename TypeOfUnit>
-    PDP::Enable_If_T<PDP::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> ACosh(const UnitType<TypeOfUnit> & currentUnit)
+    LD::Enable_If_T<LD::Detail::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> ACosh(const UnitType<TypeOfUnit> & currentUnit)
     {
         return UnitType<TypeOfUnit>(PDP::ASinh(currentUnit.GetValue()));
     }
     
     template<template<typename> class UnitType, typename TypeOfUnit>
-    PDP::Enable_If_T<PDP::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> ATanh(const UnitType<TypeOfUnit> & currentUnit)
+    LD::Enable_If_T<LD::Detail::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> ATanh(const UnitType<TypeOfUnit> & currentUnit)
     {
         return UnitType<TypeOfUnit>(PDP::ASinh(currentUnit.GetValue()));
     }
     
     template<template<typename> class UnitType, typename TypeOfUnit>
-    PDP::Enable_If_T<PDP::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> ATan2(const UnitType<TypeOfUnit> & currentUnit,const UnitType<TypeOfUnit> & currentUnit1)
+    LD::Enable_If_T<LD::Detail::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> ATan2(const UnitType<TypeOfUnit> & currentUnit,const UnitType<TypeOfUnit> & currentUnit1)
     {
         return UnitType<TypeOfUnit>(PDP::ATan2(currentUnit.GetValue(),currentUnit1.GetValue()));
     }
@@ -648,59 +648,59 @@ namespace PDP
      */
     //start of power functions
     template<template<typename> class UnitType, typename TypeOfUnit>
-    PDP::Enable_If_T<PDP::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> Exp(const UnitType<TypeOfUnit> & currentUnit)
+    LD::Enable_If_T<LD::Detail::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> Exp(const UnitType<TypeOfUnit> & currentUnit)
     {
         return UnitType<TypeOfUnit>(PDP::Exp(currentUnit.GetValue()));
     }
     
     template<template<typename> class UnitType, typename TypeOfUnit>
-    PDP::Enable_If_T<PDP::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> Ln(const UnitType<TypeOfUnit> & currentUnit)
+    LD::Enable_If_T<LD::Detail::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> Ln(const UnitType<TypeOfUnit> & currentUnit)
     {
         return UnitType<TypeOfUnit>(PDP::Ln(currentUnit.GetValue()));
     }
     
     template<template<typename> class UnitType, typename TypeOfUnit>
-    PDP::Enable_If_T<PDP::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> Log(const UnitType<TypeOfUnit> & currentUnit)
+    LD::Enable_If_T<LD::Detail::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> Log(const UnitType<TypeOfUnit> & currentUnit)
     {
         return UnitType<TypeOfUnit>(PDP::Log(currentUnit.GetValue()));
     }
     
     template<template<typename> class UnitType, typename TypeOfUnit>
-    PDP::Enable_If_T<PDP::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> Log10(const UnitType<TypeOfUnit> & currentUnit)
+    LD::Enable_If_T<LD::Detail::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> Log10(const UnitType<TypeOfUnit> & currentUnit)
     {
         return UnitType<TypeOfUnit>(PDP::Log10(currentUnit.GetValue()));
     }
     
     template<template<typename> class UnitType, typename TypeOfUnit>
-    PDP::Enable_If_T<PDP::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> Log2(const UnitType<TypeOfUnit> & currentUnit)
+    LD::Enable_If_T<LD::Detail::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> Log2(const UnitType<TypeOfUnit> & currentUnit)
     {
         return UnitType<TypeOfUnit>(PDP::Log2(currentUnit.GetValue()));
     }
     
     template<template<typename> class UnitType, typename TypeOfUnit>
-    PDP::Enable_If_T<PDP::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> GCD(const UnitType<TypeOfUnit> & currentUnit)
+    LD::Enable_If_T<LD::Detail::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> GCD(const UnitType<TypeOfUnit> & currentUnit)
     {
         return UnitType<TypeOfUnit>(PDP::GCD(currentUnit.GetValue()));
     }
     
     template<template<typename> class UnitType, typename TypeOfUnit>
-    PDP::Enable_If_T<PDP::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> LCM(const UnitType<TypeOfUnit> & currentUnit)
+    LD::Enable_If_T<LD::Detail::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> LCM(const UnitType<TypeOfUnit> & currentUnit)
     {
         return UnitType<TypeOfUnit>(PDP::LCM(currentUnit.GetValue()));
     }
     
     template<template<typename> class UnitType, typename TypeOfUnit>
-    PDP::Enable_If_T<PDP::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> Min(const UnitType<TypeOfUnit> & currentUnit,const UnitType<TypeOfUnit> & currentUnit1)
+    LD::Enable_If_T<LD::Detail::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> Min(const UnitType<TypeOfUnit> & currentUnit,const UnitType<TypeOfUnit> & currentUnit1)
     {
         return UnitType<TypeOfUnit>(PDP::Min(currentUnit.GetValue(),currentUnit1.GetValue()));
     }
     template<template<typename> class UnitType, typename TypeOfUnit>
-    PDP::Enable_If_T<PDP::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> Min(const UnitType<TypeOfUnit> & currentUnit,const UnitType<TypeOfUnit> & currentUnit1,const UnitType<TypeOfUnit> & currentUnit2)
+    LD::Enable_If_T<LD::Detail::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> Min(const UnitType<TypeOfUnit> & currentUnit,const UnitType<TypeOfUnit> & currentUnit1,const UnitType<TypeOfUnit> & currentUnit2)
     {
         return UnitType<TypeOfUnit>(PDP::Min(currentUnit.GetValue(),currentUnit1.GetValue(),currentUnit2.GetValue()));
     }
     template<template<typename> class UnitType, typename TypeOfUnit>
-    PDP::Enable_If_T<PDP::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> Min(const UnitType<TypeOfUnit> & currentUnit,const UnitType<TypeOfUnit> & currentUnit1,const UnitType<TypeOfUnit> & currentUnit2,const UnitType<TypeOfUnit> & currentUnit3)
+    LD::Enable_If_T<LD::Detail::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> Min(const UnitType<TypeOfUnit> & currentUnit,const UnitType<TypeOfUnit> & currentUnit1,const UnitType<TypeOfUnit> & currentUnit2,const UnitType<TypeOfUnit> & currentUnit3)
     {
         return UnitType<TypeOfUnit>(PDP::Min(currentUnit.GetValue(),currentUnit1.GetValue(),currentUnit2.GetValue(),currentUnit3.GetValue()));
     }
@@ -708,53 +708,53 @@ namespace PDP
     
     
     template<template<typename> class UnitType, typename TypeOfUnit>
-    PDP::Enable_If_T<PDP::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> Max(const UnitType<TypeOfUnit> & currentUnit,const UnitType<TypeOfUnit> & currentUnit1)
+    LD::Enable_If_T<LD::Detail::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> Max(const UnitType<TypeOfUnit> & currentUnit,const UnitType<TypeOfUnit> & currentUnit1)
     {
         return UnitType<TypeOfUnit>(PDP::Max(currentUnit.GetValue(),currentUnit1.GetValue()));
     }
     template<template<typename> class UnitType, typename TypeOfUnit>
-    PDP::Enable_If_T<PDP::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> Max(const UnitType<TypeOfUnit> & currentUnit,const UnitType<TypeOfUnit> & currentUnit1,const UnitType<TypeOfUnit> & currentUnit2)
+    LD::Enable_If_T<LD::Detail::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> Max(const UnitType<TypeOfUnit> & currentUnit,const UnitType<TypeOfUnit> & currentUnit1,const UnitType<TypeOfUnit> & currentUnit2)
     {
         return UnitType<TypeOfUnit>(PDP::Max(currentUnit.GetValue(),currentUnit1.GetValue(),currentUnit2.GetValue()));
     }
     template<template<typename> class UnitType, typename TypeOfUnit>
-    PDP::Enable_If_T<PDP::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> Max(const UnitType<TypeOfUnit> & currentUnit,const UnitType<TypeOfUnit> & currentUnit1,const UnitType<TypeOfUnit> & currentUnit2,const UnitType<TypeOfUnit> & currentUnit3)
+    LD::Enable_If_T<LD::Detail::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> Max(const UnitType<TypeOfUnit> & currentUnit,const UnitType<TypeOfUnit> & currentUnit1,const UnitType<TypeOfUnit> & currentUnit2,const UnitType<TypeOfUnit> & currentUnit3)
     {
         return UnitType<TypeOfUnit>(PDP::Max(currentUnit.GetValue(),currentUnit1.GetValue(),currentUnit2.GetValue(),currentUnit3.GetValue()));
     }
     
     template<template<typename> class UnitType, typename TypeOfUnit>
-    PDP::Enable_If_T<PDP::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> Round(const UnitType<TypeOfUnit> & currentUnit)
+    LD::Enable_If_T<LD::Detail::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> Round(const UnitType<TypeOfUnit> & currentUnit)
     {
         return UnitType<TypeOfUnit>(PDP::Round(currentUnit.GetValue()));
     }
     
     template<template<typename> class UnitType, typename TypeOfUnit>
-    PDP::Enable_If_T<PDP::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> Ceil(const UnitType<TypeOfUnit> & currentUnit)
+    LD::Enable_If_T<LD::Detail::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> Ceil(const UnitType<TypeOfUnit> & currentUnit)
     {
         return UnitType<TypeOfUnit>(PDP::Ceil(currentUnit.GetValue()));
     }
     
     template<template<typename> class UnitType, typename TypeOfUnit>
-    PDP::Enable_If_T<PDP::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> Floor(const UnitType<TypeOfUnit> & currentUnit)
+    LD::Enable_If_T<LD::Detail::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> Floor(const UnitType<TypeOfUnit> & currentUnit)
     {
         return UnitType<TypeOfUnit>(PDP::Floor(currentUnit.GetValue()));
     }
     
     template<template<typename> class UnitType, typename TypeOfUnit>
-    PDP::Enable_If_T<PDP::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> Fmod(const UnitType<TypeOfUnit> & a,const UnitType<TypeOfUnit> & b)
+    LD::Enable_If_T<LD::Detail::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> Fmod(const UnitType<TypeOfUnit> & a,const UnitType<TypeOfUnit> & b)
     {
         return UnitType<TypeOfUnit>(PDP::Fmod(a.GetValue(),b.GetValue()));
     }
     
     template<template<typename> class UnitType, typename TypeOfUnit>
-    PDP::Enable_If_T<PDP::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> Fraction(const UnitType<TypeOfUnit> & currentUnit)
+    LD::Enable_If_T<LD::Detail::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> Fraction(const UnitType<TypeOfUnit> & currentUnit)
     {
         return UnitType<TypeOfUnit>(PDP::Fraction(currentUnit.GetValue()));
     }
     
     template<template<typename> class UnitType, typename TypeOfUnit>
-    PDP::Enable_If_T<PDP::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> Clamp(const UnitType<TypeOfUnit> & a,const UnitType<TypeOfUnit> & lower, const UnitType<TypeOfUnit> & upper)
+    LD::Enable_If_T<LD::Detail::IsKindOf<PDP::Unit<TypeOfUnit>, UnitType<TypeOfUnit>>::value,UnitType<TypeOfUnit>> Clamp(const UnitType<TypeOfUnit> & a,const UnitType<TypeOfUnit> & lower, const UnitType<TypeOfUnit> & upper)
     {
         return UnitType<TypeOfUnit>(PDP::Clamp(a.GetValue(),lower.GetValue(),upper.GetValue()));
     }
@@ -765,44 +765,44 @@ namespace PDP
 //beginning of second implementation
 
 template<typename T, typename U>
-inline PDP::Enable_If_T<PDP::IsConvertible<U,T>::value,const PDP::Second<T>> operator + (const PDP::Second<T> & a, const PDP::Second<U> & b)
+inline LD::Enable_If_T<LD::Detail::IsConvertible<U,T>::value,const PDP::Second<T>> operator + (const PDP::Second<T> & a, const PDP::Second<U> & b)
 {
     return PDP::Second<T>(a.GetSecond()+b.GetSecond());
 }
 
 template<typename T, typename U>
-inline PDP::Enable_If_T<PDP::IsConvertible<U,T>::value,const PDP::Second<T>> operator - (const PDP::Second<T> & a, const PDP::Second<U> & b)
+inline LD::Enable_If_T<LD::Detail::IsConvertible<U,T>::value,const PDP::Second<T>> operator - (const PDP::Second<T> & a, const PDP::Second<U> & b)
 {
     return PDP::Second<T>(a.GetSecond()+b.GetSecond());
 }
 
 template<typename T, typename U>
-inline PDP::Enable_If_T<PDP::IsConvertible<U, T>::value && !PDP::IsSame<U,PDP::Second<U>>::value,const PDP::Second<T>> operator * (const PDP::Second<T> & a, const U & b)
+inline LD::Enable_If_T<LD::Detail::IsConvertible<U, T>::value && !LD::Detail::IsSame<U,PDP::Second<U>>::value,const PDP::Second<T>> operator * (const PDP::Second<T> & a, const U & b)
 {
     return PDP::Second<T>(a.GetSecond()*b);
 }
 
 template<typename T, typename U>
-inline PDP::Enable_If_T<PDP::IsConvertible<U, T>::value && !PDP::IsSame<U,PDP::Second<U>>::value,const PDP::Second<T>> operator * (const U & b,const PDP::Second<T> & a)
+inline LD::Enable_If_T<LD::Detail::IsConvertible<U, T>::value && !LD::Detail::IsSame<U,PDP::Second<U>>::value,const PDP::Second<T>> operator * (const U & b,const PDP::Second<T> & a)
 {
     return PDP::Second<T>(a.GetSecond()*b);
 }
 
 
 template<typename T, typename U>
-inline PDP::Enable_If_T<PDP::IsConvertible<U,T>::value,const PDP::SecondSquared<T>> operator * (const PDP::Second<T> & a, const PDP::Second<U> & b)
+inline LD::Enable_If_T<LD::Detail::IsConvertible<U,T>::value,const PDP::SecondSquared<T>> operator * (const PDP::Second<T> & a, const PDP::Second<U> & b)
 {
     return PDP::SecondSquared<T>(a.GetSecond()*b.GetSecond());
 }
 
 template<typename T, typename U>
-inline PDP::Enable_If_T<PDP::IsConvertible<U,T>::value,const T>  operator / (const PDP::Second<T> & a, const PDP::Second<U> & b)
+inline LD::Enable_If_T<LD::Detail::IsConvertible<U,T>::value,const T>  operator / (const PDP::Second<T> & a, const PDP::Second<U> & b)
 {
     return a.GetValue()/b.GetValue();
 }
 
 template<typename T, typename U>
-inline PDP::Enable_If_T<PDP::IsConvertible<U, T>::value && !PDP::IsSame<U,PDP::Second<U>>::value,const PDP::Second<T>> operator / (const PDP::Second<T> & a, const U & b)
+inline LD::Enable_If_T<LD::Detail::IsConvertible<U, T>::value && !LD::Detail::IsSame<U,PDP::Second<U>>::value,const PDP::Second<T>> operator / (const PDP::Second<T> & a, const U & b)
 {
     return PDP::Second<T>(a.GetSecond()/b);
 }
@@ -810,14 +810,14 @@ inline PDP::Enable_If_T<PDP::IsConvertible<U, T>::value && !PDP::IsSame<U,PDP::S
 
 
 template<typename T, typename U>
-inline PDP::Enable_If_T<PDP::IsConvertible<U,T>::value,PDP::Second<T>&> operator += (PDP::Second<T> & a, const PDP::Second<U> & b)
+inline LD::Enable_If_T<LD::Detail::IsConvertible<U,T>::value,PDP::Second<T>&> operator += (PDP::Second<T> & a, const PDP::Second<U> & b)
 {
     a = PDP::Second<T>(a.GetValue()+b.GetValue());
     return a;
 }
 
 template<typename T, typename U>
-inline PDP::Enable_If_T<PDP::IsConvertible<U,T>::value,PDP::Second<T>&>  operator -= (PDP::Second<T> & a, const PDP::Second<U> & b)
+inline LD::Enable_If_T<LD::Detail::IsConvertible<U,T>::value,PDP::Second<T>&>  operator -= (PDP::Second<T> & a, const PDP::Second<U> & b)
 {
     a = PDP::Second<T>(a.GetValue()-b.GetValue());
     return a;
@@ -833,32 +833,32 @@ inline PDP::Enable_If_T<PDP::IsConvertible<U,T>::value,PDP::Second<T>&>  operato
 //beginning of meter implementation
 
 template<typename T, typename U>
-inline PDP::Enable_If_T<PDP::IsConvertible<U,T>::value,const PDP::Meter<T>>  operator + (const PDP::Meter<T> & a, const PDP::Meter<U> & b)
+inline LD::Enable_If_T<LD::Detail::IsConvertible<U,T>::value,const PDP::Meter<T>>  operator + (const PDP::Meter<T> & a, const PDP::Meter<U> & b)
 {
     return PDP::Meter<T>(a.GetMeter() + b.GetMeter());
 }
 
 template<typename T, typename U>
-inline PDP::Enable_If_T<PDP::IsConvertible<U,T>::value,const PDP::Meter<T>> operator - (const PDP::Meter<T> & a, const PDP::Meter<U> & b)
+inline LD::Enable_If_T<LD::Detail::IsConvertible<U,T>::value,const PDP::Meter<T>> operator - (const PDP::Meter<T> & a, const PDP::Meter<U> & b)
 {
     return PDP::Meter<T>(a.GetMeter() - b.GetMeter());
 }
 
 
 template<typename T, typename U>
-inline PDP::Enable_If_T<PDP::IsConvertible<U,T>::value,const PDP::Meter<T>> operator * (const PDP::MetersPerSecond<T> & a, const PDP::Second<U> & b)
+inline LD::Enable_If_T<LD::Detail::IsConvertible<U,T>::value,const PDP::Meter<T>> operator * (const PDP::MetersPerSecond<T> & a, const PDP::Second<U> & b)
 {
     return PDP::Meter<T>(a.GetMetersPerSecond() * b.GetSecond());
 }
 
 template<typename T, typename U>
-inline PDP::Enable_If_T<PDP::IsConvertible<U,T>::value, const PDP::SquareMeter<T>> operator * (const PDP::Meter<T> & a, const PDP::Meter<U> & b)
+inline LD::Enable_If_T<LD::Detail::IsConvertible<U,T>::value, const PDP::SquareMeter<T>> operator * (const PDP::Meter<T> & a, const PDP::Meter<U> & b)
 {
     return PDP::SquareMeter<T>(a.GetValue() * b.GetValue());
 }
 
 template<typename T, typename U>
-inline PDP::Enable_If_T<PDP::IsConvertible<U,T>::value && !PDP::IsSame<U, PDP::Second<U>>::value,const PDP::Meter<T>> operator * (const PDP::MetersPerSecond<T> & a, const U & b)
+inline LD::Enable_If_T<LD::Detail::IsConvertible<U,T>::value && !LD::Detail::IsSame<U, PDP::Second<U>>::value,const PDP::Meter<T>> operator * (const PDP::MetersPerSecond<T> & a, const U & b)
 {
     return PDP::Meter<T>(a.GetMetersPerSecond() * b);
 }
@@ -866,7 +866,7 @@ inline PDP::Enable_If_T<PDP::IsConvertible<U,T>::value && !PDP::IsSame<U, PDP::S
 
 
 template<typename T, typename U>
-inline PDP::Enable_If_T<PDP::IsConvertible<U,T>::value && !PDP::IsSame<U, PDP::Second<U>>::value,const PDP::Meter<T>> operator * ( const U & b,const PDP::MetersPerSecond<T> & a)
+inline LD::Enable_If_T<LD::Detail::IsConvertible<U,T>::value && !LD::Detail::IsSame<U, PDP::Second<U>>::value,const PDP::Meter<T>> operator * ( const U & b,const PDP::MetersPerSecond<T> & a)
 {
     return PDP::Meter<T>(a.GetMetersPerSecond() * b);
 }
@@ -876,13 +876,13 @@ inline PDP::Enable_If_T<PDP::IsConvertible<U,T>::value && !PDP::IsSame<U, PDP::S
 
 
 template<typename T, typename U>
-inline PDP::Enable_If_T<PDP::IsConvertible<U,T>::value,const PDP::Meter<T>> operator * (const PDP::Second<T> & a, const PDP::MetersPerSecond<U> & b)
+inline LD::Enable_If_T<LD::Detail::IsConvertible<U,T>::value,const PDP::Meter<T>> operator * (const PDP::Second<T> & a, const PDP::MetersPerSecond<U> & b)
 {
     return PDP::Meter<T>(a.GetMetersPerSecond() * b.GetSecond());
 }
 
 template<typename T, typename U>
-inline PDP::Enable_If_T<PDP::IsConvertible<U,T>::value && !PDP::IsSame<U, PDP::Second<U>>::value,const PDP::Meter<T>> operator / (const PDP::MetersPerSecond<T> & a, const U & b)
+inline LD::Enable_If_T<LD::Detail::IsConvertible<U,T>::value && !LD::Detail::IsSame<U, PDP::Second<U>>::value,const PDP::Meter<T>> operator / (const PDP::MetersPerSecond<T> & a, const U & b)
 {
     return PDP::Meter<T>(a.GetMetersPerSecond() / b);
 }
@@ -890,14 +890,14 @@ inline PDP::Enable_If_T<PDP::IsConvertible<U,T>::value && !PDP::IsSame<U, PDP::S
 
 
 template<typename T, typename U>
-inline PDP::Enable_If_T<PDP::IsConvertible<U,T>::value,PDP::Meter<T>&>  operator += (PDP::Meter<T> & a, const PDP::Meter<U> & b)
+inline LD::Enable_If_T<LD::Detail::IsConvertible<U,T>::value,PDP::Meter<T>&>  operator += (PDP::Meter<T> & a, const PDP::Meter<U> & b)
 {
     a =  PDP::Meter<T>(a.GetMeter() + b.GetMeter());
     return a;
 }
 
 template<typename T, typename U>
-inline PDP::Enable_If_T<PDP::IsConvertible<U,T>::value,PDP::Meter<T>&> operator -= (PDP::Meter<T> & a, const PDP::Meter<U> & b)
+inline LD::Enable_If_T<LD::Detail::IsConvertible<U,T>::value,PDP::Meter<T>&> operator -= (PDP::Meter<T> & a, const PDP::Meter<U> & b)
 {
     a =  PDP::Meter<T>(a.GetMeter() - b.GetMeter());
     return a;
@@ -908,27 +908,27 @@ inline PDP::Enable_If_T<PDP::IsConvertible<U,T>::value,PDP::Meter<T>&> operator 
 //beginning of meterspersecond implementation
 
 template<typename T, typename U>
-inline PDP::Enable_If_T<PDP::IsConvertible<U,T>::value,const PDP::MetersPerSecond<T>> operator + (const PDP::MetersPerSecond<T> & meter, const PDP::MetersPerSecond<U> & second)
+inline LD::Enable_If_T<LD::Detail::IsConvertible<U,T>::value,const PDP::MetersPerSecond<T>> operator + (const PDP::MetersPerSecond<T> & meter, const PDP::MetersPerSecond<U> & second)
 {
     return PDP::MetersPerSecond<T>(meter.GetMeter()+second.GetSecond());
 }
 
 template<typename T, typename U>
-inline PDP::Enable_If_T<PDP::IsConvertible<U,T>::value,const PDP::MetersPerSecond<T>> operator - (const PDP::MetersPerSecond<T> & meter, const PDP::MetersPerSecond<U> & second)
+inline LD::Enable_If_T<LD::Detail::IsConvertible<U,T>::value,const PDP::MetersPerSecond<T>> operator - (const PDP::MetersPerSecond<T> & meter, const PDP::MetersPerSecond<U> & second)
 {
     return PDP::MetersPerSecond<T>(meter.GetMeter()-second.GetSecond());
 }
 
 
 template<typename T, typename U>
-inline PDP::Enable_If_T<PDP::IsConvertible<U,T>::value,PDP::MetersPerSecond<T>&> operator += (const PDP::MetersPerSecond<T> & meter, const PDP::MetersPerSecond<U> & second)
+inline LD::Enable_If_T<LD::Detail::IsConvertible<U,T>::value,PDP::MetersPerSecond<T>&> operator += (const PDP::MetersPerSecond<T> & meter, const PDP::MetersPerSecond<U> & second)
 {
     meter =  PDP::MetersPerSecond<T>(meter.GetMeter()+second.GetSecond());
     return meter;
 }
 
 template<typename T, typename U>
-inline PDP::Enable_If_T<PDP::IsConvertible<U,T>::value,PDP::MetersPerSecond<T>&> operator -= (const PDP::MetersPerSecond<T> & meter, const PDP::MetersPerSecond<U> & second)
+inline LD::Enable_If_T<LD::Detail::IsConvertible<U,T>::value,PDP::MetersPerSecond<T>&> operator -= (const PDP::MetersPerSecond<T> & meter, const PDP::MetersPerSecond<U> & second)
 {
     meter =  PDP::MetersPerSecond<T>(meter.GetMeter()-second.GetSecond());
     return meter;
@@ -937,25 +937,25 @@ inline PDP::Enable_If_T<PDP::IsConvertible<U,T>::value,PDP::MetersPerSecond<T>&>
 
 
 template<typename T, typename U>
-inline PDP::Enable_If_T<PDP::IsConvertible<U,T>::value,const PDP::MetersPerSecond<T>> operator / (const PDP::Meter<T> & meter, const PDP::Second<U> & second)
+inline LD::Enable_If_T<LD::Detail::IsConvertible<U,T>::value,const PDP::MetersPerSecond<T>> operator / (const PDP::Meter<T> & meter, const PDP::Second<U> & second)
 {
     return PDP::MetersPerSecond<T>(meter.GetMeter()/second.GetSecond());
 }
 
 template<typename T, typename U>
-inline PDP::Enable_If_T<PDP::IsConvertible<U,T>::value,const PDP::MetersPerSecondSquared<T>> operator / (const PDP::MetersPerSecond<T> & velocity, const PDP::Second<U> & second)
+inline LD::Enable_If_T<LD::Detail::IsConvertible<U,T>::value,const PDP::MetersPerSecondSquared<T>> operator / (const PDP::MetersPerSecond<T> & velocity, const PDP::Second<U> & second)
 {
     return PDP::MetersPerSecondSquared<T>(velocity.MetersPerSecond()/second.GetSecond());
 }
 
 template<typename T, typename U>
-inline PDP::Enable_If_T<PDP::IsConvertible<U,T>::value,const PDP::Work<T>> operator * (const PDP::Newton<T> & force, const PDP::Meter<U> & distance)
+inline LD::Enable_If_T<LD::Detail::IsConvertible<U,T>::value,const PDP::Work<T>> operator * (const PDP::Newton<T> & force, const PDP::Meter<U> & distance)
 {
     return PDP::Work<T>(force.GetValue()*distance.GetValue());
 }
 
 template<typename T, typename U>
-inline PDP::Enable_If_T<PDP::IsConvertible<U,T>::value,const PDP::Work<T>> operator * (const PDP::Meter<U> & distance,const PDP::Newton<T> & force)
+inline LD::Enable_If_T<LD::Detail::IsConvertible<U,T>::value,const PDP::Work<T>> operator * (const PDP::Meter<U> & distance,const PDP::Newton<T> & force)
 {
     return PDP::Work<T>(force.GetValue()*distance.GetValue());
 }

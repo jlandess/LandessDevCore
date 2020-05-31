@@ -15,6 +15,7 @@
 #include "Functor/fixed_size_function.hpp"
 #include "Primitives/General/Pair.h"
 #include "DatabaseOpenMode.h"
+#include "TypeTraits/IsConstructible.hpp"
 namespace LD
 {
 
@@ -24,6 +25,7 @@ namespace LD
     class DebugTemplate;
 
 
+    template<typename BufferType>
     class UnQliteBackend
     {
     public:
@@ -92,7 +94,7 @@ namespace LD
 
 
         template<typename ... Args,typename Ret = LD::ContextualVariant<LD::Variant<LD::DatabaseError,LD::DatabaseTransactionResult>(Args...)>>
-        LD::Variant<LD::DatabaseError,LD::DatabaseInsertResult> Store(const LD::StringView & key, const LD::StringView & data, Args && ... arguements) const noexcept
+        Ret Store(const LD::StringView & key, const LD::BasicStringView<BufferType> & data, Args && ... arguements) const noexcept
         {
             unqlite * ptr = this->mBackend.GetPointer();
             LD::UInteger dbResult = unqlite_kv_store(ptr,key.data(),key.size(),data.data(),data.size());
@@ -102,26 +104,41 @@ namespace LD
             return results[dbResult == UNQLITE_OK];
         }
 
-        template<typename F, typename ... Args,typename Ret = LD::ContextualVariant<LD::Variant<LD::DatabaseError,LD::DatabaseTransactionResult>(Args...)>>
-        Ret Fetch(LD::StringView & key, F && functor, Args && ... arguments) const noexcept
+        template<typename F, typename ... Args,
+                typename PassableContext = LD::Context<LD::StringView,LD::StringView,Args...>,
+                typename FunctorRet = decltype(LD::Declval<F>()(LD::Declval<PassableContext>())),
+                typename Ret = LD::ContextualVariant<LD::Variant<LD::DatabaseError,LD::DatabaseTransactionResult>(LD::StringView ,FunctorRet,Args...)>>
+        LD::Enable_If_T<LD::Require<
+                LD::Negate<LD::Detail::IsSame<void,FunctorRet>::value>,
+                LD::IsDefaultConstructible<FunctorRet>
+        >,Ret> Fetch(const LD::StringView & key, F && functor, Args && ... arguments) const noexcept
         {
-            typedef LD::Pair<LD::fixed_size_function<void(const LD::Context<LD::StringView,LD::StringView,Args...> &)>,LD::Context<Args...>> FetchContext;
+            //using PassableContext = LD::Context<LD::StringView,LD::StringView,Args...>;
+            //using FunctorRet = decltype(LD::Declval<F>()(LD::Declval<PassableContext>()));
+            using FunctorDef = LD::fixed_size_function<FunctorRet(const PassableContext &)>;
+
+
+            //typedef LD::Pair<FunctorDef ,PassableContext> FetchContext;
+            typedef LD::Tuple<FunctorDef ,PassableContext,FunctorRet> FetchContext;
             FetchContext pair;
             auto fetchCallback = [](const void * input, unsigned int dataSize, void * inputPointer)->int
             {
                 FetchContext * instance = (FetchContext *)inputPointer;
-                LD::Get<1>(instance->GetSecond()) = LD::StringView{(char*)input,dataSize};
-                instance->GetFirst()(instance->GetSecond());
+
+                LD::Get<1>(LD::Get<1>(*instance)) = LD::StringView{(char*)input,dataSize};
+                //instance->GetFirst()(instance->GetSecond());
+                LD::Get<2>(*instance) =  LD::Get<0>(*instance)(LD::Get<1>(*instance));
                 return 0;
             };
-            pair.GetFirst() = LD::fixed_size_function<void(const LD::StringView&,const LD::StringView &, const LD::Context<Args...> &)>{functor};
-            pair.GetSecond() = LD::MakeContext(LD::StringView {key},LD::StringView {},LD::Forward<Args>(arguments)...);
+            LD::Get<0>(pair) = FunctorDef {functor};
+            //pair.GetFirst() = FunctorDef {functor};
+            LD::Get<1>(pair) = LD::MakeContext(LD::StringView {key},LD::StringView {},LD::Forward<Args>(arguments)...);
+            //pair.GetSecond() = LD::MakeContext(LD::StringView {key},LD::StringView {},LD::Forward<Args>(arguments)...);
             unqlite * ptr = this->mBackend.GetPointer();
             LD::UInteger dbResult = unqlite_kv_fetch_callback(ptr,key.data(),key.size(),fetchCallback, &pair);
-
             Ret results[2];
-            results[0] = LD::MakeContext(LD::DatabaseError{},LD::Forward<Args>(arguments)...);
-            results[1] = LD::MakeContext(LD::DatabaseTransactionResult{},LD::Forward<Args>(arguments)...);
+            results[0] = LD::MakeContext(LD::DatabaseError{},LD::StringView{key},FunctorRet{},LD::Forward<Args>(arguments)...);
+            results[1] = LD::MakeContext(LD::DatabaseTransactionResult{},LD::StringView {key},FunctorRet{LD::Get<2>(pair)},LD::Forward<Args>(arguments)...);
             return results[dbResult == UNQLITE_OK];
         }
 

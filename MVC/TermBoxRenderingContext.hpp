@@ -211,7 +211,7 @@ namespace LD
         template<typename T>
         constexpr static LD::Enable_If_T<
                 LD::Require<
-                        LD::ConvertiblyCallable<LD::Decay_T<T>,PDP::Detail::tVec2<LD::UInteger>()>::Value(),
+                        LD::ConvertiblyCallable<LD::Detail::Decay_T<T>,PDP::Detail::tVec2<LD::UInteger>()>::Value(),
                         LD::IsClass<T>
                         >
         ,PDP::Detail::tVec2<LD::UInteger>> GetRenderableDimensions(T && object) noexcept (noexcept(LD::Declval<T>()(LD::Declval<LD::RenderableDimensionEvent>())))
@@ -317,11 +317,11 @@ namespace LD
                 (!LD::Detail::IsPointer<Arguements>::value && ...)
         >,const TermBoxRenderContext &> RenderWithFormat(const LD::ImmutableString<Size> & str,const PDP::Detail::tVec2<LD::Integer> & translation,Arguements && ... objects) const noexcept
         {
-            using ArguementList = LD::CT::TypeList<LD::Decay_T<Arguements>...>;
-            using RenderableContextTypeList = LD::CT::TypeList<LD::NullClass,LD::ElementReference <LD::Decay_T<Arguements>>...,LD::ElementReference <char>>;
+            using ArguementList = LD::CT::TypeList<LD::Detail::Decay_T<Arguements>...>;
+            using RenderableContextTypeList = LD::CT::TypeList<LD::NullClass,LD::ElementReference <LD::Detail::Decay_T<Arguements>>...,LD::ElementReference <char>>;
             using DeDuplicatedRederableContextTypeList = typename LD::CT::DeDuplicateTypeList<RenderableContextTypeList> ;
             using Renderable = LD::Rebind<DeDuplicatedRederableContextTypeList,LD::Variant>;
-            using ContextTypeList = LD::CT::TypeList<LD::ElementReference<LD::Decay_T <Arguements>>...>;
+            using ContextTypeList = LD::CT::TypeList<LD::ElementReference<LD::Detail::Decay_T <Arguements>>...>;
             using DeDuplicatedContextTypeList =  LD::CT::DeDuplicateTypeList<ContextTypeList> ;
             using Arguement = LD::Rebind<DeDuplicatedContextTypeList,LD::Variant>;
 
@@ -379,7 +379,7 @@ namespace LD
                     const LD::ReferenceableTuple<Arguements...> & packedArguements)
             {
 
-                LD::Match(renderables[Index],[&]( auto && object)->LD::Enable_If_T<LD::Require<!LD::IsSame<LD::Decay_T <decltype(object)>,LD::NullClass>>,void>
+                LD::Match(renderables[Index],[&]( auto && object)->LD::Enable_If_T<LD::Require<!LD::IsSame<LD::Detail::Decay_T <decltype(object)>,LD::NullClass>>,void>
                 {
                     instance->Render(LD::Get(object),translation+PDP::Detail::tVec2<LD::Integer>{Index,0}+offsetTranslation);
                     offsetTranslation.X() += (LD::TermBoxRenderContext::GetRenderableDimensions(LD::Get(object)).X()-1);
@@ -393,8 +393,8 @@ namespace LD
         template<typename T>
         constexpr LD::Enable_If_T<
          LD::Require<
-         LD::ConvertiblyCallable<LD::Decay_T<T>,const LD::TermBoxRenderContext&(const LD::TermBoxRenderContext&, const PDP::Detail::tVec2<LD::Integer> &)>::Value()
-        >,const LD::TermBoxRenderContext&> Render(T && object, const PDP::Detail::tVec2<LD::Integer> & translation) const noexcept (noexcept(LD::Declval<LD::Decay_T<T>>()(LD::Declval<const LD::TermBoxRenderContext&>(),LD::Declval<PDP::Detail::tVec2<LD::Integer>>())))
+         LD::ConvertiblyCallable<LD::Detail::Decay_T<T>,const LD::TermBoxRenderContext&(const LD::TermBoxRenderContext&, const PDP::Detail::tVec2<LD::Integer> &)>::Value()
+        >,const LD::TermBoxRenderContext&> Render(T && object, const PDP::Detail::tVec2<LD::Integer> & translation) const noexcept (noexcept(LD::Declval<LD::Detail::Decay_T<T>>()(LD::Declval<const LD::TermBoxRenderContext&>(),LD::Declval<PDP::Detail::tVec2<LD::Integer>>())))
         {
             return object(*this,translation);
         }

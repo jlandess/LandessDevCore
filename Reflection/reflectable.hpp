@@ -8,6 +8,34 @@
 #include "ConstexprFor.hpp"
 #include "TypeTraits/IsMemberPointer.hpp"
 #include "Primitives/General/mapboxvariant.hpp"
+#include "TypeTraits/Iterable.h"
+#include "Primitives/General/Pair.h"
+#include "Primitives/General/Span.hpp"
+#include "TypeTraits/TypeList.hpp"
+#include "TypeTraits/IsImmutable.h"
+#include "Primitives/General/Context.h"
+#include "Primitives/General/ContextualVariant.h"
+#include "Primitives/General/StringView.hpp"
+
+namespace LD
+{
+    class AccessReadOnly
+    {
+
+    };
+
+    class AccessWriteOnly
+    {
+
+    };
+
+
+    class AccessReadWrite
+    {
+
+    };
+
+}
 namespace LD
 {
 #define RecflectableStringification( x ) #x
@@ -47,9 +75,17 @@ namespace LD
 
 
 
-    template<typename T>
-    constexpr bool IsReflectable = LD::Exists<LD::Detail::ReflectableWarrantCheck,T>;
 
+    template<typename T>
+    constexpr const bool IsReflectable = LD::Exists<LD::Detail::ReflectableWarrantCheck,T>;
+
+    namespace Detail
+    {
+        template<typename T>
+        using IsReflectable = LD::Detail::IntegralConstant<bool,LD::IsReflectable<T>>;
+        template<typename T>
+        using IsNotReflectable = LD::Detail::IntegralConstant<bool,LD::Negate<LD::IsReflectable<T>>>;
+    }
 
     namespace Detail
     {
@@ -340,10 +376,417 @@ namespace LD
 
 
     }
-
-
-
 }
 
+namespace LD
+{
+    namespace CT
+    {
+        namespace Detail
+        {
+            template<typename T,typename = void>
+            struct ReadOnlyTransform
+            {
+                using type = T;
+            };
 
+            template<typename T>
+            struct ReadOnlyTransform<T,LD::Enable_If_T<LD::IsPrimitive<T>>>
+            {
+                using type = LD::ElementReference<T>;
+            };
+
+            template<typename T>
+            struct ReadOnlyTransform<T,LD::Enable_If_T<
+                    LD::Require<
+                            LD::Concept::ContinuousIterable<LD::BeginIterator<T>>
+                    >>>
+
+            {
+                using ListType = LD::Detail::Decay_T<T>;
+                using IteratorType = LD::BeginIterator<ListType>;
+                //using ValueType = LD::Detail::LDValueType<staticIterator>;
+                using ValueType = LD::ValueType<IteratorType>;
+                using type = LD::Span<ValueType> ;
+            };
+
+
+            template<typename T>
+            struct ReadOnlyTransform<T,LD::Enable_If_T<
+                    LD::Require<
+                            LD::Concept::Iterable<LD::BeginIterator<T>>,
+                            LD::Negate<LD::Concept::ContinuousIterable<LD::BeginIterator<T>>>
+                    >>>
+            {
+                using ListType = LD::Detail::Decay_T<T>;
+                using BeginIterator = LD::BeginIterator<ListType>;
+                using EndIterator = LD::EndIterator<ListType>;
+                using type = LD::Pair<BeginIterator ,EndIterator >;
+            };
+
+            ///----------------------------------- Replace Mutable Contiguous Arrays with Contiguous with back_inserters --------------
+            //------------------------------------ Immutable Contiguous Arrays can still use LD::Span -------------------------------
+            template<typename T,typename = void>
+            struct WriteOnlyTransform
+            {
+                using type = T;
+            };
+
+            template<typename T>
+            struct WriteOnlyTransform<T,LD::Enable_If_T<LD::IsPrimitive<T>>>
+            {
+                using type = LD::ElementReference<T>;
+            };
+
+            template<typename T>
+            struct WriteOnlyTransform<T,LD::Enable_If_T<
+                    LD::Require<
+                            LD::Concept::ContinuousIterable<LD::BeginIterator<T>>,
+                            LD::IsImmutable<T>
+                    >>>
+            {
+                using ListType = LD::Detail::Decay_T<T>;
+                using IteratorType = LD::BeginIterator<ListType>;
+                //using ValueType = LD::Detail::LDValueType<staticIterator>;
+                using ValueType = LD::ValueType<IteratorType>;
+                using type = LD::Span<ValueType> ;
+            };
+
+
+            template<typename T, typename = void>
+            struct ReflectiveTypeList;
+            template<typename T>
+            struct ReflectiveTypeList<T,LD::Enable_If_T<
+                    LD::Require<LD::IsReflectable<T>
+                    >>>
+            {
+                using AllMembers  = typename LD::tlist_erase_at<0,LD::CT::RebindList<typename T::ValueTypeList,LD::CT::TypeList>>::type;
+
+                template<typename V>
+                using IsAMember = LD::Detail::IntegralConstant<bool,LD::Negate<LD::IsReflectable<V>>>;
+
+                template<typename V>
+                using IsAReflector = LD::Detail::IntegralConstant<bool,LD::IsReflectable<V>>;
+
+
+                using Members  = LD::CT::Filter<AllMembers,IsAMember>;
+
+
+                using ReflectiveMembers = LD::CT::Filter<AllMembers,IsAReflector>;
+
+
+                using DeCoupledReflectiveList = typename LD::CT::Detail::ReflectiveTypeList<ReflectiveMembers>::type;
+
+                using ConcatedLists = LD::CT::Concatenate<Members,DeCoupledReflectiveList>;
+
+                using type = LD::CT::DeDuplicateTypeList<ConcatedLists>;
+            };
+            template<typename ...A>
+            struct ReflectiveTypeList<LD::CT::TypeList<A...>,LD::Enable_If_T<
+                    LD::Require<(LD::IsReflectable<A> && ...)
+                    >>>
+            {
+                using buffer = LD::CT::Concatenate<LD::CT::TypeList<>,LD::CT::TypeList<typename LD::CT::Detail::ReflectiveTypeList<A>::type...>>;
+                using type =  LD::CT::Flatten<buffer> ;
+            };
+        }
+
+        template<typename T>
+        using ReflectiveTypeList = typename LD::CT::Detail::ReflectiveTypeList<T>::type;
+        template<typename T>
+        using ReadOnlyTransform = typename LD::CT::Detail::ReadOnlyTransform<T>::type;
+
+        template<typename T>
+        using WriteOnlyTransform = typename LD::CT::Detail::WriteOnlyTransform<T>::type;
+
+
+        template<typename T>
+        using ReadWriteTransform = void;
+
+
+
+        namespace Detail
+        {
+
+
+
+
+
+
+            template<typename ReflectiveObject, typename AccessMode, typename = void>
+            struct ReflectiveTransformation;
+
+
+
+
+            template<typename ReflectiveObject>
+            struct ReflectiveTransformation<ReflectiveObject,LD::AccessReadOnly,
+                    LD::Enable_If_T<LD::Require<
+                            LD::IsReflectable<ReflectiveObject>
+                    >>>
+            {
+                using Members = LD::CT::ReflectiveTypeList<ReflectiveObject>;
+
+                using list = LD::CT::Tranform<Members,LD::CT::ReadOnlyTransform>;
+
+                using type =  LD::CT::RebindList<list ,LD::Variant> ;
+
+            };
+
+            template<typename ReflectiveObject>
+            struct ReflectiveTransformation<ReflectiveObject,LD::AccessWriteOnly,
+                    LD::Enable_If_T<LD::Require<
+                            LD::IsReflectable<ReflectiveObject>
+                    >>>
+            {
+
+                using Members = LD::CT::ReflectiveTypeList<ReflectiveObject>;
+
+                using list = LD::CT::Tranform<Members,LD::CT::ReadOnlyTransform>;
+
+                using type =  LD::CT::RebindList<list ,LD::Variant> ;
+            };
+
+            template<typename ReflectiveObject>
+            struct ReflectiveTransformation<ReflectiveObject,LD::AccessReadWrite,
+                    LD::Enable_If_T<LD::Require<
+                            LD::IsReflectable<ReflectiveObject>
+                    >>>
+            {
+                using Members = LD::CT::ReflectiveTypeList<ReflectiveObject>;
+
+                using list = LD::CT::Tranform<Members,LD::CT::ReadOnlyTransform>;
+
+                using type =  LD::CT::RebindList<list ,LD::Variant> ;
+            };
+        }
+
+        template<typename T, typename AccessMode>
+        using ReflectiveTransformation = typename LD::CT::Detail::ReflectiveTransformation<T,AccessMode>::type;
+    }
+}
+
+/*
+template<typename T, typename Key ,typename F, typename H, typename Q ,typename ... Args>
+LD::Enable_If_T<
+        LD::Require<
+                LD::IsReflectable<T>,
+                LD::IsTypeString<Key>,
+                LD::Either<LD::IsSame<Q,LD::AccessReadOnly>,LD::IsSame<Q,LD::AccessWriteOnly>,LD::IsSame<Q,LD::AccessReadWrite>>,
+                LD::ConvertiblyCallable<H,void(const LD::ContextualVariant<PrimitiveVariant(LD::StringView,Args...)> &)>::Value()
+        >
+        ,void> NoSQLTraversal(const Key & key,T && object, F && onClassName, H && onMember , const Q & accessMode ,Args && ... arguements)
+{
+
+
+    using Type = LD::Detail::Decay_T<T>;
+    using ClassName = decltype(Type::GetClassNameTypeString());
+    using Period = LD::TypeString<'.'>;
+    constexpr LD::UInteger numberOfMembers = Type::NumberOfMembers;
+
+    onClassName(LD::StringView {Key::data(),Key::size()},LD::StringView{ClassName::data(),ClassName::size()});
+    //todo optimize with access mode for different access patterns
+    LD::ContextualVariant<LD::Variant<LD::AccessReadWrite,LD::AccessWriteOnly,LD::AccessReadOnly>()> context;
+
+    LD::For<1,numberOfMembers>([](auto I, T && object,F && onClass ,H && onMember,Args && ... arguements)
+                               {
+                                   using MemberType = LD::Detail::Decay_T<decltype(LD::Get<I>(*object))>;
+                                   using MemberName = decltype(LD::Declval<T>()[LD::CompileTimeIndex<I>{}]);
+                                   using MemberKey = LD::tycat<Key,Period ,MemberName>;
+                                   auto & reference = object[MemberName{}];
+                                   if constexpr (LD::IsPrimitive<MemberType> && LD::Negate<LD::IsPointer<MemberType>>)
+                                   {
+
+                                       LD::ElementReference<MemberType> memberReference = LD::ElementReference<MemberType>{reference};
+                                       onMember(LD::MakeContext(LD::ElementReference<MemberType>{memberReference},
+                                                                LD::StringView{MemberKey::data(),MemberKey::size()},
+                                                                LD::Forward<Args>(arguements)...));
+
+                                   }else if constexpr (LD::Detail::Spannable<T>::value)
+                                   {
+                                       LD::Span<MemberType> currentSpan{reference};
+                                       //todo maybe use iterators for ranging instead? offer optional iterators for insertions
+                                       onMember(LD::MakeContext(LD::Span<MemberType>{currentSpan},
+                                                                LD::StringView{MemberKey::data(),MemberKey::size()},
+                                                                LD::Forward<Args>(arguements)...));
+
+
+                                   }else if constexpr(LD::IsReflectable<MemberType>)
+                                   {
+
+                                       return NoSQLTraversal(MemberKey{},reference,LD::Forward<T>(onClass),LD::Forward<H>(onMember),LD::Forward<Args>(arguements)...);
+                                   }
+                                   return true;
+                               },LD::Forward<T>(object),LD::Forward<F>(onClassName),LD::Forward<H>(onMember),LD::Forward<Args>(arguements)...);
+}
+ */
+
+namespace LD
+{
+    namespace CT
+    {
+
+        namespace Detail
+        {
+
+            template<typename ReflectiveMemberTypes,typename K, typename T, typename F, typename H, typename Q, typename ... Args>
+            bool ReflectiveWalk(
+                    const K & key,
+                    T && object,
+                    F && onClass,
+                    H && onMember,
+                    const Q & accessMode,
+                    const LD::UInteger & level,
+                    Args && ... arguements) noexcept
+            {
+                using Type = LD::Detail::Decay_T<T>;
+                using ClassName = decltype(Type::GetClassNameTypeString());
+                using Period = LD::TypeString<'.'>;
+                constexpr LD::UInteger numberOfMembers = Type::NumberOfMembers;
+
+                auto onClassContext = LD::MakeContext(
+                        LD::StringView{K::data(),K::size()},
+                        LD::StringView{ClassName::data(),ClassName::size()},
+                        LD::Forward<Args>(arguements)...);
+                const bool shouldContinue = onClass(onClassContext);
+
+                //it's okay for members to not be missing, but if the core class related to the key is missing, then it's pointless
+                //the core class will always be at level == 0
+                if (!shouldContinue && level == 0)
+                {
+                    return false;
+                }
+                if (shouldContinue)
+                {
+                    LD::For<1,numberOfMembers>([](
+                    auto I,
+                    T && object,
+                    F && onClass,
+                    H && onMember,
+                    const Q & mode,
+                    const LD::UInteger & level,
+                    Args && ... arguments)
+                    {
+
+
+                        using MemberType = LD::Detail::Decay_T<decltype(LD::Get<I>(object))>;
+
+                        using MemberName = decltype(LD::Declval<T>()[LD::CompileTimeIndex<I>{}]);
+
+                        using MemberKey = LD::tycat<K,Period,MemberName>;
+
+                        if constexpr(LD::IsReflectable<MemberType>)
+                        {
+                            return ReflectiveWalk<ReflectiveMemberTypes>(
+                            MemberKey{},
+                            object[MemberName{}],
+                            LD::Forward<F>(onClass),
+                            LD::Forward<H>(onMember),
+                            mode,
+                            level+1,
+                            LD::Forward<Args>(arguments)...);
+                        }
+
+                        if constexpr(LD::IsSame<Q,LD::AccessReadOnly>)
+                        {
+
+                            if constexpr(LD::Negate<LD::IsPointer<MemberType>>)
+                            {
+
+                                if constexpr(LD::IsPrimitive<MemberType>)
+
+                                {
+
+                                    LD::ElementReference<MemberType> reference = {};
+
+                                    reference = LD::ElementReference<MemberType>{object[MemberName{}]};
+
+                                    LD::ContextualVariant<ReflectiveMemberTypes(LD::StringView ,Args...)> memberContext;
+
+                                    memberContext = LD::MakeContext(
+                                            LD::ElementReference<MemberType>{reference},
+                                            LD::StringView {MemberKey::data(),MemberKey::size()},
+                                            LD::Forward<Args>(arguments)...);
+
+
+                                    onMember(memberContext);
+
+
+                                }
+
+                            }
+
+                        }else if constexpr(LD::IsSame<Q,LD::AccessWriteOnly>)
+                        {
+
+                            if constexpr(LD::Negate<LD::IsPointer<MemberType>>)
+
+                            {
+
+                                if constexpr(LD::IsPrimitive<MemberType>)
+
+                                {
+
+                                    LD::ElementReference<MemberType> reference = {};
+
+                                    reference = LD::ElementReference<MemberType>{object[MemberName{}]};
+
+                                    LD::ContextualVariant<ReflectiveMemberTypes(LD::StringView ,Args...)> memberContext;
+
+                                    //LD::DebugTemplate<ReflectiveMemberTypes>{};
+
+                                    memberContext = LD::MakeContext(
+                                            LD::ElementReference<MemberType>{reference},
+                                            LD::StringView {MemberKey::data(),MemberKey::size()},
+                                            LD::Forward<Args>(arguments)...);
+
+
+                                    onMember(memberContext);
+
+                                }
+
+                            }
+
+
+                        }
+
+                        return true;//control flow for compile time for loop
+
+                        },LD::Forward<T>(object),LD::Forward<F>(onClass),LD::Forward<H>(onMember),accessMode,level,LD::Forward<Args>(arguements)...);
+                }
+                return true;
+            }
+
+        }
+        //LD::ConvertiblyCallable<H,bool(const LD::ContextualVariant<LD::CT::RebindList<Types,LD::Variant>(LD::StringView,Args...)> &)>::Value()
+        template<typename K,typename T, typename F, typename H, typename Q, typename ... Args,
+                typename Types = LD::CT::ReflectiveTransformation<LD::Detail::Decay_T<T>,Q>
+        >
+        LD::Enable_If_T<LD::Require<
+
+                LD::IsReflectable<T>,
+                LD::IsTypeString<K>,
+                LD::ConvertiblyCallable<H,bool(const LD::ContextualVariant<LD::CT::RebindList<Types,LD::Variant>(LD::StringView,Args...)> &)>::Value(),
+                LD::ConvertiblyCallable<F,bool(const LD::Context<LD::StringView,LD::StringView,Args...> &)>::Value(),
+                LD::Either<LD::IsSame<Q,LD::AccessReadOnly>,LD::IsSame<Q,LD::AccessWriteOnly>,LD::IsSame<Q,LD::AccessReadWrite>>
+        >
+                ,bool> ReflectiveWalk(
+                const K & key,
+                T && object,
+                F && onClass,
+                H && onMember,
+                const Q & accessMode,
+                Args && ... arguements) noexcept
+        {
+            return LD::CT::Detail::ReflectiveWalk<Types>(key,
+                                                         LD::Forward<T>(object),
+                                                         LD::Forward<F>(onClass),
+                                                         LD::Forward<H>(onMember),
+                                                         accessMode,
+                                                         LD::UInteger{0},
+                                                         LD::Forward<Args>(arguements)...);
+
+        }
+    }
+}
 #endif // REFLECTABLE_REFLECTABLE_H_INCLUDED

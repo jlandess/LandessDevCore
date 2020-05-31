@@ -68,11 +68,11 @@ namespace LD
         template<typename T>
         constexpr LD::Enable_If_T<
                 LD::Require<
-                        LD::ConvertiblyCallable<LD::Rendera2DTypeTraits<LD::Decay_T<T>>,PDP::Detail::tVec2<LD::UInteger>(const LD::RenderableDimensionEvent, const T &)>::Value()
+                        LD::ConvertiblyCallable<LD::Rendera2DTypeTraits<LD::Detail::Decay_T<T>>,PDP::Detail::tVec2<LD::UInteger>(const LD::RenderableDimensionEvent, const T &)>::Value()
                         >
-        ,PDP::Detail::tVec2<LD::UInteger>> GetRenderableDimensions(T && object) noexcept (noexcept(LD::Declval<LD::Rendera2DTypeTraits<LD::Decay_T<T>>>()(LD::Declval<LD::RenderableDimensionEvent>(),LD::Declval<T>())))
+        ,PDP::Detail::tVec2<LD::UInteger>> GetRenderableDimensions(T && object) noexcept (noexcept(LD::Declval<LD::Rendera2DTypeTraits<LD::Detail::Decay_T<T>>>()(LD::Declval<LD::RenderableDimensionEvent>(),LD::Declval<T>())))
         {
-            LD::Rendera2DTypeTraits<LD::Decay_T<T>> renderableTraits;
+            LD::Rendera2DTypeTraits<LD::Detail::Decay_T<T>> renderableTraits;
 
 
             return renderableTraits(LD::RenderableDimensionEvent{},LD::Forward<T>(object));
@@ -99,7 +99,7 @@ namespace LD
 
 
     template<typename T>
-    inline LD::Enable_If_T<LD::Require<LD::Exists<ObjectHasGetRenderableDimensions,LD::Decay_T<T>>>,PDP::Detail::tVec2<LD::UInteger>> GetRenderableDimensions(T && object) noexcept (noexcept(LD::Declval<T>().GetRenderableDimensions()))
+    inline LD::Enable_If_T<LD::Require<LD::Exists<ObjectHasGetRenderableDimensions,LD::Detail::Decay_T<T>>>,PDP::Detail::tVec2<LD::UInteger>> GetRenderableDimensions(T && object) noexcept (noexcept(LD::Declval<T>().GetRenderableDimensions()))
     {
         return object.GetRenderableDimensions();
     }

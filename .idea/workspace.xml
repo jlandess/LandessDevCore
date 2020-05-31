@@ -36,31 +36,45 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a2ffdfb1-0050-446c-b0af-d02ece8e31b8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/IO/DatabaseOpenMode.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IO/DatabaseOperationResult.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IO/UnqliteDatabaseBackend.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Memory/UniquePointer.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Memory/unique_ptr.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Primitives/General/GenericIterator.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Primitives/General/Span.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Primitives/General/span.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TypeTraits/IsIterable.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TypeTraits/Iterable.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TypeTraits/IsImmutable.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TypeTraits/Resizeable.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Algorithms/CompileTimeControlFlow.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Algorithms/CompileTimeControlFlow.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Algorithms/Exponential.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Algorithms/Exponential.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Async/Thread.h" beforeDir="false" afterPath="$PROJECT_DIR$/Async/Thread.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/HeteregenousTuple.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Core/HeteregenousTuple.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Definitions/Common.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Definitions/Common.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Examples/ReflectionDemoTypes.h" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/ReflectionDemoTypes.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Definitions/PDPUnits.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Definitions/PDPUnits.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Definitions/TimeExtension.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Definitions/TimeExtension.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Examples/ReflectionExample.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/ReflectionExample.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Functor/FunctionView.h" beforeDir="false" afterPath="$PROJECT_DIR$/Functor/FunctionView.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Functor/LightWeightDelegate.h" beforeDir="false" afterPath="$PROJECT_DIR$/Functor/LightWeightDelegate.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/IO/Database.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/IO/Database.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IO/UnqliteDatabaseBackend.h" beforeDir="false" afterPath="$PROJECT_DIR$/IO/UnqliteDatabaseBackend.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MVC/Renderable.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/Renderable.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MVC/Scheduling.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/Scheduling.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MVC/TermBoxMenu.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/TermBoxMenu.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MVC/TermBoxRenderingContext.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/TermBoxRenderingContext.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Primitives/General/ContextualVariant.h" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/ContextualVariant.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Memory/AutomaticReferenceCounting.h" beforeDir="false" afterPath="$PROJECT_DIR$/Memory/AutomaticReferenceCounting.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Memory/ElementReference.h" beforeDir="false" afterPath="$PROJECT_DIR$/Memory/ElementReference.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Memory/Optional.h" beforeDir="false" afterPath="$PROJECT_DIR$/Memory/Optional.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Memory/UniquePointer.h" beforeDir="false" afterPath="$PROJECT_DIR$/Memory/UniquePointer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Memory/shared_ptr.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Memory/shared_ptr.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Primitives/General/Context.h" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/Context.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Primitives/General/Immutable.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/Immutable.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Primitives/General/ImproperFraction.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/ImproperFraction.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Primitives/General/PackagedTask.h" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/PackagedTask.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Primitives/General/Ratio.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/Ratio.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Primitives/General/Span.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/Span.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Primitives/General/StaticArray.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/StaticArray.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Primitives/General/StringView.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/StringView.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Reflection/reflectable.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Reflection/reflectable.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Reflection/tagged_tuple.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Reflection/tagged_tuple.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TypeTraits/Conditional.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/TypeTraits/Conditional.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TypeTraits/Decay.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/TypeTraits/Decay.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TypeTraits/Detection.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/TypeTraits/Detection.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TypeTraits/IntegralConstant.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/TypeTraits/IntegralConstant.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TypeTraits/IsConstructible.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/TypeTraits/IsConstructible.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TypeTraits/IsConvertible.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/TypeTraits/IsConvertible.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TypeTraits/Iterable.h" beforeDir="false" afterPath="$PROJECT_DIR$/TypeTraits/Iterable.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TypeTraits/TypeList.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/TypeTraits/TypeList.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TypeTraits/VariadicPack.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/TypeTraits/VariadicPack.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/CXX.includecache" afterDir="false" />
@@ -73,6 +87,7 @@
       <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/depend.make" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/LandessDevCore" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/LandessDevCore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/LandessDevCore.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/LandessDevCore.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/database" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/database" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -136,6 +151,12 @@
       <workItem from="1589341394453" duration="577000" />
       <workItem from="1589650722563" duration="117148000" />
       <workItem from="1590029740428" duration="74100000" />
+      <workItem from="1590379572167" duration="36761000" />
+      <workItem from="1590523845290" duration="10302000" />
+      <workItem from="1590551141144" duration="23589000" />
+      <workItem from="1590625763459" duration="25015000" />
+      <workItem from="1590723384354" duration="21455000" />
+      <workItem from="1590821058861" duration="17959000" />
     </task>
     <servers />
   </component>
@@ -161,45 +182,33 @@
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
     <state x="730" y="355" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/70.27.1850.1053@70.27.1850.1053" timestamp="1589769031540" />
-    <state width="896" height="241" key="GridCell.Tab.0.bottom" timestamp="1590120538213">
+    <state width="1793" height="159" key="GridCell.Tab.0.bottom" timestamp="1590897438933">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
-    <state width="939" height="264" key="GridCell.Tab.0.bottom/0.23.1920.980@0.23.1920.980" timestamp="1581892201648" />
-    <state width="896" height="241" key="GridCell.Tab.0.bottom/70.27.1850.1053@70.27.1850.1053" timestamp="1590120538213" />
-    <state width="896" height="241" key="GridCell.Tab.0.center" timestamp="1590120538212">
+    <state width="1793" height="159" key="GridCell.Tab.0.bottom/70.27.1850.1053@70.27.1850.1053" timestamp="1590897438933" />
+    <state width="1793" height="159" key="GridCell.Tab.0.center" timestamp="1590897438933">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
-    <state width="939" height="264" key="GridCell.Tab.0.center/0.23.1920.980@0.23.1920.980" timestamp="1581892201647" />
-    <state width="896" height="241" key="GridCell.Tab.0.center/70.27.1850.1053@70.27.1850.1053" timestamp="1590120538212" />
-    <state width="896" height="241" key="GridCell.Tab.0.left" timestamp="1590120538212">
+    <state width="1793" height="159" key="GridCell.Tab.0.center/70.27.1850.1053@70.27.1850.1053" timestamp="1590897438933" />
+    <state width="1793" height="159" key="GridCell.Tab.0.left" timestamp="1590897438932">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
-    <state width="939" height="264" key="GridCell.Tab.0.left/0.23.1920.980@0.23.1920.980" timestamp="1581892201646" />
-    <state width="896" height="241" key="GridCell.Tab.0.left/70.27.1850.1053@70.27.1850.1053" timestamp="1590120538212" />
-    <state width="896" height="241" key="GridCell.Tab.0.right" timestamp="1590120538213">
+    <state width="1793" height="159" key="GridCell.Tab.0.left/70.27.1850.1053@70.27.1850.1053" timestamp="1590897438932" />
+    <state width="1793" height="159" key="GridCell.Tab.0.right" timestamp="1590897438933">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
-    <state width="939" height="264" key="GridCell.Tab.0.right/0.23.1920.980@0.23.1920.980" timestamp="1581892201647" />
-    <state width="896" height="241" key="GridCell.Tab.0.right/70.27.1850.1053@70.27.1850.1053" timestamp="1590120538213" />
-    <state x="469" y="152" key="SettingsEditor" timestamp="1581830595491">
-      <screen x="0" y="23" width="1920" height="980" />
-    </state>
-    <state x="469" y="152" key="SettingsEditor/0.23.1920.980@0.23.1920.980" timestamp="1581830595491" />
+    <state width="1793" height="159" key="GridCell.Tab.0.right/70.27.1850.1053@70.27.1850.1053" timestamp="1590897438933" />
     <state x="178" y="232" width="1640" height="748" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1589341972355">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
     <state x="178" y="232" width="1640" height="748" key="com.intellij.history.integration.ui.views.FileHistoryDialog/70.27.1850.1053@70.27.1850.1053" timestamp="1589341972355" />
-    <state x="653" y="345" key="com.intellij.ide.util.TipDialog" timestamp="1581883590965">
-      <screen x="0" y="23" width="1920" height="980" />
-    </state>
-    <state x="653" y="345" key="com.intellij.ide.util.TipDialog/0.23.1920.980@0.23.1920.980" timestamp="1581883590965" />
     <state x="823" y="383" width="224" height="436" key="refactoring.ChangeSignatureDialog" timestamp="1589943545413">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
     <state x="823" y="383" width="224" height="436" key="refactoring.ChangeSignatureDialog/70.27.1850.1053@70.27.1850.1053" timestamp="1589943545413" />
-    <state x="625" y="239" width="670" height="676" key="search.everywhere.popup" timestamp="1581978472335">
-      <screen x="0" y="23" width="1920" height="980" />
+    <state x="672" y="259" width="672" height="727" key="search.everywhere.popup" timestamp="1590551770257">
+      <screen x="70" y="27" width="1850" height="1053" />
     </state>
-    <state x="625" y="239" width="670" height="676" key="search.everywhere.popup/0.23.1920.980@0.23.1920.980" timestamp="1581978472335" />
+    <state x="672" y="259" width="672" height="727" key="search.everywhere.popup/70.27.1850.1053@70.27.1850.1053" timestamp="1590551770257" />
   </component>
 </project>

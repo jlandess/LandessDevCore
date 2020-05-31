@@ -10,9 +10,10 @@
 #define CompileTimeControlFlow_h
 
 #include <Functor/LightWeightDelegate.h>
-#include "Definitions/Common.hpp"
-#include "Memory//ElementReference.h"
-
+//#include "Definitions/Common.hpp"
+#include "Memory/ElementReference.h"
+#include "TypeTraits/Declval.hpp"
+#include "TypeTraits/Detection.hpp"
 namespace LD
 {
     namespace Detail

@@ -13,6 +13,7 @@
 #include "Primitives/General/typestring.hpp"
 #include "Algorithms/CompileTimeControlFlow.hpp"
 #include "Primitives/General/Hash.hpp"
+#include "TypeTraits/IsImmutable.h"
 namespace LD
 {
     class ImmutableStringWarrant
@@ -84,7 +85,7 @@ namespace LD
             return currentSize;
         }
 
-        template<char ... Characters,typename = typename PDP::Enable_If_T<sizeof...(Characters) <= N>>
+        template<char ... Characters,typename = typename LD::Enable_If_T<sizeof...(Characters) <= N>>
         constexpr ImmutableString(const LD::TypeString<Characters...> & typeString): ImmutableString()
         {
             (*this) = typeString;
@@ -113,7 +114,7 @@ namespace LD
 
 
 
-        template<char ... Characters,typename = typename PDP::Enable_If_T<(sizeof...(Characters) <= N)>>
+        template<char ... Characters,typename = typename LD::Enable_If_T<(sizeof...(Characters) <= N)>>
         constexpr ImmutableString & operator = (const LD::TypeString<Characters...> & typeString)
         {
             LD::For<LD::TypeString<Characters...>::size()>([](auto I,ImmutableString<N> * instance)
@@ -411,7 +412,7 @@ namespace LD
 
         }
 
-        template<typename ... Args,typename = typename PDP::Enable_If_T<((sizeof...(Args) == N) && PDP::IsPackConvertible<PDP::VariadicPack<Args...>, T>::value)>>
+        template<typename ... Args,typename = typename LD::Enable_If_T<((sizeof...(Args) == N) && LD::IsPackConvertible<LD::VariadicPack<Args...>, T>::value)>>
         constexpr ImmutableArray(Args && ...arguements)
         {
             auto tuple = LD::MakeTuple(LD::Forward<Args>(arguements)...);
@@ -511,11 +512,11 @@ namespace LD
             LD::ImmutableString<20+7+2>> ToImmutableString(const T & number,const LD::UInteger & precision = 0,const LD::UInteger base = 10) noexcept
     {
         const LD::UInteger isNan = (number != number);
-        const LD::UInteger isInf = (number > PDP::Limit<T>::GetMax());
+        const LD::UInteger isInf = (number > LD::Detail::Limit<T>::GetMax());
         char returnValue[20+7+2+1] = {0};
         LD::Float unsignedNumber = LD::Abs(number);
         LD::UInteger num = LD::UInteger (unsignedNumber);
-        const LD::UInteger amountOfDigits = PDP::Floor(PDP::FastLog10(num))+1;
+        const LD::UInteger amountOfDigits = LD::Floor(LD::FastLog10(num))+1;
         returnValue[0] = 'n'*(isNan * !isInf);
         returnValue[1] = 'a'*(isNan * !isInf);
         returnValue[2] = 'n'*(isNan * !isInf);
@@ -548,8 +549,8 @@ namespace LD
         returnValue[amountToAllocate-1] = '.' * (hasDecimal);
 
         const LD::Float decimalPortion = (unsignedNumber - num);
-        LD::UInteger decimalInIntegerPortion = PDP::CompileTimePow<10,7>::value*decimalPortion;
-        const LD::UInteger amountOfDecimalDigits = PDP::Floor(PDP::FastLog10(decimalInIntegerPortion))+1;
+        LD::UInteger decimalInIntegerPortion = LD::Detail::CompileTimePow<10,7>::value*decimalPortion;
+        const LD::UInteger amountOfDecimalDigits = LD::Floor(LD::FastLog10(decimalInIntegerPortion))+1;
         LD::For<7>([](auto Index,
                 char ret[20+7+2+1],
                  LD::UInteger & num,
@@ -592,11 +593,11 @@ namespace LD
     {
 
         const LD::UInteger isNan = (number != number);
-        const LD::UInteger isInf = (number > PDP::Limit<T>::GetMax());
+        const LD::UInteger isInf = (number > LD::Detail::Limit<T>::GetMax());
         char returnValue[20+15+2+1] = {0};
         LD::Float unsignedNumber = LD::Abs(number);
         LD::UInteger num = LD::UInteger (unsignedNumber);
-        const LD::UInteger amountOfDigits = PDP::Floor(PDP::FastLog10(num))+1;
+        const LD::UInteger amountOfDigits = LD::Floor(LD::FastLog10(num))+1;
         returnValue[0] = 'n'*(isNan * !isInf);
         returnValue[1] = 'a'*(isNan * !isInf);
         returnValue[2] = 'n'*(isNan * !isInf);
@@ -631,8 +632,8 @@ namespace LD
 
 
         const LD::Float decimalPortion = (unsignedNumber - num);
-        LD::UInteger decimalInIntegerPortion = PDP::CompileTimePow<10,15>::value*decimalPortion;
-        const LD::UInteger amountOfDecimalDigits = PDP::Floor(PDP::FastLog10(decimalInIntegerPortion))+1;
+        LD::UInteger decimalInIntegerPortion = LD::Detail::CompileTimePow<10,15>::value*decimalPortion;
+        const LD::UInteger amountOfDecimalDigits = LD::Floor(LD::FastLog10(decimalInIntegerPortion))+1;
         LD::For<15>([](auto Index,
                       char ret[20+15+2+1],
                       LD::UInteger & num,
@@ -698,10 +699,10 @@ namespace LD
             LD::ImmutableString<19>>  ToImmutableString(const T & number, const LD::UInteger & base = 10) noexcept
     {
         const LD::UInteger isNan = (number != number);
-        const LD::UInteger isInf = (number > PDP::Limit<T>::GetMax());
+        const LD::UInteger isInf = (number > LD::Detail::Limit<T>::GetMax());
         char returnValue[20] = {0};
         LD::UInteger num = number;
-        const LD::UInteger amountOfDigits = PDP::Floor(PDP::FastLog10(num))+1;
+        const LD::UInteger amountOfDigits = LD::Floor(LD::FastLog10(num))+1;
         returnValue[0] = 'n'*(isNan * !isInf);
         returnValue[1] = 'a'*(isNan * !isInf);
         returnValue[2] = 'n'*(isNan * !isInf);
@@ -737,10 +738,10 @@ namespace LD
             LD::ImmutableString<20>>  ToImmutableString(const T & number, const LD::UInteger & base = 10) noexcept
     {
         const LD::UInteger isNan = (number != number);
-        const LD::UInteger isInf = (number > PDP::Limit<T>::GetMax());
+        const LD::UInteger isInf = (number > LD::Detail::Limit<T>::GetMax());
         char returnValue[21] = {0};
         LD::UInteger num = LD::Abs(number);
-        const LD::UInteger amountOfDigits = PDP::Floor(PDP::FastLog10(num))+1;
+        const LD::UInteger amountOfDigits = LD::Floor(LD::FastLog10(num))+1;
         returnValue[0] = 'n'*(isNan * !isInf);
         returnValue[1] = 'a'*(isNan * !isInf);
         returnValue[2] = 'n'*(isNan * !isInf);
@@ -821,5 +822,22 @@ inline constexpr LD::ImmutableString<sizeof...(Characters)> operator "" _is() no
     return LD::ImmutableString<sizeof...(Characters)>{LD::TypeString<Characters...>{}};
 }
 
+namespace LD
+{
+    namespace Detail
+    {
+        template<LD::UInteger Size>
+        struct IsImmutable<LD::ImmutableString<Size>>
+        {
+            constexpr static bool value = true;
+        };
+
+        template<typename T,LD::UInteger Size>
+        struct IsImmutable<LD::ImmutableArray<T,Size>>
+        {
+            constexpr static bool value = true;
+        };
+    }
+}
 
 #endif /* Immutable_h */

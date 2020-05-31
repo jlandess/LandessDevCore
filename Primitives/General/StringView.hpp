@@ -1355,6 +1355,8 @@ nssv_RESTORE_WARNINGS()
 namespace LD
 {
     using StringView = nonstd::string_view;
+    template<typename T>
+    using BasicStringView = nonstd::basic_string_view<T>;
 }
 
 inline constexpr LD::StringView operator "" _sv(const char* p, size_t n) noexcept

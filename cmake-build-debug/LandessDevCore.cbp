@@ -504,6 +504,9 @@
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/TypeTraits/IsFunction.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/TypeTraits/IsImmutable.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/TypeTraits/IsIntegralType.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
@@ -556,6 +559,9 @@
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/TypeTraits/RemoveReference.hpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/TypeTraits/Resizeable.h">
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/TypeTraits/ResultOf.hpp">

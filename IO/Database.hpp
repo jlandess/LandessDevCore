@@ -23,332 +23,208 @@
 #include "Functor/fixed_size_function.hpp"
 #include "DatabaseOperationResult.h"
 #include "DatabaseOpenMode.h"
+#include "Primitives/General/Span.hpp"
 namespace LD
 {
-
-
-
-
-
-
-
-
-    template<typename ... Args>
-    using DatabaseSupportedVariant = LD::Variant<LD::ElementReference<Args>...>;
-
-
-    using DefaultDatabaseSupportedVariant = DatabaseSupportedVariant<float,double,long double,
-                                                                        bool,
-                                                                        char,unsigned char,
-                                                                        short,int,long,long long,long long int,
-                                                                        unsigned short, unsigned int, unsigned long, unsigned long long, unsigned long long int
-                                                                        >;
-
-
 
     template<typename Backend>
     class BasicDatabase
     {
     private:
-        LD::ElementReference<Backend> mBackend;
-        template<typename T, typename Key, typename F, typename H,typename ... Args>
-        static LD::Enable_If_T <
-                LD::Require<
-                        LD::IsReflectable<T>,
-                        LD::IsTypeString<Key>,
-                        LD::Negate<LD::IsPointer<T>>,
-                        LD::ConvertiblyCallable<H,void(const LD::StringView& key, const LD::StringView & className, Args && ...)>::Value(),
-                        LD::ConvertiblyCallable<F,void(const LD::StringView& memberKey, const LD::StringView & memberValue, Args && ...)>::Value()
-        >,bool> Serialize(const Key & key, T && object, H && onFoundClass,F && onInstanceVariable, Args && ... passedArguements) noexcept
-        {
 
-            using Type = LD::Decay_T<T>;
-            using ClassName = decltype(Type::GetClassNameTypeString());
-            onFoundClass(LD::StringView{Key::data(),Key::size()},LD::StringView{ClassName::data(),ClassName::size()});
-            constexpr LD::UInteger numberOfMembers = Type::NumberOfMembers;
-            using Period = LD::TypeString<'.'>;
-            LD::For<1,numberOfMembers>([](auto I, T && object, F && onInstanceVariable, Args && ... passedArguements)
-            {
-                using MemberType = LD::Decay_T<decltype(LD::Get<I>(object))>;
-                using MemberName = decltype(LD::Declval<T>()[LD::CompileTimeIndex<I>{}]);
-                using MemberKey = LD::tycat<Key,Period ,MemberName>;
-
-                if constexpr (LD::Exists<CanBeImmutableString,MemberType>)
-                {
-                    auto memberAsString = LD::ToImmutableString( object[MemberName{}]);
-                    //todo add error handling
-                    onInstanceVariable(LD::StringView{MemberKey::data(),MemberKey::size()},
-                                       LD::StringView{memberAsString.Data(),memberAsString.GetSize()},
-                                       LD::Forward<Args>(passedArguements)...);
-                }else if constexpr(LD::IsReflectable<MemberType>)
-                {
-                    return Serialize(MemberKey{},object[MemberName{}],LD::Forward<F>(onInstanceVariable),LD::Forward<Args>(passedArguements)...);
-                }
-                return true;
-            },LD::Forward<T>(object),LD::Forward<F>(onInstanceVariable),LD::Forward<Args>(passedArguements)...);
-            return true;
-        }
+        using Db = LD::ElementReference<Backend>;
+        Db mBackend;
     public:
 
-        constexpr BasicDatabase(const LD::ElementReference<Backend> & backend) noexcept :mBackend(backend){}
-
-        template<typename T, typename Key, typename ... Args,
-        typename Ret = LD::ContextualVariant<LD::Variant<LD::DatabaseError,LD::DatabaseTransactionResult>(Args...)>,
-        typename CurrentBackend = Backend>
-        LD::Enable_If_T <
-        LD::Require<
-        LD::IsReflectable<T>,
-        LD::IsTypeString<Key>,
-        LD::Negate<LD::IsPointer<T>>
-        >,Ret> Insert(const Key & key, T && object, Args && ... arguements) noexcept
+        BasicDatabase(const Db & backend):mBackend(backend)
         {
 
-            auto onClassName = [](const LD::StringView & key, const LD::StringView & className, const LD::ElementReference<Backend> & backend) noexcept
-            {
-                backend->Store(key,className);
-            };
-
-            auto onMember = [](const LD::StringView & key, const LD::StringView & memberData, const LD::ElementReference<Backend> & backend) noexcept
-            {
-                backend->Store(key,memberData);
-            };
-
-            Serialize(key,LD::Forward<T>(object),onClassName,onMember,LD::ElementReference<Backend>{this->mBackend});
-            return {};
         }
 
-        template<typename T, typename Key, typename ... Args,
-        typename Ret = LD::ContextualVariant<LD::Variant<LD::DatabaseError,LD::DatabaseTransactionResult>(Args...)>>
-        LD::Enable_If_T<
-        LD::Require<
-        LD::IsReflectable<T>,
-        LD::IsTypeString<Key>
-        >
-        ,
-        Ret> Fetch(const Key & key,Args && ... context) const noexcept;
-    };
-
-    class Database
-    {
-    private:
-        unqlite * mBackend;
-        LD::UInteger mStatus;
-    template<typename T, typename Key, typename F, typename H,typename ... Args>
-    static LD::Enable_If_T <
-    LD::Require<
-    LD::IsReflectable<T>,
-    LD::IsTypeString<Key>,
-    LD::Negate<LD::IsPointer<T>>,
-    LD::ConvertiblyCallable<H,void(const LD::StringView& key, const LD::StringView & className, Args && ...)>::Value(),
-    LD::ConvertiblyCallable<F,void(const LD::StringView& memberKey, const LD::StringView & memberValue, Args && ...)>::Value()
-    >,bool> WalkThroughObject(const Key & key, T && object, H && onFoundClass,F && onInstanceVariable, Args && ... passedArguements) noexcept ;
-
-    template<typename T, typename Key, typename F, typename ... Args>
-    static LD::Enable_If_T <
-    LD::Require<
-    LD::IsReflectable<T>,
-    LD::IsTypeString<Key>,
-    LD::Negate<LD::IsPointer<T>>
-    >,bool> RetrieveForObject(const Key & key, T * object,F && onMember ,unqlite * backend,LD::UInteger & status,Args && ... arguements) noexcept
-    {
-        if (!(status == UNQLITE_OK || status == UNQLITE_NOTFOUND))
-        {
-            return status;
-        }
-        using Type = LD::Decay_T<T>;
-        using ClassName = decltype(Type::GetClassNameTypeString());
-        using Period = LD::TypeString<'.'>;
-        constexpr LD::UInteger numberOfMembers = Type::NumberOfMembers;
-        LD::For<1,numberOfMembers>([](auto I, T * object , const Key & key,unqlite * backend, LD::UInteger & status, F && onMember,Args && ... arguements)
-        {
-            using MemberType = LD::Decay_T<decltype(LD::Get<I>(*object))>;
-            using MemberName = decltype(LD::Declval<T>()[LD::CompileTimeIndex<I>{}]);
-            using MemberKey = LD::tycat<Key,Period,MemberName>;
-            if constexpr (LD::Exists<CanBeImmutableString,MemberType>)
-            {
-                LD::ElementReference<LD::Decay_T<MemberType>> referenceableMember(&(*object)[MemberName{}]);
-                LD::ContextualVariant<DefaultDatabaseSupportedVariant(LD::StringView ,Args...)> managedContext = LD::ContextualVariant<DefaultDatabaseSupportedVariant(LD::StringView,Args...)>{LD::MakeContext(LD::ElementReference<MemberType>{referenceableMember},LD::StringView {MemberKey::data(),MemberKey::size()},LD::Forward<Args>(arguements)...)};
-                onMember(managedContext);
-                return (status == UNQLITE_NOTFOUND || status == UNQLITE_OK);
-            }else if constexpr(LD::IsReflectable<MemberType>)
-            {
-                return RetrieveForObject(key,object[MemberName{}],status);
-            }
-            return (status == UNQLITE_NOTFOUND || status == UNQLITE_OK);
-        },object,key,backend,status,LD::Forward<F>(onMember),LD::Forward<Args>(arguements)...);
-        return true;
-    }
-    public:
-        inline Database() noexcept :mBackend(nullptr){}
-
-        inline Database(const LD::StringView & databaseName) noexcept
-        {
-            this->mStatus = unqlite_open(&this->mBackend,databaseName.data(),UNQLITE_OPEN_CREATE);
-        }
-
-        /**
-         *@brief Inserts any object into the backend database
-         * @return
-         */
-        template<typename T, typename Key, typename ... Args,
-                typename Ret = LD::ContextualVariant<LD::Variant<LD::DatabaseError,LD::DatabaseInsertResult>(Args...)>>
-        LD::Enable_If_T <LD::Require<
-                LD::IsReflectable<T>,LD::IsTypeString<Key>,LD::Negate<LD::IsPointer<T>>
-        >,Ret> Insert(const Key & key, T && object, Args && ... arguements) noexcept
-        {
-            LD::ContextualVariant<LD::Variant<LD::DatabaseError,LD::DatabaseInsertResult>(Args...)> context;
-            using Type = LD::Decay_T<T>;
-            using ClassName = decltype(Type::GetClassNameTypeString());
-            ////UNQLITE_OK
-            LD::UInteger statusCode = {0};
-            statusCode = unqlite_begin(this->mBackend);
-            if (statusCode == UNQLITE_OK)
-            {
-                //statusCode = unqlite_kv_store(this->mBackend,Key::data(),Key::size(),ClassName::data(),ClassName::size());
-                auto injectKV = [](const LD::StringView & key, const LD::StringView & value, unqlite * db) noexcept
-                {
-                    unqlite_kv_store(db,key.data(),key.size(),value.data(),value.size());
-                };
-                auto addClassKV = [](const LD::StringView  & key,const LD::StringView & className, unqlite * db) noexcept
-                {
-                    unqlite_kv_store(db,key.data(),key.size(),className.data(),className.size());
-                };
-                Database::WalkThroughObject(key,LD::Forward<T>(object),addClassKV,injectKV,this->mBackend);
-                statusCode = unqlite_commit(this->mBackend);
-                if (statusCode != UNQLITE_OK)
-                {
-                    return {};
-                }
-                return Ret{LD::MakeContext(LD::DatabaseInsertResult{},LD::Forward<Args>(arguements)...)};
-
-            }
-            if (statusCode != UNQLITE_OK)
-            {
-                unqlite_rollback(this->mBackend);
-            }
-            return Ret{LD::MakeContext(LD::DatabaseError{},LD::Forward<Args>(arguements)...)};
-        }
-        template<typename T, typename Key, typename ... Context>
+        template<typename Key,typename V, typename ... Args,
+                typename VarType = LD::Variant<LD::DatabaseError,LD::DatabaseTransactionResult>,
+                typename Ret = LD::ContextualVariant<VarType(Args...)>,
+                typename CurrentBackend = Backend>
         LD::Enable_If_T<
                 LD::Require<
-                        LD::IsReflectable<T>,
                         LD::IsTypeString<Key>
-                >
-                ,
-                LD::Variant<LD::Context<LD::DatabaseError,Context...>,LD::Context<T,Context...>>> Fetch(const Key & key,Context && ... context) const noexcept
+                >,Ret> InsertAndCommit(const Key & key,V && object, Args && ... args) noexcept
         {
-            using Type = LD::Decay_T<T>;
-            using ClassName = decltype(Type::GetClassNameTypeString());
+            this->mBackend->Begin();
+            auto resultant = this->Insert(key,LD::Forward<V>(object),LD::Forward<Args>(args)...);
+            this->mBackend->Commit();
+            return resultant;
+        }
+        template<typename Key,typename V, typename ... Args,
+                typename VarType = LD::Variant<LD::DatabaseError,LD::DatabaseTransactionResult>,
+                typename Ret = LD::ContextualVariant<VarType(Args...)>>
+        LD::Enable_If_T<
+                LD::Require<
+                        LD::IsTypeString<Key>
+                >,Ret> Insert(const Key & key,V && object, Args && ... args) noexcept
+        {
 
-            //------------------------------------beginning of fetching class name assoiated with key ----------------------------------------
-            LD::Variant<LD::NullClass,LD::ImmutableString<1024>> keyedObject;
-            auto fetchCallback = [](const void * data, unsigned int dataSize, void * inputPointer)->int
+            using Type = LD::Detail::Decay_T<V>;
+            using Var = LD::CT::RebindList<LD::CT::ReflectiveTransformation<Type ,LD::AccessReadOnly>,LD::Variant>;
+            using QueryResultant = LD::Variant<LD::DatabaseError,LD::DatabaseTransactionResult>;
+            using QueryResponse = LD::ContextualVariant<QueryResultant()>;
+            auto onClass = [](const LD::Context<LD::StringView,LD::StringView,Db> & context)
             {
-                //LD::Variant<LD::NullClass,std::string> * keyedObject = (LD::Variant<LD::NullClass,std::string>*)inputPointer;
-                LD::Variant<LD::NullClass,LD::ImmutableString<1024>> * keyedObject = (LD::Variant<LD::NullClass,LD::ImmutableString<1024>>*)inputPointer;
-                (*keyedObject) = LD::ImmutableString<1024>{(const char*)data,dataSize};
-                return 0;
-            };
-            LD::UInteger status = unqlite_kv_fetch_callback(this->mBackend,Key::data(),Key::size(),fetchCallback, &keyedObject);
-            if (status != UNQLITE_OK)
-            {
-                return {};
-            }
-            //-----------------------------------end of fetching class name associated with key ----------------------------------------------
-            auto foundItClause = [&](const LD::ImmutableString<1024> & className)->LD::Variant<LD::Context<LD::DatabaseError,Context...>,LD::Context<T,Context...>>
-            {
-                LD::ImmutableString<1024> targetClassName{ClassName{}};
-                if (className == targetClassName)
+                LD::StringView  key = LD::Get<0>(context);
+                LD::StringView className = LD::Get<1>(context);
+                Db handle = LD::Get<2>(context);
+                QueryResponse response = handle->Store(
+                        LD::StringView{key.data(),key.size()},
+                        LD::StringView{className.data(),className.size()});
+
+                auto onDatabaseError = [](const LD::Context<LD::DatabaseError> & error)
                 {
-                    T object;
-                    LD::UInteger status = UNQLITE_OK;
-                    auto onMember = [](const LD::ContextualVariant<DefaultDatabaseSupportedVariant(LD::StringView,LD::ElementReference<unqlite>)> & context)
+                    return false;
+                };
+                auto onTransaction = [](const LD::Context<LD::DatabaseTransactionResult> & error)
+                {
+
+                    return true;
+                };
+                return LD::Match(response,onDatabaseError,onTransaction);
+            };
+
+            auto onMember = [](const LD::ContextualVariant<Var(LD::StringView,Db)> & context)
+            {
+
+                auto onPrimitiveAction = [](auto && context)
+                {
+                    Db handle = LD::Get<2>(context);
+                    using MemberType = LD::Detail::Decay_T<decltype(LD::Get(LD::Get<0>(context)))>;
+                    bool queryResult = false;
+                    if constexpr(LD::Require<LD::IsPrimitive<LD::Detail::Decay_T<decltype(LD::Get(LD::Get<0>(context)))>>>)
                     {
-                        auto PeformMemberQuery = [](const auto & object)
+                        LD::StringView key = LD::Get<1>(context);
+                        auto memberAsString = LD::ToImmutableString(LD::Get(LD::Get<0>(context)));
+                        QueryResponse response = handle->Store(
+                                LD::StringView{key.data(),key.size()},
+                                LD::StringView{memberAsString.Data(),memberAsString.GetSize()});
+
+                        auto onDatabaseError = [](const LD::Context<LD::DatabaseError> & error)
                         {
-                            using MemberType = LD::Decay_T<decltype(LD::Get(LD::Get<0>(object)))>;
-                            auto fetchCallback = [](const void * input, unsigned int dataSize, void * inputPointer)->int
-                            {
-                                MemberType * member = (MemberType*)inputPointer;
-                                const char * data = (const char*)input;
-                                auto resultVariant = LD::StringAsNumber<MemberType>(LD::StringView{data});
-                                MemberType result = LD::Match(resultVariant,[](const MemberType & obj){ return obj;},[](auto &&){ return MemberType{};});
-                                (*member) = result;
-                                return 0;
-                            };
-                            LD::ElementReference<MemberType> instanceVariable = LD::Get<LD::ElementReference<MemberType>>(object);
-                            LD::ElementReference<unqlite> backend = LD::Get<LD::ElementReference<unqlite>>(object);
-                            LD::StringView memberKey = LD::Get<LD::StringView>(object);
-                            LD::UInteger result = unqlite_kv_fetch_callback(backend.GetPointer(),memberKey.data(),memberKey.size(),fetchCallback, instanceVariable.GetPointer());
-                            if((result == UNQLITE_NOTFOUND || result == UNQLITE_OK))
-                            {
-                                //query happened without error
-                            }
-
-                            //return database error
+                            return false;
                         };
-                        LD::Match(context,PeformMemberQuery);
-                    };
-                    bool wasSuccessful = Database::RetrieveForObject(key,&object,onMember,this->mBackend,status,LD::ElementReference<unqlite>{this->mBackend});
-                    if (wasSuccessful)
-                    {
-                        return LD::MakeContext(T{object},LD::Forward<Context>(context)...);
+                        auto onTransaction = [](const LD::Context<LD::DatabaseTransactionResult> & error)
+                        {
+
+                            return true;
+                        };
+                        queryResult = LD::Match(response,onDatabaseError,onTransaction);
+                        //std::cout << LD::Get<1>(context) << " : " << LD::Get(LD::Get<0>(context)) <<std::endl;
                     }
-                    return {};
-                }
-                return {};
+                    return queryResult;
+                };
+                return LD::Match(context,onPrimitiveAction);;
             };
-            auto didNotFinditClause = [&](const LD::NullClass &)->LD::Variant<LD::Context<LD::DatabaseError,Context...>,LD::Context<T,Context...>>
-            {
 
-                return LD::MakeContext(LD::DatabaseError{},LD::Forward<Context>(context)...);
-            };
-            return LD::Match(keyedObject,foundItClause,didNotFinditClause);
+            const bool result = LD::CT::ReflectiveWalk(key,LD::Forward<V>(object),onClass,onMember,LD::AccessReadOnly{},Db{this->mBackend});
+            Ret possibleResults[2];
+            possibleResults[0] = LD::MakeContext(LD::DatabaseError{},LD::Forward<Args>(args)...);
+            possibleResults[1] = LD::MakeContext(LD::DatabaseTransactionResult{},LD::Forward<Args>(args)...);
+            return possibleResults[result];
         }
 
-        Database & InsertEntity();
-
-        inline ~Database() noexcept
+        template<typename V,typename Y,typename Key, typename ... Args,
+                typename VarType = LD::Variant<LD::DatabaseError,LD::DatabaseTransactionResult>,
+                typename Ret = LD::ContextualVariant<VarType(V,Args...)>>
+        LD::Enable_If_T<
+                LD::Require<
+                        LD::IsTypeString<Key>,
+                        LD::IsDefaultConstructible<V>,
+                        LD::IsTypeList<Y>::value
+                >,Ret> Fetch(const Key & key, const Y & typelist ,Args && ... args) noexcept
         {
-            unqlite_close(this->mBackend);
+
+            using Var = LD::CT::RebindList<LD::CT::ReflectiveTransformation<V ,LD::AccessReadOnly>,LD::Variant>;
+            using QueryResultant = LD::Variant<LD::DatabaseError,LD::DatabaseTransactionResult>;
+            using QueryResponse = LD::ContextualVariant<QueryResultant()>;
+
+            auto onClassReanimate = [](const LD::Context<LD::StringView,LD::StringView,Db> & context)
+            {
+                auto onFetch = [](const LD::Context<LD::StringView,LD::StringView,LD::StringView> & context) -> LD::UInteger
+                {
+
+                    LD::UInteger comparisonResult = LD::Get<1>(context) == LD::Get<2>(context);
+                    return LD::UInteger {comparisonResult};
+
+                };
+
+                Db handle = LD::Get<2>(context);
+
+                LD::ContextualVariant<LD::Variant<LD::DatabaseError,LD::DatabaseTransactionResult>(LD::StringView ,LD::UInteger,LD::StringView)> fetchContext;
+                fetchContext = handle->Fetch(LD::StringView{LD::Get<0>(context)},onFetch,LD::StringView{LD::Get<1>(context)});
+
+                auto onDatabaseError = [](const LD::Context<LD::DatabaseError,LD::StringView ,LD::UInteger,LD::StringView> &)
+                {
+
+                    return false;
+                };
+
+                auto onTransaction = [](const LD::Context<LD::DatabaseTransactionResult,LD::StringView ,LD::UInteger,LD::StringView> & transaction)
+                {
+
+                    return LD::Get<2>(transaction);
+                };
+                return LD::Match(fetchContext,onDatabaseError,onTransaction);
+            };
+
+            auto onMemberReanimate = [](const LD::ContextualVariant<Var(LD::StringView,Db)> & context)
+            {
+                auto onPrimitiveAction = [](auto && context)
+                {
+                    Db handle = LD::Get<2>(context);
+                    using MemberType = LD::Detail::Decay_T<decltype(LD::Get(LD::Get<0>(context)))>;
+                    bool performedQuery = false;
+                    if constexpr(LD::Require<LD::IsPrimitive<LD::Detail::Decay_T<decltype(LD::Get(LD::Get<0>(context)))>>>)
+                    {
+                        LD::StringView memberKey = LD::Get<1>(context);
+                        LD::ElementReference<MemberType> memberReference = LD::Get<0>(context);
+                        auto onFetch = [](const LD::Context<LD::StringView,LD::StringView,LD::StringView,LD::ElementReference<MemberType>> & context) noexcept -> MemberType
+                        {
+
+                            auto resultVariant = LD::StringAsNumber<MemberType>(LD::StringView{LD::Get<1>(context).data(),LD::Get<1>(context).size()});
+                            MemberType result = LD::Match(resultVariant,[](const MemberType & obj){ return obj;},[](auto &&){ return LD::UInteger {};});
+                            LD::Get(LD::Get<3>(context)) = result;
+                            return result;
+                        };
+
+                        LD::ContextualVariant<LD::Variant<LD::DatabaseError,LD::DatabaseTransactionResult>(LD::StringView ,MemberType,LD::StringView,LD::ElementReference<MemberType>)> fetchContext;
+
+                        fetchContext = handle->Fetch(LD::StringView{memberKey},onFetch,LD::StringView{memberKey},LD::ElementReference<MemberType>{memberReference});
+
+
+                        auto onDatabaseError = [](const LD::Context<LD::DatabaseError,LD::StringView ,MemberType ,LD::StringView,LD::ElementReference<MemberType>> &) noexcept
+                        {
+
+                            return false;
+                        };
+
+                        auto onTransaction = [](const LD::Context<LD::DatabaseTransactionResult,LD::StringView ,MemberType ,LD::StringView,LD::ElementReference<MemberType>> & transaction) noexcept
+                        {
+
+                            return true;
+                        };
+                        performedQuery = LD::Match(fetchContext,onDatabaseError,onTransaction);
+                    }
+                    return performedQuery;
+                };
+                return LD::Match(context,onPrimitiveAction);
+            };
+
+            //todo iterate through all of the types in the typelist
+            V objectToReanimate;
+            const bool result = LD::CT::ReflectiveWalk(key,objectToReanimate,onClassReanimate,onMemberReanimate,LD::AccessWriteOnly{},Db{this->mBackend});
+            Ret possibleResults[2];
+            possibleResults[0] = LD::MakeContext(LD::DatabaseError{},V{objectToReanimate},LD::Forward<Args>(args)...);
+            possibleResults[1] = LD::MakeContext(LD::DatabaseTransactionResult{},V{objectToReanimate},LD::Forward<Args>(args)...);
+            return possibleResults[result];
         }
+
     };
-
-    template<typename T, typename Key, typename F, typename H,typename ... Args>
-    LD::Enable_If_T <
-    LD::Require<
-    LD::IsReflectable<T>,
-    LD::IsTypeString<Key>,
-    LD::Negate<LD::IsPointer<T>>,
-    LD::ConvertiblyCallable<H,void(const LD::StringView& key, const LD::StringView & className, Args && ...)>::Value(),
-    LD::ConvertiblyCallable<F,void(const LD::StringView& memberKey, const LD::StringView & memberValue, Args && ...)>::Value()
-    >,bool> Database::WalkThroughObject(const Key & key, T && object,H && onFoundClass ,F && onInstanceVariable,Args && ... passedArguements) noexcept
-    {
-        using Type = LD::Decay_T<T>;
-        using ClassName = decltype(Type::GetClassNameTypeString());
-        using Period = LD::TypeString<'.'>;
-        //todo add error handling
-        onFoundClass(LD::StringView{Key::data(),Key::size()},LD::StringView{ClassName::data(),ClassName::size()},LD::Forward<Args>(passedArguements)...);
-        constexpr LD::UInteger numberOfMembers = Type::NumberOfMembers;
-        LD::For<1,numberOfMembers>([](auto I, auto && object, F && onInstanceVariable , const Key & key,Args && ... passedArguements)
-        {
-            using MemberType = LD::Decay_T<decltype(LD::Get<I>(object))>;
-            using MemberName = decltype(LD::Declval<T>()[LD::CompileTimeIndex<I>{}]);
-            using MemberKey = LD::tycat<Key,Period ,MemberName>;
-            if constexpr (LD::Exists<CanBeImmutableString,MemberType>)
-            {
-                auto memberAsString = LD::ToImmutableString( object[MemberName{}]);
-                //todo add error handling
-                onInstanceVariable(LD::StringView{MemberKey::data(),MemberKey::size()},
-                        LD::StringView{memberAsString.Data(),memberAsString.GetSize()},
-                        LD::Forward<Args>(passedArguements)...);
-            }else if constexpr(LD::IsReflectable<MemberType>)
-            {
-                return WalkThroughObject(key,object[MemberName{}],LD::Forward<F>(onInstanceVariable),LD::Forward<Args>(passedArguements)...);
-            }
-            return true;
-        },LD::Forward<T>(object),LD::Forward<F>(onInstanceVariable),key,LD::Forward<Args>(passedArguements)...);
-        return true;
-    }
 }
 #endif //LANDESSDEVCORE_DATABASE_HPP

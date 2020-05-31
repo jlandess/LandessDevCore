@@ -144,6 +144,7 @@ CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/AddRValueReferen
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/Conditional.hpp
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/Decay.hpp
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/Declval.hpp
+CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/Detection.hpp
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/EnableIf.hpp
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/IntegerSequence.hpp
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/IntegralConstant.hpp
@@ -153,6 +154,7 @@ CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/IsBaseOf.hpp
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/IsClassType.hpp
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/IsConst.hpp
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/IsConstructible.hpp
+CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/IsConvertible.hpp
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/IsDestructible.hpp
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/IsFunction.hpp
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/IsIntegralType.hpp
@@ -170,6 +172,8 @@ CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/RemoveCV.hpp
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/RemoveConst.hpp
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/RemoveExtent.hpp
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/RemoveReference.hpp
+CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/TypeList.hpp
+CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/VariadicPack.hpp
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/__two.hpp
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../Async/Thread.cpp
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../Async/Thread.h
@@ -187,6 +191,7 @@ CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../TypeTraits/AddRValueReferen
 CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../TypeTraits/Conditional.hpp
 CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../TypeTraits/Decay.hpp
 CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../TypeTraits/Declval.hpp
+CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../TypeTraits/Detection.hpp
 CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../TypeTraits/EnableIf.hpp
 CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../TypeTraits/ExclusiveOr.hpp
 CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../TypeTraits/IntegerSequence.hpp
@@ -197,6 +202,7 @@ CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../TypeTraits/IsBaseOf.hpp
 CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../TypeTraits/IsClassType.hpp
 CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../TypeTraits/IsConst.hpp
 CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../TypeTraits/IsConstructible.hpp
+CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../TypeTraits/IsConvertible.hpp
 CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../TypeTraits/IsDestructible.hpp
 CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../TypeTraits/IsFunction.hpp
 CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../TypeTraits/IsIntegralType.hpp
@@ -214,6 +220,8 @@ CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../TypeTraits/RemoveCV.hpp
 CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../TypeTraits/RemoveConst.hpp
 CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../TypeTraits/RemoveExtent.hpp
 CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../TypeTraits/RemoveReference.hpp
+CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../TypeTraits/TypeList.hpp
+CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../TypeTraits/VariadicPack.hpp
 CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../TypeTraits/__two.hpp
 CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../Chrono/Timer.cpp
 CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../Chrono/Timer.h
@@ -269,6 +277,7 @@ CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Functor/fixed
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../IO/Database.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../IO/DatabaseOpenMode.h
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../IO/DatabaseOperationResult.h
+CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../IO/UnqliteDatabaseBackend.h
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../IO/unqlite.h
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Memory/AutomaticReferenceCounting.h
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Memory/ElementReference.h
@@ -303,6 +312,7 @@ CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/Ad
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/Conditional.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/Decay.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/Declval.hpp
+CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/Detection.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/EnableIf.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/ExclusiveOr.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/IntegerSequence.hpp
@@ -313,8 +323,10 @@ CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/Is
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/IsClassType.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/IsConst.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/IsConstructible.hpp
+CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/IsConvertible.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/IsDestructible.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/IsFunction.hpp
+CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/IsImmutable.h
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/IsIntegralType.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/IsMemberPointer.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/IsNullPtr.hpp
@@ -334,6 +346,7 @@ CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/Re
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/RemoveReference.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/SearchableVariadicPack.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/TypeList.hpp
+CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/VariadicPack.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/__two.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Examples/ReflectionDemoTypes.h
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Examples/ReflectionExample.cpp
@@ -411,6 +424,7 @@ CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../TypeTraits/C
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../TypeTraits/Conditional.hpp
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../TypeTraits/Decay.hpp
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../TypeTraits/Declval.hpp
+CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../TypeTraits/Detection.hpp
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../TypeTraits/EnableIf.hpp
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../TypeTraits/ExclusiveOr.hpp
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../TypeTraits/IntegerSequence.hpp
@@ -421,8 +435,10 @@ CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../TypeTraits/I
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../TypeTraits/IsClassType.hpp
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../TypeTraits/IsConst.hpp
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../TypeTraits/IsConstructible.hpp
+CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../TypeTraits/IsConvertible.hpp
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../TypeTraits/IsDestructible.hpp
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../TypeTraits/IsFunction.hpp
+CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../TypeTraits/IsImmutable.h
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../TypeTraits/IsIntegralType.hpp
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../TypeTraits/IsNullPtr.hpp
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../TypeTraits/IsPointer.hpp
@@ -499,6 +515,7 @@ CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../TypeTraits/AddRVa
 CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../TypeTraits/Conditional.hpp
 CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../TypeTraits/Decay.hpp
 CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../TypeTraits/Declval.hpp
+CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../TypeTraits/Detection.hpp
 CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../TypeTraits/EnableIf.hpp
 CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../TypeTraits/ExclusiveOr.hpp
 CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../TypeTraits/IntegerSequence.hpp
@@ -509,8 +526,10 @@ CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../TypeTraits/IsBase
 CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../TypeTraits/IsClassType.hpp
 CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../TypeTraits/IsConst.hpp
 CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../TypeTraits/IsConstructible.hpp
+CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../TypeTraits/IsConvertible.hpp
 CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../TypeTraits/IsDestructible.hpp
 CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../TypeTraits/IsFunction.hpp
+CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../TypeTraits/IsImmutable.h
 CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../TypeTraits/IsIntegralType.hpp
 CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../TypeTraits/IsNullPtr.hpp
 CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../TypeTraits/IsPointer.hpp
@@ -566,6 +585,7 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Memory/ElementReference.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Primitives/General/Context.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Primitives/General/Hash.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Primitives/General/ImproperFraction.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Primitives/General/Pair.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Primitives/General/Ratio.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Primitives/General/StaticArray.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Primitives/General/StringView.hpp
@@ -582,6 +602,7 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/AddRValueReference.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/Conditional.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/Decay.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/Declval.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/Detection.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/EnableIf.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/ExclusiveOr.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IntegerSequence.hpp
@@ -592,8 +613,10 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsBaseOf.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsClassType.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsConst.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsConstructible.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsConvertible.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsDestructible.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsFunction.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsImmutable.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsIntegralType.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsMemberPointer.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsNullPtr.hpp
@@ -613,6 +636,7 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/RemoveExtent.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/RemoveReference.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/SearchableVariadicPack.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/TypeList.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/VariadicPack.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/__two.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Algorithms/StringAsNumber.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Chrono/Timer.h
@@ -621,7 +645,6 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Examples/TermBoxMenuExample.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Primitives/General/ContextualVariant.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Primitives/General/Immutable.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Primitives/General/Span.hpp
-CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Primitives/General/span.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Reflection/ConstexprFor.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Reflection/reflectable.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Reflection/tagged_tuple.hpp

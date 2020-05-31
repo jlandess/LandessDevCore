@@ -20,13 +20,21 @@ namespace LD
     namespace CT
     {
         template<typename T> class DebugTemplate;
-        template<class A, template<class...> class B>
-        struct RebindList;
 
-        template<template<class...> class A, class... T, template<class...> class B>
-        struct RebindList<A<T...>, B> {
-            using type = B<T...>;
-        };
+        namespace Detail
+        {
+            template<class A, template<class...> class B>
+            struct RebindList;
+
+            template<template<class...> class A, class... T, template<class...> class B>
+            struct RebindList<A<T...>, B> {
+                using type = B<T...>;
+            };
+        }
+
+        template<typename A, template<typename ...> class B>
+        using RebindList = typename LD::CT::Detail::RebindList<A,B>::type;
+
     }
 
 }
@@ -1657,4 +1665,96 @@ namespace LD
 /// Convert tlist to tuple and back (From Peter Dimov)
 
 }// End of namespace TypeList
+
+namespace LD
+{
+    namespace CT
+    {
+        namespace Detail
+        {
+
+            template <class T, class U>
+            struct flatten_helper;
+
+            // first case - the head of the List is List too
+            // expand this List and continue
+            template <class... Ts, class... Heads, class... Tail>
+            struct flatten_helper<LD::CT::TypeList<Ts...>, LD::CT::TypeList<LD::CT::TypeList<Heads...>, Tail...>> {
+                using type = typename flatten_helper<LD::CT::TypeList<Ts...>, LD::CT::TypeList<Heads..., Tail...>>::type;
+            };
+
+            // second case - the head of the List is not a List
+            // append it to our new, flattened list
+            template <class... Ts, class Head, class... Tail>
+            struct flatten_helper<LD::CT::TypeList<Ts...>, LD::CT::TypeList<Head, Tail...>> {
+                using type = typename flatten_helper<LD::CT::TypeList<Ts..., Head>, LD::CT::TypeList<Tail...>>::type;
+            };
+
+            // base case - input List is empty
+            // return our flattened list
+            template <class... Ts>
+            struct flatten_helper<LD::CT::TypeList<Ts...>, LD::CT::TypeList<>> {
+                using type = LD::CT::TypeList<Ts...>;
+            };
+
+            // wrapper around flatten_helper
+            template <class T> struct flatten;
+
+            // start with an empty accumulator
+            template <class... Ts>
+            struct flatten<LD::CT::TypeList<Ts...>> {
+                using type = typename flatten_helper<LD::CT::TypeList<>, LD::CT::TypeList<Ts...>>::type;
+            };
+
+            template<typename TypeList, template<typename> class Transformation>
+            class Transform;
+
+            template<template<typename> class Transformation,typename ... Args>
+            struct Transform<LD::CT::TypeList<Args...>,Transformation>
+            {
+                using type = LD::CT::TypeList<Transformation<Args>...>;
+            };
+        }
+
+        template<typename T, template<typename> class Transformation>
+        using Tranform = typename LD::CT::Detail::Transform<T,Transformation>::type;
+
+        template<typename T>
+        using Flatten = typename LD::CT::Detail::flatten<T>::type;
+
+        template <typename... T1s, typename... T2s>
+        constexpr auto concatenate(LD::CT::TypeList<T1s...>, LD::CT::TypeList<T2s...>) {
+            return LD::CT::TypeList<T1s..., T2s...>{};
+        }
+
+        template <template <typename> typename Condition, typename Result>
+        constexpr auto filter_types(Result result, LD::CT::TypeList<>)
+        {
+            return result;
+        }
+
+        template <template <typename> class Condition, typename Result, typename T, typename... Ts>
+        constexpr auto filter_types(Result result, LD::CT::TypeList<T, Ts...>)
+        {
+
+            if constexpr (Condition<T>{})
+                return filter_types<Condition>(concatenate(result, LD::CT::TypeList<T>{}), LD::CT::TypeList<Ts...>{});
+            else
+                return filter_types<Condition>(result, LD::CT::TypeList<Ts...>{});
+        }
+
+
+
+        template <template <typename> typename Condition, typename... Types>
+        using FilterPack = LD::Detail::Decay_T<decltype(filter_types<Condition>(LD::CT::TypeList<>{}, LD::CT::TypeList<Types...>{}))>;
+
+        template <typename TL,template <typename> typename Condition>
+        using Filter = LD::Detail::Decay_T<decltype(filter_types<Condition>(LD::CT::TypeList<>{}, TL{}))>;
+
+
+
+        template<typename TL1, typename TL2>
+        using Concatenate = LD::Detail::Decay_T<decltype(concatenate(LD::Declval<TL1>(),LD::Declval<TL2>()))>;
+    }
+}
 #endif

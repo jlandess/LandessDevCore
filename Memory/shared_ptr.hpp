@@ -13,9 +13,10 @@
 #include <algorithm>    // std::swap
 // can be replaced by other error mechanism
 #include <cassert>
-#include "Definitions/Common.hpp"
+//#include "Definitions/Common.hpp"
 #include "Memory/Optional.h"
 #include "Async/Atomic/Atomic.h"
+#include "TypeTraits/Detection.hpp"
 #define SHARED_ASSERT(x)    assert(x)
 
 namespace PDP

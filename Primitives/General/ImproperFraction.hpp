@@ -22,7 +22,7 @@ namespace PDP
 
     //355/113 is pi as a fraction
     template<typename T>
-    class ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>>
+    class ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>>
     {
     private:
         PDP::Integer Numerator;
@@ -64,7 +64,7 @@ namespace PDP
 
             if (f < 0) { neg = 1; f = -f; }
 
-            while (f != PDP::Floor(f)) { n <<= 1; f *= 2; }
+            while (f != LD::Floor(f)) { n <<= 1; f *= 2; }
 
 
             d = f;
@@ -165,7 +165,7 @@ namespace PDP
 
             if (f < 0) { neg = 1; f = -f; }
 
-            while (f != PDP::Floor(f)) { n <<= 1; f *= 2; }
+            while (f != LD::Floor(f)) { n <<= 1; f *= 2; }
             d = f;
 
             for (i = 0; i < 64; i++) {
@@ -313,7 +313,7 @@ namespace PDP
         inline ImProperFraction & operator = (const T & input)
         {
             this->NegativeStatus = (input < 0);
-            this->rat_approx(PDP::Abs(input),10000,&this->Numerator,&this->Denominator);
+            this->rat_approx(LD::Abs(input),10000,&this->Numerator,&this->Denominator);
 
             return (*this);
         }
@@ -368,7 +368,7 @@ namespace PDP
 
 
 
-            return PDP::ImProperFraction<U,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>>(numerator,denominator);
+            return PDP::ImProperFraction<U,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>>(numerator,denominator);
         }
 
 
@@ -388,17 +388,17 @@ namespace PDP
 
 
 
-            return  PDP::ImProperFraction<U,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>>(numerator,denominator);
+            return  PDP::ImProperFraction<U,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>>(numerator,denominator);
         }
 
 
         template<typename _T = T, typename U>
-        inline PDP::Enable_If_T<PDP::IsConvertible<U, _T>::value,PDP::ImProperFraction<_T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>>> operator * (const PDP::ImProperFraction<U,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> & improperFraction) const
+        inline LD::Enable_If_T<LD::Detail::IsConvertible<U, _T>::value,PDP::ImProperFraction<_T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>>> operator * (const PDP::ImProperFraction<U,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> & improperFraction) const
         {
 
 
 
-            return  PDP::ImProperFraction<_T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>>(this->Numerator*improperFraction.Numerator,this->Denominator*improperFraction.Denominator);
+            return  PDP::ImProperFraction<_T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>>(this->Numerator*improperFraction.Numerator,this->Denominator*improperFraction.Denominator);
         }
 
 
@@ -420,211 +420,211 @@ namespace PDP
         }
          */
         template<typename _T = T, typename U>
-        inline PDP::Enable_If_T<PDP::IsConvertible<U, _T>::value,PDP::ImProperFraction<_T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>>> operator / (const PDP::ImProperFraction<U,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> & improperFraction) const
+        inline LD::Enable_If_T<LD::Detail::IsConvertible<U, _T>::value,PDP::ImProperFraction<_T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>>> operator / (const PDP::ImProperFraction<U,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> & improperFraction) const
         {
 
-            return  PDP::ImProperFraction<U,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>>(this->Numerator*improperFraction.Denominator,this->Denominator*improperFraction.Numerator);
+            return  PDP::ImProperFraction<U,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>>(this->Numerator*improperFraction.Denominator,this->Denominator*improperFraction.Numerator);
         }
 
 
         template<typename _T = T, typename U>
-        inline PDP::Enable_If_T<PDP::IsConvertible<U, _T>::value,PDP::ImProperFraction<_T>&> operator += (const PDP::ImProperFraction<U,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> & improperFraction)
+        inline LD::Enable_If_T<LD::Detail::IsConvertible<U, _T>::value,PDP::ImProperFraction<_T>&> operator += (const PDP::ImProperFraction<U,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> & improperFraction)
         {
             (*this) = (*this)+improperFraction;
             return (*this);
         }
         template<typename _T = T, typename U>
-        inline PDP::Enable_If_T<PDP::IsConvertible<U, _T>::value,PDP::ImProperFraction<_T>&> operator -= (const PDP::ImProperFraction<U,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> & improperFraction)
+        inline LD::Enable_If_T<LD::Detail::IsConvertible<U, _T>::value,PDP::ImProperFraction<_T>&> operator -= (const PDP::ImProperFraction<U,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> & improperFraction)
         {
             (*this) = (*this)-improperFraction;
             return (*this);
         }
         template<typename _T = T, typename U>
-        inline PDP::Enable_If_T<PDP::IsConvertible<U, _T>::value,PDP::ImProperFraction<_T>&> operator *= (const PDP::ImProperFraction<U,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> & improperFraction)
+        inline LD::Enable_If_T<LD::Detail::IsConvertible<U, _T>::value,PDP::ImProperFraction<_T>&> operator *= (const PDP::ImProperFraction<U,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> & improperFraction)
         {
             (*this) = (*this)*improperFraction;
             return (*this);
         }
         template<typename _T = T, typename U>
-        inline PDP::Enable_If_T<PDP::IsConvertible<U, _T>::value,PDP::ImProperFraction<_T>&> operator /= (const PDP::ImProperFraction<U,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> & improperFraction)
+        inline LD::Enable_If_T<LD::Detail::IsConvertible<U, _T>::value,PDP::ImProperFraction<_T>&> operator /= (const PDP::ImProperFraction<U,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> & improperFraction)
         {
             (*this) = (*this)/improperFraction;
             return (*this);
         }
 
 
-        inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> Sin() const;
+        inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> Sin() const;
 
 
-        inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> Cos() const;
-
-
-
-        inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> Tan() const;
-
-
-        inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> Sec() const;
-
-
-        inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> Csc() const;
-
-
-        inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> CoTan() const;
+        inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> Cos() const;
 
 
 
-        inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> ASin() const;
-
-        inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> ACos() const;
-
-        inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> ATan() const;
-
-        inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> ASec() const;
-
-        inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> ACsc() const;
-
-        inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> ACoTan() const;
+        inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> Tan() const;
 
 
-        inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> Sinh() const;
+        inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> Sec() const;
 
 
-        inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> Cosh() const;
+        inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> Csc() const;
 
 
-        inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> Tanh() const;
-
-        inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> Sech() const;
+        inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> CoTan() const;
 
 
-        inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> Csch() const;
+
+        inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> ASin() const;
+
+        inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> ACos() const;
+
+        inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> ATan() const;
+
+        inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value ||LD::Detail::IsUnsignedInteger<T>::value>> ASec() const;
+
+        inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> ACsc() const;
+
+        inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> ACoTan() const;
 
 
-        inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> CoTanh() const;
-
-        inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> Sqrt() const;
+        inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> Sinh() const;
 
 
-        inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> Exp() const;
+        inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> Cosh() const;
 
 
-        inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> Floor() const;
+        inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> Tanh() const;
+
+        inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> Sech() const;
 
 
-        inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> Ceil() const;
+        inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> Csch() const;
 
-        inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> Ln() const;
 
-        inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> Log10() const;
+        inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> CoTanh() const;
 
-        inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> Log2() const;
+        inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> Sqrt() const;
+
+
+        inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> Exp() const;
+
+
+        inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> Floor() const;
+
+
+        inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> Ceil() const;
+
+        inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> Ln() const;
+
+        inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> Log10() const;
+
+        inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> Log2() const;
 
 
         template< typename U>
-        inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> Pow(const PDP::ImProperFraction<U,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> & improperFraction) const;
+        inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> Pow(const PDP::ImProperFraction<U,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> & improperFraction) const;
 
 
         template<typename U>
-        inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> Tan2(const PDP::ImProperFraction<U,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> & improperFraction) const;
+        inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> Tan2(const PDP::ImProperFraction<U,LD::Enable_If_T<LD::Detail::IsInteger<T>::value ||LD::Detail::IsUnsignedInteger<T>::value>> & improperFraction) const;
 
     };
 
     //355/113 is pi as a fraction
     template<typename T>
-    inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> Sin(const PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> & improperFraction);
+    inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> Sin(const PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> & improperFraction);
     template<typename T>
-    inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> Cos(const PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> & improperFraction);
+    inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> Cos(const PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> & improperFraction);
     template<typename T>
-    inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> Tan(const PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> & improperFraction);
+    inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> Tan(const PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> & improperFraction);
 
 
     template<typename T>
-    inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> Csc(const PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> & improperFraction);
+    inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> Csc(const PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> & improperFraction);
     template<typename T>
-    inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> Sec(const PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> & improperFraction);
+    inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> Sec(const PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> & improperFraction);
     template<typename T>
-    inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> CoTan(const PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> & improperFraction);
-
-
-
-    template<typename T>
-    inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> ASin(const PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> & improperFraction);
-    template<typename T>
-    inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> ACos(const PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> & improperFraction);
-    template<typename T>
-    inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> ATan(const PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> & improperFraction);
-
-    template<typename T>
-    inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> ASec(const PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> & improperFraction);
-    template<typename T>
-    inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> ACsc(const PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> & improperFraction);
-    template<typename T>
-    inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> ACoTan(const PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> & improperFraction);
+    inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> CoTan(const PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> & improperFraction);
 
 
 
     template<typename T>
-    inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> Sinh(const PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> & improperFraction);
+    inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> ASin(const PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> & improperFraction);
     template<typename T>
-    inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> Cosh(const PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> & improperFraction);
+    inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> ACos(const PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> & improperFraction);
     template<typename T>
-    inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> Tanh(const PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> & improperFraction);
+    inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> ATan(const PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> & improperFraction);
 
-
     template<typename T>
-    inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> Csch(const PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> & improperFraction);
+    inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> ASec(const PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> & improperFraction);
     template<typename T>
-    inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> Sech(const PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> & improperFraction);
+    inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> ACsc(const PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> & improperFraction);
     template<typename T>
-    inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> CoTanh(const PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> & improperFraction);
-
+    inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> ACoTan(const PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> & improperFraction);
 
 
 
     template<typename T>
-    inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> ASinh(const PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> & improperFraction);
+    inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> Sinh(const PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> & improperFraction);
     template<typename T>
-    inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> ACosh(const PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> & improperFraction);
+    inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> Cosh(const PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> & improperFraction);
     template<typename T>
-    inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> ATanh(const PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> & improperFraction);
-
-
-    template<typename T>
-    inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> ACsch(const PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> & improperFraction);
-    template<typename T>
-    inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> ASech(const PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> & improperFraction);
+    inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> Tanh(const PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> & improperFraction);
 
 
     template<typename T>
-    inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> ACoTanh(const PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> & improperFraction);
+    inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> Csch(const PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> & improperFraction);
+    template<typename T>
+    inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> Sech(const PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> & improperFraction);
+    template<typename T>
+    inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> CoTanh(const PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> & improperFraction);
+
+
 
 
     template<typename T>
-    inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> Ln(const PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> & improperFraction);
-
+    inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> ASinh(const PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> & improperFraction);
     template<typename T>
-    inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> Log10(const PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> & improperFraction);
-
+    inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> ACosh(const PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> & improperFraction);
     template<typename T>
-    inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> Log2(const PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> & improperFraction);
+    inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> ATanh(const PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> & improperFraction);
 
 
     template<typename T>
-    inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> Ceil(const PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> & improperFraction);
+    inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> ACsch(const PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> & improperFraction);
+    template<typename T>
+    inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> ASech(const PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> & improperFraction);
 
 
     template<typename T>
-    inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> Floor(const PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> & improperFraction);
+    inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> ACoTanh(const PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> & improperFraction);
+
 
     template<typename T>
-    inline PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> Exp(const PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> & improperFraction);
+    inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> Ln(const PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> & improperFraction);
+
+    template<typename T>
+    inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> Log10(const PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> & improperFraction);
+
+    template<typename T>
+    inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> Log2(const PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> & improperFraction);
+
+
+    template<typename T>
+    inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> Ceil(const PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> & improperFraction);
+
+
+    template<typename T>
+    inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> Floor(const PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> & improperFraction);
+
+    template<typename T>
+    inline PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> Exp(const PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> & improperFraction);
 
 
     template<typename T, typename U>
-    inline PDP::ImProperFraction<T,PDP::Enable_If_T<(PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value) &&  PDP::IsConvertible<U, T>::value>> Pow(const PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> & improperFraction,const PDP::ImProperFraction<U,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> & improperFraction2);
+    inline PDP::ImProperFraction<T,LD::Enable_If_T<(LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value) &&  LD::Detail::IsConvertible<U, T>::value>> Pow(const PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> & improperFraction,const PDP::ImProperFraction<U,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> & improperFraction2);
 
     template<typename T, typename U>
-    inline PDP::ImProperFraction<T,PDP::Enable_If_T<(PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value) &&  PDP::IsConvertible<U, T>::value>> Tan2(const PDP::ImProperFraction<T,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> & improperFraction,const PDP::ImProperFraction<U,PDP::Enable_If_T<PDP::IsInteger<T>::value || PDP::IsUnsignedInteger<T>::value>> & improperFraction2);
+    inline PDP::ImProperFraction<T,LD::Enable_If_T<(LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value) &&  LD::Detail::IsConvertible<U, T>::value>> Tan2(const PDP::ImProperFraction<T,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> & improperFraction,const PDP::ImProperFraction<U,LD::Enable_If_T<LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value>> & improperFraction2);
 
 
 }
