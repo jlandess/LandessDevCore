@@ -11,6 +11,7 @@
 
 #include "Definitions/Common.hpp"
 #include "Primitives/General/StaticArray.hpp"
+#include "TypeTraits/StaticallySized.h"
 namespace LD
 {
     template<typename T, LD::UInteger N = 4, class Filter = LD::NullClass, class sfinae = void>
@@ -143,5 +144,17 @@ namespace LD
     };
 
 
+}
+
+namespace LD
+{
+    namespace Detail
+    {
+        template<typename T, LD::UInteger Size>
+        struct StaticallySized<LD::Sampler<T,Size>>: public LD::Detail::IntegralConstant<bool,true>
+        {
+
+        };
+    }
 }
 #endif /* Sampler_h */

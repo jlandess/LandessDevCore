@@ -119,7 +119,7 @@ namespace LD
             LD::ImmutableString<5> firstMenuItem = "first";
             LD::ImmutableString<6> secondMenuItem = "second";
 
-            PDP::Detail::tVec2<LD::UInteger> menuOrigin;
+            LD::Detail::tVec2<LD::UInteger> menuOrigin;
             auto menuPredicate = [](const LD::ApplicationExecutionEvent<int,double,LD::TermBoxRenderContext,LD::Timer> & applicationExecutionEvent)->bool
             {
                 return (LD::Get<LD::TermBoxRenderContext>(applicationExecutionEvent)->GetEvent().key == TB_KEY_ENTER);

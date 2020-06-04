@@ -28,29 +28,29 @@ namespace LD
         inline  constexpr LD::Enable_If_T<
                 LD::Require<
                         !LD::IsClass<T>>
-                ,PDP::Detail::tVec2<LD::UInteger >> GetRenderableDimensions(const T & primitive) noexcept
+                ,LD::Detail::tVec2<LD::UInteger >> GetRenderableDimensions(const T & primitive) noexcept
         {
             auto immutableString = LD::ToImmutableString(primitive);
-            return PDP::Detail::tVec2<LD::UInteger >{immutableString.GetSize(),1};
+            return LD::Detail::tVec2<LD::UInteger >{immutableString.GetSize(),1};
         }
 
 
         template<LD::UInteger Size>
-        inline constexpr PDP::Detail::tVec2<LD::UInteger> GetRenderableDimensions(const LD::ImmutableString<Size> & object) noexcept
+        inline constexpr LD::Detail::tVec2<LD::UInteger> GetRenderableDimensions(const LD::ImmutableString<Size> & object) noexcept
         {
-            return PDP::Detail::tVec2<LD::UInteger >{object.GetSize(),1};
+            return LD::Detail::tVec2<LD::UInteger >{object.GetSize(),1};
         }
 
 
-        inline constexpr PDP::Detail::tVec2<LD::UInteger> GetRenderableDimensions(const LD::StringView & view) noexcept
+        inline constexpr LD::Detail::tVec2<LD::UInteger> GetRenderableDimensions(const LD::StringView & view) noexcept
         {
-            return PDP::Detail::tVec2<LD::UInteger>{view.size(),1};
+            return LD::Detail::tVec2<LD::UInteger>{view.size(),1};
         }
 
         template<char ... Characters>
-        inline  constexpr PDP::Detail::tVec2<LD::UInteger> GetRenderableDimensions(const LD::TypeString<Characters...> & object) noexcept
+        inline  constexpr LD::Detail::tVec2<LD::UInteger> GetRenderableDimensions(const LD::TypeString<Characters...> & object) noexcept
         {
-            return PDP::Detail::tVec2<LD::UInteger >{sizeof...(Characters),1};
+            return LD::Detail::tVec2<LD::UInteger >{sizeof...(Characters),1};
         }
 
 
@@ -58,9 +58,9 @@ namespace LD
         LD::Enable_If_T<
                 LD::Require<
                         LD::IsClass<T>,
-                        LD::ConvertiblyCallable<T,PDP::Detail::tVec2<LD::Integer >(const RenderableDimensionEvent &)>::Value()
+                        LD::ConvertiblyCallable<T,LD::Detail::tVec2<LD::Integer >(const RenderableDimensionEvent &)>::Value()
                 >
-                ,PDP::Detail::tVec2<LD::UInteger>> GetRenderableDimensions(T && object) noexcept
+                ,LD::Detail::tVec2<LD::UInteger>> GetRenderableDimensions(T && object) noexcept
         {
             return object(LD::RenderableDimensionEvent{});
         }
@@ -68,9 +68,9 @@ namespace LD
         template<typename T>
         constexpr LD::Enable_If_T<
                 LD::Require<
-                        LD::ConvertiblyCallable<LD::Rendera2DTypeTraits<LD::Detail::Decay_T<T>>,PDP::Detail::tVec2<LD::UInteger>(const LD::RenderableDimensionEvent, const T &)>::Value()
+                        LD::ConvertiblyCallable<LD::Rendera2DTypeTraits<LD::Detail::Decay_T<T>>,LD::Detail::tVec2<LD::UInteger>(const LD::RenderableDimensionEvent, const T &)>::Value()
                         >
-        ,PDP::Detail::tVec2<LD::UInteger>> GetRenderableDimensions(T && object) noexcept (noexcept(LD::Declval<LD::Rendera2DTypeTraits<LD::Detail::Decay_T<T>>>()(LD::Declval<LD::RenderableDimensionEvent>(),LD::Declval<T>())))
+        ,LD::Detail::tVec2<LD::UInteger>> GetRenderableDimensions(T && object) noexcept (noexcept(LD::Declval<LD::Rendera2DTypeTraits<LD::Detail::Decay_T<T>>>()(LD::Declval<LD::RenderableDimensionEvent>(),LD::Declval<T>())))
         {
             LD::Rendera2DTypeTraits<LD::Detail::Decay_T<T>> renderableTraits;
 
@@ -99,15 +99,15 @@ namespace LD
 
 
     template<typename T>
-    inline LD::Enable_If_T<LD::Require<LD::Exists<ObjectHasGetRenderableDimensions,LD::Detail::Decay_T<T>>>,PDP::Detail::tVec2<LD::UInteger>> GetRenderableDimensions(T && object) noexcept (noexcept(LD::Declval<T>().GetRenderableDimensions()))
+    inline LD::Enable_If_T<LD::Require<LD::Exists<ObjectHasGetRenderableDimensions,LD::Detail::Decay_T<T>>>,LD::Detail::tVec2<LD::UInteger>> GetRenderableDimensions(T && object) noexcept (noexcept(LD::Declval<T>().GetRenderableDimensions()))
     {
         return object.GetRenderableDimensions();
     }
     //template<typename T, typename Context>
     //using Renderable2D = decltype(LD::Declval<T>(LD::Declval<Context>()),LD::Declval<PDP::Detail::tVec2<LD::Integer>>());
     template<typename T, typename Context>
-    constexpr bool Renderable2DX = (LD::ConvertiblyCallable<T,Context(Context,const PDP::Detail::tVec2<LD::Integer>)>::Value() ||
-    LD::ConvertiblyCallable<LD::Renderer2D<T,Context>,Context(Context,const PDP::Detail::tVec2<LD::Integer>&,const T &)>::Value());
+    constexpr bool Renderable2DX = (LD::ConvertiblyCallable<T,Context(Context,const LD::Detail::tVec2<LD::Integer>)>::Value() ||
+    LD::ConvertiblyCallable<LD::Renderer2D<T,Context>,Context(Context,const LD::Detail::tVec2<LD::Integer>&,const T &)>::Value());
     template<typename T, typename Context>
     constexpr bool IsRenderable2D = (LD::IsImmutableString<T> || LD::IsPrimitive<T> || LD::IsSame<T,LD::StringView>|| (Renderable2DX<T,Context> && true));
 

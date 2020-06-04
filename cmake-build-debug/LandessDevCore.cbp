@@ -84,10 +84,19 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Algorithms/Calculus.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Algorithms/CompileTimeControlFlow.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Algorithms/Exponential.hpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Algorithms/KarnaughMap.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Algorithms/NewtonAppleDelanauy.h">
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Algorithms/Periodic.hpp">
@@ -192,6 +201,48 @@
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Functor/Lambda.h">
 			<Option target="LandessDevCore"/>
 		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Geometry/BezierCurve.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Geometry/Box.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Geometry/Capsule.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Geometry/Circle.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Geometry/Cube.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Geometry/Line.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Geometry/LineSegment.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Geometry/Particle.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Geometry/Plane.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Geometry/Ray.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Geometry/Rectangle.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Geometry/Sphere.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Geometry/Square.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Geometry/UniformBSpline.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/IO/Database.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
@@ -199,6 +250,12 @@
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/IO/DatabaseOperationResult.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/IO/FetchRequest.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/IO/InsertionRequest.h">
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/IO/UnqliteDatabaseBackend.h">
@@ -565,6 +622,9 @@
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/TypeTraits/ResultOf.hpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/TypeTraits/StaticallySized.h">
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/TypeTraits/TypeList.hpp">

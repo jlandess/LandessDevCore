@@ -6,6 +6,7 @@
 #include "TypeTraits/TypeList.hpp"
 #include "Primitives/General/mapboxvariant.hpp"
 #include "Primitives/General/Context.h"
+#include "Pair.h"
 namespace LD
 {
     template<typename Variance>
@@ -23,10 +24,27 @@ namespace LD
             (*this) = var;
         }
 
+        template<typename V, typename = LD::Enable_If_T<
+                LD::Require<
+                        (LD::GetTypeCountInTypeList<V,LD::CT::TypeList<Variance...>>::value > 0)
+                        >>>
+        ContextualVariant(const LD::Context<V,Cntx...> & context) noexcept
+        {
+            (*this) = context;
+        }
 
         ContextualVariant & operator = (const LD::Variant<LD::Context<Variance,Cntx...>...> & var) noexcept
         {
             LD::Variant<LD::Context<Variance,Cntx...>...>::operator=(var);
+            return (*this);
+        }
+
+        template<typename V>
+        LD::Enable_If_T<LD::Require<
+                (LD::GetTypeCountInTypeList<V,LD::CT::TypeList<Variance...>>::value > 0)
+        >,ContextualVariant&> operator = (const LD::Context<V,Cntx...> & context) noexcept
+        {
+            LD::Variant<LD::Context<Variance,Cntx...>...>::operator=(context);
             return (*this);
         }
     };

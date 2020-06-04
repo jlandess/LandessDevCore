@@ -226,6 +226,7 @@ CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../TypeTraits/__two.hpp
 CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../Chrono/Timer.cpp
 CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../Chrono/Timer.h
 
+CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Algorithms/Calculus.h
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Algorithms/CompileTimeControlFlow.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Algorithms/Exponential.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Algorithms/StringAsNumber.h
@@ -256,6 +257,7 @@ CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Functor/fixed
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../IO/Database.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../IO/DatabaseOpenMode.h
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../IO/DatabaseOperationResult.h
+CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../IO/FetchRequest.h
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../IO/UnqliteDatabaseBackend.h
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../IO/unqlite.h
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Memory/ElementReference.h
@@ -269,6 +271,7 @@ CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Primitives/Ge
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Primitives/General/StaticArray.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Primitives/General/StringView.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Primitives/General/Tuple.hpp
+CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Primitives/General/Vec2.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Primitives/General/ctre.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Primitives/General/mapboxrecursive_wrapper.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Primitives/General/mapboxvariant.hpp
@@ -315,6 +318,7 @@ CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/Re
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/RemoveExtent.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/RemoveReference.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/SearchableVariadicPack.hpp
+CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/StaticallySized.h
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/TypeList.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/VariadicPack.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/__two.hpp
@@ -424,6 +428,7 @@ CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../TypeTraits/R
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../TypeTraits/RemoveConst.hpp
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../TypeTraits/RemoveExtent.hpp
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../TypeTraits/RemoveReference.hpp
+CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../TypeTraits/StaticallySized.h
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../TypeTraits/TypeList.hpp
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../TypeTraits/VariadicPack.hpp
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../TypeTraits/__two.hpp
@@ -515,6 +520,7 @@ CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../TypeTraits/Remove
 CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../TypeTraits/RemoveConst.hpp
 CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../TypeTraits/RemoveExtent.hpp
 CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../TypeTraits/RemoveReference.hpp
+CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../TypeTraits/StaticallySized.h
 CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../TypeTraits/TypeList.hpp
 CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../TypeTraits/VariadicPack.hpp
 CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../TypeTraits/__two.hpp
@@ -605,6 +611,7 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/RemoveConst.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/RemoveExtent.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/RemoveReference.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/SearchableVariadicPack.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/StaticallySized.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/TypeList.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/VariadicPack.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/__two.hpp
@@ -614,6 +621,7 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Examples/ReflectionExample.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Examples/TermBoxMenuExample.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Primitives/General/ContextualVariant.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Primitives/General/Immutable.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Primitives/General/Pair.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Primitives/General/Span.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Reflection/ConstexprFor.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Reflection/reflectable.hpp

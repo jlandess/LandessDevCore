@@ -33,7 +33,7 @@ namespace LD
         private:
             LD::StaticArray<PDP::LightWeightDelegate<void(const LD::UInteger  &,const LD::ApplicationExecutionEvent<Context...> &)>,(sizeof...(ImmutableStrings)+1)> mEventHandlers;
             LD::Tuple<ImmutableStrings...> mMenuItems;
-            PDP::Detail::tVec2<LD::Integer> mLocation;
+            LD::Detail::tVec2<LD::Integer> mLocation;
             LD::ElementReference<Predicate> mPredicate;
 
             void InternalEmptyHandler(const LD::UInteger &,const LD::ApplicationExecutionEvent<Context...> &){}
@@ -65,7 +65,7 @@ namespace LD
                             (LD::ConvertiblyCallable<Functors,void(const LD::UInteger  &,const LD::ApplicationExecutionEvent<Context...> & )>::Value() && ...),
                             (sizeof...(Functors) == sizeof...(ImmutableStrings))
                             >>>
-            inline explicit constexpr ImmutableMenu(ImmutableStrings && ... immutableString,const PDP::Detail::tVec2<LD::Integer> & origin, LD::Tuple<Functors...> && functors,Predicate & predicate) noexcept :mMenuItems{LD::Forward<ImmutableStrings>(immutableString)...},mLocation{origin},mPredicate(predicate)
+            inline explicit constexpr ImmutableMenu(ImmutableStrings && ... immutableString,const LD::Detail::tVec2<LD::Integer> & origin, LD::Tuple<Functors...> && functors,Predicate & predicate) noexcept :mMenuItems{LD::Forward<ImmutableStrings>(immutableString)...},mLocation{origin},mPredicate(predicate)
             {
                 LD::For<sizeof...(ImmutableStrings)>([](auto Index,const LD::Tuple<Functors...> & functors,EventHanlderType & eventHandler)
                 {
@@ -157,9 +157,9 @@ namespace LD
             {
 
                 const LD::ElementReference<LD::TermBoxRenderContext> context = LD::Get<LD::TermBoxRenderContext>(executionEvent);
-                const PDP::Detail::tVec2<LD::Integer> & mouse = context->GetMouse();
+                const LD::Detail::tVec2<LD::Integer> & mouse = context->GetMouse();
 
-                PDP::Detail::tVec2<LD::UInteger> boundingBox;
+                LD::Detail::tVec2<LD::UInteger> boundingBox;
 
 
                 boundingBox.X() = (mouse.X() >= this->mLocation.X()) && (mouse.X() < (this->mLocation.X() + this->Width()));
@@ -212,7 +212,7 @@ namespace LD
 
 
         template<typename ... Context,typename ... ImmutableStrings,typename Predicate>
-        auto MakeImmutableMenu(Predicate &&,const PDP::Detail::tVec2<LD::Integer> & origin,ImmutableStrings  && ... titles) noexcept -> ImmutableMenu<LD::VariadicPack<Context...> ,LD::VariadicPack<LD::Detail::Decay_T<ImmutableStrings>...>,Predicate>
+        auto MakeImmutableMenu(Predicate &&,const LD::Detail::tVec2<LD::Integer> & origin,ImmutableStrings  && ... titles) noexcept -> ImmutableMenu<LD::VariadicPack<Context...> ,LD::VariadicPack<LD::Detail::Decay_T<ImmutableStrings>...>,Predicate>
         {
 
             return ImmutableMenu<LD::VariadicPack<Context...> ,LD::VariadicPack<LD::Detail::Decay_T<ImmutableStrings>...>,Predicate>{LD::Forward<LD::Detail::Decay_T<ImmutableStrings>>(titles)...,origin};
@@ -224,7 +224,7 @@ namespace LD
         ((LD::Detail::IsLValueReference<Functors>::value || LD::Detail::IsPointer<Functors>::value) && ...),
         sizeof...(Functors) == sizeof...(ImmutableStrings)
         >
-        , ImmutableMenu<LD::VariadicPack<Context...> ,LD::VariadicPack<LD::Detail::Decay_T<ImmutableStrings>...>,Predicate>> MakeImmutableMenu(Predicate & predicate,LD::Tuple<Functors...> && tuple,const PDP::Detail::tVec2<LD::Integer> & origin,ImmutableStrings  && ... titles) noexcept
+        , ImmutableMenu<LD::VariadicPack<Context...> ,LD::VariadicPack<LD::Detail::Decay_T<ImmutableStrings>...>,Predicate>> MakeImmutableMenu(Predicate & predicate,LD::Tuple<Functors...> && tuple,const LD::Detail::tVec2<LD::Integer> & origin,ImmutableStrings  && ... titles) noexcept
         {
 
             return ImmutableMenu<LD::VariadicPack<Context...> ,LD::VariadicPack<LD::Detail::Decay_T<ImmutableStrings>...>,Predicate>{LD::Forward<LD::Detail::Decay_T<ImmutableStrings>>(titles)...,origin,LD::Forward<LD::Tuple<Functors...>>(tuple),predicate};
@@ -236,7 +236,7 @@ namespace LD
                         ((LD::Detail::IsLValueReference<Functors>::value || LD::Detail::IsPointer<Functors>::value) && ...),
                         sizeof...(Functors) == sizeof...(ImmutableStrings)
                 >
-                , ImmutableMenu<LD::VariadicPack<Context...> ,LD::VariadicPack<LD::Detail::Decay_T<ImmutableStrings>...>,Predicate>> MakeImmutableMenu(const LD::TermBoxApplication<Context...> &,Predicate & predicate,LD::Tuple<Functors...> && tuple,const PDP::Detail::tVec2<LD::Integer> & origin,ImmutableStrings  && ... titles) noexcept
+                , ImmutableMenu<LD::VariadicPack<Context...> ,LD::VariadicPack<LD::Detail::Decay_T<ImmutableStrings>...>,Predicate>> MakeImmutableMenu(const LD::TermBoxApplication<Context...> &,Predicate & predicate,LD::Tuple<Functors...> && tuple,const LD::Detail::tVec2<LD::Integer> & origin,ImmutableStrings  && ... titles) noexcept
         {
 
             return ImmutableMenu<LD::VariadicPack<Context...> ,LD::VariadicPack<LD::Detail::Decay_T<ImmutableStrings>...>,Predicate>{LD::Forward<LD::Detail::Decay_T<ImmutableStrings>>(titles)...,origin,LD::Forward<LD::Tuple<Functors...>>(tuple),predicate};

@@ -172,6 +172,8 @@ namespace LD
     template<typename T>
     using ElementReference = PDP::ElementReference<T>;
 
+    template<typename T>
+    using Ref = PDP::ElementReference<T>;
 
     template<typename T>
     constexpr const T & Get(const T & stuff) noexcept

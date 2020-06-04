@@ -15,22 +15,38 @@ namespace LD
                     decltype("Length"_ts),      LD::Float,
                     decltype("area"_ts),LD::FunctionView<LD::Float ()>)>
     {
+    private:
+        //LD::Float  & mLength;
     public:
-        inline Square()
+        inline Square() //noexcept :mLength((*this)["Length"_ts])
         {
             (*this)["Length"_ts] = 0;
             (*this)["area"_ts] = LD::FunctionView<LD::Float()>(this,&Square::GetArea);
         }
+
 
         inline Square(const LD::Float & length)
         {
             (*this)["Length"_ts] = length;
             (*this)["area"_ts] = LD::FunctionView<LD::Float()>(this,&Square::GetArea);
         }
+
         LD::Float GetArea() const
         {
             return (*this)["Length"_ts] * (*this)["Length"_ts];
         }
+
+
+        LD::Float  Length() noexcept
+        {
+            return (*this)["Length"_ts];
+        }
+
+        const LD::Float  Length() const noexcept
+        {
+            return (*this)["Length"_ts];
+        }
+
     };
 
     class ArrayTest: public LD::Reflectable<
@@ -81,6 +97,26 @@ namespace LD
             return 0.5 * (*this)["Base"_ts] * (*this)["Height"_ts];
         }
 
+        LD::Float  & Base() noexcept
+        {
+            return (*this)["Base"_ts];
+        }
+
+        const LD::Float  & Base() const noexcept
+        {
+            return (*this)["Base"_ts];
+        }
+
+        LD::Float  & Height() noexcept
+        {
+            return (*this)["Height"_ts];
+        }
+
+        const LD::Float  & Height() const noexcept
+        {
+            return (*this)["Height"_ts];
+        }
+
     };
     class Circle: public LD::Reflectable<
             decltype("Circle"_ts)(
@@ -127,6 +163,19 @@ namespace LD
             (*this)["area"_ts] = LD::FunctionView<LD::Float()>(this,&Pyramid::GetArea);
         }
 
+        inline Pyramid(const Pyramid & pyramid) noexcept :Pyramid()
+        {
+            (*this) = pyramid;
+        }
+
+        inline Pyramid & operator = (const Pyramid & pyramid)
+        {
+            (*this)["Base"_ts] = pyramid["Base"_ts];
+            (*this)["Side"_ts] = pyramid["Side"_ts];
+            (*this)["area"_ts] = LD::FunctionView<LD::Float()>(this,&Pyramid::GetArea);
+            return (*this);
+        }
+
         LD::Square & Base() noexcept
         {
             return this->mBase;
@@ -134,7 +183,7 @@ namespace LD
 
         LD::Triangle & Side() noexcept
         {
-            return this->mSide;
+            return  this->mSide;
         }
 
         const LD::Square & Base() const noexcept
@@ -144,7 +193,7 @@ namespace LD
 
         const LD::Triangle & Side() const noexcept
         {
-            return this->mSide;
+            return  this->mSide;
         }
         LD::Float GetArea() const
         {

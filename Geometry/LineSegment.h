@@ -1,0 +1,8 @@
+//
+// Created by phoenixflower on 6/2/20.
+//
+
+#ifndef LANDESSDEVCORE_LINESEGMENT_H
+#define LANDESSDEVCORE_LINESEGMENT_H
+
+#endif //LANDESSDEVCORE_LINESEGMENT_H

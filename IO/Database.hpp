@@ -20,6 +20,7 @@
 #include "Memory/ElementReference.h"
 #include "TypeTraits/Declval.hpp"
 #include "TypeTraits/Decay.hpp"
+#include "FetchRequest.h"
 namespace LD
 {
 
@@ -67,6 +68,8 @@ namespace LD
          * @return
          * @see LD::UnqliteDatabaseBackend
          * @see LD::TypeString
+         * @brief Inserts the object into the database, if the object already exists, it simply overrides it.  There is no check for consitency,
+         * the current predicate to determine which object model wins (if two models of the same class are being used) is the last one serialized wins.
          * @code
          * int main()
          * {
@@ -139,6 +142,7 @@ namespace LD
                 >,Ret> Insert(const Key & key,V && object, Args && ... args) noexcept
         {
 
+
             using Type = LD::Detail::Decay_T<V>;
             using Var = LD::CT::RebindList<LD::CT::ReflectiveTransformation<Type ,LD::AccessReadOnly>,LD::Variant>;
             using QueryResultant = LD::Variant<LD::DatabaseError,LD::DatabaseTransactionResult>;
@@ -204,6 +208,7 @@ namespace LD
             return possibleResults[result];
         }
 
+        /*
         template<typename Y,typename Key, typename ... Args,
                 typename VarType = LD::Variant<LD::DatabaseError,LD::DatabaseTransactionResult>,
                 typename Boundtype = LD::CT::RebindList<Y,LD::Variant>,
@@ -214,6 +219,7 @@ namespace LD
                         LD::IsTypeList<Y>::value
                 >,Ret> Fetch(const Key & key, const Y & typelist ,Args && ... args) noexcept
         {
+
             constexpr LD::UInteger CurrentTypeListSize = Y::size();
 
 
@@ -328,6 +334,203 @@ namespace LD
                 //return false will stop the compile time for loop
                 return !result;
             },key,LD::Forward<decltype(onClassReanimate)>(onClassReanimate),this->mBackend,returnable,LD::Forward<Args>(args)...);
+            return returnable;
+        }
+         */
+
+        //typename Ret = LD::ContextualVariant<VarType(Boundtype,Args...)>
+        /**
+         *
+         * @tparam Y Is expted to be LD::TypeList<stuff...>, each type specified in the type list indicates what types to search for
+         * @tparam Key A typestring that is expted to be the key to look for in the backing store
+         * @tparam Args The arguements that should be made available in the calleables for the end LD::FetchRequestResult
+         * @tparam Ret The Type of LD::FetchRequestResult which should be generated
+         * @param key The instansiation of the specified LD::TypeString
+         * @param typelist The instansiation of the TypeList to indicate what types could coorelate to the indicated key
+         * @param args The parameters that should be made available in the calleables
+         * @see LD::CT::TypeList
+         * @see LD::FetchRequestResult
+         * @see LD::TypeString
+         * @return A generated instansiation of LD::FetchRequestResult which will hold the result of the query performed
+         * @brief Fetches an entity with the associated types and given key.  Providing a typelist allows the calling code to help speed up the process of
+         * querying the database multiple times for various types.  Instead it just does it in an optimal way.  This feeds into the notion that
+         * the type that's in the database does not really matter only that it is typed at all.  Providing various routes of interaction.
+         * @code
+         * int main()
+         * {
+         *      LD::UnQliteBackend<char> currentBackend{LD::StringView {"backend.db"},OpenAndCreateIfNotExists{}};
+         *      LD::BasicDatabase<LD::UnQliteBackend<char>> database{currentBackend};
+         *      //fetch an entity with a key "key" that is exactly of the type LD::Pyramid
+         *      LD::FetchRequestResult<LD::Variant<LD::Pyramid>()> fetchResult =  database.Fetch("key"_ts,LD::CT::TypeList<Pyramid>{});
+         *      auto onFetchError = [](const LD::Context<LD::DatabaseError> & context )
+         *      {
+         *      };
+         *      auto onFetchTransaction = [](const LD::Context<LD::DatabaseTransactionResult,Pyramid> & context)
+         *      {
+         *          std::cout << "fetch1 query result " << std::endl;
+         *          Pyramid & pyramidToUse = LD::Get<1>(context);
+         *          std::cout << pyramidToUse["Base"_ts]["Length"_ts] << std::endl;
+         *          std::cout << pyramidToUse["Side"_ts]["Base"_ts] << std::endl;
+         *          std::cout << pyramidToUse["Side"_ts]["Height"_ts] << std::endl;
+         *      };
+         *      LD::Match(fetchResult,onFetchError,onFetchTransaction);
+         *      return 0;
+         * }
+         */
+        template<typename Y,typename Key, typename ... Args,
+                typename Ret = LD::FetchRequestResult<LD::CT::RebindList<Y,LD::Variant>(Args...)>>
+        LD::Enable_If_T<
+                LD::Require<
+                        LD::IsTypeString<Key>,
+                        LD::IsTypeList<Y>::value
+                >,Ret> Fetch(const Key & key, const Y & typelist ,Args && ... args) noexcept
+        {
+            constexpr LD::UInteger CurrentTypeListSize = Y::size();
+
+
+            auto onClassReanimate = [](const LD::Context<LD::StringView,LD::StringView,Db> & context) noexcept -> bool
+            {
+                auto onFetch = [](const LD::Context<LD::StringView,LD::StringView,LD::StringView> & context) noexcept-> LD::UInteger
+                {
+
+                    LD::UInteger comparisonResult = LD::Get<1>(context) == LD::Get<2>(context);
+                    return LD::UInteger {comparisonResult};
+
+                };
+
+                Db handle = LD::Get<2>(context);
+
+                LD::ContextualVariant<LD::Variant<LD::DatabaseError,LD::DatabaseTransactionResult>(LD::StringView ,LD::UInteger,LD::StringView)> fetchContext;
+                fetchContext = handle->Fetch(LD::StringView{LD::Get<0>(context)},onFetch,LD::StringView{LD::Get<1>(context)});
+
+                auto onDatabaseError = [](const LD::Context<LD::DatabaseError,LD::StringView ,LD::UInteger,LD::StringView> &) noexcept
+                {
+
+                    return false;
+                };
+
+                auto onTransaction = [](const LD::Context<LD::DatabaseTransactionResult,LD::StringView ,LD::UInteger,LD::StringView> & transaction) noexcept
+                {
+
+                    return LD::Get<2>(transaction);
+                };
+                return LD::Match(fetchContext,onDatabaseError,onTransaction);
+            };
+
+            Ret returnable {};
+            returnable = LD::MakeContext(LD::DatabaseError{},LD::Forward<Args>(args)...);
+
+
+            //iterate through all of the types in the typelist
+            LD::For<CurrentTypeListSize>([](
+                    auto I,
+                    const Key & key,
+                    auto && onClassReanimate,
+                    const Backend & currentBackend,
+                    Ret & returnable,
+                    Args && ... args) noexcept
+                    {
+                       //get the transform for the current type at index I in the typelist
+                       using Type = typename LD::TypeAtIndex<I,Y>::type;
+                       //we're writing to the data structre eg why it's write only.
+                       using Var = LD::CT::RebindList<LD::CT::ReflectiveTransformation<Type ,LD::AccessWriteOnly>,LD::Variant>;
+                       using QueryResultant = LD::Variant<LD::DatabaseError,LD::DatabaseTransactionResult>;
+                       using QueryResponse = LD::ContextualVariant<QueryResultant()>;
+
+
+
+                       //actions to get stuff back into the object from the data store
+                       auto onMemberReanimate = [](const LD::ContextualVariant<Var(LD::StringView,Db)> & context) noexcept
+                       {
+                           auto onPrimitiveAction = [](auto && context) noexcept
+                           {
+                               Db handle = LD::Get<2>(context);
+                               using MemberType = LD::Detail::Decay_T<decltype(LD::Get(LD::Get<0>(context)))>;
+                               bool performedQuery = false;
+                               if constexpr(LD::Require<LD::IsPrimitive<LD::Detail::Decay_T<decltype(LD::Get(LD::Get<0>(context)))>>>)
+                               {
+
+                                   LD::StringView memberKey = LD::Get<1>(context);
+
+                                   LD::ElementReference<MemberType> memberReference = LD::Get<0>(context);
+
+                                   auto onFetch = [](const LD::Context<LD::StringView,LD::StringView,LD::StringView,LD::ElementReference<MemberType>> & context) noexcept -> MemberType
+                                   {
+                                       auto resultVariant = LD::StringAsNumber<MemberType>(LD::StringView{LD::Get<1>(context).data(),LD::Get<1>(context).size()});
+                                       MemberType result = LD::Match(resultVariant,[](const MemberType & obj){ return obj;},[](auto &&){ return LD::UInteger {};});
+                                       LD::Get(LD::Get<3>(context)) = result;
+                                       return result;
+                                   };
+
+
+                                   LD::ContextualVariant<LD::Variant<LD::DatabaseError,LD::DatabaseTransactionResult>(LD::StringView ,MemberType,LD::StringView,LD::ElementReference<MemberType>)> fetchContext;
+
+
+                                   fetchContext = handle->Fetch(LD::StringView{memberKey},onFetch,LD::StringView{memberKey},LD::ElementReference<MemberType>{memberReference});
+
+
+
+                                   auto onDatabaseError = [](const LD::Context<LD::DatabaseError,LD::StringView ,MemberType ,LD::StringView,LD::ElementReference<MemberType>> &) noexcept
+                                   {
+                                       return false;
+                                   };
+
+
+                                   auto onTransaction = [](const LD::Context<LD::DatabaseTransactionResult,LD::StringView ,MemberType ,LD::StringView,LD::ElementReference<MemberType>> & transaction) noexcept
+                                   {
+
+
+                                       return true;
+
+                                   };
+
+                                   performedQuery = LD::Match(fetchContext,onDatabaseError,onTransaction);
+
+                               }
+
+                               return performedQuery;
+
+                           };
+
+                           return LD::Match(context,onPrimitiveAction);
+
+                       };
+
+                       //default construction of type being look at
+
+                       Type objectToReanimate;
+
+                       const bool result = LD::CT::ReflectiveWalk(
+                                                     key,
+                                                     objectToReanimate,
+                                                     onClassReanimate,
+                                                     onMemberReanimate,
+                                                     LD::AccessWriteOnly{},
+                                                     Db{currentBackend});
+
+
+                       //if we have a successful query with that classname then set the returnable and stop looping
+
+
+                       LD::IF(result,[](Ret & returnable, Type & objectToReanimate, Args && ... args)
+                       {
+                           returnable = LD::MakeContext(LD::DatabaseTransactionResult{},Type {objectToReanimate},LD::Forward<Args>(args)...);
+                       }
+                       ,returnable,objectToReanimate,LD::Forward<Args>(args)...);
+                       /*
+                       if (result)
+                       {
+                           returnable = LD::MakeContext(LD::DatabaseTransactionResult{},Type {objectToReanimate},LD::Forward<Args>(args)...);
+                       }
+                        */
+
+
+                       //return false will stop the compile time for loop
+
+
+                       return !result;
+                    },key,LD::Forward<decltype(onClassReanimate)>(onClassReanimate),this->mBackend,returnable,LD::Forward<Args>(args)...);
+
             return returnable;
         }
     };

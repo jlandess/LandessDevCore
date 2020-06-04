@@ -232,7 +232,7 @@ namespace LD
     }
 
      */
-    const TermBoxRenderContext & TermBoxRenderContext::Write(const char & character, const PDP::Detail::tVec2<LD::Integer> & location) const
+    const TermBoxRenderContext & TermBoxRenderContext::Write(const char & character, const LD::Detail::tVec2<LD::Integer> & location) const
     {
         //int x = (int)Cursor.X();
         //int y = (int)Cursor.Y();

@@ -13,9 +13,10 @@
 #include "Vec2.hpp"
 #include "Mat2x3.hpp"
 #include "Mat2x2.hpp"
+#include "TypeTraits/StaticallySized.h"
 
 
-namespace PDP
+namespace LD
 {
     namespace Detail
     {
@@ -443,5 +444,17 @@ namespace PDP
     typedef Detail::tMat3x2<short> SMat2x4;
     //typedef Detail::tMat2x4<PDP::Half> HMat2x4;
 
+}
+
+namespace LD
+{
+    namespace Detail
+    {
+        template<typename T>
+        struct StaticallySized<LD::Detail::tMat3x2<T>>: public LD::Detail::IntegralConstant<bool,true>
+        {
+
+        };
+    }
 }
 #endif

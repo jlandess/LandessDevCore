@@ -12,7 +12,8 @@
 #include "StaticArray.hpp"
 #include "Vec2.hpp"
 #include "Quaternion.hpp"
-namespace PDP
+#include "TypeTraits/IsClassType.hpp"
+namespace LD
 {
     namespace Detail
     {
@@ -25,7 +26,7 @@ namespace PDP
             inline tVec3();
             inline tVec3(const tVec3 & vector);
             //inline tVec3(const tVec2<T> & vector);
-            inline tVec3(const StaticArray<T, 3> & a);
+            inline tVec3(const LD::StaticArray<T, 3> & a);
 
             inline tVec3(const T & a);
             inline tVec3(const T & a, const T & b, const T & c);
@@ -33,14 +34,14 @@ namespace PDP
             inline tVec3 & operator = (const tVec3 & vector);
             //inline tVec3 & operator = (const tVec2<T> & vector);
             inline tVec3 & operator = (const T & a);
-            inline tVec3 & operator = (const StaticArray<T, 3> & a);
+            inline tVec3 & operator = (const LD::StaticArray<T, 3> & a);
 
             inline tVec3 & Normalize()
             {
                 const T & x = (*this)[0];
                 const T & y = (*this)[1];
                 const T & z = (*this)[2];
-                const T magnitude = PDP::Sqrt(x*x + y*y + z*z);
+                const T magnitude = LD::Sqrt(x*x + y*y + z*z);
 
                 (*this)[0]/=magnitude;
                 (*this)[1]/=magnitude;
@@ -66,7 +67,7 @@ namespace PDP
                 const T & x = (*this)[0];
                 const T & y = (*this)[1];
                 const T & z = (*this)[2];
-                const T magnitude = PDP::Sqrt(x*x + y*y + z*z);
+                const T magnitude = LD::Sqrt(x*x + y*y + z*z);
 
                 tVec3 temp(*this);
 
@@ -82,7 +83,7 @@ namespace PDP
                 const T & x = (*this)[0];
                 const T & y = (*this)[1];
                 const T & z = (*this)[2];
-                const T magnitude = PDP::Sqrt(x*x + y*y + z*z);
+                const T magnitude = LD::Sqrt(x*x + y*y + z*z);
                 return magnitude;
             }
 
@@ -96,14 +97,14 @@ namespace PDP
                 T r_z = axis.Z() * sin_half;
                 T r_w = cos_half;
 
-                LD::Quaternion<T,PDP::EnableIf<PDP::IsPrimitiveType<T>::value>> rotation(r_x,r_y,r_w);
+                LD::Quaternion<T,LD::EnableIf<LD::IsPrimitive<T>>> rotation(r_x,r_y,r_w);
 
                 //quaternion rotation(r_x, r_y, r_z, r_w);
-                LD::Quaternion<T,PDP::EnableIf<PDP::IsPrimitiveType<T>::value>> c = rotation;
+                LD::Quaternion<T,LD::EnableIf<LD::IsPrimitive<T>>> c = rotation;
                 c.Conjugate();
 
 
-                LD::Quaternion<T,PDP::EnableIf<PDP::IsPrimitiveType<T>::value>> w = rotation;
+                LD::Quaternion<T,LD::EnableIf<LD::IsPrimitive<T>>> w = rotation;
 
 
                 w.Multiply(this->X(), this->Y(), this->Z());
@@ -134,157 +135,157 @@ namespace PDP
             inline T & Z() {return (*this)[2];}
             inline const T & Z() const {return (*this)[2];}
 
-            inline PDP::Detail::tVec2<T> XX() const
+            inline LD::Detail::tVec2<T> XX() const
             {
-                return PDP::Detail::tVec2<T>((*this)[0],(*this)[0]);
+                return LD::Detail::tVec2<T>((*this)[0],(*this)[0]);
             }
-            inline PDP::Detail::tVec2<T> XY() const
+            inline LD::Detail::tVec2<T> XY() const
             {
-                return PDP::Detail::tVec2<T>((*this)[0],(*this)[1]);
+                return LD::Detail::tVec2<T>((*this)[0],(*this)[1]);
             }
-            inline PDP::Detail::tVec2<T> XZ() const
+            inline LD::Detail::tVec2<T> XZ() const
             {
-                return PDP::Detail::tVec2<T>((*this)[0],(*this)[2]);
-            }
-
-            inline PDP::Detail::tVec2<T> YY() const
-            {
-                return PDP::Detail::tVec2<T>((*this)[1],(*this)[1]);
-            }
-            inline PDP::Detail::tVec2<T> YX() const
-            {
-                return PDP::Detail::tVec2<T>((*this)[1],(*this)[0]);
-            }
-            inline PDP::Detail::tVec2<T> YZ() const
-            {
-                return PDP::Detail::tVec2<T>((*this)[1],(*this)[2]);
+                return LD::Detail::tVec2<T>((*this)[0],(*this)[2]);
             }
 
-            inline PDP::Detail::tVec2<T> ZX() const
+            inline LD::Detail::tVec2<T> YY() const
             {
-                return PDP::Detail::tVec2<T>((*this)[2],(*this)[0]);
+                return LD::Detail::tVec2<T>((*this)[1],(*this)[1]);
             }
-            inline PDP::Detail::tVec2<T> ZY() const
+            inline LD::Detail::tVec2<T> YX() const
             {
-                return PDP::Detail::tVec2<T>((*this)[2],(*this)[1]);
+                return LD::Detail::tVec2<T>((*this)[1],(*this)[0]);
             }
-            inline PDP::Detail::tVec2<T> ZZ() const
+            inline LD::Detail::tVec2<T> YZ() const
             {
-                return PDP::Detail::tVec2<T>((*this)[2],(*this)[2]);
-            }
-
-            inline PDP::Detail::tVec3<T> XXX() const
-            {
-                return PDP::Detail::tVec3<T>((*this)[0],(*this)[0],(*this)[0]);
-            }
-            inline PDP::Detail::tVec3<T> XXY() const
-            {
-                return PDP::Detail::tVec3<T>((*this)[0],(*this)[0],(*this)[1]);
-            }
-            inline PDP::Detail::tVec3<T> XXZ() const
-            {
-                return PDP::Detail::tVec3<T>((*this)[0],(*this)[0],(*this)[2]);
-            }
-            inline PDP::Detail::tVec3<T> XYX() const
-            {
-                return PDP::Detail::tVec3<T>((*this)[0],(*this)[1],(*this)[0]);
-            }
-            inline PDP::Detail::tVec3<T> XYY() const
-            {
-                return PDP::Detail::tVec3<T>((*this)[0],(*this)[1],(*this)[1]);
-            }
-            inline PDP::Detail::tVec3<T> XYZ() const
-            {
-                return PDP::Detail::tVec3<T>((*this)[0],(*this)[1],(*this)[2]);
-            }
-            inline PDP::Detail::tVec3<T> XZX() const
-            {
-                return PDP::Detail::tVec3<T>((*this)[0],(*this)[2],(*this)[0]);
-            }
-            inline PDP::Detail::tVec3<T> XZY() const
-            {
-                return PDP::Detail::tVec3<T>((*this)[0],(*this)[2],(*this)[1]);
-            }
-            inline PDP::Detail::tVec3<T> XZZ() const
-            {
-                return PDP::Detail::tVec3<T>((*this)[0],(*this)[2],(*this)[2]);
+                return LD::Detail::tVec2<T>((*this)[1],(*this)[2]);
             }
 
+            inline LD::Detail::tVec2<T> ZX() const
+            {
+                return LD::Detail::tVec2<T>((*this)[2],(*this)[0]);
+            }
+            inline LD::Detail::tVec2<T> ZY() const
+            {
+                return LD::Detail::tVec2<T>((*this)[2],(*this)[1]);
+            }
+            inline LD::Detail::tVec2<T> ZZ() const
+            {
+                return LD::Detail::tVec2<T>((*this)[2],(*this)[2]);
+            }
 
-            inline PDP::Detail::tVec3<T> YXX() const
+            inline LD::Detail::tVec3<T> XXX() const
             {
-                return PDP::Detail::tVec3<T>((*this)[1],(*this)[0],(*this)[0]);
+                return LD::Detail::tVec3<T>((*this)[0],(*this)[0],(*this)[0]);
             }
-            inline PDP::Detail::tVec3<T> YXY() const
+            inline LD::Detail::tVec3<T> XXY() const
             {
-                return PDP::Detail::tVec3<T>((*this)[1],(*this)[0],(*this)[1]);
+                return LD::Detail::tVec3<T>((*this)[0],(*this)[0],(*this)[1]);
             }
-            inline PDP::Detail::tVec3<T> YXZ() const
+            inline LD::Detail::tVec3<T> XXZ() const
             {
-                return PDP::Detail::tVec3<T>((*this)[1],(*this)[0],(*this)[2]);
+                return LD::Detail::tVec3<T>((*this)[0],(*this)[0],(*this)[2]);
             }
-            inline PDP::Detail::tVec3<T> YYX() const
+            inline LD::Detail::tVec3<T> XYX() const
             {
-                return PDP::Detail::tVec3<T>((*this)[1],(*this)[1],(*this)[0]);
+                return LD::Detail::tVec3<T>((*this)[0],(*this)[1],(*this)[0]);
             }
-            inline PDP::Detail::tVec3<T> YYY() const
+            inline LD::Detail::tVec3<T> XYY() const
             {
-                return PDP::Detail::tVec3<T>((*this)[1],(*this)[1],(*this)[1]);
+                return LD::Detail::tVec3<T>((*this)[0],(*this)[1],(*this)[1]);
             }
-            inline PDP::Detail::tVec3<T> YYZ() const
+            inline LD::Detail::tVec3<T> XYZ() const
             {
-                return PDP::Detail::tVec3<T>((*this)[1],(*this)[1],(*this)[2]);
+                return LD::Detail::tVec3<T>((*this)[0],(*this)[1],(*this)[2]);
             }
-            inline PDP::Detail::tVec3<T> YZX() const
+            inline LD::Detail::tVec3<T> XZX() const
             {
-                return PDP::Detail::tVec3<T>((*this)[1],(*this)[2],(*this)[0]);
+                return LD::Detail::tVec3<T>((*this)[0],(*this)[2],(*this)[0]);
             }
-            inline PDP::Detail::tVec3<T> YZY() const
+            inline LD::Detail::tVec3<T> XZY() const
             {
-                return PDP::Detail::tVec3<T>((*this)[1],(*this)[2],(*this)[1]);
+                return LD::Detail::tVec3<T>((*this)[0],(*this)[2],(*this)[1]);
             }
-            inline PDP::Detail::tVec3<T> YZZ() const
+            inline LD::Detail::tVec3<T> XZZ() const
             {
-                return PDP::Detail::tVec3<T>((*this)[1],(*this)[2],(*this)[2]);
+                return LD::Detail::tVec3<T>((*this)[0],(*this)[2],(*this)[2]);
             }
 
 
+            inline LD::Detail::tVec3<T> YXX() const
+            {
+                return LD::Detail::tVec3<T>((*this)[1],(*this)[0],(*this)[0]);
+            }
+            inline LD::Detail::tVec3<T> YXY() const
+            {
+                return LD::Detail::tVec3<T>((*this)[1],(*this)[0],(*this)[1]);
+            }
+            inline LD::Detail::tVec3<T> YXZ() const
+            {
+                return LD::Detail::tVec3<T>((*this)[1],(*this)[0],(*this)[2]);
+            }
+            inline LD::Detail::tVec3<T> YYX() const
+            {
+                return LD::Detail::tVec3<T>((*this)[1],(*this)[1],(*this)[0]);
+            }
+            inline LD::Detail::tVec3<T> YYY() const
+            {
+                return LD::Detail::tVec3<T>((*this)[1],(*this)[1],(*this)[1]);
+            }
+            inline LD::Detail::tVec3<T> YYZ() const
+            {
+                return LD::Detail::tVec3<T>((*this)[1],(*this)[1],(*this)[2]);
+            }
+            inline LD::Detail::tVec3<T> YZX() const
+            {
+                return LD::Detail::tVec3<T>((*this)[1],(*this)[2],(*this)[0]);
+            }
+            inline LD::Detail::tVec3<T> YZY() const
+            {
+                return LD::Detail::tVec3<T>((*this)[1],(*this)[2],(*this)[1]);
+            }
+            inline LD::Detail::tVec3<T> YZZ() const
+            {
+                return LD::Detail::tVec3<T>((*this)[1],(*this)[2],(*this)[2]);
+            }
 
-            inline PDP::Detail::tVec3<T> ZXX() const
+
+
+            inline LD::Detail::tVec3<T> ZXX() const
             {
-                return PDP::Detail::tVec3<T>((*this)[2],(*this)[0],(*this)[0]);
+                return LD::Detail::tVec3<T>((*this)[2],(*this)[0],(*this)[0]);
             }
-            inline PDP::Detail::tVec3<T> ZXY() const
+            inline LD::Detail::tVec3<T> ZXY() const
             {
-                return PDP::Detail::tVec3<T>((*this)[2],(*this)[0],(*this)[1]);
+                return LD::Detail::tVec3<T>((*this)[2],(*this)[0],(*this)[1]);
             }
-            inline PDP::Detail::tVec3<T> ZXZ() const
+            inline LD::Detail::tVec3<T> ZXZ() const
             {
-                return PDP::Detail::tVec3<T>((*this)[2],(*this)[0],(*this)[2]);
+                return LD::Detail::tVec3<T>((*this)[2],(*this)[0],(*this)[2]);
             }
-            inline PDP::Detail::tVec3<T> ZYX() const
+            inline LD::Detail::tVec3<T> ZYX() const
             {
-                return PDP::Detail::tVec3<T>((*this)[2],(*this)[1],(*this)[0]);
+                return LD::Detail::tVec3<T>((*this)[2],(*this)[1],(*this)[0]);
             }
-            inline PDP::Detail::tVec3<T> ZYY() const
+            inline LD::Detail::tVec3<T> ZYY() const
             {
-                return PDP::Detail::tVec3<T>((*this)[2],(*this)[1],(*this)[1]);
+                return LD::Detail::tVec3<T>((*this)[2],(*this)[1],(*this)[1]);
             }
-            inline PDP::Detail::tVec3<T> ZYZ() const
+            inline LD::Detail::tVec3<T> ZYZ() const
             {
-                return PDP::Detail::tVec3<T>((*this)[2],(*this)[1],(*this)[2]);
+                return LD::Detail::tVec3<T>((*this)[2],(*this)[1],(*this)[2]);
             }
-            inline PDP::Detail::tVec3<T> ZZX() const
+            inline LD::Detail::tVec3<T> ZZX() const
             {
-                return PDP::Detail::tVec3<T>((*this)[2],(*this)[2],(*this)[0]);
+                return LD::Detail::tVec3<T>((*this)[2],(*this)[2],(*this)[0]);
             }
-            inline PDP::Detail::tVec3<T> ZZY() const
+            inline LD::Detail::tVec3<T> ZZY() const
             {
-                return PDP::Detail::tVec3<T>((*this)[2],(*this)[2],(*this)[1]);
+                return LD::Detail::tVec3<T>((*this)[2],(*this)[2],(*this)[1]);
             }
-            inline PDP::Detail::tVec3<T> ZZZ() const
+            inline LD::Detail::tVec3<T> ZZZ() const
             {
-                return PDP::Detail::tVec3<T>((*this)[2],(*this)[2],(*this)[2]);
+                return LD::Detail::tVec3<T>((*this)[2],(*this)[2],(*this)[2]);
             }
 
 
@@ -1070,5 +1071,18 @@ namespace PDP
     typedef Detail::tVec3<short> SVec3;
     typedef Detail::tVec3<unsigned short> USVec3;
     //typedef Detail::tVec3<PDP::Half> HVec3;
+}
+
+
+namespace LD
+{
+    namespace Detail
+    {
+        template<typename T>
+        struct StaticallySized<LD::Detail::tVec3<T>>: public LD::Detail::IntegralConstant<bool,true>
+        {
+
+        };
+    }
 }
 #endif

@@ -36,19 +36,77 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a2ffdfb1-0050-446c-b0af-d02ece8e31b8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Algorithms/Calculus.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Algorithms/KarnaughMap.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Algorithms/NewtonAppleDelanauy.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Geometry/BezierCurve.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Geometry/Box.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Geometry/Capsule.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Geometry/Circle.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Geometry/Cube.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Geometry/Line.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Geometry/LineSegment.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Geometry/Particle.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Geometry/Plane.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Geometry/Ray.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Geometry/Rectangle.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Geometry/Sphere.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Geometry/Square.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Geometry/UniformBSpline.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/FetchRequest.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/InsertionRequest.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TypeTraits/StaticallySized.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Algorithms/Sampler.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Algorithms/Sampler.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Examples/ReflectionDemoTypes.h" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/ReflectionDemoTypes.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Examples/ReflectionExample.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/ReflectionExample.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Examples/TermBoxMenuExample.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/TermBoxMenuExample.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/IO/Database.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/IO/Database.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TypeTraits/TypeList.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/TypeTraits/TypeList.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MVC/FormattedFloatingPoint.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/FormattedFloatingPoint.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MVC/Renderable.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/Renderable.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MVC/TermBoxApplication.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/TermBoxApplication.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MVC/TermBoxMenu.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/TermBoxMenu.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MVC/TermBoxRenderingContext.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/TermBoxRenderingContext.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Memory/ElementReference.h" beforeDir="false" afterPath="$PROJECT_DIR$/Memory/ElementReference.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Primitives/General/ContextualVariant.h" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/ContextualVariant.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Primitives/General/Immutable.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/Immutable.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Primitives/General/Mat2x2.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/Mat2x2.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Primitives/General/Mat2x3.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/Mat2x3.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Primitives/General/Mat2x4.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/Mat2x4.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Primitives/General/Mat3x2.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/Mat3x2.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Primitives/General/Mat3x3.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/Mat3x3.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Primitives/General/Mat3x4.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/Mat3x4.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Primitives/General/Mat4x2.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/Mat4x2.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Primitives/General/Mat4x3.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/Mat4x3.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Primitives/General/Mat4x4.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/Mat4x4.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Primitives/General/Quaternion.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/Quaternion.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Primitives/General/Vec2.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/Vec2.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Primitives/General/Vec3.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/Vec3.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Primitives/General/Vec4.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/Vec4.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reflection/reflectable.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Reflection/reflectable.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/build.make" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/depend.internal" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/LandessDevCore" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/LandessDevCore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/LandessDevCore.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/LandessDevCore.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeCache.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/build.make" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/depend.internal" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/clion-log.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/LandessDevCore" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/LandessDevCore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/LandessDevCore.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/LandessDevCore.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/backend.db" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/backend.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -117,7 +175,12 @@
       <workItem from="1590551141144" duration="23589000" />
       <workItem from="1590625763459" duration="25015000" />
       <workItem from="1590723384354" duration="21455000" />
-      <workItem from="1590821058861" duration="34591000" />
+      <workItem from="1590821058861" duration="50523000" />
+      <workItem from="1590992673329" duration="8954000" />
+      <workItem from="1591119844711" duration="2810000" />
+      <workItem from="1591129928264" duration="11075000" />
+      <workItem from="1591152329340" duration="11112000" />
+      <workItem from="1591243781621" duration="14038000" />
     </task>
     <servers />
   </component>
@@ -143,26 +206,46 @@
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
     <state x="730" y="355" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/70.27.1850.1053@70.27.1850.1053" timestamp="1589769031540" />
-    <state width="1793" height="159" key="GridCell.Tab.0.bottom" timestamp="1590952499928">
+    <state width="1793" height="158" key="GridCell.Tab.0.bottom" timestamp="1591290479800">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
-    <state width="1793" height="159" key="GridCell.Tab.0.bottom/70.27.1850.1053@70.27.1850.1053" timestamp="1590952499928" />
-    <state width="1793" height="159" key="GridCell.Tab.0.center" timestamp="1590952499927">
+    <state width="1793" height="158" key="GridCell.Tab.0.bottom/70.27.1850.1053@70.27.1850.1053" timestamp="1591290479800" />
+    <state width="1793" height="158" key="GridCell.Tab.0.center" timestamp="1591290479800">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
-    <state width="1793" height="159" key="GridCell.Tab.0.center/70.27.1850.1053@70.27.1850.1053" timestamp="1590952499927" />
-    <state width="1793" height="159" key="GridCell.Tab.0.left" timestamp="1590952499927">
+    <state width="1793" height="158" key="GridCell.Tab.0.center/70.27.1850.1053@70.27.1850.1053" timestamp="1591290479800" />
+    <state width="1793" height="158" key="GridCell.Tab.0.left" timestamp="1591290479799">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
-    <state width="1793" height="159" key="GridCell.Tab.0.left/70.27.1850.1053@70.27.1850.1053" timestamp="1590952499927" />
-    <state width="1793" height="159" key="GridCell.Tab.0.right" timestamp="1590952499927">
+    <state width="1793" height="158" key="GridCell.Tab.0.left/70.27.1850.1053@70.27.1850.1053" timestamp="1591290479799" />
+    <state width="1793" height="158" key="GridCell.Tab.0.right" timestamp="1591290479800">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
-    <state width="1793" height="159" key="GridCell.Tab.0.right/70.27.1850.1053@70.27.1850.1053" timestamp="1590952499927" />
+    <state width="1793" height="158" key="GridCell.Tab.0.right/70.27.1850.1053@70.27.1850.1053" timestamp="1591290479800" />
+    <state width="1793" height="298" key="GridCell.Tab.1.bottom" timestamp="1590975130608">
+      <screen x="70" y="27" width="1850" height="1053" />
+    </state>
+    <state width="1793" height="298" key="GridCell.Tab.1.bottom/70.27.1850.1053@70.27.1850.1053" timestamp="1590975130608" />
+    <state width="1793" height="298" key="GridCell.Tab.1.center" timestamp="1590975130607">
+      <screen x="70" y="27" width="1850" height="1053" />
+    </state>
+    <state width="1793" height="298" key="GridCell.Tab.1.center/70.27.1850.1053@70.27.1850.1053" timestamp="1590975130607" />
+    <state width="1793" height="298" key="GridCell.Tab.1.left" timestamp="1590975130607">
+      <screen x="70" y="27" width="1850" height="1053" />
+    </state>
+    <state width="1793" height="298" key="GridCell.Tab.1.left/70.27.1850.1053@70.27.1850.1053" timestamp="1590975130607" />
+    <state width="1793" height="298" key="GridCell.Tab.1.right" timestamp="1590975130608">
+      <screen x="70" y="27" width="1850" height="1053" />
+    </state>
+    <state width="1793" height="298" key="GridCell.Tab.1.right/70.27.1850.1053@70.27.1850.1053" timestamp="1590975130608" />
     <state x="178" y="232" width="1640" height="748" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1589341972355">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
     <state x="178" y="232" width="1640" height="748" key="com.intellij.history.integration.ui.views.FileHistoryDialog/70.27.1850.1053@70.27.1850.1053" timestamp="1589341972355" />
+    <state width="600" height="428" key="javadoc.popup" timestamp="1591146528949">
+      <screen x="70" y="27" width="1850" height="1053" />
+    </state>
+    <state width="600" height="428" key="javadoc.popup/70.27.1850.1053@70.27.1850.1053" timestamp="1591146528949" />
     <state x="823" y="383" width="224" height="436" key="refactoring.ChangeSignatureDialog" timestamp="1589943545413">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>

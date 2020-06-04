@@ -6,6 +6,28 @@
 
 #IncludeRegexTransform: 
 
+../Algorithms/Calculus.h
+Exponential.hpp
+../Algorithms/Exponential.hpp
+Primitives/General/mapboxvariant.hpp
+../Algorithms/Primitives/General/mapboxvariant.hpp
+Primitives/General/mapboxvariantvisitor.h
+../Algorithms/Primitives/General/mapboxvariantvisitor.h
+TypeTraits/Detection.hpp
+../Algorithms/TypeTraits/Detection.hpp
+Primitives/General/ContextualVariant.h
+../Algorithms/Primitives/General/ContextualVariant.h
+Primitives/General/Context.h
+../Algorithms/Primitives/General/Context.h
+TypeTraits/Declval.hpp
+../Algorithms/TypeTraits/Declval.hpp
+Definitions/Integer.hpp
+../Algorithms/Definitions/Integer.hpp
+Functor/LightWeightDelegate.h
+../Algorithms/Functor/LightWeightDelegate.h
+Primitives/General/Vec2.hpp
+../Algorithms/Primitives/General/Vec2.hpp
+
 ../Algorithms/CompileTimeControlFlow.hpp
 Functor/LightWeightDelegate.h
 -
@@ -291,6 +313,8 @@ TypeTraits/Declval.hpp
 ../IO/TypeTraits/Declval.hpp
 TypeTraits/Decay.hpp
 ../IO/TypeTraits/Decay.hpp
+FetchRequest.h
+../IO/FetchRequest.h
 
 ../IO/DatabaseOpenMode.h
 Primitives/General/mapboxvariant.hpp
@@ -299,6 +323,8 @@ Primitives/General/mapboxvariant.hpp
 ../IO/DatabaseOperationResult.h
 Primitives/General/mapboxvariant.hpp
 ../IO/Primitives/General/mapboxvariant.hpp
+
+../IO/FetchRequest.h
 
 ../IO/UnqliteDatabaseBackend.h
 Primitives/General/StringView.hpp
@@ -347,6 +373,8 @@ Primitives/General/mapboxvariant.hpp
 ../Primitives/General/Primitives/General/mapboxvariant.hpp
 Primitives/General/Context.h
 ../Primitives/General/Primitives/General/Context.h
+Pair.h
+../Primitives/General/Pair.h
 
 ../Primitives/General/Hash.hpp
 
@@ -361,6 +389,8 @@ Primitives/General/Hash.hpp
 ../Primitives/General/Primitives/General/Hash.hpp
 TypeTraits/IsImmutable.h
 ../Primitives/General/TypeTraits/IsImmutable.h
+TypeTraits/StaticallySized.h
+../Primitives/General/TypeTraits/StaticallySized.h
 
 ../Primitives/General/ImproperFraction.hpp
 Definitions/Common.hpp
@@ -415,6 +445,18 @@ functional
 -
 
 ../Primitives/General/Tuple.hpp
+
+../Primitives/General/Vec2.hpp
+StaticArray.hpp
+../Primitives/General/StaticArray.hpp
+Definitions/Float.hpp
+../Primitives/General/Definitions/Float.hpp
+Definitions/Integer.hpp
+../Primitives/General/Definitions/Integer.hpp
+TypeTraits/StaticallySized.h
+../Primitives/General/TypeTraits/StaticallySized.h
+Algorithms/Exponential.hpp
+../Primitives/General/Algorithms/Exponential.hpp
 
 ../Primitives/General/ctre.hpp
 utility
@@ -792,6 +834,10 @@ Definitions/Integer.hpp
 Definitions/Common.hpp
 ../TypeTraits/Definitions/Common.hpp
 
+../TypeTraits/StaticallySized.h
+IntegralConstant.hpp
+../TypeTraits/IntegralConstant.hpp
+
 ../TypeTraits/TypeList.hpp
 TypeTraits/Conditional.hpp
 ../TypeTraits/TypeTraits/Conditional.hpp
@@ -843,6 +889,10 @@ Primitives/General/Span.hpp
 /home/phoenixflower/Documents/LandessDevCore/Examples/Primitives/General/Span.hpp
 IO/UnqliteDatabaseBackend.h
 /home/phoenixflower/Documents/LandessDevCore/Examples/IO/UnqliteDatabaseBackend.h
+Algorithms/Calculus.h
+/home/phoenixflower/Documents/LandessDevCore/Examples/Algorithms/Calculus.h
+IO/FetchRequest.h
+/home/phoenixflower/Documents/LandessDevCore/Examples/IO/FetchRequest.h
 
 /home/phoenixflower/Documents/LandessDevCore/Examples/ReflectionExample.hpp
 

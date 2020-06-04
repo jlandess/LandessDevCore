@@ -13,7 +13,7 @@
 #include "Vec2.hpp"
 #include "Vec3.hpp"
 #include "Algorithms/Exponential.hpp"
-namespace PDP
+namespace LD
 {
     namespace Detail
     {
@@ -30,7 +30,7 @@ namespace PDP
 
             inline tVec4(const T & a);
             inline tVec4(const T & a, const T & b, const T & c, const T & d);
-            inline tVec4(const StaticArray<T, 4> & a);
+            inline tVec4(const LD::StaticArray<T, 4> & a);
 
             inline tVec4 & operator = (const tVec4 & vector);
             inline tVec4 & operator = (const tVec3<T> & vector);
@@ -44,7 +44,7 @@ namespace PDP
                 const T & y = (*this)[1];
                 const T & z = (*this)[2];
                 const T & w = (*this)[3];
-                const T magnitude = PDP::Sqrt(x*x + y*y + z*z + w*w);
+                const T magnitude = LD::Sqrt(x*x + y*y + z*z + w*w);
 
                 (*this)[0]/=magnitude;
                 (*this)[1]/=magnitude;
@@ -71,7 +71,7 @@ namespace PDP
                 const T & y = (*this)[1];
                 const T & z = (*this)[2];
                 const T & w = (*this)[3];
-                const T magnitude = PDP::Sqrt(x*x + y*y + z*z + w*w);
+                const T magnitude = LD::Sqrt(x*x + y*y + z*z + w*w);
 
                 tVec4 temp(*this);
 
@@ -89,7 +89,7 @@ namespace PDP
                 const T & y = (*this)[1];
                 const T & z = (*this)[2];
                 const T & w = (*this)[3];
-                const T magnitude = PDP::Sqrt(x*x + y*y + z*z + w*w);
+                const T magnitude = LD::Sqrt(x*x + y*y + z*z + w*w);
                 return magnitude;
             }
 
@@ -105,1335 +105,1335 @@ namespace PDP
             inline T & W() {return (*this)[3];}
             inline const T & W() const {return (*this)[3];}
 
-            inline PDP::Detail::tVec2<T> XX() const
+            inline LD::Detail::tVec2<T> XX() const
             {
-                return PDP::Detail::tVec2<T>((*this)[0],(*this)[0]);
+                return LD::Detail::tVec2<T>((*this)[0],(*this)[0]);
             }
-            inline PDP::Detail::tVec2<T> XY() const
+            inline LD::Detail::tVec2<T> XY() const
             {
-                return PDP::Detail::tVec2<T>((*this)[0],(*this)[1]);
+                return LD::Detail::tVec2<T>((*this)[0],(*this)[1]);
             }
-            inline PDP::Detail::tVec2<T> XZ() const
+            inline LD::Detail::tVec2<T> XZ() const
             {
-                return PDP::Detail::tVec2<T>((*this)[0],(*this)[2]);
-            }
-
-            inline PDP::Detail::tVec2<T> YY() const
-            {
-                return PDP::Detail::tVec2<T>((*this)[1],(*this)[1]);
-            }
-            inline PDP::Detail::tVec2<T> YX() const
-            {
-                return PDP::Detail::tVec2<T>((*this)[1],(*this)[0]);
-            }
-            inline PDP::Detail::tVec2<T> YZ() const
-            {
-                return PDP::Detail::tVec2<T>((*this)[1],(*this)[2]);
+                return LD::Detail::tVec2<T>((*this)[0],(*this)[2]);
             }
 
-            inline PDP::Detail::tVec2<T> ZX() const
+            inline LD::Detail::tVec2<T> YY() const
             {
-                return PDP::Detail::tVec2<T>((*this)[2],(*this)[0]);
+                return LD::Detail::tVec2<T>((*this)[1],(*this)[1]);
             }
-            inline PDP::Detail::tVec2<T> ZY() const
+            inline LD::Detail::tVec2<T> YX() const
             {
-                return PDP::Detail::tVec2<T>((*this)[2],(*this)[1]);
+                return LD::Detail::tVec2<T>((*this)[1],(*this)[0]);
             }
-            inline PDP::Detail::tVec2<T> ZZ() const
+            inline LD::Detail::tVec2<T> YZ() const
             {
-                return PDP::Detail::tVec2<T>((*this)[2],(*this)[2]);
-            }
-
-            inline PDP::Detail::tVec3<T> XXX() const
-            {
-                return PDP::Detail::tVec3<T>((*this)[0],(*this)[0],(*this)[0]);
-            }
-            inline PDP::Detail::tVec3<T> XXY() const
-            {
-                return PDP::Detail::tVec3<T>((*this)[0],(*this)[0],(*this)[1]);
-            }
-            inline PDP::Detail::tVec3<T> XXZ() const
-            {
-                return PDP::Detail::tVec3<T>((*this)[0],(*this)[0],(*this)[2]);
-            }
-            inline PDP::Detail::tVec3<T> XXW() const
-            {
-                return PDP::Detail::tVec3<T>((*this)[0],(*this)[0],(*this)[3]);
-            }
-            inline PDP::Detail::tVec3<T> XYX() const
-            {
-                return PDP::Detail::tVec3<T>((*this)[0],(*this)[1],(*this)[0]);
-            }
-            inline PDP::Detail::tVec3<T> XYY() const
-            {
-                return PDP::Detail::tVec3<T>((*this)[0],(*this)[1],(*this)[1]);
-            }
-            inline PDP::Detail::tVec3<T> XYZ() const
-            {
-                return PDP::Detail::tVec3<T>((*this)[0],(*this)[1],(*this)[2]);
-            }
-            inline PDP::Detail::tVec3<T> XYW() const
-            {
-                return PDP::Detail::tVec3<T>((*this)[0],(*this)[1],(*this)[3]);
-            }
-            inline PDP::Detail::tVec3<T> XZX() const
-            {
-                return PDP::Detail::tVec3<T>((*this)[0],(*this)[2],(*this)[0]);
-            }
-            inline PDP::Detail::tVec3<T> XZY() const
-            {
-                return PDP::Detail::tVec3<T>((*this)[0],(*this)[2],(*this)[1]);
-            }
-            inline PDP::Detail::tVec3<T> XZZ() const
-            {
-                return PDP::Detail::tVec3<T>((*this)[0],(*this)[2],(*this)[2]);
-            }
-            inline PDP::Detail::tVec3<T> XZW() const
-            {
-                return PDP::Detail::tVec3<T>((*this)[0],(*this)[2],(*this)[3]);
-            }
-            inline PDP::Detail::tVec3<T> XWX() const
-            {
-                return PDP::Detail::tVec3<T>((*this)[0],(*this)[3],(*this)[0]);
-            }
-            inline PDP::Detail::tVec3<T> XWY() const
-            {
-                return PDP::Detail::tVec3<T>((*this)[0],(*this)[3],(*this)[1]);
-            }
-            inline PDP::Detail::tVec3<T> XWZ() const
-            {
-                return PDP::Detail::tVec3<T>((*this)[0],(*this)[3],(*this)[2]);
-            }
-            inline PDP::Detail::tVec3<T> XWW() const
-            {
-                return PDP::Detail::tVec3<T>((*this)[0],(*this)[3],(*this)[3]);
+                return LD::Detail::tVec2<T>((*this)[1],(*this)[2]);
             }
 
-            inline PDP::Detail::tVec3<T> YXX() const
+            inline LD::Detail::tVec2<T> ZX() const
             {
-                return PDP::Detail::tVec3<T>((*this)[1],(*this)[0],(*this)[0]);
+                return LD::Detail::tVec2<T>((*this)[2],(*this)[0]);
             }
-            inline PDP::Detail::tVec3<T> YXY() const
+            inline LD::Detail::tVec2<T> ZY() const
             {
-                return PDP::Detail::tVec3<T>((*this)[1],(*this)[0],(*this)[1]);
+                return LD::Detail::tVec2<T>((*this)[2],(*this)[1]);
             }
-            inline PDP::Detail::tVec3<T> YXZ() const
+            inline LD::Detail::tVec2<T> ZZ() const
             {
-                return PDP::Detail::tVec3<T>((*this)[1],(*this)[0],(*this)[2]);
-            }
-            inline PDP::Detail::tVec3<T> YXW() const
-            {
-                return PDP::Detail::tVec3<T>((*this)[1],(*this)[0],(*this)[3]);
-            }
-            inline PDP::Detail::tVec3<T> YYX() const
-            {
-                return PDP::Detail::tVec3<T>((*this)[1],(*this)[1],(*this)[0]);
-            }
-            inline PDP::Detail::tVec3<T> YYY() const
-            {
-                return PDP::Detail::tVec3<T>((*this)[1],(*this)[1],(*this)[1]);
-            }
-            inline PDP::Detail::tVec3<T> YYZ() const
-            {
-                return PDP::Detail::tVec3<T>((*this)[1],(*this)[1],(*this)[2]);
-            }
-            inline PDP::Detail::tVec3<T> YYW() const
-            {
-                return PDP::Detail::tVec3<T>((*this)[1],(*this)[1],(*this)[3]);
-            }
-            inline PDP::Detail::tVec3<T> YZX() const
-            {
-                return PDP::Detail::tVec3<T>((*this)[1],(*this)[2],(*this)[0]);
-            }
-            inline PDP::Detail::tVec3<T> YZY() const
-            {
-                return PDP::Detail::tVec3<T>((*this)[1],(*this)[2],(*this)[1]);
-            }
-            inline PDP::Detail::tVec3<T> YZZ() const
-            {
-                return PDP::Detail::tVec3<T>((*this)[1],(*this)[2],(*this)[2]);
-            }
-            inline PDP::Detail::tVec3<T> YZW() const
-            {
-                return PDP::Detail::tVec3<T>((*this)[1],(*this)[2],(*this)[3]);
-            }
-            inline PDP::Detail::tVec3<T> YWX() const
-            {
-                return PDP::Detail::tVec3<T>((*this)[1],(*this)[3],(*this)[0]);
-            }
-            inline PDP::Detail::tVec3<T> YWY() const
-            {
-                return PDP::Detail::tVec3<T>((*this)[1],(*this)[3],(*this)[1]);
-            }
-            inline PDP::Detail::tVec3<T> YWZ() const
-            {
-                return PDP::Detail::tVec3<T>((*this)[1],(*this)[3],(*this)[2]);
-            }
-            inline PDP::Detail::tVec3<T> YWW() const
-            {
-                return PDP::Detail::tVec3<T>((*this)[1],(*this)[3],(*this)[3]);
+                return LD::Detail::tVec2<T>((*this)[2],(*this)[2]);
             }
 
-
-
-            inline PDP::Detail::tVec3<T> ZXX() const
+            inline LD::Detail::tVec3<T> XXX() const
             {
-                return PDP::Detail::tVec3<T>((*this)[2],(*this)[0],(*this)[0]);
+                return LD::Detail::tVec3<T>((*this)[0],(*this)[0],(*this)[0]);
             }
-            inline PDP::Detail::tVec3<T> ZXY() const
+            inline LD::Detail::tVec3<T> XXY() const
             {
-                return PDP::Detail::tVec3<T>((*this)[2],(*this)[0],(*this)[1]);
+                return LD::Detail::tVec3<T>((*this)[0],(*this)[0],(*this)[1]);
             }
-            inline PDP::Detail::tVec3<T> ZXZ() const
+            inline LD::Detail::tVec3<T> XXZ() const
             {
-                return PDP::Detail::tVec3<T>((*this)[2],(*this)[0],(*this)[2]);
+                return LD::Detail::tVec3<T>((*this)[0],(*this)[0],(*this)[2]);
             }
-            inline PDP::Detail::tVec3<T> ZXW() const
+            inline LD::Detail::tVec3<T> XXW() const
             {
-                return PDP::Detail::tVec3<T>((*this)[2],(*this)[0],(*this)[3]);
+                return LD::Detail::tVec3<T>((*this)[0],(*this)[0],(*this)[3]);
             }
-            inline PDP::Detail::tVec3<T> ZYX() const
+            inline LD::Detail::tVec3<T> XYX() const
             {
-                return PDP::Detail::tVec3<T>((*this)[2],(*this)[1],(*this)[0]);
+                return LD::Detail::tVec3<T>((*this)[0],(*this)[1],(*this)[0]);
             }
-            inline PDP::Detail::tVec3<T> ZYY() const
+            inline LD::Detail::tVec3<T> XYY() const
             {
-                return PDP::Detail::tVec3<T>((*this)[2],(*this)[1],(*this)[1]);
+                return LD::Detail::tVec3<T>((*this)[0],(*this)[1],(*this)[1]);
             }
-            inline PDP::Detail::tVec3<T> ZYZ() const
+            inline LD::Detail::tVec3<T> XYZ() const
             {
-                return PDP::Detail::tVec3<T>((*this)[2],(*this)[1],(*this)[2]);
+                return LD::Detail::tVec3<T>((*this)[0],(*this)[1],(*this)[2]);
             }
-            inline PDP::Detail::tVec3<T> ZYW() const
+            inline LD::Detail::tVec3<T> XYW() const
             {
-                return PDP::Detail::tVec3<T>((*this)[2],(*this)[1],(*this)[3]);
+                return LD::Detail::tVec3<T>((*this)[0],(*this)[1],(*this)[3]);
             }
-            inline PDP::Detail::tVec3<T> ZZX() const
+            inline LD::Detail::tVec3<T> XZX() const
             {
-                return PDP::Detail::tVec3<T>((*this)[2],(*this)[2],(*this)[0]);
+                return LD::Detail::tVec3<T>((*this)[0],(*this)[2],(*this)[0]);
             }
-            inline PDP::Detail::tVec3<T> ZZY() const
+            inline LD::Detail::tVec3<T> XZY() const
             {
-                return PDP::Detail::tVec3<T>((*this)[2],(*this)[2],(*this)[1]);
+                return LD::Detail::tVec3<T>((*this)[0],(*this)[2],(*this)[1]);
             }
-            inline PDP::Detail::tVec3<T> ZZZ() const
+            inline LD::Detail::tVec3<T> XZZ() const
             {
-                return PDP::Detail::tVec3<T>((*this)[2],(*this)[2],(*this)[2]);
+                return LD::Detail::tVec3<T>((*this)[0],(*this)[2],(*this)[2]);
             }
-            inline PDP::Detail::tVec3<T> ZZW() const
+            inline LD::Detail::tVec3<T> XZW() const
             {
-                return PDP::Detail::tVec3<T>((*this)[2],(*this)[2],(*this)[3]);
+                return LD::Detail::tVec3<T>((*this)[0],(*this)[2],(*this)[3]);
             }
-            inline PDP::Detail::tVec3<T> ZWX() const
+            inline LD::Detail::tVec3<T> XWX() const
             {
-                return PDP::Detail::tVec3<T>((*this)[2],(*this)[3],(*this)[0]);
+                return LD::Detail::tVec3<T>((*this)[0],(*this)[3],(*this)[0]);
             }
-            inline PDP::Detail::tVec3<T> ZWY() const
+            inline LD::Detail::tVec3<T> XWY() const
             {
-                return PDP::Detail::tVec3<T>((*this)[2],(*this)[3],(*this)[1]);
+                return LD::Detail::tVec3<T>((*this)[0],(*this)[3],(*this)[1]);
             }
-            inline PDP::Detail::tVec3<T> ZWZ() const
+            inline LD::Detail::tVec3<T> XWZ() const
             {
-                return PDP::Detail::tVec3<T>((*this)[2],(*this)[3],(*this)[2]);
+                return LD::Detail::tVec3<T>((*this)[0],(*this)[3],(*this)[2]);
             }
-            inline PDP::Detail::tVec3<T> ZWW() const
+            inline LD::Detail::tVec3<T> XWW() const
             {
-                return PDP::Detail::tVec3<T>((*this)[2],(*this)[3],(*this)[3]);
+                return LD::Detail::tVec3<T>((*this)[0],(*this)[3],(*this)[3]);
             }
 
-            inline PDP::Detail::tVec3<T> WXX() const
+            inline LD::Detail::tVec3<T> YXX() const
             {
-                return PDP::Detail::tVec3<T>((*this)[3],(*this)[0],(*this)[0]);
+                return LD::Detail::tVec3<T>((*this)[1],(*this)[0],(*this)[0]);
             }
-            inline PDP::Detail::tVec3<T> WXY() const
+            inline LD::Detail::tVec3<T> YXY() const
             {
-                return PDP::Detail::tVec3<T>((*this)[3],(*this)[0],(*this)[1]);
+                return LD::Detail::tVec3<T>((*this)[1],(*this)[0],(*this)[1]);
             }
-            inline PDP::Detail::tVec3<T> WXZ() const
+            inline LD::Detail::tVec3<T> YXZ() const
             {
-                return PDP::Detail::tVec3<T>((*this)[3],(*this)[0],(*this)[2]);
+                return LD::Detail::tVec3<T>((*this)[1],(*this)[0],(*this)[2]);
             }
-            inline PDP::Detail::tVec3<T> WXW() const
+            inline LD::Detail::tVec3<T> YXW() const
             {
-                return PDP::Detail::tVec3<T>((*this)[3],(*this)[0],(*this)[3]);
+                return LD::Detail::tVec3<T>((*this)[1],(*this)[0],(*this)[3]);
             }
-            inline PDP::Detail::tVec3<T> WYX() const
+            inline LD::Detail::tVec3<T> YYX() const
             {
-                return PDP::Detail::tVec3<T>((*this)[3],(*this)[1],(*this)[0]);
+                return LD::Detail::tVec3<T>((*this)[1],(*this)[1],(*this)[0]);
             }
-            inline PDP::Detail::tVec3<T> WYY() const
+            inline LD::Detail::tVec3<T> YYY() const
             {
-                return PDP::Detail::tVec3<T>((*this)[3],(*this)[1],(*this)[1]);
+                return LD::Detail::tVec3<T>((*this)[1],(*this)[1],(*this)[1]);
             }
-            inline PDP::Detail::tVec3<T> WYZ() const
+            inline LD::Detail::tVec3<T> YYZ() const
             {
-                return PDP::Detail::tVec3<T>((*this)[3],(*this)[1],(*this)[2]);
+                return LD::Detail::tVec3<T>((*this)[1],(*this)[1],(*this)[2]);
             }
-            inline PDP::Detail::tVec3<T> WYW() const
+            inline LD::Detail::tVec3<T> YYW() const
             {
-                return PDP::Detail::tVec3<T>((*this)[3],(*this)[1],(*this)[3]);
+                return LD::Detail::tVec3<T>((*this)[1],(*this)[1],(*this)[3]);
             }
-            inline PDP::Detail::tVec3<T> WZX() const
+            inline LD::Detail::tVec3<T> YZX() const
             {
-                return PDP::Detail::tVec3<T>((*this)[3],(*this)[2],(*this)[0]);
+                return LD::Detail::tVec3<T>((*this)[1],(*this)[2],(*this)[0]);
             }
-            inline PDP::Detail::tVec3<T> WZY() const
+            inline LD::Detail::tVec3<T> YZY() const
             {
-                return PDP::Detail::tVec3<T>((*this)[3],(*this)[2],(*this)[1]);
+                return LD::Detail::tVec3<T>((*this)[1],(*this)[2],(*this)[1]);
             }
-            inline PDP::Detail::tVec3<T> WZZ() const
+            inline LD::Detail::tVec3<T> YZZ() const
             {
-                return PDP::Detail::tVec3<T>((*this)[3],(*this)[2],(*this)[2]);
+                return LD::Detail::tVec3<T>((*this)[1],(*this)[2],(*this)[2]);
             }
-            inline PDP::Detail::tVec3<T> WZW() const
+            inline LD::Detail::tVec3<T> YZW() const
             {
-                return PDP::Detail::tVec3<T>((*this)[3],(*this)[2],(*this)[3]);
+                return LD::Detail::tVec3<T>((*this)[1],(*this)[2],(*this)[3]);
             }
-            inline PDP::Detail::tVec3<T> WWX() const
+            inline LD::Detail::tVec3<T> YWX() const
             {
-                return PDP::Detail::tVec3<T>((*this)[3],(*this)[3],(*this)[0]);
+                return LD::Detail::tVec3<T>((*this)[1],(*this)[3],(*this)[0]);
             }
-            inline PDP::Detail::tVec3<T> WWY() const
+            inline LD::Detail::tVec3<T> YWY() const
             {
-                return PDP::Detail::tVec3<T>((*this)[3],(*this)[3],(*this)[1]);
+                return LD::Detail::tVec3<T>((*this)[1],(*this)[3],(*this)[1]);
             }
-            inline PDP::Detail::tVec3<T> WWZ() const
+            inline LD::Detail::tVec3<T> YWZ() const
             {
-                return PDP::Detail::tVec3<T>((*this)[3],(*this)[3],(*this)[2]);
+                return LD::Detail::tVec3<T>((*this)[1],(*this)[3],(*this)[2]);
             }
-            inline PDP::Detail::tVec3<T> WWW() const
+            inline LD::Detail::tVec3<T> YWW() const
             {
-                return PDP::Detail::tVec3<T>((*this)[3],(*this)[3],(*this)[3]);
+                return LD::Detail::tVec3<T>((*this)[1],(*this)[3],(*this)[3]);
             }
 
 
-            inline PDP::Detail::tVec4<T> XXXX() const
+
+            inline LD::Detail::tVec3<T> ZXX() const
             {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[0],(*this)[0],(*this)[0]);
+                return LD::Detail::tVec3<T>((*this)[2],(*this)[0],(*this)[0]);
             }
-            inline PDP::Detail::tVec4<T> XXXY() const
+            inline LD::Detail::tVec3<T> ZXY() const
             {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[0],(*this)[0],(*this)[1]);
+                return LD::Detail::tVec3<T>((*this)[2],(*this)[0],(*this)[1]);
             }
-            inline PDP::Detail::tVec4<T> XXXZ() const
+            inline LD::Detail::tVec3<T> ZXZ() const
             {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[0],(*this)[0],(*this)[2]);
+                return LD::Detail::tVec3<T>((*this)[2],(*this)[0],(*this)[2]);
             }
-            inline PDP::Detail::tVec4<T> XXXW() const
+            inline LD::Detail::tVec3<T> ZXW() const
             {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[0],(*this)[0],(*this)[3]);
+                return LD::Detail::tVec3<T>((*this)[2],(*this)[0],(*this)[3]);
             }
-            inline PDP::Detail::tVec4<T> XXYX() const
+            inline LD::Detail::tVec3<T> ZYX() const
             {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[0],(*this)[1],(*this)[0]);
+                return LD::Detail::tVec3<T>((*this)[2],(*this)[1],(*this)[0]);
             }
-            inline PDP::Detail::tVec4<T> XXYY() const
+            inline LD::Detail::tVec3<T> ZYY() const
             {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[0],(*this)[1],(*this)[1]);
+                return LD::Detail::tVec3<T>((*this)[2],(*this)[1],(*this)[1]);
             }
-            inline PDP::Detail::tVec4<T> XXYZ() const
+            inline LD::Detail::tVec3<T> ZYZ() const
             {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[0],(*this)[1],(*this)[2]);
+                return LD::Detail::tVec3<T>((*this)[2],(*this)[1],(*this)[2]);
             }
-            inline PDP::Detail::tVec4<T> XXYW() const
+            inline LD::Detail::tVec3<T> ZYW() const
             {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[0],(*this)[1],(*this)[3]);
+                return LD::Detail::tVec3<T>((*this)[2],(*this)[1],(*this)[3]);
             }
-            inline PDP::Detail::tVec4<T> XXZX() const
+            inline LD::Detail::tVec3<T> ZZX() const
             {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[0],(*this)[2],(*this)[0]);
+                return LD::Detail::tVec3<T>((*this)[2],(*this)[2],(*this)[0]);
             }
-            inline PDP::Detail::tVec4<T> XXZY() const
+            inline LD::Detail::tVec3<T> ZZY() const
             {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[0],(*this)[2],(*this)[1]);
+                return LD::Detail::tVec3<T>((*this)[2],(*this)[2],(*this)[1]);
             }
-            inline PDP::Detail::tVec4<T> XXZZ() const
+            inline LD::Detail::tVec3<T> ZZZ() const
             {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[0],(*this)[2],(*this)[2]);
+                return LD::Detail::tVec3<T>((*this)[2],(*this)[2],(*this)[2]);
             }
-            inline PDP::Detail::tVec4<T> XXZW() const
+            inline LD::Detail::tVec3<T> ZZW() const
             {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[0],(*this)[2],(*this)[3]);
+                return LD::Detail::tVec3<T>((*this)[2],(*this)[2],(*this)[3]);
             }
-            inline PDP::Detail::tVec4<T> XXWX() const
+            inline LD::Detail::tVec3<T> ZWX() const
             {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[0],(*this)[3],(*this)[0]);
+                return LD::Detail::tVec3<T>((*this)[2],(*this)[3],(*this)[0]);
             }
-            inline PDP::Detail::tVec4<T> XXWY() const
+            inline LD::Detail::tVec3<T> ZWY() const
             {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[0],(*this)[3],(*this)[1]);
+                return LD::Detail::tVec3<T>((*this)[2],(*this)[3],(*this)[1]);
             }
-            inline PDP::Detail::tVec4<T> XXWZ() const
+            inline LD::Detail::tVec3<T> ZWZ() const
             {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[0],(*this)[3],(*this)[2]);
+                return LD::Detail::tVec3<T>((*this)[2],(*this)[3],(*this)[2]);
             }
-            inline PDP::Detail::tVec4<T> XXWW() const
+            inline LD::Detail::tVec3<T> ZWW() const
             {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[0],(*this)[3],(*this)[3]);
-            }
-            inline PDP::Detail::tVec4<T> XYXX() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[1],(*this)[0],(*this)[0]);
-            }
-            inline PDP::Detail::tVec4<T> XYXY() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[1],(*this)[0],(*this)[1]);
-            }
-            inline PDP::Detail::tVec4<T> XYXZ() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[1],(*this)[0],(*this)[2]);
-            }
-            inline PDP::Detail::tVec4<T> XYXW() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[1],(*this)[0],(*this)[3]);
-            }
-            inline PDP::Detail::tVec4<T> XYYX() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[1],(*this)[1],(*this)[0]);
-            }
-            inline PDP::Detail::tVec4<T> XYYY() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[1],(*this)[1],(*this)[1]);
-            }
-            inline PDP::Detail::tVec4<T> XYYZ() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[1],(*this)[1],(*this)[2]);
-            }
-            inline PDP::Detail::tVec4<T> XYYW() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[1],(*this)[1],(*this)[3]);
-            }
-            inline PDP::Detail::tVec4<T> XYZX() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[1],(*this)[2],(*this)[0]);
-            }
-            inline PDP::Detail::tVec4<T> XYZY() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[1],(*this)[2],(*this)[1]);
-            }
-            inline PDP::Detail::tVec4<T> XYZZ() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[1],(*this)[2],(*this)[2]);
-            }
-            inline PDP::Detail::tVec4<T> XYZW() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[1],(*this)[2],(*this)[3]);
-            }
-            inline PDP::Detail::tVec4<T> XYWX() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[1],(*this)[3],(*this)[0]);
-            }
-            inline PDP::Detail::tVec4<T> XYWY() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[1],(*this)[3],(*this)[1]);
-            }
-            inline PDP::Detail::tVec4<T> XYWZ() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[1],(*this)[3],(*this)[2]);
-            }
-            inline PDP::Detail::tVec4<T> XYWW() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[1],(*this)[3],(*this)[3]);
-            }
-            inline PDP::Detail::tVec4<T> XZXX() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[2],(*this)[0],(*this)[0]);
-            }
-            inline PDP::Detail::tVec4<T> XZXY() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[2],(*this)[0],(*this)[1]);
-            }
-            inline PDP::Detail::tVec4<T> XZXZ() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[2],(*this)[0],(*this)[2]);
-            }
-            inline PDP::Detail::tVec4<T> XZXW() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[2],(*this)[0],(*this)[3]);
-            }
-            inline PDP::Detail::tVec4<T> XZYX() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[2],(*this)[1],(*this)[0]);
-            }
-            inline PDP::Detail::tVec4<T> XZYY() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[2],(*this)[1],(*this)[1]);
-            }
-            inline PDP::Detail::tVec4<T> XZYZ() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[2],(*this)[1],(*this)[2]);
-            }
-            inline PDP::Detail::tVec4<T> XZYW() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[2],(*this)[1],(*this)[3]);
-            }
-            inline PDP::Detail::tVec4<T> XZZX() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[2],(*this)[2],(*this)[0]);
-            }
-            inline PDP::Detail::tVec4<T> XZZY() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[2],(*this)[2],(*this)[1]);
-            }
-            inline PDP::Detail::tVec4<T> XZZZ() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[2],(*this)[2],(*this)[2]);
-            }
-            inline PDP::Detail::tVec4<T> XZZW() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[2],(*this)[2],(*this)[3]);
-            }
-            inline PDP::Detail::tVec4<T> XZWX() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[2],(*this)[3],(*this)[0]);
-            }
-            inline PDP::Detail::tVec4<T> XZWY() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[2],(*this)[3],(*this)[1]);
-            }
-            inline PDP::Detail::tVec4<T> XZWZ() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[2],(*this)[3],(*this)[2]);
-            }
-            inline PDP::Detail::tVec4<T> XZWW() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[2],(*this)[3],(*this)[3]);
-            }
-            inline PDP::Detail::tVec4<T> XWXX() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[3],(*this)[0],(*this)[0]);
-            }
-            inline PDP::Detail::tVec4<T> XWXY() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[3],(*this)[0],(*this)[1]);
-            }
-            inline PDP::Detail::tVec4<T> XWXZ() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[3],(*this)[0],(*this)[2]);
-            }
-            inline PDP::Detail::tVec4<T> XWXW() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[3],(*this)[0],(*this)[3]);
-            }
-            inline PDP::Detail::tVec4<T> XWYX() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[3],(*this)[1],(*this)[0]);
-            }
-            inline PDP::Detail::tVec4<T> XWYY() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[3],(*this)[1],(*this)[1]);
-            }
-            inline PDP::Detail::tVec4<T> XWYZ() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[3],(*this)[1],(*this)[2]);
-            }
-            inline PDP::Detail::tVec4<T> XWYW() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[3],(*this)[1],(*this)[3]);
-            }
-            inline PDP::Detail::tVec4<T> XWZX() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[3],(*this)[2],(*this)[0]);
-            }
-            inline PDP::Detail::tVec4<T> XWZY() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[3],(*this)[2],(*this)[1]);
-            }
-            inline PDP::Detail::tVec4<T> XWZZ() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[3],(*this)[2],(*this)[2]);
-            }
-            inline PDP::Detail::tVec4<T> XWZW() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[3],(*this)[2],(*this)[3]);
-            }
-            inline PDP::Detail::tVec4<T> XWWX() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[3],(*this)[3],(*this)[0]);
-            }
-            inline PDP::Detail::tVec4<T> XWWY() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[3],(*this)[3],(*this)[1]);
-            }
-            inline PDP::Detail::tVec4<T> XWWZ() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[3],(*this)[3],(*this)[2]);
-            }
-            inline PDP::Detail::tVec4<T> XWWW() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[0],(*this)[3],(*this)[3],(*this)[3]);
+                return LD::Detail::tVec3<T>((*this)[2],(*this)[3],(*this)[3]);
             }
 
-            inline PDP::Detail::tVec4<T> YXXX() const
+            inline LD::Detail::tVec3<T> WXX() const
             {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[0],(*this)[0],(*this)[0]);
+                return LD::Detail::tVec3<T>((*this)[3],(*this)[0],(*this)[0]);
             }
-            inline PDP::Detail::tVec4<T> YXXY() const
+            inline LD::Detail::tVec3<T> WXY() const
             {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[0],(*this)[0],(*this)[1]);
+                return LD::Detail::tVec3<T>((*this)[3],(*this)[0],(*this)[1]);
             }
-            inline PDP::Detail::tVec4<T> YXXZ() const
+            inline LD::Detail::tVec3<T> WXZ() const
             {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[0],(*this)[0],(*this)[2]);
+                return LD::Detail::tVec3<T>((*this)[3],(*this)[0],(*this)[2]);
             }
-            inline PDP::Detail::tVec4<T> YXXW() const
+            inline LD::Detail::tVec3<T> WXW() const
             {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[0],(*this)[0],(*this)[3]);
+                return LD::Detail::tVec3<T>((*this)[3],(*this)[0],(*this)[3]);
             }
-            inline PDP::Detail::tVec4<T> YXYX() const
+            inline LD::Detail::tVec3<T> WYX() const
             {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[0],(*this)[1],(*this)[0]);
+                return LD::Detail::tVec3<T>((*this)[3],(*this)[1],(*this)[0]);
             }
-            inline PDP::Detail::tVec4<T> YXYY() const
+            inline LD::Detail::tVec3<T> WYY() const
             {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[0],(*this)[1],(*this)[1]);
+                return LD::Detail::tVec3<T>((*this)[3],(*this)[1],(*this)[1]);
             }
-            inline PDP::Detail::tVec4<T> YXYZ() const
+            inline LD::Detail::tVec3<T> WYZ() const
             {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[0],(*this)[1],(*this)[2]);
+                return LD::Detail::tVec3<T>((*this)[3],(*this)[1],(*this)[2]);
             }
-            inline PDP::Detail::tVec4<T> YXYW() const
+            inline LD::Detail::tVec3<T> WYW() const
             {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[0],(*this)[1],(*this)[3]);
+                return LD::Detail::tVec3<T>((*this)[3],(*this)[1],(*this)[3]);
             }
-            inline PDP::Detail::tVec4<T> YXZX() const
+            inline LD::Detail::tVec3<T> WZX() const
             {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[0],(*this)[2],(*this)[0]);
+                return LD::Detail::tVec3<T>((*this)[3],(*this)[2],(*this)[0]);
             }
-            inline PDP::Detail::tVec4<T> YXZY() const
+            inline LD::Detail::tVec3<T> WZY() const
             {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[0],(*this)[2],(*this)[1]);
+                return LD::Detail::tVec3<T>((*this)[3],(*this)[2],(*this)[1]);
             }
-            inline PDP::Detail::tVec4<T> YXZZ() const
+            inline LD::Detail::tVec3<T> WZZ() const
             {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[0],(*this)[2],(*this)[2]);
+                return LD::Detail::tVec3<T>((*this)[3],(*this)[2],(*this)[2]);
             }
-            inline PDP::Detail::tVec4<T> YXZW() const
+            inline LD::Detail::tVec3<T> WZW() const
             {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[0],(*this)[2],(*this)[3]);
+                return LD::Detail::tVec3<T>((*this)[3],(*this)[2],(*this)[3]);
             }
-            inline PDP::Detail::tVec4<T> YXWX() const
+            inline LD::Detail::tVec3<T> WWX() const
             {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[0],(*this)[3],(*this)[0]);
+                return LD::Detail::tVec3<T>((*this)[3],(*this)[3],(*this)[0]);
             }
-            inline PDP::Detail::tVec4<T> YXWY() const
+            inline LD::Detail::tVec3<T> WWY() const
             {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[0],(*this)[3],(*this)[1]);
+                return LD::Detail::tVec3<T>((*this)[3],(*this)[3],(*this)[1]);
             }
-            inline PDP::Detail::tVec4<T> YXWZ() const
+            inline LD::Detail::tVec3<T> WWZ() const
             {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[0],(*this)[3],(*this)[2]);
+                return LD::Detail::tVec3<T>((*this)[3],(*this)[3],(*this)[2]);
             }
-            inline PDP::Detail::tVec4<T> YXWW() const
+            inline LD::Detail::tVec3<T> WWW() const
             {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[0],(*this)[3],(*this)[3]);
-            }
-            inline PDP::Detail::tVec4<T> YYXX() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[1],(*this)[0],(*this)[0]);
-            }
-            inline PDP::Detail::tVec4<T> YYXY() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[1],(*this)[0],(*this)[1]);
-            }
-            inline PDP::Detail::tVec4<T> YYXZ() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[1],(*this)[0],(*this)[2]);
-            }
-            inline PDP::Detail::tVec4<T> YYXW() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[1],(*this)[0],(*this)[3]);
-            }
-            inline PDP::Detail::tVec4<T> YYYX() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[1],(*this)[1],(*this)[0]);
-            }
-            inline PDP::Detail::tVec4<T> YYYY() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[1],(*this)[1],(*this)[1]);
-            }
-            inline PDP::Detail::tVec4<T> YYYZ() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[1],(*this)[1],(*this)[2]);
-            }
-            inline PDP::Detail::tVec4<T> YYYW() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[1],(*this)[1],(*this)[3]);
-            }
-            inline PDP::Detail::tVec4<T> YYZX() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[1],(*this)[2],(*this)[0]);
-            }
-            inline PDP::Detail::tVec4<T> YYZY() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[1],(*this)[2],(*this)[1]);
-            }
-            inline PDP::Detail::tVec4<T> YYZZ() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[1],(*this)[2],(*this)[2]);
-            }
-            inline PDP::Detail::tVec4<T> YYZW() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[1],(*this)[3],(*this)[3]);
-            }
-            inline PDP::Detail::tVec4<T> YYWX() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[1],(*this)[3],(*this)[0]);
-            }
-            inline PDP::Detail::tVec4<T> YYWY() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[1],(*this)[3],(*this)[1]);
-            }
-            inline PDP::Detail::tVec4<T> YYWZ() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[1],(*this)[3],(*this)[3]);
-            }
-            inline PDP::Detail::tVec4<T> YYWW() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[1],(*this)[3],(*this)[3]);
-            }
-            inline PDP::Detail::tVec4<T> YZXX() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[2],(*this)[0],(*this)[0]);
-            }
-            inline PDP::Detail::tVec4<T> YZXY() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[2],(*this)[0],(*this)[1]);
-            }
-            inline PDP::Detail::tVec4<T> YZXZ() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[2],(*this)[0],(*this)[2]);
-            }
-            inline PDP::Detail::tVec4<T> YZXW() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[2],(*this)[0],(*this)[3]);
-            }
-            inline PDP::Detail::tVec4<T> YZYX() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[2],(*this)[1],(*this)[0]);
-            }
-            inline PDP::Detail::tVec4<T> YZYY() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[2],(*this)[1],(*this)[1]);
-            }
-            inline PDP::Detail::tVec4<T> YZYZ() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[2],(*this)[1],(*this)[2]);
-            }
-            inline PDP::Detail::tVec4<T> YZYW() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[2],(*this)[1],(*this)[3]);
-            }
-            inline PDP::Detail::tVec4<T> YZZX() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[2],(*this)[2],(*this)[0]);
-            }
-            inline PDP::Detail::tVec4<T> YZZY() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[2],(*this)[2],(*this)[1]);
-            }
-            inline PDP::Detail::tVec4<T> YZZZ() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[2],(*this)[2],(*this)[2]);
-            }
-            inline PDP::Detail::tVec4<T> YZZW() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[2],(*this)[2],(*this)[3]);
-            }
-            inline PDP::Detail::tVec4<T> YZWX() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[2],(*this)[3],(*this)[0]);
-            }
-            inline PDP::Detail::tVec4<T> YZWY() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[2],(*this)[3],(*this)[1]);
-            }
-            inline PDP::Detail::tVec4<T> YZWZ() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[2],(*this)[3],(*this)[2]);
-            }
-            inline PDP::Detail::tVec4<T> YZWW() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[2],(*this)[3],(*this)[3]);
-            }
-            inline PDP::Detail::tVec4<T> YWXX() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[3],(*this)[0],(*this)[0]);
-            }
-            inline PDP::Detail::tVec4<T> YWXY() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[3],(*this)[0],(*this)[1]);
-            }
-            inline PDP::Detail::tVec4<T> YWXZ() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[3],(*this)[0],(*this)[2]);
-            }
-            inline PDP::Detail::tVec4<T> YWXW() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[3],(*this)[0],(*this)[3]);
-            }
-            inline PDP::Detail::tVec4<T> YWYX() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[3],(*this)[1],(*this)[0]);
-            }
-            inline PDP::Detail::tVec4<T> YWYY() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[3],(*this)[1],(*this)[1]);
-            }
-            inline PDP::Detail::tVec4<T> YWYZ() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[3],(*this)[1],(*this)[2]);
-            }
-            inline PDP::Detail::tVec4<T> YWYW() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[3],(*this)[1],(*this)[3]);
-            }
-            inline PDP::Detail::tVec4<T> YWZX() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[3],(*this)[2],(*this)[0]);
-            }
-            inline PDP::Detail::tVec4<T> YWZY() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[3],(*this)[2],(*this)[1]);
-            }
-            inline PDP::Detail::tVec4<T> YWZZ() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[3],(*this)[2],(*this)[2]);
-            }
-            inline PDP::Detail::tVec4<T> YWZW() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[3],(*this)[2],(*this)[3]);
-            }
-            inline PDP::Detail::tVec4<T> YWWX() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[3],(*this)[3],(*this)[0]);
-            }
-            inline PDP::Detail::tVec4<T> YWWY() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[3],(*this)[3],(*this)[1]);
-            }
-            inline PDP::Detail::tVec4<T> YWWZ() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[3],(*this)[3],(*this)[2]);
-            }
-            inline PDP::Detail::tVec4<T> YWWW() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[1],(*this)[3],(*this)[3],(*this)[3]);
-            }
-
-            inline PDP::Detail::tVec4<T> ZXXX() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[0],(*this)[0],(*this)[0]);
-            }
-            inline PDP::Detail::tVec4<T> ZXXY() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[0],(*this)[0],(*this)[1]);
-            }
-            inline PDP::Detail::tVec4<T> ZXXZ() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[0],(*this)[0],(*this)[2]);
-            }
-            inline PDP::Detail::tVec4<T> ZXXW() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[0],(*this)[0],(*this)[3]);
-            }
-            inline PDP::Detail::tVec4<T> ZXYX() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[0],(*this)[1],(*this)[0]);
-            }
-            inline PDP::Detail::tVec4<T> ZXYY() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[0],(*this)[1],(*this)[1]);
-            }
-            inline PDP::Detail::tVec4<T> ZXYZ() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[0],(*this)[1],(*this)[2]);
-            }
-            inline PDP::Detail::tVec4<T> ZXYW() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[0],(*this)[1],(*this)[3]);
-            }
-            inline PDP::Detail::tVec4<T> ZXZX() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[0],(*this)[2],(*this)[0]);
-            }
-            inline PDP::Detail::tVec4<T> ZXZY() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[0],(*this)[2],(*this)[1]);
-            }
-            inline PDP::Detail::tVec4<T> ZXZZ() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[0],(*this)[2],(*this)[2]);
-            }
-            inline PDP::Detail::tVec4<T> ZXZW() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[0],(*this)[2],(*this)[3]);
-            }
-            inline PDP::Detail::tVec4<T> ZXWX() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[0],(*this)[3],(*this)[0]);
-            }
-            inline PDP::Detail::tVec4<T> ZXWY() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[0],(*this)[3],(*this)[1]);
-            }
-            inline PDP::Detail::tVec4<T> ZXWZ() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[0],(*this)[3],(*this)[2]);
-            }
-            inline PDP::Detail::tVec4<T> ZXWW() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[0],(*this)[3],(*this)[3]);
-            }
-            inline PDP::Detail::tVec4<T> ZYXX() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[1],(*this)[0],(*this)[0]);
-            }
-            inline PDP::Detail::tVec4<T> ZYXY() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[1],(*this)[0],(*this)[1]);
-            }
-            inline PDP::Detail::tVec4<T> ZYXZ() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[1],(*this)[0],(*this)[2]);
-            }
-            inline PDP::Detail::tVec4<T> ZYXW() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[1],(*this)[0],(*this)[3]);
-            }
-            inline PDP::Detail::tVec4<T> ZYYX() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[1],(*this)[1],(*this)[0]);
-            }
-            inline PDP::Detail::tVec4<T> ZYYY() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[1],(*this)[1],(*this)[1]);
-            }
-            inline PDP::Detail::tVec4<T> ZYYZ() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[1],(*this)[1],(*this)[2]);
-            }
-            inline PDP::Detail::tVec4<T> ZYYW() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[1],(*this)[1],(*this)[3]);
-            }
-            inline PDP::Detail::tVec4<T> ZYZX() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[1],(*this)[2],(*this)[0]);
-            }
-            inline PDP::Detail::tVec4<T> ZYZY() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[1],(*this)[2],(*this)[1]);
-            }
-            inline PDP::Detail::tVec4<T> ZYZZ() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[1],(*this)[2],(*this)[2]);
-            }
-            inline PDP::Detail::tVec4<T> ZYZW() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[1],(*this)[2],(*this)[3]);
-            }
-            inline PDP::Detail::tVec4<T> ZYWX() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[1],(*this)[3],(*this)[0]);
-            }
-            inline PDP::Detail::tVec4<T> ZYWY() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[1],(*this)[3],(*this)[1]);
-            }
-            inline PDP::Detail::tVec4<T> ZYWZ() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[1],(*this)[3],(*this)[2]);
-            }
-            inline PDP::Detail::tVec4<T> ZYWW() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[1],(*this)[3],(*this)[3]);
-            }
-            inline PDP::Detail::tVec4<T> ZZXX() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[2],(*this)[0],(*this)[0]);
-            }
-            inline PDP::Detail::tVec4<T> ZZXY() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[2],(*this)[0],(*this)[1]);
-            }
-            inline PDP::Detail::tVec4<T> ZZXZ() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[2],(*this)[0],(*this)[2]);
-            }
-            inline PDP::Detail::tVec4<T> ZZXW() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[2],(*this)[0],(*this)[3]);
-            }
-            inline PDP::Detail::tVec4<T> ZZYX() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[2],(*this)[1],(*this)[0]);
-            }
-            inline PDP::Detail::tVec4<T> ZZYY() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[2],(*this)[1],(*this)[1]);
-            }
-            inline PDP::Detail::tVec4<T> ZZYZ() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[2],(*this)[1],(*this)[2]);
-            }
-            inline PDP::Detail::tVec4<T> ZZYW() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[2],(*this)[1],(*this)[3]);
-            }
-            inline PDP::Detail::tVec4<T> ZZZX() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[2],(*this)[2],(*this)[0]);
-            }
-            inline PDP::Detail::tVec4<T> ZZZY() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[2],(*this)[2],(*this)[1]);
-            }
-            inline PDP::Detail::tVec4<T> ZZZZ() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[2],(*this)[2],(*this)[2]);
-            }
-            inline PDP::Detail::tVec4<T> ZZZW() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[2],(*this)[2],(*this)[3]);
-            }
-            inline PDP::Detail::tVec4<T> ZZWX() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[2],(*this)[3],(*this)[0]);
-            }
-            inline PDP::Detail::tVec4<T> ZZWY() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[2],(*this)[3],(*this)[1]);
-            }
-            inline PDP::Detail::tVec4<T> ZZWZ() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[2],(*this)[3],(*this)[2]);
-            }
-            inline PDP::Detail::tVec4<T> ZZWW() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[2],(*this)[3],(*this)[3]);
-            }
-            inline PDP::Detail::tVec4<T> ZWXX() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[3],(*this)[0],(*this)[0]);
-            }
-            inline PDP::Detail::tVec4<T> ZWXY() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[3],(*this)[0],(*this)[1]);
-            }
-            inline PDP::Detail::tVec4<T> ZWXZ() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[3],(*this)[0],(*this)[2]);
-            }
-            inline PDP::Detail::tVec4<T> ZWXW() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[3],(*this)[0],(*this)[3]);
-            }
-            inline PDP::Detail::tVec4<T> ZWYX() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[3],(*this)[1],(*this)[0]);
-            }
-            inline PDP::Detail::tVec4<T> ZWYY() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[3],(*this)[1],(*this)[1]);
-            }
-            inline PDP::Detail::tVec4<T> ZWYZ() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[3],(*this)[1],(*this)[2]);
-            }
-            inline PDP::Detail::tVec4<T> ZWYW() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[3],(*this)[1],(*this)[3]);
-            }
-            inline PDP::Detail::tVec4<T> ZWZX() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[3],(*this)[2],(*this)[2]);
-            }
-            inline PDP::Detail::tVec4<T> ZWZY() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[3],(*this)[2],(*this)[1]);
-            }
-            inline PDP::Detail::tVec4<T> ZWZZ() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[3],(*this)[2],(*this)[2]);
-            }
-            inline PDP::Detail::tVec4<T> ZWZW() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[3],(*this)[2],(*this)[3]);
-            }
-            inline PDP::Detail::tVec4<T> ZWWX() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[3],(*this)[3],(*this)[0]);
-            }
-            inline PDP::Detail::tVec4<T> ZWWY() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[3],(*this)[3],(*this)[1]);
-            }
-            inline PDP::Detail::tVec4<T> ZWWZ() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[3],(*this)[3],(*this)[2]);
-            }
-            inline PDP::Detail::tVec4<T> ZWWW() const
-            {
-                return PDP::Detail::tVec4<T>((*this)[2],(*this)[3],(*this)[3],(*this)[3]);
+                return LD::Detail::tVec3<T>((*this)[3],(*this)[3],(*this)[3]);
             }
 
 
-            inline PDP::Detail::tVec4<T> WXXX() const
+            inline LD::Detail::tVec4<T> XXXX() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[0],(*this)[0],(*this)[0]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[0],(*this)[0],(*this)[0]);
             }
-            inline PDP::Detail::tVec4<T> WXXY() const
+            inline LD::Detail::tVec4<T> XXXY() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[0],(*this)[0],(*this)[1]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[0],(*this)[0],(*this)[1]);
             }
-            inline PDP::Detail::tVec4<T> WXXZ() const
+            inline LD::Detail::tVec4<T> XXXZ() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[0],(*this)[0],(*this)[2]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[0],(*this)[0],(*this)[2]);
             }
-            inline PDP::Detail::tVec4<T> WXXW() const
+            inline LD::Detail::tVec4<T> XXXW() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[0],(*this)[0],(*this)[3]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[0],(*this)[0],(*this)[3]);
             }
-            inline PDP::Detail::tVec4<T> WXYX() const
+            inline LD::Detail::tVec4<T> XXYX() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[0],(*this)[1],(*this)[0]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[0],(*this)[1],(*this)[0]);
             }
-            inline PDP::Detail::tVec4<T> WXYY() const
+            inline LD::Detail::tVec4<T> XXYY() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[0],(*this)[1],(*this)[1]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[0],(*this)[1],(*this)[1]);
             }
-            inline PDP::Detail::tVec4<T> WXYZ() const
+            inline LD::Detail::tVec4<T> XXYZ() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[0],(*this)[1],(*this)[2]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[0],(*this)[1],(*this)[2]);
             }
-            inline PDP::Detail::tVec4<T> WXYW() const
+            inline LD::Detail::tVec4<T> XXYW() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[0],(*this)[1],(*this)[3]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[0],(*this)[1],(*this)[3]);
             }
-            inline PDP::Detail::tVec4<T> WXZX() const
+            inline LD::Detail::tVec4<T> XXZX() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[0],(*this)[2],(*this)[0]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[0],(*this)[2],(*this)[0]);
             }
-            inline PDP::Detail::tVec4<T> WXZY() const
+            inline LD::Detail::tVec4<T> XXZY() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[0],(*this)[2],(*this)[1]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[0],(*this)[2],(*this)[1]);
             }
-            inline PDP::Detail::tVec4<T> WXZZ() const
+            inline LD::Detail::tVec4<T> XXZZ() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[0],(*this)[2],(*this)[2]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[0],(*this)[2],(*this)[2]);
             }
-            inline PDP::Detail::tVec4<T> WXZW() const
+            inline LD::Detail::tVec4<T> XXZW() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[0],(*this)[2],(*this)[3]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[0],(*this)[2],(*this)[3]);
             }
-            inline PDP::Detail::tVec4<T> WXWX() const
+            inline LD::Detail::tVec4<T> XXWX() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[0],(*this)[3],(*this)[0]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[0],(*this)[3],(*this)[0]);
             }
-            inline PDP::Detail::tVec4<T> WXWY() const
+            inline LD::Detail::tVec4<T> XXWY() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[0],(*this)[3],(*this)[1]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[0],(*this)[3],(*this)[1]);
             }
-            inline PDP::Detail::tVec4<T> WXWZ() const
+            inline LD::Detail::tVec4<T> XXWZ() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[0],(*this)[3],(*this)[2]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[0],(*this)[3],(*this)[2]);
             }
-            inline PDP::Detail::tVec4<T> WXWW() const
+            inline LD::Detail::tVec4<T> XXWW() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[0],(*this)[3],(*this)[3]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[0],(*this)[3],(*this)[3]);
             }
-            inline PDP::Detail::tVec4<T> WYXX() const
+            inline LD::Detail::tVec4<T> XYXX() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[0],(*this)[0],(*this)[0]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[1],(*this)[0],(*this)[0]);
             }
-            inline PDP::Detail::tVec4<T> WYXY() const
+            inline LD::Detail::tVec4<T> XYXY() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[0],(*this)[0],(*this)[1]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[1],(*this)[0],(*this)[1]);
             }
-            inline PDP::Detail::tVec4<T> WYXZ() const
+            inline LD::Detail::tVec4<T> XYXZ() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[1],(*this)[0],(*this)[2]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[1],(*this)[0],(*this)[2]);
             }
-            inline PDP::Detail::tVec4<T> WYXW() const
+            inline LD::Detail::tVec4<T> XYXW() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[1],(*this)[0],(*this)[3]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[1],(*this)[0],(*this)[3]);
             }
-            inline PDP::Detail::tVec4<T> WYYX() const
+            inline LD::Detail::tVec4<T> XYYX() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[1],(*this)[1],(*this)[0]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[1],(*this)[1],(*this)[0]);
             }
-            inline PDP::Detail::tVec4<T> WYYY() const
+            inline LD::Detail::tVec4<T> XYYY() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[1],(*this)[1],(*this)[1]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[1],(*this)[1],(*this)[1]);
             }
-            inline PDP::Detail::tVec4<T> WYYZ() const
+            inline LD::Detail::tVec4<T> XYYZ() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[1],(*this)[1],(*this)[2]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[1],(*this)[1],(*this)[2]);
             }
-            inline PDP::Detail::tVec4<T> WYYW() const
+            inline LD::Detail::tVec4<T> XYYW() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[1],(*this)[1],(*this)[3]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[1],(*this)[1],(*this)[3]);
             }
-            inline PDP::Detail::tVec4<T> WYZX() const
+            inline LD::Detail::tVec4<T> XYZX() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[1],(*this)[2],(*this)[0]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[1],(*this)[2],(*this)[0]);
             }
-            inline PDP::Detail::tVec4<T> WYZY() const
+            inline LD::Detail::tVec4<T> XYZY() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[1],(*this)[2],(*this)[1]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[1],(*this)[2],(*this)[1]);
             }
-            inline PDP::Detail::tVec4<T> WYZZ() const
+            inline LD::Detail::tVec4<T> XYZZ() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[1],(*this)[2],(*this)[2]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[1],(*this)[2],(*this)[2]);
             }
-            inline PDP::Detail::tVec4<T> WYZW() const
+            inline LD::Detail::tVec4<T> XYZW() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[1],(*this)[2],(*this)[3]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[1],(*this)[2],(*this)[3]);
             }
-            inline PDP::Detail::tVec4<T> WYWX() const
+            inline LD::Detail::tVec4<T> XYWX() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[1],(*this)[3],(*this)[0]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[1],(*this)[3],(*this)[0]);
             }
-            inline PDP::Detail::tVec4<T> WYWY() const
+            inline LD::Detail::tVec4<T> XYWY() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[1],(*this)[3],(*this)[1]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[1],(*this)[3],(*this)[1]);
             }
-            inline PDP::Detail::tVec4<T> WYWZ() const
+            inline LD::Detail::tVec4<T> XYWZ() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[1],(*this)[3],(*this)[2]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[1],(*this)[3],(*this)[2]);
             }
-            inline PDP::Detail::tVec4<T> WYWW() const
+            inline LD::Detail::tVec4<T> XYWW() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[1],(*this)[3],(*this)[3]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[1],(*this)[3],(*this)[3]);
             }
-            inline PDP::Detail::tVec4<T> WZXX() const
+            inline LD::Detail::tVec4<T> XZXX() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[2],(*this)[0],(*this)[0]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[2],(*this)[0],(*this)[0]);
             }
-            inline PDP::Detail::tVec4<T> WZXY() const
+            inline LD::Detail::tVec4<T> XZXY() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[2],(*this)[0],(*this)[1]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[2],(*this)[0],(*this)[1]);
             }
-            inline PDP::Detail::tVec4<T> WZXZ() const
+            inline LD::Detail::tVec4<T> XZXZ() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[2],(*this)[0],(*this)[2]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[2],(*this)[0],(*this)[2]);
             }
-            inline PDP::Detail::tVec4<T> WZXW() const
+            inline LD::Detail::tVec4<T> XZXW() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[2],(*this)[0],(*this)[3]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[2],(*this)[0],(*this)[3]);
             }
-            inline PDP::Detail::tVec4<T> WZYX() const
+            inline LD::Detail::tVec4<T> XZYX() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[2],(*this)[1],(*this)[0]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[2],(*this)[1],(*this)[0]);
             }
-            inline PDP::Detail::tVec4<T> WZYY() const
+            inline LD::Detail::tVec4<T> XZYY() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[2],(*this)[1],(*this)[1]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[2],(*this)[1],(*this)[1]);
             }
-            inline PDP::Detail::tVec4<T> WZYZ() const
+            inline LD::Detail::tVec4<T> XZYZ() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[2],(*this)[1],(*this)[2]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[2],(*this)[1],(*this)[2]);
             }
-            inline PDP::Detail::tVec4<T> WZYW() const
+            inline LD::Detail::tVec4<T> XZYW() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[2],(*this)[1],(*this)[3]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[2],(*this)[1],(*this)[3]);
             }
-            inline PDP::Detail::tVec4<T> WZZX() const
+            inline LD::Detail::tVec4<T> XZZX() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[2],(*this)[2],(*this)[0]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[2],(*this)[2],(*this)[0]);
             }
-            inline PDP::Detail::tVec4<T> WZZY() const
+            inline LD::Detail::tVec4<T> XZZY() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[2],(*this)[2],(*this)[1]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[2],(*this)[2],(*this)[1]);
             }
-            inline PDP::Detail::tVec4<T> WZZZ() const
+            inline LD::Detail::tVec4<T> XZZZ() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[2],(*this)[2],(*this)[2]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[2],(*this)[2],(*this)[2]);
             }
-            inline PDP::Detail::tVec4<T> WZZW() const
+            inline LD::Detail::tVec4<T> XZZW() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[2],(*this)[2],(*this)[3]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[2],(*this)[2],(*this)[3]);
             }
-            inline PDP::Detail::tVec4<T> WZWX() const
+            inline LD::Detail::tVec4<T> XZWX() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[2],(*this)[3],(*this)[0]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[2],(*this)[3],(*this)[0]);
             }
-            inline PDP::Detail::tVec4<T> WZWY() const
+            inline LD::Detail::tVec4<T> XZWY() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[2],(*this)[3],(*this)[1]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[2],(*this)[3],(*this)[1]);
             }
-            inline PDP::Detail::tVec4<T> WZWZ() const
+            inline LD::Detail::tVec4<T> XZWZ() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[2],(*this)[3],(*this)[2]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[2],(*this)[3],(*this)[2]);
             }
-            inline PDP::Detail::tVec4<T> WZWW() const
+            inline LD::Detail::tVec4<T> XZWW() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[2],(*this)[3],(*this)[3]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[2],(*this)[3],(*this)[3]);
             }
-            inline PDP::Detail::tVec4<T> WWXX() const
+            inline LD::Detail::tVec4<T> XWXX() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[3],(*this)[0],(*this)[0]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[3],(*this)[0],(*this)[0]);
             }
-            inline PDP::Detail::tVec4<T> WWXY() const
+            inline LD::Detail::tVec4<T> XWXY() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[3],(*this)[0],(*this)[1]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[3],(*this)[0],(*this)[1]);
             }
-            inline PDP::Detail::tVec4<T> WWXZ() const
+            inline LD::Detail::tVec4<T> XWXZ() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[3],(*this)[0],(*this)[2]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[3],(*this)[0],(*this)[2]);
             }
-            inline PDP::Detail::tVec4<T> WWXW() const
+            inline LD::Detail::tVec4<T> XWXW() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[3],(*this)[0],(*this)[3]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[3],(*this)[0],(*this)[3]);
             }
-            inline PDP::Detail::tVec4<T> WWYX() const
+            inline LD::Detail::tVec4<T> XWYX() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[3],(*this)[1],(*this)[0]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[3],(*this)[1],(*this)[0]);
             }
-            inline PDP::Detail::tVec4<T> WWYY() const
+            inline LD::Detail::tVec4<T> XWYY() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[3],(*this)[1],(*this)[1]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[3],(*this)[1],(*this)[1]);
             }
-            inline PDP::Detail::tVec4<T> WWYZ() const
+            inline LD::Detail::tVec4<T> XWYZ() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[3],(*this)[1],(*this)[2]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[3],(*this)[1],(*this)[2]);
             }
-            inline PDP::Detail::tVec4<T> WWYW() const
+            inline LD::Detail::tVec4<T> XWYW() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[3],(*this)[1],(*this)[3]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[3],(*this)[1],(*this)[3]);
             }
-            inline PDP::Detail::tVec4<T> WWZX() const
+            inline LD::Detail::tVec4<T> XWZX() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[3],(*this)[2],(*this)[0]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[3],(*this)[2],(*this)[0]);
             }
-            inline PDP::Detail::tVec4<T> WWZY() const
+            inline LD::Detail::tVec4<T> XWZY() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[3],(*this)[2],(*this)[1]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[3],(*this)[2],(*this)[1]);
             }
-            inline PDP::Detail::tVec4<T> WWZZ() const
+            inline LD::Detail::tVec4<T> XWZZ() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[3],(*this)[2],(*this)[2]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[3],(*this)[2],(*this)[2]);
             }
-            inline PDP::Detail::tVec4<T> WWZW() const
+            inline LD::Detail::tVec4<T> XWZW() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[3],(*this)[2],(*this)[3]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[3],(*this)[2],(*this)[3]);
             }
-            inline PDP::Detail::tVec4<T> WWWX() const
+            inline LD::Detail::tVec4<T> XWWX() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[3],(*this)[3],(*this)[0]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[3],(*this)[3],(*this)[0]);
             }
-            inline PDP::Detail::tVec4<T> WWWY() const
+            inline LD::Detail::tVec4<T> XWWY() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[3],(*this)[3],(*this)[1]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[3],(*this)[3],(*this)[1]);
             }
-            inline PDP::Detail::tVec4<T> WWWZ() const
+            inline LD::Detail::tVec4<T> XWWZ() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[3],(*this)[3],(*this)[2]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[3],(*this)[3],(*this)[2]);
             }
-            inline PDP::Detail::tVec4<T> WWWW() const
+            inline LD::Detail::tVec4<T> XWWW() const
             {
-                return PDP::Detail::tVec4<T>((*this)[3],(*this)[3],(*this)[3],(*this)[3]);
+                return LD::Detail::tVec4<T>((*this)[0],(*this)[3],(*this)[3],(*this)[3]);
+            }
+
+            inline LD::Detail::tVec4<T> YXXX() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[0],(*this)[0],(*this)[0]);
+            }
+            inline LD::Detail::tVec4<T> YXXY() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[0],(*this)[0],(*this)[1]);
+            }
+            inline LD::Detail::tVec4<T> YXXZ() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[0],(*this)[0],(*this)[2]);
+            }
+            inline LD::Detail::tVec4<T> YXXW() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[0],(*this)[0],(*this)[3]);
+            }
+            inline LD::Detail::tVec4<T> YXYX() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[0],(*this)[1],(*this)[0]);
+            }
+            inline LD::Detail::tVec4<T> YXYY() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[0],(*this)[1],(*this)[1]);
+            }
+            inline LD::Detail::tVec4<T> YXYZ() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[0],(*this)[1],(*this)[2]);
+            }
+            inline LD::Detail::tVec4<T> YXYW() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[0],(*this)[1],(*this)[3]);
+            }
+            inline LD::Detail::tVec4<T> YXZX() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[0],(*this)[2],(*this)[0]);
+            }
+            inline LD::Detail::tVec4<T> YXZY() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[0],(*this)[2],(*this)[1]);
+            }
+            inline LD::Detail::tVec4<T> YXZZ() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[0],(*this)[2],(*this)[2]);
+            }
+            inline LD::Detail::tVec4<T> YXZW() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[0],(*this)[2],(*this)[3]);
+            }
+            inline LD::Detail::tVec4<T> YXWX() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[0],(*this)[3],(*this)[0]);
+            }
+            inline LD::Detail::tVec4<T> YXWY() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[0],(*this)[3],(*this)[1]);
+            }
+            inline LD::Detail::tVec4<T> YXWZ() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[0],(*this)[3],(*this)[2]);
+            }
+            inline LD::Detail::tVec4<T> YXWW() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[0],(*this)[3],(*this)[3]);
+            }
+            inline LD::Detail::tVec4<T> YYXX() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[1],(*this)[0],(*this)[0]);
+            }
+            inline LD::Detail::tVec4<T> YYXY() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[1],(*this)[0],(*this)[1]);
+            }
+            inline LD::Detail::tVec4<T> YYXZ() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[1],(*this)[0],(*this)[2]);
+            }
+            inline LD::Detail::tVec4<T> YYXW() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[1],(*this)[0],(*this)[3]);
+            }
+            inline LD::Detail::tVec4<T> YYYX() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[1],(*this)[1],(*this)[0]);
+            }
+            inline LD::Detail::tVec4<T> YYYY() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[1],(*this)[1],(*this)[1]);
+            }
+            inline LD::Detail::tVec4<T> YYYZ() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[1],(*this)[1],(*this)[2]);
+            }
+            inline LD::Detail::tVec4<T> YYYW() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[1],(*this)[1],(*this)[3]);
+            }
+            inline LD::Detail::tVec4<T> YYZX() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[1],(*this)[2],(*this)[0]);
+            }
+            inline LD::Detail::tVec4<T> YYZY() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[1],(*this)[2],(*this)[1]);
+            }
+            inline LD::Detail::tVec4<T> YYZZ() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[1],(*this)[2],(*this)[2]);
+            }
+            inline LD::Detail::tVec4<T> YYZW() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[1],(*this)[3],(*this)[3]);
+            }
+            inline LD::Detail::tVec4<T> YYWX() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[1],(*this)[3],(*this)[0]);
+            }
+            inline LD::Detail::tVec4<T> YYWY() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[1],(*this)[3],(*this)[1]);
+            }
+            inline LD::Detail::tVec4<T> YYWZ() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[1],(*this)[3],(*this)[3]);
+            }
+            inline LD::Detail::tVec4<T> YYWW() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[1],(*this)[3],(*this)[3]);
+            }
+            inline LD::Detail::tVec4<T> YZXX() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[2],(*this)[0],(*this)[0]);
+            }
+            inline LD::Detail::tVec4<T> YZXY() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[2],(*this)[0],(*this)[1]);
+            }
+            inline LD::Detail::tVec4<T> YZXZ() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[2],(*this)[0],(*this)[2]);
+            }
+            inline LD::Detail::tVec4<T> YZXW() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[2],(*this)[0],(*this)[3]);
+            }
+            inline LD::Detail::tVec4<T> YZYX() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[2],(*this)[1],(*this)[0]);
+            }
+            inline LD::Detail::tVec4<T> YZYY() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[2],(*this)[1],(*this)[1]);
+            }
+            inline LD::Detail::tVec4<T> YZYZ() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[2],(*this)[1],(*this)[2]);
+            }
+            inline LD::Detail::tVec4<T> YZYW() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[2],(*this)[1],(*this)[3]);
+            }
+            inline LD::Detail::tVec4<T> YZZX() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[2],(*this)[2],(*this)[0]);
+            }
+            inline LD::Detail::tVec4<T> YZZY() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[2],(*this)[2],(*this)[1]);
+            }
+            inline LD::Detail::tVec4<T> YZZZ() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[2],(*this)[2],(*this)[2]);
+            }
+            inline LD::Detail::tVec4<T> YZZW() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[2],(*this)[2],(*this)[3]);
+            }
+            inline LD::Detail::tVec4<T> YZWX() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[2],(*this)[3],(*this)[0]);
+            }
+            inline LD::Detail::tVec4<T> YZWY() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[2],(*this)[3],(*this)[1]);
+            }
+            inline LD::Detail::tVec4<T> YZWZ() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[2],(*this)[3],(*this)[2]);
+            }
+            inline LD::Detail::tVec4<T> YZWW() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[2],(*this)[3],(*this)[3]);
+            }
+            inline LD::Detail::tVec4<T> YWXX() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[3],(*this)[0],(*this)[0]);
+            }
+            inline LD::Detail::tVec4<T> YWXY() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[3],(*this)[0],(*this)[1]);
+            }
+            inline LD::Detail::tVec4<T> YWXZ() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[3],(*this)[0],(*this)[2]);
+            }
+            inline LD::Detail::tVec4<T> YWXW() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[3],(*this)[0],(*this)[3]);
+            }
+            inline LD::Detail::tVec4<T> YWYX() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[3],(*this)[1],(*this)[0]);
+            }
+            inline LD::Detail::tVec4<T> YWYY() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[3],(*this)[1],(*this)[1]);
+            }
+            inline LD::Detail::tVec4<T> YWYZ() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[3],(*this)[1],(*this)[2]);
+            }
+            inline LD::Detail::tVec4<T> YWYW() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[3],(*this)[1],(*this)[3]);
+            }
+            inline LD::Detail::tVec4<T> YWZX() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[3],(*this)[2],(*this)[0]);
+            }
+            inline LD::Detail::tVec4<T> YWZY() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[3],(*this)[2],(*this)[1]);
+            }
+            inline LD::Detail::tVec4<T> YWZZ() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[3],(*this)[2],(*this)[2]);
+            }
+            inline LD::Detail::tVec4<T> YWZW() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[3],(*this)[2],(*this)[3]);
+            }
+            inline LD::Detail::tVec4<T> YWWX() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[3],(*this)[3],(*this)[0]);
+            }
+            inline LD::Detail::tVec4<T> YWWY() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[3],(*this)[3],(*this)[1]);
+            }
+            inline LD::Detail::tVec4<T> YWWZ() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[3],(*this)[3],(*this)[2]);
+            }
+            inline LD::Detail::tVec4<T> YWWW() const
+            {
+                return LD::Detail::tVec4<T>((*this)[1],(*this)[3],(*this)[3],(*this)[3]);
+            }
+
+            inline LD::Detail::tVec4<T> ZXXX() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[0],(*this)[0],(*this)[0]);
+            }
+            inline LD::Detail::tVec4<T> ZXXY() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[0],(*this)[0],(*this)[1]);
+            }
+            inline LD::Detail::tVec4<T> ZXXZ() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[0],(*this)[0],(*this)[2]);
+            }
+            inline LD::Detail::tVec4<T> ZXXW() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[0],(*this)[0],(*this)[3]);
+            }
+            inline LD::Detail::tVec4<T> ZXYX() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[0],(*this)[1],(*this)[0]);
+            }
+            inline LD::Detail::tVec4<T> ZXYY() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[0],(*this)[1],(*this)[1]);
+            }
+            inline LD::Detail::tVec4<T> ZXYZ() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[0],(*this)[1],(*this)[2]);
+            }
+            inline LD::Detail::tVec4<T> ZXYW() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[0],(*this)[1],(*this)[3]);
+            }
+            inline LD::Detail::tVec4<T> ZXZX() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[0],(*this)[2],(*this)[0]);
+            }
+            inline LD::Detail::tVec4<T> ZXZY() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[0],(*this)[2],(*this)[1]);
+            }
+            inline LD::Detail::tVec4<T> ZXZZ() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[0],(*this)[2],(*this)[2]);
+            }
+            inline LD::Detail::tVec4<T> ZXZW() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[0],(*this)[2],(*this)[3]);
+            }
+            inline LD::Detail::tVec4<T> ZXWX() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[0],(*this)[3],(*this)[0]);
+            }
+            inline LD::Detail::tVec4<T> ZXWY() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[0],(*this)[3],(*this)[1]);
+            }
+            inline LD::Detail::tVec4<T> ZXWZ() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[0],(*this)[3],(*this)[2]);
+            }
+            inline LD::Detail::tVec4<T> ZXWW() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[0],(*this)[3],(*this)[3]);
+            }
+            inline LD::Detail::tVec4<T> ZYXX() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[1],(*this)[0],(*this)[0]);
+            }
+            inline LD::Detail::tVec4<T> ZYXY() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[1],(*this)[0],(*this)[1]);
+            }
+            inline LD::Detail::tVec4<T> ZYXZ() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[1],(*this)[0],(*this)[2]);
+            }
+            inline LD::Detail::tVec4<T> ZYXW() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[1],(*this)[0],(*this)[3]);
+            }
+            inline LD::Detail::tVec4<T> ZYYX() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[1],(*this)[1],(*this)[0]);
+            }
+            inline LD::Detail::tVec4<T> ZYYY() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[1],(*this)[1],(*this)[1]);
+            }
+            inline LD::Detail::tVec4<T> ZYYZ() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[1],(*this)[1],(*this)[2]);
+            }
+            inline LD::Detail::tVec4<T> ZYYW() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[1],(*this)[1],(*this)[3]);
+            }
+            inline LD::Detail::tVec4<T> ZYZX() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[1],(*this)[2],(*this)[0]);
+            }
+            inline LD::Detail::tVec4<T> ZYZY() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[1],(*this)[2],(*this)[1]);
+            }
+            inline LD::Detail::tVec4<T> ZYZZ() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[1],(*this)[2],(*this)[2]);
+            }
+            inline LD::Detail::tVec4<T> ZYZW() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[1],(*this)[2],(*this)[3]);
+            }
+            inline LD::Detail::tVec4<T> ZYWX() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[1],(*this)[3],(*this)[0]);
+            }
+            inline LD::Detail::tVec4<T> ZYWY() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[1],(*this)[3],(*this)[1]);
+            }
+            inline LD::Detail::tVec4<T> ZYWZ() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[1],(*this)[3],(*this)[2]);
+            }
+            inline LD::Detail::tVec4<T> ZYWW() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[1],(*this)[3],(*this)[3]);
+            }
+            inline LD::Detail::tVec4<T> ZZXX() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[2],(*this)[0],(*this)[0]);
+            }
+            inline LD::Detail::tVec4<T> ZZXY() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[2],(*this)[0],(*this)[1]);
+            }
+            inline LD::Detail::tVec4<T> ZZXZ() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[2],(*this)[0],(*this)[2]);
+            }
+            inline LD::Detail::tVec4<T> ZZXW() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[2],(*this)[0],(*this)[3]);
+            }
+            inline LD::Detail::tVec4<T> ZZYX() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[2],(*this)[1],(*this)[0]);
+            }
+            inline LD::Detail::tVec4<T> ZZYY() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[2],(*this)[1],(*this)[1]);
+            }
+            inline LD::Detail::tVec4<T> ZZYZ() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[2],(*this)[1],(*this)[2]);
+            }
+            inline LD::Detail::tVec4<T> ZZYW() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[2],(*this)[1],(*this)[3]);
+            }
+            inline LD::Detail::tVec4<T> ZZZX() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[2],(*this)[2],(*this)[0]);
+            }
+            inline LD::Detail::tVec4<T> ZZZY() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[2],(*this)[2],(*this)[1]);
+            }
+            inline LD::Detail::tVec4<T> ZZZZ() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[2],(*this)[2],(*this)[2]);
+            }
+            inline LD::Detail::tVec4<T> ZZZW() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[2],(*this)[2],(*this)[3]);
+            }
+            inline LD::Detail::tVec4<T> ZZWX() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[2],(*this)[3],(*this)[0]);
+            }
+            inline LD::Detail::tVec4<T> ZZWY() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[2],(*this)[3],(*this)[1]);
+            }
+            inline LD::Detail::tVec4<T> ZZWZ() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[2],(*this)[3],(*this)[2]);
+            }
+            inline LD::Detail::tVec4<T> ZZWW() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[2],(*this)[3],(*this)[3]);
+            }
+            inline LD::Detail::tVec4<T> ZWXX() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[3],(*this)[0],(*this)[0]);
+            }
+            inline LD::Detail::tVec4<T> ZWXY() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[3],(*this)[0],(*this)[1]);
+            }
+            inline LD::Detail::tVec4<T> ZWXZ() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[3],(*this)[0],(*this)[2]);
+            }
+            inline LD::Detail::tVec4<T> ZWXW() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[3],(*this)[0],(*this)[3]);
+            }
+            inline LD::Detail::tVec4<T> ZWYX() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[3],(*this)[1],(*this)[0]);
+            }
+            inline LD::Detail::tVec4<T> ZWYY() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[3],(*this)[1],(*this)[1]);
+            }
+            inline LD::Detail::tVec4<T> ZWYZ() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[3],(*this)[1],(*this)[2]);
+            }
+            inline LD::Detail::tVec4<T> ZWYW() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[3],(*this)[1],(*this)[3]);
+            }
+            inline LD::Detail::tVec4<T> ZWZX() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[3],(*this)[2],(*this)[2]);
+            }
+            inline LD::Detail::tVec4<T> ZWZY() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[3],(*this)[2],(*this)[1]);
+            }
+            inline LD::Detail::tVec4<T> ZWZZ() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[3],(*this)[2],(*this)[2]);
+            }
+            inline LD::Detail::tVec4<T> ZWZW() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[3],(*this)[2],(*this)[3]);
+            }
+            inline LD::Detail::tVec4<T> ZWWX() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[3],(*this)[3],(*this)[0]);
+            }
+            inline LD::Detail::tVec4<T> ZWWY() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[3],(*this)[3],(*this)[1]);
+            }
+            inline LD::Detail::tVec4<T> ZWWZ() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[3],(*this)[3],(*this)[2]);
+            }
+            inline LD::Detail::tVec4<T> ZWWW() const
+            {
+                return LD::Detail::tVec4<T>((*this)[2],(*this)[3],(*this)[3],(*this)[3]);
+            }
+
+
+            inline LD::Detail::tVec4<T> WXXX() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[0],(*this)[0],(*this)[0]);
+            }
+            inline LD::Detail::tVec4<T> WXXY() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[0],(*this)[0],(*this)[1]);
+            }
+            inline LD::Detail::tVec4<T> WXXZ() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[0],(*this)[0],(*this)[2]);
+            }
+            inline LD::Detail::tVec4<T> WXXW() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[0],(*this)[0],(*this)[3]);
+            }
+            inline LD::Detail::tVec4<T> WXYX() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[0],(*this)[1],(*this)[0]);
+            }
+            inline LD::Detail::tVec4<T> WXYY() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[0],(*this)[1],(*this)[1]);
+            }
+            inline LD::Detail::tVec4<T> WXYZ() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[0],(*this)[1],(*this)[2]);
+            }
+            inline LD::Detail::tVec4<T> WXYW() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[0],(*this)[1],(*this)[3]);
+            }
+            inline LD::Detail::tVec4<T> WXZX() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[0],(*this)[2],(*this)[0]);
+            }
+            inline LD::Detail::tVec4<T> WXZY() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[0],(*this)[2],(*this)[1]);
+            }
+            inline LD::Detail::tVec4<T> WXZZ() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[0],(*this)[2],(*this)[2]);
+            }
+            inline LD::Detail::tVec4<T> WXZW() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[0],(*this)[2],(*this)[3]);
+            }
+            inline LD::Detail::tVec4<T> WXWX() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[0],(*this)[3],(*this)[0]);
+            }
+            inline LD::Detail::tVec4<T> WXWY() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[0],(*this)[3],(*this)[1]);
+            }
+            inline LD::Detail::tVec4<T> WXWZ() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[0],(*this)[3],(*this)[2]);
+            }
+            inline LD::Detail::tVec4<T> WXWW() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[0],(*this)[3],(*this)[3]);
+            }
+            inline LD::Detail::tVec4<T> WYXX() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[0],(*this)[0],(*this)[0]);
+            }
+            inline LD::Detail::tVec4<T> WYXY() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[0],(*this)[0],(*this)[1]);
+            }
+            inline LD::Detail::tVec4<T> WYXZ() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[1],(*this)[0],(*this)[2]);
+            }
+            inline LD::Detail::tVec4<T> WYXW() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[1],(*this)[0],(*this)[3]);
+            }
+            inline LD::Detail::tVec4<T> WYYX() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[1],(*this)[1],(*this)[0]);
+            }
+            inline LD::Detail::tVec4<T> WYYY() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[1],(*this)[1],(*this)[1]);
+            }
+            inline LD::Detail::tVec4<T> WYYZ() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[1],(*this)[1],(*this)[2]);
+            }
+            inline LD::Detail::tVec4<T> WYYW() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[1],(*this)[1],(*this)[3]);
+            }
+            inline LD::Detail::tVec4<T> WYZX() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[1],(*this)[2],(*this)[0]);
+            }
+            inline LD::Detail::tVec4<T> WYZY() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[1],(*this)[2],(*this)[1]);
+            }
+            inline LD::Detail::tVec4<T> WYZZ() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[1],(*this)[2],(*this)[2]);
+            }
+            inline LD::Detail::tVec4<T> WYZW() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[1],(*this)[2],(*this)[3]);
+            }
+            inline LD::Detail::tVec4<T> WYWX() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[1],(*this)[3],(*this)[0]);
+            }
+            inline LD::Detail::tVec4<T> WYWY() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[1],(*this)[3],(*this)[1]);
+            }
+            inline LD::Detail::tVec4<T> WYWZ() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[1],(*this)[3],(*this)[2]);
+            }
+            inline LD::Detail::tVec4<T> WYWW() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[1],(*this)[3],(*this)[3]);
+            }
+            inline LD::Detail::tVec4<T> WZXX() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[2],(*this)[0],(*this)[0]);
+            }
+            inline LD::Detail::tVec4<T> WZXY() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[2],(*this)[0],(*this)[1]);
+            }
+            inline LD::Detail::tVec4<T> WZXZ() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[2],(*this)[0],(*this)[2]);
+            }
+            inline LD::Detail::tVec4<T> WZXW() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[2],(*this)[0],(*this)[3]);
+            }
+            inline LD::Detail::tVec4<T> WZYX() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[2],(*this)[1],(*this)[0]);
+            }
+            inline LD::Detail::tVec4<T> WZYY() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[2],(*this)[1],(*this)[1]);
+            }
+            inline LD::Detail::tVec4<T> WZYZ() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[2],(*this)[1],(*this)[2]);
+            }
+            inline LD::Detail::tVec4<T> WZYW() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[2],(*this)[1],(*this)[3]);
+            }
+            inline LD::Detail::tVec4<T> WZZX() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[2],(*this)[2],(*this)[0]);
+            }
+            inline LD::Detail::tVec4<T> WZZY() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[2],(*this)[2],(*this)[1]);
+            }
+            inline LD::Detail::tVec4<T> WZZZ() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[2],(*this)[2],(*this)[2]);
+            }
+            inline LD::Detail::tVec4<T> WZZW() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[2],(*this)[2],(*this)[3]);
+            }
+            inline LD::Detail::tVec4<T> WZWX() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[2],(*this)[3],(*this)[0]);
+            }
+            inline LD::Detail::tVec4<T> WZWY() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[2],(*this)[3],(*this)[1]);
+            }
+            inline LD::Detail::tVec4<T> WZWZ() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[2],(*this)[3],(*this)[2]);
+            }
+            inline LD::Detail::tVec4<T> WZWW() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[2],(*this)[3],(*this)[3]);
+            }
+            inline LD::Detail::tVec4<T> WWXX() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[3],(*this)[0],(*this)[0]);
+            }
+            inline LD::Detail::tVec4<T> WWXY() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[3],(*this)[0],(*this)[1]);
+            }
+            inline LD::Detail::tVec4<T> WWXZ() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[3],(*this)[0],(*this)[2]);
+            }
+            inline LD::Detail::tVec4<T> WWXW() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[3],(*this)[0],(*this)[3]);
+            }
+            inline LD::Detail::tVec4<T> WWYX() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[3],(*this)[1],(*this)[0]);
+            }
+            inline LD::Detail::tVec4<T> WWYY() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[3],(*this)[1],(*this)[1]);
+            }
+            inline LD::Detail::tVec4<T> WWYZ() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[3],(*this)[1],(*this)[2]);
+            }
+            inline PDLDP::Detail::tVec4<T> WWYW() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[3],(*this)[1],(*this)[3]);
+            }
+            inline LD::Detail::tVec4<T> WWZX() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[3],(*this)[2],(*this)[0]);
+            }
+            inline LD::Detail::tVec4<T> WWZY() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[3],(*this)[2],(*this)[1]);
+            }
+            inline LD::Detail::tVec4<T> WWZZ() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[3],(*this)[2],(*this)[2]);
+            }
+            inline LD::Detail::tVec4<T> WWZW() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[3],(*this)[2],(*this)[3]);
+            }
+            inline LD::Detail::tVec4<T> WWWX() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[3],(*this)[3],(*this)[0]);
+            }
+            inline LD::Detail::tVec4<T> WWWY() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[3],(*this)[3],(*this)[1]);
+            }
+            inline LD::Detail::tVec4<T> WWWZ() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[3],(*this)[3],(*this)[2]);
+            }
+            inline LD::Detail::tVec4<T> WWWW() const
+            {
+                return LD::Detail::tVec4<T>((*this)[3],(*this)[3],(*this)[3],(*this)[3]);
             }
         };
 
@@ -2296,5 +2296,17 @@ namespace PDP
     //typedef Detail::tVec4<PDP::Half> HVec4;
 
 
+}
+
+namespace LD
+{
+    namespace Detail
+    {
+        template<typename T>
+        struct StaticallySized<LD::Detail::tVec4<T>>: public LD::Detail::IntegralConstant<bool,true>
+        {
+
+        };
+    }
 }
 #endif

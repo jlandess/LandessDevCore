@@ -43,7 +43,7 @@ namespace LD
     class RenderingContext<TermBox>
     {
     private:
-        PDP::Detail::tVec2<LD::UInteger> Cursor;
+        LD::Detail::tVec2<LD::UInteger> Cursor;
         LD::UInteger LineWidth;
         PDP::TermBoxConsoleApplicationColorSpectrum CurrentSpectrum;
         PDP::TermBoxConsoleApplicationColorModifier CurrentForegroundModifier;
@@ -53,9 +53,9 @@ namespace LD
     public:
         
         RenderingContext();
-        
-        PDP::Detail::tVec2<LD::UInteger> & GetCursor() {return this->Cursor;}
-        const PDP::Detail::tVec2<LD::UInteger> & GetCursor() const {return this->Cursor;}
+
+        LD::Detail::tVec2<LD::UInteger> & GetCursor() {return this->Cursor;}
+        const LD::Detail::tVec2<LD::UInteger> & GetCursor() const {return this->Cursor;}
         void SetCurrentSpectrum(const PDP::TermBoxConsoleApplicationColorSpectrum & spectrum);
         
         
@@ -79,14 +79,14 @@ namespace LD
         void Clear(const unsigned short & foregroundColor = PDP::eTBGreen, const unsigned short & backgroundColor = PDP::eTBDefault, const PDP::TermBoxConsoleApplicationColorModifier & foregroundModifier = PDP::eTBNone, const PDP::TermBoxConsoleApplicationColorModifier & backgroundModifier = PDP::eTBNone, const PDP::TermBoxConsoleApplicationColorSpectrum & spectrum = PDP::eNormalSpectrum);
         
         
-        RenderingContext<TermBox> & Write(const wchar_t * characters, const PDP::Detail::tVec2<LD::UInteger> & translation);
-        RenderingContext<TermBox> & Write(const char * characters, const PDP::Detail::tVec2<LD::UInteger> & translation);
-        RenderingContext<TermBox> & Write(const LD::Integer & character, const PDP::Detail::tVec2<LD::UInteger> & translation);
-        RenderingContext<TermBox> & Write(const LD::UInteger & character, const PDP::Detail::tVec2<LD::UInteger> & translation);
-        RenderingContext<TermBox> & Write(const LD::Float & character, const PDP::Detail::tVec2<LD::UInteger> & translation);
-        RenderingContext<TermBox> & Write(const char & character, const PDP::Detail::tVec2<LD::UInteger> & translation);
-        RenderingContext<TermBox> & Write(unsigned char & character, const PDP::Detail::tVec2<LD::UInteger> & translation);
-        RenderingContext<TermBox> & Write(const wchar_t & character, const PDP::Detail::tVec2<LD::UInteger> & translation);
+        RenderingContext<TermBox> & Write(const wchar_t * characters, const LD::Detail::tVec2<LD::UInteger> & translation);
+        RenderingContext<TermBox> & Write(const char * characters, const LD::Detail::tVec2<LD::UInteger> & translation);
+        RenderingContext<TermBox> & Write(const LD::Integer & character, const LD::Detail::tVec2<LD::UInteger> & translation);
+        RenderingContext<TermBox> & Write(const LD::UInteger & character, const LD::Detail::tVec2<LD::UInteger> & translation);
+        RenderingContext<TermBox> & Write(const LD::Float & character, const LD::Detail::tVec2<LD::UInteger> & translation);
+        RenderingContext<TermBox> & Write(const char & character, const LD::Detail::tVec2<LD::UInteger> & translation);
+        RenderingContext<TermBox> & Write(unsigned char & character, const LD::Detail::tVec2<LD::UInteger> & translation);
+        RenderingContext<TermBox> & Write(const wchar_t & character, const LD::Detail::tVec2<LD::UInteger> & translation);
     };
 }
 namespace LD
@@ -192,8 +192,8 @@ namespace LD
             }
             return amountOfDelimeters;
         }
-        PDP::Detail::tVec2<LD::Integer> Cursor;
-        PDP::Detail::tVec2<LD::Integer> mMouse;
+        LD::Detail::tVec2<LD::Integer> Cursor;
+        LD::Detail::tVec2<LD::Integer> mMouse;
         LD::UInteger LineWidth;
         PDP::TermBoxConsoleApplicationColorSpectrum CurrentSpectrum;
         PDP::TermBoxConsoleApplicationColorModifier CurrentForegroundModifier;
@@ -202,7 +202,7 @@ namespace LD
         unsigned short CurrentBackgroundColor;
         unsigned short mMouseEnabled;
         tb_event CurrentEvent;
-        const TermBoxRenderContext & Write(const char & character, const PDP::Detail::tVec2<LD::Integer> & translation) const;
+        const TermBoxRenderContext & Write(const char & character, const LD::Detail::tVec2<LD::Integer> & translation) const;
     public:
 
 
@@ -211,17 +211,17 @@ namespace LD
         template<typename T>
         constexpr static LD::Enable_If_T<
                 LD::Require<
-                        LD::ConvertiblyCallable<LD::Detail::Decay_T<T>,PDP::Detail::tVec2<LD::UInteger>()>::Value(),
+                        LD::ConvertiblyCallable<LD::Detail::Decay_T<T>,LD::Detail::tVec2<LD::UInteger>()>::Value(),
                         LD::IsClass<T>
                         >
-        ,PDP::Detail::tVec2<LD::UInteger>> GetRenderableDimensions(T && object) noexcept (noexcept(LD::Declval<T>()(LD::Declval<LD::RenderableDimensionEvent>())))
+        ,LD::Detail::tVec2<LD::UInteger>> GetRenderableDimensions(T && object) noexcept (noexcept(LD::Declval<T>()(LD::Declval<LD::RenderableDimensionEvent>())))
         {
             return object(LD::RenderableDimensionEvent{});
         }
 
 
         template<typename T>
-        constexpr static LD::Enable_If_T<LD::Require<!LD::IsClass<T>>,PDP::Detail::tVec2<LD::UInteger>> GetRenderableDimensions(T && object) noexcept
+        constexpr static LD::Enable_If_T<LD::Require<!LD::IsClass<T>>,LD::Detail::tVec2<LD::UInteger>> GetRenderableDimensions(T && object) noexcept
         {
             return LD::Detail::GetRenderableDimensions(LD::Forward<T>(object));
         }
@@ -233,10 +233,10 @@ namespace LD
         bool IsMouseEnabled() const {return this->mMouseEnabled;}
         const tb_event & GetEvent() const{return this->CurrentEvent;}
         //tb_event & GetEvent() {return this->CurrentEvent;}
-        PDP::Detail::tVec2<LD::Integer > & GetCursor() {return this->Cursor;}
-        const PDP::Detail::tVec2<LD::Integer > & GetCursor() const {return this->Cursor;}
-        PDP::Detail::tVec2<LD::Integer > & GetMouse() {return this->mMouse;}
-        const PDP::Detail::tVec2<LD::Integer > & GetMouse() const {return this->mMouse;}
+        LD::Detail::tVec2<LD::Integer > & GetCursor() {return this->Cursor;}
+        const LD::Detail::tVec2<LD::Integer > & GetCursor() const {return this->Cursor;}
+        LD::Detail::tVec2<LD::Integer > & GetMouse() {return this->mMouse;}
+        const LD::Detail::tVec2<LD::Integer > & GetMouse() const {return this->mMouse;}
         void SetCurrentSpectrum(const PDP::TermBoxConsoleApplicationColorSpectrum & spectrum);
         void SetForegroundCurrentModifier(const PDP::TermBoxConsoleApplicationColorModifier & modifier);
         void SetForegroundColor(const unsigned short & defaultColor);
@@ -252,7 +252,7 @@ namespace LD
          */
         void Clear(const unsigned short & foregroundColor = PDP::eTBGreen, const unsigned short & backgroundColor = PDP::eTBDefault, const PDP::TermBoxConsoleApplicationColorModifier & foregroundModifier = PDP::eTBNone, const PDP::TermBoxConsoleApplicationColorModifier & backgroundModifier = PDP::eTBNone, const PDP::TermBoxConsoleApplicationColorSpectrum & spectrum = PDP::eNormalSpectrum);
         template<LD::UInteger StringSize>
-        const TermBoxRenderContext& Render(const char (&lit)[StringSize], const PDP::Detail::tVec2<LD::Integer> & translation) const
+        const TermBoxRenderContext& Render(const char (&lit)[StringSize], const LD::Detail::tVec2<LD::Integer> & translation) const
         {
             return this->Render(LD::ToImmutableString(lit),translation);
         }
@@ -266,12 +266,12 @@ namespace LD
         LD::Detail::IsSame<T, unsigned char>::value
         >,
         LD::IsPrimitive<T>
-        >,const TermBoxRenderContext&> Render(const T & integer, const PDP::Detail::tVec2<LD::Integer> & translation) const noexcept
+        >,const TermBoxRenderContext&> Render(const T & integer, const LD::Detail::tVec2<LD::Integer> & translation) const noexcept
         {
             return this->Render(LD::ToImmutableString((integer)),translation);
         }
         template<typename T>
-        constexpr LD::Enable_If_T<LD::Require<LD::IsTypeString<T>>,const TermBoxRenderContext&> Render(const T & typeString, const PDP::Detail::tVec2<LD::Integer> & translation) const noexcept
+        constexpr LD::Enable_If_T<LD::Require<LD::IsTypeString<T>>,const TermBoxRenderContext&> Render(const T & typeString, const LD::Detail::tVec2<LD::Integer> & translation) const noexcept
         {
             return this->Render(LD::ToImmutableString((typeString)),translation);
         }
@@ -281,29 +281,29 @@ namespace LD
                         LD::Either<
                                 LD::Detail::IsSame<T, float>::value,
                                 LD::Detail::IsSame<T, double>::value>
-                >,const TermBoxRenderContext&> Render(const T & floatingPointNumber, const PDP::Detail::tVec2<LD::Integer> & translation, const LD::UInteger & precision = 0) const
+                >,const TermBoxRenderContext&> Render(const T & floatingPointNumber, const LD::Detail::tVec2<LD::Integer> & translation, const LD::UInteger & precision = 0) const
         {
           return this->Render(LD::ToImmutableString(floatingPointNumber,precision),translation);
         }
         template<LD::UInteger Size>
-        constexpr const TermBoxRenderContext & Render(const LD::ImmutableString<Size> & str, const PDP::Detail::tVec2<LD::Integer > & translation) const noexcept
+        constexpr const TermBoxRenderContext & Render(const LD::ImmutableString<Size> & str, const LD::Detail::tVec2<LD::Integer > & translation) const noexcept
         {
-            LD::For<Size>([](auto Index,const LD::ImmutableString<Size> & str,const TermBoxRenderContext * instance, const PDP::Detail::tVec2<LD::Integer > & translation)
+            LD::For<Size>([](auto Index,const LD::ImmutableString<Size> & str,const TermBoxRenderContext * instance, const LD::Detail::tVec2<LD::Integer > & translation)
             {
                 const char & currentCharacter = str[Index];
-                instance->Write(currentCharacter,translation+PDP::Detail::tVec2<LD::Integer>{Index,0});
+                instance->Write(currentCharacter,translation+LD::Detail::tVec2<LD::Integer>{Index,0});
                 return (Index < str.GetSize());
             },str,this,translation);
             return (*this);
         }
 
 
-        constexpr const TermBoxRenderContext & Render(const LD::StringView & view, const PDP::Detail::tVec2<LD::Integer> & translation) const noexcept
+        constexpr const TermBoxRenderContext & Render(const LD::StringView & view, const LD::Detail::tVec2<LD::Integer> & translation) const noexcept
         {
             for(LD::UInteger n = 0;n<view.size();++n)
             {
                 const char & currentCharacter = view[n];
-                this->Write(currentCharacter,translation+PDP::Detail::tVec2<LD::Integer>{n,0});
+                this->Write(currentCharacter,translation+LD::Detail::tVec2<LD::Integer>{n,0});
             }
             return (*this);
         }
@@ -315,7 +315,7 @@ namespace LD
                 (LD::IsRenderable2D<Arguements,const LD::TermBoxRenderContext&> && ...),
                 (sizeof...(Arguements) > 0),
                 (!LD::Detail::IsPointer<Arguements>::value && ...)
-        >,const TermBoxRenderContext &> RenderWithFormat(const LD::ImmutableString<Size> & str,const PDP::Detail::tVec2<LD::Integer> & translation,Arguements && ... objects) const noexcept
+        >,const TermBoxRenderContext &> RenderWithFormat(const LD::ImmutableString<Size> & str,const LD::Detail::tVec2<LD::Integer> & translation,Arguements && ... objects) const noexcept
         {
             using ArguementList = LD::CT::TypeList<LD::Detail::Decay_T<Arguements>...>;
             using RenderableContextTypeList = LD::CT::TypeList<LD::NullClass,LD::ElementReference <LD::Detail::Decay_T<Arguements>>...,LD::ElementReference <char>>;
@@ -369,19 +369,19 @@ namespace LD
                 }
                 currentCount++;
             }
-            PDP::Detail::tVec2<LD::Integer> offsetTranslation = {0,0};
+            LD::Detail::tVec2<LD::Integer> offsetTranslation = {0,0};
             LD::For<Size>([](
                     auto Index,
                     const TermBoxRenderContext * instance,
                     const LD::StaticArray<Renderable ,Size> & renderables,
-                    const PDP::Detail::tVec2<LD::Integer> & translation,
-                    PDP::Detail::tVec2<LD::Integer> & offsetTranslation,
+                    const LD::Detail::tVec2<LD::Integer> & translation,
+                    LD::Detail::tVec2<LD::Integer> & offsetTranslation,
                     const LD::ReferenceableTuple<Arguements...> & packedArguements)
             {
 
                 LD::Match(renderables[Index],[&]( auto && object)->LD::Enable_If_T<LD::Require<!LD::IsSame<LD::Detail::Decay_T <decltype(object)>,LD::NullClass>>,void>
                 {
-                    instance->Render(LD::Get(object),translation+PDP::Detail::tVec2<LD::Integer>{Index,0}+offsetTranslation);
+                    instance->Render(LD::Get(object),translation+LD::Detail::tVec2<LD::Integer>{Index,0}+offsetTranslation);
                     offsetTranslation.X() += (LD::TermBoxRenderContext::GetRenderableDimensions(LD::Get(object)).X()-1);
                 },[&](const LD::NullClass&){offsetTranslation.X()-=1;});
                 return true;
@@ -393,8 +393,8 @@ namespace LD
         template<typename T>
         constexpr LD::Enable_If_T<
          LD::Require<
-         LD::ConvertiblyCallable<LD::Detail::Decay_T<T>,const LD::TermBoxRenderContext&(const LD::TermBoxRenderContext&, const PDP::Detail::tVec2<LD::Integer> &)>::Value()
-        >,const LD::TermBoxRenderContext&> Render(T && object, const PDP::Detail::tVec2<LD::Integer> & translation) const noexcept (noexcept(LD::Declval<LD::Detail::Decay_T<T>>()(LD::Declval<const LD::TermBoxRenderContext&>(),LD::Declval<PDP::Detail::tVec2<LD::Integer>>())))
+         LD::ConvertiblyCallable<LD::Detail::Decay_T<T>,const LD::TermBoxRenderContext&(const LD::TermBoxRenderContext&, const LD::Detail::tVec2<LD::Integer> &)>::Value()
+        >,const LD::TermBoxRenderContext&> Render(T && object, const LD::Detail::tVec2<LD::Integer> & translation) const noexcept (noexcept(LD::Declval<LD::Detail::Decay_T<T>>()(LD::Declval<const LD::TermBoxRenderContext&>(),LD::Declval<LD::Detail::tVec2<LD::Integer>>())))
         {
             return object(*this,translation);
         }

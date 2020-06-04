@@ -20,9 +20,9 @@
 #include "StaticArray.hpp"
 #include "Definitions/Float.hpp"
 #include "Definitions/Integer.hpp"
-
+#include "TypeTraits/StaticallySized.h"
 #include "Algorithms/Exponential.hpp"
-namespace PDP
+namespace LD
 {
     namespace Detail
     {
@@ -50,10 +50,10 @@ namespace PDP
             inline constexpr const T & Y()  const noexcept{return (*this)[1];}
             inline constexpr T & Y() noexcept {return (*this)[1];}
 
-            inline constexpr PDP::Detail::tVec2<T> XX()  const noexcept ;
-            inline constexpr PDP::Detail::tVec2<T> XY()  const noexcept ;
-            inline constexpr PDP::Detail::tVec2<T> YY() const noexcept ;
-            inline constexpr PDP::Detail::tVec2<T> YX() const noexcept ;
+            inline constexpr LD::Detail::tVec2<T> XX()  const noexcept ;
+            inline constexpr LD::Detail::tVec2<T> XY()  const noexcept ;
+            inline constexpr LD::Detail::tVec2<T> YY() const noexcept ;
+            inline constexpr LD::Detail::tVec2<T> YX() const noexcept ;
 
             inline constexpr tVec2 & Normalize() noexcept
             {
@@ -133,29 +133,29 @@ namespace PDP
 
 
         template<typename T>
-        constexpr PDP::Detail::tVec2<T> tVec2<T>::XX() const noexcept
+        constexpr LD::Detail::tVec2<T> tVec2<T>::XX() const noexcept
         {
-            return PDP::Detail::tVec2<T>((*this)[0],(*this)[0]);
+            return LD::Detail::tVec2<T>((*this)[0],(*this)[0]);
         }
 
 
         template<typename T>
-        constexpr PDP::Detail::tVec2<T> tVec2<T>::XY() const noexcept
+        constexpr LD::Detail::tVec2<T> tVec2<T>::XY() const noexcept
         {
-            return PDP::Detail::tVec2<T>((*this)[0],(*this)[1]);
+            return LD::Detail::tVec2<T>((*this)[0],(*this)[1]);
         }
 
 
         template<typename T>
-        constexpr PDP::Detail::tVec2<T> tVec2<T>::YY() const noexcept
+        constexpr LD::Detail::tVec2<T> tVec2<T>::YY() const noexcept
         {
-            return PDP::Detail::tVec2<T>((*this)[1],(*this)[1]);
+            return LD::Detail::tVec2<T>((*this)[1],(*this)[1]);
         }
 
         template<typename T>
-        constexpr PDP::Detail::tVec2<T> tVec2<T>::YX() const noexcept
+        constexpr LD::Detail::tVec2<T> tVec2<T>::YX() const noexcept
         {
-            return PDP::Detail::tVec2<T>((*this)[1],(*this)[0]);
+            return LD::Detail::tVec2<T>((*this)[1],(*this)[0]);
         }
 
         template<typename T>
@@ -824,5 +824,19 @@ namespace PDP
     typedef Detail::tVec2<short> SVec2;
 }
 
+namespace LD
+{
+    namespace Detail
+    {
+        template<typename T>
+        struct StaticallySized<LD::Detail::tVec2<T>>: public LD::Detail::IntegralConstant<bool,true>
+        {
+
+        };
+    }
+
+    template<typename T>
+    using BasicVec2D = LD::Detail::tVec2<T>;
+}
 #endif
 

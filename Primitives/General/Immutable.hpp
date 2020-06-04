@@ -14,6 +14,7 @@
 #include "Algorithms/CompileTimeControlFlow.hpp"
 #include "Primitives/General/Hash.hpp"
 #include "TypeTraits/IsImmutable.h"
+#include "TypeTraits/StaticallySized.h"
 namespace LD
 {
     class ImmutableStringWarrant
@@ -836,6 +837,24 @@ namespace LD
         struct IsImmutable<LD::ImmutableArray<T,Size>>
         {
             constexpr static bool value = true;
+        };
+    }
+}
+
+namespace LD
+{
+    namespace Detail
+    {
+        template<LD::UInteger Size>
+        struct StaticallySized<LD::ImmutableString<Size>>: public LD::Detail::IntegralConstant<bool,true>
+        {
+
+        };
+
+        template<typename T,LD::UInteger Size>
+        struct StaticallySized<LD::ImmutableArray<T,Size>>: public LD::Detail::IntegralConstant<bool,true>
+        {
+
         };
     }
 }

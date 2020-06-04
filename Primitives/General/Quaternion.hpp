@@ -10,7 +10,7 @@
 #define SoftwareQuaternion_h
 
 #include "Definitions/Common.hpp"
-
+#include "TypeTraits/StaticallySized.h"
 //#include <Algorithms/SSE_Trig.h>
 #include "Algorithms/Periodic.hpp"
 
@@ -25,7 +25,7 @@ namespace LD
     };
 
     template<typename T>
-    class Quaternion<T,PDP::Enable_If_T<PDP::IsPrimitiveType<T>::value>>
+    class Quaternion<T,LD::Enable_If_T<LD::IsPrimitive<T>>>
     {
     private:
         T x;
@@ -64,21 +64,21 @@ namespace LD
 
 
 
-        void Multiply(const Quaternion<T,PDP::Enable_If_T<PDP::IsPrimitiveType<T>::value>> & q);
+        void Multiply(const Quaternion<T,LD::Enable_If_T<LD::IsPrimitive<T>>> & q);
         void Multiply(const T & v_x, const T & v_y, const T & v_z);
 
         void Print();
     };
 
     template<typename T>
-    Quaternion<T,PDP::Enable_If_T<PDP::IsPrimitiveType<T>::value>>::Quaternion()
+    Quaternion<T,LD::Enable_If_T<LD::IsPrimitive<T>>>::Quaternion()
     {
 
     }
 
 
     template<typename T>
-    Quaternion<T,PDP::Enable_If_T<PDP::IsPrimitiveType<T>::value>>::Quaternion(const T & x0, const T & y0, const T & z0, const T & w0)
+    Quaternion<T,LD::Enable_If_T<LD::IsPrimitive<T>>>::Quaternion(const T & x0, const T & y0, const T & z0, const T & w0)
     {
         this->x = x0;
         this->y = y0;
@@ -87,65 +87,65 @@ namespace LD
     }
 
     template<typename T>
-    void Quaternion<T,PDP::Enable_If_T<PDP::IsPrimitiveType<T>::value>>::SetX(const T & x0)
+    void Quaternion<T,LD::Enable_If_T<LD::IsPrimitive<T>>>::SetX(const T & x0)
     {
         this->x = x0;
     }
 
     template<typename T>
-    void Quaternion<T,PDP::Enable_If_T<PDP::IsPrimitiveType<T>::value>>::SetY(const T & y0)
+    void Quaternion<T,LD::Enable_If_T<LD::IsPrimitive<T>>>::SetY(const T & y0)
     {
         this->y = y0;
     }
 
 
     template<typename T>
-    void Quaternion<T,PDP::Enable_If_T<PDP::IsPrimitiveType<T>::value>>::SetZ(const T & z0)
+    void Quaternion<T,LD::Enable_If_T<LD::IsPrimitive<T>>>::SetZ(const T & z0)
     {
         this->z = z0;
     }
 
     template<typename T>
-    void Quaternion<T,PDP::Enable_If_T<PDP::IsPrimitiveType<T>::value>>::SetW(const T & w0)
+    void Quaternion<T,LD::Enable_If_T<LD::IsPrimitive<T>>>::SetW(const T & w0)
     {
         this->w = w0;
     }
 
     template<typename T>
-    const T & Quaternion<T,PDP::Enable_If_T<PDP::IsPrimitiveType<T>::value>>::X() const
+    const T & Quaternion<T,LD::Enable_If_T<LD::IsPrimitive<T>>>::X() const
     {
         return x;
     }
 
     template<typename T>
-    const T & Quaternion<T,PDP::Enable_If_T<PDP::IsPrimitiveType<T>::value>>::Y() const
+    const T & Quaternion<T,LD::Enable_If_T<LD::IsPrimitive<T>>>::Y() const
     {
         return y;
     }
 
     template<typename T>
-    const T & Quaternion<T,PDP::Enable_If_T<PDP::IsPrimitiveType<T>::value>>::Z() const
+    const T & Quaternion<T,LD::Enable_If_T<LD::IsPrimitive<T>>>::Z() const
     {
         return z;
     }
 
     template<typename T>
-    const T & Quaternion<T,PDP::Enable_If_T<PDP::IsPrimitiveType<T>::value>>::W() const
+    const T & Quaternion<T,LD::Enable_If_T<LD::IsPrimitive<T>>>::W() const
     {
         return w;
     }
 
     template<typename T>
-    const T Quaternion<T,PDP::Enable_If_T<PDP::IsPrimitiveType<T>::value>>::Magnitude() const
+    const T Quaternion<T,LD::Enable_If_T<LD::IsPrimitive<T>>>::Magnitude() const
     {
-        return (T) PDP::Sqrt(
+        return (T) LD::Sqrt(
                 x * x + y * y + z * z
                 + w * w);
     }
 
 
     template<typename T>
-    void Quaternion<T,PDP::Enable_If_T<PDP::IsPrimitiveType<T>::value>>::Normalize()
+    void Quaternion<T,LD::Enable_If_T<LD::IsPrimitive<T>>>::Normalize()
     {
         T mag = Magnitude();
         x /= mag;
@@ -155,7 +155,7 @@ namespace LD
     }
 
     template<typename T>
-    void Quaternion<T,PDP::Enable_If_T<PDP::IsPrimitiveType<T>::value>>::Conjugate()
+    void Quaternion<T,LD::Enable_If_T<LD::IsPrimitive<T>>>::Conjugate()
     {
         T x_prime = -x;
         T y_prime = -y;
@@ -168,7 +168,7 @@ namespace LD
     }
 
     template<typename T>
-    void Quaternion<T,PDP::Enable_If_T<PDP::IsPrimitiveType<T>::value>>::Multiply(const Quaternion<T,PDP::Enable_If_T<PDP::IsPrimitiveType<T>::value>> & q)
+    void Quaternion<T,LD::Enable_If_T<LD::IsPrimitive<T>>>::Multiply(const Quaternion<T,LD::Enable_If_T<LD::IsPrimitive<T>>> & q)
     {
         T w_prime = w * q.w - x * q.x - y * q.y - z * q.z;
         T x_prime = x * q.w + w * q.x + y * q.z - z * q.y;
@@ -185,7 +185,7 @@ namespace LD
 
 
     template<typename T>
-    void Quaternion<T,PDP::Enable_If_T<PDP::IsPrimitiveType<T>::value>>::Multiply(const T & v_x, const T & v_y, const T & v_z)
+    void Quaternion<T,LD::Enable_If_T<LD::IsPrimitive<T>>>::Multiply(const T & v_x, const T & v_y, const T & v_z)
     {
 
         T x_prime = w * v_x + y * v_z - z * v_y;
@@ -202,9 +202,21 @@ namespace LD
 
 
     template<typename T>
-    void Quaternion<T,PDP::Enable_If_T<PDP::IsPrimitiveType<T>::value>>::Print()
+    void Quaternion<T,LD::Enable_If_T<LD::IsPrimitive<T>>>::Print()
     {
         //printf("quaternion: %f %f %f %f\n", x, y, z, w);
+    }
+}
+
+namespace LD
+{
+    namespace Detail
+    {
+        template<typename T>
+        struct StaticallySized<LD::Quaternion<T>>: public LD::Detail::IntegralConstant<bool,true>
+        {
+
+        };
     }
 }
 #endif /* SoftwareQuaternion_h */

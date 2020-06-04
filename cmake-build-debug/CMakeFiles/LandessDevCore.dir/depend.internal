@@ -227,6 +227,7 @@ CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o
  /home/phoenixflower/Documents/LandessDevCore/Chrono/Timer.cpp
  /home/phoenixflower/Documents/LandessDevCore/Chrono/Timer.h
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o
+ ../Algorithms/Calculus.h
  ../Algorithms/CompileTimeControlFlow.hpp
  ../Algorithms/Exponential.hpp
  ../Algorithms/StringAsNumber.h
@@ -257,6 +258,7 @@ CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o
  ../IO/Database.hpp
  ../IO/DatabaseOpenMode.h
  ../IO/DatabaseOperationResult.h
+ ../IO/FetchRequest.h
  ../IO/UnqliteDatabaseBackend.h
  ../IO/unqlite.h
  ../Memory/ElementReference.h
@@ -270,6 +272,7 @@ CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o
  ../Primitives/General/StaticArray.hpp
  ../Primitives/General/StringView.hpp
  ../Primitives/General/Tuple.hpp
+ ../Primitives/General/Vec2.hpp
  ../Primitives/General/ctre.hpp
  ../Primitives/General/mapboxrecursive_wrapper.hpp
  ../Primitives/General/mapboxvariant.hpp
@@ -316,6 +319,7 @@ CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o
  ../TypeTraits/RemoveExtent.hpp
  ../TypeTraits/RemoveReference.hpp
  ../TypeTraits/SearchableVariadicPack.hpp
+ ../TypeTraits/StaticallySized.h
  ../TypeTraits/TypeList.hpp
  ../TypeTraits/VariadicPack.hpp
  ../TypeTraits/__two.hpp
@@ -425,6 +429,7 @@ CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o
  ../TypeTraits/RemoveConst.hpp
  ../TypeTraits/RemoveExtent.hpp
  ../TypeTraits/RemoveReference.hpp
+ ../TypeTraits/StaticallySized.h
  ../TypeTraits/TypeList.hpp
  ../TypeTraits/VariadicPack.hpp
  ../TypeTraits/__two.hpp
@@ -516,6 +521,7 @@ CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o
  ../TypeTraits/RemoveConst.hpp
  ../TypeTraits/RemoveExtent.hpp
  ../TypeTraits/RemoveReference.hpp
+ ../TypeTraits/StaticallySized.h
  ../TypeTraits/TypeList.hpp
  ../TypeTraits/VariadicPack.hpp
  ../TypeTraits/__two.hpp
@@ -606,6 +612,7 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  ../TypeTraits/RemoveExtent.hpp
  ../TypeTraits/RemoveReference.hpp
  ../TypeTraits/SearchableVariadicPack.hpp
+ ../TypeTraits/StaticallySized.h
  ../TypeTraits/TypeList.hpp
  ../TypeTraits/VariadicPack.hpp
  ../TypeTraits/__two.hpp
@@ -615,6 +622,7 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  /home/phoenixflower/Documents/LandessDevCore/Examples/TermBoxMenuExample.hpp
  /home/phoenixflower/Documents/LandessDevCore/Primitives/General/ContextualVariant.h
  /home/phoenixflower/Documents/LandessDevCore/Primitives/General/Immutable.hpp
+ /home/phoenixflower/Documents/LandessDevCore/Primitives/General/Pair.h
  /home/phoenixflower/Documents/LandessDevCore/Primitives/General/Span.hpp
  /home/phoenixflower/Documents/LandessDevCore/Reflection/ConstexprFor.hpp
  /home/phoenixflower/Documents/LandessDevCore/Reflection/reflectable.hpp

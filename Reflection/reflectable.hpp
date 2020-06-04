@@ -710,8 +710,6 @@ namespace LD
 
 
                                     onMember(memberContext);
-
-
                                 }
 
                             }

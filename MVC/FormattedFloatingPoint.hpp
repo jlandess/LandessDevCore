@@ -27,31 +27,31 @@ namespace LD
          inline constexpr const T & Precision() const noexcept {return this->mPrecision;}
          inline constexpr T & Precision() noexcept {return this->mPrecision;}
 
-         const LD::TermBoxRenderContext & operator()(const LD::TermBoxRenderContext & context,const PDP::Detail::tVec2<LD::Integer> & translation) const noexcept
+         const LD::TermBoxRenderContext & operator()(const LD::TermBoxRenderContext & context,const LD::Detail::tVec2<LD::Integer> & translation) const noexcept
         {
              context.Render(LD::ToImmutableString(this->mCurrentFloatingPointNumber,this->mPrecision),translation);
              return context;
         }
 
 
-        inline   PDP::Detail::tVec2<LD::UInteger > GetRenderableDimensions() const  noexcept
+        inline   LD::Detail::tVec2<LD::UInteger > GetRenderableDimensions() const  noexcept
         {
             auto immutableString = LD::ToImmutableString(this->mCurrentFloatingPointNumber,this->mPrecision);
-            return PDP::Detail::tVec2<LD::UInteger >{immutableString.GetSize(),1};
+            return LD::Detail::tVec2<LD::UInteger >{immutableString.GetSize(),1};
         }
 
      };
 
 
     template<typename T>
-    inline   PDP::Detail::tVec2<LD::UInteger > GetRenderableDimensions(const LD::FormattedFloatingPoint<T> & object)  noexcept
+    inline   LD::Detail::tVec2<LD::UInteger > GetRenderableDimensions(const LD::FormattedFloatingPoint<T> & object)  noexcept
     {
         auto immutableString = LD::ToImmutableString(object.Value(),object.Precision());
-        return PDP::Detail::tVec2<LD::UInteger >{immutableString.GetSize(),1};
+        return LD::Detail::tVec2<LD::UInteger >{immutableString.GetSize(),1};
     }
 
     template<typename T>
-    inline const TermBoxRenderContext & Render(const TermBoxRenderContext & context,const PDP::Detail::tVec2<LD::Integer> & translation, const LD::FormattedFloatingPoint<T> & formattedFloatingPointNumber)  noexcept
+    inline const TermBoxRenderContext & Render(const TermBoxRenderContext & context,const LD::Detail::tVec2<LD::Integer> & translation, const LD::FormattedFloatingPoint<T> & formattedFloatingPointNumber)  noexcept
     {
         return context.Render(LD::ToImmutableString(formattedFloatingPointNumber.Value(),formattedFloatingPointNumber.Precision()),translation);
     }
