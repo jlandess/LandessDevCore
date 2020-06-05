@@ -32,7 +32,31 @@ namespace LD
         {
             using type = LD::CT::RebindList<typename LD::CT::Prepend<LD::Context<LD::DatabaseError,Args...>, typename GenerateFetchRequestContextMap<LD::CT::TypeList<LD::DatabaseTransactionResult>,LD::CT::TypeList<Pack...>,LD::CT::TypeList<Args...>>::type>::type,LD::Variant>;
         };
+
+
+        template<typename T, typename = void>
+        struct OptionalFront;
+
+
+        template<typename ... Args>
+        struct OptionalFront<LD::CT::TypeList<Args...>,LD::Enable_If_T<LD::Require<(sizeof...(Args) > 0)>>>
+        {
+            using type = typename LD::TypeAtIndex<0,LD::CT::TypeList<Args...>>::type;
+        };
+
+        template<typename ... Args>
+        struct OptionalFront<LD::CT::TypeList<Args...>,LD::Enable_If_T<LD::Require<(sizeof...(Args) == 0)>>>
+        {
+            using type = void;
+        };
+
+
+
+
     }
+
+    template<typename T>
+    using OptionalFront = typename LD::Detail::OptionalFront<T>::type;
 
     template<typename T, typename U>
     using GenerateFetchRequestVariant = typename LD::Detail::GenerateFetchRequestVariant<T,U>::type;
@@ -42,50 +66,110 @@ namespace LD
 namespace LD
 {
     template<typename T>
-    class FetchRequestResult;
+    class QueryResult;
 
-    template<typename ... Pack, typename ... Args>
-    class FetchRequestResult<LD::Variant<Pack...>(Args...)>: public LD::GenerateFetchRequestVariant<LD::CT::TypeList<Pack...>,LD::CT::TypeList<Args...>>
+    template<typename T, typename ... Args>
+    class QueryResult<T(Args...)>: public LD::GenerateFetchRequestVariant<LD::CT::TypeList<T>,LD::CT::TypeList<Args...>>
     {
     private:
-        using BaseClass = LD::GenerateFetchRequestVariant<LD::CT::TypeList<Pack...>,LD::CT::TypeList<Args...>>;
+        using BaseClass = LD::GenerateFetchRequestVariant<LD::CT::TypeList<T>,LD::CT::TypeList<Args...>>;
     public:
+        QueryResult() = default;
 
-        FetchRequestResult() = default;
-
-        constexpr FetchRequestResult(const BaseClass & base) noexcept :BaseClass{base}
+        constexpr QueryResult(const BaseClass & base) noexcept :BaseClass{base}
         {
 
         }
-        template<typename V, typename = LD::Enable_If_T<
-                LD::Require<
-                        (LD::GetTypeCountInTypeList<V,LD::CT::TypeList<Pack...>>::value > 0)
-                        >>>
-        constexpr FetchRequestResult(const LD::Context<LD::DatabaseTransactionResult,V,Args...> & context) noexcept
+
+
+        constexpr QueryResult(const LD::Context<LD::DatabaseTransactionResult,T,Args...> & context) noexcept
         {
             (*this) = context;
         }
 
-        constexpr FetchRequestResult(const LD::Context<LD::DatabaseError,Args...> & context) noexcept
+
+        constexpr QueryResult(const LD::Context<LD::DatabaseError,Args...> & context) noexcept
         {
             (*this) = context;
         }
-        FetchRequestResult & operator = (const BaseClass & base) noexcept
-        {
-            BaseClass::operator=(base);
-            return (*this);
-        }
 
-        constexpr FetchRequestResult & operator = (const LD::Context<LD::DatabaseError,Args...> & context)
+
+        QueryResult& operator = (const LD::Context<LD::DatabaseTransactionResult,T,Args...> & context) noexcept
         {
             BaseClass::operator=(context);
             return (*this);
         }
 
+        QueryResult & operator = (const LD::Context<LD::DatabaseError,Args...> & context) noexcept
+        {
+            BaseClass::operator=(context);
+            return (*this);
+        }
+        QueryResult & operator = (const BaseClass & base) noexcept
+        {
+            BaseClass::operator=(base);
+            return (*this);
+        }
+
+    };
+    template<typename ... Pack, typename ... Args>
+    class QueryResult<LD::Variant<Pack...>(Args...)>: public LD::GenerateFetchRequestVariant<LD::CT::TypeList<Pack...>,LD::CT::TypeList<Args...>>
+    {
+    private:
+        using BaseClass = LD::GenerateFetchRequestVariant<LD::CT::TypeList<Pack...>,LD::CT::TypeList<Args...>>;
+    public:
+
+        QueryResult() = default;
+
+        constexpr QueryResult(const BaseClass & base) noexcept :BaseClass{base}
+        {
+
+        }
+
+        template<typename ... B,
+                typename BList = LD::CT::TypeList<B...>,
+                typename DBOp = LD::OptionalFront<BList>,
+                typename ListWithoutDbOp = LD::CT::PopFront<BList>,
+                typename Type = LD::OptionalFront<ListWithoutDbOp>,
+                typename = LD::Enable_If_T<
+                LD::Require<
+                        (sizeof...(B) == sizeof...(Args)+2),
+                        LD::IsSame<DBOp,LD::DatabaseTransactionResult>,
+                        (LD::GetTypeCountInTypeList<Type,LD::CT::TypeList<Pack...>>::value > 0)
+                        >>>
+        constexpr QueryResult(const LD::Tuple<B...> & context) noexcept
+        {
+            //LD::CT::DebugTemplate<LD::CT::TypeList<Pack...>>{};
+            //(*this) = context;
+            BaseClass::operator=(context);
+        }
+
+
+        constexpr QueryResult(const LD::Context<LD::DatabaseError,Args...> & context) noexcept
+        {
+            (*this) = context;
+        }
+
+        /*
+        QueryResult & operator = (const BaseClass & base) noexcept
+        {
+            BaseClass::operator=(base);
+            return (*this);
+        }
+         */
+
+
+        constexpr QueryResult & operator = (const LD::Context<LD::DatabaseError,Args...> & context)
+        {
+            BaseClass::operator=(context);
+            return (*this);
+        }
+
+        //todo fix sfinae with list comparisons instead of implicit capture
         template<typename V>
         LD::Enable_If_T<LD::Require<
                 (LD::GetTypeCountInTypeList<V,LD::CT::TypeList<Pack...>>::value > 0)
-        >,FetchRequestResult&> operator = (const LD::Context<LD::DatabaseTransactionResult,V,Args...> & context) noexcept
+        >,QueryResult&> operator = (const LD::Context<LD::DatabaseTransactionResult,V,Args...> & context) noexcept
         {
             BaseClass::operator=(context);
             return (*this);

@@ -7,6 +7,24 @@
 #include "Memory/ElementReference.h"
 namespace LD
 {
+    namespace Detail
+    {
+        template<typename T, class = void>
+        struct ContextTransform
+        {
+            using type = T;
+        };
+
+        template<typename T>
+        struct ContextTransform<T,LD::Enable_If_T<
+                LD::Require<
+                LD::Detail::IsLValueReference<T>
+                >>>
+        {
+            using type = LD::ElementReference<T>;
+        };
+
+    }
     template<typename ... Arguements>
     using Context = LD::Tuple<LD::Detail::Conditional_T<(LD::Detail::IsLValueReference<Arguements>::value),LD::ElementReference <LD::Detail::Decay_T<Arguements>>,LD::Detail::Decay_T<Arguements>>...>;
 

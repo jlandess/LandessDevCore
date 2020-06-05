@@ -23,7 +23,6 @@
 #include "FetchRequest.h"
 namespace LD
 {
-
     /**
      *
      * @tparam Backend
@@ -113,7 +112,7 @@ namespace LD
          */
         template<typename Key,typename V, typename ... Args,
                 typename VarType = LD::Variant<LD::DatabaseError,LD::DatabaseTransactionResult>,
-                typename Ret = LD::ContextualVariant<VarType(Args...)>,
+                typename Ret = LD::QueryResult<LD::Ref<LD::Detail::Decay_T<V>>(Args...)>,
                 typename CurrentBackend = Backend>
         LD::Enable_If_T<
                 LD::Require<
@@ -130,6 +129,33 @@ namespace LD
             this->mBackend->Commit();
             return resultant;
         }
+        template<typename ... Keys, typename ... Objects, typename ... Args,
+                typename QueryRes = LD::QueryResult<LD::Variant<Objects...>(Args...)>>
+        LD::Enable_If_T<LD::Require<
+                (LD::IsTypeString<Keys> && ...),
+                (sizeof...(Objects) == sizeof...(Keys)),
+                (LD::IsReflectable<Objects> && ...)
+        >
+        ,LD::StaticArray<QueryRes,sizeof...(Objects)>> InsertGroup(const LD::Tuple<Keys...> &keys, const LD::Tuple<Objects...> & context, Args && ... args) noexcept
+        {
+            using UsableTypeList = LD::CT::TypeList<LD::Detail::Decay_T<Objects>...>;
+            LD::StaticArray<QueryRes,sizeof...(Objects)> res;
+            LD::For<sizeof...(Objects)>([](
+                    auto I,
+                    auto && keys,
+                    auto && objects,
+                    BasicDatabase * instance,
+                    LD::StaticArray<QueryRes,sizeof...(Objects)> & res,
+                    Args && ... args)
+            {
+                auto & currentKey = LD::Get<I>(keys);
+                auto & object = LD::Get(LD::Get<I>(objects));
+                instance->Insert(currentKey,object,LD::Forward<Args>(args)...);
+                return true;
+            },keys,context,this,res,LD::Forward<Args>(args)...);
+            return res;
+        }
+        /*
         template<typename Key,typename V, typename ... Args,
                 typename VarType = LD::Variant<LD::DatabaseError,LD::DatabaseTransactionResult>,
                 typename Ret = LD::ContextualVariant<VarType(Args...)>,
@@ -205,6 +231,83 @@ namespace LD
             Ret possibleResults[2];
             possibleResults[0] = LD::MakeContext(LD::DatabaseError{},LD::Forward<Args>(args)...);
             possibleResults[1] = LD::MakeContext(LD::DatabaseTransactionResult{},LD::Forward<Args>(args)...);
+            return possibleResults[result];
+        }
+
+         */
+        template<typename Key,typename V, typename ... Args,
+                typename VarType = LD::Variant<LD::DatabaseError,LD::DatabaseTransactionResult>,
+                typename Ret = LD::QueryResult<LD::Ref<LD::Detail::Decay_T<V>>(Args...)>,
+                //typename Ret = LD::ContextualVariant<VarType(Args...)>,
+                typename CurrentBackend = Backend>
+        LD::Enable_If_T<
+                LD::Require<
+                        LD::IsTypeString<Key>,
+                        LD::IsReflectable<LD::Detail::Decay_T<V>>,
+                        LD::Exists<StoreTest,CurrentBackend>
+                >,Ret> Insert(const Key & key,V && object, Args && ... args) noexcept
+        {
+            using Type = LD::Detail::Decay_T<V>;
+            using Var = LD::CT::RebindList<LD::CT::ReflectiveTransformation<Type ,LD::AccessReadOnly>,LD::Variant>;
+            using QueryResultant = LD::Variant<LD::DatabaseError,LD::DatabaseTransactionResult>;
+            using QueryResponse = LD::ContextualVariant<QueryResultant()>;
+            auto onClass = [](const LD::Context<LD::StringView,LD::StringView,Db> & context) noexcept
+            {
+                LD::StringView  key = LD::Get<0>(context);
+                LD::StringView className = LD::Get<1>(context);
+                Db handle = LD::Get<2>(context);
+                QueryResponse response = handle->Store(
+                        LD::StringView{key.data(),key.size()},
+                        LD::StringView{className.data(),className.size()});
+
+                auto onDatabaseError = [](const LD::Context<LD::DatabaseError> & error) noexcept
+                {
+                    return false;
+                };
+                auto onTransaction = [](const LD::Context<LD::DatabaseTransactionResult> & error) noexcept
+                {
+
+                    return true;
+                };
+                return LD::Match(response,onDatabaseError,onTransaction);
+            };
+
+            auto onMember = [](const LD::ContextualVariant<Var(LD::StringView,Db)> & context) noexcept
+            {
+
+                auto onPrimitiveAction = [](auto && context) noexcept
+                {
+                    Db handle = LD::Get<2>(context);
+                    using MemberType = LD::Detail::Decay_T<decltype(LD::Get(LD::Get<0>(context)))>;
+                    bool queryResult = false;
+                    if constexpr(LD::Require<LD::IsPrimitive<LD::Detail::Decay_T<decltype(LD::Get(LD::Get<0>(context)))>>>)
+                    {
+                        LD::StringView key = LD::Get<1>(context);
+                        auto memberAsString = LD::ToImmutableString(LD::Get(LD::Get<0>(context)));
+                        QueryResponse response = handle->Store(
+                                LD::StringView{key.data(),key.size()},
+                                LD::StringView{memberAsString.Data(),memberAsString.GetSize()});
+
+                        auto onDatabaseError = [](const LD::Context<LD::DatabaseError> & error) noexcept
+                        {
+                            return false;
+                        };
+                        auto onTransaction = [](const LD::Context<LD::DatabaseTransactionResult> & error) noexcept
+                        {
+
+                            return true;
+                        };
+                        queryResult = LD::Match(response,onDatabaseError,onTransaction);
+                    }
+                    return queryResult;
+                };
+                return LD::Match(context,onPrimitiveAction);
+            };
+
+            const bool result = LD::CT::ReflectiveWalk(key,LD::Forward<V>(object),onClass,onMember,LD::AccessReadOnly{},Db{this->mBackend});
+            Ret possibleResults[2];
+            possibleResults[0] = LD::MakeContext(LD::DatabaseError{},LD::Forward<Args>(args)...);
+            possibleResults[1] = LD::MakeContext(LD::DatabaseTransactionResult{},LD::Ref<LD::Detail::Decay_T<V>>{object},LD::Forward<Args>(args)...);
             return possibleResults[result];
         }
 
@@ -378,7 +481,7 @@ namespace LD
          * }
          */
         template<typename Y,typename Key, typename ... Args,
-                typename Ret = LD::FetchRequestResult<LD::CT::RebindList<Y,LD::Variant>(Args...)>>
+                typename Ret = LD::QueryResult<LD::CT::RebindList<Y,LD::Variant>(Args...)>>
         LD::Enable_If_T<
                 LD::Require<
                         LD::IsTypeString<Key>,
@@ -495,11 +598,8 @@ namespace LD
                            return LD::Match(context,onPrimitiveAction);
 
                        };
-
                        //default construction of type being look at
-
                        Type objectToReanimate;
-
                        const bool result = LD::CT::ReflectiveWalk(
                                                      key,
                                                      objectToReanimate,
@@ -507,11 +607,7 @@ namespace LD
                                                      onMemberReanimate,
                                                      LD::AccessWriteOnly{},
                                                      Db{currentBackend});
-
-
                        //if we have a successful query with that classname then set the returnable and stop looping
-
-
                        LD::IF(result,[](Ret & returnable, Type & objectToReanimate, Args && ... args)
                        {
                            returnable = LD::MakeContext(LD::DatabaseTransactionResult{},Type {objectToReanimate},LD::Forward<Args>(args)...);
@@ -523,11 +619,7 @@ namespace LD
                            returnable = LD::MakeContext(LD::DatabaseTransactionResult{},Type {objectToReanimate},LD::Forward<Args>(args)...);
                        }
                         */
-
-
                        //return false will stop the compile time for loop
-
-
                        return !result;
                     },key,LD::Forward<decltype(onClassReanimate)>(onClassReanimate),this->mBackend,returnable,LD::Forward<Args>(args)...);
 
