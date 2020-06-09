@@ -12,8 +12,7 @@
 #include "IO/UnqliteDatabaseBackend.h"
 #include "Algorithms/Calculus.h"
 #include "IO/FetchRequest.h"
-
-
+#include "IO/DatabaseEntity.h"
 namespace LD
 {
     namespace Example
@@ -21,9 +20,31 @@ namespace LD
 
         void ReflectionExample()
         {
-            LD::Ref<LD::Pyramid>{};
-            LD::Pyramid meep;
-            LD::QueryResult<LD::Pyramid &(int)> stuff = LD::MakeContext(LD::DatabaseTransactionResult{},meep,int{});
+
+
+            //LD::CT::Prepend
+
+            using ReflectiveTypeStructure =  LD::CT::GenerateNamedReflectiveTypeStructure<decltype("meep"_ts),LD::Pyramid>;
+
+
+            using Keys = typename LD::CT::TypeListChannelView<0,2,ReflectiveTypeStructure>;
+            using Types = typename LD::CT::TypeListChannelView<1,2,ReflectiveTypeStructure>;
+
+            //LD::CT::DebugTemplate<OnlyKeys>{};
+            LD::For<0,ReflectiveTypeStructure::size()/2,1>([](auto I)
+            {
+                using Key = LD::CT::TypeAtIndex<I,Keys>;
+                using Type = LD::CT::TypeAtIndex<I,Types>;
+                if constexpr(LD::IsPrimitive<Type> || LD::IsReflectable<Type>)
+                {
+                    std::cout << LD::CT::TypeAtIndex<I,Keys>::data() << "  : " << typeid(Type).name() <<  std::endl;
+                }
+
+                return true;
+            });
+
+            LD::Entity<decltype("key"_ts),LD::Square,LD::BasicDatabase<LD::UnQliteBackend<char>>> entity;
+
             std::cout << LD::RectangularIntegrate([](const LD::Float & x){return x*x;},1.0,5.0,LD::MidPointRule{},0.001) << std::endl;
 
             std::cout << LD::TrapezoidIntegrate([](const LD::Float & x){return x*x;},1.0,5.0,0.0001) << std::endl;
@@ -37,6 +58,9 @@ namespace LD
             LD::UnQliteBackend<char> currentBackend{LD::StringView {"backend.db"},OpenAndCreateIfNotExists{}};
             LD::BasicDatabase<LD::UnQliteBackend<char>> database{currentBackend};
 
+
+
+
             Square currentSuqre;
             currentSuqre["Length"_ts] = 7;
 
@@ -45,7 +69,7 @@ namespace LD
             Pyramid currentPyramid;
 
             currentPyramid.Side() = LD::Triangle{37,521};
-            currentPyramid.Base() = LD::Square{652};
+            currentPyramid.Base() = LD::Square{9723};
             //int abc = 93;
 
             LD::QueryResult<LD::Pyramid &(int)> insertQueryRes = database.InsertAndCommit("key"_ts,currentPyramid,int{232});
@@ -85,6 +109,25 @@ namespace LD
 
             };
             LD::Match(fetchResult,onFetchError,onPyramidTransaction);
+
+            //LD::QueryResult<bool()> deletionQueryResult = database.Remove("key"_ts,LD::CT::TypeList<LD::Pyramid>{});
+
+            LD::QueryResult<LD::Type<LD::Pyramid>()> ret1 = database.Remove("key"_ts,LD::CT::TypeList<LD::Pyramid>{});
+
+
+            auto onDeletionError = [](const LD::Context<LD::DatabaseError> & context)
+            {
+
+            };
+
+            auto onDeletionSuccess = [](const LD::Context<LD::DatabaseTransactionResult,LD::Type<Pyramid>> & context)
+            {
+                std::cout << "successfully deleted pyramid" << std::endl;
+
+            };
+
+            LD::Match(ret1,onDeletionSuccess,onDeletionError);
+            //LD::Match(deletionQueryResult,onDeletionError,onDeletionSuccess);
         }
     }
 }

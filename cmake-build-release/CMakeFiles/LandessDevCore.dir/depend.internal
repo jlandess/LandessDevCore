@@ -256,6 +256,7 @@ CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o
  ../Functor/LightWeightDelegateBase.h
  ../Functor/fixed_size_function.hpp
  ../IO/Database.hpp
+ ../IO/DatabaseEntity.h
  ../IO/DatabaseOpenMode.h
  ../IO/DatabaseOperationResult.h
  ../IO/FetchRequest.h
@@ -320,6 +321,7 @@ CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o
  ../TypeTraits/RemoveReference.hpp
  ../TypeTraits/SearchableVariadicPack.hpp
  ../TypeTraits/StaticallySized.h
+ ../TypeTraits/Type.h
  ../TypeTraits/TypeList.hpp
  ../TypeTraits/VariadicPack.hpp
  ../TypeTraits/__two.hpp

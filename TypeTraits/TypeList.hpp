@@ -385,6 +385,12 @@ namespace LD
 
     };
 
+    namespace CT
+    {
+        template<LD::UInteger idx, typename List>
+        using TypeAtIndex = typename LD::TypeAtIndex<idx,List>::type;
+    }
+
 //-----------------------------------------------------------------------------
 /// Search a typelist for a first occurrence of the type T
 
@@ -504,8 +510,8 @@ namespace LD
 
     namespace CT
     {
-        template<typename H, typename ... Ts>
-        using Prepend = typename LD::CT::Detail::Prepend<H,Ts...>::type;
+        template<typename H, typename  Ts>
+        using Prepend = typename LD::CT::Detail::Prepend<H,Ts>::type;
     }
 
 
@@ -1710,10 +1716,22 @@ namespace LD
             {
                 using type = LD::CT::TypeList<Transformation<Args>...>;
             };
+
+            template<typename TypeList, template<typename...> class Transformation, typename ... Args>
+            class TransformWithArgs;
+
+            template<template<typename...> class Transformation,typename ... Args, typename ... Targs>
+            struct TransformWithArgs<LD::CT::TypeList<Args...>,Transformation,Targs...>
+            {
+                using type = LD::CT::TypeList<Transformation<Args,Targs...>...>;
+            };
         }
 
         template<typename T, template<typename> class Transformation>
         using Tranform = typename LD::CT::Detail::Transform<T,Transformation>::type;
+
+        template<typename T, template<typename...> class Transformation, typename ... Args>
+        using TransformWithArgs = typename LD::CT::Detail::TransformWithArgs<T,Transformation,Args...>::type;
 
         template<typename T>
         using Flatten = typename LD::CT::Detail::flatten<T>::type;
@@ -1752,5 +1770,62 @@ namespace LD
         template<typename TL1, typename TL2>
         using Concatenate = LD::Detail::Decay_T<decltype(concatenate(LD::Declval<TL1>(),LD::Declval<TL2>()))>;
     }
+}
+
+namespace LD
+{
+
+
+
+    namespace Detail
+    {
+        template<int n, int m, typename... Ts> struct VariadicPackChannelViewImpl;
+        template<int n, int m, typename T, typename... Ts>
+        struct VariadicPackChannelViewImpl<n, m, T, Ts...>: VariadicPackChannelViewImpl<n, m - 1, Ts...> {};
+
+        template<int n, typename T, typename... Ts>
+        struct VariadicPackChannelViewImpl<n, 0, T, Ts...> { using types = LD::CT::Prepend<T,typename VariadicPackChannelViewImpl<n, n - 1, Ts...>::types>;};
+
+        template<int n, int m> struct VariadicPackChannelViewImpl<n, m> {using types = LD::CT::TypeList<>; };
+
+        template<typename T, typename H>
+        struct InterleaveTypeLists;
+
+
+        template<typename ... A, typename ... B>
+        struct InterleaveTypeLists<LD::CT::TypeList<A...>,LD::CT::TypeList<B...>>
+        {
+            using type = LD::CT::TypeList<LD::CT::TypeList<A,B>...>;
+        };
+
+    }
+
+    namespace CT
+    {
+        template<int n, int m, typename... Ts> using VariadicPackChannelView = typename LD::Detail::VariadicPackChannelViewImpl<n, m, Ts...>::types;
+
+        template<typename T, typename H>
+        using InterleaveTypeLists = typename LD::Detail::InterleaveTypeLists<T,H>::type;
+    }
+
+    namespace Detail
+    {
+        template<LD::UInteger Start,LD::UInteger Step,typename T>
+        struct TypeListChannelView;
+
+        template<LD::UInteger Start, LD::UInteger Step, typename ... Args>
+        struct TypeListChannelView<Start,Step,LD::CT::TypeList<Args...>>
+        {
+            using type =  LD::CT::VariadicPackChannelView<Step,Start,Args...>;
+        };
+    }
+
+    namespace CT
+    {
+        template<LD::UInteger Start, LD::UInteger Step, typename TL>
+        using TypeListChannelView = typename LD::Detail::TypeListChannelView<Start,Step,TL>::type;
+    }
+
+
 }
 #endif

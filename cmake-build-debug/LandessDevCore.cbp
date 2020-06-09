@@ -633,6 +633,9 @@
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/TypeTraits/StaticallySized.h">
 			<Option target="LandessDevCore"/>
 		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/TypeTraits/Type.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/TypeTraits/TypeList.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>

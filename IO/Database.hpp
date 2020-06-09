@@ -21,8 +21,10 @@
 #include "TypeTraits/Declval.hpp"
 #include "TypeTraits/Decay.hpp"
 #include "FetchRequest.h"
+#include "TypeTraits/Type.h"
 namespace LD
 {
+
     /**
      *
      * @tparam Backend
@@ -129,32 +131,6 @@ namespace LD
             this->mBackend->Commit();
             return resultant;
         }
-        template<typename ... Keys, typename ... Objects, typename ... Args,
-                typename QueryRes = LD::QueryResult<LD::Variant<Objects...>(Args...)>>
-        LD::Enable_If_T<LD::Require<
-                (LD::IsTypeString<Keys> && ...),
-                (sizeof...(Objects) == sizeof...(Keys)),
-                (LD::IsReflectable<Objects> && ...)
-        >
-        ,LD::StaticArray<QueryRes,sizeof...(Objects)>> InsertGroup(const LD::Tuple<Keys...> &keys, const LD::Tuple<Objects...> & context, Args && ... args) noexcept
-        {
-            using UsableTypeList = LD::CT::TypeList<LD::Detail::Decay_T<Objects>...>;
-            LD::StaticArray<QueryRes,sizeof...(Objects)> res;
-            LD::For<sizeof...(Objects)>([](
-                    auto I,
-                    auto && keys,
-                    auto && objects,
-                    BasicDatabase * instance,
-                    LD::StaticArray<QueryRes,sizeof...(Objects)> & res,
-                    Args && ... args)
-            {
-                auto & currentKey = LD::Get<I>(keys);
-                auto & object = LD::Get(LD::Get<I>(objects));
-                instance->Insert(currentKey,object,LD::Forward<Args>(args)...);
-                return true;
-            },keys,context,this,res,LD::Forward<Args>(args)...);
-            return res;
-        }
         /*
         template<typename Key,typename V, typename ... Args,
                 typename VarType = LD::Variant<LD::DatabaseError,LD::DatabaseTransactionResult>,
@@ -249,14 +225,14 @@ namespace LD
         {
             using Type = LD::Detail::Decay_T<V>;
             using Var = LD::CT::RebindList<LD::CT::ReflectiveTransformation<Type ,LD::AccessReadOnly>,LD::Variant>;
-            using QueryResultant = LD::Variant<LD::DatabaseError,LD::DatabaseTransactionResult>;
-            using QueryResponse = LD::ContextualVariant<QueryResultant()>;
+            //using QueryResultant = LD::Variant<LD::DatabaseError,LD::DatabaseTransactionResult>;
+            //using QueryResponse = LD::ContextualVariant<QueryResultant()>;
             auto onClass = [](const LD::Context<LD::StringView,LD::StringView,Db> & context) noexcept
             {
                 LD::StringView  key = LD::Get<0>(context);
                 LD::StringView className = LD::Get<1>(context);
                 Db handle = LD::Get<2>(context);
-                QueryResponse response = handle->Store(
+                LD::QueryResult<bool()> response = handle->Store(
                         LD::StringView{key.data(),key.size()},
                         LD::StringView{className.data(),className.size()});
 
@@ -264,7 +240,7 @@ namespace LD
                 {
                     return false;
                 };
-                auto onTransaction = [](const LD::Context<LD::DatabaseTransactionResult> & error) noexcept
+                auto onTransaction = [](const LD::Context<LD::DatabaseTransactionResult,bool> & error) noexcept
                 {
 
                     return true;
@@ -284,7 +260,7 @@ namespace LD
                     {
                         LD::StringView key = LD::Get<1>(context);
                         auto memberAsString = LD::ToImmutableString(LD::Get(LD::Get<0>(context)));
-                        QueryResponse response = handle->Store(
+                        LD::QueryResult<bool()> response = handle->Store(
                                 LD::StringView{key.data(),key.size()},
                                 LD::StringView{memberAsString.Data(),memberAsString.GetSize()});
 
@@ -292,7 +268,7 @@ namespace LD
                         {
                             return false;
                         };
-                        auto onTransaction = [](const LD::Context<LD::DatabaseTransactionResult> & error) noexcept
+                        auto onTransaction = [](const LD::Context<LD::DatabaseTransactionResult,bool> & error) noexcept
                         {
 
                             return true;
@@ -493,31 +469,45 @@ namespace LD
 
             auto onClassReanimate = [](const LD::Context<LD::StringView,LD::StringView,Db> & context) noexcept -> bool
             {
-                auto onFetch = [](const LD::Context<LD::StringView,LD::StringView,LD::StringView> & context) noexcept-> LD::UInteger
+                //auto onFetch = [](const LD::Context<LD::StringView,LD::StringView,LD::StringView> & context) noexcept-> LD::UInteger
+                //{
+
+                    //LD::UInteger comparisonResult = LD::Get<1>(context) == LD::Get<2>(context);
+                    //return LD::UInteger {comparisonResult};
+
+                //};
+
+                auto onFetch = [](const LD::Context<LD::StringView,LD::StringView,LD::StringView> & context)
                 {
-
-                    LD::UInteger comparisonResult = LD::Get<1>(context) == LD::Get<2>(context);
-                    return LD::UInteger {comparisonResult};
-
+                    const LD::StringView & data = LD::Get(LD::Get<1>(context));
+                    const LD::StringView & className = LD::Get(LD::Get<2>(context));
+                    LD::UInteger comparisonResult = (data == className);
+                    return comparisonResult;
                 };
-
                 Db handle = LD::Get<2>(context);
 
-                LD::ContextualVariant<LD::Variant<LD::DatabaseError,LD::DatabaseTransactionResult>(LD::StringView ,LD::UInteger,LD::StringView)> fetchContext;
-                fetchContext = handle->Fetch(LD::StringView{LD::Get<0>(context)},onFetch,LD::StringView{LD::Get<1>(context)});
+                //LD::ContextualVariant<LD::Variant<LD::DatabaseError,LD::DatabaseTransactionResult>(LD::StringView ,LD::UInteger,LD::StringView)> fetchContext;
 
-                auto onDatabaseError = [](const LD::Context<LD::DatabaseError,LD::StringView ,LD::UInteger,LD::StringView> &) noexcept
+                LD::QueryResult<LD::UInteger(LD::StringView,LD::StringView)> queryResult = handle->Fetch(
+                        LD::StringView {LD::Get<0>(context)},
+                        onFetch,
+                        LD::StringView{LD::Get<1>(context)});
+
+                //fetchContext = handle->Fetch(LD::StringView{LD::Get<0>(context)},onFetch,LD::StringView{LD::Get<1>(context)});
+
+                auto onDatabaseError = [](const LD::Context<LD::DatabaseError,LD::StringView,LD::StringView> &) noexcept
                 {
 
                     return false;
                 };
 
-                auto onTransaction = [](const LD::Context<LD::DatabaseTransactionResult,LD::StringView ,LD::UInteger,LD::StringView> & transaction) noexcept
+                auto onTransaction = [](const LD::Context<LD::DatabaseTransactionResult,LD::UInteger,LD::StringView ,LD::StringView> & transaction) noexcept
                 {
 
-                    return LD::Get<2>(transaction);
+                    return LD::Get<1>(transaction);
                 };
-                return LD::Match(fetchContext,onDatabaseError,onTransaction);
+                //return LD::Match(fetchContext,onDatabaseError,onTransaction);
+                return LD::Match(queryResult,onDatabaseError,onTransaction);
             };
 
             Ret returnable {};
@@ -557,29 +547,32 @@ namespace LD
 
                                    LD::ElementReference<MemberType> memberReference = LD::Get<0>(context);
 
-                                   auto onFetch = [](const LD::Context<LD::StringView,LD::StringView,LD::StringView,LD::ElementReference<MemberType>> & context) noexcept -> MemberType
+
+
+                                   auto onFetch = [](const LD::Context<LD::StringView,LD::StringView,LD::ElementReference<MemberType>> & context) noexcept -> MemberType
                                    {
                                        auto resultVariant = LD::StringAsNumber<MemberType>(LD::StringView{LD::Get<1>(context).data(),LD::Get<1>(context).size()});
                                        MemberType result = LD::Match(resultVariant,[](const MemberType & obj){ return obj;},[](auto &&){ return LD::UInteger {};});
-                                       LD::Get(LD::Get<3>(context)) = result;
+                                       LD::Get(LD::Get<2>(context)) = result;
                                        return result;
                                    };
 
 
-                                   LD::ContextualVariant<LD::Variant<LD::DatabaseError,LD::DatabaseTransactionResult>(LD::StringView ,MemberType,LD::StringView,LD::ElementReference<MemberType>)> fetchContext;
+                                   LD::QueryResult<MemberType(LD::StringView,LD::Ref<MemberType>)> queryResult = handle->Fetch(
+                                           LD::StringView{memberKey},
+                                           onFetch,
+                                           LD::Ref<MemberType>{memberReference});
 
 
-                                   fetchContext = handle->Fetch(LD::StringView{memberKey},onFetch,LD::StringView{memberKey},LD::ElementReference<MemberType>{memberReference});
 
 
-
-                                   auto onDatabaseError = [](const LD::Context<LD::DatabaseError,LD::StringView ,MemberType ,LD::StringView,LD::ElementReference<MemberType>> &) noexcept
+                                   auto onDatabaseError = [](const LD::Context<LD::DatabaseError,LD::StringView ,LD::ElementReference<MemberType>> &) noexcept
                                    {
                                        return false;
                                    };
 
 
-                                   auto onTransaction = [](const LD::Context<LD::DatabaseTransactionResult,LD::StringView ,MemberType ,LD::StringView,LD::ElementReference<MemberType>> & transaction) noexcept
+                                   auto onTransaction = [](const LD::Context<LD::DatabaseTransactionResult,MemberType ,LD::StringView,LD::ElementReference<MemberType>> & transaction) noexcept
                                    {
 
 
@@ -587,7 +580,8 @@ namespace LD
 
                                    };
 
-                                   performedQuery = LD::Match(fetchContext,onDatabaseError,onTransaction);
+                                   performedQuery =  LD::Match(queryResult,onDatabaseError,onTransaction);
+                                   //performedQuery = LD::Match(fetchContext,onDatabaseError,onTransaction);
 
                                }
 
@@ -624,6 +618,212 @@ namespace LD
                     },key,LD::Forward<decltype(onClassReanimate)>(onClassReanimate),this->mBackend,returnable,LD::Forward<Args>(args)...);
 
             return returnable;
+        }
+
+        /*
+        template<typename Key, typename ... TL ,typename ... Args>
+        LD::QueryResult<bool(Args...)> Remove(const Key & key, LD::CT::TypeList<TL...> ,Args && ... arguments) noexcept
+        {
+
+            using RefedResult = LD::Ref<LD::QueryResult<bool(Args...)>>;
+            using ReferencedInstance = LD::Ref<BasicDatabase>;
+            LD::QueryResult<bool(Args...)> result = LD::MakeContext(LD::DatabaseError{},LD::Forward<Args>(arguments)...);
+            using Period = LD::TypeString<'.'>;
+            LD::For<sizeof...(TL)>([](
+                    auto I,
+                    LD::Ref<Backend> handle,
+                    RefedResult result,
+                    ReferencedInstance currentInstance,
+                    Args && ... arguments)
+            {
+                using Type = typename LD::TypeAtIndex<I,LD::CT::TypeList<TL...>>::type;
+                using ClassName = decltype(Type::GetClassNameTypeString());
+                using KeySet  = typename LD::tlist_erase_at<0,LD::CT::RebindList<typename Type::KeyTypeList,LD::CT::TypeList>>::type;
+                using MemberSet  = typename LD::tlist_erase_at<0,LD::CT::RebindList<typename Type::ValueTypeList,LD::CT::TypeList>>::type;
+
+                auto onFetch = [](const LD::Context<LD::StringView,LD::StringView,LD::StringView,LD::Ref<Backend>,RefedResult> & context) noexcept
+                {
+                    const LD::StringView & data = LD::Get(LD::Get<1>(context));
+                    const LD::StringView & className = LD::Get(LD::Get<2>(context));
+                    LD::UInteger comparisonResult = (data == className);
+                    return comparisonResult;
+                };
+
+
+                LD::QueryResult<LD::UInteger(LD::StringView,LD::StringView,LD::Ref<Backend>,RefedResult)> queryResult = handle->Fetch(
+                        LD::StringView {Key::data(),Key::size()},
+                        onFetch,
+                        LD::StringView{ClassName::data(),ClassName::size()},
+                        LD::Ref<Backend>{handle},
+                        RefedResult {result});
+
+
+
+                auto onDatabaseError = [](const LD::Context<LD::DatabaseError,LD::StringView ,LD::StringView,LD::Ref<Backend>,RefedResult> &) noexcept
+                {
+
+                    return true;
+                };
+
+                auto onTransaction = [](const LD::Context<LD::DatabaseTransactionResult,LD::UInteger,LD::StringView ,LD::StringView,LD::Ref<Backend>,RefedResult> & transaction) noexcept
+                {
+                    using ReflectiveTypeStructure =  LD::CT::GenerateNamedReflectiveTypeStructure<Key,Type>;
+
+                    LD::Ref<Backend> handle = LD::Get<4>(transaction);
+                    RefedResult  res = LD::Get<5>(transaction);
+                    using Keys = typename LD::CT::TypeListChannelView<0,2,ReflectiveTypeStructure>;
+                    using Types = typename LD::CT::TypeListChannelView<1,2,ReflectiveTypeStructure>;
+
+                    //iterate through all of the keys which were generate with LD::GenerateNamedReflectiveTypeStructure
+                    //delete keys directly which are of type Reflective or Primitive Types
+                    //provide a special case for arrays and iterable structures
+                    LD::For<0,ReflectiveTypeStructure::size()/2,1>([](
+                            auto I,
+                            LD::Ref<Backend> handle)
+                    {
+                        using CurrentKey = LD::CT::TypeAtIndex<I,Keys>;
+                        using CurrentType = LD::CT::TypeAtIndex<I,Types>;
+                        if constexpr(LD::IsPrimitive<CurrentType> || LD::IsReflectable<CurrentType>)
+                        {
+                            LD::QueryResult<bool()> currentRemovalRequestRes = handle->Remove(LD::StringView{CurrentKey::data(),CurrentKey::size()});
+
+                            auto onRemovalError = [](const LD::Context<LD::DatabaseError> & context) noexcept
+                            {
+
+                            };
+
+                            auto onTransaction = [](const LD::Context<LD::DatabaseTransactionResult,bool> & context) noexcept
+                            {
+
+                            };
+
+                            LD::Match(currentRemovalRequestRes,onRemovalError,onTransaction);
+                        }
+
+                        return true;
+                    },handle);
+                    //(*res) = LD::MakeContext(LD::DatabaseTransactionResult{},bool{});
+                    return false;
+                };
+                bool shouldContinueAttemptingToDelete = LD::Match(queryResult,onDatabaseError,onTransaction);
+
+                if (!shouldContinueAttemptingToDelete)//we've found the type that we wanted to delete
+                {
+                    (*result) = LD::MakeContext(LD::DatabaseTransactionResult{},bool{true},LD::Forward<Args>(arguments)...);
+                }
+                //we're writing to the data structre eg why it's write only.
+                return shouldContinueAttemptingToDelete;
+            },LD::Ref<Backend>{this->mBackend},RefedResult{result},ReferencedInstance{this},LD::Forward<Args>(arguments)...);
+
+            //todo at object traversal to remove all keys
+            return result;
+        }
+
+         */
+        template<typename Key, typename ... TL ,typename ... Args>
+        LD::QueryResult<LD::Variant<LD::Type<TL>...>(Args...)> Remove(const Key & key, LD::CT::TypeList<TL...> ,Args && ... arguments) noexcept
+        {
+
+            using RefedResult = LD::Ref<LD::QueryResult<LD::Variant<LD::Type<TL>...>(Args...)>>;
+            using ReferencedInstance = LD::Ref<BasicDatabase>;
+            //set a default value that simply assumes the database had an error
+            LD::QueryResult<LD::Variant<LD::Type<TL>...>(Args...)> result = LD::MakeContext(LD::DatabaseError{},LD::Forward<Args>(arguments)...);
+            //iterate through all the possible types we would like to consider in reference to the given key to remove from the backing data store
+            LD::For<sizeof...(TL)>([](
+                    auto I,
+                    LD::Ref<Backend> handle,
+                    RefedResult result,
+                    ReferencedInstance currentInstance,
+                    Args && ... arguments)
+                    {
+
+
+                        using CurrentType = typename LD::TypeAtIndex<I,LD::CT::TypeList<TL...>>::type;
+                        using ClassName = decltype(CurrentType::GetClassNameTypeString());
+                        using KeySet  = typename LD::tlist_erase_at<0,LD::CT::RebindList<typename CurrentType::KeyTypeList,LD::CT::TypeList>>::type;
+                        using MemberSet  = typename LD::tlist_erase_at<0,LD::CT::RebindList<typename CurrentType::ValueTypeList,LD::CT::TypeList>>::type;
+
+                        //compare the key's classname with the current classname we're looking at.
+                        auto onFetch = [](const LD::Context<LD::StringView,LD::StringView,LD::StringView,LD::Ref<Backend>,RefedResult> & context) noexcept
+                        {
+
+                            const LD::StringView & data = LD::Get(LD::Get<1>(context));
+                            const LD::StringView & className = LD::Get(LD::Get<2>(context));
+                            LD::UInteger comparisonResult = (data == className);
+                            return comparisonResult;
+                        };
+
+
+                        //determine if the key exists and if it does, does it refer to the class we're attempting to delete
+                        LD::QueryResult<LD::UInteger(LD::StringView,LD::StringView,LD::Ref<Backend>,RefedResult)> queryResult = handle->Fetch(
+                                LD::StringView {Key::data(),Key::size()},
+                                onFetch,
+                                LD::StringView{ClassName::data(),ClassName::size()},
+                                LD::Ref<Backend>{handle},
+                                RefedResult {result});
+
+
+
+                        auto onDatabaseError = [](const LD::Context<LD::DatabaseError,LD::StringView ,LD::StringView,LD::Ref<Backend>,RefedResult> &) noexcept
+                        {
+                            //todo - differentiate between an IO error, a not found error, and other errors
+                            //continue iterating if we don't find it
+                            return true;
+                        };
+
+                        auto onTransaction = [](const LD::Context<LD::DatabaseTransactionResult,LD::UInteger,LD::StringView ,LD::StringView,LD::Ref<Backend>,RefedResult> & transaction) noexcept
+                        {
+                            using ReflectiveTypeStructure =  LD::CT::GenerateNamedReflectiveTypeStructure<Key,CurrentType>;
+                            LD::Ref<Backend> handle = LD::Get<4>(transaction);
+                            RefedResult  res = LD::Get<5>(transaction);
+                            //we're treating the generate structure in the same way as a packed array
+                            //the names of each member (typestrings) are at even indices
+                            //the actual types that correspond to those names are at odd indices
+                            using Keys = typename LD::CT::TypeListChannelView<0,2,ReflectiveTypeStructure>;
+                            using Types = typename LD::CT::TypeListChannelView<1,2,ReflectiveTypeStructure>;
+                            //remove the key that refers to the classname
+                            handle->Remove(LD::StringView{Key::data(),Key::size()});
+                            //iterate through all of the keys which were generate with LD::GenerateNamedReflectiveTypeStructure
+                            //delete keys directly which are of type Reflective or Primitive Types
+                            //provide a special case for arrays and iterable structures
+                            LD::For<0,ReflectiveTypeStructure::size()/2,1>([](
+                                    auto I,
+                                    LD::Ref<Backend> handle)
+                            {
+                                using CurrentKey = LD::CT::TypeAtIndex<I,Keys>;
+                                using CurrentType = LD::CT::TypeAtIndex<I,Types>;
+                                if constexpr(LD::IsPrimitive<CurrentType> || LD::IsReflectable<CurrentType>)
+                                {
+                                    LD::QueryResult<bool()> currentRemovalRequestRes = handle->Remove(LD::StringView{CurrentKey::data(),CurrentKey::size()});
+
+                                    auto onRemovalError = [](const LD::Context<LD::DatabaseError> & context) noexcept
+                                    {
+
+                                    };
+                                    auto onTransaction = [](const LD::Context<LD::DatabaseTransactionResult,bool> & context) noexcept
+                                    {
+
+                                    };
+                                    LD::Match(currentRemovalRequestRes,onRemovalError,onTransaction);
+                                }
+                                return true;
+                                },handle);
+                            //stop iterating if we found the classname
+                            return false;
+                        };
+                        bool shouldContinueAttemptingToDelete = LD::Match(queryResult,onDatabaseError,onTransaction);
+                        if (!shouldContinueAttemptingToDelete)//we've found the type that we wanted to delete
+                        {
+
+
+                            (*result) = LD::MakeContext(LD::DatabaseTransactionResult{},LD::Type<CurrentType>{},LD::Forward<Args>(arguments)...);
+                        }
+                        //we're writing to the data structre eg why it's write only.
+                        return shouldContinueAttemptingToDelete;
+                    },LD::Ref<Backend>{this->mBackend},RefedResult{result},ReferencedInstance{this},LD::Forward<Args>(arguments)...);
+
+            //todo at object traversal to remove all keys
+            return result;
         }
     };
 }

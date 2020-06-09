@@ -787,4 +787,76 @@ namespace LD
         }
     }
 }
+
+namespace LD
+{
+    namespace Detail
+    {
+        template<typename T, typename Constant>
+        struct AppendConstantToTypeString;
+
+        template<char ... A, char ... ContantCharacters>
+        struct AppendConstantToTypeString<LD::TypeString<A...>,LD::TypeString<ContantCharacters...>>
+        {
+            using type = LD::tycat<LD::TypeString<ContantCharacters...>,LD::TypeString<'.'>,LD::TypeString<A...>>;
+        };
+    }
+    namespace CT
+    {
+        template<typename T, typename H>
+        using AppendConstantToTypeString = typename LD::Detail::AppendConstantToTypeString<T,H>::type;
+    }
+}
+
+
+namespace LD
+{
+    namespace Detail
+    {
+
+        template<typename Key,typename T, typename = void>
+        struct GenerateNamedReflectiveTypeStructure;
+        template<typename Key,typename T>
+        struct GenerateNamedReflectiveTypeStructure<Key,T,LD::Enable_If_T<
+                LD::Require<LD::IsReflectable<T>
+                >>>
+        {
+            using AllKeys  = typename LD::tlist_erase_at<0,LD::CT::RebindList<typename T::KeyTypeList,LD::CT::TypeList>>::type;
+
+            using AllMembers  = typename LD::tlist_erase_at<0,LD::CT::RebindList<typename T::ValueTypeList,LD::CT::TypeList>>::type;
+
+            using ConcatedKeys = LD::CT::TransformWithArgs<AllKeys,LD::CT::AppendConstantToTypeString,Key>;
+
+            using InterwovenMembers = LD::CT::InterleaveTypeLists<ConcatedKeys ,AllMembers >;
+
+            template<typename V>
+            using IsAReflectorFuzed = LD::Detail::IntegralConstant<bool,LD::IsReflectable<LD::CT::TypeAtIndex<1,V>>>;
+
+            using ReflectiveFuzedMembers = LD::CT::Filter<InterwovenMembers ,IsAReflectorFuzed>;
+
+            using DeCoupledReflectiveList = typename GenerateNamedReflectiveTypeStructure<Key,ReflectiveFuzedMembers>::type;
+
+            using ConcatedLists = LD::CT::Concatenate<InterwovenMembers ,DeCoupledReflectiveList>;
+            using type = LD::CT::Flatten<ConcatedLists>;
+        };
+
+        template<typename Key,typename ...A, typename ... B>
+        struct GenerateNamedReflectiveTypeStructure<Key,LD::CT::TypeList<LD::CT::TypeList<A,B>...>,LD::Enable_If_T<
+                LD::Require<(LD::IsReflectable<B> && ...)
+                >>>
+        {
+            using Period = LD::TypeString<'.'>;
+            //using buffer = LD::CT::Concatenate<LD::CT::TypeList<>,LD::CT::TypeList<LD::CT::TypeList<LD::CT::TypeList<A,typename ReflectiveKeyList<A,B>::type>...>>   >;
+            using buffer = LD::CT::TypeList<typename GenerateNamedReflectiveTypeStructure<A,B>::type...>;
+            using type =  buffer ;
+        };
+    }
+
+    namespace CT
+    {
+
+        template<typename TS, typename ReflectiveObject>
+        using GenerateNamedReflectiveTypeStructure = typename LD::Detail::GenerateNamedReflectiveTypeStructure<TS,ReflectiveObject>::type;
+    }
+}
 #endif // REFLECTABLE_REFLECTABLE_H_INCLUDED

@@ -315,6 +315,22 @@ TypeTraits/Decay.hpp
 ../IO/TypeTraits/Decay.hpp
 FetchRequest.h
 ../IO/FetchRequest.h
+TypeTraits/Type.h
+../IO/TypeTraits/Type.h
+
+../IO/DatabaseEntity.h
+TypeTraits/Detection.hpp
+../IO/TypeTraits/Detection.hpp
+Primitives/General/typestring.hpp
+../IO/Primitives/General/typestring.hpp
+Primitives/General/Immutable.hpp
+../IO/Primitives/General/Immutable.hpp
+Reflection/reflectable.hpp
+../IO/Reflection/reflectable.hpp
+Memory/ElementReference.h
+../IO/Memory/ElementReference.h
+FetchRequest.h
+../IO/FetchRequest.h
 
 ../IO/DatabaseOpenMode.h
 Primitives/General/mapboxvariant.hpp
@@ -351,6 +367,8 @@ DatabaseOpenMode.h
 ../IO/DatabaseOpenMode.h
 TypeTraits/IsConstructible.hpp
 ../IO/TypeTraits/IsConstructible.hpp
+FetchRequest.h
+../IO/FetchRequest.h
 
 ../IO/unqlite.h
 stdarg.h
@@ -838,6 +856,8 @@ Definitions/Common.hpp
 IntegralConstant.hpp
 ../TypeTraits/IntegralConstant.hpp
 
+../TypeTraits/Type.h
+
 ../TypeTraits/TypeList.hpp
 TypeTraits/Conditional.hpp
 ../TypeTraits/TypeTraits/Conditional.hpp
@@ -893,6 +913,8 @@ Algorithms/Calculus.h
 /home/phoenixflower/Documents/LandessDevCore/Examples/Algorithms/Calculus.h
 IO/FetchRequest.h
 /home/phoenixflower/Documents/LandessDevCore/Examples/IO/FetchRequest.h
+IO/DatabaseEntity.h
+/home/phoenixflower/Documents/LandessDevCore/Examples/IO/DatabaseEntity.h
 
 /home/phoenixflower/Documents/LandessDevCore/Examples/ReflectionExample.hpp
 
