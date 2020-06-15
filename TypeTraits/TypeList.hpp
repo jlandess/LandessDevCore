@@ -953,6 +953,12 @@ namespace LD
         static constexpr value_type value = type::value;
     };
 
+    namespace CT
+    {
+        template<typename T, typename TList>
+        constexpr LD::UInteger GetTypeCountInTypeList = LD::GetTypeCountInTypeList<T,TList>::value;
+    }
+
 //---------------------------------------------------------------------------
 /// Count types in the list of lists
 /// Do not use it as a standalone meta function; use tlist_deepcount_type instead

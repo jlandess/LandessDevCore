@@ -16,6 +16,7 @@
 #include "Primitives/General/Context.h"
 #include "Primitives/General/ContextualVariant.h"
 #include "Primitives/General/StringView.hpp"
+#include "Primitives/General/Immutable.hpp"
 
 namespace LD
 {
@@ -630,7 +631,11 @@ namespace LD
         {
 
             template<typename ReflectiveMemberTypes,typename K, typename T, typename F, typename H, typename Q, typename ... Args>
-            bool ReflectiveWalk(
+            LD::Enable_If_T<
+                    LD::Require<
+                            LD::Either<LD::IsTypeString<K>,LD::IsImmutableString<K>>
+            >
+            ,bool> ReflectiveWalk(
                     const K & key,
                     T && object,
                     F && onClass,
@@ -665,6 +670,7 @@ namespace LD
                     H && onMember,
                     const Q & mode,
                     const LD::UInteger & level,
+                    const K & key,
                     Args && ... arguments)
                     {
 
@@ -673,12 +679,13 @@ namespace LD
 
                         using MemberName = decltype(LD::Declval<T>()[LD::CompileTimeIndex<I>{}]);
 
-                        using MemberKey = LD::tycat<K,Period,MemberName>;
+                        //using MemberKey = LD::tycat<K,Period,MemberName>;
 
+                        auto memberKey = key+Period{}+MemberName{};
                         if constexpr(LD::IsReflectable<MemberType>)
                         {
                             return ReflectiveWalk<ReflectiveMemberTypes>(
-                            MemberKey{},
+                            memberKey,
                             object[MemberName{}],
                             LD::Forward<F>(onClass),
                             LD::Forward<H>(onMember),
@@ -705,7 +712,7 @@ namespace LD
 
                                     memberContext = LD::MakeContext(
                                             LD::ElementReference<MemberType>{reference},
-                                            LD::StringView {MemberKey::data(),MemberKey::size()},
+                                            LD::StringView {memberKey.Data(),memberKey.Size()},
                                             LD::Forward<Args>(arguments)...);
 
 
@@ -735,7 +742,7 @@ namespace LD
 
                                     memberContext = LD::MakeContext(
                                             LD::ElementReference<MemberType>{reference},
-                                            LD::StringView {MemberKey::data(),MemberKey::size()},
+                                            LD::StringView {memberKey.Data(),memberKey.Size()},
                                             LD::Forward<Args>(arguments)...);
 
 
@@ -750,7 +757,7 @@ namespace LD
 
                         return true;//control flow for compile time for loop
 
-                        },LD::Forward<T>(object),LD::Forward<F>(onClass),LD::Forward<H>(onMember),accessMode,level,LD::Forward<Args>(arguements)...);
+                        },LD::Forward<T>(object),LD::Forward<F>(onClass),LD::Forward<H>(onMember),accessMode,level,key,LD::Forward<Args>(arguements)...);
                 }
                 return true;
             }
@@ -763,7 +770,7 @@ namespace LD
         LD::Enable_If_T<LD::Require<
 
                 LD::IsReflectable<T>,
-                LD::IsTypeString<K>,
+                LD::Either<LD::IsTypeString<K>,LD::IsImmutableString<K>>,
                 LD::ConvertiblyCallable<H,bool(const LD::ContextualVariant<LD::CT::RebindList<Types,LD::Variant>(LD::StringView,Args...)> &)>::Value(),
                 LD::ConvertiblyCallable<F,bool(const LD::Context<LD::StringView,LD::StringView,Args...> &)>::Value(),
                 LD::Either<LD::IsSame<Q,LD::AccessReadOnly>,LD::IsSame<Q,LD::AccessWriteOnly>,LD::IsSame<Q,LD::AccessReadWrite>>

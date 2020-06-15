@@ -11,7 +11,7 @@
 #include "Primitives/General/mapboxvariantvisitor.h"
 namespace LD
 {
-    float atof(const char *s) noexcept
+    inline float atof(const char *s) noexcept
     {
         int f, m, sign, d=1;
         f = m = 0;
@@ -30,7 +30,7 @@ namespace LD
         return sign*(f + (float)m/d);
     }
 
-    double atod(const char *s) noexcept
+    inline double atod(const char *s) noexcept
     {
         long f, m, sign, d=1;
         f = m = 0;
@@ -54,7 +54,7 @@ namespace LD
     }
 
     // A simple atoi() function
-    int atoi (const char *s) noexcept
+    inline int atoi (const char *s) noexcept
     {
         long r = 0L, d;
         char sign = '+';
@@ -83,7 +83,7 @@ namespace LD
         return (sign == '+') ? (int) r : (int) (-r);
     }
 
-    unsigned  int atoui (const char *s) noexcept
+    inline unsigned  int atoui (const char *s) noexcept
     {
         unsigned long r = 0L, d;
         char sign = '+';
@@ -112,7 +112,7 @@ namespace LD
         return (sign == '+') ? (unsigned int) r : (unsigned int) (r);
     }
 
-    long atol (const char *s) noexcept
+    inline long atol (const char *s) noexcept
     {
         long r = 0L, d;
         char sign = '+';
@@ -141,7 +141,7 @@ namespace LD
         return (sign == '+') ? (long) r : (long) (-r);
     }
 
-    unsigned long atoul (const char *s) noexcept
+    inline unsigned long atoul (const char *s) noexcept
     {
         long r = 0L, d;
         char sign = '+';
@@ -170,7 +170,7 @@ namespace LD
         return (sign == '+') ? (long) r : (long) (r);
     }
 
-    long long int atoll (const char *s) noexcept
+    inline long long int atoll (const char *s) noexcept
     {
         long long int r = 0L, d;
         char sign = '+';
@@ -199,7 +199,7 @@ namespace LD
         return (sign == '+') ? (long long int) r : (long long int) (-r);
     }
 
-    unsigned long long int atoull (const char *s)
+    inline unsigned long long int atoull (const char *s)
     {
         unsigned long long int r = 0L, d;
         char sign = '+';

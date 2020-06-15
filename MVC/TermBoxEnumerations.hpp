@@ -4,7 +4,7 @@
 
 #ifndef LANDESSDEVCORE_TERMBOXENUMERATIONS_HPP
 #define LANDESSDEVCORE_TERMBOXENUMERATIONS_HPP
-namespace PDP
+namespace LD
 {
     enum TermBoxConsoleApplicationColorSpectrum{eCurrentSpectrum = 0,eNormalSpectrum = 1, e256Spectrum =2 , e216Spectrum =3 , eGrayScaleSpectrum = 4};
     enum TermBoxConsoleApplicationColorModifier{eTBold = 0x0100,eTBUnderline = 0x0200,eTBReverse = 0x0400,eTBNone = 0x0};

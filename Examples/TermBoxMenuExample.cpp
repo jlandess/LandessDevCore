@@ -12,6 +12,10 @@
 #include "MVC/TermBoxMenu.hpp"
 #include "MVC/TermBoxCursorNavigator.hpp"
 #include "Primitives/General/Observer.hpp"
+#include "IO/JsonDatabaseBackend.h"
+#include "IO/Database.hpp"
+#include "ReflectionDemoTypes.h"
+#include "MVC/TUI/TUITextInput.h"
 namespace LD
 {
     namespace TB
@@ -76,25 +80,6 @@ namespace LD
     {
         int TermBoxMenuExample()
         {
-            "alsjf;sadlfksd;aj"_sv;
-
-            /*
-            LD::Detail::Loop<15,0,1>::run([](auto Index)
-            {
-                std::cout << Index << std::endl;
-                return true;
-            });
-             */
-
-            auto input = LD::ToImmutableString(("abc"));
-            static constexpr auto pattern = ctll::fixed_string{"%[a-z]"};
-            LD::StaticArray<LD::UInteger ,20> delimeterIndices = {20};
-            LD::UInteger amountOfDelimeters;
-            for (const auto & match: ctre::range<pattern>(std::string_view {input.Data()}))
-            {
-                delimeterIndices[amountOfDelimeters] = (match.get_end_position()-input.Data())-1;
-                ++amountOfDelimeters;
-            }
             auto cursorLeftPredicate = [](const LD::ApplicationExecutionEvent<int,double,LD::TermBoxRenderContext,LD::Timer> & context)->LD::TB::CursorLeftResult
             {
                 return LD::TB::CursorLeftResult{(LD::Get<LD::TermBoxRenderContext>(context)->GetEvent().key == TB_KEY_ARROW_LEFT)};
@@ -116,8 +101,7 @@ namespace LD
 
             auto cursorNavigator = LD::TB::MakeCursorNavigator<int,double,LD::TermBoxRenderContext,LD::Timer>(cursorLeftPredicate,cursorRightPredicate,cursorDownPredicate,cursorUpPredicate);
             DummyDelegate<int,double,LD::TermBoxRenderContext,LD::Timer> del;
-            LD::ImmutableString<5> firstMenuItem = "first";
-            LD::ImmutableString<6> secondMenuItem = "second";
+
 
             LD::Detail::tVec2<LD::UInteger> menuOrigin;
             auto menuPredicate = [](const LD::ApplicationExecutionEvent<int,double,LD::TermBoxRenderContext,LD::Timer> & applicationExecutionEvent)->bool
@@ -138,68 +122,116 @@ namespace LD
                 observer-=1;
             };
 
-
-
             LD::TermBoxApplication<int,double,LD::TermBoxRenderContext,LD::Timer> termBoxApplication;
 
             //auto menu = LD::TB::MakeImmutableMenu<int,double,LD::TermBoxRenderContext,LD::Timer>(menuPredicate,LD::Tie(firstMenuOptionAction,secondMenuOptionAction),{0,7},firstMenuItem,secondMenuItem);
 
-            auto menu = LD::TB::MakeImmutableMenu(termBoxApplication,menuPredicate,LD::Tie(firstMenuOptionAction,secondMenuOptionAction),{0,7},firstMenuItem,secondMenuItem);
+            LD::ImmutableString<5> firstMenuItem = "first";
+            LD::ImmutableString<6> secondMenuItem = "second";
 
+            auto menu = LD::TB::MakeImmutableMenu(
+                    termBoxApplication,
+                    menuPredicate,LD::Tie(firstMenuOptionAction,secondMenuOptionAction),
+                    {0,7},
+                    firstMenuItem,
+                    secondMenuItem);
+
+
+            nlohmann::json currentJsonBackingStore;
+            LD::JsonBackend jsonBackend{currentJsonBackingStore};
+
+            LD::BasicKeyedDatabase<LD::JsonBackend> jsonDatabase{jsonBackend};
+
+            LD::Square square;
+            square.Length() = 99;
+            jsonDatabase.Insert("key"_ts,square);
+            LD::Pyramid pyramid;
+            pyramid.Side().Height() = 23;
+            pyramid.Side().Base() = 721;
+            pyramid.Base().Length() = 42;
+            jsonDatabase.Insert("pyramidKey"_ts,pyramid);
             termBoxApplication.OnApplicationStart([&](const LD::ApplicaitonStartedEvent<int,double,LD::TermBoxRenderContext,LD::Timer> & applicaitonStartedEvent)
-                                                  {
-                                                      LD::Get<LD::TermBoxRenderContext>(applicaitonStartedEvent)->EnableMouse();
-                                                      return LD::ApplicationRunningPredicate{};
-                                                  });
+            {
+
+                LD::Get<LD::TermBoxRenderContext>(applicaitonStartedEvent)->EnableMouse();
+                return LD::ApplicationRunningPredicate{};
+            });
 
             termBoxApplication.OnPeriodRequest([](const LD::ApplicationPeriodEvent<int,double,LD::TermBoxRenderContext,LD::Timer> & applicationPeriodRequest)
-                                               {
-                                                   return PDP::Second<LD::Float >(1.0/60.0);
-                                               });
+            {
+                return PDP::Second<LD::Float >(1.0/60.0);
+            });
 
             termBoxApplication.OnFrameStarted([](const LD::ApplicationFrameStartedEvent<int,double,LD::TermBoxRenderContext,LD::Timer> & applicationFrameStartedEvent)
-                                              {
-                                                  return LD::ApplicationQuittingPredicate{LD::Get<LD::Timer>(applicationFrameStartedEvent)->GetElapsedTimeInSec() > 10};
-                                              });
+            {
+                return LD::ApplicationQuittingPredicate{LD::Get<LD::Timer>(applicationFrameStartedEvent)->GetElapsedTimeInSec() > 10};
+            });
 
+            LD::ImmutableString<11> defaultString;
+            LD::TUI::BasicImmutableTextInput<12> input{{0,-12},defaultString};
             termBoxApplication.OnExecution([&](const LD::ApplicationExecutionEvent<int,double,LD::TermBoxRenderContext,LD::Timer> & applicationExecutionEvent)
-                                           {
-                                               menu(applicationExecutionEvent);
-                                               LD::ElementReference<LD::TermBoxRenderContext> context = LD::Get<LD::TermBoxRenderContext>(applicationExecutionEvent);
-                                               const LD::UInteger isMouseEnabled = (LD::Get<LD::TermBoxRenderContext>(applicationExecutionEvent)->IsMouseEnabled());
+            {
 
-                                               LD::ContextObserver<int> observer = LD::Get<int>(applicationExecutionEvent);
-
-                                               LD::Get<LD::TermBoxRenderContext>(applicationExecutionEvent)->Render(LD::Get<LD::Timer>(applicationExecutionEvent)->GetElapsedTimeInSec(),{9,8+observer.Value()},1);
-                                               del(applicationExecutionEvent);
-                                               cursorNavigator(applicationExecutionEvent);
-
-                                               LD::Get<LD::TermBoxRenderContext>(applicationExecutionEvent)->Render("origin",{0,0});
-                                               LD::Get<LD::TermBoxRenderContext>(applicationExecutionEvent)->Render(LD::Get<LD::Timer>(applicationExecutionEvent)->GetElapsedTimeInSec(),{0,5},3);
+                menu(applicationExecutionEvent);
+                LD::ElementReference<LD::TermBoxRenderContext> context = LD::Get<LD::TermBoxRenderContext>(applicationExecutionEvent);
 
 
-                                               auto stringifiedNumber = LD::ToImmutableString(99.7214);
+                context->Event();
+
+                pyramid.Side().Base() = context->GetEvent().ch;
+                pyramid.Side().Height() = tb_width();
+                jsonDatabase.Insert("pyramidKey"_ts,pyramid);
+                const LD::UInteger isMouseEnabled = (LD::Get<LD::TermBoxRenderContext>(applicationExecutionEvent)->IsMouseEnabled());
+
+                LD::ContextObserver<int> observer = LD::Get<int>(applicationExecutionEvent);
+
+                const int & amount = LD::Get(LD::Get<int>(applicationExecutionEvent));
+
+                LD::Get<LD::TermBoxRenderContext>(applicationExecutionEvent)->Render(LD::Get<LD::Timer>(applicationExecutionEvent)->GetElapsedTimeInSec(),{9,8+observer.Value()},1);
+
+                del(applicationExecutionEvent);
+
+                cursorNavigator(applicationExecutionEvent);
+
+                LD::Get<LD::TermBoxRenderContext>(applicationExecutionEvent)->Render("origin",{0,0});
+
+                LD::Get<LD::TermBoxRenderContext>(applicationExecutionEvent)->Render(LD::Get<LD::Timer>(applicationExecutionEvent)->GetElapsedTimeInSec(),{0,5},3);
+
+                auto stringifiedNumber = LD::ToImmutableString(99.7214);
                                                //stringifiedNumber.TrimTrailing('0');
 
 
 
-                                               LD::FormattedFloatingPoint<LD::Float > currentNumber{99.7214,2};
 
-                                               LD::UInteger size = stringifiedNumber.GetSize();
-                                               LD::Get<LD::TermBoxRenderContext>(applicationExecutionEvent)->RenderWithFormat(LD::ToImmutableString("{} uWu {}abc{}abc{}abc{}{} uWu {}"),{0,-1},stringifiedNumber,"rawr"_sv);
+                auto bar = LD::ImmutableString<12>{'_'};
+                auto edge = LD::ImmutableString<1>{'|'};
+                //LD::Get<LD::TermBoxRenderContext>(applicationExecutionEvent)->RenderWithFormat(LD::ToImmutableString("{}"),{1,-12},bar);
+                //LD::Get<LD::TermBoxRenderContext>(applicationExecutionEvent)->RenderWithFormat(LD::ToImmutableString("{}"),{0,-13},edge);
+                //LD::Get<LD::TermBoxRenderContext>(applicationExecutionEvent)->RenderWithFormat(LD::ToImmutableString("{}"),{1,-13},bar+edge);
+                //LD::Get<LD::TermBoxRenderContext>(applicationExecutionEvent)->RenderWithFormat(LD::ToImmutableString("{}"),{sizeof("________________"),-13},LD::StringView{"|"});
 
-                                               LD::Get<LD::TermBoxRenderContext>(applicationExecutionEvent)->Render(currentNumber,{0,-2});
-                                           });
+                input(*context);
+                LD::FormattedFloatingPoint<LD::Float > currentNumber{99.7214,2};
+
+                LD::UInteger size = stringifiedNumber.GetSize();
+                //LD::Get<LD::TermBoxRenderContext>(applicationExecutionEvent)->RenderWithFormat(LD::ToImmutableString("|||||||||||||||||||||||||||||||"),{0,-5},stringifiedNumber,"rawr"_sv);
+                LD::Get<LD::TermBoxRenderContext>(applicationExecutionEvent)->RenderWithFormat(LD::ToImmutableString("{} uWu {}"),{0,-1+observer.Value()},stringifiedNumber,LD::StringView {currentJsonBackingStore.dump(2)});
+
+
+
+                //LD::Get<LD::TermBoxRenderContext>(applicationExecutionEvent)->Render(currentNumber,{0,-2});
+
+            });
 
             termBoxApplication.OnFrameEnded([](const LD::ApplicationFrameEndedEvent<int,double,LD::TermBoxRenderContext,LD::Timer> & applicationFrameEndedEvent)
-                                            {
+            {
 
-                                            });
+            });
 
             termBoxApplication.OnQuit([](const LD::ApplicationQuittingEvent<int,double,LD::TermBoxRenderContext,LD::Timer> & applicationQuittingEvent)
-                                      {
+            {
 
-                                      });
+            });
 
 
             //_mm_lfence();

@@ -30,6 +30,7 @@
 #include "RenderableConcept.hpp"
 #include "Renderable.hpp"
 #include "Primitives/General/StringView.hpp"
+#include "Primitives/General/ContextualVariant.h"
 namespace LD
 {
 
@@ -45,9 +46,9 @@ namespace LD
     private:
         LD::Detail::tVec2<LD::UInteger> Cursor;
         LD::UInteger LineWidth;
-        PDP::TermBoxConsoleApplicationColorSpectrum CurrentSpectrum;
-        PDP::TermBoxConsoleApplicationColorModifier CurrentForegroundModifier;
-        PDP::TermBoxConsoleApplicationColorModifier CurrentBackgroundModifier;
+        LD::TermBoxConsoleApplicationColorSpectrum CurrentSpectrum;
+        LD::TermBoxConsoleApplicationColorModifier CurrentForegroundModifier;
+        LD::TermBoxConsoleApplicationColorModifier CurrentBackgroundModifier;
         unsigned short CurrentForegroundColor;
         unsigned short CurrentBackgroundColor;
     public:
@@ -56,27 +57,27 @@ namespace LD
 
         LD::Detail::tVec2<LD::UInteger> & GetCursor() {return this->Cursor;}
         const LD::Detail::tVec2<LD::UInteger> & GetCursor() const {return this->Cursor;}
-        void SetCurrentSpectrum(const PDP::TermBoxConsoleApplicationColorSpectrum & spectrum);
+        void SetCurrentSpectrum(const LD::TermBoxConsoleApplicationColorSpectrum & spectrum);
         
         
-        void SetForegroundCurrentModifier(const PDP::TermBoxConsoleApplicationColorModifier & modifier);
+        void SetForegroundCurrentModifier(const LD::TermBoxConsoleApplicationColorModifier & modifier);
         void SetForegroundColor(const unsigned short & defaultColor);
         
         
-        void SetBackgroundCurrentModifier(const PDP::TermBoxConsoleApplicationColorModifier & modifier);
+        void SetBackgroundCurrentModifier(const LD::TermBoxConsoleApplicationColorModifier & modifier);
         void SetBackgroundColor(const unsigned short & defaultColor);
         
-        const PDP::TermBoxConsoleApplicationColorSpectrum & GetSpectrum() const;
+        const LD::TermBoxConsoleApplicationColorSpectrum & GetSpectrum() const;
         
         
-        const PDP::TermBoxConsoleApplicationColorModifier & GetForegroundModifier() const;
+        const LD::TermBoxConsoleApplicationColorModifier & GetForegroundModifier() const;
         const unsigned short & GetForegroundColor() const;
         
-        const PDP::TermBoxConsoleApplicationColorModifier & GetBackgroundModifier() const;
+        const LD::TermBoxConsoleApplicationColorModifier & GetBackgroundModifier() const;
         const unsigned short & GetBackgroundColor() const;
         
         
-        void Clear(const unsigned short & foregroundColor = PDP::eTBGreen, const unsigned short & backgroundColor = PDP::eTBDefault, const PDP::TermBoxConsoleApplicationColorModifier & foregroundModifier = PDP::eTBNone, const PDP::TermBoxConsoleApplicationColorModifier & backgroundModifier = PDP::eTBNone, const PDP::TermBoxConsoleApplicationColorSpectrum & spectrum = PDP::eNormalSpectrum);
+        void Clear(const unsigned short & foregroundColor = LD::eTBGreen, const unsigned short & backgroundColor = LD::eTBDefault, const LD::TermBoxConsoleApplicationColorModifier & foregroundModifier = LD::eTBNone, const LD::TermBoxConsoleApplicationColorModifier & backgroundModifier = LD::eTBNone, const LD::TermBoxConsoleApplicationColorSpectrum & spectrum = LD::eNormalSpectrum);
         
         
         RenderingContext<TermBox> & Write(const wchar_t * characters, const LD::Detail::tVec2<LD::UInteger> & translation);
@@ -98,11 +99,11 @@ namespace LD
         uint16_t KeyValue; /* one of the TB_KEY_* constants */
         uint32_t CharacterValue; /* unicode character */
     public:
-        TermBoxKeyboardEvent(const uint8_t & mod, const uint16_t & key,const uint32_t & character):CharacterValue(character),KeyValue(key),ModifierValue(mod){}
+        inline explicit constexpr TermBoxKeyboardEvent(const uint8_t & mod, const uint16_t & key,const uint32_t & character) noexcept :CharacterValue(character),KeyValue(key),ModifierValue(mod){}
         
-        const uint8_t & Modifier() const {return this->ModifierValue;}
-        const uint16_t & Key() const {return this->KeyValue;}
-        const uint32_t & Character() const {return this->CharacterValue;}
+        constexpr const uint8_t & Modifier() const noexcept {return this->ModifierValue;}
+        constexpr const uint16_t & Key() const noexcept {return this->KeyValue;}
+        constexpr const uint32_t & Character() const noexcept {return this->CharacterValue;}
     };
     
     
@@ -112,25 +113,26 @@ namespace LD
         int32_t XValue;
         int32_t YValue;
     public:
-        
-        
-        TermBoxMouseEvent(const int32_t & x, const int32_t & y):XValue(x),YValue(y){}
-        const int32_t & X() const {return this->XValue;}
 
-        const int32_t & Y() const {return this->YValue;}
+        inline explicit constexpr TermBoxMouseEvent(const int32_t & x, const int32_t & y) noexcept :XValue(x),YValue(y) {}
+        constexpr const int32_t & X() const noexcept {return this->XValue;}
+
+        constexpr const int32_t & Y() const noexcept {return this->YValue;}
     };
     
     
     class TermBoxResizingEvent
     {
     private:
-        int32_t w;
-        int32_t h;
+        int32_t mWidth;
+        int32_t mHeight;
     public:
+
+        inline explicit constexpr TermBoxResizingEvent(const int32_t & width, const int32_t & height) noexcept :mWidth(width),mHeight(height) {}
+
+        constexpr const int32_t & GetWidth() const noexcept {return this->mWidth;}
         
-        const int32_t & GetWidth() const {return this->w;}
-        
-        const int32_t & GetHeight() const {return this->h;}
+        constexpr const int32_t & GetHeight() const noexcept {return this->mHeight;}
         
         
     };
@@ -195,9 +197,9 @@ namespace LD
         LD::Detail::tVec2<LD::Integer> Cursor;
         LD::Detail::tVec2<LD::Integer> mMouse;
         LD::UInteger LineWidth;
-        PDP::TermBoxConsoleApplicationColorSpectrum CurrentSpectrum;
-        PDP::TermBoxConsoleApplicationColorModifier CurrentForegroundModifier;
-        PDP::TermBoxConsoleApplicationColorModifier CurrentBackgroundModifier;
+        LD::TermBoxConsoleApplicationColorSpectrum CurrentSpectrum;
+        LD::TermBoxConsoleApplicationColorModifier CurrentForegroundModifier;
+        LD::TermBoxConsoleApplicationColorModifier CurrentBackgroundModifier;
         unsigned short CurrentForegroundColor;
         unsigned short CurrentBackgroundColor;
         unsigned short mMouseEnabled;
@@ -232,25 +234,64 @@ namespace LD
         void DisableMouse() {this->mMouseEnabled = false;}
         bool IsMouseEnabled() const {return this->mMouseEnabled;}
         const tb_event & GetEvent() const{return this->CurrentEvent;}
+
+        template<typename ... Args,
+                typename Ret = LD::ContextualVariant<LD::Variant<LD::TermBoxEmptyEvent,LD::TermBoxResizingEvent,LD::TermBoxMouseEvent,LD::TermBoxKeyboardEvent>(Args...)>>
+        constexpr Ret Event(Args && ... arguements) const noexcept
+        {
+            //An event, single interaction from the user. The 'mod' and 'ch' fields are
+            // valid if 'type' is TB_EVENT_KEY. The 'w' and 'h' fields are valid if 'type'
+//is TB_EVENT_RESIZE. The 'x' and 'y' fields are valid if 'type' is
+            // TB_EVENT_MOUSE. The 'key' field is valid if 'type' is either TB_EVENT_KEY
+            // or TB_EVENT_MOUSE. The fields 'key' and 'ch' are mutually exclusive; only
+            // one of them can be non-zero at a time.
+            Ret eventable[4];
+
+            eventable[0] = LD::MakeContext(LD::TermBoxEmptyEvent{},LD::Forward<Args>(arguements)...);
+            eventable[1] = LD::MakeContext(LD::TermBoxMouseEvent{this->GetEvent().x,this->GetEvent().y},LD::Forward<Args>(arguements)...);
+            eventable[2] = LD::MakeContext(LD::TermBoxKeyboardEvent{this->GetEvent().mod,this->GetEvent().key,this->GetEvent().ch},LD::Forward<Args>(arguements)...);
+            eventable[3] = LD::MakeContext(LD::TermBoxResizingEvent{this->GetEvent().w,this->GetEvent().h},LD::Forward<Args>(arguements)...);
+
+
+            if(this->GetEvent().type == TB_EVENT_MOUSE && (this->GetEvent().ch == 0))
+            {
+                return eventable[1];
+
+            }else if(this->GetEvent().type == TB_EVENT_KEY)
+            {
+                return eventable[2];
+
+            }else if(this->GetEvent().type == TB_EVENT_RESIZE)
+            {
+
+                return eventable[3];
+            }
+            //LD::UInteger sum = (this->GetEvent().type == TB_EVENT_MOUSE)*1 + (this->GetEvent().type == TB_EVENT_RESIZE)*2 + (this->GetEvent().type == TB_EVENT_RESIZE)+3;
+            //LD::UInteger sum = (this->GetEvent().type == TB_EVENT_MOUSE)*1 + (this->GetEvent().type == TB_EVENT_KEY)*2 + (this->GetEvent().type == TB_EVENT_RESIZE)+3;
+            //return eventable[2];
+            return {};
+        }
+
+
         //tb_event & GetEvent() {return this->CurrentEvent;}
         LD::Detail::tVec2<LD::Integer > & GetCursor() {return this->Cursor;}
         const LD::Detail::tVec2<LD::Integer > & GetCursor() const {return this->Cursor;}
         LD::Detail::tVec2<LD::Integer > & GetMouse() {return this->mMouse;}
         const LD::Detail::tVec2<LD::Integer > & GetMouse() const {return this->mMouse;}
-        void SetCurrentSpectrum(const PDP::TermBoxConsoleApplicationColorSpectrum & spectrum);
-        void SetForegroundCurrentModifier(const PDP::TermBoxConsoleApplicationColorModifier & modifier);
+        void SetCurrentSpectrum(const LD::TermBoxConsoleApplicationColorSpectrum & spectrum);
+        void SetForegroundCurrentModifier(const LD::TermBoxConsoleApplicationColorModifier & modifier);
         void SetForegroundColor(const unsigned short & defaultColor);
-        void SetBackgroundCurrentModifier(const PDP::TermBoxConsoleApplicationColorModifier & modifier);
+        void SetBackgroundCurrentModifier(const LD::TermBoxConsoleApplicationColorModifier & modifier);
         void SetBackgroundColor(const unsigned short & defaultColor);
-        const PDP::TermBoxConsoleApplicationColorSpectrum & GetSpectrum() const;
-        const PDP::TermBoxConsoleApplicationColorModifier & GetForegroundModifier() const;
+        const LD::TermBoxConsoleApplicationColorSpectrum & GetSpectrum() const;
+        const LD::TermBoxConsoleApplicationColorModifier & GetForegroundModifier() const;
         const unsigned short & GetForegroundColor() const;
-        const PDP::TermBoxConsoleApplicationColorModifier & GetBackgroundModifier() const;
+        const LD::TermBoxConsoleApplicationColorModifier & GetBackgroundModifier() const;
         const unsigned short & GetBackgroundColor() const;
         /**
          CurrentForegroundModifier(eTBNone),CurrentForegroundColor(eTBGreen),CurrentSpectrum(eNormalSpectrum),LineWidth(tb_width()),CurrentBackgroundColor(eTBDefault),CurrentBackgroundModifier(eTBNone)
          */
-        void Clear(const unsigned short & foregroundColor = PDP::eTBGreen, const unsigned short & backgroundColor = PDP::eTBDefault, const PDP::TermBoxConsoleApplicationColorModifier & foregroundModifier = PDP::eTBNone, const PDP::TermBoxConsoleApplicationColorModifier & backgroundModifier = PDP::eTBNone, const PDP::TermBoxConsoleApplicationColorSpectrum & spectrum = PDP::eNormalSpectrum);
+        void Clear(const unsigned short & foregroundColor = LD::eTBGreen, const unsigned short & backgroundColor = LD::eTBDefault, const LD::TermBoxConsoleApplicationColorModifier & foregroundModifier = LD::eTBNone, const LD::TermBoxConsoleApplicationColorModifier & backgroundModifier = LD::eTBNone, const LD::TermBoxConsoleApplicationColorSpectrum & spectrum = LD::eNormalSpectrum);
         template<LD::UInteger StringSize>
         const TermBoxRenderContext& Render(const char (&lit)[StringSize], const LD::Detail::tVec2<LD::Integer> & translation) const
         {
@@ -300,10 +341,27 @@ namespace LD
 
         constexpr const TermBoxRenderContext & Render(const LD::StringView & view, const LD::Detail::tVec2<LD::Integer> & translation) const noexcept
         {
+
+            LD::Integer verticalOffset = {};
+            LD::UInteger horizontalOffset = {};
             for(LD::UInteger n = 0;n<view.size();++n)
             {
                 const char & currentCharacter = view[n];
-                this->Write(currentCharacter,translation+LD::Detail::tVec2<LD::Integer>{n,0});
+                if(currentCharacter != '\t' && currentCharacter != '\n')
+                {
+                    this->Write(currentCharacter,translation+LD::Detail::tVec2<LD::Integer>{horizontalOffset,verticalOffset});
+                    ++horizontalOffset;
+                }else if(currentCharacter == '\t')
+                {
+                    horizontalOffset+=5;
+
+                }else if(currentCharacter == '\n')
+                {
+                    --verticalOffset;
+                    horizontalOffset = {};
+                }
+
+
             }
             return (*this);
         }

@@ -132,5 +132,46 @@ add_executable(LandessDevCore
         Algorithms/StringAsNumber.h
         Primitives/General/Pair.h
         Async/Thread.cpp
-        Async/ThreadAffinity.h Primitives/General/Context.h Primitives/General/ContextualVariant.h IO/UnqliteDatabaseBackend.h IO/DatabaseOperationResult.h IO/DatabaseOpenMode.h Primitives/General/Span.hpp TypeTraits/IsIterable.h Primitives/General/GenericIterator.h TypeTraits/Iterable.h TypeTraits/IsImmutable.h TypeTraits/Resizeable.h TypeTraits/StaticallySized.h Algorithms/Calculus.h Geometry/Circle.h Geometry/Square.h Geometry/Box.h Geometry/Cube.h Geometry/Plane.h Geometry/Sphere.h Geometry/Ray.h Geometry/Particle.h Algorithms/NewtonAppleDelanauy.h Geometry/Rectangle.h Geometry/Capsule.h Geometry/UniformBSpline.h Geometry/BezierCurve.h Geometry/Line.h Geometry/LineSegment.h Algorithms/KarnaughMap.h IO/FetchRequest.h IO/InsertionRequest.h IO/CachedDatabase.h IO/DatabaseEntity.h TypeTraits/Type.h)
+        Async/ThreadAffinity.h
+        Primitives/General/Context.h
+        Primitives/General/ContextualVariant.h
+        IO/UnqliteDatabaseBackend.h
+        IO/DatabaseOperationResult.h
+        IO/DatabaseOpenMode.h
+        Primitives/General/Span.hpp
+        TypeTraits/IsIterable.h
+        Primitives/General/GenericIterator.h
+        TypeTraits/Iterable.h TypeTraits/IsImmutable.h
+        TypeTraits/Resizeable.h
+        TypeTraits/StaticallySized.h
+        Algorithms/Calculus.h
+        Geometry/Circle.h
+        Geometry/Square.h
+        Geometry/Box.h
+        Geometry/Cube.h
+        Geometry/Plane.h
+        Geometry/Sphere.h
+        Geometry/Ray.h
+        Geometry/Particle.h
+        Algorithms/NewtonAppleDelanauy.h
+        Geometry/Rectangle.h
+        Geometry/Capsule.h
+        Geometry/UniformBSpline.h
+        Geometry/BezierCurve.h
+        Geometry/Line.h
+        Geometry/LineSegment.h
+        Algorithms/KarnaughMap.h
+        IO/FetchRequest.h
+        IO/InsertionRequest.h
+        IO/CachedDatabase.h
+        IO/DatabaseEntity.h
+        TypeTraits/Type.h
+        IO/JsonDatabaseBackend.h
+        IO/TieredDatabase.h
+        Examples/CalculusExample.hpp
+        Examples/CalculusExample.cpp
+        Examples/MultithreadingExample.hpp
+        Examples/MultithreadingExample.cpp
+        MVC/TUI/TUITextLabel.h MVC/TUI/TUITextInput.h MVC/Mouse.h MVC/Cusor.h)
 target_link_libraries(LandessDevCore pthread)
+target_link_libraries(LandessDevCore ncurses)

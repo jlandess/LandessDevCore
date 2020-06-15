@@ -10,9 +10,10 @@
 #include "IO/DatabaseOperationResult.h"
 #include "Primitives/General/Span.hpp"
 #include "IO/UnqliteDatabaseBackend.h"
-#include "Algorithms/Calculus.h"
 #include "IO/FetchRequest.h"
 #include "IO/DatabaseEntity.h"
+#include "IO/JsonDatabaseBackend.h"
+#include "Chrono/Timer.h"
 namespace LD
 {
     namespace Example
@@ -21,16 +22,14 @@ namespace LD
         void ReflectionExample()
         {
 
-
-            //LD::CT::Prepend
+            LD::Timer currentTimer;
+            currentTimer.Start();
 
             using ReflectiveTypeStructure =  LD::CT::GenerateNamedReflectiveTypeStructure<decltype("meep"_ts),LD::Pyramid>;
-
 
             using Keys = typename LD::CT::TypeListChannelView<0,2,ReflectiveTypeStructure>;
             using Types = typename LD::CT::TypeListChannelView<1,2,ReflectiveTypeStructure>;
 
-            //LD::CT::DebugTemplate<OnlyKeys>{};
             LD::For<0,ReflectiveTypeStructure::size()/2,1>([](auto I)
             {
                 using Key = LD::CT::TypeAtIndex<I,Keys>;
@@ -39,41 +38,46 @@ namespace LD
                 {
                     std::cout << LD::CT::TypeAtIndex<I,Keys>::data() << "  : " << typeid(Type).name() <<  std::endl;
                 }
-
                 return true;
             });
 
-            LD::Entity<decltype("key"_ts),LD::Square,LD::BasicDatabase<LD::UnQliteBackend<char>>> entity;
+            LD::Entity<decltype("key"_ts),LD::Square,LD::BasicKeyedDatabase<LD::UnQliteBackend<char>>> entity;
 
-            std::cout << LD::RectangularIntegrate([](const LD::Float & x){return x*x;},1.0,5.0,LD::MidPointRule{},0.001) << std::endl;
 
-            std::cout << LD::TrapezoidIntegrate([](const LD::Float & x){return x*x;},1.0,5.0,0.0001) << std::endl;
-
-            std::cout << LD::SimpsonIntegrate([](const LD::Float & x){return x*x;},1.0,5.0,0.0001) << std::endl;
-
-            std::cout << LD::QuadratureIntegrate([](const LD::Float & x){return x*x;},1.0,5.0,0.0001) << std::endl;
-
-            std::cout << LD::RungaKutta4Integrate([](const LD::Float & x, const LD::Float & y){return x*x;},1.0,5.0,0.0001) << std::endl;
 
             LD::UnQliteBackend<char> currentBackend{LD::StringView {"backend.db"},OpenAndCreateIfNotExists{}};
-            LD::BasicDatabase<LD::UnQliteBackend<char>> database{currentBackend};
 
 
+            LD::BasicKeyedDatabase<LD::UnQliteBackend<char>> database{currentBackend};
 
+            nlohmann::json currentJsonBackingStore;
+            LD::JsonBackend jsonBackend{currentJsonBackingStore};
+
+            LD::BasicKeyedDatabase<LD::JsonBackend> jsonDatabase{jsonBackend};
 
             Square currentSuqre;
             currentSuqre["Length"_ts] = 7;
 
-            LD::Get<0>(currentSuqre);
+            auto jsonDBInsertBegin = currentTimer.Time();
+            jsonDatabase.Insert("key"_ts,currentSuqre);
+            auto jsonDBInsertEnd = currentTimer.Time();
+            std::cout << "Json Insert of a Square took : " << ((jsonDBInsertEnd-jsonDBInsertBegin)/1.0_us) << " micrseconds " << std::endl;
 
             Pyramid currentPyramid;
 
+            jsonDBInsertBegin = currentTimer.Time();
+            jsonDatabase.Insert("pyrakey"_ts,currentPyramid);
+            jsonDBInsertEnd = currentTimer.Time();
+            std::cout << "Json Insert of a Pyramid took : " << ((jsonDBInsertEnd-jsonDBInsertBegin)/1.0_us) << " micrseconds " << std::endl;
+            std::cout << currentJsonBackingStore.dump(2) << std::endl;
+
             currentPyramid.Side() = LD::Triangle{37,521};
             currentPyramid.Base() = LD::Square{9723};
-            //int abc = 93;
 
+            auto unqliteInsertAndCommitBegin = currentTimer.Time();
             LD::QueryResult<LD::Pyramid &(int)> insertQueryRes = database.InsertAndCommit("key"_ts,currentPyramid,int{232});
-
+            auto unqliteInsertAndCommitEnd = currentTimer.Time();
+            std::cout << "Unqlite Insert of a Pyramid took : " << ((unqliteInsertAndCommitEnd-unqliteInsertAndCommitBegin)/1.0_us) << " micrseconds " << std::endl;
 
             auto onInsertionFailure = [](const LD::Context<LD::DatabaseError,int> & context)
             {
@@ -87,7 +91,10 @@ namespace LD
             };
             LD::Match(insertQueryRes,onInsertionFailure,onInsertOfPyramid);
 
+            auto unqliteFetchBegin = currentTimer.Time();
             LD::QueryResult<LD::Variant<LD::Pyramid>()> fetchResult =  database.Fetch("key"_ts,LD::CT::TypeList<Pyramid>{});
+            auto unqliteFetchEnd = currentTimer.Time();
+            std::cout << "Unqlite Fetch of a Pyramid took : " << ((unqliteFetchEnd-unqliteFetchBegin)/1.0_us) << " micrseconds " << std::endl;
             //when a fetch request fails we simply get a context with the database error and the arguements passed in Fetch to be used in the anymous function
             auto onFetchError = [](const LD::Context<LD::DatabaseError> & context )
             {
@@ -112,7 +119,10 @@ namespace LD
 
             //LD::QueryResult<bool()> deletionQueryResult = database.Remove("key"_ts,LD::CT::TypeList<LD::Pyramid>{});
 
-            LD::QueryResult<LD::Type<LD::Pyramid>()> ret1 = database.Remove("key"_ts,LD::CT::TypeList<LD::Pyramid>{});
+            auto unqliteRemoveStart = currentTimer.Time();
+            LD::QueryResult<LD::Type<LD::Pyramid>()> deletionQueryResult = database.Remove("key"_ts,LD::CT::TypeList<LD::Pyramid>{});
+            auto unqliteRemoveEnd = currentTimer.Time();
+            std::cout << "Unqlite Removal of a Pyramid took : " << ((unqliteRemoveEnd-unqliteRemoveStart)/1.0_us) << " micrseconds " << std::endl;
 
 
             auto onDeletionError = [](const LD::Context<LD::DatabaseError> & context)
@@ -126,8 +136,8 @@ namespace LD
 
             };
 
-            LD::Match(ret1,onDeletionSuccess,onDeletionError);
-            //LD::Match(deletionQueryResult,onDeletionError,onDeletionSuccess);
+            LD::Match(deletionQueryResult,onDeletionSuccess,onDeletionError);
+            currentTimer.Stop();
         }
     }
 }

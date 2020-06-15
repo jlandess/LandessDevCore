@@ -192,7 +192,7 @@ namespace PDP
 namespace LD
 {
     TermBoxRenderContext::TermBoxRenderContext():
-            CurrentForegroundModifier(PDP::eTBNone),CurrentForegroundColor(PDP::eTBGreen),CurrentSpectrum(PDP::eNormalSpectrum),LineWidth(tb_width()),CurrentBackgroundColor(PDP::eTBDefault),CurrentBackgroundModifier(PDP::eTBNone)
+            CurrentForegroundModifier(LD::eTBNone),CurrentForegroundColor(LD::eTBGreen),CurrentSpectrum(LD::eNormalSpectrum),LineWidth(tb_width()),CurrentBackgroundColor(LD::eTBDefault),CurrentBackgroundModifier(LD::eTBNone)
     {
 
 
@@ -359,7 +359,7 @@ namespace LD
         this->CurrentForegroundColor = defaultColor;
     }
 
-    void TermBoxRenderContext::SetForegroundCurrentModifier(const PDP::TermBoxConsoleApplicationColorModifier &modifier)
+    void TermBoxRenderContext::SetForegroundCurrentModifier(const LD::TermBoxConsoleApplicationColorModifier &modifier)
     {
         this->CurrentForegroundModifier = modifier;
     }
@@ -369,23 +369,23 @@ namespace LD
         this->CurrentBackgroundColor = defaultColor;
     }
 
-    void TermBoxRenderContext::SetBackgroundCurrentModifier(const PDP::TermBoxConsoleApplicationColorModifier &modifier)
+    void TermBoxRenderContext::SetBackgroundCurrentModifier(const LD::TermBoxConsoleApplicationColorModifier &modifier)
     {
         this->CurrentBackgroundModifier = modifier;
     }
 
-    void TermBoxRenderContext::SetCurrentSpectrum(const PDP::TermBoxConsoleApplicationColorSpectrum &spectrum)
+    void TermBoxRenderContext::SetCurrentSpectrum(const LD::TermBoxConsoleApplicationColorSpectrum &spectrum)
     {
         this->CurrentSpectrum = spectrum;
     }
 
-    const PDP::TermBoxConsoleApplicationColorSpectrum & TermBoxRenderContext::GetSpectrum() const
+    const LD::TermBoxConsoleApplicationColorSpectrum & TermBoxRenderContext::GetSpectrum() const
     {
         return this->CurrentSpectrum;
     }
 
 
-    const PDP::TermBoxConsoleApplicationColorModifier & TermBoxRenderContext::GetForegroundModifier() const
+    const LD::TermBoxConsoleApplicationColorModifier & TermBoxRenderContext::GetForegroundModifier() const
     {
         return this->CurrentForegroundModifier;
     }
@@ -395,7 +395,7 @@ namespace LD
         return this->CurrentForegroundColor;
     }
 
-    const PDP::TermBoxConsoleApplicationColorModifier & TermBoxRenderContext::GetBackgroundModifier() const
+    const LD::TermBoxConsoleApplicationColorModifier & TermBoxRenderContext::GetBackgroundModifier() const
     {
         return this->CurrentBackgroundModifier;
     }
@@ -405,7 +405,7 @@ namespace LD
         return this->CurrentBackgroundColor;
     }
 
-    void TermBoxRenderContext::Clear(const unsigned short & foregroundColor, const unsigned short & backgroundColor, const PDP::TermBoxConsoleApplicationColorModifier & foregroundModifier, const PDP::TermBoxConsoleApplicationColorModifier & backgroundModifier, const PDP::TermBoxConsoleApplicationColorSpectrum & spectrum)
+    void TermBoxRenderContext::Clear(const unsigned short & foregroundColor, const unsigned short & backgroundColor, const LD::TermBoxConsoleApplicationColorModifier & foregroundModifier, const LD::TermBoxConsoleApplicationColorModifier & backgroundModifier, const LD::TermBoxConsoleApplicationColorSpectrum & spectrum)
     {
         this->Cursor = {0,0};
         this->LineWidth = tb_width();

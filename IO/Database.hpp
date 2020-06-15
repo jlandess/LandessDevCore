@@ -27,14 +27,16 @@ namespace LD
 
     /**
      *
-     * @tparam Backend
-     * @brief An abstraction layer of NoSQL implementations, SQL can be used if a key-value schema is supported
+     * @tparam Backend The backend responsible for the core operations. The imperative implementation of the class.  Each operation
+     * will be considered individually instead of a all or none argument
+     * @brief An abstraction layer of NoSQL implementations, SQL can be used if a key-value schema is supported, this requires all objects to be
+     * accessed by a key. LD::BasicDatabase can be used for non-keyed databases (which uses this as its core)
+     * @see LD::BasicDatabase
      */
     template<typename Backend>
-    class BasicDatabase
+    class BasicKeyedDatabase
     {
     private:
-
         using Db = LD::ElementReference<Backend>;
         Db mBackend;
 
@@ -50,7 +52,7 @@ namespace LD
         using CommitTest = decltype(LD::Declval<Bk>().Commit(LD::Declval<Args>()...));
     public:
 
-        BasicDatabase(const Db & backend):mBackend(backend)
+        BasicKeyedDatabase(const Db & backend):mBackend(backend)
         {
 
         }
@@ -120,7 +122,7 @@ namespace LD
                 LD::Require<
                         LD::IsTypeString<Key>,
                         LD::IsReflectable<LD::Detail::Decay_T<V>>,
-                        LD::Exists<InsertTest,BasicDatabase<CurrentBackend>,Key,V,Args...>,
+                        LD::Exists<InsertTest,BasicKeyedDatabase<CurrentBackend>,Key,V,Args...>,
                         LD::Exists<BeginTest,CurrentBackend>,
                         LD::Exists<CommitTest,CurrentBackend>
                 >,Ret> InsertAndCommit(const Key & key,V && object, Args && ... args) noexcept
@@ -721,11 +723,14 @@ namespace LD
 
          */
         template<typename Key, typename ... TL ,typename ... Args>
-        LD::QueryResult<LD::Variant<LD::Type<TL>...>(Args...)> Remove(const Key & key, LD::CT::TypeList<TL...> ,Args && ... arguments) noexcept
+        LD::Enable_If_T<
+                (LD::Require<LD::IsReflectable<TL>> && ...)
+        ,
+        LD::QueryResult<LD::Variant<LD::Type<TL>...>(Args...)>> Remove(const Key & key, LD::CT::TypeList<TL...> ,Args && ... arguments) noexcept
         {
 
             using RefedResult = LD::Ref<LD::QueryResult<LD::Variant<LD::Type<TL>...>(Args...)>>;
-            using ReferencedInstance = LD::Ref<BasicDatabase>;
+            using ReferencedInstance = LD::Ref<BasicKeyedDatabase>;
             //set a default value that simply assumes the database had an error
             LD::QueryResult<LD::Variant<LD::Type<TL>...>(Args...)> result = LD::MakeContext(LD::DatabaseError{},LD::Forward<Args>(arguments)...);
             //iterate through all the possible types we would like to consider in reference to the given key to remove from the backing data store
@@ -824,6 +829,27 @@ namespace LD
 
             //todo at object traversal to remove all keys
             return result;
+        }
+
+        template<typename TS, typename MemberTS ,typename Comparable ,typename ... Types, typename ... Args,
+                typename TList = LD::CT::TypeList<Types...>,
+                typename ComparisonType = decltype(LD::Declval<LD::CT::TypeAtIndex<0,TList>>()[MemberTS{}])>
+        LD::Enable_If_T<
+                LD::Require<
+                        LD::ConvertiblyCallable<Comparable,bool(const ComparisonType & a, const ComparisonType & b)>::Value(),
+                        (LD::IsReflectable<Types> && ...),
+                        (TList::size() > 0)
+                        >
+        ,
+        LD::QueryResult<LD::Variant<Types...>(Args...)>> FetchWithPredicate(
+                const TS & key,
+                const LD::CT::TypeList<Types...> & ts,
+                const MemberTS & tsKey ,
+                const ComparisonType & constant ,
+                Comparable && comparable,
+                Args && ... arguments) noexcept
+        {
+            return {};
         }
     };
 }

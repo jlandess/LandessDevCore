@@ -183,6 +183,18 @@
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Definitions/TimeExtension.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Examples/CalculusExample.cpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Examples/CalculusExample.hpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Examples/MultithreadingExample.cpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Examples/MultithreadingExample.hpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Examples/ReflectionDemoTypes.h">
 			<Option target="LandessDevCore"/>
 		</Unit>
@@ -264,6 +276,12 @@
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/IO/InsertionRequest.h">
 			<Option target="LandessDevCore"/>
 		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/IO/JsonDatabaseBackend.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/IO/TieredDatabase.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/IO/UnqliteDatabaseBackend.h">
 			<Option target="LandessDevCore"/>
 		</Unit>
@@ -276,10 +294,16 @@
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/LandessDevCore.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/MVC/Cusor.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/MVC/FormattedFloatingPoint.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/MVC/LinearAlgebraRenderable.hpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/MVC/Mouse.h">
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/MVC/Renderable.hpp">
@@ -292,6 +316,12 @@
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/MVC/SchedulingQuittingPredicate.hpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/MVC/TUI/TUITextInput.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/MVC/TUI/TUITextLabel.h">
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/MVC/TermBoxApplication.cpp">

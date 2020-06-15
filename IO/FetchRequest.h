@@ -3,6 +3,9 @@
 //
 #ifndef LANDESSDEVCORE_FETCHREQUEST_H
 #define LANDESSDEVCORE_FETCHREQUEST_H
+#include "Primitives/General/Context.h"
+#include "IO/DatabaseOperationResult.h"
+#include "Primitives/General/ContextualVariant.h"
 namespace LD
 {
     namespace Detail

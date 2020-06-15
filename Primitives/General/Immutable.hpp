@@ -25,8 +25,8 @@ namespace LD
     using ImmutableStringtWarrantCheck = decltype(LD::Declval<T>().GetImmutableStringWarrant());
 
 
-    template<typename T>
-    constexpr bool IsImmutableString= LD::Exists<LD::ImmutableStringtWarrantCheck,T>;
+    //template<typename T>
+    //constexpr bool IsImmutableString= LD::Exists<LD::ImmutableStringtWarrantCheck,T>;
 
     template<UInteger N>
     class ImmutableString
@@ -52,9 +52,9 @@ namespace LD
             },this);
         }
 
-        constexpr ImmutableString(const char & value) noexcept
+        constexpr ImmutableString(const char & value) noexcept: ImmutableString()
         {
-            LD::For<0,N+1>([](auto I, LD::ImmutableString<N> * instance, const char & value)
+            LD::For<0,N>([](auto I, LD::ImmutableString<N> * instance, const char & value)
             {
                 instance->string[I] = value;
                 return true;
@@ -358,37 +358,66 @@ namespace LD
             return true;
         }
     };
+
+    namespace Detail
+    {
+        template<typename T>
+        struct IsImmutableString
+        {
+            constexpr static const bool value = false;
+        };
+
+        template<LD::UInteger Size>
+        struct IsImmutableString<LD::ImmutableString<Size>>
+        {
+            constexpr static const bool value = true;
+        };
+    }
+    template<typename T>
+    constexpr bool IsImmutableString = LD::Detail::IsImmutableString<T>::value;
 }
 
 
 template<LD::UInteger N, LD::UInteger M>
-constexpr LD::ImmutableString<N+M> operator+(const LD::ImmutableString<N> & a, const LD::ImmutableString<M> & b)
+constexpr LD::ImmutableString<(N+M)> operator+(const LD::ImmutableString<N> & a, const LD::ImmutableString<M> & b) noexcept
 {
-
     LD::ImmutableString<N+M> ret;
 
-    //LD::UInteger count = 0;
     LD::UInteger firstSize = a.GetSize();
     LD::UInteger secondSize = b.GetSize();
 
+    LD::UInteger n = 0;
 
-    LD::For<0,N>([](auto I, const LD::ImmutableString<N> & input, LD::ImmutableString<N+M> & output, const LD::UInteger & size)
+    LD::For<N>([](
+            auto I,
+            LD::UInteger &n,
+            const LD::ImmutableString<N> & input,
+            const LD::UInteger & size,
+            LD::ImmutableString<N+M> & output)
     {
-         output[I] = input[I];
+        output[n++] = input[I];
+        return (I < size);
+    },n,a,firstSize,ret);
 
-         return (I+1) < size;
-    },a,ret,firstSize);
-
-    LD::For<N,(N+M)>([](auto I, const LD::ImmutableString<M> & input, LD::ImmutableString<N+M> & output, const LD::UInteger & size)
+    LD::For<M>([](
+            auto I,
+            LD::UInteger &n,
+            const LD::UInteger & size,
+            const LD::ImmutableString<M> & input,
+            LD::ImmutableString<N+M> & output)
     {
-         output[I] = input[I-N-1];
+        output[n++] = input[I];
+        return (I < size);
 
-         return ((I-N-1)+1) < size;
-    },b,ret,secondSize);
+    },n,secondSize,b,ret);
 
     return ret;
 }
-
+template<LD::UInteger N, char ... A>
+constexpr LD::ImmutableString<N+sizeof...(A)> operator+(const LD::ImmutableString<N> & a, const LD::TypeString<A...> & b) noexcept
+{
+    return a + LD::ImmutableString<sizeof...(A)>{b};
+}
 namespace LD
 {
     template<typename T,UInteger N>

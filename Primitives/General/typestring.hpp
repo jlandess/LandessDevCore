@@ -40,7 +40,13 @@ namespace LD {
         static constexpr char const * data() noexcept
         { return &vals[0]; }
 
+        constexpr char const * Data() noexcept
+        { return &vals[0]; }
+
         static constexpr unsigned int size() noexcept
+        { return sval; };
+
+        constexpr unsigned int Size() noexcept
         { return sval; };
 
         static constexpr char const * cbegin() noexcept
@@ -50,6 +56,11 @@ namespace LD {
         { return &vals[sval]; }
 
 
+        template<char ... d>
+        TypeString<C...,d...> operator + (const TypeString<d...> & ts) const noexcept
+        {
+            return {};
+        }
 
 
     };

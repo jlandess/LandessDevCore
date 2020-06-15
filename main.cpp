@@ -13,13 +13,20 @@
 int main()
 {
 
-    //LD::Example::TermBoxMenuExample();
+    //auto bar = LD::ImmutableString<9>{'_'};
+    //auto edge = LD::ToImmutableString("abc");
+    //std::cout << (bar+edge).Data() << std::endl;
+    //std::cout << edge.Data() << std::endl;
+    //std::cout << bar.GetSize() << std::endl;
+    //std::cout << edge.GetSize() << std::endl;
+    LD::Example::TermBoxMenuExample();
     LD::Timer currentTimer;
     currentTimer.Start();
 
-    LD::Example::ReflectionExample();
+    //LD::Example::ReflectionExample();
+    //LD::Example::IMGUITUIExample();
     currentTimer.Stop();
 
-    std::cout << "Execution Time: " << currentTimer.Time()/1.0_us<< std::endl;
+    //std::cout << "Execution Time: " << currentTimer.Time()/1.0_us<< std::endl;
     return 0;
 }

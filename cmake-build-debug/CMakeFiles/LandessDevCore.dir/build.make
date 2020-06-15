@@ -343,6 +343,32 @@ CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.s"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/phoenixflower/Documents/LandessDevCore/Async/Thread.cpp -o CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.s
 
+CMakeFiles/LandessDevCore.dir/Examples/CalculusExample.cpp.o: CMakeFiles/LandessDevCore.dir/flags.make
+CMakeFiles/LandessDevCore.dir/Examples/CalculusExample.cpp.o: ../Examples/CalculusExample.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/phoenixflower/Documents/LandessDevCore/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/LandessDevCore.dir/Examples/CalculusExample.cpp.o"
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/LandessDevCore.dir/Examples/CalculusExample.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/Examples/CalculusExample.cpp
+
+CMakeFiles/LandessDevCore.dir/Examples/CalculusExample.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LandessDevCore.dir/Examples/CalculusExample.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/phoenixflower/Documents/LandessDevCore/Examples/CalculusExample.cpp > CMakeFiles/LandessDevCore.dir/Examples/CalculusExample.cpp.i
+
+CMakeFiles/LandessDevCore.dir/Examples/CalculusExample.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/Examples/CalculusExample.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/phoenixflower/Documents/LandessDevCore/Examples/CalculusExample.cpp -o CMakeFiles/LandessDevCore.dir/Examples/CalculusExample.cpp.s
+
+CMakeFiles/LandessDevCore.dir/Examples/MultithreadingExample.cpp.o: CMakeFiles/LandessDevCore.dir/flags.make
+CMakeFiles/LandessDevCore.dir/Examples/MultithreadingExample.cpp.o: ../Examples/MultithreadingExample.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/phoenixflower/Documents/LandessDevCore/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/LandessDevCore.dir/Examples/MultithreadingExample.cpp.o"
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/LandessDevCore.dir/Examples/MultithreadingExample.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/Examples/MultithreadingExample.cpp
+
+CMakeFiles/LandessDevCore.dir/Examples/MultithreadingExample.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LandessDevCore.dir/Examples/MultithreadingExample.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/phoenixflower/Documents/LandessDevCore/Examples/MultithreadingExample.cpp > CMakeFiles/LandessDevCore.dir/Examples/MultithreadingExample.cpp.i
+
+CMakeFiles/LandessDevCore.dir/Examples/MultithreadingExample.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/Examples/MultithreadingExample.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/phoenixflower/Documents/LandessDevCore/Examples/MultithreadingExample.cpp -o CMakeFiles/LandessDevCore.dir/Examples/MultithreadingExample.cpp.s
+
 # Object files for target LandessDevCore
 LandessDevCore_OBJECTS = \
 "CMakeFiles/LandessDevCore.dir/main.cpp.o" \
@@ -366,7 +392,9 @@ LandessDevCore_OBJECTS = \
 "CMakeFiles/LandessDevCore.dir/IO/unqlite.c.o" \
 "CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o" \
 "CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o" \
-"CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o"
+"CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o" \
+"CMakeFiles/LandessDevCore.dir/Examples/CalculusExample.cpp.o" \
+"CMakeFiles/LandessDevCore.dir/Examples/MultithreadingExample.cpp.o"
 
 # External object files for target LandessDevCore
 LandessDevCore_EXTERNAL_OBJECTS =
@@ -393,9 +421,11 @@ LandessDevCore: CMakeFiles/LandessDevCore.dir/IO/unqlite.c.o
 LandessDevCore: CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o
 LandessDevCore: CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o
 LandessDevCore: CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o
+LandessDevCore: CMakeFiles/LandessDevCore.dir/Examples/CalculusExample.cpp.o
+LandessDevCore: CMakeFiles/LandessDevCore.dir/Examples/MultithreadingExample.cpp.o
 LandessDevCore: CMakeFiles/LandessDevCore.dir/build.make
 LandessDevCore: CMakeFiles/LandessDevCore.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/phoenixflower/Documents/LandessDevCore/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Linking CXX executable LandessDevCore"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/phoenixflower/Documents/LandessDevCore/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Linking CXX executable LandessDevCore"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/LandessDevCore.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

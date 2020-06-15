@@ -15,6 +15,8 @@
 #include "TermBoxRenderingContext.hpp"
 #include "SchedulingEvent.hpp"
 #include "TermBox/termbox.h"
+#include "TypeTraits/TypeList.hpp"
+#include "MVC/Mouse.h"
 namespace LD
 {
     template<typename T, class = void>
@@ -31,6 +33,9 @@ namespace LD
     private:
         T CurrentApplication;
         LD::UInteger StartStatus;
+        template<typename A>
+        using CanBeAMouse = LD::Detail::IntegralConstant<bool,LD::IsBasicMouse<A>>;
+        using Mice = LD::CT::Tranform<LD::CT::TypeList<Context...>,CanBeAMouse>;
     public:
         inline BasicTermBoxApplication(const T & application):CurrentApplication(application){}
         inline ~BasicTermBoxApplication(){}
@@ -38,6 +43,14 @@ namespace LD
         const bool operator()(const LD::ApplicaitonStartedEvent<Context...> & applicationStartedEvent)
         {
             this->StartStatus = (tb_init() == 0);
+
+
+
+            if constexpr(Mice::size() > 0)
+            {
+                tb_select_input_mode(TB_INPUT_ESC | TB_INPUT_MOUSE);
+            }
+
             return (this->StartStatus) && this->CurrentApplication(applicationStartedEvent);
         }
         
@@ -78,6 +91,24 @@ namespace LD
             LD::Integer yValue = (isMouseEnabled)*(tb_height()/2-possibleYValue) + (!isMouseEnabled)*-1;
 
 
+
+            if constexpr(Mice::size() > 0)
+            {
+                LD::For<sizeof...(Context)>([](
+                        auto I,
+                        auto && context)
+                {
+                    using ContextType = decltype(context);
+                    /*
+                    using Type = decltype(LD::Get(LD::Get<I>(LD::Declval<ContextType>())));
+                    if constexpr(LD::IsBasicMouse<Type>)
+                    {
+
+                    }
+                     */
+                    return true;
+                },executionEvent);
+            }
 
             tb_set_cursor(xValue,yValue);
             tb_present();

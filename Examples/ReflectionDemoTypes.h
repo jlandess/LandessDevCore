@@ -37,15 +37,17 @@ namespace LD
         }
 
 
-        LD::Float  Length() noexcept
+        const LD::Float &  Length() const noexcept
         {
             return (*this)["Length"_ts];
         }
 
-        const LD::Float  Length() const noexcept
+         LD::Float & Length() noexcept
         {
             return (*this)["Length"_ts];
         }
+
+
 
     };
 
