@@ -172,9 +172,9 @@ namespace LD {
     constexpr bool IsTypeString = LD::Detail::IsTypeString<T>::value;
 } /* irqus */
 
-template<typename CharT, CharT ...String> LD::TypeString<String...> operator""_ts()
+template<typename CharT, CharT ...String> constexpr LD::TypeString<String...> operator""_ts() noexcept
 {
-    constexpr static CharT data[] = { String..., 0 };
+    //constexpr static CharT data[] = { String..., 0 };
     //static_assert(SpecialString::IsValidString(data), "not a valid string");
     return LD::TypeString<String...>();
 }

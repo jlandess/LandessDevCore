@@ -240,6 +240,7 @@ Software.
 #include <cstddef>
 #include <string_view>
 #include <cstdint>
+#include "typestring.hpp"
 
 namespace ctll {
 
@@ -271,12 +272,120 @@ namespace ctll {
         else return {first_unit, 1};
     }
 
-    template <size_t N> struct fixed_string {
+    template <size_t N> struct fixed_string
+    {
+
+
         char32_t content[N] = {};
         size_t real_size{0};
         bool correct_flag{true};
 
-        template <typename T> constexpr fixed_string(const T (&input)[N]) noexcept {
+        template <typename T> constexpr fixed_string(const T (&input)[N]) noexcept
+        {
+            if constexpr (std::is_same_v<T, char>) {
+#if CTRE_STRING_IS_UTF8
+                size_t out{0};
+				for (size_t i{0}; i < N; ++i) {
+					if ((i == (N-1)) && (input[i] == 0)) break;
+					length_value_t info = length_and_value_of_utf8_code_point(input[i]);
+					switch (info.length) {
+						case 6:
+							if (++i < N) info.value = (info.value << 6) | value_of_trailing_utf8_code_point(input[i], correct_flag);
+							[[fallthrough]];
+						case 5:
+							if (++i < N) info.value = (info.value << 6) | value_of_trailing_utf8_code_point(input[i], correct_flag);
+							[[fallthrough]];
+						case 4:
+							if (++i < N) info.value = (info.value << 6) | value_of_trailing_utf8_code_point(input[i], correct_flag);
+							[[fallthrough]];
+						case 3:
+							if (++i < N) info.value = (info.value << 6) | value_of_trailing_utf8_code_point(input[i], correct_flag);
+							[[fallthrough]];
+						case 2:
+							if (++i < N) info.value = (info.value << 6) | value_of_trailing_utf8_code_point(input[i], correct_flag);
+							[[fallthrough]];
+						case 1:
+							content[out++] = static_cast<char32_t>(info.value);
+							real_size++;
+							break;
+						default:
+							correct_flag = false;
+							return;
+					}
+				}
+#else
+                for (size_t i{0}; i < N; ++i) {
+                    content[i] = static_cast<uint8_t>(input[i]);
+                    if ((i == (N-1)) && (input[i] == 0)) break;
+                    real_size++;
+                }
+#endif
+#if __cpp_char8_t
+                } else if constexpr (std::is_same_v<T, char8_t>) {
+			size_t out{0};
+			for (size_t i{0}; i < N; ++i) {
+				if ((i == (N-1)) && (input[i] == 0)) break;
+				length_value_t info = length_and_value_of_utf8_code_point(input[i]);
+				switch (info.length) {
+					case 6:
+						if (++i < N) info.value = (info.value << 6) | value_of_trailing_utf8_code_point(input[i], correct_flag);
+						[[fallthrough]];
+					case 5:
+						if (++i < N) info.value = (info.value << 6) | value_of_trailing_utf8_code_point(input[i], correct_flag);
+						[[fallthrough]];
+					case 4:
+						if (++i < N) info.value = (info.value << 6) | value_of_trailing_utf8_code_point(input[i], correct_flag);
+						[[fallthrough]];
+					case 3:
+						if (++i < N) info.value = (info.value << 6) | value_of_trailing_utf8_code_point(input[i], correct_flag);
+						[[fallthrough]];
+					case 2:
+						if (++i < N) info.value = (info.value << 6) | value_of_trailing_utf8_code_point(input[i], correct_flag);
+						[[fallthrough]];
+					case 1:
+						content[out++] = static_cast<char32_t>(info.value);
+						real_size++;
+						break;
+					default:
+						correct_flag = false;
+						return;
+				}
+			}
+#endif
+            } else if constexpr (std::is_same_v<T, char16_t>) {
+                size_t out{0};
+                for (size_t i{0}; i < N; ++i) {
+                    length_value_t info = length_and_value_of_utf16_code_point(input[i]);
+                    if (info.length == 2) {
+                        if (++i < N) {
+                            if ((input[i] & 0b1111'1100'0000'0000) == 0b1101'1100'0000'0000) {
+                                content[out++] = (info.value << 10) | (input[i] & 0b0000'0011'1111'1111);
+                            } else {
+                                correct_flag = false;
+                                break;
+                            }
+                        }
+                    } else {
+                        if ((i == (N-1)) && (input[i] == 0)) break;
+                        content[out++] = info.value;
+                    }
+                }
+                real_size = out;
+            } else if constexpr (std::is_same_v<T, wchar_t> || std::is_same_v<T, char32_t>) {
+                for (size_t i{0}; i < N; ++i) {
+                    content[i] = input[i];
+                    if ((i == (N-1)) && (input[i] == 0)) break;
+                    real_size++;
+                }
+            }
+        }
+
+        template<char ... Characters>
+        constexpr fixed_string(const LD::TypeString<Characters...> & ts) noexcept
+        {
+            using T = char;
+            //const T  input[sizeof...(Characters)] = LD::TypeString<N>::data();
+            const T  input[sizeof...(Characters)] = {Characters...};
             if constexpr (std::is_same_v<T, char>) {
 #if CTRE_STRING_IS_UTF8
                 size_t out{0};
@@ -436,6 +545,9 @@ namespace ctll {
 
     template <typename CharT, size_t N> fixed_string(const CharT (&)[N]) -> fixed_string<N>;
     template <size_t N> fixed_string(fixed_string<N>) -> fixed_string<N>;
+
+    template<char ... Characters>
+    fixed_string(const LD::TypeString<Characters...> &) -> fixed_string<sizeof...(Characters)>;
 
     template <typename T, size_t N> class basic_fixed_string: public fixed_string<N> {
         using parent = fixed_string<N>;

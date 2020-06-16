@@ -375,6 +375,8 @@ TypeTraits/Type.h
 ../IO/DatabaseOperationResult.h
 Primitives/General/mapboxvariant.hpp
 ../IO/Primitives/General/mapboxvariant.hpp
+Primitives/General/ContextualVariant.h
+../IO/Primitives/General/ContextualVariant.h
 
 ../IO/FetchRequest.h
 Primitives/General/Context.h
@@ -837,6 +839,8 @@ Primitives/General/Immutable.hpp
 ../MVC/TUI/Primitives/General/Immutable.hpp
 MVC/TermBoxRenderingContext.hpp
 ../MVC/TUI/MVC/TermBoxRenderingContext.hpp
+Primitives/General/ctre.hpp
+../MVC/TUI/Primitives/General/ctre.hpp
 
 ../MVC/TermBoxApplication.hpp
 Definitions/Common.hpp
@@ -1095,6 +1099,8 @@ string_view
 -
 cstdint
 -
+typestring.hpp
+../Primitives/General/typestring.hpp
 type_traits
 -
 limits

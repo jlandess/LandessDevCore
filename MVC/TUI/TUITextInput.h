@@ -8,14 +8,21 @@
 #include "Primitives/General/Vec2.hpp"
 #include "Primitives/General/Immutable.hpp"
 #include "MVC/TermBoxRenderingContext.hpp"
+#include "Primitives/General/ctre.hpp"
 namespace LD
 {
     namespace TUI
     {
-        template<LD::UInteger Size>
-        class BasicImmutableTextInput
+        template<LD::UInteger Size, typename TS = decltype("[a-zA-Z]+"_ts), class = void>
+        class BasicImmutableTextInput;
+
+
+        template<LD::UInteger Size, typename TS>
+        class BasicImmutableTextInput<Size,TS,LD::Enable_If_T<LD::Require<LD::IsTypeString<TS>>>>
         {
         private:
+            //constexpr const static ctll::fixed_string<TS::size()> Pattern = ctll::fixed_string<TS::size()>{ "[a-z"_ts};
+            static constexpr auto Pattern = ctll::fixed_string(TS{});
             LD::BasicVec2D<LD::UInteger> mPosition;
             LD::ImmutableString<Size-1> mString;
             LD::UInteger mIndex;
@@ -75,16 +82,39 @@ namespace LD
 
                     auto event = context.Event(this->mIndex,this->mString,context);
 
-                    auto onKey = [](const LD::Context<LD::TermBoxKeyboardEvent,LD::UInteger&,LD::ImmutableString<Size-1>&,LD::TermBoxRenderContext&> & event)
+                    //when we get an event from the keyboard this event is called
+                    auto onKeyBoardEvent = [](const LD::Context<LD::TermBoxKeyboardEvent,LD::UInteger&,LD::ImmutableString<Size-1>&,LD::TermBoxRenderContext&> & event)
                     {
-                        auto character = LD::Get<0>(event).Character();
-                        auto key = LD::Get<0>(event).Key();
-                        auto modifier = LD::Get<0>(event).Modifier();
-                        if (character >= 'a' && character <= 'z')
-                        {
-                            LD::UInteger & currentIndex = LD::Get(LD::Get<1>(event));
-                            LD::Get(LD::Get<2>(event))[currentIndex] = character;
+                        auto currentIndex = LD::Get<1>(event);
+                        auto inputString = LD::Get<2>(event);
 
+                        auto keyedEvent = LD::Get<0>(event)(
+                                LD::ElementReference<LD::UInteger>{currentIndex},
+                                LD::ElementReference<LD::ImmutableString<Size-1>>{inputString});
+
+
+                        //termox will give us either a character as in (uint32_t to represent ASCII and Unicode Characters) or a key event,
+                        //the below is when we get an actual character
+                        auto onCharacter = [](const LD::Context<uint32_t,LD::ElementReference<LD::UInteger>,LD::ElementReference<LD::ImmutableString<Size-1>>> & context)
+                        {
+                            auto character = LD::Get<0>(context);
+                            auto inputString = LD::Get<2>(context);
+                            LD::UInteger  & currentIndex = LD::Get(LD::Get<1>(context));
+
+
+
+                            char buffer[2];
+                            buffer[0] = character;
+                            buffer[1] = '\0';
+
+                            
+                            if (ctre::match<Pattern>(LD::StringView{buffer}))
+                            {
+                                LD::Get(inputString)[currentIndex] = LD::Get(character);
+                                currentIndex = (currentIndex < Size-2)*(currentIndex+1) + (currentIndex >= Size-2)*currentIndex;
+                            }
+
+                            /*
                             if (currentIndex < Size-2)
                             {
                                 ++currentIndex;
@@ -92,23 +122,28 @@ namespace LD
                             {
                                 currentIndex = Size-2;
                             }
+                             */
 
-                        }
 
+                        };
 
-                        if (key == TB_KEY_BACKSPACE || key == TB_KEY_BACKSPACE2)
+                        //this is when we get a key instead of a character
+                        auto onKey = [](const LD::Context<uint16_t,LD::ElementReference<LD::UInteger>,LD::ElementReference<LD::ImmutableString<Size-1>>> & context)
                         {
-                            LD::UInteger & currentIndex = LD::Get(LD::Get<1>(event));
-                            LD::Get(LD::Get<2>(event))[currentIndex] = '\0';
-                            //--currentIndex;
+                            auto key = LD::Get(LD::Get<0>(context));
+                            auto inputString = LD::Get<2>(context);
+                            LD::UInteger  & currentIndex = LD::Get(LD::Get<1>(context));
+                            if (key == TB_KEY_BACKSPACE || key == TB_KEY_BACKSPACE2)
+                            {
+                                LD::Get(LD::Get<2>(context))[currentIndex] = '\0';
+                                currentIndex = (currentIndex > 0)*(currentIndex-1) + (currentIndex == 0)*0;
+                            }
+                        };
 
-                            currentIndex = (currentIndex > 0)*(currentIndex-1) + (currentIndex == 0)*0;
-
-                        }
-
-                        //currentIndex = LD::Max(currentIndex,Size);
+                        LD::Match(keyedEvent,onCharacter,onKey);
                     };
 
+                    //activated when we get a mouse event
                     auto onMouse = [&](const LD::Context<LD::TermBoxMouseEvent,LD::UInteger&,LD::ImmutableString<Size-1>&,LD::TermBoxRenderContext&> & event)
                     {
 
@@ -122,25 +157,22 @@ namespace LD
                         this->mTarget = {x,y};
                     };
 
-                    auto onDefault = [&](const LD::Context<LD::TermBoxEmptyEvent,LD::UInteger&,LD::ImmutableString<Size-1>&,LD::TermBoxRenderContext&> & event)
+                    //activated when we go through a frame but no event has been picked up
+                    auto onDefault = [](const LD::Context<LD::TermBoxEmptyEvent,LD::UInteger&,LD::ImmutableString<Size-1>&,LD::TermBoxRenderContext&> & event)
                     {
                         //++this->mTarget;
 
                     };
 
+                    //activates when the terminal windows has been resized
                     auto onResize = [](const LD::Context<LD::TermBoxResizingEvent,LD::UInteger&,LD::ImmutableString<Size-1>&,LD::TermBoxRenderContext&> & event)
                     {
 
                     };
 
-                    auto defaultCase = [&](auto &&)
-                    {
-                        context.RenderWithFormat(LD::ToImmutableString("{}"),{this->mPosition.X(),this->mPosition.Y()-4},LD::ToImmutableString("no key"));
-                    };
-
                     context.RenderWithFormat(LD::ToImmutableString("{}"),{this->mPosition.X(),this->mPosition.Y()-4},
                             LD::ToImmutableString(this->mIndex));
-                    LD::Match(event,onKey,onMouse,onDefault,onResize);
+                    LD::Match(event,onKeyBoardEvent,onMouse,onDefault,onResize);
                 }
 
 

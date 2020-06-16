@@ -104,6 +104,15 @@ namespace LD
         constexpr const uint8_t & Modifier() const noexcept {return this->ModifierValue;}
         constexpr const uint16_t & Key() const noexcept {return this->KeyValue;}
         constexpr const uint32_t & Character() const noexcept {return this->CharacterValue;}
+
+        template<typename ... Args>
+        constexpr LD::ContextualVariant<LD::Variant<uint16_t,uint32_t>(Args...)> operator()(Args && ... arguements) const noexcept
+        {
+            LD::ContextualVariant<LD::Variant<uint16_t,uint32_t>(Args...)> ret[2];
+            ret[0] = LD::MakeContext(uint16_t{this->KeyValue},LD::Forward<Args>(arguements)...);
+            ret[1] = LD::MakeContext(uint32_t{this->CharacterValue},LD::Forward<Args>(arguements)...);
+            return ret[this->CharacterValue != 0];
+        }
     };
     
     

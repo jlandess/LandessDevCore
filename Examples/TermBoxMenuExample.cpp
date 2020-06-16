@@ -168,6 +168,7 @@ namespace LD
             });
 
             LD::ImmutableString<11> defaultString;
+            ctll::fixed_string("[az]"_ts);
             LD::TUI::BasicImmutableTextInput<12> input{{0,-12},defaultString};
             termBoxApplication.OnExecution([&](const LD::ApplicationExecutionEvent<int,double,LD::TermBoxRenderContext,LD::Timer> & applicationExecutionEvent)
             {
