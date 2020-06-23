@@ -1076,6 +1076,8 @@ namespace LD
 
 namespace LD
 {
+    template<typename T>
+    using BasicVec3D = LD::Detail::tVec3<T>;
     namespace Detail
     {
         template<typename T>

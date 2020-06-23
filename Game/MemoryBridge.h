@@ -1,0 +1,8 @@
+//
+// Created by phoenixflower on 6/18/20.
+//
+
+#ifndef LANDESSDEVCORE_MEMORYBRIDGE_H
+#define LANDESSDEVCORE_MEMORYBRIDGE_H
+
+#endif //LANDESSDEVCORE_MEMORYBRIDGE_H

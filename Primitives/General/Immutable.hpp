@@ -542,7 +542,7 @@ namespace LD
             LD::ImmutableString<20+7+2>> ToImmutableString(const T & number,const LD::UInteger & precision = 0,const LD::UInteger base = 10) noexcept
     {
         const LD::UInteger isNan = (number != number);
-        const LD::UInteger isInf = (number > LD::Detail::Limit<T>::GetMax());
+        const LD::UInteger isInf = (number > LD::Limit<T>::GetMax());
         char returnValue[20+7+2+1] = {0};
         LD::Float unsignedNumber = LD::Abs(number);
         LD::UInteger num = LD::UInteger (unsignedNumber);
@@ -623,7 +623,7 @@ namespace LD
     {
 
         const LD::UInteger isNan = (number != number);
-        const LD::UInteger isInf = (number > LD::Detail::Limit<T>::GetMax());
+        const LD::UInteger isInf = (number > LD::Limit<T>::GetMax());
         char returnValue[20+15+2+1] = {0};
         LD::Float unsignedNumber = LD::Abs(number);
         LD::UInteger num = LD::UInteger (unsignedNumber);
@@ -729,7 +729,7 @@ namespace LD
             LD::ImmutableString<19>>  ToImmutableString(const T & number, const LD::UInteger & base = 10) noexcept
     {
         const LD::UInteger isNan = (number != number);
-        const LD::UInteger isInf = (number > LD::Detail::Limit<T>::GetMax());
+        const LD::UInteger isInf = (number > LD::Limit<T>::GetMax());
         char returnValue[20] = {0};
         LD::UInteger num = number;
         const LD::UInteger amountOfDigits = LD::Floor(LD::FastLog10(num))+1;
@@ -768,7 +768,7 @@ namespace LD
             LD::ImmutableString<20>>  ToImmutableString(const T & number, const LD::UInteger & base = 10) noexcept
     {
         const LD::UInteger isNan = (number != number);
-        const LD::UInteger isInf = (number > LD::Detail::Limit<T>::GetMax());
+        const LD::UInteger isInf = (number > LD::Limit<T>::GetMax());
         char returnValue[21] = {0};
         LD::UInteger num = LD::Abs(number);
         const LD::UInteger amountOfDigits = LD::Floor(LD::FastLog10(num))+1;

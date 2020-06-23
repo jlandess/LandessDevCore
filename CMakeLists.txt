@@ -172,6 +172,40 @@ add_executable(LandessDevCore
         Examples/CalculusExample.cpp
         Examples/MultithreadingExample.hpp
         Examples/MultithreadingExample.cpp
-        MVC/TUI/TUITextLabel.h MVC/TUI/TUITextInput.h MVC/Mouse.h MVC/Cusor.h)
+        MVC/TUI/TUITextLabel.h
+        MVC/TUI/TUITextInput.h
+        MVC/Mouse.h MVC/Cusor.h
+        MVC/TUI/TUIEvent.h
+        Examples/TermBoxInputExample.hpp
+        Examples/TermBoxInputExample.cpp
+        Algorithms/SearchInHorsPool.h
+        Algorithms/RayTracing.hpp
+        Primitives/General/Matrix.hpp
+        IO/Archiver.hpp
+        Algorithms/Distance.hpp
+        Algorithms/ChannelAccessor.h
+        Algorithms/GaussianElimination.h
+        Algorithms/Kissfft.h
+        Algorithms/LaplaceTransform.h
+        Algorithms/BubbleTargeter.h
+        Algorithms/vdt/LaybrinthGenerator.hpp
+        Game/Tetris.h
+        Game/Chess.h
+        Game/Sudoku.h
+        Game/TicTacToe.h
+        Game/MemoryBridge.h
+        Game/Minesweeper.h
+        Game/Pegboard.h
+        Game/Puzzler.h
+        Game/Battleship.h
+        Game/Artillery.h
+        Random/GS_BasicRNG.cpp
+        Random/GS_CauchyRNG.cpp
+        Random/GS_MarsagliaRNG.cpp
+        Random/GS_MTwisterRNG.cpp
+        Random/GS_TriangularRNG.cpp
+        Random/GS_UniformRNG.cpp
+        Random/GS_WeibullRNG.cpp
+        Random/Random.cpp Memory/Comparison.h Primitives/General/Range.h Random/GaussianUniformRNG.h)
 target_link_libraries(LandessDevCore pthread)
 target_link_libraries(LandessDevCore ncurses)

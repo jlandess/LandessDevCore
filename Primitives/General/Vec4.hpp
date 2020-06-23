@@ -2300,6 +2300,8 @@ namespace LD
 
 namespace LD
 {
+    template<typename T>
+    using BasicVec4D = LD::Detail::tVec4<T>;
     namespace Detail
     {
         template<typename T>

@@ -285,6 +285,33 @@ Examples/ReflectionExample.cpp.s:
 	$(MAKE) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.s
 .PHONY : Examples/ReflectionExample.cpp.s
 
+Examples/TermBoxInputExample.o: Examples/TermBoxInputExample.cpp.o
+
+.PHONY : Examples/TermBoxInputExample.o
+
+# target to build an object file
+Examples/TermBoxInputExample.cpp.o:
+	$(MAKE) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/TermBoxInputExample.cpp.o
+.PHONY : Examples/TermBoxInputExample.cpp.o
+
+Examples/TermBoxInputExample.i: Examples/TermBoxInputExample.cpp.i
+
+.PHONY : Examples/TermBoxInputExample.i
+
+# target to preprocess a source file
+Examples/TermBoxInputExample.cpp.i:
+	$(MAKE) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/TermBoxInputExample.cpp.i
+.PHONY : Examples/TermBoxInputExample.cpp.i
+
+Examples/TermBoxInputExample.s: Examples/TermBoxInputExample.cpp.s
+
+.PHONY : Examples/TermBoxInputExample.s
+
+# target to generate assembly for a file
+Examples/TermBoxInputExample.cpp.s:
+	$(MAKE) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/TermBoxInputExample.cpp.s
+.PHONY : Examples/TermBoxInputExample.cpp.s
+
 Examples/TermBoxMenuExample.o: Examples/TermBoxMenuExample.cpp.o
 
 .PHONY : Examples/TermBoxMenuExample.o
@@ -690,6 +717,222 @@ Process/run.c.s:
 	$(MAKE) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Process/run.c.s
 .PHONY : Process/run.c.s
 
+Random/GS_BasicRNG.o: Random/GS_BasicRNG.cpp.o
+
+.PHONY : Random/GS_BasicRNG.o
+
+# target to build an object file
+Random/GS_BasicRNG.cpp.o:
+	$(MAKE) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Random/GS_BasicRNG.cpp.o
+.PHONY : Random/GS_BasicRNG.cpp.o
+
+Random/GS_BasicRNG.i: Random/GS_BasicRNG.cpp.i
+
+.PHONY : Random/GS_BasicRNG.i
+
+# target to preprocess a source file
+Random/GS_BasicRNG.cpp.i:
+	$(MAKE) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Random/GS_BasicRNG.cpp.i
+.PHONY : Random/GS_BasicRNG.cpp.i
+
+Random/GS_BasicRNG.s: Random/GS_BasicRNG.cpp.s
+
+.PHONY : Random/GS_BasicRNG.s
+
+# target to generate assembly for a file
+Random/GS_BasicRNG.cpp.s:
+	$(MAKE) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Random/GS_BasicRNG.cpp.s
+.PHONY : Random/GS_BasicRNG.cpp.s
+
+Random/GS_CauchyRNG.o: Random/GS_CauchyRNG.cpp.o
+
+.PHONY : Random/GS_CauchyRNG.o
+
+# target to build an object file
+Random/GS_CauchyRNG.cpp.o:
+	$(MAKE) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Random/GS_CauchyRNG.cpp.o
+.PHONY : Random/GS_CauchyRNG.cpp.o
+
+Random/GS_CauchyRNG.i: Random/GS_CauchyRNG.cpp.i
+
+.PHONY : Random/GS_CauchyRNG.i
+
+# target to preprocess a source file
+Random/GS_CauchyRNG.cpp.i:
+	$(MAKE) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Random/GS_CauchyRNG.cpp.i
+.PHONY : Random/GS_CauchyRNG.cpp.i
+
+Random/GS_CauchyRNG.s: Random/GS_CauchyRNG.cpp.s
+
+.PHONY : Random/GS_CauchyRNG.s
+
+# target to generate assembly for a file
+Random/GS_CauchyRNG.cpp.s:
+	$(MAKE) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Random/GS_CauchyRNG.cpp.s
+.PHONY : Random/GS_CauchyRNG.cpp.s
+
+Random/GS_MTwisterRNG.o: Random/GS_MTwisterRNG.cpp.o
+
+.PHONY : Random/GS_MTwisterRNG.o
+
+# target to build an object file
+Random/GS_MTwisterRNG.cpp.o:
+	$(MAKE) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Random/GS_MTwisterRNG.cpp.o
+.PHONY : Random/GS_MTwisterRNG.cpp.o
+
+Random/GS_MTwisterRNG.i: Random/GS_MTwisterRNG.cpp.i
+
+.PHONY : Random/GS_MTwisterRNG.i
+
+# target to preprocess a source file
+Random/GS_MTwisterRNG.cpp.i:
+	$(MAKE) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Random/GS_MTwisterRNG.cpp.i
+.PHONY : Random/GS_MTwisterRNG.cpp.i
+
+Random/GS_MTwisterRNG.s: Random/GS_MTwisterRNG.cpp.s
+
+.PHONY : Random/GS_MTwisterRNG.s
+
+# target to generate assembly for a file
+Random/GS_MTwisterRNG.cpp.s:
+	$(MAKE) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Random/GS_MTwisterRNG.cpp.s
+.PHONY : Random/GS_MTwisterRNG.cpp.s
+
+Random/GS_MarsagliaRNG.o: Random/GS_MarsagliaRNG.cpp.o
+
+.PHONY : Random/GS_MarsagliaRNG.o
+
+# target to build an object file
+Random/GS_MarsagliaRNG.cpp.o:
+	$(MAKE) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Random/GS_MarsagliaRNG.cpp.o
+.PHONY : Random/GS_MarsagliaRNG.cpp.o
+
+Random/GS_MarsagliaRNG.i: Random/GS_MarsagliaRNG.cpp.i
+
+.PHONY : Random/GS_MarsagliaRNG.i
+
+# target to preprocess a source file
+Random/GS_MarsagliaRNG.cpp.i:
+	$(MAKE) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Random/GS_MarsagliaRNG.cpp.i
+.PHONY : Random/GS_MarsagliaRNG.cpp.i
+
+Random/GS_MarsagliaRNG.s: Random/GS_MarsagliaRNG.cpp.s
+
+.PHONY : Random/GS_MarsagliaRNG.s
+
+# target to generate assembly for a file
+Random/GS_MarsagliaRNG.cpp.s:
+	$(MAKE) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Random/GS_MarsagliaRNG.cpp.s
+.PHONY : Random/GS_MarsagliaRNG.cpp.s
+
+Random/GS_TriangularRNG.o: Random/GS_TriangularRNG.cpp.o
+
+.PHONY : Random/GS_TriangularRNG.o
+
+# target to build an object file
+Random/GS_TriangularRNG.cpp.o:
+	$(MAKE) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Random/GS_TriangularRNG.cpp.o
+.PHONY : Random/GS_TriangularRNG.cpp.o
+
+Random/GS_TriangularRNG.i: Random/GS_TriangularRNG.cpp.i
+
+.PHONY : Random/GS_TriangularRNG.i
+
+# target to preprocess a source file
+Random/GS_TriangularRNG.cpp.i:
+	$(MAKE) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Random/GS_TriangularRNG.cpp.i
+.PHONY : Random/GS_TriangularRNG.cpp.i
+
+Random/GS_TriangularRNG.s: Random/GS_TriangularRNG.cpp.s
+
+.PHONY : Random/GS_TriangularRNG.s
+
+# target to generate assembly for a file
+Random/GS_TriangularRNG.cpp.s:
+	$(MAKE) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Random/GS_TriangularRNG.cpp.s
+.PHONY : Random/GS_TriangularRNG.cpp.s
+
+Random/GS_UniformRNG.o: Random/GS_UniformRNG.cpp.o
+
+.PHONY : Random/GS_UniformRNG.o
+
+# target to build an object file
+Random/GS_UniformRNG.cpp.o:
+	$(MAKE) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Random/GS_UniformRNG.cpp.o
+.PHONY : Random/GS_UniformRNG.cpp.o
+
+Random/GS_UniformRNG.i: Random/GS_UniformRNG.cpp.i
+
+.PHONY : Random/GS_UniformRNG.i
+
+# target to preprocess a source file
+Random/GS_UniformRNG.cpp.i:
+	$(MAKE) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Random/GS_UniformRNG.cpp.i
+.PHONY : Random/GS_UniformRNG.cpp.i
+
+Random/GS_UniformRNG.s: Random/GS_UniformRNG.cpp.s
+
+.PHONY : Random/GS_UniformRNG.s
+
+# target to generate assembly for a file
+Random/GS_UniformRNG.cpp.s:
+	$(MAKE) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Random/GS_UniformRNG.cpp.s
+.PHONY : Random/GS_UniformRNG.cpp.s
+
+Random/GS_WeibullRNG.o: Random/GS_WeibullRNG.cpp.o
+
+.PHONY : Random/GS_WeibullRNG.o
+
+# target to build an object file
+Random/GS_WeibullRNG.cpp.o:
+	$(MAKE) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Random/GS_WeibullRNG.cpp.o
+.PHONY : Random/GS_WeibullRNG.cpp.o
+
+Random/GS_WeibullRNG.i: Random/GS_WeibullRNG.cpp.i
+
+.PHONY : Random/GS_WeibullRNG.i
+
+# target to preprocess a source file
+Random/GS_WeibullRNG.cpp.i:
+	$(MAKE) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Random/GS_WeibullRNG.cpp.i
+.PHONY : Random/GS_WeibullRNG.cpp.i
+
+Random/GS_WeibullRNG.s: Random/GS_WeibullRNG.cpp.s
+
+.PHONY : Random/GS_WeibullRNG.s
+
+# target to generate assembly for a file
+Random/GS_WeibullRNG.cpp.s:
+	$(MAKE) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Random/GS_WeibullRNG.cpp.s
+.PHONY : Random/GS_WeibullRNG.cpp.s
+
+Random/Random.o: Random/Random.cpp.o
+
+.PHONY : Random/Random.o
+
+# target to build an object file
+Random/Random.cpp.o:
+	$(MAKE) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Random/Random.cpp.o
+.PHONY : Random/Random.cpp.o
+
+Random/Random.i: Random/Random.cpp.i
+
+.PHONY : Random/Random.i
+
+# target to preprocess a source file
+Random/Random.cpp.i:
+	$(MAKE) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Random/Random.cpp.i
+.PHONY : Random/Random.cpp.i
+
+Random/Random.s: Random/Random.cpp.s
+
+.PHONY : Random/Random.s
+
+# target to generate assembly for a file
+Random/Random.cpp.s:
+	$(MAKE) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Random/Random.cpp.s
+.PHONY : Random/Random.cpp.s
+
 TermBox/termbox.o: TermBox/termbox.c.o
 
 .PHONY : TermBox/termbox.o
@@ -798,6 +1041,9 @@ help:
 	@echo "... Examples/ReflectionExample.o"
 	@echo "... Examples/ReflectionExample.i"
 	@echo "... Examples/ReflectionExample.s"
+	@echo "... Examples/TermBoxInputExample.o"
+	@echo "... Examples/TermBoxInputExample.i"
+	@echo "... Examples/TermBoxInputExample.s"
 	@echo "... Examples/TermBoxMenuExample.o"
 	@echo "... Examples/TermBoxMenuExample.i"
 	@echo "... Examples/TermBoxMenuExample.s"
@@ -843,6 +1089,30 @@ help:
 	@echo "... Process/run.o"
 	@echo "... Process/run.i"
 	@echo "... Process/run.s"
+	@echo "... Random/GS_BasicRNG.o"
+	@echo "... Random/GS_BasicRNG.i"
+	@echo "... Random/GS_BasicRNG.s"
+	@echo "... Random/GS_CauchyRNG.o"
+	@echo "... Random/GS_CauchyRNG.i"
+	@echo "... Random/GS_CauchyRNG.s"
+	@echo "... Random/GS_MTwisterRNG.o"
+	@echo "... Random/GS_MTwisterRNG.i"
+	@echo "... Random/GS_MTwisterRNG.s"
+	@echo "... Random/GS_MarsagliaRNG.o"
+	@echo "... Random/GS_MarsagliaRNG.i"
+	@echo "... Random/GS_MarsagliaRNG.s"
+	@echo "... Random/GS_TriangularRNG.o"
+	@echo "... Random/GS_TriangularRNG.i"
+	@echo "... Random/GS_TriangularRNG.s"
+	@echo "... Random/GS_UniformRNG.o"
+	@echo "... Random/GS_UniformRNG.i"
+	@echo "... Random/GS_UniformRNG.s"
+	@echo "... Random/GS_WeibullRNG.o"
+	@echo "... Random/GS_WeibullRNG.i"
+	@echo "... Random/GS_WeibullRNG.s"
+	@echo "... Random/Random.o"
+	@echo "... Random/Random.i"
+	@echo "... Random/Random.s"
 	@echo "... TermBox/termbox.o"
 	@echo "... TermBox/termbox.i"
 	@echo "... TermBox/termbox.s"

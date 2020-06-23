@@ -170,6 +170,7 @@ namespace LD
             LD::ImmutableString<11> defaultString;
             ctll::fixed_string("[az]"_ts);
             LD::TUI::BasicImmutableTextInput<12> input{{0,-12},defaultString};
+            LD::TUI::BasicImmutableTextInput<12> input1{{0,-14},defaultString};
             termBoxApplication.OnExecution([&](const LD::ApplicationExecutionEvent<int,double,LD::TermBoxRenderContext,LD::Timer> & applicationExecutionEvent)
             {
 
@@ -212,6 +213,7 @@ namespace LD
                 //LD::Get<LD::TermBoxRenderContext>(applicationExecutionEvent)->RenderWithFormat(LD::ToImmutableString("{}"),{sizeof("________________"),-13},LD::StringView{"|"});
 
                 input(*context);
+                input1(*context);
                 LD::FormattedFloatingPoint<LD::Float > currentNumber{99.7214,2};
 
                 LD::UInteger size = stringifiedNumber.GetSize();

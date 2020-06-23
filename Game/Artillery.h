@@ -1,0 +1,8 @@
+//
+// Created by phoenixflower on 6/18/20.
+//
+
+#ifndef LANDESSDEVCORE_ARTILLERY_H
+#define LANDESSDEVCORE_ARTILLERY_H
+
+#endif //LANDESSDEVCORE_ARTILLERY_H
