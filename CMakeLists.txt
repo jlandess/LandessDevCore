@@ -199,13 +199,6 @@ add_executable(LandessDevCore
         Game/Puzzler.h
         Game/Battleship.h
         Game/Artillery.h
-        Random/GS_BasicRNG.cpp
-        Random/GS_CauchyRNG.cpp
-        Random/GS_MarsagliaRNG.cpp
-        Random/GS_MTwisterRNG.cpp
-        Random/GS_TriangularRNG.cpp
-        Random/GS_UniformRNG.cpp
-        Random/GS_WeibullRNG.cpp
-        Random/Random.cpp Memory/Comparison.h Primitives/General/Range.h Random/GaussianUniformRNG.h)
+        Random/Random.cpp Memory/Comparison.h Primitives/General/Range.h Random/GaussianUniformRandonNumberGenerator.h)
 target_link_libraries(LandessDevCore pthread)
 target_link_libraries(LandessDevCore ncurses)

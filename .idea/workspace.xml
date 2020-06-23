@@ -36,102 +36,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a2ffdfb1-0050-446c-b0af-d02ece8e31b8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Algorithms/BubbleTargeter.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Algorithms/ChannelAccessor.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Algorithms/Distance.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Algorithms/GaussianElimination.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Algorithms/Kissfft.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Algorithms/LaplaceTransform.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Algorithms/RayTracing.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Algorithms/SearchInHorsPool.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Algorithms/vdt/LaybrinthGenerator.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Examples/TermBoxInputExample.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Examples/TermBoxInputExample.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/Artillery.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/Battleship.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/Chess.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/MemoryBridge.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/Minesweeper.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/Pegboard.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/Puzzler.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/Sudoku.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/Tetris.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/TicTacToe.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IO/Archiver.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MVC/TUI/TUIEvent.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Memory/Comparison.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Primitives/General/Matrix.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Primitives/General/Range.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Random/FastRandom.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Random/GS_BasicRNG.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Random/GS_BasicRNG.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Random/GS_CauchyRNG.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Random/GS_CauchyRNG.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Random/GS_MTwisterRNG.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Random/GS_MTwisterRNG.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Random/GS_MarsagliaRNG.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Random/GS_MarsagliaRNG.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Random/GS_TriangularRNG.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Random/GS_TriangularRNG.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Random/GS_UniformRNG.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Random/GS_UniformRNG.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Random/GS_WeibullRNG.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Random/GS_WeibullRNG.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Random/GaussianUniformRNG.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Random/Random.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Random/Random.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SIMD/vectorclass.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SIMD/vectorf128.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SIMD/vectorf256.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SIMD/vectorf256e.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SIMD/vectorf512.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SIMD/vectorf512e.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SIMD/vectori128.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SIMD/vectori256.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SIMD/vectori256e.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SIMD/vectori512.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SIMD/vectori512e.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SIMD/vectormath_common.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SIMD/vectormath_exp.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SIMD/vectormath_hyp.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SIMD/vectormath_lib.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SIMD/vectormath_trig.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Random/GaussianUniformRandonNumberGenerator.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Algorithms/Periodic.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Algorithms/Periodic.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Examples/CalculusExample.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/CalculusExample.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Examples/TermBoxMenuExample.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/TermBoxMenuExample.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MVC/TUI/TUITextInput.h" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/TUI/TUITextInput.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Primitives/General/Immutable.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/Immutable.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Primitives/General/Vec3.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/Vec3.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Primitives/General/Vec4.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/Vec4.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TypeTraits/Limit.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/TypeTraits/Limit.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/CXX.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/DependInfo.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/build.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/cmake_clean.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/depend.internal" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/depend.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/link.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/progress.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/LandessDevCore" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/LandessDevCore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/LandessDevCore.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/LandessDevCore.cbp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/CXX.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/DependInfo.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/build.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/cmake_clean.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/depend.internal" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/depend.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/link.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/progress.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/Makefile2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/progress.marks" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release/LandessDevCore" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/LandessDevCore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release/LandessDevCore.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/LandessDevCore.cbp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Random/FastRandom.h" beforeDir="false" afterPath="$PROJECT_DIR$/Random/CauchyRandomNumberGenerator.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Random/GS_BasicRNG.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Random/GS_BasicRNG.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Random/BasicRandomNumberGenerator.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Random/GS_CauchyRNG.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Random/GS_CauchyRNG.hpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Random/GS_MTwisterRNG.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Random/GS_MTwisterRNG.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Random/TwisterRandomNumberGenerator.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Random/GS_MarsagliaRNG.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Random/GS_MarsagliaRNG.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Random/MarsagliaRandomNumberGenerator.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Random/GS_TriangularRNG.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Random/GS_TriangularRNG.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Random/TriangularRandomNumberGenerator.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Random/GS_UniformRNG.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Random/GS_UniformRNG.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Random/UniformRandomNumberGenerator.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Random/GS_WeibullRNG.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Random/GaussianUniformRNG.h" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -210,7 +132,7 @@
       <workItem from="1592452278549" duration="27724000" />
       <workItem from="1592710488086" duration="13712000" />
       <workItem from="1592804819863" duration="8373000" />
-      <workItem from="1592871383979" duration="12924000" />
+      <workItem from="1592871383979" duration="14501000" />
     </task>
     <servers />
   </component>
