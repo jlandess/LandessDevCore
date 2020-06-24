@@ -51,7 +51,7 @@ public:
 
         constexpr bool operator != (const Iterator & it) noexcept
         {
-            return this->mLineBufferSize != it.mLineBufferSize;
+            return this->mLineBufferSize != 0;
         }
         LD::QueryResult<LD::Variant<Reflectables...>(Context...)> operator*() noexcept
         {
