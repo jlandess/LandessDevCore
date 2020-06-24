@@ -13,7 +13,6 @@ namespace LD
 {
     class CPUPackageMetric: public LD::Reflectable<
             decltype("cpu"_ts)(
-                    decltype("CPU"_ts),LD::ImmutableString<20> ,
                     decltype("User"_ts),LD::UInteger,
                     decltype("Nice"_ts),LD::UInteger,
                     decltype("System"_ts),LD::UInteger,

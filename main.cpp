@@ -95,11 +95,16 @@ public:
     template<typename ... Reflectables, typename ... Args>
     Iterator<LD::Variant<Reflectables...>(Args...)> End(const LD::CT::TypeList<Reflectables...> &,Args && ... arguments) noexcept
     {
-        return Iterator<LD::Variant<Reflectables...>(Args...)>{LD::ElementReference<BasicDelimeterSeperatedFile>{this},LD::Forward<Args>(arguments)...};
+        //it just works as a dummy sentinal to stop the possible loop
+        return Iterator<LD::Variant<Reflectables...>(Args...)>{LD::Forward<Args>(arguments)...};
     }
 
+
     template<typename ... Reflectables, typename ... Args>
-    LD::QueryResult<LD::Variant<Reflectables...>(Args...)> operator()(const LD::CT::TypeList<Reflectables...> &,const LD::UInteger & index, Args && ... arguments) noexcept
+    LD::Enable_If_T<
+            LD::Require<
+                    (LD::IsReflectable<Reflectables> && ...)
+                    >,LD::QueryResult<LD::Variant<Reflectables...>(Args...)>> operator()(const LD::CT::TypeList<Reflectables...> &,const LD::UInteger & index, Args && ... arguments) noexcept
     {
         auto cachedOffset = ftello(this->mHandle);
         fseeko(this->mHandle,0,SEEK_SET);
@@ -114,17 +119,33 @@ public:
 
         using CurrentTypeList = LD::CT::TypeList<Reflectables...>;
         //iterate through all the types we care about at compile time
+        auto onClassReanimate = [](const LD::Context<LD::StringView,LD::StringView> & context) noexcept -> bool
+        {
+            return true;
+        };
         LD::For<sizeof...(Reflectables)>([](
                 auto I,
-                auto && input)
+                auto && input,
+                auto && onClassReanimate)
         {
-             using CurrentType = LD::CT::TypeAtIndex<I,CurrentTypeList>;
-             auto currentView = input;
-             LD::UInteger offset = 0;
-             auto && classNameSearch = ctre::range<MemberPattern>(currentView);
-             bool keepSearching = true;
+
+            using CurrentType = LD::CT::TypeAtIndex<I,CurrentTypeList>;
+            using Var = LD::CT::RebindList<LD::CT::ReflectiveTransformation<CurrentType ,LD::AccessWriteOnly>,LD::Variant>;
+            //get the types which compose the hiarchacy of the current Type we're looking at.
+            //using ExpandedMembers = LD::CT::GenerateNamedReflectiveTypeStructure<decltype(""_ts),CurrentType>;
+
+            //LD::StaticArray<int,ExpandedMembers::size()/2> membersInStringForm;
+            auto currentView = input;
+
+            LD::UInteger offset = 0;
+
+            auto && classNameSearch = ctre::range<MemberPattern>(currentView);
+
+            bool keepSearching = true;
+             //we found the type associated with the current row
             if (classNameSearch.begin() != classNameSearch.end())
             {
+                keepSearching = false;
                 using CurrentClassName = decltype(CurrentType::GetClassNameTypeString());
 
                 auto  classNameMatch = classNameSearch.begin().current_match;
@@ -167,6 +188,16 @@ public:
                     }
                      */
 
+
+                    auto onMemberReanimate = [](const LD::ContextualVariant<Var(LD::StringView)> & context) noexcept
+                    {
+                        std::cout << "member found " << std::endl;
+                        return true;
+                    };
+
+                    CurrentType typeToDeserialize;
+                    LD::CT::ReflectiveWalk(""_ts,typeToDeserialize,onClassReanimate,onMemberReanimate,LD::AccessWriteOnly{});
+
                     for (auto && match: ctre::range<MemberPattern>(LD::StringView {input.data()+offset}))
                     {
                         //LD::StringView abc = LD::StringView {match.get<0>()};
@@ -178,16 +209,22 @@ public:
                         const char * matchBegin = (input.data()+(currentMatch.begin()-input.data()));
 
                         auto abc = LD::StringView{matchBegin,currentMatch.size()};
-                        //std::cout << abc << "\n";
+                        //std::cout << abc << "\n";stuffings
                         //abc.substr(0,0);
                         std::cout << "Beginning : " << indexOfIncidence << "," << "End : " << currentMatch.size() << std::endl;
+                        std::cout << input.substr(indexOfIncidence,currentMatch.size()) << std::endl;
                     }
+
+
+
+
+
 
 
                 }
             }
              return keepSearching;
-        },input);
+        },input,onClassReanimate);
         fseeko(this->mHandle,cachedOffset,SEEK_SET);
         return {};
     }
@@ -207,8 +244,10 @@ int main()
 {
 
 
+    using stuffings = LD::CT::GenerateNamedReflectiveTypeStructure<decltype(""_ts),LD::Pyramid>;
 
 
+    //LD::CT::DebugTemplate<stuffings>{};
 
     /*
     auto input = LD::StringView {"123,456,768"};
