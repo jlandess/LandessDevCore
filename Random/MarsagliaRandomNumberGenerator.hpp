@@ -78,7 +78,7 @@ namespace LD
         {
 
         }
-        unsigned long NextInteger() noexcept
+        constexpr unsigned long NextInteger() noexcept
         {
 
             // First shift & xor.
@@ -91,7 +91,7 @@ namespace LD
             return this->mCurrent;
         }
 
-        double NextFloatingPoint() {
+        constexpr double NextFloatingPoint() {
 
             return (double) this->NextInteger()/(RMax + 1.0);
         }

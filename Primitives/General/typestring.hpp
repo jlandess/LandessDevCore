@@ -318,4 +318,54 @@ template<typename CharT, CharT ...String> constexpr LD::TypeString<String...> op
 #define LDNamedType(x) \
     decltype(LD::typeek(LD::TypeString<TYPESTRING64(,x)>()))
 #endif
+
+
+namespace LD
+{
+    namespace Detail
+    {
+        constexpr std::size_t num_digits(const LD::UInteger & n) noexcept
+        {
+            return n <  10 ? 1 : num_digits(n / 10) + 1;
+        }
+
+        template<class List, char C>
+        struct append_char;
+
+        template<template<char...> class List, char... Cs, char C>
+        struct append_char<List<Cs...>, C> {
+            using type = LD::TypeString<Cs..., C>;
+        };
+
+        template< class List1, class List2>
+        struct combine_strings;
+
+        template<template<char...> class List1, char... Cs1,
+                template<char...> class List2, char... Cs2>
+        struct combine_strings<List1<Cs1...>, List2<Cs2...>> {
+            using type = LD::TypeString<Cs1..., Cs2...>;
+        };
+
+        template<LD::UInteger D, LD::UInteger N, char... Chars>
+        struct converter {
+            using type = typename converter<D - 1, N / 10, '0' + N % 10, Chars...>::type;
+        };
+
+        template<std::size_t N, char... Chars>
+        struct converter<1, N, Chars...> {
+            using type = LD::TypeString<'0' + N, Chars...>;
+        };
+
+        template<class List, char C>
+        using append_char_t = typename append_char<List, C>::type;
+
+        template< class List1, class List2>
+        using combine_strings_t = typename combine_strings<List1, List2>::type;
+
+        template<LD::UInteger N>
+        using ToTypeString = typename converter<num_digits(N), N>::type;
+    }
+    template<LD::UInteger N>
+    using ToTypeString = LD::Detail::ToTypeString<N>;
+}
 #endif /* IRQUS_TYPESTRING_HH_ */

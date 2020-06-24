@@ -92,6 +92,18 @@ namespace LD
             (*this) = typeString;
 
         }
+        template<LD::UInteger Size, typename = typename LD::Enable_If_T<Size <= N>>
+        constexpr ImmutableString(const LD::ImmutableString<Size> & string) noexcept:ImmutableString()
+        {
+            LD::For<Size>([](
+                    auto I,
+                    auto && instance,
+                    auto && string)
+            {
+                instance[I] = string[I];
+                return true;
+            },this->string,string);
+        }
 
         constexpr ImmutableString(const char (&lit)[N + 1]): ImmutableString()
         {
@@ -126,6 +138,21 @@ namespace LD
 
             },this);
 
+            return (*this);
+        }
+
+        template<LD::UInteger Size>
+        constexpr ImmutableString & operator = (const LD::ImmutableString<Size> & string) noexcept
+        {
+            LD::For<Size>([](
+                    auto I,
+                    auto && instance,
+                    auto && string)
+                    {
+
+                        instance[I] = string[I];
+                        return true;
+                    },this->string,string);
             return (*this);
         }
 

@@ -8,8 +8,103 @@
 #include "Definitions/Float.hpp"
 #include "Functor/FunctionView.h"
 #include "Primitives/General/StaticArray.hpp"
+#include "Primitives/General/Immutable.hpp"
 namespace LD
 {
+    class CPUPackageMetric: public LD::Reflectable<
+            decltype("cpu"_ts)(
+                    decltype("CPU"_ts),LD::ImmutableString<20> ,
+                    decltype("User"_ts),LD::UInteger,
+                    decltype("Nice"_ts),LD::UInteger,
+                    decltype("System"_ts),LD::UInteger,
+                    decltype("Idle"_ts),LD::UInteger,
+                    decltype("IOWait"_ts),LD::UInteger,
+                    decltype("Irq"_ts),LD::UInteger,
+                    decltype("SoftIrq"_ts),LD::UInteger,
+                    decltype("Steal"_ts),LD::UInteger,
+                    decltype("Guest"_ts),LD::UInteger
+            )>
+    {
+
+    };
+    template<LD::UInteger CoreNumber>
+    class CPUCoreMetric: public LD::Reflectable<
+            decltype("cpu"_ts+LD::ToTypeString<CoreNumber>{})(
+                    decltype("CPU"_ts),LD::ImmutableString<20> ,
+                    decltype("User"_ts),LD::UInteger,
+                    decltype("Nice"_ts),LD::UInteger,
+                    decltype("System"_ts),LD::UInteger,
+                    decltype("Idle"_ts),LD::UInteger,
+                    decltype("IOWait"_ts),LD::UInteger,
+                    decltype("Irq"_ts),LD::UInteger,
+                    decltype("SoftIrq"_ts),LD::UInteger,
+                    decltype("Steal"_ts),LD::UInteger,
+                    decltype("Guest"_ts),LD::UInteger
+                    )>
+    {
+    private:
+
+    public:
+
+    };
+
+    class ContextSwitchMetric: public LD::Reflectable<
+            decltype("ctxt"_ts)(
+                    decltype("Switches"_ts),LD::UInteger
+            )>
+    {
+
+    };
+    class InterruptServiceMetric: public LD::Reflectable<
+            decltype("intr"_ts)(
+                    decltype("Switches"_ts),LD::UInteger
+            )>
+    {
+
+    };
+
+    class BootUpTimeMetric: public LD::Reflectable<
+            decltype("btime"_ts)(
+                    decltype("Time"_ts),LD::UInteger
+            )>
+    {
+
+    };
+
+    class ProcessesMetric: public LD::Reflectable<
+            decltype("processes"_ts)(
+                    decltype("Number"_ts),LD::UInteger
+            )>
+    {
+
+    };
+
+    class ProcessesRunningMetric: public LD::Reflectable<
+            decltype("procs_running"_ts)(
+                    decltype("Number"_ts),LD::UInteger
+            )>
+    {
+
+    };
+
+    class ProcessesBlockedMetric: public LD::Reflectable<
+            decltype("procs_blocked"_ts)(
+                    decltype("Name"_ts),LD::ImmutableString<20>,
+                    decltype("Number"_ts),LD::UInteger
+            )>
+    {
+
+    };
+
+    class SoftIRQ: public LD::Reflectable<
+            decltype("softirq"_ts)(
+                    decltype("Interrupts"_ts),LD::UInteger
+            )>
+    {
+
+    };
+
+
     class Square: public LD::Reflectable<
             decltype("Square"_ts)(
                     decltype("Length"_ts),      LD::Float,

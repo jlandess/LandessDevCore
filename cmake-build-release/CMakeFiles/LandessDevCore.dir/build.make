@@ -382,110 +382,6 @@ CMakeFiles/LandessDevCore.dir/Examples/TermBoxInputExample.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/Examples/TermBoxInputExample.cpp.s"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/phoenixflower/Documents/LandessDevCore/Examples/TermBoxInputExample.cpp -o CMakeFiles/LandessDevCore.dir/Examples/TermBoxInputExample.cpp.s
 
-CMakeFiles/LandessDevCore.dir/Random/GS_BasicRNG.cpp.o: CMakeFiles/LandessDevCore.dir/flags.make
-CMakeFiles/LandessDevCore.dir/Random/GS_BasicRNG.cpp.o: ../Random/GS_BasicRNG.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/phoenixflower/Documents/LandessDevCore/cmake-build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/LandessDevCore.dir/Random/GS_BasicRNG.cpp.o"
-	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/LandessDevCore.dir/Random/GS_BasicRNG.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/Random/GS_BasicRNG.cpp
-
-CMakeFiles/LandessDevCore.dir/Random/GS_BasicRNG.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LandessDevCore.dir/Random/GS_BasicRNG.cpp.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/phoenixflower/Documents/LandessDevCore/Random/GS_BasicRNG.cpp > CMakeFiles/LandessDevCore.dir/Random/GS_BasicRNG.cpp.i
-
-CMakeFiles/LandessDevCore.dir/Random/GS_BasicRNG.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/Random/GS_BasicRNG.cpp.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/phoenixflower/Documents/LandessDevCore/Random/GS_BasicRNG.cpp -o CMakeFiles/LandessDevCore.dir/Random/GS_BasicRNG.cpp.s
-
-CMakeFiles/LandessDevCore.dir/Random/GS_CauchyRNG.cpp.o: CMakeFiles/LandessDevCore.dir/flags.make
-CMakeFiles/LandessDevCore.dir/Random/GS_CauchyRNG.cpp.o: ../Random/GS_CauchyRNG.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/phoenixflower/Documents/LandessDevCore/cmake-build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/LandessDevCore.dir/Random/GS_CauchyRNG.cpp.o"
-	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/LandessDevCore.dir/Random/GS_CauchyRNG.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/Random/GS_CauchyRNG.cpp
-
-CMakeFiles/LandessDevCore.dir/Random/GS_CauchyRNG.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LandessDevCore.dir/Random/GS_CauchyRNG.cpp.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/phoenixflower/Documents/LandessDevCore/Random/GS_CauchyRNG.cpp > CMakeFiles/LandessDevCore.dir/Random/GS_CauchyRNG.cpp.i
-
-CMakeFiles/LandessDevCore.dir/Random/GS_CauchyRNG.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/Random/GS_CauchyRNG.cpp.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/phoenixflower/Documents/LandessDevCore/Random/GS_CauchyRNG.cpp -o CMakeFiles/LandessDevCore.dir/Random/GS_CauchyRNG.cpp.s
-
-CMakeFiles/LandessDevCore.dir/Random/GS_MarsagliaRNG.cpp.o: CMakeFiles/LandessDevCore.dir/flags.make
-CMakeFiles/LandessDevCore.dir/Random/GS_MarsagliaRNG.cpp.o: ../Random/GS_MarsagliaRNG.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/phoenixflower/Documents/LandessDevCore/cmake-build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/LandessDevCore.dir/Random/GS_MarsagliaRNG.cpp.o"
-	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/LandessDevCore.dir/Random/GS_MarsagliaRNG.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/Random/GS_MarsagliaRNG.cpp
-
-CMakeFiles/LandessDevCore.dir/Random/GS_MarsagliaRNG.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LandessDevCore.dir/Random/GS_MarsagliaRNG.cpp.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/phoenixflower/Documents/LandessDevCore/Random/GS_MarsagliaRNG.cpp > CMakeFiles/LandessDevCore.dir/Random/GS_MarsagliaRNG.cpp.i
-
-CMakeFiles/LandessDevCore.dir/Random/GS_MarsagliaRNG.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/Random/GS_MarsagliaRNG.cpp.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/phoenixflower/Documents/LandessDevCore/Random/GS_MarsagliaRNG.cpp -o CMakeFiles/LandessDevCore.dir/Random/GS_MarsagliaRNG.cpp.s
-
-CMakeFiles/LandessDevCore.dir/Random/GS_MTwisterRNG.cpp.o: CMakeFiles/LandessDevCore.dir/flags.make
-CMakeFiles/LandessDevCore.dir/Random/GS_MTwisterRNG.cpp.o: ../Random/GS_MTwisterRNG.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/phoenixflower/Documents/LandessDevCore/cmake-build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object CMakeFiles/LandessDevCore.dir/Random/GS_MTwisterRNG.cpp.o"
-	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/LandessDevCore.dir/Random/GS_MTwisterRNG.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/Random/GS_MTwisterRNG.cpp
-
-CMakeFiles/LandessDevCore.dir/Random/GS_MTwisterRNG.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LandessDevCore.dir/Random/GS_MTwisterRNG.cpp.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/phoenixflower/Documents/LandessDevCore/Random/GS_MTwisterRNG.cpp > CMakeFiles/LandessDevCore.dir/Random/GS_MTwisterRNG.cpp.i
-
-CMakeFiles/LandessDevCore.dir/Random/GS_MTwisterRNG.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/Random/GS_MTwisterRNG.cpp.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/phoenixflower/Documents/LandessDevCore/Random/GS_MTwisterRNG.cpp -o CMakeFiles/LandessDevCore.dir/Random/GS_MTwisterRNG.cpp.s
-
-CMakeFiles/LandessDevCore.dir/Random/GS_TriangularRNG.cpp.o: CMakeFiles/LandessDevCore.dir/flags.make
-CMakeFiles/LandessDevCore.dir/Random/GS_TriangularRNG.cpp.o: ../Random/GS_TriangularRNG.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/phoenixflower/Documents/LandessDevCore/cmake-build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object CMakeFiles/LandessDevCore.dir/Random/GS_TriangularRNG.cpp.o"
-	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/LandessDevCore.dir/Random/GS_TriangularRNG.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/Random/GS_TriangularRNG.cpp
-
-CMakeFiles/LandessDevCore.dir/Random/GS_TriangularRNG.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LandessDevCore.dir/Random/GS_TriangularRNG.cpp.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/phoenixflower/Documents/LandessDevCore/Random/GS_TriangularRNG.cpp > CMakeFiles/LandessDevCore.dir/Random/GS_TriangularRNG.cpp.i
-
-CMakeFiles/LandessDevCore.dir/Random/GS_TriangularRNG.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/Random/GS_TriangularRNG.cpp.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/phoenixflower/Documents/LandessDevCore/Random/GS_TriangularRNG.cpp -o CMakeFiles/LandessDevCore.dir/Random/GS_TriangularRNG.cpp.s
-
-CMakeFiles/LandessDevCore.dir/Random/GS_UniformRNG.cpp.o: CMakeFiles/LandessDevCore.dir/flags.make
-CMakeFiles/LandessDevCore.dir/Random/GS_UniformRNG.cpp.o: ../Random/GS_UniformRNG.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/phoenixflower/Documents/LandessDevCore/cmake-build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building CXX object CMakeFiles/LandessDevCore.dir/Random/GS_UniformRNG.cpp.o"
-	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/LandessDevCore.dir/Random/GS_UniformRNG.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/Random/GS_UniformRNG.cpp
-
-CMakeFiles/LandessDevCore.dir/Random/GS_UniformRNG.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LandessDevCore.dir/Random/GS_UniformRNG.cpp.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/phoenixflower/Documents/LandessDevCore/Random/GS_UniformRNG.cpp > CMakeFiles/LandessDevCore.dir/Random/GS_UniformRNG.cpp.i
-
-CMakeFiles/LandessDevCore.dir/Random/GS_UniformRNG.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/Random/GS_UniformRNG.cpp.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/phoenixflower/Documents/LandessDevCore/Random/GS_UniformRNG.cpp -o CMakeFiles/LandessDevCore.dir/Random/GS_UniformRNG.cpp.s
-
-CMakeFiles/LandessDevCore.dir/Random/GS_WeibullRNG.cpp.o: CMakeFiles/LandessDevCore.dir/flags.make
-CMakeFiles/LandessDevCore.dir/Random/GS_WeibullRNG.cpp.o: ../Random/GS_WeibullRNG.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/phoenixflower/Documents/LandessDevCore/cmake-build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building CXX object CMakeFiles/LandessDevCore.dir/Random/GS_WeibullRNG.cpp.o"
-	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/LandessDevCore.dir/Random/GS_WeibullRNG.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/Random/GS_WeibullRNG.cpp
-
-CMakeFiles/LandessDevCore.dir/Random/GS_WeibullRNG.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LandessDevCore.dir/Random/GS_WeibullRNG.cpp.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/phoenixflower/Documents/LandessDevCore/Random/GS_WeibullRNG.cpp > CMakeFiles/LandessDevCore.dir/Random/GS_WeibullRNG.cpp.i
-
-CMakeFiles/LandessDevCore.dir/Random/GS_WeibullRNG.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/Random/GS_WeibullRNG.cpp.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/phoenixflower/Documents/LandessDevCore/Random/GS_WeibullRNG.cpp -o CMakeFiles/LandessDevCore.dir/Random/GS_WeibullRNG.cpp.s
-
-CMakeFiles/LandessDevCore.dir/Random/Random.cpp.o: CMakeFiles/LandessDevCore.dir/flags.make
-CMakeFiles/LandessDevCore.dir/Random/Random.cpp.o: ../Random/Random.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/phoenixflower/Documents/LandessDevCore/cmake-build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building CXX object CMakeFiles/LandessDevCore.dir/Random/Random.cpp.o"
-	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/LandessDevCore.dir/Random/Random.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/Random/Random.cpp
-
-CMakeFiles/LandessDevCore.dir/Random/Random.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LandessDevCore.dir/Random/Random.cpp.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/phoenixflower/Documents/LandessDevCore/Random/Random.cpp > CMakeFiles/LandessDevCore.dir/Random/Random.cpp.i
-
-CMakeFiles/LandessDevCore.dir/Random/Random.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/Random/Random.cpp.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/phoenixflower/Documents/LandessDevCore/Random/Random.cpp -o CMakeFiles/LandessDevCore.dir/Random/Random.cpp.s
-
 # Object files for target LandessDevCore
 LandessDevCore_OBJECTS = \
 "CMakeFiles/LandessDevCore.dir/main.cpp.o" \
@@ -512,15 +408,7 @@ LandessDevCore_OBJECTS = \
 "CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o" \
 "CMakeFiles/LandessDevCore.dir/Examples/CalculusExample.cpp.o" \
 "CMakeFiles/LandessDevCore.dir/Examples/MultithreadingExample.cpp.o" \
-"CMakeFiles/LandessDevCore.dir/Examples/TermBoxInputExample.cpp.o" \
-"CMakeFiles/LandessDevCore.dir/Random/GS_BasicRNG.cpp.o" \
-"CMakeFiles/LandessDevCore.dir/Random/GS_CauchyRNG.cpp.o" \
-"CMakeFiles/LandessDevCore.dir/Random/GS_MarsagliaRNG.cpp.o" \
-"CMakeFiles/LandessDevCore.dir/Random/GS_MTwisterRNG.cpp.o" \
-"CMakeFiles/LandessDevCore.dir/Random/GS_TriangularRNG.cpp.o" \
-"CMakeFiles/LandessDevCore.dir/Random/GS_UniformRNG.cpp.o" \
-"CMakeFiles/LandessDevCore.dir/Random/GS_WeibullRNG.cpp.o" \
-"CMakeFiles/LandessDevCore.dir/Random/Random.cpp.o"
+"CMakeFiles/LandessDevCore.dir/Examples/TermBoxInputExample.cpp.o"
 
 # External object files for target LandessDevCore
 LandessDevCore_EXTERNAL_OBJECTS =
@@ -550,17 +438,9 @@ LandessDevCore: CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o
 LandessDevCore: CMakeFiles/LandessDevCore.dir/Examples/CalculusExample.cpp.o
 LandessDevCore: CMakeFiles/LandessDevCore.dir/Examples/MultithreadingExample.cpp.o
 LandessDevCore: CMakeFiles/LandessDevCore.dir/Examples/TermBoxInputExample.cpp.o
-LandessDevCore: CMakeFiles/LandessDevCore.dir/Random/GS_BasicRNG.cpp.o
-LandessDevCore: CMakeFiles/LandessDevCore.dir/Random/GS_CauchyRNG.cpp.o
-LandessDevCore: CMakeFiles/LandessDevCore.dir/Random/GS_MarsagliaRNG.cpp.o
-LandessDevCore: CMakeFiles/LandessDevCore.dir/Random/GS_MTwisterRNG.cpp.o
-LandessDevCore: CMakeFiles/LandessDevCore.dir/Random/GS_TriangularRNG.cpp.o
-LandessDevCore: CMakeFiles/LandessDevCore.dir/Random/GS_UniformRNG.cpp.o
-LandessDevCore: CMakeFiles/LandessDevCore.dir/Random/GS_WeibullRNG.cpp.o
-LandessDevCore: CMakeFiles/LandessDevCore.dir/Random/Random.cpp.o
 LandessDevCore: CMakeFiles/LandessDevCore.dir/build.make
 LandessDevCore: CMakeFiles/LandessDevCore.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/phoenixflower/Documents/LandessDevCore/cmake-build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Linking CXX executable LandessDevCore"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/phoenixflower/Documents/LandessDevCore/cmake-build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Linking CXX executable LandessDevCore"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/LandessDevCore.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

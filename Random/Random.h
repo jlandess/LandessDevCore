@@ -73,11 +73,20 @@ namespace LD
      */
     class Random
     {
+    private:
+        static constexpr const auto A = 48271;
+        static constexpr const auto M = MaximumRandom<LD::Integer>::GetMaximum();
+        static constexpr const auto Q = M / A;
+        static constexpr const auto R = M % A;
     public:
         /**
          @brief A constructor which allows you to provide the initial value (which determines the state) of this classical Random Number generator
          */
-        Random(LD::UInteger initialValue = 1 ) noexcept ;
+        constexpr Random(LD::UInteger initialValue = 1 ) noexcept
+        {
+            State = (initialValue < 0)?initialValue+M:initialValue;
+            State = (State == 0)?1:State;
+        }
 
         /**
          @brief Gets the next integer from the Random number generator
@@ -95,7 +104,16 @@ namespace LD
          }
          @endcode
          */
-        LD::UInteger NextInt( ) noexcept ;
+        constexpr LD::UInteger NextInt( ) noexcept
+        {
+            LD::UInteger tmpState = A * ( State % Q ) - R * ( State / Q );
+
+            if( tmpState >= 0 )
+                State = tmpState;
+            else
+                State = tmpState + M;
+            return State;
+        }
 
 
         /**
@@ -114,9 +132,15 @@ namespace LD
          }
          @endcode
          */
-        LD::Float NextFloat( ) noexcept ;
+        constexpr LD::Float NextFloat( ) noexcept
+        {
+            return (LD::Float) NextInt() / (LD::Float)M;
+        }
 
-        LD::Float NextFloat(LD::UInteger low, LD::UInteger high ) noexcept ;
+        constexpr LD::Float NextFloat(LD::UInteger low, LD::UInteger high ) noexcept
+        {
+            return (LD::Float) NextInt(low,high) / (LD::Float)M;
+        }
 
         /**
          @brief Gets the next integer between the specifies values [low,high]
@@ -136,12 +160,20 @@ namespace LD
          }
          @endcode
          */
-        LD::UInteger NextInt( LD::UInteger low, LD::UInteger high ) noexcept;
+        constexpr LD::UInteger NextInt( LD::UInteger low, LD::UInteger high ) noexcept
+        {
+            LD::Float partitionSize = (LD::Float) M / ( high - low + 1 );
+
+            return (LD::Integer) ( NextInt( ) / partitionSize ) + low;
+        }
 
         /**
          @brief Provides a copy to the current internal state of the random number generator, this is here simply for serialization reasons to maintain the random number generator's "random-ness" between application start-ups
          */
-        LD::UInteger GetState() const noexcept ;
+        constexpr LD::UInteger GetState() const noexcept
+        {
+            return this->State;
+        }
     private:
         LD::UInteger State;
     };

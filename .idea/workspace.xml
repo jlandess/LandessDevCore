@@ -36,24 +36,43 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a2ffdfb1-0050-446c-b0af-d02ece8e31b8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Random/GaussianUniformRandonNumberGenerator.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Primitives/General/Rope.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Random/FastRandom.h" beforeDir="false" afterPath="$PROJECT_DIR$/Random/CauchyRandomNumberGenerator.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Random/GS_BasicRNG.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Random/GS_BasicRNG.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Random/BasicRandomNumberGenerator.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Random/GS_CauchyRNG.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Random/GS_CauchyRNG.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Random/GS_MTwisterRNG.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Random/GS_MTwisterRNG.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Random/TwisterRandomNumberGenerator.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Random/GS_MarsagliaRNG.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Random/GS_MarsagliaRNG.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Random/MarsagliaRandomNumberGenerator.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Random/GS_TriangularRNG.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Random/GS_TriangularRNG.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Random/TriangularRandomNumberGenerator.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Random/GS_UniformRNG.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Random/GS_UniformRNG.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Random/UniformRandomNumberGenerator.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Random/GS_WeibullRNG.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Random/GaussianUniformRNG.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Examples/ReflectionDemoTypes.h" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/ReflectionDemoTypes.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Examples/TermBoxMenuExample.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/TermBoxMenuExample.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Primitives/General/Immutable.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/Immutable.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Primitives/General/typestring.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/typestring.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Random/MarsagliaRandomNumberGenerator.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Random/MarsagliaRandomNumberGenerator.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Random/Random.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Random/Random.h" beforeDir="false" afterPath="$PROJECT_DIR$/Random/Random.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/cmake_clean.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/depend.internal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/link.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/progress.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/LandessDevCore" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/LandessDevCore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/LandessDevCore.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/LandessDevCore.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/cmake_clean.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/depend.internal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/link.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/progress.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/progress.marks" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/LandessDevCore" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/LandessDevCore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/LandessDevCore.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/LandessDevCore.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,7 +151,8 @@
       <workItem from="1592452278549" duration="27724000" />
       <workItem from="1592710488086" duration="13712000" />
       <workItem from="1592804819863" duration="8373000" />
-      <workItem from="1592871383979" duration="14501000" />
+      <workItem from="1592871383979" duration="29959000" />
+      <workItem from="1592979251202" duration="16500000" />
     </task>
     <servers />
   </component>
@@ -158,42 +178,46 @@
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
     <state x="730" y="355" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/70.27.1850.1053@70.27.1850.1053" timestamp="1591840785008" />
-    <state width="1793" height="125" key="GridCell.Tab.0.bottom" timestamp="1592018399121">
+    <state width="1793" height="140" key="GridCell.Tab.0.bottom" timestamp="1593013446301">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
-    <state width="1793" height="125" key="GridCell.Tab.0.bottom/70.27.1850.1053@70.27.1850.1053" timestamp="1592018399121" />
-    <state width="1793" height="125" key="GridCell.Tab.0.center" timestamp="1592018399120">
+    <state width="1793" height="140" key="GridCell.Tab.0.bottom/70.27.1850.1053@70.27.1850.1053" timestamp="1593013446301" />
+    <state width="1793" height="140" key="GridCell.Tab.0.center" timestamp="1593013446300">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
-    <state width="1793" height="125" key="GridCell.Tab.0.center/70.27.1850.1053@70.27.1850.1053" timestamp="1592018399120" />
-    <state width="1793" height="125" key="GridCell.Tab.0.left" timestamp="1592018399120">
+    <state width="1793" height="140" key="GridCell.Tab.0.center/70.27.1850.1053@70.27.1850.1053" timestamp="1593013446300" />
+    <state width="1793" height="140" key="GridCell.Tab.0.left" timestamp="1593013446300">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
-    <state width="1793" height="125" key="GridCell.Tab.0.left/70.27.1850.1053@70.27.1850.1053" timestamp="1592018399120" />
-    <state width="1793" height="125" key="GridCell.Tab.0.right" timestamp="1592018399121">
+    <state width="1793" height="140" key="GridCell.Tab.0.left/70.27.1850.1053@70.27.1850.1053" timestamp="1593013446300" />
+    <state width="1793" height="140" key="GridCell.Tab.0.right" timestamp="1593013446301">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
-    <state width="1793" height="125" key="GridCell.Tab.0.right/70.27.1850.1053@70.27.1850.1053" timestamp="1592018399121" />
-    <state width="1793" height="298" key="GridCell.Tab.1.bottom" timestamp="1591745883338">
+    <state width="1793" height="140" key="GridCell.Tab.0.right/70.27.1850.1053@70.27.1850.1053" timestamp="1593013446301" />
+    <state width="1793" height="202" key="GridCell.Tab.1.bottom" timestamp="1592985593557">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
-    <state width="1793" height="298" key="GridCell.Tab.1.bottom/70.27.1850.1053@70.27.1850.1053" timestamp="1591745883338" />
-    <state width="1793" height="298" key="GridCell.Tab.1.center" timestamp="1591745883337">
+    <state width="1793" height="202" key="GridCell.Tab.1.bottom/70.27.1850.1053@70.27.1850.1053" timestamp="1592985593557" />
+    <state width="1793" height="202" key="GridCell.Tab.1.center" timestamp="1592985593556">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
-    <state width="1793" height="298" key="GridCell.Tab.1.center/70.27.1850.1053@70.27.1850.1053" timestamp="1591745883337" />
-    <state width="1793" height="298" key="GridCell.Tab.1.left" timestamp="1591745883336">
+    <state width="1793" height="202" key="GridCell.Tab.1.center/70.27.1850.1053@70.27.1850.1053" timestamp="1592985593556" />
+    <state width="1793" height="202" key="GridCell.Tab.1.left" timestamp="1592985593556">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
-    <state width="1793" height="298" key="GridCell.Tab.1.left/70.27.1850.1053@70.27.1850.1053" timestamp="1591745883336" />
-    <state width="1793" height="298" key="GridCell.Tab.1.right" timestamp="1591745883337">
+    <state width="1793" height="202" key="GridCell.Tab.1.left/70.27.1850.1053@70.27.1850.1053" timestamp="1592985593556" />
+    <state width="1793" height="202" key="GridCell.Tab.1.right" timestamp="1592985593556">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
-    <state width="1793" height="298" key="GridCell.Tab.1.right/70.27.1850.1053@70.27.1850.1053" timestamp="1591745883337" />
+    <state width="1793" height="202" key="GridCell.Tab.1.right/70.27.1850.1053@70.27.1850.1053" timestamp="1592985593556" />
     <state x="178" y="232" width="1640" height="748" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1589341972355">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
     <state x="178" y="232" width="1640" height="748" key="com.intellij.history.integration.ui.views.FileHistoryDialog/70.27.1850.1053@70.27.1850.1053" timestamp="1589341972355" />
+    <state x="599" y="156" width="770" height="780" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1592982961685">
+      <screen x="70" y="27" width="1850" height="1053" />
+    </state>
+    <state x="599" y="156" width="770" height="780" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/70.27.1850.1053@70.27.1850.1053" timestamp="1592982961685" />
     <state width="600" height="428" key="javadoc.popup" timestamp="1591146528949">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
