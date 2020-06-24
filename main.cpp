@@ -48,10 +48,23 @@ public:
                 return true;
             });
         }
+        constexpr Iterator(Context && ... context) noexcept :mLineBufferSize{0},mInstance{nullptr}
+        {
+
+            using CurrentTypeList = LD::CT::TypeList<Reflectables...>;
+            LD::For<sizeof...(Reflectables)>([](auto I)
+            {
+                  using CurrentType = LD::CT::TypeAtIndex<I,CurrentTypeList>;
+
+
+                  return true;
+
+            });
+        }
 
         constexpr bool operator != (const Iterator & it) noexcept
         {
-            return this->mLineBufferSize != 0;
+            return this->mLineBufferSize != 0 ||it.mInstance == nullptr;
         }
         LD::QueryResult<LD::Variant<Reflectables...>(Context...)> operator*() noexcept
         {
