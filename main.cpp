@@ -66,7 +66,7 @@ public:
         {
             return this->mLineBufferSize != 0 ||it.mInstance == nullptr;
         }
-        LD::QueryResult<LD::Variant<Reflectables...>(Context...)> operator*() noexcept
+        const LD::QueryResult<LD::Variant<Reflectables...>(Context...)> & operator*() const noexcept
         {
             return this->mContext;
         }
