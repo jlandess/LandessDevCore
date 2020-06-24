@@ -21,7 +21,8 @@ namespace LD
                     decltype("Irq"_ts),LD::UInteger,
                     decltype("SoftIrq"_ts),LD::UInteger,
                     decltype("Steal"_ts),LD::UInteger,
-                    decltype("Guest"_ts),LD::UInteger
+                    decltype("Guest"_ts),LD::UInteger,
+                    decltype("Mooo"_ts),LD::UInteger
             )>
     {
 

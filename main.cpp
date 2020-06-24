@@ -189,14 +189,21 @@ public:
                      */
 
 
-                    auto onMemberReanimate = [](const LD::ContextualVariant<Var(LD::StringView)> & context) noexcept
+
+                    LD::UInteger tempOffset = offset;
+                    auto regexIterator = ctre::range<MemberPattern>(LD::StringView {input.data()+offset}).begin();
+                    auto onMemberReanimate = [&](const LD::ContextualVariant<Var(LD::StringView)> & context) noexcept
                     {
-                        std::cout << "member found " << std::endl;
+                        const char * buffer = input.data()+offset;
+                        std::cout << "Member : " << regexIterator.current_match.view() << std::endl;
+                        ++regexIterator;
+
                         return true;
                     };
 
                     CurrentType typeToDeserialize;
                     LD::CT::ReflectiveWalk(""_ts,typeToDeserialize,onClassReanimate,onMemberReanimate,LD::AccessWriteOnly{});
+
 
                     for (auto && match: ctre::range<MemberPattern>(LD::StringView {input.data()+offset}))
                     {
@@ -245,6 +252,7 @@ int main()
 
 
     using stuffings = LD::CT::GenerateNamedReflectiveTypeStructure<decltype(""_ts),LD::Pyramid>;
+
 
 
     //LD::CT::DebugTemplate<stuffings>{};
