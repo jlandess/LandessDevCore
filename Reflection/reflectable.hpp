@@ -141,7 +141,6 @@ namespace LD
                     >>> : public LD::tagged_tuple<decltype("ClassName"_ts),const char *,Args...>
     {
     public:
-
         using ValueTypeList = typename LD::tagged_tuple<decltype("ClassName"_ts),const char *,Args...>::ValueTypeList;
         using KeyTypeList = typename LD::tagged_tuple<decltype("ClassName"_ts),const char *,Args...>::KeyTypeList;
         typedef  LD::SearchableVariadicPack<decltype("ClassName"_ts),const char *,Args...> SearchableReflectionList;
@@ -160,15 +159,17 @@ namespace LD
         {
             return T::data();
         }
-        inline Reflectable()
+        inline constexpr Reflectable() noexcept
         {
             (*this)["ClassName"_ts] = T::data();
         }
+        /*
         template <typename FuncT>
         void iterate(const FuncT& f)
         {
             for_each(*this, f);
         }
+         */
         
         
         template<char ... Characters>

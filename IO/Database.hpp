@@ -554,7 +554,7 @@ namespace LD
                                    auto onFetch = [](const LD::Context<LD::StringView,LD::StringView,LD::ElementReference<MemberType>> & context) noexcept -> MemberType
                                    {
                                        auto resultVariant = LD::StringAsNumber<MemberType>(LD::StringView{LD::Get<1>(context).data(),LD::Get<1>(context).size()});
-                                       MemberType result = LD::Match(resultVariant,[](const MemberType & obj){ return obj;},[](auto &&){ return LD::UInteger {};});
+                                       MemberType result = LD::Match(resultVariant,[](const MemberType & obj){ return obj;},[](auto &&){ return MemberType {};});
                                        LD::Get(LD::Get<2>(context)) = result;
                                        return result;
                                    };

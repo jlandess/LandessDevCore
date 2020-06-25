@@ -22,15 +22,112 @@ namespace LD
                     decltype("SoftIrq"_ts),LD::UInteger,
                     decltype("Steal"_ts),LD::UInteger,
                     decltype("Guest"_ts),LD::UInteger,
-                    decltype("Mooo"_ts),LD::UInteger
+                    decltype("GuestNice"_ts),LD::UInteger
             )>
     {
+    private:
+
+    public:
+        constexpr const LD::UInteger & User() const noexcept
+        {
+            return (*this)["User"_ts];
+        }
+        constexpr LD::UInteger & User() noexcept
+        {
+            return (*this)["User"_ts];
+        }
+
+        constexpr const LD::UInteger & Nice() const noexcept
+        {
+            return (*this)["Nice"_ts];
+        }
+
+        constexpr LD::UInteger & Nice()  noexcept
+        {
+            return (*this)["Nice"_ts];
+        }
+
+        constexpr const LD::UInteger & System() const noexcept
+        {
+            return (*this)["System"_ts];
+        }
+
+        constexpr LD::UInteger & System()  noexcept
+        {
+            return (*this)["System"_ts];
+        }
+
+        constexpr const LD::UInteger & Idle() const noexcept
+        {
+            return (*this)["Idle"_ts];
+        }
+        constexpr LD::UInteger & Idle() noexcept
+        {
+            return (*this)["Idle"_ts];
+        }
+
+        constexpr const LD::UInteger & IOWait() const noexcept
+        {
+            return (*this)["IOWait"_ts];
+        }
+        constexpr LD::UInteger & IOWait() noexcept
+        {
+            return (*this)["IOWait"_ts];
+        }
+
+        constexpr const LD::UInteger & IRQ() const noexcept
+        {
+            return (*this)["Irq"_ts];
+        }
+        constexpr LD::UInteger & IRQ() noexcept
+        {
+            return (*this)["Irq"_ts];
+        }
+
+        constexpr const LD::UInteger & SoftIRQ() const noexcept
+        {
+            return (*this)["SoftIrq"_ts];
+        }
+
+        constexpr LD::UInteger & SoftIRQ() noexcept
+        {
+            return (*this)["SoftIrq"_ts];
+        }
+
+        constexpr const LD::UInteger & Steal() const noexcept
+        {
+            return (*this)["Steal"_ts];
+        }
+
+        constexpr LD::UInteger & Steal() noexcept
+        {
+            return (*this)["Steal"_ts];
+        }
+
+        constexpr const LD::UInteger & Guest() const noexcept
+        {
+            return (*this)["Guest"_ts];
+        }
+
+        constexpr LD::UInteger & Guest() noexcept
+        {
+            return (*this)["Guest"_ts];
+        }
+
+        constexpr const LD::UInteger & GuestNice() const noexcept
+        {
+            return (*this)["GuestNice"_ts];
+        }
+
+        constexpr LD::UInteger & GuestNice() noexcept
+        {
+            return (*this)["GuestNice"_ts];
+        }
 
     };
     template<LD::UInteger CoreNumber>
     class CPUCoreMetric: public LD::Reflectable<
             decltype("cpu"_ts+LD::ToTypeString<CoreNumber>{})(
-                    decltype("CPU"_ts),LD::ImmutableString<20> ,
                     decltype("User"_ts),LD::UInteger,
                     decltype("Nice"_ts),LD::UInteger,
                     decltype("System"_ts),LD::UInteger,
@@ -39,12 +136,109 @@ namespace LD
                     decltype("Irq"_ts),LD::UInteger,
                     decltype("SoftIrq"_ts),LD::UInteger,
                     decltype("Steal"_ts),LD::UInteger,
-                    decltype("Guest"_ts),LD::UInteger
+                    decltype("Guest"_ts),LD::UInteger,
+                    decltype("GuestNice"_ts),LD::UInteger
                     )>
     {
     private:
 
     public:
+
+        constexpr const LD::UInteger & User() const noexcept
+        {
+            return (*this)["User"_ts];
+        }
+        constexpr LD::UInteger & User() noexcept
+        {
+            return (*this)["User"_ts];
+        }
+
+        constexpr const LD::UInteger & Nice() const noexcept
+        {
+            return (*this)["Nice"_ts];
+        }
+
+        constexpr LD::UInteger & Nice()  noexcept
+        {
+            return (*this)["Nice"_ts];
+        }
+
+        constexpr const LD::UInteger & System() const noexcept
+        {
+            return (*this)["System"_ts];
+        }
+
+        constexpr LD::UInteger & System()  noexcept
+        {
+            return (*this)["System"_ts];
+        }
+
+        constexpr const LD::UInteger & Idle() const noexcept
+        {
+            return (*this)["Idle"_ts];
+        }
+        constexpr LD::UInteger & Idle() noexcept
+        {
+            return (*this)["Idle"_ts];
+        }
+
+        constexpr const LD::UInteger & IOWait() const noexcept
+        {
+            return (*this)["IOWait"_ts];
+        }
+        constexpr LD::UInteger & IOWait() noexcept
+        {
+            return (*this)["IOWait"_ts];
+        }
+
+        constexpr const LD::UInteger & IRQ() const noexcept
+        {
+            return (*this)["Irq"_ts];
+        }
+        constexpr LD::UInteger & IRQ() noexcept
+        {
+            return (*this)["Irq"_ts];
+        }
+
+        constexpr const LD::UInteger & SoftIRQ() const noexcept
+        {
+            return (*this)["SoftIrq"_ts];
+        }
+
+        constexpr LD::UInteger & SoftIRQ() noexcept
+        {
+            return (*this)["SoftIrq"_ts];
+        }
+
+        constexpr const LD::UInteger & Steal() const noexcept
+        {
+            return (*this)["Steal"_ts];
+        }
+
+        constexpr LD::UInteger & Steal() noexcept
+        {
+            return (*this)["Steal"_ts];
+        }
+
+        constexpr const LD::UInteger & Guest() const noexcept
+        {
+            return (*this)["Guest"_ts];
+        }
+
+        constexpr LD::UInteger & Guest() noexcept
+        {
+            return (*this)["Guest"_ts];
+        }
+
+        constexpr const LD::UInteger & GuestNice() const noexcept
+        {
+            return (*this)["GuestNice"_ts];
+        }
+
+        constexpr LD::UInteger & GuestNice() noexcept
+        {
+            return (*this)["GuestNice"_ts];
+        }
 
     };
 

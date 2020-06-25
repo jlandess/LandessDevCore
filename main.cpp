@@ -10,11 +10,71 @@
 #include "Primitives/General/Span.hpp"
 #include "IO/FetchRequest.h"
 #include "Examples/ReflectionDemoTypes.h"
-#include <string_view>
-template<typename MembersSeperator, typename ObjectSeperator, class  = void>
+#include <unistd.h>
+#include <stdio.h>
+
+
+class RowBackingStore
+{
+private:
+    FILE * mHandle;
+    char * mLineBuffer;
+    size_t mLineBufferSize;
+public:
+    RowBackingStore() noexcept:mLineBuffer{nullptr}
+    {
+        mHandle = fopen("/proc/stat","r");
+    }
+    RowBackingStore & Reset() noexcept
+    {
+        fseeko(this->mHandle,0,SEEK_SET);
+        fflush(this->mHandle);
+        return (*this);
+    }
+
+    ~RowBackingStore() noexcept
+    {
+        fclose(this->mHandle);
+        free(this->mLineBuffer);
+    }
+    RowBackingStore & Flush() noexcept
+    {
+        fflush(this->mHandle);
+        return (*this);
+    }
+    template<typename ... Args>
+    LD::QueryResult<LD::StringView(Args...)> GetLine(Args && ... arguments) noexcept
+    {
+        LD::UInteger readAmount = getline(&mLineBuffer,&mLineBufferSize,this->mHandle);
+        LD::QueryResult<LD::StringView(Args...)> results[2];
+        results[0] = LD::MakeContext(LD::DatabaseError{},LD::Forward<Args>(arguments)...);
+        results[1] = LD::MakeContext(LD::DatabaseTransactionResult{},LD::StringView{this->mLineBuffer,this->mLineBufferSize},LD::Forward<Args>(arguments)...);
+        return results[readAmount > 0];
+    }
+
+    template<typename ... Args>
+    LD::QueryResult<LD::StringView (Args...)> operator()(const LD::UInteger & index, Args && ... arguments) noexcept
+    {
+        LD::UInteger n = {};
+        do
+        {
+            if (!getline(&this->mLineBuffer,&this->mLineBufferSize,this->mHandle))
+            {
+                break;
+            }
+        }while(n<index);
+        LD::QueryResult<LD::StringView(Args...)> results[2];
+        results[0] = LD::MakeContext(LD::DatabaseError{},LD::Forward<Args>(arguments)...);
+        results[1] = LD::MakeContext(LD::DatabaseTransactionResult{},LD::StringView{this->mLineBuffer,this->mLineBufferSize},LD::Forward<Args>(arguments)...);
+        return results[n == index];
+    }
+};
+
+
+template<typename BackingStore,typename MembersSeperator, typename ObjectSeperator, class  = void>
 class BasicDelimeterSeperatedFile;
-template<typename MembersSeperator, typename ObjectSeperator>
-class BasicDelimeterSeperatedFile<MembersSeperator,ObjectSeperator,LD::Enable_If_T<LD::Require<
+template<typename BackingStore,typename MembersSeperator, typename ObjectSeperator>
+class BasicDelimeterSeperatedFile<BackingStore,MembersSeperator,ObjectSeperator,LD::Enable_If_T<LD::Require<
         LD::IsTypeString<MembersSeperator>,
         LD::IsTypeString<ObjectSeperator>
         >>>
@@ -25,6 +85,7 @@ private:
     FILE * mHandle;
     char * mLineBuffer;
     size_t mLineBufferSize;
+    LD::ElementReference<BackingStore> mBackingStore;
 public:
 
     template<typename Object>
@@ -41,6 +102,8 @@ public:
         {
 
             using CurrentTypeList = LD::CT::TypeList<Reflectables...>;
+            this->mContext = LD::MakeContext(LD::DatabaseError{},LD::Forward<Context>(context)...);
+
             LD::For<sizeof...(Reflectables)>([](auto I)
             {
                 using CurrentType = LD::CT::TypeAtIndex<I,CurrentTypeList>;
@@ -50,7 +113,6 @@ public:
         }
         constexpr Iterator(Context && ... context) noexcept :mLineBufferSize{0},mInstance{nullptr}
         {
-
             using CurrentTypeList = LD::CT::TypeList<Reflectables...>;
             LD::For<sizeof...(Reflectables)>([](auto I)
             {
@@ -77,10 +139,12 @@ public:
             return {};
         }
     };
-    BasicDelimeterSeperatedFile() noexcept :mLineBuffer(nullptr)
+    BasicDelimeterSeperatedFile(const LD::ElementReference<BackingStore> & backingStore) noexcept :mLineBuffer{nullptr},mBackingStore{backingStore}//, mLineBuffer(nullptr)
     {
         mHandle = fopen("/proc/stat","r");
         //getline(&mLineBuffer,&mLineBufferSize,this->mHandle);
+
+
 
         //printf("%s \n",mLineBuffer);
     }
@@ -106,17 +170,44 @@ public:
                     (LD::IsReflectable<Reflectables> && ...)
                     >,LD::QueryResult<LD::Variant<Reflectables...>(Args...)>> operator()(const LD::CT::TypeList<Reflectables...> &,const LD::UInteger & index, Args && ... arguments) noexcept
     {
+        using ResultSetType = decltype(ctre::range<MemberPattern>(LD::Declval<LD::StringView>()));
+        using ResultSetIteratorType = decltype(LD::Declval<ResultSetType>().begin());
         auto cachedOffset = ftello(this->mHandle);
         fseeko(this->mHandle,0,SEEK_SET);
+        fflush(this->mHandle);
+        //this->mBackingStore->Reset();
         LD::UInteger n = 0;
+        LD::QueryResult<LD::StringView()> query;
+        /*
         do
         {
             getline(&mLineBuffer,&mLineBufferSize,this->mHandle);
+            //querythis->mBackingStore->GetLine();
         }while(n < index);
+         */
+        this->mBackingStore->Reset();
+        auto onError = [](const LD::Context<LD::DatabaseError> & context) noexcept
+        {
+            //
+            return LD::StringView{"",0};
+        };
 
-        auto input = LD::StringView {mLineBuffer};
+        auto onString = [](const LD::Context<LD::DatabaseTransactionResult,LD::StringView> & context)
+        {
+            //std::cout << LD::Get<1>(context) << std::endl;
+            return LD::Get<1>(context);
+        };
+
+
+
+        //auto input = LD::StringView {mLineBuffer};
+        //LD::StringView input = LD::Match(this->mBackingStore->GetLine(),onError,onString);
+        //(*this->mBackingStore)(0);
+        LD::StringView input = LD::Match((*this->mBackingStore)(index),onError,onString);
         //auto match = ctre::range<MemberPattern>(input);
 
+        LD::QueryResult<LD::Variant<Reflectables...>(Args...)> result;
+        result = LD::MakeContext(LD::DatabaseError{},LD::Forward<Args>(arguments)...);
         using CurrentTypeList = LD::CT::TypeList<Reflectables...>;
         //iterate through all the types we care about at compile time
         auto onClassReanimate = [](const LD::Context<LD::StringView,LD::StringView> & context) noexcept -> bool
@@ -126,11 +217,15 @@ public:
         LD::For<sizeof...(Reflectables)>([](
                 auto I,
                 auto && input,
-                auto && onClassReanimate)
+                auto && onClassReanimate,
+                auto && result,
+                Args && ... arguments)
         {
 
             using CurrentType = LD::CT::TypeAtIndex<I,CurrentTypeList>;
             using Var = LD::CT::RebindList<LD::CT::ReflectiveTransformation<CurrentType ,LD::AccessWriteOnly>,LD::Variant>;
+
+
             //get the types which compose the hiarchacy of the current Type we're looking at.
             //using ExpandedMembers = LD::CT::GenerateNamedReflectiveTypeStructure<decltype(""_ts),CurrentType>;
 
@@ -156,84 +251,52 @@ public:
                 auto foundClassName = LD::StringView{(const char*)classNameMatch.view().data(),classNameMatch.view().size()};
                 if(foundClassName == LD::StringView{CurrentClassName::data(),CurrentClassName::size()})
                 {
-                    /*
-                    //keepSearching = false;//stop the compile time for loop
-                    std::cout << "Classname : " << foundClassName << std::endl;
-                    auto && memberSearch = ctre::range<MemberPattern>(LD::StringView{input.data()+offset});
-                    auto  currentMemberMatch = memberSearch.begin().current_match;
-                    LD::UInteger indexOfIncidence = (currentMemberMatch.template get<0>().begin()-(input.data()));
-                    offset += currentMemberMatch.view().size();
-
-                    std::cout << "Offset Size : " << currentMemberMatch.view().size() << std::endl;
-                    std::cout << "Member : " << LD::StringView {(const char*)currentMemberMatch.view().data(),currentMemberMatch.view().size()} << std::endl;
-
-                    auto && memberSearch1 = ctre::range<MemberPattern>(LD::StringView{input.data()+6+3});
-                    auto  currentMemberMatch1 = memberSearch1.begin().current_match;
-                    indexOfIncidence = (currentMemberMatch1.template get<0>().begin()-(input.data()));
-                    offset += currentMemberMatch1.view().size();
-
-                    std::cout << "Offset Size : " << currentMemberMatch1.view().size() << std::endl;
-                    std::cout << "Member : " << LD::StringView {(const char*)currentMemberMatch1.view().data(),currentMemberMatch1.view().size()} << std::endl;
-
-                    */
-                    /*
-                    auto && memberSearch = ctre::range<MemberPattern>(LD::StringView {input.data()+offset});
-                    if (memberSearch.begin() != memberSearch.end())
-                    {
-                        auto  currentMemberMatch = memberSearch.begin().current_match;
-                        LD::UInteger indexOfIncidence = (currentMemberMatch.template get<0>().begin()-input.data());
-                        offset = currentMemberMatch.get_end_position()-input.data();
-                        std::cout << "Member : " << indexOfIncidence << std::endl;
-
-                    }
-                     */
-
-
-
-                    LD::UInteger tempOffset = offset;
-                    auto regexIterator = ctre::range<MemberPattern>(LD::StringView {input.data()+offset}).begin();
+                    //iterate through the members to deserialize
+                    auto matchSet = ctre::range<MemberPattern>(LD::StringView {input.data()+offset});
+                    auto regexIterator = matchSet.begin();
                     auto onMemberReanimate = [&](const LD::ContextualVariant<Var(LD::StringView)> & context) noexcept
                     {
-                        const char * buffer = input.data()+offset;
-                        std::cout << "Member : " << regexIterator.current_match.view() << std::endl;
-                        ++regexIterator;
+                        auto onPrimitiveAction = [&](auto && context) noexcept
+                        {
+                            using MemberType = LD::Detail::Decay_T<decltype(LD::Get(LD::Get<0>(context)))>;
+                            if (regexIterator != matchSet.end())
+                            {
+                                if constexpr(LD::IsPrimitive<MemberType>)
+                                {
 
+                                    //it's a handle to the instance variable itself
+                                    LD::ElementReference<MemberType> memberReference = LD::Get<0>(context);
+                                    //turn the string view into a primtive (hopefully!) if not just return the default value of the primitive type (which is usually 0)
+                                    auto resultVariant = LD::StringAsNumber<MemberType>(LD::StringView{(const char *)regexIterator.current_match.view().data(),regexIterator.current_match.view().size()});
+                                    MemberType result = LD::Match(resultVariant,[](const MemberType & obj){ return obj;},[](auto &&){ return MemberType {};});
+                                    LD::Get(memberReference) = result;
+                                    //std::cout << "Member : " << regexIterator.current_match.view() << std::endl;
+
+                                }
+                                ++regexIterator;
+
+                            }
+                        };
+
+                        LD::Match(context,onPrimitiveAction);
+                        //using MemberType = LD::Detail::Decay_T<decltype(LD::Get(LD::Get<0>(context)))>;
+                        //does our current model have more members that are actually in the file? probably shouldn't try to deserialize what's not there
                         return true;
                     };
 
+                    //walk through the object's hiarchachy, the following function will call the callbacks on events like finding a new class or member
                     CurrentType typeToDeserialize;
+                    //we're writing to the object, use the write only transform optimizations
                     LD::CT::ReflectiveWalk(""_ts,typeToDeserialize,onClassReanimate,onMemberReanimate,LD::AccessWriteOnly{});
 
-
-                    for (auto && match: ctre::range<MemberPattern>(LD::StringView {input.data()+offset}))
-                    {
-                        //LD::StringView abc = LD::StringView {match.get<0>()};
-                        auto currentMatch = match.template get<0>();
-
-                        //std::cout <<  LD::StringView {(const char*)currentMatch.view().data(),currentMatch.view().size()} << "\n";
-                        //auto abc = LD::StringView{(const char*)match.get<0>()};
-                        LD::UInteger indexOfIncidence = (currentMatch.begin()-input.data());
-                        const char * matchBegin = (input.data()+(currentMatch.begin()-input.data()));
-
-                        auto abc = LD::StringView{matchBegin,currentMatch.size()};
-                        //std::cout << abc << "\n";stuffings
-                        //abc.substr(0,0);
-                        std::cout << "Beginning : " << indexOfIncidence << "," << "End : " << currentMatch.size() << std::endl;
-                        std::cout << input.substr(indexOfIncidence,currentMatch.size()) << std::endl;
-                    }
-
-
-
-
-
-
+                    result = LD::MakeContext(LD::DatabaseTransactionResult{},CurrentType{typeToDeserialize},LD::Forward<Args>(arguments)...);
 
                 }
             }
              return keepSearching;
-        },input,onClassReanimate);
+        },input,onClassReanimate,result,LD::Forward<Args>(arguments)...);
         fseeko(this->mHandle,cachedOffset,SEEK_SET);
-        return {};
+        return result;
     }
 
 
@@ -245,14 +308,38 @@ public:
     }
 };
 
-using CommaSeperateValueFile = BasicDelimeterSeperatedFile<decltype("[^,]+"_ts),decltype("[^\n]"_ts)>;
-using SpaceSpeerateValueFile = BasicDelimeterSeperatedFile<decltype("[^ ]+"_ts),decltype("[^\n]"_ts)>;
+namespace LD
+{
+    namespace Detail
+    {
+        template<typename T>
+        struct GenerateSystemLoadRepresentation
+        {
+
+        };
+
+        template<LD::UInteger ... Indices>
+        struct GenerateSystemLoadRepresentation<LD::IntegerSequence<LD::UInteger ,Indices...>>
+        {
+            using type = LD::Variant<LD::CPUPackageMetric,LD::ContextSwitchMetric,LD::InterruptServiceMetric,LD::BootUpTimeMetric,LD::ProcessesMetric,LD::ProcessesRunningMetric,LD::ProcessesBlockedMetric,LD::SoftIRQ,LD::CPUCoreMetric<Indices>...>;
+        };
+    }
+    template<LD::UInteger NumberOfCores>
+    using GenerateSystemRepresentation = typename LD::Detail::GenerateSystemLoadRepresentation<LD::MakeIndexSequence_T<10>>::type;
+}
+template<typename BackingStore>
+using CommaSeperateValueFile = BasicDelimeterSeperatedFile<BackingStore,decltype("[^,]+"_ts),decltype("[^\n]"_ts)>;
+template<typename BackingStore>
+using SpaceSpeerateValueFile = BasicDelimeterSeperatedFile<BackingStore,decltype("[^ ]+"_ts),decltype("[^\n]"_ts)>;
 int main()
 {
 
 
+    using Type = LD::GenerateSystemRepresentation<10>;
+    //LD::GenerateSystemRepresentation<8>{};
     using stuffings = LD::CT::GenerateNamedReflectiveTypeStructure<decltype(""_ts),LD::Pyramid>;
 
+    LD::CPUCoreMetric<7>::GetClassNameTypeString();
 
 
     //LD::CT::DebugTemplate<stuffings>{};
@@ -280,9 +367,46 @@ int main()
     }
 
      */
-    SpaceSpeerateValueFile file;
 
-    file(LD::CT::TypeList<LD::CPUPackageMetric>{},0);
+
+    RowBackingStore backingStore;
+    SpaceSpeerateValueFile<RowBackingStore> file{backingStore};
+    LD::UInteger previous_idle_time=0, previous_total_time=0;
+    for (int i = 0; i < 10; ++i)
+    {
+
+        LD::QueryResult<LD::Variant<LD::CPUPackageMetric>()> queryResult =  file(LD::CT::TypeList<LD::CPUPackageMetric>{},0);
+
+        auto onError = [](const LD::Context<LD::DatabaseError> & context) noexcept
+        {
+
+        };
+
+
+        auto onCPUPackageRecord = [&](const LD::Context<LD::DatabaseTransactionResult,LD::CPUPackageMetric> & context) noexcept
+        {
+
+
+            const LD::CPUPackageMetric & metric = LD::Get<1>(context);
+            LD::Float total_time = metric.User() + metric.Nice() + metric.System() + metric.Idle() +metric.IOWait() + metric.IRQ() + metric.SoftIRQ();
+
+            const LD::UInteger idle_time = metric.Idle();
+
+            const double idle_time_delta = idle_time - previous_idle_time;
+            const double total_time_delta = total_time - previous_total_time;
+            const double utilization = 100.0 * (1.0 - idle_time_delta / total_time_delta);
+            std::cout << "Utilizaiton : " <<  utilization << std::endl;
+            LD::Float idlePercentage = (metric.Idle()*100)/total_time;
+            //std::cout << "Usage: " << ((sum-metric.Idle())*100.0)/sum << std::endl;
+
+            previous_idle_time = idle_time;
+            previous_total_time = total_time;
+        };
+
+        LD::Match(queryResult,onError,onCPUPackageRecord);
+        sleep(1);
+    }
+
     //auto bar = LD::ImmutableString<9>{'_'};
     //auto edge = LD::ToImmutableString("abc");
     //std::cout << (bar+edge).Data() << std::endl;

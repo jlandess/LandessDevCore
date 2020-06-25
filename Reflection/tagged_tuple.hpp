@@ -84,7 +84,8 @@ namespace LD
         using KeyTypeList = extract<2, 0, Ts...>;
 
 
-        template<typename... Args> tagged_tuple(Args &&...args):
+        template<typename... Args>
+        constexpr tagged_tuple(Args &&...args) noexcept :
         tt_impl<extract<2, 0, Ts...>, extract<2, 1, Ts...>>(
                                                             LD::Forward<Args>(args)...) {}
     };
