@@ -67,11 +67,12 @@ public:
     LD::QueryResult<LD::StringView(Args...)> GetLine(Args && ... arguments) noexcept
     {
         //this looks like a problem, getline will realloc and alloc on demand.  Trust the getline implementation
+        //fflush(this->mHandle);
         LD::UInteger readAmount = getline(&mLineBuffer,&mLineBufferSize,this->mHandle);
         LD::QueryResult<LD::StringView(Args...)> results[2];
         results[0] = LD::MakeContext(LD::DatabaseError{},LD::Forward<Args>(arguments)...);
         results[1] = LD::MakeContext(LD::DatabaseTransactionResult{},LD::StringView{this->mLineBuffer,this->mLineBufferSize},LD::Forward<Args>(arguments)...);
-        return results[readAmount > 0];
+        return results[readAmount > 0 && readAmount != EOF];
     }
 
     template<typename ... Args>
@@ -116,32 +117,26 @@ public:
     {
     private:
         LD::QueryResult<LD::Variant<Reflectables...>(Context...)> mContext;
+        LD::QueryResult<LD::Variant<Reflectables...>()> mQueryResult;
+        LD::Context<Context...> mPassableContext;
         LD::ElementReference<BasicDelimeterSeperatedFile> mInstance;
 
-        static LD::QueryResult<LD::Variant<Reflectables...>(Context...)> OnRowError(const LD::Tuple<LD::DatabaseError,Context...> & context) noexcept
-        {
-            return {};
-        }
-        template<typename T>
-        static LD::QueryResult<LD::Variant<Reflectables...>(Context...)> OnRowCompletion(const LD::Tuple<LD::DatabaseTransactionResult,T,Context...> & context) noexcept
-        {
-            return {};
-        }
     public:
-        Iterator(const LD::ElementReference<BasicDelimeterSeperatedFile> & instance, Context && ... context) noexcept :mInstance{instance}
+        Iterator(const LD::ElementReference<BasicDelimeterSeperatedFile> & instance, Context && ... context) noexcept :mInstance{instance},mPassableContext{LD::Forward<Context>(context)...}
         {
 
             using CurrentTypeList = LD::CT::TypeList<Reflectables...>;
             this->mContext = LD::MakeContext(LD::DatabaseError{},LD::Forward<Context>(context)...);
-            LD::Context<Context...> passableContext = LD::MakeContext(LD::Forward<Context>(context)...);
-            LD::QueryResult<LD::StringView(LD::Context<Context...>&)> query = this->mInstance->mBackingStore->GetLine(passableContext);
+            //LD::Context<Context...> passableContext = LD::MakeContext(LD::Forward<Context>(context)...);
+            LD::QueryResult<LD::StringView(LD::Context<Context...>&)> possibleRow = this->mInstance->mBackingStore->GetLine(this->mPassableContext);
 
+
+            LD::QueryResult<LD::Variant<Reflectables...>(Context...)>{LD::DatabaseTransactionResult{},LD::CPUPackageMetric{},this->mPassableContext};
 
             auto onError = [](const LD::Context<LD::DatabaseError,LD::Context<Context...>&> & context) noexcept
             {
                 //return an empty row to indicate something bad happened
                 return LD::StringView{"",0};
-                //return LD::QueryResult<LD::Variant<Reflectables...>(Context...)>{LD::DatabaseError{},LD::Get(LD::Get<1>(context))};
             };
 
 
@@ -151,10 +146,7 @@ public:
             };
 
 
-            //this->mContext = LD::Match(query,onError,onRow);
-
-
-            LD::StringView row = LD::Match(query,onError,onRow);
+            LD::StringView row = LD::Match(possibleRow,onError,onRow);
             if (!row.empty())
             {
                 this->mContext = RowToObject(LD::CT::TypeList<Reflectables...>{},row,LD::Forward<Context>(context)...);
@@ -168,6 +160,7 @@ public:
 
         Iterator & operator ++ () noexcept
         {
+            LD::QueryResult<LD::StringView(LD::Context<Context...>&)> possibleRow = this->mInstance->mBackingStore->GetLine(this->mPassableContext);
             return (*this);
         }
 
@@ -222,6 +215,7 @@ public:
         using ResultSetType = decltype(ctre::range<MemberPattern>(LD::Declval<LD::StringView>()));
         using ResultSetIteratorType = decltype(LD::Declval<ResultSetType>().begin());
 
+
         LD::QueryResult<LD::Variant<Reflectables...>(Args...)> result;
         result = LD::MakeContext(LD::DatabaseError{},LD::Forward<Args>(arguments)...);
         using CurrentTypeList = LD::CT::TypeList<Reflectables...>;
@@ -236,7 +230,7 @@ public:
                 auto && row,
                 auto && onClassReanimate,
                 auto && result,
-                Args && ... arguments)
+                const LD::Context<Args...> & context)
         {
 
 
@@ -308,12 +302,13 @@ public:
                     //we're writing to the object, use the write only transform optimizations
                     LD::CT::ReflectiveWalk(""_ts,typeToDeserialize,onClassReanimate,onMemberReanimate,LD::AccessWriteOnly{});
 
-                    result = LD::MakeContext(LD::DatabaseTransactionResult{},CurrentType{typeToDeserialize},LD::Forward<Args>(arguments)...);
+                    //result = LD::MakeContext(LD::DatabaseTransactionResult{},CurrentType{typeToDeserialize},LD::Forward<Args>(arguments)...);
+                    result = LD::QueryResult<LD::Variant<Reflectables...>(Args...)>{LD::DatabaseTransactionResult{},CurrentType {typeToDeserialize},context};
 
                 }
             }
             return keepSearching;
-            },row,onClassReanimate,result,LD::Forward<Args>(arguments)...);
+            },row,onClassReanimate,result,LD::MakeContext(LD::Forward<Args>(arguments)...));
 
         return result;
     }
@@ -518,45 +513,89 @@ int main()
      */
 
 
+
     RowBackingStore backingStore{"/proc/stat"};
     SpaceSpeerateValueFile<RowBackingStore> file{backingStore};
     LD::UInteger previous_idle_time=0, previous_total_time=0;
-    SpaceSpeerateValueFile<RowBackingStore>::Iterator<LD::Variant<LD::CPUPackageMetric>(LD::UInteger&,LD::UInteger&)> queryResult = file.Begin(LD::CT::TypeList<LD::CPUPackageMetric>{},previous_idle_time,previous_total_time);
+
+    /*
+    bool done = true;
 
 
-    auto onError = [](const LD::Context<LD::DatabaseError,LD::UInteger&,LD::UInteger&> & context) noexcept
+    while (done)
     {
+        //LD::QueryResult<LD::StringView(Args...)>
+        LD::QueryResult<LD::StringView()> query = backingStore.GetLine();
 
-    };
+        auto onError = [](const LD::Context<LD::DatabaseError> & context) noexcept
+        {
+            return false;
+        };
 
-    auto onCPUPackageMetric = [](const LD::Context<LD::DatabaseTransactionResult,LD::CPUPackageMetric,LD::UInteger&,LD::UInteger&> & context) noexcept
+        auto onTransaction = [](const LD::Context<LD::DatabaseTransactionResult,LD::StringView> & context) noexcept
+        {
+            std::cout << "Row : " << LD::Get(LD::Get<1>(context)) << std::endl;
+            return true;
+        };
+
+        done = LD::Match(query,onError,onTransaction);
+
+        //sleep(2);
+
+    }
+
+     */
+    SpaceSpeerateValueFile<RowBackingStore>::Iterator<LD::Variant<LD::CPUPackageMetric>(LD::UInteger&,LD::UInteger&)> it{previous_idle_time,previous_total_time};// = file.Begin(LD::CT::TypeList<LD::CPUPackageMetric>{},previous_idle_time,previous_total_time);
+
+
+
+    for (LD::UInteger i = 0; i < 10; ++i)
     {
-        LD::CPUPackageMetric & metric = LD::Get(LD::Get<1>(context));
-        LD::UInteger previous_idle_time = LD::Get(LD::Get<2>(context));
-        LD::UInteger previous_total_time = LD::Get(LD::Get<3>(context));
-        LD::Float total_time = metric.User() + metric.Nice() + metric.System() + metric.Idle() +metric.IOWait() + metric.IRQ() + metric.SoftIRQ();
+        it = file.Begin(LD::CT::TypeList<LD::CPUPackageMetric>{},previous_idle_time,previous_total_time);
+        auto onError = [](const LD::Context<LD::DatabaseError,LD::UInteger&,LD::UInteger&> & context) noexcept
+        {
 
-        const LD::UInteger idle_time = metric.Idle();
+        };
 
-        const double idle_time_delta = idle_time - previous_idle_time;
-        const double total_time_delta = total_time - previous_total_time;
-        const double utilization = 100.0 * (1.0 - idle_time_delta / total_time_delta);
-        std::cout << "Utilizaiton : " <<  utilization << std::endl;
-        LD::Float idlePercentage = (metric.Idle()*100)/total_time;
-        //std::cout << "Usage: " << ((sum-metric.Idle())*100.0)/sum << std::endl;
+        auto onCPUPackageMetric = [&](const LD::Context<LD::DatabaseTransactionResult,LD::CPUPackageMetric,LD::UInteger&,LD::UInteger&> & context) noexcept
+        {
+            LD::CPUPackageMetric & metric = LD::Get(LD::Get<1>(context));
+            //LD::UInteger & previous_idle_time = LD::Get(LD::Get<2>(context));
+            //LD::UInteger & previous_total_time = LD::Get(LD::Get<3>(context));
+            LD::Float total_time = metric.User() + metric.Nice() + metric.System() + metric.Idle() +metric.IOWait() + metric.IRQ() + metric.SoftIRQ();
 
-        previous_idle_time = idle_time;
-        previous_total_time = total_time;
-    };
+            std::cout << "Previous Idle Time = " << previous_idle_time << std::endl;
+            std::cout << "Previous Total Time = " << previous_idle_time << std::endl;
+            const LD::UInteger idle_time = metric.Idle();
+            std::cout << "Idle Time : " << idle_time << std::endl;
+            const double idle_time_delta = idle_time - previous_idle_time;
+            const double total_time_delta = total_time - previous_total_time;
+            const double utilization = (idle_time_delta!=total_time_delta)*(100.0 * (1.0 - idle_time_delta / total_time_delta));
+            std::cout << "Utilizaiton : " <<  utilization << std::endl;
+            std::cout << "Sum : " << total_time << std::endl;
+            LD::Float idlePercentage = (metric.Idle()*100)/total_time;
+            //std::cout << "Usage: " << ((sum-metric.Idle())*100.0)/sum << std::endl;
 
-    LD::Match(*queryResult,onError,onCPUPackageMetric);
+            previous_idle_time = idle_time;
+            previous_total_time = total_time;
+        };
+
+        LD::Match(*it,onError,onCPUPackageMetric);
+
+        sleep(1);
+
+    }
+
+
     //file.Begin(LD::CT::TypeList<LD::CPUPackageMetric>{});
 
 
-    /*
-    file.Begin(LD::CT::TypeList<LD::CPUPackageMetric>{});
 
-    for (int i = 0; i < 10; ++i)
+    //file.Begin(LD::CT::TypeList<LD::CPUPackageMetric>{});
+
+
+
+    //for (int i = 0; i < 10; ++i)
     {
 
         LD::QueryResult<LD::Variant<LD::CPUPackageMetric>()> queryResult =  file(LD::CT::TypeList<LD::CPUPackageMetric>{},0);
@@ -590,7 +629,7 @@ int main()
         LD::Match(queryResult,onError,onCPUPackageRecord);
         sleep(1);
     }
-     */
+
 
 
     //auto bar = LD::ImmutableString<9>{'_'};

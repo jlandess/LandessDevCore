@@ -36,21 +36,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a2ffdfb1-0050-446c-b0af-d02ece8e31b8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Algorithms/FuzzySearch.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IO/path.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/IO/FetchRequest.h" beforeDir="false" afterPath="$PROJECT_DIR$/IO/FetchRequest.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/CXX.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/depend.internal" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/depend.make" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/LandessDevCore" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/LandessDevCore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/LandessDevCore.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/LandessDevCore.cbp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/CXX.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/depend.internal" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/depend.make" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/LandessDevCore" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/LandessDevCore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release/LandessDevCore.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/LandessDevCore.cbp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -131,7 +120,7 @@
       <workItem from="1592710488086" duration="13712000" />
       <workItem from="1592804819863" duration="8373000" />
       <workItem from="1592871383979" duration="29959000" />
-      <workItem from="1592979251202" duration="60648000" />
+      <workItem from="1592979251202" duration="68913000" />
     </task>
     <servers />
   </component>
@@ -157,38 +146,38 @@
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
     <state x="730" y="355" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/70.27.1850.1053@70.27.1850.1053" timestamp="1591840785008" />
-    <state width="1793" height="140" key="GridCell.Tab.0.bottom" timestamp="1593185357506">
+    <state width="1793" height="140" key="GridCell.Tab.0.bottom" timestamp="1593197712180">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
-    <state width="1793" height="140" key="GridCell.Tab.0.bottom/70.27.1850.1053@70.27.1850.1053" timestamp="1593185357506" />
-    <state width="1793" height="140" key="GridCell.Tab.0.center" timestamp="1593185357505">
+    <state width="1793" height="140" key="GridCell.Tab.0.bottom/70.27.1850.1053@70.27.1850.1053" timestamp="1593197712180" />
+    <state width="1793" height="140" key="GridCell.Tab.0.center" timestamp="1593197712179">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
-    <state width="1793" height="140" key="GridCell.Tab.0.center/70.27.1850.1053@70.27.1850.1053" timestamp="1593185357505" />
-    <state width="1793" height="140" key="GridCell.Tab.0.left" timestamp="1593185357504">
+    <state width="1793" height="140" key="GridCell.Tab.0.center/70.27.1850.1053@70.27.1850.1053" timestamp="1593197712179" />
+    <state width="1793" height="140" key="GridCell.Tab.0.left" timestamp="1593197712178">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
-    <state width="1793" height="140" key="GridCell.Tab.0.left/70.27.1850.1053@70.27.1850.1053" timestamp="1593185357504" />
-    <state width="1793" height="140" key="GridCell.Tab.0.right" timestamp="1593185357505">
+    <state width="1793" height="140" key="GridCell.Tab.0.left/70.27.1850.1053@70.27.1850.1053" timestamp="1593197712178" />
+    <state width="1793" height="140" key="GridCell.Tab.0.right" timestamp="1593197712179">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
-    <state width="1793" height="140" key="GridCell.Tab.0.right/70.27.1850.1053@70.27.1850.1053" timestamp="1593185357505" />
-    <state width="1793" height="202" key="GridCell.Tab.1.bottom" timestamp="1593025796729">
+    <state width="1793" height="140" key="GridCell.Tab.0.right/70.27.1850.1053@70.27.1850.1053" timestamp="1593197712179" />
+    <state width="1793" height="202" key="GridCell.Tab.1.bottom" timestamp="1593187390210">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
-    <state width="1793" height="202" key="GridCell.Tab.1.bottom/70.27.1850.1053@70.27.1850.1053" timestamp="1593025796729" />
-    <state width="1793" height="202" key="GridCell.Tab.1.center" timestamp="1593025796729">
+    <state width="1793" height="202" key="GridCell.Tab.1.bottom/70.27.1850.1053@70.27.1850.1053" timestamp="1593187390210" />
+    <state width="1793" height="202" key="GridCell.Tab.1.center" timestamp="1593187390209">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
-    <state width="1793" height="202" key="GridCell.Tab.1.center/70.27.1850.1053@70.27.1850.1053" timestamp="1593025796729" />
-    <state width="1793" height="202" key="GridCell.Tab.1.left" timestamp="1593025796728">
+    <state width="1793" height="202" key="GridCell.Tab.1.center/70.27.1850.1053@70.27.1850.1053" timestamp="1593187390209" />
+    <state width="1793" height="202" key="GridCell.Tab.1.left" timestamp="1593187390209">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
-    <state width="1793" height="202" key="GridCell.Tab.1.left/70.27.1850.1053@70.27.1850.1053" timestamp="1593025796728" />
-    <state width="1793" height="202" key="GridCell.Tab.1.right" timestamp="1593025796729">
+    <state width="1793" height="202" key="GridCell.Tab.1.left/70.27.1850.1053@70.27.1850.1053" timestamp="1593187390209" />
+    <state width="1793" height="202" key="GridCell.Tab.1.right" timestamp="1593187390209">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
-    <state width="1793" height="202" key="GridCell.Tab.1.right/70.27.1850.1053@70.27.1850.1053" timestamp="1593025796729" />
+    <state width="1793" height="202" key="GridCell.Tab.1.right/70.27.1850.1053@70.27.1850.1053" timestamp="1593187390209" />
     <state x="178" y="232" width="1640" height="748" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1589341972355">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>

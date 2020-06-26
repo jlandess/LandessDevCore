@@ -150,7 +150,7 @@ namespace LD
 
         template<typename Type, typename = LD::Enable_If_T<
                 LD::Require<
-                        (LD::GetTypeCountInTypeList<Type,LD::CT::TypeList<Pack...>>::value == 0)
+                        (LD::GetTypeCountInTypeList<Type,LD::CT::TypeList<Pack...>>::value > 0)
                         >>>
         constexpr QueryResult(const LD::DatabaseTransactionResult & transaction, const Type & object, const LD::Context<Args...> & context) noexcept
         {
@@ -169,6 +169,7 @@ namespace LD
                     return true;
                 },context,cntxt);
             }
+            (*this) = cntxt;
 
         }
 
@@ -189,6 +190,7 @@ namespace LD
                 },context,cntxt);
             }
 
+            (*this) = cntxt;
         }
 
 
