@@ -102,6 +102,9 @@
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Algorithms/Exponential.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Algorithms/FuzzySearch.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Algorithms/GaussianElimination.h">
 			<Option target="LandessDevCore"/>
 		</Unit>

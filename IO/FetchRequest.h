@@ -148,6 +148,51 @@ namespace LD
         }
 
 
+        template<typename Type, typename = LD::Enable_If_T<
+                LD::Require<
+                        (LD::GetTypeCountInTypeList<Type,LD::CT::TypeList<Pack...>>::value == 0)
+                        >>>
+        constexpr QueryResult(const LD::DatabaseTransactionResult & transaction, const Type & object, const LD::Context<Args...> & context) noexcept
+        {
+            LD::Context<LD::DatabaseTransactionResult,Type,Args...> cntxt;
+            LD::Get(LD::Get<0>(cntxt)) = transaction;
+            LD::Get(LD::Get<1>(cntxt)) = object;
+            if constexpr(sizeof...(Args) > 0)
+            {
+                LD::For<sizeof...(Args)>([](
+                        auto I,
+                        auto && inputContext,
+                        auto && outputContext)
+                {
+
+                    LD::Get<I+2>(outputContext) = LD::Get<I>(inputContext);
+                    return true;
+                },context,cntxt);
+            }
+
+        }
+
+        constexpr QueryResult(const LD::DatabaseError & transaction, const LD::Context<Args...> & context) noexcept
+        {
+            LD::Context<LD::DatabaseError,Args...> cntxt;
+            LD::Get(LD::Get<0>(cntxt)) = transaction;
+            //LD::Get(LD::Get<1>(cntxt)) = object;
+            if constexpr(sizeof...(Args) > 0)
+            {
+                LD::For<sizeof...(Args)>([](
+                        auto I,
+                        auto && inputContext,
+                        auto && outputContext)
+                {
+                    LD::Get<I+1>(outputContext) = LD::Get<I>(inputContext);
+                    return true;
+                },context,cntxt);
+            }
+
+        }
+
+
+
         constexpr QueryResult(const LD::Context<LD::DatabaseError,Args...> & context) noexcept
         {
             (*this) = context;
@@ -178,6 +223,8 @@ namespace LD
             return (*this);
         }
     };
+
+
 }
 
 #endif //LANDESSDEVCORE_FETCHREQUEST_H

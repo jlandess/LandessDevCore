@@ -36,15 +36,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a2ffdfb1-0050-446c-b0af-d02ece8e31b8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Algorithms/FuzzySearch.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/path.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Examples/ReflectionDemoTypes.h" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/ReflectionDemoTypes.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IO/Database.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/IO/Database.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Reflection/reflectable.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Reflection/reflectable.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Reflection/tagged_tuple.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Reflection/tagged_tuple.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IO/FetchRequest.h" beforeDir="false" afterPath="$PROJECT_DIR$/IO/FetchRequest.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/depend.internal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/depend.make" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/LandessDevCore" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/LandessDevCore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/LandessDevCore.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/LandessDevCore.cbp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/depend.internal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/depend.make" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/LandessDevCore" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/LandessDevCore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/LandessDevCore.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/LandessDevCore.cbp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -71,16 +77,16 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="cf.first.check.clang-format" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Random" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/IO" />
     <property name="settings.editor.selected.configurable" value="CMakeSettings" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/IO" />
       <recent name="$PROJECT_DIR$/Random" />
       <recent name="$PROJECT_DIR$/SIMD" />
       <recent name="$PROJECT_DIR$/Examples" />
       <recent name="$PROJECT_DIR$/MVC" />
-      <recent name="$PROJECT_DIR$/MVC/TUI" />
     </key>
   </component>
   <component name="RunManager">
@@ -125,7 +131,7 @@
       <workItem from="1592710488086" duration="13712000" />
       <workItem from="1592804819863" duration="8373000" />
       <workItem from="1592871383979" duration="29959000" />
-      <workItem from="1592979251202" duration="41321000" />
+      <workItem from="1592979251202" duration="60648000" />
     </task>
     <servers />
   </component>
@@ -151,22 +157,22 @@
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
     <state x="730" y="355" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/70.27.1850.1053@70.27.1850.1053" timestamp="1591840785008" />
-    <state width="1793" height="140" key="GridCell.Tab.0.bottom" timestamp="1593090447680">
+    <state width="1793" height="140" key="GridCell.Tab.0.bottom" timestamp="1593185357506">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
-    <state width="1793" height="140" key="GridCell.Tab.0.bottom/70.27.1850.1053@70.27.1850.1053" timestamp="1593090447680" />
-    <state width="1793" height="140" key="GridCell.Tab.0.center" timestamp="1593090447679">
+    <state width="1793" height="140" key="GridCell.Tab.0.bottom/70.27.1850.1053@70.27.1850.1053" timestamp="1593185357506" />
+    <state width="1793" height="140" key="GridCell.Tab.0.center" timestamp="1593185357505">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
-    <state width="1793" height="140" key="GridCell.Tab.0.center/70.27.1850.1053@70.27.1850.1053" timestamp="1593090447679" />
-    <state width="1793" height="140" key="GridCell.Tab.0.left" timestamp="1593090447679">
+    <state width="1793" height="140" key="GridCell.Tab.0.center/70.27.1850.1053@70.27.1850.1053" timestamp="1593185357505" />
+    <state width="1793" height="140" key="GridCell.Tab.0.left" timestamp="1593185357504">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
-    <state width="1793" height="140" key="GridCell.Tab.0.left/70.27.1850.1053@70.27.1850.1053" timestamp="1593090447679" />
-    <state width="1793" height="140" key="GridCell.Tab.0.right" timestamp="1593090447680">
+    <state width="1793" height="140" key="GridCell.Tab.0.left/70.27.1850.1053@70.27.1850.1053" timestamp="1593185357504" />
+    <state width="1793" height="140" key="GridCell.Tab.0.right" timestamp="1593185357505">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
-    <state width="1793" height="140" key="GridCell.Tab.0.right/70.27.1850.1053@70.27.1850.1053" timestamp="1593090447680" />
+    <state width="1793" height="140" key="GridCell.Tab.0.right/70.27.1850.1053@70.27.1850.1053" timestamp="1593185357505" />
     <state width="1793" height="202" key="GridCell.Tab.1.bottom" timestamp="1593025796729">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>

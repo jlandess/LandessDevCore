@@ -660,7 +660,17 @@ Conditional.hpp
 TypeTraits/TypeList.hpp
 ../TypeTraits/TypeTraits/TypeList.hpp
 
-../TypeTraits/__two.hpp
+/home/phoenixflower/Documents/LandessDevCore/Algorithms/FuzzySearch.h
+TypeTraits/Limit.hpp
+/home/phoenixflower/Documents/LandessDevCore/Algorithms/TypeTraits/Limit.hpp
+Definitions/Float.hpp
+/home/phoenixflower/Documents/LandessDevCore/Algorithms/Definitions/Float.hpp
+Definitions/Integer.hpp
+/home/phoenixflower/Documents/LandessDevCore/Algorithms/Definitions/Integer.hpp
+Primitives/General/StringView.hpp
+/home/phoenixflower/Documents/LandessDevCore/Algorithms/Primitives/General/StringView.hpp
+ctype.h
+-
 
 /home/phoenixflower/Documents/LandessDevCore/Algorithms/StringAsNumber.h
 Primitives/General/ctre.hpp
@@ -818,6 +828,14 @@ IntegralConstant.hpp
 Definitions/Integer.hpp
 /home/phoenixflower/Documents/LandessDevCore/TypeTraits/Definitions/Integer.hpp
 
+/home/phoenixflower/Documents/LandessDevCore/TypeTraits/IsSame.hpp
+IntegralConstant.hpp
+/home/phoenixflower/Documents/LandessDevCore/TypeTraits/IntegralConstant.hpp
+__two.hpp
+/home/phoenixflower/Documents/LandessDevCore/TypeTraits/__two.hpp
+
+/home/phoenixflower/Documents/LandessDevCore/TypeTraits/__two.hpp
+
 /home/phoenixflower/Documents/LandessDevCore/main.cpp
 Examples/TermBoxMenuExample.hpp
 /home/phoenixflower/Documents/LandessDevCore/Examples/TermBoxMenuExample.hpp
@@ -843,6 +861,10 @@ IO/FetchRequest.h
 /home/phoenixflower/Documents/LandessDevCore/IO/FetchRequest.h
 Examples/ReflectionDemoTypes.h
 /home/phoenixflower/Documents/LandessDevCore/Examples/ReflectionDemoTypes.h
+Algorithms/FuzzySearch.h
+/home/phoenixflower/Documents/LandessDevCore/Algorithms/FuzzySearch.h
+TypeTraits/IsSame.hpp
+/home/phoenixflower/Documents/LandessDevCore/TypeTraits/IsSame.hpp
 unistd.h
 -
 stdio.h
