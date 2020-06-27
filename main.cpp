@@ -1,8 +1,6 @@
 #include "Examples/TermBoxMenuExample.hpp"
 #include "Examples/ReflectionExample.hpp"
-#include "Algorithms/StringAsNumber.h"
 #include "Chrono/Timer.h"
-#include "Reflection/reflectable.hpp"
 #include "Primitives/General/Immutable.hpp"
 #include "TypeTraits/IsArray.hpp"
 #include "Primitives/General/ContextualVariant.h"
@@ -13,44 +11,9 @@
 #include "Algorithms/FuzzySearch.h"
 #include "IO/RowBackingStore.h"
 #include "IO/BasicDelimeterSeperatedFile.h"
-#include <unistd.h>
-
-
-
-
-
-
-
-namespace LD
-{
-    namespace Detail
-    {
-        template<typename T>
-        struct GenerateSystemLoadRepresentation
-        {
-
-        };
-
-        template<LD::UInteger ... Indices>
-        struct GenerateSystemLoadRepresentation<LD::IntegerSequence<LD::UInteger ,Indices...>>
-        {
-            using type = LD::Variant<LD::CPUPackageMetric,LD::ContextSwitchMetric,LD::InterruptServiceMetric,LD::BootUpTimeMetric,LD::ProcessesMetric,LD::ProcessesRunningMetric,LD::ProcessesBlockedMetric,LD::SoftIRQ,LD::CPUCoreMetric<Indices>...>;
-        };
-    }
-    template<LD::UInteger NumberOfCores>
-    using GenerateSystemRepresentation = typename LD::Detail::GenerateSystemLoadRepresentation<LD::MakeIndexSequence_T<10>>::type;
-}
 
 int main()
 {
-
-
-    using Type = LD::GenerateSystemRepresentation<10>;
-    //LD::GenerateSystemRepresentation<8>{};
-    using stuffings = LD::CT::GenerateNamedReflectiveTypeStructure<decltype(""_ts),LD::Pyramid>;
-
-    LD::CPUCoreMetric<7>::GetClassNameTypeString();
-
 
     LD::RowBackingStore backingStore{"/proc/stat"};
     LD::SpaceSpeerateValueFile<LD::RowBackingStore> file{backingStore};
@@ -110,99 +73,9 @@ int main()
             LD::Match(*it,onCPUPackageMetric,onDatabaseError,onCPUCore0);
            // sleep(1);
         }
-        sleep(2);
+        //sleep(2);
     }
 
-
-
-
-
-    /*
-    for (LD::UInteger i = 0; i < 10; ++i)
-    {
-        it = file.Begin(LD::CT::TypeList<LD::CPUPackageMetric>{},previous_idle_time,previous_total_time);
-        auto onError = [](const LD::Context<LD::DatabaseError,LD::UInteger&,LD::UInteger&> & context) noexcept
-        {
-
-        };
-
-        auto onCPUPackageMetric = [](const LD::Context<LD::DatabaseTransactionResult,LD::CPUPackageMetric,LD::UInteger&,LD::UInteger&> & context) noexcept
-        {
-            LD::CPUPackageMetric & metric = LD::Get(LD::Get<1>(context));
-            LD::UInteger & previous_idle_time = LD::Get(LD::Get<2>(context));
-            LD::UInteger & previous_total_time = LD::Get(LD::Get<3>(context));
-            LD::Float total_time = metric.User() + metric.Nice() + metric.System() + metric.Idle() +metric.IOWait() + metric.IRQ() + metric.SoftIRQ();
-
-            std::cout << "Previous Idle Time = " << previous_idle_time << std::endl;
-            std::cout << "Previous Total Time = " << previous_idle_time << std::endl;
-            const LD::UInteger idle_time = metric.Idle();
-            std::cout << "Idle Time : " << idle_time << std::endl;
-            const double idle_time_delta = idle_time - previous_idle_time;
-            const double total_time_delta = total_time - previous_total_time;
-            const double utilization = (idle_time_delta!=total_time_delta)*(100.0 * (1.0 - idle_time_delta / total_time_delta));
-            std::cout << "Utilizaiton : " <<  utilization << std::endl;
-            std::cout << "Sum : " << total_time << std::endl;
-            LD::Float idlePercentage = (metric.Idle()*100)/total_time;
-            //std::cout << "Usage: " << ((sum-metric.Idle())*100.0)/sum << std::endl;
-
-            previous_idle_time = idle_time;
-            previous_total_time = total_time;
-        };
-
-        LD::Match(*it,onError,onCPUPackageMetric);
-
-        sleep(1);
-
-    }
-     */
-
-
-
-    //file.Begin(LD::CT::TypeList<LD::CPUPackageMetric>{});
-
-
-
-    //file.Begin(LD::CT::TypeList<LD::CPUPackageMetric>{});
-
-
-
-    /*
-    for (int i = 0; i < 10; ++i)
-    {
-
-        LD::QueryResult<LD::Variant<LD::CPUPackageMetric>()> queryResult =  file(LD::CT::TypeList<LD::CPUPackageMetric>{},0);
-
-        auto onError = [](const LD::Context<LD::DatabaseError> & context) noexcept
-        {
-
-        };
-
-
-        auto onCPUPackageRecord = [&](const LD::Context<LD::DatabaseTransactionResult,LD::CPUPackageMetric> & context) noexcept
-        {
-
-
-            const LD::CPUPackageMetric & metric = LD::Get<1>(context);
-            LD::Float total_time = metric.User() + metric.Nice() + metric.System() + metric.Idle() +metric.IOWait() + metric.IRQ() + metric.SoftIRQ();
-
-            const LD::UInteger idle_time = metric.Idle();
-
-            const double idle_time_delta = idle_time - previous_idle_time;
-            const double total_time_delta = total_time - previous_total_time;
-            const double utilization = 100.0 * (1.0 - idle_time_delta / total_time_delta);
-            std::cout << "Utilizaiton : " <<  utilization << std::endl;
-            LD::Float idlePercentage = (metric.Idle()*100)/total_time;
-            //std::cout << "Usage: " << ((sum-metric.Idle())*100.0)/sum << std::endl;
-
-            previous_idle_time = idle_time;
-            previous_total_time = total_time;
-        };
-
-        LD::Match(queryResult,onError,onCPUPackageRecord);
-        sleep(1);
-    }
-
-     */
 
 
     //auto bar = LD::ImmutableString<9>{'_'};

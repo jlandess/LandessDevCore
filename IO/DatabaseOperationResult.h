@@ -6,6 +6,7 @@
 #define LANDESSDEVCORE_DATABASEOPERATIONRESULT_H
 #include "Primitives/General/mapboxvariant.hpp"
 #include "Primitives/General/ContextualVariant.h"
+#include "Primitives/General/mapboxvariantvisitor.h"
 namespace LD
 {
     class DatabaseFoundResult
