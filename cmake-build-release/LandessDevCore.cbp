@@ -219,6 +219,12 @@
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Examples/CalculusExample.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Examples/DelimeterSeperateFileExample.cpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Examples/DelimeterSeperatedFileExample.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Examples/MultithreadingExample.cpp">
 			<Option target="LandessDevCore"/>
 		</Unit>

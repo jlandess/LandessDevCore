@@ -231,6 +231,33 @@ Examples/CalculusExample.cpp.s:
 	$(MAKE) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/CalculusExample.cpp.s
 .PHONY : Examples/CalculusExample.cpp.s
 
+Examples/DelimeterSeperateFileExample.o: Examples/DelimeterSeperateFileExample.cpp.o
+
+.PHONY : Examples/DelimeterSeperateFileExample.o
+
+# target to build an object file
+Examples/DelimeterSeperateFileExample.cpp.o:
+	$(MAKE) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o
+.PHONY : Examples/DelimeterSeperateFileExample.cpp.o
+
+Examples/DelimeterSeperateFileExample.i: Examples/DelimeterSeperateFileExample.cpp.i
+
+.PHONY : Examples/DelimeterSeperateFileExample.i
+
+# target to preprocess a source file
+Examples/DelimeterSeperateFileExample.cpp.i:
+	$(MAKE) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.i
+.PHONY : Examples/DelimeterSeperateFileExample.cpp.i
+
+Examples/DelimeterSeperateFileExample.s: Examples/DelimeterSeperateFileExample.cpp.s
+
+.PHONY : Examples/DelimeterSeperateFileExample.s
+
+# target to generate assembly for a file
+Examples/DelimeterSeperateFileExample.cpp.s:
+	$(MAKE) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.s
+.PHONY : Examples/DelimeterSeperateFileExample.cpp.s
+
 Examples/MultithreadingExample.o: Examples/MultithreadingExample.cpp.o
 
 .PHONY : Examples/MultithreadingExample.o
@@ -819,6 +846,9 @@ help:
 	@echo "... Examples/CalculusExample.o"
 	@echo "... Examples/CalculusExample.i"
 	@echo "... Examples/CalculusExample.s"
+	@echo "... Examples/DelimeterSeperateFileExample.o"
+	@echo "... Examples/DelimeterSeperateFileExample.i"
+	@echo "... Examples/DelimeterSeperateFileExample.s"
 	@echo "... Examples/MultithreadingExample.o"
 	@echo "... Examples/MultithreadingExample.i"
 	@echo "... Examples/MultithreadingExample.s"
