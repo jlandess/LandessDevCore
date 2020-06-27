@@ -5562,7 +5562,7 @@ struct _Remove_reference<_Ty&&>
 };
 
 //typename _Remove_reference<_Ty>::_Type&&
-template<class _Ty> inline LD::Enable_If_T<!LD::Detail::IsSame<_Ty, void>::value,typename _Remove_reference<_Ty>::_Type&&> Move(_Ty&& _Arg)
+template<class _Ty> inline constexpr LD::Enable_If_T<!LD::Detail::IsSame<_Ty, void>::value,typename _Remove_reference<_Ty>::_Type&&> Move(_Ty&& _Arg) noexcept
 {   // forward _Arg as movable
     return ((typename _Remove_reference<_Ty>::_Type&&)_Arg);
 }
@@ -5581,12 +5581,12 @@ template <class _Tp> struct  RemoveReference        {typedef _Tp type;};
 
 
 //typename _Remove_reference<_Ty>::_Type&&
-template<class _Ty> inline LD::Enable_If_T<!LD::Detail::IsSame<_Ty, void>::value,typename LD::Detail::_Remove_reference<_Ty>::_Type&&> Move(_Ty&& _Arg)
+template<class _Ty> inline constexpr LD::Enable_If_T<!LD::Detail::IsSame<_Ty, void>::value,typename LD::Detail::_Remove_reference<_Ty>::_Type&&> Move(_Ty&& _Arg)
 {   // forward _Arg as movable
     return ((typename LD::Detail::_Remove_reference<_Ty>::_Type&&)_Arg);
 }
 template <class _Tp>
-inline
+inline constexpr
 _Tp&& Forward(typename LD::Detail::RemoveReference<_Tp>::type& __t) noexcept
 {
     return static_cast<_Tp&&>(__t);
@@ -5662,8 +5662,8 @@ namespace Detail
         _This _Myfirst;
 
 
-        TupleImpl(){}
-        TupleImpl(_This first, _Rest... rest): TupleImpl<_Rest...>(rest...), _Myfirst(first) {}
+        constexpr TupleImpl() noexcept {}
+        constexpr TupleImpl(_This first, _Rest... rest) noexcept : TupleImpl<_Rest...>(rest...), _Myfirst(first) {}
     };
 
     // tuple_element
@@ -5908,23 +5908,23 @@ template<typename ... Args>
 class Tuple: public Detail::TupleImpl<Args...>
 {
 public:
-    inline Tuple(){}
-    inline Tuple(Args && ... arguements);
+    inline constexpr Tuple() noexcept {}
+    inline constexpr Tuple(Args && ... arguements) noexcept ;
     template <typename ... B ,typename = LD::Enable_If_T< LD::ArePacksConvertible<LD::VariadicPack<B...>, LD::VariadicPack<Args...>>::value>>
-    explicit Tuple(const Tuple<B...> & tuple)
+    explicit constexpr Tuple(const Tuple<B...> & tuple) noexcept
     {
         (*this) = tuple;
 
     }
 
     template <typename ... B ,typename = LD::Enable_If_T< LD::ArePacksConvertible<LD::VariadicPack<Args...>, LD::VariadicPack<B...>>::value>>
-    Tuple<Args...> & operator = (const Tuple<B...> & tuple)
+    constexpr Tuple<Args...> & operator = (const Tuple<B...> & tuple) noexcept
     {
         return Assignment(tuple);
     }
 
     template<typename ... B>
-    LD::Enable_If_T< LD::ArePacksConvertible<LD::VariadicPack<Args...>, LD::VariadicPack<B...>>::value,Tuple<Args...> &> Assignment(const Tuple<B...> & tuple);
+    constexpr LD::Enable_If_T< LD::ArePacksConvertible<LD::VariadicPack<Args...>, LD::VariadicPack<B...>>::value,Tuple<Args...> &> Assignment(const Tuple<B...> & tuple) noexcept ;
 };
 
 template <> struct Tuple<> {};
@@ -6035,7 +6035,7 @@ class  TupleSize<Tuple<> >
 
 
 template<typename ...Args>
-Tuple<typename LD::Detail::Decay<Args>::type...> MakeTuple(Args && ... arguements)
+constexpr Tuple<typename LD::Detail::Decay<Args>::type...> MakeTuple(Args && ... arguements) noexcept
 {
     Tuple<typename LD::Detail::Decay<Args>::type...> tuple;
     Detail::AssignTuple(tuple, LD::Forward<Args>(arguements)...);
@@ -6197,7 +6197,7 @@ auto ConcatenateTuple(Tuple1&& tup1, Tuple2&& tup2)
 }
 
 template<typename ... Args>
-Tuple<Args...>::Tuple(Args && ... arguements):Detail::TupleImpl<Args...>(arguements...)
+constexpr Tuple<Args...>::Tuple(Args && ... arguements) noexcept :Detail::TupleImpl<Args...>(arguements...)
 {
 }
 
@@ -6208,13 +6208,13 @@ Tuple<Args...>::Tuple(Args && ... arguements):Detail::TupleImpl<Args...>(argueme
 
 template<typename ... Args>
 template<typename ... B>
-LD::Enable_If_T< LD::ArePacksConvertible<LD::VariadicPack<Args...>, LD::VariadicPack<B...>>::value,Tuple<Args...> &> Tuple<Args...>::Assignment(const Tuple<B...> & tuple)
+constexpr LD::Enable_If_T< LD::ArePacksConvertible<LD::VariadicPack<Args...>, LD::VariadicPack<B...>>::value,Tuple<Args...> &> Tuple<Args...>::Assignment(const Tuple<B...> & tuple) noexcept
 {
     Detail::AssignTupleFromTuple(*this,tuple);
     return (*this);
 }
 template <class... _Tp>
-Tuple<_Tp&&...>
+constexpr Tuple<_Tp&&...>
 ForwardAsTuple(_Tp&&... __t) noexcept
 {
     return Tuple<_Tp&&...>(LD::Forward<_Tp>(__t)...);

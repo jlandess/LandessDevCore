@@ -728,15 +728,20 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/RemoveExtent.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/RemoveReference.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/SearchableVariadicPack.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/StaticallySized.h
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/Type.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/TypeList.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/VariadicPack.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/__two.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Algorithms/FuzzySearch.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Algorithms/StringAsNumber.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Chrono/Timer.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Examples/ReflectionDemoTypes.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Examples/ReflectionExample.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Examples/TermBoxMenuExample.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/BasicDelimeterSeperatedFile.h
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/DatabaseOperationResult.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/FetchRequest.h
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/RowBackingStore.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Primitives/General/ContextualVariant.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Primitives/General/Immutable.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Primitives/General/Pair.h
@@ -746,7 +751,5 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Reflection/reflectable.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Reflection/tagged_tuple.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IntegralConstant.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsArray.hpp
-CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsSame.hpp
-CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/__two.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../main.cpp
 

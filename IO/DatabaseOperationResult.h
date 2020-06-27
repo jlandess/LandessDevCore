@@ -37,7 +37,19 @@ namespace LD
     private:
         LD::Variant<DatabaseIOError,DatabaseNotFoundError,DatabaseNotInitializedError> mError;
     public:
+        DatabaseError() noexcept
+        {
 
+        }
+        template<typename T, typename = LD::Enable_If_T<
+                LD::Require<
+                        LD::Either<LD::IsSame<T,DatabaseIOError>,LD::IsSame<T,DatabaseNotFoundError>,LD::IsSame<T,DatabaseNotInitializedError>>
+                        >>>
+        DatabaseError(const T & error) noexcept:mError{error}
+        {
+
+
+        }
         template<typename ... Args>
         constexpr LD::ContextualVariant<LD::Variant<DatabaseIOError,DatabaseNotFoundError,DatabaseNotInitializedError>(Args...)> operator()(Args && ... arguments) const noexcept
         {

@@ -324,6 +324,9 @@
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/IO/Archiver.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/IO/BasicDelimeterSeperatedFile.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/IO/CachedDatabase.h">
 			<Option target="LandessDevCore"/>
 		</Unit>
@@ -346,6 +349,9 @@
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/IO/JsonDatabaseBackend.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/IO/RowBackingStore.h">
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/IO/TieredDatabase.h">

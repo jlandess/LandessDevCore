@@ -640,6 +640,8 @@ Definitions/Common.hpp
 IntegralConstant.hpp
 ../TypeTraits/IntegralConstant.hpp
 
+../TypeTraits/Type.h
+
 ../TypeTraits/TypeList.hpp
 TypeTraits/Conditional.hpp
 ../TypeTraits/TypeTraits/Conditional.hpp
@@ -659,6 +661,8 @@ Conditional.hpp
 ../TypeTraits/Conditional.hpp
 TypeTraits/TypeList.hpp
 ../TypeTraits/TypeTraits/TypeList.hpp
+
+../TypeTraits/__two.hpp
 
 /home/phoenixflower/Documents/LandessDevCore/Algorithms/FuzzySearch.h
 TypeTraits/Limit.hpp
@@ -714,6 +718,32 @@ Primitives/General/Immutable.hpp
 
 /home/phoenixflower/Documents/LandessDevCore/Examples/TermBoxMenuExample.hpp
 
+/home/phoenixflower/Documents/LandessDevCore/IO/BasicDelimeterSeperatedFile.h
+Definitions/Integer.hpp
+/home/phoenixflower/Documents/LandessDevCore/IO/Definitions/Integer.hpp
+Algorithms/CompileTimeControlFlow.hpp
+/home/phoenixflower/Documents/LandessDevCore/IO/Algorithms/CompileTimeControlFlow.hpp
+FetchRequest.h
+/home/phoenixflower/Documents/LandessDevCore/IO/FetchRequest.h
+Primitives/General/StringView.hpp
+/home/phoenixflower/Documents/LandessDevCore/IO/Primitives/General/StringView.hpp
+Memory/ElementReference.h
+/home/phoenixflower/Documents/LandessDevCore/IO/Memory/ElementReference.h
+Primitives/General/ctre.hpp
+/home/phoenixflower/Documents/LandessDevCore/IO/Primitives/General/ctre.hpp
+TypeTraits/TypeList.hpp
+/home/phoenixflower/Documents/LandessDevCore/IO/TypeTraits/TypeList.hpp
+Reflection/reflectable.hpp
+/home/phoenixflower/Documents/LandessDevCore/IO/Reflection/reflectable.hpp
+Algorithms/StringAsNumber.h
+/home/phoenixflower/Documents/LandessDevCore/IO/Algorithms/StringAsNumber.h
+
+/home/phoenixflower/Documents/LandessDevCore/IO/DatabaseOperationResult.h
+Primitives/General/mapboxvariant.hpp
+/home/phoenixflower/Documents/LandessDevCore/IO/Primitives/General/mapboxvariant.hpp
+Primitives/General/ContextualVariant.h
+/home/phoenixflower/Documents/LandessDevCore/IO/Primitives/General/ContextualVariant.h
+
 /home/phoenixflower/Documents/LandessDevCore/IO/FetchRequest.h
 Primitives/General/Context.h
 /home/phoenixflower/Documents/LandessDevCore/IO/Primitives/General/Context.h
@@ -721,6 +751,18 @@ IO/DatabaseOperationResult.h
 /home/phoenixflower/Documents/LandessDevCore/IO/IO/DatabaseOperationResult.h
 Primitives/General/ContextualVariant.h
 /home/phoenixflower/Documents/LandessDevCore/IO/Primitives/General/ContextualVariant.h
+TypeTraits/Type.h
+/home/phoenixflower/Documents/LandessDevCore/IO/TypeTraits/Type.h
+
+/home/phoenixflower/Documents/LandessDevCore/IO/RowBackingStore.h
+Primitives/General/StringView.hpp
+/home/phoenixflower/Documents/LandessDevCore/IO/Primitives/General/StringView.hpp
+FetchRequest.h
+/home/phoenixflower/Documents/LandessDevCore/IO/FetchRequest.h
+DatabaseOperationResult.h
+/home/phoenixflower/Documents/LandessDevCore/IO/DatabaseOperationResult.h
+stdio.h
+-
 
 /home/phoenixflower/Documents/LandessDevCore/Primitives/General/ContextualVariant.h
 TypeTraits/TypeList.hpp
@@ -828,14 +870,6 @@ IntegralConstant.hpp
 Definitions/Integer.hpp
 /home/phoenixflower/Documents/LandessDevCore/TypeTraits/Definitions/Integer.hpp
 
-/home/phoenixflower/Documents/LandessDevCore/TypeTraits/IsSame.hpp
-IntegralConstant.hpp
-/home/phoenixflower/Documents/LandessDevCore/TypeTraits/IntegralConstant.hpp
-__two.hpp
-/home/phoenixflower/Documents/LandessDevCore/TypeTraits/__two.hpp
-
-/home/phoenixflower/Documents/LandessDevCore/TypeTraits/__two.hpp
-
 /home/phoenixflower/Documents/LandessDevCore/main.cpp
 Examples/TermBoxMenuExample.hpp
 /home/phoenixflower/Documents/LandessDevCore/Examples/TermBoxMenuExample.hpp
@@ -863,10 +897,10 @@ Examples/ReflectionDemoTypes.h
 /home/phoenixflower/Documents/LandessDevCore/Examples/ReflectionDemoTypes.h
 Algorithms/FuzzySearch.h
 /home/phoenixflower/Documents/LandessDevCore/Algorithms/FuzzySearch.h
-TypeTraits/IsSame.hpp
-/home/phoenixflower/Documents/LandessDevCore/TypeTraits/IsSame.hpp
+IO/RowBackingStore.h
+/home/phoenixflower/Documents/LandessDevCore/IO/RowBackingStore.h
+IO/BasicDelimeterSeperatedFile.h
+/home/phoenixflower/Documents/LandessDevCore/IO/BasicDelimeterSeperatedFile.h
 unistd.h
--
-stdio.h
 -
 

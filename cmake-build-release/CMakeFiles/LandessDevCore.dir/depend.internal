@@ -729,15 +729,20 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  ../TypeTraits/RemoveReference.hpp
  ../TypeTraits/SearchableVariadicPack.hpp
  ../TypeTraits/StaticallySized.h
+ ../TypeTraits/Type.h
  ../TypeTraits/TypeList.hpp
  ../TypeTraits/VariadicPack.hpp
+ ../TypeTraits/__two.hpp
  /home/phoenixflower/Documents/LandessDevCore/Algorithms/FuzzySearch.h
  /home/phoenixflower/Documents/LandessDevCore/Algorithms/StringAsNumber.h
  /home/phoenixflower/Documents/LandessDevCore/Chrono/Timer.h
  /home/phoenixflower/Documents/LandessDevCore/Examples/ReflectionDemoTypes.h
  /home/phoenixflower/Documents/LandessDevCore/Examples/ReflectionExample.hpp
  /home/phoenixflower/Documents/LandessDevCore/Examples/TermBoxMenuExample.hpp
+ /home/phoenixflower/Documents/LandessDevCore/IO/BasicDelimeterSeperatedFile.h
+ /home/phoenixflower/Documents/LandessDevCore/IO/DatabaseOperationResult.h
  /home/phoenixflower/Documents/LandessDevCore/IO/FetchRequest.h
+ /home/phoenixflower/Documents/LandessDevCore/IO/RowBackingStore.h
  /home/phoenixflower/Documents/LandessDevCore/Primitives/General/ContextualVariant.h
  /home/phoenixflower/Documents/LandessDevCore/Primitives/General/Immutable.hpp
  /home/phoenixflower/Documents/LandessDevCore/Primitives/General/Pair.h
@@ -747,6 +752,4 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  /home/phoenixflower/Documents/LandessDevCore/Reflection/tagged_tuple.hpp
  /home/phoenixflower/Documents/LandessDevCore/TypeTraits/IntegralConstant.hpp
  /home/phoenixflower/Documents/LandessDevCore/TypeTraits/IsArray.hpp
- /home/phoenixflower/Documents/LandessDevCore/TypeTraits/IsSame.hpp
- /home/phoenixflower/Documents/LandessDevCore/TypeTraits/__two.hpp
  /home/phoenixflower/Documents/LandessDevCore/main.cpp

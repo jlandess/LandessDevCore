@@ -6,6 +6,7 @@
 #include "Primitives/General/Context.h"
 #include "IO/DatabaseOperationResult.h"
 #include "Primitives/General/ContextualVariant.h"
+#include "TypeTraits/Type.h"
 namespace LD
 {
     namespace Detail
@@ -129,6 +130,7 @@ namespace LD
 
         }
 
+
         template<typename ... B,
                 typename BList = LD::CT::TypeList<B...>,
                 typename DBOp = LD::OptionalFront<BList>,
@@ -225,6 +227,108 @@ namespace LD
             return (*this);
         }
     };
+
+
+    template<typename ... B,
+            typename BList = LD::CT::TypeList<B...>,
+            typename DBOp = LD::OptionalFront<BList>,
+            typename ListWithoutDbOp = LD::CT::PopFront<BList>,
+            typename Type = LD::OptionalFront<ListWithoutDbOp>>
+    inline constexpr LD::Enable_If_T<LD::Require<
+            (sizeof...(B) >= 2),
+            LD::IsSame<DBOp,LD::DatabaseTransactionResult>
+            >,bool> IsTransactionalContext(const LD::Tuple<B...> & context) noexcept
+    {
+        return true;
+    }
+
+    template<typename ... B,
+            typename BList = LD::CT::TypeList<B...>,
+            typename DBOp = LD::OptionalFront<BList>,
+            typename ListWithoutDbOp = LD::CT::PopFront<BList>,
+            typename Type = LD::OptionalFront<ListWithoutDbOp>>
+    inline constexpr LD::Enable_If_T<LD::Require<
+            (sizeof...(B) >= 1),
+            LD::IsSame<DBOp,LD::DatabaseError>
+    >,bool> IsTransactionalContext(const LD::Tuple<B...> & context) noexcept
+    {
+        return false;
+    }
+
+
+    template<typename ... B,
+            typename BList = LD::CT::TypeList<B...>,
+            typename DBOp = LD::OptionalFront<BList>,
+            typename ListWithoutDbOp = LD::CT::PopFront<BList>,
+            typename CurrentType = LD::OptionalFront<ListWithoutDbOp>>
+    inline constexpr LD::Enable_If_T<LD::Require<
+            (sizeof...(B) >= 2),
+            LD::IsSame<DBOp,LD::DatabaseTransactionResult>
+    >,LD::Type<CurrentType>> GetQueryType(const LD::Tuple<B...> & context) noexcept
+    {
+        return LD::Type<CurrentType>{};
+    }
+
+    template<typename ... B,
+            typename BList = LD::CT::TypeList<B...>,
+            typename DBOp = LD::OptionalFront<BList>,
+            typename ListWithoutDbOp = LD::CT::PopFront<BList>,
+            typename CurrentType = LD::OptionalFront<ListWithoutDbOp>>
+    inline constexpr LD::Enable_If_T<LD::Require<
+            (sizeof...(B) >= 1),
+            LD::IsSame<DBOp,LD::DatabaseError>
+    >,LD::Type<void>> GetQueryType(const LD::Tuple<B...> & context) noexcept
+    {
+        return LD::Type<void>{};
+    }
+
+
+    template<typename ... B,
+            typename BList = LD::CT::TypeList<B...>,
+            typename DBOp = LD::OptionalFront<BList>,
+            typename ListWithoutDbOp = LD::CT::PopFront<BList>,
+            typename Type = LD::OptionalFront<ListWithoutDbOp>>
+    inline constexpr LD::Enable_If_T<LD::Require<
+            (sizeof...(B) >= 2),
+            LD::IsSame<DBOp,LD::DatabaseTransactionResult>
+    >,bool> IsNotFoundDatabaseError(const LD::Tuple<B...> & context) noexcept
+    {
+        return false;
+    }
+
+    template<typename ... B>
+    inline constexpr bool RawrBunnies(const LD::Tuple<B...> & ) noexcept
+    {
+        return true;
+    }
+    template<typename ... B,
+            typename BList = LD::CT::TypeList<B...>,
+            typename DBOp = LD::OptionalFront<BList>,
+            typename ListWithoutDbOp = LD::CT::PopFront<BList>,
+            typename Type = LD::OptionalFront<ListWithoutDbOp>>
+    inline constexpr LD::Enable_If_T<LD::Require<
+            (sizeof...(B) >= 1),
+            LD::IsSame<DBOp,LD::DatabaseError>
+    >,bool> IsNotFoundDatabaseError(const LD::Tuple<B...> & context) noexcept
+    {
+        const LD::DatabaseError & error = LD::Get(LD::Get<0>(context));
+        auto onIOError = [](const LD::Context<LD::DatabaseIOError> & error) noexcept
+        {
+            return false;
+        };
+
+        auto onInitalizationError = [](const LD::Context<LD::DatabaseNotInitializedError> & error) noexcept
+        {
+            return false;
+        };
+
+        auto onNotFoundError = [](const LD::Context<LD::DatabaseNotFoundError> & error) noexcept
+        {
+            return true;
+        };
+        return LD::Match(error(),onIOError,onInitalizationError,onNotFoundError);
+    }
+
 
 
 }
