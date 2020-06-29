@@ -108,8 +108,5 @@ namespace LD
             return results[n == index];
         }
     };
-
-
-
 }
 #endif //LANDESSDEVCORE_ROWBACKINGSTORE_H

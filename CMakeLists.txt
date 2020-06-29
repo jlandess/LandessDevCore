@@ -199,6 +199,15 @@ add_executable(LandessDevCore
         Game/Puzzler.h
         Game/Battleship.h
         Game/Artillery.h
-        Memory/Comparison.h Primitives/General/Range.h Random/GaussianUniformRandonNumberGenerator.h Primitives/General/Rope.h Algorithms/FuzzySearch.h IO/RowBackingStore.h IO/BasicDelimeterSeperatedFile.h Examples/DelimeterSeperatedFileExample.h Examples/DelimeterSeperateFileExample.cpp)
+        Memory/Comparison.h
+        Primitives/General/Range.h
+        Random/GaussianUniformRandonNumberGenerator.h
+        Primitives/General/Rope.h
+        Algorithms/FuzzySearch.h
+        IO/RowBackingStore.h
+        IO/BasicDelimeterSeperatedFile.h
+        Examples/DelimeterSeperatedFileExample.h
+        Examples/DelimeterSeperateFileExample.cpp
+        IO/JSONRowBackingStore.h)
 target_link_libraries(LandessDevCore pthread)
 target_link_libraries(LandessDevCore ncurses)

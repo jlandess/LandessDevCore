@@ -354,6 +354,9 @@
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/IO/InsertionRequest.h">
 			<Option target="LandessDevCore"/>
 		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/IO/JSONRowBackingStore.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/IO/JsonDatabaseBackend.h">
 			<Option target="LandessDevCore"/>
 		</Unit>

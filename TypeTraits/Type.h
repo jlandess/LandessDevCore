@@ -9,7 +9,12 @@ namespace LD
     template<typename T>
     struct Type
     {
-
+        using type = T;
     };
+
+    template<typename T>
+    using GetType = typename T::type ;
+
+
 }
 #endif //LANDESSDEVCORE_TYPE_H

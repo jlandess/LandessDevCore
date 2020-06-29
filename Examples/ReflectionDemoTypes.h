@@ -144,6 +144,8 @@ namespace LD
 
     public:
 
+        constexpr static const LD::UInteger Core = CoreNumber;
+
         constexpr const LD::UInteger & User() const noexcept
         {
             return (*this)["User"_ts];
@@ -242,6 +244,25 @@ namespace LD
 
     };
 
+    namespace Detail
+    {
+        template<typename T>
+        struct IsCPUCore: public LD::Detail::IntegralConstant<bool,false>
+        {
+
+        };
+
+        template<LD::UInteger Core>
+        struct IsCPUCore<LD::CPUCoreMetric<Core>>: public LD::Detail::IntegralConstant<bool,true>
+        {
+
+        };
+    }
+
+    template<typename T>
+    constexpr bool IsCPUCore = LD::Detail::IsCPUCore<T>::value;
+
+
     class ContextSwitchMetric: public LD::Reflectable<
             decltype("ctxt"_ts)(
                     decltype("Switches"_ts),LD::UInteger
@@ -283,14 +304,13 @@ namespace LD
 
     class ProcessesBlockedMetric: public LD::Reflectable<
             decltype("procs_blocked"_ts)(
-                    decltype("Name"_ts),LD::ImmutableString<20>,
                     decltype("Number"_ts),LD::UInteger
             )>
     {
 
     };
 
-    class SoftIRQ: public LD::Reflectable<
+    class SoftIRQMetric: public LD::Reflectable<
             decltype("softirq"_ts)(
                     decltype("Interrupts"_ts),LD::UInteger
             )>

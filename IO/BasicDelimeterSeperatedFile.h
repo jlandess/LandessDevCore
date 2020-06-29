@@ -25,6 +25,17 @@ namespace LD
     {
     private:
 
+        template<typename Bk>
+        using StoreTest = decltype(LD::Declval<Bk>().Store(LD::Declval<LD::StringView>(),LD::Declval<LD::StringView>()));
+
+        template<typename Bk,typename ... Args>
+        using GetLineTest = decltype(LD::Declval<Bk>().GetLine(LD::Declval<Args...>()));
+
+        template<typename Bk, typename ... Args>
+        using BeginTest = decltype(LD::Declval<Bk>().Begin(LD::Declval<Args>()...));
+        template<typename Bk, typename ... Args>
+        using CommitTest = decltype(LD::Declval<Bk>().Commit(LD::Declval<Args>()...));
+
         static constexpr auto MemberPattern = ctll::fixed_string{MembersSeperator{}};
         LD::ElementReference<BackingStore> mBackingStore;
 
