@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.15)
 include_directories(".")
 project(LandessDevCore)
-set(CMAKE_CXX_STANDARD 17)
-
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_FLAGS_RELEASE "-march=native")
 add_executable(LandessDevCore
         main.cpp
         LandessDevCore.hpp
@@ -188,7 +188,6 @@ add_executable(LandessDevCore
         Algorithms/Kissfft.h
         Algorithms/LaplaceTransform.h
         Algorithms/BubbleTargeter.h
-        Algorithms/vdt/LaybrinthGenerator.hpp
         Game/Tetris.h
         Game/Chess.h
         Game/Sudoku.h
@@ -208,6 +207,6 @@ add_executable(LandessDevCore
         IO/BasicDelimeterSeperatedFile.h
         Examples/DelimeterSeperatedFileExample.h
         Examples/DelimeterSeperateFileExample.cpp
-        IO/JSONRowBackingStore.h)
+        IO/JSONRowBackingStore.h Game/LabrynthGenerator.h Algorithms/FullAdder.hpp Algorithms/ComplimentGenerator.h Primitives/General/BitSet.hpp Examples/CPUMetric.h Primitives/General/Hexademical.hpp Primitives/General/ByteBuffer.hpp Reflection/Reflection.hpp TypeTraits/FunctionalReflection.hpp)
 target_link_libraries(LandessDevCore pthread)
 target_link_libraries(LandessDevCore ncurses)

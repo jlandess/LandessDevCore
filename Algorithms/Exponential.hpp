@@ -52,6 +52,12 @@ namespace LD
         return vdt::fast_exp(vdt::fast_log(a)*usablePower);
     }
 
+    template<typename T>
+    LD::Enable_If_T<LD::Require<LD::IsFloatingPoint<T>,LD::IsPrimitive<T>>,LD::UInteger> GetInteger(const T & input) noexcept
+    {
+        return LD::UInteger (input);
+    }
+
 
     template<typename T, typename U>
     LD::Enable_If_T<(LD::Detail::IsInteger<T>::value || LD::Detail::IsUnsignedInteger<T>::value) && (LD::Detail::IsInteger<U>::value || LD::Detail::IsUnsignedInteger<U>::value),T> GCD(const T & a, const U & b)

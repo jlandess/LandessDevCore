@@ -26,20 +26,20 @@ namespace PDP
 
         typedef T ValueType;
 
-        ElementReference();
-        ElementReference(const ElementReference& other);
-        ElementReference(T& otherValue);
-        ElementReference(const T& otherValue);
-        ElementReference(T * otherValue):value(nullptr)//,rvalue(false),ownsValue(false)
+        constexpr ElementReference() noexcept ;
+        constexpr ElementReference(const ElementReference& other) noexcept ;
+        constexpr ElementReference(T& otherValue) noexcept ;
+        constexpr ElementReference(const T& otherValue) noexcept ;
+        constexpr ElementReference(T * otherValue) noexcept :value(nullptr)//,rvalue(false),ownsValue(false)
         {
             (*this) = otherValue;
         }
         ~ElementReference();
 
-        ElementReference& operator=(const ElementReference& rhs);
-        ElementReference& operator=(const T& rhs);
-        ElementReference& operator=(T& rhs);
-        ElementReference& operator = (T * otherValue)
+        constexpr ElementReference& operator=(const ElementReference& rhs) noexcept ;
+        constexpr ElementReference& operator=(const T& rhs) noexcept ;
+        constexpr ElementReference& operator=(T& rhs) noexcept ;
+        constexpr ElementReference& operator = (T * otherValue) noexcept
         {
             this->value = otherValue;
             //this->rvalue = false;
@@ -53,39 +53,39 @@ namespace PDP
         //operator U&() { return static_cast<U&>(*value); }
         template <class U>
         //operator const U&() const { return static_cast<const U&>(*value); }
-        operator T&() { return *value; }
-        operator const T&() const { return *value; }
+        constexpr operator T&() noexcept { return *value; }
+        constexpr operator const T&()  const noexcept { return *value; }
 
-        T * GetPointer() const {return this->value;}
-        T * operator -> () {return this->value;}
-        const T * operator ->() const {return this->value;}
+        constexpr T * GetPointer() const noexcept {return this->value;}
+        constexpr T * operator -> () noexcept {return this->value;}
+        constexpr const T * operator ->() const noexcept {return this->value;}
 
 
-        T & operator*() {return (*this->value);}
-        const T & operator*() const {return (*this->value);}
+        constexpr T & operator*() noexcept {return (*this->value);}
+        constexpr const T & operator*() const noexcept {return (*this->value);}
 
-        const bool IsValid() const {return this->value != nullptr;}
+        constexpr const bool IsValid() const noexcept {return this->value != nullptr;}
     };
 
     template <class T>
-    ElementReference<T>::ElementReference()
+    constexpr ElementReference<T>::ElementReference() noexcept
             : value(nullptr)
     {
 
     }
 
     template <class T>
-    ElementReference<T>::ElementReference(const ElementReference& other)
+    constexpr ElementReference<T>::ElementReference(const ElementReference& other) noexcept
             : value(other.value)//, ownsValue(false), rvalue(false)
     { }
 
     template <class T>
-    ElementReference<T>::ElementReference(T& otherValue)
+    constexpr ElementReference<T>::ElementReference(T& otherValue) noexcept
             : value(&otherValue)//, ownsValue(false), rvalue(false)
     { }
 
     template <class T>
-    ElementReference<T>::ElementReference(const T& otherValue)
+    constexpr ElementReference<T>::ElementReference(const T& otherValue) noexcept
     {
         const T * data = (const T*)&otherValue;
         this->value = (T*)data;
@@ -97,7 +97,7 @@ namespace PDP
     }
 
     template <class T>
-    ElementReference<T>& ElementReference<T>::operator=(const ElementReference& rhs)
+    constexpr ElementReference<T>& ElementReference<T>::operator=(const ElementReference& rhs) noexcept
     {
         /*
         if (this != &rhs)
@@ -129,7 +129,7 @@ namespace PDP
     }
 
     template <class T>
-    ElementReference<T>& ElementReference<T>::operator=(const T& rhs)
+    constexpr ElementReference<T>& ElementReference<T>::operator=(const T& rhs) noexcept
     {
         /*
         if (value == nullptr)
@@ -152,7 +152,7 @@ namespace PDP
     }
 
     template <class T>
-    ElementReference<T>& ElementReference<T>::operator=(T& rhs)
+    constexpr ElementReference<T>& ElementReference<T>::operator=(T& rhs) noexcept
     {
         /*
         if (value != nullptr && ownsValue)

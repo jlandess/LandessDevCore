@@ -8,6 +8,18 @@
 #include "Definitions/Float.hpp"
 namespace LD
 {
+    namespace CT
+    {
+        template<LD::UInteger mMin, LD::UInteger mMax>
+        struct Range
+        {
+            static constexpr const LD::UInteger Max = mMax;
+            static constexpr const LD::UInteger Min = mMin;
+            static constexpr const LD::UInteger Span = (Max-Min);
+        };
+        template<typename T>
+        constexpr LD::UInteger RangeSpan = T::Span;
+    }
     template<typename T>
     class Range
     {

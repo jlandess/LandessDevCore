@@ -14,85 +14,320 @@
 #include "IO/BasicDelimeterSeperatedFile.h"
 #include "Async/Thread.h"
 #include <unistd.h>
+#include "Primitives/General/Range.h"
+#include "Algorithms/FullAdder.hpp"
+#include "Algorithms/ComplimentGenerator.h"
+#include "Primitives/General/Hexademical.hpp"
+#include "Primitives/General/ByteBuffer.hpp"
+#include "Algorithms/refl.hpp"
+#include "Reflection/Reflection.hpp"
+#include "Primitives/General/ctre.hpp"
+#include "TypeTraits/FunctionalReflection.hpp"
+
+
+
+
+
+
+template<typename T>
+void MapToNamedTuple()
+{
+
+}
+
+template<typename T>
+class Square
+{
+private:
+    static constexpr auto stuffings = "abc"_ts;
+};
+
+
+struct Point
+{
+    float x;
+    float y;
+
+    const float & X() const noexcept
+    {
+        return this->x;
+    }
+
+    float & X() noexcept
+    {
+        return this->x;
+    }
+
+    void SetX(const float & x) noexcept
+    {
+        this->x = x;
+    }
+};
 
 namespace LD
 {
-    namespace Detail
+    namespace CT
     {
-        template<typename T>
-        struct GenerateSystemLoadRepresentation
+        template<typename TFunctionSignature, TFunctionSignature tBoundFunction>
+        constexpr auto SelectOverload() noexcept
         {
-
-        };
-
-        template<typename T>
-        struct GenerateCoreLayout
-        {
-
-        };
-
-        template<LD::UInteger ... Indices>
-        struct GenerateSystemLoadRepresentation<LD::IntegerSequence<LD::UInteger ,Indices...>>
-        {
-            using type = LD::CT::TypeList<LD::CPUPackageMetric,LD::ContextSwitchMetric,LD::InterruptServiceMetric,LD::BootUpTimeMetric,LD::ProcessesMetric,LD::ProcessesRunningMetric,LD::ProcessesBlockedMetric,LD::SoftIRQMetric,LD::CPUCoreMetric<Indices>...>;
-            //using type = LD::CT::TypeList<LD::CPUPackageMetric,LD::ContextSwitchMetric,LD::InterruptServiceMetric,LD::BootUpTimeMetric,LD::ProcessesMetric,LD::ProcessesRunningMetric,LD::ProcessesBlockedMetric,LD::SoftIRQMetric,LD::CPUCoreMetric<Indices>...>;
-        };
-
-        template<LD::UInteger ... Indices>
-        struct GenerateCoreLayout<LD::IntegerSequence<LD::UInteger ,Indices...>>
-        {
-            using type = LD::CT::TypeList<LD::CPUCoreMetric<Indices>...>;
-            //using type = LD::CT::TypeList<LD::CPUPackageMetric,LD::ContextSwitchMetric,LD::InterruptServiceMetric,LD::BootUpTimeMetric,LD::ProcessesMetric,LD::ProcessesRunningMetric,LD::ProcessesBlockedMetric,LD::SoftIRQMetric,LD::CPUCoreMetric<Indices>...>;
-        };
+            return tBoundFunction;
+        }
     }
-    template<LD::UInteger NumberOfCores>
-    using GenerateSystemRepresentation = typename LD::Detail::GenerateSystemLoadRepresentation<LD::MakeIndexSequence_T<10>>::type;
-    template<LD::UInteger NumberOfCores>
-    using GenerateCoreLayout = typename LD::Detail::GenerateCoreLayout<LD::MakeIndexSequence_T<NumberOfCores>>::type;
+
 }
 
-class CPUMetric
+template<>
+class LD::CT::TypeDescriptor<Point>//: public LD::CT::Reflectable<LD::CT::ClassName<SquareClassName>(LD::CT::Member<stuffings,T>)>
 {
 private:
-    using CoreDefinition = LD::Rebind<LD::GenerateCoreLayout<64>,LD::Variant>;
-    LD::CPUPackageMetric mPackageMetric;
-    LD::StaticArray<CoreDefinition,2> mCore;
-    //LD::Rebind<LD::GenerateCoreLayout<64>,LD::Variant> mCore;
-    LD::UInteger mThreadCount;
+    static constexpr auto XName = "x"_ts;
+    static constexpr auto YName = "y"_ts;
 public:
-    inline CPUMetric() noexcept:mThreadCount{0}
+    static constexpr auto ClassName = "Point"_ts;
+    using MemberList = LD::CT::TypeList<
+            //LD::CT::Member<LengthName,T>,
+            //LD::CT::MemberDescriptor<XName,xMember>,
+            LD::CT::EncapsulatedMemberDescriptor<XName,LD::CT::SelectOverload<float & (Point::*)(),&Point::X>(),LD::CT::SelectOverload<const float & (Point::*)() const,&Point::X>()>,
+            LD::CT::MemberDescriptor<YName,&Point::y>
+            >;
+    static constexpr MemberList Members{  };
+};
+
+template<typename T, typename F>
+struct MapMembersToTuple
+{
+
+};
+
+template<typename ... Members, typename Object>
+struct MapMembersToTuple<LD::CT::TypeList<Members...>,Object>
+{
+    //using type = LD::CT::TypeList<LD::Detail::Decay_T<decltype(LD::Declval<Members>()(LD::Declval<Object>()))>...>;
+    using type = LD::CT::TypeList<LD::Detail::Decay_T<LD::CT::GetMemberType<Members,Object>>...>;
+};
+template<typename T, typename V = LD::Detail::Decay_T<T>,
+        typename Members = typename MapMembersToTuple<typename LD::CT::TypeDescriptor<V>::MemberList,T>::type>
+constexpr LD::Enable_If_T<
+        LD::Require<
+                LD::CT::Detail::IsReflectable<V>::value
+>,
+LD::CT::RebindList<Members,LD::Tuple>> MapToTuple(T && object) noexcept
+{
+
+    using MemberTuple = LD::CT::RebindList<Members,LD::Tuple>;
+    MemberTuple ret;
+    auto traits = LD::CT::Reflect(LD::Forward<T>(object)).Members;
+    LD::For<Members::size()>([](
+            auto I,
+            T && object,
+            auto && traits,
+            auto && tuple)
     {
-        this->mThreadCount = LD::Thread::GetHardwareConcurrency();
+        auto memberInfo = LD::Get<I>(traits);
+
+        LD::Get<I>(LD::Forward<MemberTuple>(tuple)) =  memberInfo(LD::Forward<T>(object));
+
+        return true;
+    },object,LD::Forward<decltype(traits)>(traits),LD::Forward<MemberTuple>(ret));
+    using stuff = typename MapMembersToTuple<typename LD::CT::TypeDescriptor<V>::MemberList,T>::type;
+    //LD::CT::DebugTemplate<stuff>{};
+    typename LD::CT::TypeDescriptor<V>::MemberList;
+    //constexpr LD::UInteger ListSize = List::size();
+    //LD::Rebind<typename T::ValueTypeList,LD::Tuple>;
+
+    return ret;
+}
+
+
+
+
+
+/* Metadata */
+REFL_AUTO(
+        type(Point),
+        field(x, /* attributes */),
+        field(y)
+)
+template <typename Member>
+struct instance_field_invoker
+{
+    template <typename T>
+    static constexpr auto invoke(T&& target) -> decltype(target.*(Member::pointer))
+    {
+        return target.*(Member::pointer);
     }
 
-    constexpr LD::Float operator[](const LD::UInteger & core) noexcept
+    template <typename T, typename U, typename M = Member, std::enable_if_t<M::is_writable, int> = 0>
+    static constexpr auto invoke(T&& target, U&& value) -> decltype(target.*(Member::pointer) = std::forward<U>(value))
     {
-        LD::UInteger index = core%2;
-
-        return {};
+        return target.*(Member::pointer) = std::forward<U>(value);
     }
+};
+
+
+template<const  auto  Rawr,auto Bunnies>
+class Mooo
+{
+
 };
 int main()
 {
 
+    static constexpr auto Rawr = LD::CT::GetSignatureReturn(LD::CT::FunctionSignature<decltype(LD::CT::SelectOverload<const float & (Point::*)() const,&Point::X>())>{});
+
+
+    LD::CT::IsSignatureConst(LD::CT::FunctionSignature<decltype(LD::CT::SelectOverload<const float & (Point::*)() const,&Point::X>())>{});
+    LD::CT::SelectOverload<const float & (Point::*)() const,&Point::X>();
+    //LD::CT::FunctionSignature<decltype(LD::CT::SelectOverload<const float & (Point::*)() const,&Point::X>())>::
+    Mooo<&Point::SetX,LD::CT::SelectOverload<float & (Point::*)(),&Point::X>()>{};
+    //"[a-z]"_ctre.match(std::string_view{});
+    //Mooo<ctre::fixed_string{"1234"},&Point::SetX> {};
+    static_assert(LD::CT::Detail::HasReflectableTraits<LD::CT::TypeDescriptor<Point>>::value,"");
+    using MemberListType = LD::Detail::Decay_T<decltype(LD::Declval<LD::CT::TypeDescriptor<Point>>().Members)>;
+    static_assert(LD::CT::IsTypeList<MemberListType>);
+    static_assert(LD::CT::Detail::IsReflectable<Point>::value);
+    LD::CT::Detail::IsReflectable<Point>{};
+    //static constexpr auto xSetter = &Point::SetX;
+    static constexpr  float & (Point::*xSetter)() = &Point::X;
+    //static constexpr auto xGetter = &Point::X;
+    static constexpr float & (Point::*xGetter)()  = &Point::X;
+    //LD::CT::DebugTemplate<decltype(LD::Declval<LD::CT::TypeDescriptor<int>>())>{};
+    static constexpr auto pointer(&Point::x);
+    //LD::CT::DebugTemplate<decltype(pointer)>{};
+    //LD::CT::Member<stuffz,int>;
+    static constexpr std::size_t (std::string::*mooo)() const = &std::string::length;
+
+    static constexpr auto str = ctll::fixed_string{ "h.*" };
+    static constexpr auto stuffings = "abc"_ts;
+    LD::CT::Member<pointer,int> abc;
+    static_assert(LD::CT::IsMember<LD::CT::Member<stuffings,int>>,"");
+    ctre::match<str>("");
+    //Test<"abc"_ts> abc;
+    LD::BitSet<8> five1{0,0,0,0,0,1,0,1};
+    LD::BitSet<8> three1{0,0,0,0,0,0,1,1};
+
+    Point pt{5,7};
+
+
+    pt.X() = 97;
+
+    LD::Tuple<float,float> point =  MapToTuple(pt);
+
+    std::cout << "Point : " << LD::Get<0>(point) << "," << LD::Get<1>(point) << std::endl;
+
+    constexpr auto traits = LD::CT::Reflect(pt).Members;
+
+    LD::Get<1>(traits)(pt);
+    using Traits = decltype(traits);
+    static constexpr  LD::UInteger traitsSize = Traits::size();
+    LD::For<traitsSize>([](auto I, const Point & pt, auto && traits)
+    {
+
+        auto memberInfo = LD::Get<I>(traits);
+
+        //memberInfo(pt).Name;
+        std::cout << memberInfo.Name.data() << " : "  << memberInfo(pt) << std::endl;
+
+        return true;
+    },pt,traits);
+
+    LD::CT::MemberDescriptor<stuffings,pointer> s;
+    LD::CT::EncapsulatedMemberDescriptor<stuffings,xSetter,xGetter> t;
+
+
+    //pt.(xGetter)();
+    t(pt) = 72;
+    std::cout << (pt.*xGetter)() << std::endl;
+    //s(pt) = 92;
+    //pt.*(pointer) = 9;
+
+
+    //pt.*(Point::x);
+
+
+
+    refl::is_reflectable(int{});
+    auto rawr = refl::reflect(pt).members;
+    //LD::CT::DebugTemplate<decltype(rawr)>{};
+     auto values = map_to_tuple(refl::reflect(pt).members, [&](auto member) {
+        // refl::descriptor::is_readable (found by Koenig lookup)
+
+
+        is_writable(member);
+         //LD::CT::DebugTemplate<decltype(member)>{};
+         //is_readable(member);
+        if constexpr (is_readable(member))
+        {
+            //member.type;
+            std::cout << member.name.str() << std::endl;
+            return member(pt); // invoke the member
+        }
+    });
+
+
+
+     refl::is_reflectable(int{});
+     LD::For<2>([](auto I, auto && tuple)
+     {
+         std::cout << std::get<I>(tuple) << std::endl;
+         return true;
+     },values);
+
+    LD::FullAdder<8> adder;
+
+    auto setResult = adder(five1,three1);
+
+    LD::Hexademical<2> address{LD::BitSet<8>{1,1,1,0,1,1,1,1}};
+    LD::Hexademical<16> number{LD::GenerateBitSet(92392423216,LD::CT::Range<0,64>{})};
+
+    LD::ImmutableByteBuffer<8> numberAsBytes{LD::GenerateBitSet(92392423216,LD::CT::Range<0,64>{})};
+    for(LD::UInteger n = 0;n<8;++n)
+    {
+        std::cout  << LD::UInteger (numberAsBytes[n]) << ",";
+    }
+    std::cout << "\n";
+    for(LD::UInteger n = 0;n<16;++n)
+    {
+        std::cout << number[n];
+    }
+    std::cout << "\n";
+    for (int i = 0; i < 2; ++i) {
+        std::cout << address[i];
+    }
+    std::cout << "\n";
+    std::cout << "Test 5" << std::endl;
+    for(LD::UInteger n = 0;n<8;++n)
+    {
+        std::cout << setResult[n];
+    }
+
+    auto bits = LD::GenerateBitSet(-8,LD::CT::Range<0,11>{});
+
+    std::cout << std::endl;
+    for(LD::UInteger n = 0;n<11;++n)
+    {
+        std::cout << bits[n];
+    }
+    std::cout << std::endl;
+
+    auto doubleAsBits = LD::GenerateBitSet(0.043);
+    for(LD::UInteger n = 0;n<18;++n)
+    {
+        std::cout << doubleAsBits[n];
+    }
+    /*
+     */
+    //std::printf("x = %.2lf = %.2lf * 2^%d\n", x, fraction, e);
+    /*
     LD::RowBackingStore backingStore{"/proc/stat"};
     LD::SpaceSpeerateValueFile<LD::RowBackingStore> file{backingStore};
-
-
-
     //using ObjectPack = LD::CT::TypeList<LD::CPUPackageMetric,LD::CPUCoreMetric<0>,LD::CPUCoreMetric<1>,LD::CPUCoreMetric<2>>;
     using ObjectPack = LD::GenerateSystemRepresentation<16>;
     using ObjectPackVariant = LD::Rebind<ObjectPack,LD::Variant>;
     LD::UInteger previous_idle_time=0, previous_total_time=0;
     LD::SpaceSpeerateValueFile<LD::RowBackingStore>::Iterator<ObjectPackVariant (LD::UInteger&,LD::UInteger&)> it{previous_idle_time,previous_total_time};// = file.Begin(LD::CT::TypeList<LD::CPUPackageMetric>{},previous_idle_time,previous_total_time);
-
-
     LD::SpaceSpeerateValueFile<LD::RowBackingStore>::Iterator<ObjectPackVariant (LD::UInteger&,LD::UInteger&)> end = file.End(ObjectPack{},previous_idle_time,previous_total_time);
-
-
-
-
-
     std::cout << LD::CPUCoreMetric<0>::GetClassName() << std::endl;
     for (LD::UInteger i = 0; i < 10; ++i)
     {
@@ -135,7 +370,7 @@ int main()
                 constexpr static const LD::UInteger Core = Underlyingcore::Core;
                 std::cout << "found core " << Core <<  std::endl;
 
-                /*
+
                 if constexpr(LD::IsCPUCore<Type>)
                 {
                     using CoreType = decltype(LD::GetQueryType(stuff));
@@ -143,7 +378,7 @@ int main()
                     constexpr static const LD::UInteger Core = Underlyingcore::Core;
                     std::cout << "found core " << Core <<  std::endl;
                 }
-                 */
+
 
             };
 
@@ -215,23 +450,13 @@ int main()
         }
         sleep(1);
     }
-
-
-
-    //auto bar = LD::ImmutableString<9>{'_'};
-    //auto edge = LD::ToImmutableString("abc");
-    //std::cout << (bar+edge).Data() << std::endl;
-    //std::cout << edge.Data() << std::endl;
-    //std::cout << bar.GetSize() << std::endl;
-    //std::cout << edge.GetSize() << std::endl;
+     */
     //LD::Example::TermBoxMenuExample();
     LD::Timer currentTimer;
     currentTimer.Start();
-
     //LD::Example::ReflectionExample();
     //LD::Example::IMGUITUIExample();
     currentTimer.Stop();
-
     //std::cout << "Execution Time: " << currentTimer.Time()/1.0_us<< std::endl;
     return 0;
 }

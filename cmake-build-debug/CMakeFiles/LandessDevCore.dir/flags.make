@@ -9,7 +9,7 @@ C_DEFINES =
 
 C_INCLUDES = -I/home/phoenixflower/Documents/LandessDevCore/. 
 
-CXX_FLAGS = -g   -std=gnu++17
+CXX_FLAGS = -g   -std=gnu++2a
 
 CXX_DEFINES = 
 

@@ -101,6 +101,7 @@ CMakeFiles/LandessDevCore.dir/Algorithms/vdt/vdtmath.cpp.o
  /home/phoenixflower/Documents/LandessDevCore/Algorithms/vdt/sincos.h
  /home/phoenixflower/Documents/LandessDevCore/Algorithms/vdt/sqrt.h
  /home/phoenixflower/Documents/LandessDevCore/Algorithms/vdt/tan.h
+ /home/phoenixflower/Documents/LandessDevCore/Algorithms/vdt/vdtMathPreload.icc
  /home/phoenixflower/Documents/LandessDevCore/Algorithms/vdt/vdtcore_common.h
  /home/phoenixflower/Documents/LandessDevCore/Algorithms/vdt/vdtmath.cpp
  /home/phoenixflower/Documents/LandessDevCore/Algorithms/vdt/vdtmath.h
@@ -256,6 +257,7 @@ CMakeFiles/LandessDevCore.dir/Examples/CalculusExample.cpp.o
  ../Primitives/General/ContextualVariant.h
  ../Primitives/General/ImproperFraction.hpp
  ../Primitives/General/Pair.h
+ ../Primitives/General/Range.h
  ../Primitives/General/StaticArray.hpp
  ../Primitives/General/Tuple.hpp
  ../Primitives/General/Vec2.hpp
@@ -339,6 +341,7 @@ CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o
  ../Primitives/General/Immutable.hpp
  ../Primitives/General/ImproperFraction.hpp
  ../Primitives/General/Pair.h
+ ../Primitives/General/Range.h
  ../Primitives/General/Span.hpp
  ../Primitives/General/StaticArray.hpp
  ../Primitives/General/StringView.hpp
@@ -445,6 +448,7 @@ CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o
  ../Primitives/General/Immutable.hpp
  ../Primitives/General/ImproperFraction.hpp
  ../Primitives/General/Pair.h
+ ../Primitives/General/Range.h
  ../Primitives/General/Ratio.hpp
  ../Primitives/General/Span.hpp
  ../Primitives/General/StaticArray.hpp
@@ -576,6 +580,7 @@ CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o
  ../Primitives/General/ImproperFraction.hpp
  ../Primitives/General/Observer.hpp
  ../Primitives/General/Pair.h
+ ../Primitives/General/Range.h
  ../Primitives/General/Ratio.hpp
  ../Primitives/General/Span.hpp
  ../Primitives/General/StaticArray.hpp
@@ -682,6 +687,7 @@ CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o
  ../Primitives/General/Immutable.hpp
  ../Primitives/General/ImproperFraction.hpp
  ../Primitives/General/Pair.h
+ ../Primitives/General/Range.h
  ../Primitives/General/Ratio.hpp
  ../Primitives/General/StaticArray.hpp
  ../Primitives/General/StringView.hpp
@@ -792,6 +798,7 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  ../Memory/ElementReference.h
  ../Memory/Optional.h
  ../Memory/shared_ptr.hpp
+ ../Primitives/General/BitSet.hpp
  ../Primitives/General/Context.h
  ../Primitives/General/Hash.hpp
  ../Primitives/General/ImproperFraction.hpp
@@ -802,7 +809,6 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  ../Primitives/General/StringView.hpp
  ../Primitives/General/Tuple.hpp
  ../Primitives/General/Unit.hpp
- ../Primitives/General/ctre.hpp
  ../Primitives/General/mapboxoptional.hpp
  ../Primitives/General/mapboxrecursive_wrapper.hpp
  ../Primitives/General/mapboxvariant.hpp
@@ -855,7 +861,10 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  ../TypeTraits/TypeList.hpp
  ../TypeTraits/VariadicPack.hpp
  ../TypeTraits/__two.hpp
+ /home/phoenixflower/Documents/LandessDevCore/Algorithms/ComplimentGenerator.h
+ /home/phoenixflower/Documents/LandessDevCore/Algorithms/FullAdder.hpp
  /home/phoenixflower/Documents/LandessDevCore/Algorithms/FuzzySearch.h
+ /home/phoenixflower/Documents/LandessDevCore/Algorithms/refl.hpp
  /home/phoenixflower/Documents/LandessDevCore/Async/Thread.h
  /home/phoenixflower/Documents/LandessDevCore/Chrono/Timer.h
  /home/phoenixflower/Documents/LandessDevCore/Examples/DelimeterSeperatedFileExample.h
@@ -866,10 +875,20 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  /home/phoenixflower/Documents/LandessDevCore/IO/DatabaseOperationResult.h
  /home/phoenixflower/Documents/LandessDevCore/IO/FetchRequest.h
  /home/phoenixflower/Documents/LandessDevCore/IO/RowBackingStore.h
+ /home/phoenixflower/Documents/LandessDevCore/Primitives/General/BitSet.hpp
+ /home/phoenixflower/Documents/LandessDevCore/Primitives/General/ByteBuffer.hpp
  /home/phoenixflower/Documents/LandessDevCore/Primitives/General/ContextualVariant.h
+ /home/phoenixflower/Documents/LandessDevCore/Primitives/General/Hexademical.hpp
  /home/phoenixflower/Documents/LandessDevCore/Primitives/General/Immutable.hpp
  /home/phoenixflower/Documents/LandessDevCore/Primitives/General/Pair.h
+ /home/phoenixflower/Documents/LandessDevCore/Primitives/General/Range.h
  /home/phoenixflower/Documents/LandessDevCore/Primitives/General/Span.hpp
+ /home/phoenixflower/Documents/LandessDevCore/Primitives/General/ctre.hpp
+ /home/phoenixflower/Documents/LandessDevCore/Primitives/General/typestring.hpp
+ /home/phoenixflower/Documents/LandessDevCore/Reflection/Reflection.hpp
+ /home/phoenixflower/Documents/LandessDevCore/TypeTraits/FunctionalReflection.hpp
  /home/phoenixflower/Documents/LandessDevCore/TypeTraits/IntegralConstant.hpp
  /home/phoenixflower/Documents/LandessDevCore/TypeTraits/IsArray.hpp
+ /home/phoenixflower/Documents/LandessDevCore/TypeTraits/Type.h
+ /home/phoenixflower/Documents/LandessDevCore/TypeTraits/TypeList.hpp
  /home/phoenixflower/Documents/LandessDevCore/main.cpp

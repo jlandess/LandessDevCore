@@ -137,7 +137,6 @@ namespace LD
     class Reflectable<T(Args...),LD::Enable_If_T<
             LD::Require<
                     LD::IsTypeString<T>
-
                     >>> : public LD::tagged_tuple<decltype("ClassName"_ts),const char *,Args...>
     {
     public:

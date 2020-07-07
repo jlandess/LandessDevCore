@@ -454,13 +454,26 @@ namespace LD
         T Buffer[N];
     public:
 
-        constexpr ImmutableArray()
+        constexpr ImmutableArray() noexcept
         {
 
         }
 
+        constexpr ImmutableArray(const T & value) noexcept
+        {
+            LD::For<N>([](
+                    auto I,
+                    T * buffer,
+                    const T & value)
+            {
+                buffer[I] = value;
+                return true;
+            },this->Buffer,value);
+        }
+
         constexpr const T & operator[](const UInteger & n) const {return Buffer[n];}
 
+        constexpr  T & operator[](const UInteger & n)  {return Buffer[n];}
         constexpr const T * Data() const
         {
             //return string.data();

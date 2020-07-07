@@ -299,6 +299,26 @@ namespace LD
 //-----------------------------------------------------------------------------
 /// Is this type a tlist?
 
+    namespace CT
+    {
+        namespace Detail
+        {
+            template<typename T>
+            struct IsTypeList: public LD::Detail::IntegralConstant<bool,false>
+            {
+
+            };
+
+            template<typename ... T>
+            struct IsTypeList<LD::CT::TypeList<T...>>: public LD::Detail::IntegralConstant<bool,true>
+            {
+
+            };
+        }
+
+        template<typename T>
+        constexpr bool IsTypeList = LD::CT::Detail::IsTypeList<T>::value;
+    }
     template <typename T>
     struct IsTypeList
     {
@@ -1832,6 +1852,16 @@ namespace LD
         using TypeListChannelView = typename LD::Detail::TypeListChannelView<Start,Step,TL>::type;
     }
 
+
+}
+
+namespace LD
+{
+    template<LD::UInteger Index, typename ... A>
+    constexpr auto Get(const LD::CT::TypeList<A...> & tl) -> LD::CT::TypeAtIndex<Index,LD::CT::TypeList<A...>>
+    {
+        return {};
+    }
 
 }
 #endif

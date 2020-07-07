@@ -10,10 +10,10 @@
 #define CompileTimeControlFlow_h
 
 #include <Functor/LightWeightDelegate.h>
-//#include "Definitions/Common.hpp"
 #include "Memory/ElementReference.h"
 #include "TypeTraits/Declval.hpp"
 #include "TypeTraits/Detection.hpp"
+#include "Primitives/General/Range.h"
 namespace LD
 {
     namespace Detail
@@ -72,7 +72,7 @@ namespace LD
     private:
 
     public:
-        static const LD::UInteger CurrentIndex = Index;
+        static constexpr const LD::UInteger CurrentIndex = Index;
         constexpr operator LD::UInteger() const noexcept { return Index; }
 
         constexpr operator const LD::UInteger&&() const && noexcept { return LD::Move(CurrentIndex); }
@@ -247,6 +247,12 @@ namespace LD
             >,void> For(F && f, Pack && ... arguements) noexcept
     {
 
+    }
+
+    template<LD::UInteger Beg, LD::UInteger End, typename F, typename ... Pack>
+    constexpr void For(const LD::CT::Range<Beg,End> & range, F && f, Pack && ... arguments) noexcept
+    {
+        Detail::Loop<Beg,End,1>::run(LD::Forward<F>(f),LD::Forward<Pack>(arguments)...);
     }
 
     template<typename F, typename ... Args>

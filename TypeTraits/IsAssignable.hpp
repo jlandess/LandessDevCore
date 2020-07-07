@@ -39,8 +39,8 @@ namespace LD
             : public __is_assignable_imp<_Tp, _Arg> {};
 
 //#if _LIBCPP_STD_VER > 14 && !defined(_LIBCPP_HAS_NO_VARIABLE_TEMPLATES)
-    template <class _Tp, class _Arg>  bool IsAssignable_V
-            = IsAssignable<_Tp, _Arg>::value;
+    template <class _Tp, class _Arg>
+    constexpr bool IsAssignable_V = IsAssignable<_Tp, _Arg>::value;
 //#endif
 
 

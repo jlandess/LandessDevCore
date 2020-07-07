@@ -2,7 +2,7 @@
 #define _VDT_MATH_H_
 
 // Include all the VDT fucntions
-#include <stdint.h>
+
 #include "sin.h"
 #include "asin.h"
 

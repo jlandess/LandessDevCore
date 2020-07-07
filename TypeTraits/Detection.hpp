@@ -232,15 +232,15 @@ namespace LD
     template<typename F,typename T, typename ... Args>
     struct ConvertiblyCallable<F,T(Args...)>
     {
-        static constexpr bool Value()
+        static constexpr bool Value() noexcept
         {
             return LD::Coverts_To<T,LD::Ops::CallableFunction, F,Args...>;
         }
 
 
-        constexpr  bool operator()() const { return  LD::Coverts_To<T,LD::Ops::CallableFunction, F,Args...>; }
+        constexpr  bool operator()() const noexcept { return  LD::Coverts_To<T,LD::Ops::CallableFunction, F,Args...>; }
 
-        constexpr operator const bool () const
+        constexpr operator const bool () const noexcept
         {
             return LD::Coverts_To<T,LD::Ops::CallableFunction, F,Args...>;
         }
@@ -252,15 +252,15 @@ namespace LD
     template<typename F, typename ... Args>
     struct ConvertiblyCallable<F,void(Args...)>
     {
-        static constexpr bool Value()
+        static constexpr bool Value() noexcept
         {
             return LD::Exists<LD::Ops::CallableFunction, F,Args...>;
         }
 
 
-        constexpr  bool operator()() const { return  LD::Exists<LD::Ops::CallableFunction, F,Args...>; }
+        constexpr  bool operator()() const noexcept { return  LD::Exists<LD::Ops::CallableFunction, F,Args...>; }
 
-        constexpr operator const bool () const
+        constexpr operator const bool () const noexcept
         {
             return LD::Exists<LD::Ops::CallableFunction, F,Args...>;
         }
