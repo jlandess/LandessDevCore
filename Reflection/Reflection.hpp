@@ -199,41 +199,7 @@ namespace LD
             }
         };
 
-        template<const auto & NameT,  auto  GetterT,auto  SetterT>
-        struct EncapsulatedMemberDescriptor<NameT,SetterT,GetterT,LD::Enable_If_T<LD::Require<
-                LD::CT::IsFunctionalSignature(LD::CT::FunctionSignature<decltype(SetterT)>{}),
-                LD::CT::IsFunctionalSignature(LD::CT::FunctionSignature<decltype(GetterT)>{}),
-                LD::Negate<LD::CT::IsSignatureConst(LD::CT::FunctionSignature<decltype(SetterT)>{})>,
-                LD::CT::IsSignatureConst(LD::CT::FunctionSignature<decltype(GetterT)>{}),
-                LD::Either<
-                        LD::Require<
-                                LD::CT::IsSameWhenDecayed(LD::CT::GetSignatureReturn(LD::CT::FunctionSignature<decltype(SetterT)>{}),LD::CT::GetSignatureReturn(LD::CT::FunctionSignature<decltype(GetterT)>{})),
-                                (LD::CT::GetNumberOfArgumentsInFunctionSignature(LD::CT::FunctionSignature<decltype(SetterT)>{}) == 0),
-                                (LD::CT::GetNumberOfArgumentsInFunctionSignature(LD::CT::FunctionSignature<decltype(GetterT)>{}) == 0),
-                                LD::CT::IsReference(LD::CT::GetSignatureReturn(LD::CT::FunctionSignature<decltype(SetterT)>{})),
-                                LD::CT::Negate(LD::CT::IsConst(LD::CT::GetSignatureReturn(LD::CT::FunctionSignature<decltype(SetterT)>{})))
-                        >,
-                        LD::Require<
-                                LD::CT::Detail::IsStandardGetterSetterPair(LD::CT::FunctionSignature<decltype(SetterT)>{},LD::CT::FunctionSignature<decltype(GetterT)>{}),
-                                (LD::CT::GetNumberOfArgumentsInFunctionSignature(LD::CT::FunctionSignature<decltype(SetterT)>{}) == 1),
-                                (LD::CT::GetNumberOfArgumentsInFunctionSignature(LD::CT::FunctionSignature<decltype(GetterT)>{}) == 0)
-                        >
-                >,
-                LD::Negate<LD::CT::IsSame(LD::CT::GetSignatureReturn(LD::CT::FunctionSignature<decltype(GetterT)>{}),LD::Type<void>{})>
-        >>>
-        {
-            static constexpr auto Name = NameT;
-            static constexpr auto Setter = SetterT;
-            static constexpr auto Getter = GetterT;
-
-            template <typename T>
-            constexpr auto operator()(T&& target) const noexcept -> ProxiedEncapsulatedMemberDescriptor<T,NameT,SetterT,GetterT>
-            {
-
-                LD::CT::IsSameWhenDecayed(LD::CT::GetSignatureReturn(LD::CT::FunctionSignature<decltype(SetterT)>{}),LD::CT::GetSignatureReturn(LD::CT::FunctionSignature<decltype(GetterT)>{}));
-                return ProxiedEncapsulatedMemberDescriptor<T,NameT,SetterT,GetterT>{LD::Forward<T>(target)};
-            }
-        };
+        
 
 
 
