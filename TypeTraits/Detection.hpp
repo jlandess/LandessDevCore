@@ -577,4 +577,6 @@ constexpr bool IsSame = LD::Detail::IsSame<T,U>::value;
     template<typename T>
     constexpr const bool IsDefaultConstructible = LD::Detail::IsDefaultConstructible<T>::value;
 }
+
+
 #endif //LANDESSDEVCORE_DETECTION_HPP

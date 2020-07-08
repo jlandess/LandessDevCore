@@ -1241,6 +1241,8 @@ Memory/ElementReference.h
 /home/phoenixflower/Documents/LandessDevCore/Reflection/Memory/ElementReference.h
 TypeTraits/TypeList.hpp
 /home/phoenixflower/Documents/LandessDevCore/Reflection/TypeTraits/TypeList.hpp
+TypeTraits/FunctionalReflection.hpp
+/home/phoenixflower/Documents/LandessDevCore/Reflection/TypeTraits/FunctionalReflection.hpp
 
 /home/phoenixflower/Documents/LandessDevCore/TypeTraits/FunctionalReflection.hpp
 TypeList.hpp

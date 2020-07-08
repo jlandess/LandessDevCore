@@ -8,7 +8,7 @@
 #include "TypeTraits/IntegralConstant.hpp"
 #include "TypeTraits/IsSame.hpp"
 #include "Definitions/Integer.hpp"
-
+//#include "TypeTraits/Detection.hpp"
 #pragma once
 
 namespace LD
@@ -404,6 +404,16 @@ namespace LD
         using type = typename tlist_type_at_impl<idx, LD::CT::TypeList<Ts...>>::type;
 
     };
+
+    template<LD::UInteger idx>
+    struct TypeAtIndex<idx,LD::CT::TypeList<>>
+    {
+        using type = void;
+    };
+
+
+
+
 
     namespace CT
     {
@@ -1855,13 +1865,5 @@ namespace LD
 
 }
 
-namespace LD
-{
-    template<LD::UInteger Index, typename ... A>
-    constexpr auto Get(const LD::CT::TypeList<A...> & tl) -> LD::CT::TypeAtIndex<Index,LD::CT::TypeList<A...>>
-    {
-        return {};
-    }
 
-}
 #endif

@@ -117,7 +117,8 @@ LD::CT::RebindList<Members,LD::Tuple>> MapToTuple(T && object) noexcept
 
     using MemberTuple = LD::CT::RebindList<Members,LD::Tuple>;
     MemberTuple ret;
-    auto traits = LD::CT::Reflect(LD::Forward<T>(object)).Members;
+    constexpr auto traits = LD::CT::Reflect<LD::Detail::Decay_T<T>>().Members;
+    //constexpr auto tratis1 = LD::CT::Reflect(LD::Forward<T>(object));
     LD::For<Members::size()>([](
             auto I,
             T && object,
@@ -173,10 +174,24 @@ class Mooo
 };
 int main()
 {
-
+    LD::Get<0>(LD::CT::TypeList<>{});
     static constexpr auto Rawr = LD::CT::GetSignatureReturn(LD::CT::FunctionSignature<decltype(LD::CT::SelectOverload<const float & (Point::*)() const,&Point::X>())>{});
 
 
+      static constexpr auto FirstFunctionSignature = LD::CT::FunctionSignature<decltype(&Point::SetX)>{};
+      static constexpr auto lhs = LD::CT::RemoveQualifiers(LD::CT::GetType<0>(LD::CT::GetSignatureArguments(FirstFunctionSignature)));
+      static constexpr auto SecondFunctionSignature = LD::CT::FunctionSignature<decltype(LD::CT::SelectOverload<const float & (Point::*)() const,&Point::X>())>{};
+      static constexpr auto rhs = LD::CT::RemoveQualifiers(LD::CT::GetSignatureReturn(SecondFunctionSignature));
+
+      static constexpr auto rez = LD::CT::IsSameWhenDecayed(lhs,rhs);
+      //LD::CT::DebugTemplate<decltype(rhs)>{};
+
+      static constexpr auto rez1 = LD::CT::RemoveConst(LD::CT::GetSignatureReturn(SecondFunctionSignature));
+      //LD::CT::DebugTemplate<decltype(rez1)>{};
+      //static_assert(rez);
+      //LD::CT::DebugTemplate<decltype(type)>{};
+    //static constexpr auto Lhs = LD::CT::RemoveQualifiers(LD::CT::GetType<0>(LD::CT::GetSignatureArguments(FirstFunctionSignature)));
+    //static_assert(LD::CT::IsSame(LD::CT::RemoveQualifiers(LD::CT::GetType<0>(LD::CT::GetSignatureArguments(LD::CT::FunctionSignature<decltype(LD::CT::SelectOverload<void (Point::*)(const float &),&Point::SetX>())>{}))),LD::CT::RemoveQualifiers(LD::CT::GetSignatureReturn(LD::CT::FunctionSignature<decltype(LD::CT::SelectOverload<const float & (Point::*)() const,&Point::X>())>{}))));
     LD::CT::IsSignatureConst(LD::CT::FunctionSignature<decltype(LD::CT::SelectOverload<const float & (Point::*)() const,&Point::X>())>{});
     LD::CT::SelectOverload<const float & (Point::*)() const,&Point::X>();
     //LD::CT::FunctionSignature<decltype(LD::CT::SelectOverload<const float & (Point::*)() const,&Point::X>())>::
@@ -218,6 +233,8 @@ int main()
 
     constexpr auto traits = LD::CT::Reflect(pt).Members;
 
+    //static constexpr auto PointTraits = LD::CT::Reflect<Point>().Members;
+
     LD::Get<1>(traits)(pt);
     using Traits = decltype(traits);
     static constexpr  LD::UInteger traitsSize = Traits::size();
@@ -233,12 +250,12 @@ int main()
     },pt,traits);
 
     LD::CT::MemberDescriptor<stuffings,pointer> s;
-    LD::CT::EncapsulatedMemberDescriptor<stuffings,xSetter,xGetter> t;
+    //LD::CT::EncapsulatedMemberDescriptor<stuffings,xSetter,xGetter> t;
 
 
     //pt.(xGetter)();
-    t(pt) = 72;
-    std::cout << (pt.*xGetter)() << std::endl;
+    //t(pt) = 72;
+    //std::cout << (pt.*xGetter)() << std::endl;
     //s(pt) = 92;
     //pt.*(pointer) = 9;
 

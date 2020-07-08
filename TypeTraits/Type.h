@@ -17,4 +17,39 @@ namespace LD
 
 
 }
+
+namespace LD
+{
+    template<LD::UInteger Index, typename ... A>
+    constexpr LD::Enable_If_T<LD::Require<(LD::CT::TypeList<A...>::size() > 0)>,LD::CT::TypeAtIndex<Index,LD::CT::TypeList<A...>>> Get(const LD::CT::TypeList<A...> & tl) noexcept //-> LD::CT::TypeAtIndex<Index,LD::CT::TypeList<A...>>
+    {
+        //LD::Enable_If_T<LD::Require<(LD::CT::TypeList<A...>::size() > 0)>,LD::CT::TypeAtIndex<Index,LD::CT::TypeList<A...>>>;
+        return {};
+    }
+
+    template<LD::UInteger Index>
+    constexpr void Get(const LD::CT::TypeList<> & tl) noexcept
+    {
+
+    }
+
+    namespace CT
+    {
+        template<LD::UInteger Index, typename ... A>
+        constexpr LD::Enable_If_T<LD::Require<(LD::CT::TypeList<A...>::size() > 0)>,LD::Type<LD::CT::TypeAtIndex<Index,LD::CT::TypeList<A...>>>> GetType( LD::CT::TypeList<A...>  tl) noexcept //-> LD::CT::TypeAtIndex<Index,LD::CT::TypeList<A...>>
+        {
+            //LD::Enable_If_T<LD::Require<(LD::CT::TypeList<A...>::size() > 0)>,LD::CT::TypeAtIndex<Index,LD::CT::TypeList<A...>>>;
+            return {};
+        }
+
+        template<LD::UInteger Index>
+        constexpr LD::Type<void> GetType( LD::CT::TypeList<>  tl) noexcept
+        {
+            return {};
+        }
+
+    }
+
+
+}
 #endif //LANDESSDEVCORE_TYPE_H
