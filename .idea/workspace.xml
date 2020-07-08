@@ -36,20 +36,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a2ffdfb1-0050-446c-b0af-d02ece8e31b8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Reflection/Reflection.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Reflection/Reflection.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TypeTraits/Detection.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/TypeTraits/Detection.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TypeTraits/FunctionalReflection.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/TypeTraits/FunctionalReflection.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TypeTraits/Type.h" beforeDir="false" afterPath="$PROJECT_DIR$/TypeTraits/Type.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TypeTraits/TypeList.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/TypeTraits/TypeList.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/CXX.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/flags.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/LandessDevCore" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/LandessDevCore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/CXX.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/flags.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release/LandessDevCore" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/LandessDevCore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,7 +125,7 @@
       <workItem from="1593653725280" duration="17009000" />
       <workItem from="1593727019947" duration="32708000" />
       <workItem from="1593886277735" duration="11658000" />
-      <workItem from="1593932505156" duration="73745000" />
+      <workItem from="1593932505156" duration="74124000" />
     </task>
     <servers />
   </component>
