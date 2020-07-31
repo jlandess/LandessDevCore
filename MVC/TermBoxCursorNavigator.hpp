@@ -6,7 +6,7 @@
 #define LANDESSDEVCORE_TERMBOXCURSORNAVIGATOR_HPP
 
 #include "Definitions/Common.hpp"
-#include "MVC/Scheduling.hpp"
+//#include "MVC/Scheduling.hpp"
 #include "Memory/ElementReference.h"
 #include "Definitions/PDPUnits.hpp"
 #include "Primitives/General/mapboxvariant.hpp"

@@ -23,18 +23,10 @@
 #include "Reflection/Reflection.hpp"
 #include "Primitives/General/ctre.hpp"
 #include "TypeTraits/FunctionalReflection.hpp"
-
-
-
-
-
-
-template<typename T>
-void MapToNamedTuple()
-{
-
-}
-
+#include "Unicode/utf8.h"
+#include "Unicode/UTF8.hpp"
+#include "TUI/ascii_art.h"
+#include "Examples/FullAdderExample.hpp"
 template<typename T>
 class Square
 {
@@ -48,12 +40,13 @@ struct Point
     float x;
     float y;
 
-    const float & X() const noexcept
+    constexpr Point(const float & x1 = 0, const float & x2 = 0) noexcept :x(x1),y(x2){}
+    constexpr const float & X() const noexcept
     {
         return this->x;
     }
 
-    float & X() noexcept
+    constexpr float & X() noexcept
     {
         return this->x;
     }
@@ -63,19 +56,6 @@ struct Point
         this->x = x;
     }
 };
-
-namespace LD
-{
-    namespace CT
-    {
-        template<typename TFunctionSignature, TFunctionSignature tBoundFunction>
-        constexpr auto SelectOverload() noexcept
-        {
-            return tBoundFunction;
-        }
-    }
-
-}
 
 template<>
 class LD::CT::TypeDescriptor<Point>//: public LD::CT::Reflectable<LD::CT::ClassName<SquareClassName>(LD::CT::Member<stuffings,T>)>
@@ -94,55 +74,6 @@ public:
     static constexpr MemberList Members{  };
 };
 
-template<typename T, typename F>
-struct MapMembersToTuple
-{
-
-};
-
-template<typename ... Members, typename Object>
-struct MapMembersToTuple<LD::CT::TypeList<Members...>,Object>
-{
-    //using type = LD::CT::TypeList<LD::Detail::Decay_T<decltype(LD::Declval<Members>()(LD::Declval<Object>()))>...>;
-    using type = LD::CT::TypeList<LD::Detail::Decay_T<LD::CT::GetMemberType<Members,Object>>...>;
-};
-template<typename T, typename V = LD::Detail::Decay_T<T>,
-        typename Members = typename MapMembersToTuple<typename LD::CT::TypeDescriptor<V>::MemberList,T>::type>
-constexpr LD::Enable_If_T<
-        LD::Require<
-                LD::CT::Detail::IsReflectable<V>::value
->,
-LD::CT::RebindList<Members,LD::Tuple>> MapToTuple(T && object) noexcept
-{
-
-    using MemberTuple = LD::CT::RebindList<Members,LD::Tuple>;
-    MemberTuple ret;
-    constexpr auto traits = LD::CT::Reflect<LD::Detail::Decay_T<T>>().Members;
-    //constexpr auto tratis1 = LD::CT::Reflect(LD::Forward<T>(object));
-    LD::For<Members::size()>([](
-            auto I,
-            T && object,
-            auto && traits,
-            auto && tuple)
-    {
-        auto memberInfo = LD::Get<I>(traits);
-
-        LD::Get<I>(LD::Forward<MemberTuple>(tuple)) =  memberInfo(LD::Forward<T>(object));
-
-        return true;
-    },object,LD::Forward<decltype(traits)>(traits),LD::Forward<MemberTuple>(ret));
-    using stuff = typename MapMembersToTuple<typename LD::CT::TypeDescriptor<V>::MemberList,T>::type;
-    //LD::CT::DebugTemplate<stuff>{};
-    typename LD::CT::TypeDescriptor<V>::MemberList;
-    //constexpr LD::UInteger ListSize = List::size();
-    //LD::Rebind<typename T::ValueTypeList,LD::Tuple>;
-
-    return ret;
-}
-
-
-
-
 
 /* Metadata */
 REFL_AUTO(
@@ -150,77 +81,322 @@ REFL_AUTO(
         field(x, /* attributes */),
         field(y)
 )
-template <typename Member>
-struct instance_field_invoker
+
+
+
+
+
+struct Fluid { };
+struct LightItem { };
+struct HeavyItem { };
+struct FragileItem { };
+//#include <variant>
+
+template<LD::UInteger N>
+constexpr LD::UInteger Size(const wchar_t (&lit)[N] )
 {
-    template <typename T>
-    static constexpr auto invoke(T&& target) -> decltype(target.*(Member::pointer))
+    LD::UInteger size = 0;
+    for(LD::UInteger n = 0;n<N;++n)
     {
-        return target.*(Member::pointer);
+        const wchar_t & cp = lit[n];
+        if (cp < 0x80)
+        {
+            // one octet
+            //*(result++) = static_cast<uint8_t>(cp);
+            size+=1;
+        }
+        else if (cp < 0x800)
+        {                // two octets
+            //*(result++) = static_cast<uint8_t>((cp >> 6)            | 0xc0);
+            //*(result++) = static_cast<uint8_t>((cp & 0x3f)          | 0x80);
+            size+=2;
+        }
+        else if (cp < 0x10000)
+        {              // three octets
+            //*(result++) = static_cast<uint8_t>((cp >> 12)           | 0xe0);
+            //*(result++) = static_cast<uint8_t>(((cp >> 6) & 0x3f)   | 0x80);
+            //*(result++) = static_cast<uint8_t>((cp & 0x3f)          | 0x80);
+            size+=3;
+        }
+        else
+        {
+            // four octets
+            //*(result++) = static_cast<uint8_t>((cp >> 18)           | 0xf0);
+            //*(result++) = static_cast<uint8_t>(((cp >> 12) & 0x3f)  | 0x80);
+            //*(result++) = static_cast<uint8_t>(((cp >> 6) & 0x3f)   | 0x80);
+            //*(result++) = static_cast<uint8_t>((cp & 0x3f)          | 0x80);
+            size+=4;
+        }
+    }
+    return size;
+}
+
+
+template<LD::UInteger N>
+constexpr LD::UInteger Size(const ctll::basic_fixed_string<wchar_t,N> & lit)
+{
+    LD::UInteger size = 0;
+    for(LD::UInteger n = 0;n<N;++n)
+    {
+        const wchar_t & cp = lit[n];
+        if (cp < 0x80)
+        {
+            // one octet
+            //*(result++) = static_cast<uint8_t>(cp);
+            size+=1;
+        }
+        else if (cp < 0x800)
+        {                // two octets
+            //*(result++) = static_cast<uint8_t>((cp >> 6)            | 0xc0);
+            //*(result++) = static_cast<uint8_t>((cp & 0x3f)          | 0x80);
+            size+=2;
+        }
+        else if (cp < 0x10000)
+        {              // three octets
+            //*(result++) = static_cast<uint8_t>((cp >> 12)           | 0xe0);
+            //*(result++) = static_cast<uint8_t>(((cp >> 6) & 0x3f)   | 0x80);
+            //*(result++) = static_cast<uint8_t>((cp & 0x3f)          | 0x80);
+            size+=3;
+        }
+        else
+        {
+            // four octets
+            //*(result++) = static_cast<uint8_t>((cp >> 18)           | 0xf0);
+            //*(result++) = static_cast<uint8_t>(((cp >> 12) & 0x3f)  | 0x80);
+            //*(result++) = static_cast<uint8_t>(((cp >> 6) & 0x3f)   | 0x80);
+            //*(result++) = static_cast<uint8_t>((cp & 0x3f)          | 0x80);
+            size+=4;
+        }
+    }
+    return size;
+}
+
+template< const auto &  lit>
+constexpr auto ToImmutableString()
+{
+    LD::ImmutableString<Size(lit)-1> string;
+    char * result = (char*)string.Data();
+    for(LD::UInteger n = 0;n<lit.size();++n)
+    {
+        const wchar_t & cp = lit[n];
+        if (cp < 0x80)
+        {
+            // one octet
+            *(result++) = static_cast<uint8_t>(cp);
+            //size+=1;
+        }
+        else if (cp < 0x800)
+        {                // two octets
+            *(result++) = static_cast<uint8_t>((cp >> 6)            | 0xc0);
+            *(result++) = static_cast<uint8_t>((cp & 0x3f)          | 0x80);
+            //size+=2;
+        }
+        else if (cp < 0x10000)
+        {              // three octets
+            *(result++) = static_cast<uint8_t>((cp >> 12)           | 0xe0);
+            *(result++) = static_cast<uint8_t>(((cp >> 6) & 0x3f)   | 0x80);
+            *(result++) = static_cast<uint8_t>((cp & 0x3f)          | 0x80);
+            //size+=3;
+        }
+        else
+        {
+            // four octets
+            *(result++) = static_cast<uint8_t>((cp >> 18)           | 0xf0);
+            *(result++) = static_cast<uint8_t>(((cp >> 12) & 0x3f)  | 0x80);
+            *(result++) = static_cast<uint8_t>(((cp >> 6) & 0x3f)   | 0x80);
+            *(result++) = static_cast<uint8_t>((cp & 0x3f)          | 0x80);
+            //size+=4;
+        }
+    }
+    return string;
+}
+
+const int infoHeaderSize = 40;
+const int bytesPerPixel = 3; /// red, green, blue
+const int fileHeaderSize = 14;
+
+
+unsigned char* createBitmapInfoHeader(int height, int width){
+    static unsigned char infoHeader[] = {
+            0,0,0,0, /// header size
+            0,0,0,0, /// image width
+            0,0,0,0, /// image height
+            0,0, /// number of color planes
+            0,0, /// bits per pixel
+            0,0,0,0, /// compression
+            0,0,0,0, /// image size
+            0,0,0,0, /// horizontal resolution
+            0,0,0,0, /// vertical resolution
+            0,0,0,0, /// colors in color table
+            0,0,0,0, /// important color count
+    };
+
+    infoHeader[ 0] = (unsigned char)(infoHeaderSize);
+    infoHeader[ 4] = (unsigned char)(width    );
+    infoHeader[ 5] = (unsigned char)(width>> 8);
+    infoHeader[ 6] = (unsigned char)(width>>16);
+    infoHeader[ 7] = (unsigned char)(width>>24);
+    infoHeader[ 8] = (unsigned char)(height    );
+    infoHeader[ 9] = (unsigned char)(height>> 8);
+    infoHeader[10] = (unsigned char)(height>>16);
+    infoHeader[11] = (unsigned char)(height>>24);
+    infoHeader[12] = (unsigned char)(1);
+    infoHeader[14] = (unsigned char)(bytesPerPixel*8);
+
+    return infoHeader;
+}
+
+unsigned char* createBitmapFileHeader(int height, int width, int paddingSize){
+    int fileSize = fileHeaderSize + infoHeaderSize + (bytesPerPixel*width+paddingSize) * height;
+
+    static unsigned char fileHeader[] = {
+            0,0, /// signature
+            0,0,0,0, /// image file size in bytes
+            0,0,0,0, /// reserved
+            0,0,0,0, /// start of pixel array
+    };
+
+    fileHeader[ 0] = (unsigned char)('B');
+    fileHeader[ 1] = (unsigned char)('M');
+    fileHeader[ 2] = (unsigned char)(fileSize    );
+    fileHeader[ 3] = (unsigned char)(fileSize>> 8);
+    fileHeader[ 4] = (unsigned char)(fileSize>>16);
+    fileHeader[ 5] = (unsigned char)(fileSize>>24);
+    fileHeader[10] = (unsigned char)(fileHeaderSize + infoHeaderSize);
+
+    return fileHeader;
+}
+
+void generateBitmapImage(unsigned char *image, int height, int width, char* imageFileName){
+
+    unsigned char padding[3] = {0, 0, 0};
+    int paddingSize = (4 - (width*bytesPerPixel) % 4) % 4;
+
+    unsigned char* fileHeader = createBitmapFileHeader(height, width, paddingSize);
+    unsigned char* infoHeader = createBitmapInfoHeader(height, width);
+
+    FILE* imageFile = fopen(imageFileName, "wb");
+
+    fwrite(fileHeader, 1, fileHeaderSize, imageFile);
+    fwrite(infoHeader, 1, infoHeaderSize, imageFile);
+
+    int i;
+    for(i=0; i<height; i++){
+        fwrite(image+(i*width*bytesPerPixel), bytesPerPixel, width, imageFile);
+        fwrite(padding, 1, paddingSize, imageFile);
     }
 
-    template <typename T, typename U, typename M = Member, std::enable_if_t<M::is_writable, int> = 0>
-    static constexpr auto invoke(T&& target, U&& value) -> decltype(target.*(Member::pointer) = std::forward<U>(value))
-    {
-        return target.*(Member::pointer) = std::forward<U>(value);
-    }
-};
+    fclose(imageFile);
+}
 
-
-template<const  auto  Rawr,auto Bunnies>
-class Mooo
-{
-
-};
 int main()
 {
-    LD::Get<0>(LD::CT::TypeList<>{});
-    static constexpr auto Rawr = LD::CT::GetSignatureReturn(LD::CT::FunctionSignature<decltype(LD::CT::SelectOverload<const float & (Point::*)() const,&Point::X>())>{});
+
+    /*
+
+    int height = 500;
+    int width = 500;
+
+    unsigned char image[height][width][bytesPerPixel];
+    for(int i=0; i<height; i++){
+        for(int j=0; j<width; j++)
+        {
+            image[i][j][2] = (unsigned char)((double)i/height*255); ///red
+            image[i][j][1] = (unsigned char)((double)j/width*255); ///green
+            image[i][j][0] = (unsigned char)(((double)i+j)/(height+width)*255); ///blue
+        }
+    }
+
+    generateBitmapImage((unsigned char*)image,width,height,"stuff.bmp");
+    //generateBitmapImage((unsigned char *)zBlob,width,height,"name.bmp");
+    //std::cout << zBlob << std::endl;
+    //fwrite(zText,sizeof(char),(width*height),stdout);
 
 
-      static constexpr auto FirstFunctionSignature = LD::CT::FunctionSignature<decltype(&Point::SetX)>{};
-      static constexpr auto lhs = LD::CT::RemoveQualifiers(LD::CT::GetType<0>(LD::CT::GetSignatureArguments(FirstFunctionSignature)));
-      static constexpr auto SecondFunctionSignature = LD::CT::FunctionSignature<decltype(LD::CT::SelectOverload<const float & (Point::*)() const,&Point::X>())>{};
-      static constexpr auto rhs = LD::CT::RemoveQualifiers(LD::CT::GetSignatureReturn(SecondFunctionSignature));
 
-      static constexpr auto rez = LD::CT::IsSameWhenDecayed(lhs,rhs);
-      //LD::CT::DebugTemplate<decltype(rhs)>{};
+    static constexpr LD::UInteger wcharSize = Size(ctll::basic_fixed_string{L"Σὲ γνωρίζω ἀπὸ τὴν κόψη"});
+    static constexpr auto reztl = ctll::basic_fixed_string{L"Σὲ γνωρίζω ἀπὸ τὴν κόψη"};
+    ToImmutableString<reztl>();
+    constexpr wchar_t * rawrS = L"Σὲ γνωρίζω ἀπὸ τὴν κόψη";
+    std::vector<char> output;
+    //utf8::distance(rawrS,rawrS+sizeof(rawrS));
+    utf8::utf32to8(rawrS,rawrS+wcslen(rawrS),std::back_inserter(output));
+    std::cout << output.size() <<  " : " << wcharSize << std::endl;
+    auto immutableString = ToImmutableString<reztl>();
 
-      static constexpr auto rez1 = LD::CT::RemoveConst(LD::CT::GetSignatureReturn(SecondFunctionSignature));
-      //LD::CT::DebugTemplate<decltype(rez1)>{};
-      //static_assert(rez);
-      //LD::CT::DebugTemplate<decltype(type)>{};
-    //static constexpr auto Lhs = LD::CT::RemoveQualifiers(LD::CT::GetType<0>(LD::CT::GetSignatureArguments(FirstFunctionSignature)));
-    //static_assert(LD::CT::IsSame(LD::CT::RemoveQualifiers(LD::CT::GetType<0>(LD::CT::GetSignatureArguments(LD::CT::FunctionSignature<decltype(LD::CT::SelectOverload<void (Point::*)(const float &),&Point::SetX>())>{}))),LD::CT::RemoveQualifiers(LD::CT::GetSignatureReturn(LD::CT::FunctionSignature<decltype(LD::CT::SelectOverload<const float & (Point::*)() const,&Point::X>())>{}))));
-    LD::CT::IsSignatureConst(LD::CT::FunctionSignature<decltype(LD::CT::SelectOverload<const float & (Point::*)() const,&Point::X>())>{});
-    LD::CT::SelectOverload<const float & (Point::*)() const,&Point::X>();
-    //LD::CT::FunctionSignature<decltype(LD::CT::SelectOverload<const float & (Point::*)() const,&Point::X>())>::
-    Mooo<&Point::SetX,LD::CT::SelectOverload<float & (Point::*)(),&Point::X>()>{};
-    //"[a-z]"_ctre.match(std::string_view{});
-    //Mooo<ctre::fixed_string{"1234"},&Point::SetX> {};
-    static_assert(LD::CT::Detail::HasReflectableTraits<LD::CT::TypeDescriptor<Point>>::value,"");
-    using MemberListType = LD::Detail::Decay_T<decltype(LD::Declval<LD::CT::TypeDescriptor<Point>>().Members)>;
-    static_assert(LD::CT::IsTypeList<MemberListType>);
-    static_assert(LD::CT::Detail::IsReflectable<Point>::value);
-    LD::CT::Detail::IsReflectable<Point>{};
-    //static constexpr auto xSetter = &Point::SetX;
-    static constexpr  float & (Point::*xSetter)() = &Point::X;
-    //static constexpr auto xGetter = &Point::X;
-    static constexpr float & (Point::*xGetter)()  = &Point::X;
-    //LD::CT::DebugTemplate<decltype(LD::Declval<LD::CT::TypeDescriptor<int>>())>{};
-    static constexpr auto pointer(&Point::x);
-    //LD::CT::DebugTemplate<decltype(pointer)>{};
-    //LD::CT::Member<stuffz,int>;
-    static constexpr std::size_t (std::string::*mooo)() const = &std::string::length;
+    std::cout << "Size : " << utf8::distance(immutableString.Begin(),immutableString.End()) << std::endl;
+    std::cout << "Size : " << utf8::distance((const char*)output.data(),(const char*)output.data()+output.size()) << std::endl;
+    //std::cout << "Size : " << utf8::distance((const char*)reztl.content,(const char*)(reztl.content+reztl.size())) << std::endl;
+    auto rawrString = ctll::basic_fixed_string{u8"\\U0001F607 is O:-)"};
+    //LD::QueryResult<int()> rawrbunnies = LD::QueryResult<int()>{LD::TransactionError{}};
+    LD::QueryResult< LD::UInteger()> res = LD::UTF8::Distance(rawrString.begin(),rawrString.end());
 
-    static constexpr auto str = ctll::fixed_string{ "h.*" };
-    static constexpr auto stuffings = "abc"_ts;
-    LD::CT::Member<pointer,int> abc;
-    static_assert(LD::CT::IsMember<LD::CT::Member<stuffings,int>>,"");
-    ctre::match<str>("");
-    //Test<"abc"_ts> abc;
-    LD::BitSet<8> five1{0,0,0,0,0,1,0,1};
-    LD::BitSet<8> three1{0,0,0,0,0,0,1,1};
+    auto onDistance = [](const LD::Context<LD::TransactionResult,LD::UInteger> & context) noexcept
+    {
+        return LD::Get(LD::Get<1>(context));
+    };
+
+    auto onDistanceError = [](const LD::Context<LD::TransactionError> & context) noexcept
+    {
+        return -7;
+    };
+
+    std::cout << "Resolution : " << LD::Match(res,onDistance,onDistanceError) << std::endl;
+    LD::TransactionError transactionError = LD::EncodingError{};
+    transactionError();
+
+    LD::Variant<LightItem, HeavyItem> basicPackA;
+    LD::Variant<LightItem, HeavyItem> basicPackB = HeavyItem{};
+
+
+    LD::MultiMatch(LD::Overload{
+        [](LightItem&,LightItem&)
+        {
+            std::cout << "2 light items\n";
+        },
+        [](LightItem&,HeavyItem&)
+        {
+            std::cout << "light & heavy items\n";
+        },
+        [](HeavyItem&,LightItem&)
+        {
+            std::cout << "heavy & light items\n";
+        },
+        [](HeavyItem&,HeavyItem&)
+        {
+            std::cout << "2 heavy items\n";
+        }}
+        ,basicPackA,basicPackB);
+
+    auto tb = LD::MapToTuple(Point{1.0f,1.0f});
+
+    LD::Variant<int,float> variantABC = 7;
+    LD::Variant<int,float> variantCDE = 9;
+    LD::MultiMatch(LD::Overload{
+        [](auto abc ,auto cde)
+        {
+            std::cout << typeid(abc).name() << " : " << typeid(cde).name() << std::endl;
+
+        }},variantABC,variantCDE);
+
+    LD::ImmutableString{"abc"};
+    auto abc = ctll::fixed_string{LD::ImmutableString{"abc"}+LD::ImmutableString{LD::ToTypeString<5>{}}};
+    for(LD::UInteger n = 0;n<abc.size();++n)
+    {
+        std::cout << char(abc[n]);
+    }
+    std::cout << std::endl;
+    //LD::StringView{ctll::basic_fixed_string{"abc"}};
+
+
+
+
+
+    LD::Example::FullAdderExample();
+    */
+    LD::Example::DelimeterSeperatedFileExample();
+    //LD::Example::TermBoxMenuExample();
+    /*
 
     Point pt{5,7};
 
@@ -231,72 +407,9 @@ int main()
 
     std::cout << "Point : " << LD::Get<0>(point) << "," << LD::Get<1>(point) << std::endl;
 
-    constexpr auto traits = LD::CT::Reflect(pt).Members;
 
-    //static constexpr auto PointTraits = LD::CT::Reflect<Point>().Members;
-
-    LD::Get<1>(traits)(pt);
-    using Traits = decltype(traits);
-    static constexpr  LD::UInteger traitsSize = Traits::size();
-    LD::For<traitsSize>([](auto I, const Point & pt, auto && traits)
-    {
-
-        auto memberInfo = LD::Get<I>(traits);
-
-        //memberInfo(pt).Name;
-        std::cout << memberInfo.Name.data() << " : "  << memberInfo(pt) << std::endl;
-
-        return true;
-    },pt,traits);
-
-    LD::CT::MemberDescriptor<stuffings,pointer> s;
-    //LD::CT::EncapsulatedMemberDescriptor<stuffings,xSetter,xGetter> t;
-
-
-    //pt.(xGetter)();
-    //t(pt) = 72;
-    //std::cout << (pt.*xGetter)() << std::endl;
-    //s(pt) = 92;
-    //pt.*(pointer) = 9;
-
-
-    //pt.*(Point::x);
-
-
-
-    refl::is_reflectable(int{});
-    auto rawr = refl::reflect(pt).members;
-    //LD::CT::DebugTemplate<decltype(rawr)>{};
-     auto values = map_to_tuple(refl::reflect(pt).members, [&](auto member) {
-        // refl::descriptor::is_readable (found by Koenig lookup)
-
-
-        is_writable(member);
-         //LD::CT::DebugTemplate<decltype(member)>{};
-         //is_readable(member);
-        if constexpr (is_readable(member))
-        {
-            //member.type;
-            std::cout << member.name.str() << std::endl;
-            return member(pt); // invoke the member
-        }
-    });
-
-
-
-     refl::is_reflectable(int{});
-     LD::For<2>([](auto I, auto && tuple)
-     {
-         std::cout << std::get<I>(tuple) << std::endl;
-         return true;
-     },values);
-
-    LD::FullAdder<8> adder;
-
-    auto setResult = adder(five1,three1);
-
-    LD::Hexademical<2> address{LD::BitSet<8>{1,1,1,0,1,1,1,1}};
-    LD::Hexademical<16> number{LD::GenerateBitSet(92392423216,LD::CT::Range<0,64>{})};
+    //LD::Hexademical<2> address{LD::BitSet<8>{1,1,1,0,1,1,1,1}};
+    //LD::Hexademical<16> number{LD::GenerateBitSet(92392423216,LD::CT::Range<0,64>{})};
 
     LD::ImmutableByteBuffer<8> numberAsBytes{LD::GenerateBitSet(92392423216,LD::CT::Range<0,64>{})};
     for(LD::UInteger n = 0;n<8;++n)

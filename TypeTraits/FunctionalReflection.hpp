@@ -158,6 +158,12 @@ namespace LD
         }
 
         template<typename T>
+        constexpr bool IsPrimitive(LD::Type<T> ) noexcept
+        {
+            return LD::Detail::IsPrimitiveType<T>::value;
+        }
+
+        template<typename T>
         constexpr auto RemoveConst(LD::Type<T> ) noexcept
         {
             return LD::Type<T>{};
@@ -675,5 +681,17 @@ namespace LD
         //FunctionSignature<Return(*)(Args...)>
 
     }
+}
+namespace LD
+{
+    namespace CT
+    {
+        template<typename TFunctionSignature, TFunctionSignature tBoundFunction>
+        constexpr auto SelectOverload() noexcept
+        {
+            return tBoundFunction;
+        }
+    }
+
 }
 #endif //LANDESSDEVCORE_FUNCTIONALREFLECTION_HPP

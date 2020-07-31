@@ -8,6 +8,7 @@
 #include "Immutable.hpp"
 #include "TypeTraits/IsConvertible.hpp"
 #include "Definitions/Common.hpp"
+#include "Primitives/General/StaticArray.hpp"
 namespace LD
 {
     class BitElement

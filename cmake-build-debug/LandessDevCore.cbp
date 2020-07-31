@@ -138,6 +138,9 @@
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Algorithms/SearchInHorsPool.h">
 			<Option target="LandessDevCore"/>
 		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Algorithms/String.hpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Algorithms/StringAsNumber.h">
 			<Option target="LandessDevCore"/>
 		</Unit>
@@ -229,6 +232,12 @@
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Examples/DelimeterSeperatedFileExample.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Examples/FullAdderExample.cpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Examples/FullAdderExample.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Examples/MultithreadingExample.cpp">
@@ -372,6 +381,9 @@
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/IO/RowBackingStore.h">
 			<Option target="LandessDevCore"/>
 		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/IO/SystemLoad.hpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/IO/TieredDatabase.h">
 			<Option target="LandessDevCore"/>
 		</Unit>
@@ -411,6 +423,9 @@
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/MVC/SchedulingQuittingPredicate.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/MVC/ScopedRenderContextState.hpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/MVC/TUI/TUIEvent.h">
 			<Option target="LandessDevCore"/>
 		</Unit>
@@ -426,6 +441,9 @@
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/MVC/TermBoxApplication.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/MVC/TermBoxButton.hpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/MVC/TermBoxCursorNavigator.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
@@ -439,6 +457,12 @@
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/MVC/TermBoxMenu.hpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/MVC/TermBoxProgressBar.hpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/MVC/TermboxTextLabel.h">
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Memory/Comparison.h">
@@ -523,6 +547,9 @@
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Primitives/General/Rope.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Primitives/General/ScopedState.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Primitives/General/Span.hpp">
@@ -643,6 +670,12 @@
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Reflection/Reflection.hpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/TUI/ascii_art.cpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/TUI/ascii_art.h">
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/TermBox/termbox.c">
@@ -799,6 +832,9 @@
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/TypeTraits/__two.hpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/Unicode/UTF8.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/main.cpp">

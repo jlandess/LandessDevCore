@@ -115,7 +115,7 @@ namespace LD
          * }
          */
         template<typename Key,typename V, typename ... Args,
-                typename VarType = LD::Variant<LD::DatabaseError,LD::DatabaseTransactionResult>,
+                typename VarType = LD::Variant<LD::TransactionError,LD::DatabaseTransactionResult>,
                 typename Ret = LD::QueryResult<LD::Ref<LD::Detail::Decay_T<V>>(Args...)>,
                 typename CurrentBackend = Backend>
         LD::Enable_If_T<
@@ -214,7 +214,7 @@ namespace LD
 
          */
         template<typename Key,typename V, typename ... Args,
-                typename VarType = LD::Variant<LD::DatabaseError,LD::DatabaseTransactionResult>,
+                typename VarType = LD::Variant<LD::TransactionError,LD::DatabaseTransactionResult>,
                 typename Ret = LD::QueryResult<LD::Ref<LD::Detail::Decay_T<V>>(Args...)>,
                 //typename Ret = LD::ContextualVariant<VarType(Args...)>,
                 typename CurrentBackend = Backend>
@@ -238,11 +238,11 @@ namespace LD
                         LD::StringView{key.data(),key.size()},
                         LD::StringView{className.data(),className.size()});
 
-                auto onDatabaseError = [](const LD::Context<LD::DatabaseError> & error) noexcept
+                auto onDatabaseError = [](const LD::Context<LD::TransactionError> & error) noexcept
                 {
                     return false;
                 };
-                auto onTransaction = [](const LD::Context<LD::DatabaseTransactionResult,bool> & error) noexcept
+                auto onTransaction = [](const LD::Context<LD::TransactionResult,bool> & error) noexcept
                 {
 
                     return true;
@@ -266,11 +266,11 @@ namespace LD
                                 LD::StringView{key.data(),key.size()},
                                 LD::StringView{memberAsString.Data(),memberAsString.GetSize()});
 
-                        auto onDatabaseError = [](const LD::Context<LD::DatabaseError> & error) noexcept
+                        auto onDatabaseError = [](const LD::Context<LD::TransactionError> & error) noexcept
                         {
                             return false;
                         };
-                        auto onTransaction = [](const LD::Context<LD::DatabaseTransactionResult,bool> & error) noexcept
+                        auto onTransaction = [](const LD::Context<LD::TransactionResult,bool> & error) noexcept
                         {
 
                             return true;
@@ -284,8 +284,8 @@ namespace LD
 
             const bool result = LD::CT::ReflectiveWalk(key,LD::Forward<V>(object),onClass,onMember,LD::AccessReadOnly{},Db{this->mBackend});
             Ret possibleResults[2];
-            possibleResults[0] = LD::MakeContext(LD::DatabaseError{},LD::Forward<Args>(args)...);
-            possibleResults[1] = LD::MakeContext(LD::DatabaseTransactionResult{},LD::Ref<LD::Detail::Decay_T<V>>{object},LD::Forward<Args>(args)...);
+            possibleResults[0] = LD::MakeContext(LD::TransactionError{},LD::Forward<Args>(args)...);
+            possibleResults[1] = LD::MakeContext(LD::TransactionResult{},LD::Ref<LD::Detail::Decay_T<V>>{object},LD::Forward<Args>(args)...);
             return possibleResults[result];
         }
 
@@ -497,13 +497,13 @@ namespace LD
 
                 //fetchContext = handle->Fetch(LD::StringView{LD::Get<0>(context)},onFetch,LD::StringView{LD::Get<1>(context)});
 
-                auto onDatabaseError = [](const LD::Context<LD::DatabaseError,LD::StringView,LD::StringView> &) noexcept
+                auto onDatabaseError = [](const LD::Context<LD::TransactionError,LD::StringView,LD::StringView> &) noexcept
                 {
 
                     return false;
                 };
 
-                auto onTransaction = [](const LD::Context<LD::DatabaseTransactionResult,LD::UInteger,LD::StringView ,LD::StringView> & transaction) noexcept
+                auto onTransaction = [](const LD::Context<LD::TransactionResult,LD::UInteger,LD::StringView ,LD::StringView> & transaction) noexcept
                 {
 
                     return LD::Get<1>(transaction);
@@ -513,7 +513,7 @@ namespace LD
             };
 
             Ret returnable {};
-            returnable = LD::MakeContext(LD::DatabaseError{},LD::Forward<Args>(args)...);
+            returnable = LD::MakeContext(LD::TransactionError{},LD::Forward<Args>(args)...);
 
 
             //iterate through all of the types in the typelist
@@ -529,7 +529,7 @@ namespace LD
                        using Type = typename LD::TypeAtIndex<I,Y>::type;
                        //we're writing to the data structre eg why it's write only.
                        using Var = LD::CT::RebindList<LD::CT::ReflectiveTransformation<Type ,LD::AccessWriteOnly>,LD::Variant>;
-                       using QueryResultant = LD::Variant<LD::DatabaseError,LD::DatabaseTransactionResult>;
+                       using QueryResultant = LD::Variant<LD::TransactionError,LD::DatabaseTransactionResult>;
                        using QueryResponse = LD::ContextualVariant<QueryResultant()>;
 
 
@@ -568,13 +568,13 @@ namespace LD
 
 
 
-                                   auto onDatabaseError = [](const LD::Context<LD::DatabaseError,LD::StringView ,LD::ElementReference<MemberType>> &) noexcept
+                                   auto onDatabaseError = [](const LD::Context<LD::TransactionError,LD::StringView ,LD::ElementReference<MemberType>> &) noexcept
                                    {
                                        return false;
                                    };
 
 
-                                   auto onTransaction = [](const LD::Context<LD::DatabaseTransactionResult,MemberType ,LD::StringView,LD::ElementReference<MemberType>> & transaction) noexcept
+                                   auto onTransaction = [](const LD::Context<LD::TransactionResult,MemberType ,LD::StringView,LD::ElementReference<MemberType>> & transaction) noexcept
                                    {
 
 
@@ -606,7 +606,7 @@ namespace LD
                        //if we have a successful query with that classname then set the returnable and stop looping
                        LD::IF(result,[](Ret & returnable, Type & objectToReanimate, Args && ... args)
                        {
-                           returnable = LD::MakeContext(LD::DatabaseTransactionResult{},Type {objectToReanimate},LD::Forward<Args>(args)...);
+                           returnable = LD::MakeContext(LD::TransactionResult{},Type {objectToReanimate},LD::Forward<Args>(args)...);
                        }
                        ,returnable,objectToReanimate,LD::Forward<Args>(args)...);
                        /*
@@ -732,7 +732,7 @@ namespace LD
             using RefedResult = LD::Ref<LD::QueryResult<LD::Variant<LD::Type<TL>...>(Args...)>>;
             using ReferencedInstance = LD::Ref<BasicKeyedDatabase>;
             //set a default value that simply assumes the database had an error
-            LD::QueryResult<LD::Variant<LD::Type<TL>...>(Args...)> result = LD::MakeContext(LD::DatabaseError{},LD::Forward<Args>(arguments)...);
+            LD::QueryResult<LD::Variant<LD::Type<TL>...>(Args...)> result = LD::MakeContext(LD::TransactionError{},LD::Forward<Args>(arguments)...);
             //iterate through all the possible types we would like to consider in reference to the given key to remove from the backing data store
             LD::For<sizeof...(TL)>([](
                     auto I,
@@ -769,14 +769,14 @@ namespace LD
 
 
 
-                        auto onDatabaseError = [](const LD::Context<LD::DatabaseError,LD::StringView ,LD::StringView,LD::Ref<Backend>,RefedResult> &) noexcept
+                        auto onDatabaseError = [](const LD::Context<LD::TransactionError,LD::StringView ,LD::StringView,LD::Ref<Backend>,RefedResult> &) noexcept
                         {
                             //todo - differentiate between an IO error, a not found error, and other errors
                             //continue iterating if we don't find it
                             return true;
                         };
 
-                        auto onTransaction = [](const LD::Context<LD::DatabaseTransactionResult,LD::UInteger,LD::StringView ,LD::StringView,LD::Ref<Backend>,RefedResult> & transaction) noexcept
+                        auto onTransaction = [](const LD::Context<LD::TransactionResult,LD::UInteger,LD::StringView ,LD::StringView,LD::Ref<Backend>,RefedResult> & transaction) noexcept
                         {
                             using ReflectiveTypeStructure =  LD::CT::GenerateNamedReflectiveTypeStructure<Key,CurrentType>;
                             LD::Ref<Backend> handle = LD::Get<4>(transaction);
@@ -801,11 +801,11 @@ namespace LD
                                 {
                                     LD::QueryResult<bool()> currentRemovalRequestRes = handle->Remove(LD::StringView{CurrentKey::data(),CurrentKey::size()});
 
-                                    auto onRemovalError = [](const LD::Context<LD::DatabaseError> & context) noexcept
+                                    auto onRemovalError = [](const LD::Context<LD::TransactionError> & context) noexcept
                                     {
 
                                     };
-                                    auto onTransaction = [](const LD::Context<LD::DatabaseTransactionResult,bool> & context) noexcept
+                                    auto onTransaction = [](const LD::Context<LD::TransactionResult,bool> & context) noexcept
                                     {
 
                                     };
@@ -821,7 +821,7 @@ namespace LD
                         {
 
 
-                            (*result) = LD::MakeContext(LD::DatabaseTransactionResult{},LD::Type<CurrentType>{},LD::Forward<Args>(arguments)...);
+                            (*result) = LD::MakeContext(LD::TransactionResult{},LD::Type<CurrentType>{},LD::Forward<Args>(arguments)...);
                         }
                         //we're writing to the data structre eg why it's write only.
                         return shouldContinueAttemptingToDelete;

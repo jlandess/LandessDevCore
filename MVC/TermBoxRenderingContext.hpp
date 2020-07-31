@@ -191,6 +191,8 @@ namespace LD
 
     class TermBoxRenderContext
     {
+    public:
+        tb_event CurrentEvent;
     private:
         LD::UInteger GetFormatedIndices(const char * data, LD::UInteger * indices) const noexcept
         {
@@ -212,7 +214,7 @@ namespace LD
         unsigned short CurrentForegroundColor;
         unsigned short CurrentBackgroundColor;
         unsigned short mMouseEnabled;
-        tb_event CurrentEvent;
+
         const TermBoxRenderContext & Write(const char & character, const LD::Detail::tVec2<LD::Integer> & translation) const;
     public:
 
@@ -238,6 +240,7 @@ namespace LD
         }
         template<typename T,class sfinae>
         friend class BasicTermBoxApplication;
+
         TermBoxRenderContext();
         void EnableMouse() {this->mMouseEnabled = true;}
         void DisableMouse() {this->mMouseEnabled = false;}
@@ -464,6 +467,12 @@ namespace LD
         >,const LD::TermBoxRenderContext&> Render(T && object, const LD::Detail::tVec2<LD::Integer> & translation) const noexcept (noexcept(LD::Declval<LD::Detail::Decay_T<T>>()(LD::Declval<const LD::TermBoxRenderContext&>(),LD::Declval<LD::Detail::tVec2<LD::Integer>>())))
         {
             return object(*this,translation);
+        }
+
+        template<typename T>
+        auto Render(T && object) noexcept(noexcept(LD::Declval<T>()(LD::Declval<LD::TermBoxRenderContext&>()))) -> LD::TypedRequires<LD::TermBoxRenderContext&,LD::ConvertiblyCallable<T,LD::TermBoxRenderContext&( LD::TermBoxRenderContext&)>::Value()>
+        {
+            return object(*this);
         }
     };
 

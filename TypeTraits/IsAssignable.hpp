@@ -8,7 +8,7 @@
 #include "Declval.hpp"
 #include "IntegralConstant.hpp"
 #include "IsVoid.hpp"
-#include "IsFunction.hpp""
+#include "IsFunction.hpp"
 #include "AddRValueReference.hpp"
 #include "AddLValueReference.hpp"
 

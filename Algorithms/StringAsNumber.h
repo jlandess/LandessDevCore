@@ -174,5 +174,11 @@ namespace LD
                 return view[0];
             }
 
+            template<typename T>
+            auto StringAsNumber(LD::Type<T>, LD::StringView view) noexcept
+            {
+                return LD::StringAsNumber<T>(view);
+            }
+
 }
 #endif //LANDESSDEVCORE_STRINGASNUMBER_H

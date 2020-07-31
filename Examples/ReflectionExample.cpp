@@ -79,12 +79,12 @@ namespace LD
             auto unqliteInsertAndCommitEnd = currentTimer.Time();
             std::cout << "Unqlite Insert of a Pyramid took : " << ((unqliteInsertAndCommitEnd-unqliteInsertAndCommitBegin)/1.0_us) << " micrseconds " << std::endl;
 
-            auto onInsertionFailure = [](const LD::Context<LD::DatabaseError,int> & context)
+            auto onInsertionFailure = [](const LD::Context<LD::TransactionError,int> & context)
             {
 
             };
 
-            auto onInsertOfPyramid = [](const LD::Context<LD::DatabaseTransactionResult,Pyramid&,int> & context)
+            auto onInsertOfPyramid = [](const LD::Context<LD::TransactionResult,Pyramid&,int> & context)
             {
 
                 std::cout << "pyramid succesfully inserted   " << LD::Get<2>(context) << std::endl;
@@ -96,7 +96,7 @@ namespace LD
             auto unqliteFetchEnd = currentTimer.Time();
             std::cout << "Unqlite Fetch of a Pyramid took : " << ((unqliteFetchEnd-unqliteFetchBegin)/1.0_us) << " micrseconds " << std::endl;
             //when a fetch request fails we simply get a context with the database error and the arguements passed in Fetch to be used in the anymous function
-            auto onFetchError = [](const LD::Context<LD::DatabaseError> & context )
+            auto onFetchError = [](const LD::Context<LD::TransactionError> & context )
             {
 
             };
@@ -104,7 +104,7 @@ namespace LD
             //the second object specified in a given LD::Context after a fetch request will always be the object found
             //the first object specified in a given LD::Context will either be LD::DatabaseTransactionResult or LD::DatabaseError
             //If a database error has occured, as show above, there will be no object available for usage and so it simply provides the error in question
-            auto onPyramidTransaction = [](const LD::Context<LD::DatabaseTransactionResult,Pyramid> & context)
+            auto onPyramidTransaction = [](const LD::Context<LD::TransactionResult,Pyramid> & context)
             {
 
                 std::cout << "fetch1 query result " << std::endl;
@@ -125,12 +125,12 @@ namespace LD
             std::cout << "Unqlite Removal of a Pyramid took : " << ((unqliteRemoveEnd-unqliteRemoveStart)/1.0_us) << " micrseconds " << std::endl;
 
 
-            auto onDeletionError = [](const LD::Context<LD::DatabaseError> & context)
+            auto onDeletionError = [](const LD::Context<LD::TransactionError> & context)
             {
 
             };
 
-            auto onDeletionSuccess = [](const LD::Context<LD::DatabaseTransactionResult,LD::Type<Pyramid>> & context)
+            auto onDeletionSuccess = [](const LD::Context<LD::TransactionResult,LD::Type<Pyramid>> & context)
             {
                 std::cout << "successfully deleted pyramid" << std::endl;
 

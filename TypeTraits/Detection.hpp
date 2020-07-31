@@ -106,8 +106,8 @@ namespace LD
     struct Negation : LD::Detail::IntegralConstant<bool, !bool(B::value)> { };
 
 
-    template <typename ResultType, typename CheckType, template <typename> class ... Values>
-    using Requires = LD::Enable_If_T<Conjunction<Values<CheckType>...>::value, ResultType>;
+    //template <typename ResultType, typename CheckType, template <typename> class ... Values>
+    //using Requires = LD::Enable_If_T<Conjunction<Values<CheckType>...>::value, ResultType>;
 
     template <typename ResultType, typename CheckType, template <typename> class ... Values>
     using FallsBack = LD::Enable_If_T<Conjunction<Negation<Values<CheckType>>...>::value, ResultType>;
@@ -117,6 +117,16 @@ namespace LD
     constexpr bool Require = LD::Conjunction<LD::Detail::IntegralConstant<bool,Bs>...>::value;
 
 
+
+
+    template<bool ... Bs>
+    using Requires = LD::Enable_If_T<LD::Require<Bs...>>;
+
+    template<typename T, bool ... Bs>
+    using TypedRequires = LD::Enable_If_T<LD::Require<Bs...>,T>;
+
+    //template<bool ... Bs>
+    //using Requires = LD::Enable_If_T<LD::Require<Bs...>,void>;
     template <bool... Bs>
     constexpr bool FallBack = LD::Conjunction<LD::Negation<LD::Detail::IntegralConstant<bool,Bs>>...>::value;
 

@@ -57,7 +57,7 @@ namespace LD {
 
 
         template<char ... d>
-        TypeString<C...,d...> operator + (const TypeString<d...> & ts) const noexcept
+        constexpr TypeString<C...,d...> operator + (const TypeString<d...> & ts) const noexcept
         {
             return {};
         }

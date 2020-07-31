@@ -76,7 +76,13 @@ namespace LD
 
             constexpr BasicImmutableTextInput(
                     const LD::BasicVec2D<LD::UInteger> & postion,
-                    const LD::ImmutableString<Size-1> & string = {}) noexcept :mPosition(postion),mString(string),mIndex(0)
+                    const LD::ImmutableString<Size-1> & string) noexcept :mPosition(postion),mString(string),mIndex(0)
+            {
+
+            }
+
+            constexpr BasicImmutableTextInput(
+                    const LD::BasicVec2D<LD::UInteger> & postion) noexcept :mPosition(postion),mIndex(0)
             {
 
             }

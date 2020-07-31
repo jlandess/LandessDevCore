@@ -7,6 +7,7 @@
 #include "Primitives/General/Vec2.hpp"
 #include "MVC/TermBoxRenderingContext.hpp"
 
+/*
 namespace LD
 {
     namespace TUI
@@ -31,6 +32,13 @@ namespace LD
 
             }
 
+            constexpr ImmutableTextLabel(
+                    const LD::BasicVec2D<LD::UInteger> & postion,
+                    const char (&lit)[Size + 1]) noexcept :mPosition(postion),mString(lit)
+            {
+
+            }
+
             ImmutableTextLabel & operator = (const LD::ImmutableString<Size> & string) noexcept
             {
                 this->mString = string;
@@ -46,15 +54,15 @@ namespace LD
             ImmutableTextLabel & operator()(const TermBoxRenderContext & context)
             {
 
-                LD::IF(this->mString.GetSize() > 0,[](auto && context, auto && position, auto && string)
-                {
-                    context.RenderWithFormat(LD::ToImmutableString("{}"),position,string);
 
-                },context,this->mPosition,this->mString);
 
                 return (*this);
             }
         };
+
+        //template <LD::UInteger N> ImmutableTextLabel(LD::BasicVec2D<LD::UInteger>,ImmutableString<N>) -> ImmutableTextLabel<N>;
+        //template <LD::UInteger N> ImmutableTextLabel(LD::BasicVec2D<LD::UInteger>,const char (&lit)[N]) -> ImmutableTextLabel<N-1>;
     }
 }
+ */
 #endif //LANDESSDEVCORE_TUITEXTLABEL_H

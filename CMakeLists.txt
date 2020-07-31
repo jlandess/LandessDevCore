@@ -207,6 +207,18 @@ add_executable(LandessDevCore
         IO/BasicDelimeterSeperatedFile.h
         Examples/DelimeterSeperatedFileExample.h
         Examples/DelimeterSeperateFileExample.cpp
-        IO/JSONRowBackingStore.h Game/LabrynthGenerator.h Algorithms/FullAdder.hpp Algorithms/ComplimentGenerator.h Primitives/General/BitSet.hpp Examples/CPUMetric.h Primitives/General/Hexademical.hpp Primitives/General/ByteBuffer.hpp Reflection/Reflection.hpp TypeTraits/FunctionalReflection.hpp)
+        IO/JSONRowBackingStore.h
+        Game/LabrynthGenerator.h
+        Algorithms/FullAdder.hpp
+        Algorithms/ComplimentGenerator.h
+        Primitives/General/BitSet.hpp
+        Examples/CPUMetric.h
+        Primitives/General/Hexademical.hpp
+        Primitives/General/ByteBuffer.hpp
+        Reflection/Reflection.hpp
+        TypeTraits/FunctionalReflection.hpp
+        Algorithms/String.hpp
+        Unicode/UTF8.hpp
+        TUI/ascii_art.cpp Examples/FullAdderExample.hpp Examples/FullAdderExample.cpp MVC/TermBoxProgressBar.hpp MVC/TermboxTextLabel.h MVC/ScopedRenderContextState.hpp Primitives/General/ScopedState.hpp MVC/TermBoxButton.hpp IO/SystemLoad.hpp)
 target_link_libraries(LandessDevCore pthread)
 target_link_libraries(LandessDevCore ncurses)

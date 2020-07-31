@@ -30,7 +30,7 @@ namespace LD
         LD::HeteregenousTuple<ElementReference<Context>...> CurrentContext;
         ElementReference<LD::Timer> TimerReference;
     public:
-        
+
         template<typename ... A, typename = typename LD::Enable_If_T<LD::IsUniquelyContained<LD::VariadicPack<Context...>,LD::VariadicPack<A...>>::value>>
         ApplicaitonStartedEvent(const LD::HeteregenousTuple<ElementReference<A>...> & context,
                                 LD::Timer & timer):CurrentContext(context),TimerReference(timer)

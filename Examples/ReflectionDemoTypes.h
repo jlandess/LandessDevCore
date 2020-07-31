@@ -9,237 +9,236 @@
 #include "Functor/FunctionView.h"
 #include "Primitives/General/StaticArray.hpp"
 #include "Primitives/General/Immutable.hpp"
+#include "Reflection/Reflection.hpp"
+#include "Primitives/General/ctre.hpp"
 namespace LD
 {
-    class CPUPackageMetric: public LD::Reflectable<
-            decltype("cpu"_ts)(
-                    decltype("User"_ts),LD::UInteger,
-                    decltype("Nice"_ts),LD::UInteger,
-                    decltype("System"_ts),LD::UInteger,
-                    decltype("Idle"_ts),LD::UInteger,
-                    decltype("IOWait"_ts),LD::UInteger,
-                    decltype("Irq"_ts),LD::UInteger,
-                    decltype("SoftIrq"_ts),LD::UInteger,
-                    decltype("Steal"_ts),LD::UInteger,
-                    decltype("Guest"_ts),LD::UInteger,
-                    decltype("GuestNice"_ts),LD::UInteger
-            )>
+    class CPUPackageMetric
     {
     private:
-
+        LD::UInteger mUser;
+        LD::UInteger mNice;
+        LD::UInteger mSystem;
+        LD::UInteger mIdle;
+        LD::UInteger mIOWait;
+        LD::UInteger mIRQ;
+        LD::UInteger mSoftIRQ;
+        LD::UInteger mSteal;
+        LD::UInteger mGuest;
+        LD::UInteger mGuestNice;
     public:
         constexpr const LD::UInteger & User() const noexcept
         {
-            return (*this)["User"_ts];
+            return this->mUser;
         }
         constexpr LD::UInteger & User() noexcept
         {
-            return (*this)["User"_ts];
+            return this->mUser;
         }
 
         constexpr const LD::UInteger & Nice() const noexcept
         {
-            return (*this)["Nice"_ts];
+            return this->mNice;
         }
 
         constexpr LD::UInteger & Nice()  noexcept
         {
-            return (*this)["Nice"_ts];
+            return this->mNice;
         }
 
         constexpr const LD::UInteger & System() const noexcept
         {
-            return (*this)["System"_ts];
+            return this->mSystem;
         }
 
         constexpr LD::UInteger & System()  noexcept
         {
-            return (*this)["System"_ts];
+            return this->mSystem;
         }
 
         constexpr const LD::UInteger & Idle() const noexcept
         {
-            return (*this)["Idle"_ts];
+            return this->mIdle;
         }
         constexpr LD::UInteger & Idle() noexcept
         {
-            return (*this)["Idle"_ts];
+            return this->mIdle;
         }
 
         constexpr const LD::UInteger & IOWait() const noexcept
         {
-            return (*this)["IOWait"_ts];
+            return this->mIOWait;
         }
         constexpr LD::UInteger & IOWait() noexcept
         {
-            return (*this)["IOWait"_ts];
+            return this->mIOWait;
         }
 
         constexpr const LD::UInteger & IRQ() const noexcept
         {
-            return (*this)["Irq"_ts];
+            return this->mIRQ;
         }
         constexpr LD::UInteger & IRQ() noexcept
         {
-            return (*this)["Irq"_ts];
+            return this->mIRQ;
         }
 
         constexpr const LD::UInteger & SoftIRQ() const noexcept
         {
-            return (*this)["SoftIrq"_ts];
+            return this->mSoftIRQ;
         }
 
         constexpr LD::UInteger & SoftIRQ() noexcept
         {
-            return (*this)["SoftIrq"_ts];
+            return this->mSoftIRQ;
         }
 
         constexpr const LD::UInteger & Steal() const noexcept
         {
-            return (*this)["Steal"_ts];
+            return this->mSteal;
         }
 
         constexpr LD::UInteger & Steal() noexcept
         {
-            return (*this)["Steal"_ts];
+            return this->mSteal;
         }
 
         constexpr const LD::UInteger & Guest() const noexcept
         {
-            return (*this)["Guest"_ts];
+            return this->mGuest;
         }
 
         constexpr LD::UInteger & Guest() noexcept
         {
-            return (*this)["Guest"_ts];
+            return this->mGuest;
         }
 
         constexpr const LD::UInteger & GuestNice() const noexcept
         {
-            return (*this)["GuestNice"_ts];
+            return this->mGuestNice;
         }
 
         constexpr LD::UInteger & GuestNice() noexcept
         {
-            return (*this)["GuestNice"_ts];
+            return this->mGuestNice;
         }
 
     };
+
     template<LD::UInteger CoreNumber>
-    class CPUCoreMetric: public LD::Reflectable<
-            decltype("cpu"_ts+LD::ToTypeString<CoreNumber>{})(
-                    decltype("User"_ts),LD::UInteger,
-                    decltype("Nice"_ts),LD::UInteger,
-                    decltype("System"_ts),LD::UInteger,
-                    decltype("Idle"_ts),LD::UInteger,
-                    decltype("IOWait"_ts),LD::UInteger,
-                    decltype("Irq"_ts),LD::UInteger,
-                    decltype("SoftIrq"_ts),LD::UInteger,
-                    decltype("Steal"_ts),LD::UInteger,
-                    decltype("Guest"_ts),LD::UInteger,
-                    decltype("GuestNice"_ts),LD::UInteger
-                    )>
+    class CPUCoreMetric
     {
     private:
-
+        LD::UInteger mUser;
+        LD::UInteger mNice;
+        LD::UInteger mSystem;
+        LD::UInteger mIdle;
+        LD::UInteger mIOWait;
+        LD::UInteger mIRQ;
+        LD::UInteger mSoftIRQ;
+        LD::UInteger mSteal;
+        LD::UInteger mGuest;
+        LD::UInteger mGuestNice;
     public:
-
-        constexpr static const LD::UInteger Core = CoreNumber;
-
         constexpr const LD::UInteger & User() const noexcept
         {
-            return (*this)["User"_ts];
+            return this->mUser;
         }
         constexpr LD::UInteger & User() noexcept
         {
-            return (*this)["User"_ts];
+            return this->mUser;
+        }
+
+        constexpr LD::UInteger Core() const noexcept
+        {
+            return CoreNumber;
         }
 
         constexpr const LD::UInteger & Nice() const noexcept
         {
-            return (*this)["Nice"_ts];
+            return this->mNice;
         }
 
         constexpr LD::UInteger & Nice()  noexcept
         {
-            return (*this)["Nice"_ts];
+            return this->mNice;
         }
 
         constexpr const LD::UInteger & System() const noexcept
         {
-            return (*this)["System"_ts];
+            return this->mSystem;
         }
 
         constexpr LD::UInteger & System()  noexcept
         {
-            return (*this)["System"_ts];
+            return this->mSystem;
         }
 
         constexpr const LD::UInteger & Idle() const noexcept
         {
-            return (*this)["Idle"_ts];
+            return this->mIdle;
         }
         constexpr LD::UInteger & Idle() noexcept
         {
-            return (*this)["Idle"_ts];
+            return this->mIdle;
         }
 
         constexpr const LD::UInteger & IOWait() const noexcept
         {
-            return (*this)["IOWait"_ts];
+            return this->mIOWait;
         }
         constexpr LD::UInteger & IOWait() noexcept
         {
-            return (*this)["IOWait"_ts];
+            return this->mIOWait;
         }
 
         constexpr const LD::UInteger & IRQ() const noexcept
         {
-            return (*this)["Irq"_ts];
+            return this->mIRQ;
         }
         constexpr LD::UInteger & IRQ() noexcept
         {
-            return (*this)["Irq"_ts];
+            return this->mIRQ;
         }
 
         constexpr const LD::UInteger & SoftIRQ() const noexcept
         {
-            return (*this)["SoftIrq"_ts];
+            return this->mSoftIRQ;
         }
 
         constexpr LD::UInteger & SoftIRQ() noexcept
         {
-            return (*this)["SoftIrq"_ts];
+            return this->mSoftIRQ;
         }
 
         constexpr const LD::UInteger & Steal() const noexcept
         {
-            return (*this)["Steal"_ts];
+            return this->mSteal;
         }
 
         constexpr LD::UInteger & Steal() noexcept
         {
-            return (*this)["Steal"_ts];
+            return this->mSteal;
         }
 
         constexpr const LD::UInteger & Guest() const noexcept
         {
-            return (*this)["Guest"_ts];
+            return this->mGuest;
         }
 
         constexpr LD::UInteger & Guest() noexcept
         {
-            return (*this)["Guest"_ts];
+            return this->mGuest;
         }
 
         constexpr const LD::UInteger & GuestNice() const noexcept
         {
-            return (*this)["GuestNice"_ts];
+            return this->mGuestNice;
         }
 
         constexpr LD::UInteger & GuestNice() noexcept
         {
-            return (*this)["GuestNice"_ts];
+            return this->mGuestNice;
         }
 
     };
@@ -263,59 +262,70 @@ namespace LD
     constexpr bool IsCPUCore = LD::Detail::IsCPUCore<T>::value;
 
 
-    class ContextSwitchMetric: public LD::Reflectable<
-            decltype("ctxt"_ts)(
-                    decltype("Switches"_ts),LD::UInteger
-            )>
+    class ContextSwitchMetric
     {
+    private:
+        LD::UInteger mSwitches;
+    public:
+        inline ContextSwitchMetric(const LD::UInteger & metric = 0) noexcept :mSwitches{metric}{}
 
-    };
-    class InterruptServiceMetric: public LD::Reflectable<
-            decltype("intr"_ts)(
-                    decltype("Switches"_ts),LD::UInteger
-            )>
-    {
-
+        inline constexpr const LD::UInteger & Switches() const noexcept {return this->mSwitches;}
+        inline constexpr  LD::UInteger & Switches()  noexcept {return this->mSwitches;}
     };
 
-    class BootUpTimeMetric: public LD::Reflectable<
-            decltype("btime"_ts)(
-                    decltype("Time"_ts),LD::UInteger
-            )>
+    class InterruptServiceMetric
     {
-
+    private:
+        LD::UInteger mInterrupts;
+    public:
+        inline constexpr const LD::UInteger & Interrupts() const noexcept {return this->mInterrupts;}
+        inline constexpr  LD::UInteger & Interrupts()  noexcept {return this->mInterrupts;}
     };
 
-    class ProcessesMetric: public LD::Reflectable<
-            decltype("processes"_ts)(
-                    decltype("Number"_ts),LD::UInteger
-            )>
+    class BootUpTimeMetric
     {
-
+    private:
+        LD::UInteger mTime;
+    public:
+        inline constexpr const LD::UInteger & BootUpTime() const noexcept {return this->mTime;}
+        inline constexpr  LD::UInteger & BootUpTime()  noexcept {return this->mTime;}
     };
 
-    class ProcessesRunningMetric: public LD::Reflectable<
-            decltype("procs_running"_ts)(
-                    decltype("Number"_ts),LD::UInteger
-            )>
+    class ProcessesMetric
     {
-
+    private:
+        LD::UInteger mAmount;
+    public:
+        inline constexpr const LD::UInteger & Amount() const noexcept {return this->mAmount;}
+        inline constexpr  LD::UInteger & Amount()  noexcept {return this->mAmount;}
     };
 
-    class ProcessesBlockedMetric: public LD::Reflectable<
-            decltype("procs_blocked"_ts)(
-                    decltype("Number"_ts),LD::UInteger
-            )>
+    class ProcessesRunningMetric
     {
-
+    private:
+        LD::UInteger mAmount;
+    public:
+        inline constexpr const LD::UInteger & Amount() const noexcept {return this->mAmount;}
+        inline constexpr  LD::UInteger & Amount()  noexcept {return this->mAmount;}
     };
 
-    class SoftIRQMetric: public LD::Reflectable<
-            decltype("softirq"_ts)(
-                    decltype("Interrupts"_ts),LD::UInteger
-            )>
-    {
 
+    class ProcessesBlockedMetric
+    {
+    private:
+        LD::UInteger mAmount;
+    public:
+        inline constexpr const LD::UInteger & Amount() const noexcept {return this->mAmount;}
+        inline constexpr  LD::UInteger & Amount()  noexcept {return this->mAmount;}
+    };
+
+    class SoftIRQMetric
+    {
+    private:
+        LD::UInteger mInterrupts;
+    public:
+        inline constexpr const LD::UInteger & Interrupts() const noexcept {return this->mInterrupts;}
+        inline constexpr  LD::UInteger & Interrupts()  noexcept {return this->mInterrupts;}
     };
 
 
@@ -512,4 +522,195 @@ namespace LD
         }
     };
 }
+
+template<>
+class LD::CT::TypeDescriptor<LD::CPUPackageMetric>
+{
+private:
+    static constexpr auto UserName = ctll::basic_fixed_string("User");
+    static constexpr auto NiceName = ctll::basic_fixed_string("Nice");
+    static constexpr auto SystemName = ctll::basic_fixed_string("System");
+    static constexpr auto IdleName = ctll::basic_fixed_string("Idle");
+    static constexpr auto IOWaitName = ctll::basic_fixed_string("IOWait");
+    static constexpr auto IRQName = ctll::basic_fixed_string("IRQ");
+    static constexpr auto SoftIRQName = ctll::basic_fixed_string("SoftIRQ");
+    static constexpr auto StealName = ctll::basic_fixed_string("Steal");
+    static constexpr auto GuestName = ctll::basic_fixed_string("Guest");
+    static constexpr auto GuestNiceName = ctll::basic_fixed_string("GuestNice");
+public:
+    static constexpr auto ClassName = ctll::basic_fixed_string("cpu");
+    using MemberList = LD::CT::TypeList<
+            //LD::CT::Member<LengthName,T>,
+            //LD::CT::MemberDescriptor<XName,xMember>,
+            LD::CT::EncapsulatedMemberDescriptor<UserName,LD::CT::SelectOverload<LD::UInteger & (LD::CPUPackageMetric::*)(),&LD::CPUPackageMetric::User>(),LD::CT::SelectOverload<const LD::UInteger & (LD::CPUPackageMetric::*)() const,&LD::CPUPackageMetric::User>()>,
+            LD::CT::EncapsulatedMemberDescriptor<NiceName,LD::CT::SelectOverload<LD::UInteger & (LD::CPUPackageMetric::*)(),&LD::CPUPackageMetric::Nice>(),LD::CT::SelectOverload<const LD::UInteger & (LD::CPUPackageMetric::*)() const,&LD::CPUPackageMetric::Nice>()>,
+            LD::CT::EncapsulatedMemberDescriptor<SystemName,LD::CT::SelectOverload<LD::UInteger & (LD::CPUPackageMetric::*)(),&LD::CPUPackageMetric::System>(),LD::CT::SelectOverload<const LD::UInteger & (LD::CPUPackageMetric::*)() const,&LD::CPUPackageMetric::System>()>,
+            LD::CT::EncapsulatedMemberDescriptor<IdleName,LD::CT::SelectOverload<LD::UInteger & (LD::CPUPackageMetric::*)(),&LD::CPUPackageMetric::Idle>(),LD::CT::SelectOverload<const LD::UInteger & (LD::CPUPackageMetric::*)() const,&LD::CPUPackageMetric::Idle>()>,
+            LD::CT::EncapsulatedMemberDescriptor<IOWaitName,LD::CT::SelectOverload<LD::UInteger & (LD::CPUPackageMetric::*)(),&LD::CPUPackageMetric::IOWait>(),LD::CT::SelectOverload<const LD::UInteger & (LD::CPUPackageMetric::*)() const,&LD::CPUPackageMetric::IOWait>()>,
+            LD::CT::EncapsulatedMemberDescriptor<IRQName,LD::CT::SelectOverload<LD::UInteger & (LD::CPUPackageMetric::*)(),&LD::CPUPackageMetric::IRQ>(),LD::CT::SelectOverload<const LD::UInteger & (LD::CPUPackageMetric::*)() const,&LD::CPUPackageMetric::IRQ>()>,
+            LD::CT::EncapsulatedMemberDescriptor<SoftIRQName,LD::CT::SelectOverload<LD::UInteger & (LD::CPUPackageMetric::*)(),&LD::CPUPackageMetric::SoftIRQ>(),LD::CT::SelectOverload<const LD::UInteger & (LD::CPUPackageMetric::*)() const,&LD::CPUPackageMetric::SoftIRQ>()>,
+            LD::CT::EncapsulatedMemberDescriptor<StealName,LD::CT::SelectOverload<LD::UInteger & (LD::CPUPackageMetric::*)(),&LD::CPUPackageMetric::Steal>(),LD::CT::SelectOverload<const LD::UInteger & (LD::CPUPackageMetric::*)() const,&LD::CPUPackageMetric::Steal>()>,
+            LD::CT::EncapsulatedMemberDescriptor<GuestName,LD::CT::SelectOverload<LD::UInteger & (LD::CPUPackageMetric::*)(),&LD::CPUPackageMetric::Guest>(),LD::CT::SelectOverload<const LD::UInteger & (LD::CPUPackageMetric::*)() const,&LD::CPUPackageMetric::Guest>()>,
+            LD::CT::EncapsulatedMemberDescriptor<GuestNiceName,LD::CT::SelectOverload<LD::UInteger & (LD::CPUPackageMetric::*)(),&LD::CPUPackageMetric::GuestNice>(),LD::CT::SelectOverload<const LD::UInteger & (LD::CPUPackageMetric::*)() const,&LD::CPUPackageMetric::GuestNice>()>
+
+
+    >;
+    static constexpr MemberList Members{  };
+};
+
+
+template<LD::UInteger Core>
+class LD::CT::TypeDescriptor<LD::CPUCoreMetric<Core>>
+{
+private:
+    static constexpr auto UserName = ctll::basic_fixed_string("User");
+    static constexpr auto NiceName = ctll::basic_fixed_string("Nice");
+    static constexpr auto SystemName = ctll::basic_fixed_string("System");
+    static constexpr auto IdleName = ctll::basic_fixed_string("Idle");
+    static constexpr auto IOWaitName = ctll::basic_fixed_string("IOWait");
+    static constexpr auto IRQName = ctll::basic_fixed_string("IRQ");
+    static constexpr auto SoftIRQName = ctll::basic_fixed_string("SoftIRQ");
+    static constexpr auto StealName = ctll::basic_fixed_string("Steal");
+    static constexpr auto GuestName = ctll::basic_fixed_string("Guest");
+    static constexpr auto GuestNiceName = ctll::basic_fixed_string("GuestNice");
+public:
+    //auto abc = ctll::fixed_string{LD::ImmutableString{"cpu"}+LD::ImmutableString{LD::ToTypeString<Core>{}}};
+    //static constexpr auto ClassName =  ctll::fixed_string{LD::ImmutableString{"cpu"}+LD::ImmutableString{LD::ToTypeString<Core>{}}};
+
+    static constexpr auto ClassName = ctll::fixed_string{LD::TypeString<'c','p','u'>{}+LD::ToTypeString<Core>{}};
+    using MemberList = LD::CT::TypeList<
+            LD::CT::EncapsulatedMemberDescriptor<UserName,LD::CT::SelectOverload<LD::UInteger & (LD::CPUCoreMetric<Core>::*)(),&LD::CPUCoreMetric<Core>::User>(),LD::CT::SelectOverload<const LD::UInteger & (LD::CPUCoreMetric<Core>::*)() const,&LD::CPUCoreMetric<Core>::User>()>,
+            LD::CT::EncapsulatedMemberDescriptor<NiceName,LD::CT::SelectOverload<LD::UInteger & (LD::CPUCoreMetric<Core>::*)(),&LD::CPUCoreMetric<Core>::Nice>(),LD::CT::SelectOverload<const LD::UInteger & (LD::CPUCoreMetric<Core>::*)() const,&LD::CPUCoreMetric<Core>::Nice>()>,
+            LD::CT::EncapsulatedMemberDescriptor<SystemName,LD::CT::SelectOverload<LD::UInteger & (LD::CPUCoreMetric<Core>::*)(),&LD::CPUCoreMetric<Core>::System>(),LD::CT::SelectOverload<const LD::UInteger & (LD::CPUCoreMetric<Core>::*)() const,&LD::CPUCoreMetric<Core>::System>()>,
+            LD::CT::EncapsulatedMemberDescriptor<IdleName,LD::CT::SelectOverload<LD::UInteger & (LD::CPUCoreMetric<Core>::*)(),&LD::CPUCoreMetric<Core>::Idle>(),LD::CT::SelectOverload<const LD::UInteger & (LD::CPUCoreMetric<Core>::*)() const,&LD::CPUCoreMetric<Core>::Idle>()>,
+            LD::CT::EncapsulatedMemberDescriptor<IOWaitName,LD::CT::SelectOverload<LD::UInteger & (LD::CPUCoreMetric<Core>::*)(),&LD::CPUCoreMetric<Core>::IOWait>(),LD::CT::SelectOverload<const LD::UInteger & (LD::CPUCoreMetric<Core>::*)() const,&LD::CPUCoreMetric<Core>::IOWait>()>,
+            LD::CT::EncapsulatedMemberDescriptor<IRQName,LD::CT::SelectOverload<LD::UInteger & (LD::CPUCoreMetric<Core>::*)(),&LD::CPUCoreMetric<Core>::IRQ>(),LD::CT::SelectOverload<const LD::UInteger & (LD::CPUCoreMetric<Core>::*)() const,&LD::CPUCoreMetric<Core>::IRQ>()>,
+            LD::CT::EncapsulatedMemberDescriptor<SoftIRQName,LD::CT::SelectOverload<LD::UInteger & (LD::CPUCoreMetric<Core>::*)(),&LD::CPUCoreMetric<Core>::SoftIRQ>(),LD::CT::SelectOverload<const LD::UInteger & (LD::CPUCoreMetric<Core>::*)() const,&LD::CPUCoreMetric<Core>::SoftIRQ>()>,
+            LD::CT::EncapsulatedMemberDescriptor<StealName,LD::CT::SelectOverload<LD::UInteger & (LD::CPUCoreMetric<Core>::*)(),&LD::CPUCoreMetric<Core>::Steal>(),LD::CT::SelectOverload<const LD::UInteger & (LD::CPUCoreMetric<Core>::*)() const,&LD::CPUCoreMetric<Core>::Steal>()>,
+            LD::CT::EncapsulatedMemberDescriptor<GuestName,LD::CT::SelectOverload<LD::UInteger & (LD::CPUCoreMetric<Core>::*)(),&LD::CPUCoreMetric<Core>::Guest>(),LD::CT::SelectOverload<const LD::UInteger & (LD::CPUCoreMetric<Core>::*)() const,&LD::CPUCoreMetric<Core>::Guest>()>,
+            LD::CT::EncapsulatedMemberDescriptor<GuestNiceName,LD::CT::SelectOverload<LD::UInteger & (LD::CPUCoreMetric<Core>::*)(),&LD::CPUCoreMetric<Core>::GuestNice>(),LD::CT::SelectOverload<const LD::UInteger & (LD::CPUCoreMetric<Core>::*)() const,&LD::CPUCoreMetric<Core>::GuestNice>()>
+    >;
+
+    static constexpr MemberList Members{  };
+};
+
+template<>
+struct LD::CT::TypeDescriptor<LD::ContextSwitchMetric>
+{
+private:
+    static constexpr auto SwitchName = ctll::basic_fixed_string("Switch");
+public:
+    static constexpr auto ClassName = ctll::fixed_string{"ctxt"};
+
+    using MemberList = LD::CT::TypeList<
+            LD::CT::EncapsulatedMemberDescriptor<SwitchName,LD::CT::SelectOverload<LD::UInteger & (LD::ContextSwitchMetric::*)(),&LD::ContextSwitchMetric::Switches>(),LD::CT::SelectOverload<const LD::UInteger & (LD::ContextSwitchMetric::*)() const,&LD::ContextSwitchMetric::Switches>()>
+    >;
+
+
+    static constexpr MemberList Members{  };
+
+};
+
+template<>
+struct LD::CT::TypeDescriptor<LD::InterruptServiceMetric>
+{
+private:
+    static constexpr auto InterruptName = ctll::basic_fixed_string("Interrupt");
+public:
+    static constexpr auto ClassName = ctll::fixed_string{"intr"};
+
+    using MemberList = LD::CT::TypeList<
+            LD::CT::EncapsulatedMemberDescriptor<InterruptName,LD::CT::SelectOverload<LD::UInteger & (LD::InterruptServiceMetric::*)(),&LD::InterruptServiceMetric::Interrupts>(),LD::CT::SelectOverload<const LD::UInteger & (LD::InterruptServiceMetric::*)() const,&LD::InterruptServiceMetric::Interrupts>()>
+    >;
+
+
+    static constexpr MemberList Members{  };
+
+};
+
+template<>
+struct LD::CT::TypeDescriptor<LD::BootUpTimeMetric>
+{
+private:
+    static constexpr auto TimeName = ctll::basic_fixed_string("Time");
+public:
+    static constexpr auto ClassName = ctll::fixed_string{"btime"};
+
+    using MemberList = LD::CT::TypeList<
+            LD::CT::EncapsulatedMemberDescriptor<TimeName,LD::CT::SelectOverload<LD::UInteger & (LD::BootUpTimeMetric::*)(),&LD::BootUpTimeMetric::BootUpTime>(),LD::CT::SelectOverload<const LD::UInteger & (LD::BootUpTimeMetric::*)() const,&LD::BootUpTimeMetric::BootUpTime>()>
+    >;
+
+
+    static constexpr MemberList Members{  };
+
+};
+
+template<>
+struct LD::CT::TypeDescriptor<LD::ProcessesMetric>
+{
+private:
+    static constexpr auto AmountName = ctll::basic_fixed_string("Amount");
+public:
+    static constexpr auto ClassName = ctll::fixed_string{"processes"};
+
+    using MemberList = LD::CT::TypeList<
+            LD::CT::EncapsulatedMemberDescriptor<AmountName,LD::CT::SelectOverload<LD::UInteger & (LD::ProcessesMetric::*)(),&LD::ProcessesMetric::Amount>(),LD::CT::SelectOverload<const LD::UInteger & (LD::ProcessesMetric::*)() const,&LD::ProcessesMetric::Amount>()>
+    >;
+
+
+    static constexpr MemberList Members{  };
+
+};
+
+template<>
+struct LD::CT::TypeDescriptor<LD::ProcessesRunningMetric>
+{
+private:
+    static constexpr auto AmountName = ctll::basic_fixed_string("Amount");
+public:
+    static constexpr auto ClassName = ctll::fixed_string{"procs_running"};
+
+    using MemberList = LD::CT::TypeList<
+            LD::CT::EncapsulatedMemberDescriptor<AmountName,LD::CT::SelectOverload<LD::UInteger & (LD::ProcessesRunningMetric::*)(),&LD::ProcessesRunningMetric::Amount>(),LD::CT::SelectOverload<const LD::UInteger & (LD::ProcessesRunningMetric::*)() const,&LD::ProcessesRunningMetric::Amount>()>
+    >;
+
+
+    static constexpr MemberList Members{  };
+
+};
+//procs_blocked
+
+template<>
+struct LD::CT::TypeDescriptor<LD::ProcessesBlockedMetric>
+{
+private:
+    static constexpr auto AmountName = ctll::basic_fixed_string("Amount");
+public:
+    static constexpr auto ClassName = ctll::fixed_string{"procs_blocked"};
+
+    using MemberList = LD::CT::TypeList<
+            LD::CT::EncapsulatedMemberDescriptor<AmountName,LD::CT::SelectOverload<LD::UInteger & (LD::ProcessesBlockedMetric::*)(),&LD::ProcessesBlockedMetric::Amount>(),LD::CT::SelectOverload<const LD::UInteger & (LD::ProcessesBlockedMetric::*)() const,&LD::ProcessesBlockedMetric::Amount>()>
+    >;
+
+
+    static constexpr MemberList Members{  };
+
+};
+//softirq
+template<>
+struct LD::CT::TypeDescriptor<LD::SoftIRQMetric>
+{
+private:
+    static constexpr auto InterruptName = ctll::basic_fixed_string("Interrupts");
+public:
+    static constexpr auto ClassName = ctll::fixed_string{"softirq"};
+
+    using MemberList = LD::CT::TypeList<
+            LD::CT::EncapsulatedMemberDescriptor<InterruptName,LD::CT::SelectOverload<LD::UInteger & (LD::SoftIRQMetric::*)(),&LD::SoftIRQMetric::Interrupts>(),LD::CT::SelectOverload<const LD::UInteger & (LD::SoftIRQMetric::*)() const,&LD::SoftIRQMetric::Interrupts>()>
+    >;
+
+
+    static constexpr MemberList Members{  };
+
+};
 #endif //LANDESSDEVCORE_REFLECTIONDEMOTYPES_H

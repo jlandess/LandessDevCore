@@ -15,6 +15,7 @@
 #include "Primitives/General/Hash.hpp"
 #include "TypeTraits/IsImmutable.h"
 #include "TypeTraits/StaticallySized.h"
+#include "IO/FetchRequest.h"
 namespace LD
 {
     class ImmutableStringWarrant
@@ -576,190 +577,196 @@ namespace LD
         return LD::ImmutableString<sizeof...(Characters)>{returnable};
     }
     template<typename T>
-    constexpr LD::Enable_If_T<LD::Require<
+     LD::Enable_If_T<LD::Require<
             LD::Detail::IsSame<T,float>::value
     >,
-            LD::ImmutableString<20+7+2>> ToImmutableString(const T & number,const LD::UInteger & precision = 0,const LD::UInteger base = 10) noexcept
+            LD::ImmutableString<19+15+2>> ToImmutableString(const T & number,const LD::Variant<LD::TransactionError,LD::UInteger>  & precision = {},const LD::UInteger & base = 10) noexcept
     {
-        const LD::UInteger isNan = (number != number);
-        const LD::UInteger isInf = (number > LD::Limit<T>::GetMax());
-        char returnValue[20+7+2+1] = {0};
-        LD::Float unsignedNumber = LD::Abs(number);
-        LD::UInteger num = LD::UInteger (unsignedNumber);
+        LD::ImmutableString<19+15+2> ret = {0};
+        LD::UInteger num = LD::UInteger(LD::Abs(number));
+        bool isFloatingPoint = ((LD::Abs(number) - num) > 0);
+        char integerPart[20] = {0};
+        bool isInf = false;
+        bool isNan = false;
         const LD::UInteger amountOfDigits = LD::Floor(LD::FastLog10(num))+1;
-        returnValue[0] = 'n'*(isNan * !isInf);
-        returnValue[1] = 'a'*(isNan * !isInf);
-        returnValue[2] = 'n'*(isNan * !isInf);
-        returnValue[3] = '\0';
-        returnValue[0] = '+'*(!isNan * isInf) + (isNan * 'n');
-        returnValue[1] = 'i'*(!isNan * isInf) + (isNan * 'a');
-        returnValue[2] = 'n'*(!isNan * isInf) + (isNan * 'n');
-        returnValue[3] = 'f'*(!isNan * isInf);
-        returnValue[4] = '\0';
-        const LD::UInteger isNegative = (number < 0);
-        const LD::UInteger amountToAllocate = (amountOfDigits   + 1 + isNegative);
-        const LD::UInteger hasDecimal = ((unsignedNumber - num) > 0);
-        returnValue[0] = '-' * (!isNan) * (!isInf);
-        LD::For<20>([](auto Index,
+        const LD::UInteger amountToAllocate = (amountOfDigits   + 1);
+        LD::For<19>([](auto Index,
                        LD::UInteger & num,
                        const LD::UInteger & base,
-                       char ret[20+7+2+1],
+                       char ret[20],
                        const LD::UInteger & isInf,
                        const LD::UInteger & isNan,
                        const LD::UInteger & amountToAllocate,
-                       const LD::UInteger & amountOfDigits,
-                       const LD::UInteger & isNegative)
+                       const LD::UInteger & amountOfDigits)
+                    {
+                        const LD::Integer rem = num % base;
+                        ret[(amountToAllocate-1)-Index-1] = (((rem > 9)* ((rem-10) + 'a')) + (!(rem > 9)* (rem + '0'))) * (!isInf && !isNan);
+                        num/=base;
+                        return (Index < amountOfDigits);
+                    },num,base,integerPart,isInf,isNan,amountToAllocate,amountOfDigits);
+
+        ret[0] = '-';
+        const bool isNegative = (number < 0);
+        for(LD::UInteger n = 0;n<19;++n)
+        {
+            ret[n+isNegative] = integerPart[n];
+        }
+
+        ret[amountOfDigits] = (isFloatingPoint)*'.';
+        LD::Float decimalPortion = LD::Abs(number) - num;
+
+        auto onCullingRequest = [](const LD::UInteger & number) noexcept
+        {
+            return LD::Pair<bool,LD::UInteger>{true,number};
+        };
+
+        auto onDefaultRequest = [](const LD::TransactionError & ) noexcept
+        {
+            return LD::Pair<bool,LD::UInteger>{false,0};
+        };
+
+        LD::Pair<bool,LD::UInteger> request = LD::Match(precision,onCullingRequest,onDefaultRequest);
+        LD::QueryResult<LD::UInteger(LD::Float &,LD::UInteger&,LD::ImmutableString<19+15+2>&,LD::UInteger &,bool&)> cullingPredicate[2];
+        cullingPredicate[0] = LD::MakeContext(LD::TransactionError{},decimalPortion,base,ret,amountOfDigits,isFloatingPoint);
+        cullingPredicate[1] = LD::MakeContext(LD::TransactionResult{},LD::UInteger {request.GetSecond()},decimalPortion,base,ret,amountOfDigits,isFloatingPoint);
+
+
+        auto onCull = [](const LD::Context<LD::TransactionResult,LD::UInteger,LD::Float &,LD::UInteger&,LD::ImmutableString<19+15+2>&,LD::UInteger &,bool&> & context) noexcept
+        {
+
+            LD::UInteger cullIndex = LD::Get(LD::Get<1>(context));
+            LD::Float & decimalPortion = LD::Get(LD::Get<2>(context));
+            const LD::UInteger & base = LD::Get(LD::Get<3>(context));
+            LD::ImmutableString<19+15+2>& ret = LD::Get(LD::Get<4>(context));
+            const LD::UInteger & amountOfDigits = LD::Get(LD::Get<5>(context));
+            const bool & isFloatingPoint = LD::Get(LD::Get<6>(context));
+
+            for(LD::UInteger n = 0;n<15;++n)
+            {
+                decimalPortion*=base;
+                const LD::UInteger digit = (LD::UInteger(decimalPortion))%base;
+                ret[amountOfDigits+n+isFloatingPoint] = (isFloatingPoint && n<cullIndex)*('0' + digit);
+                decimalPortion = decimalPortion-(LD::UInteger(decimalPortion));
+            }
+        };
+
+        auto onDefaultBehavior = [](const LD::Context<LD::TransactionError,LD::Float &,LD::UInteger&,LD::ImmutableString<19+15+2>&,LD::UInteger &,bool&> & context) noexcept
+        {
+            LD::Float & decimalPortion = LD::Get(LD::Get<1>(context));
+            const LD::UInteger & base = LD::Get(LD::Get<2>(context));
+            LD::ImmutableString<19+15+2>& ret = LD::Get(LD::Get<3>(context));
+            const LD::UInteger & amountOfDigits = LD::Get(LD::Get<4>(context));
+            const bool & isFloatingPoint = LD::Get(LD::Get<5>(context));
+
+
+            for(LD::UInteger n = 0;n<15;++n)
+            {
+                decimalPortion*=base;
+                const LD::UInteger digit = (LD::UInteger(decimalPortion))%base;
+                ret[amountOfDigits+n+isFloatingPoint] = (isFloatingPoint)*('0' + digit);
+                decimalPortion = decimalPortion-(LD::UInteger(decimalPortion));
+            }
+        };
+
+        LD::Match(cullingPredicate[request.GetFirst()],onCull,onDefaultBehavior);
+        return ret;
+    }
+
+    template<typename T>
+     LD::Enable_If_T<LD::Require<
+            LD::Detail::IsSame<T,double>::value
+    >,
+            LD::ImmutableString<19+15+2>> ToImmutableString(const T & number,const LD::Variant<LD::TransactionError,LD::UInteger>  & precision = {},const LD::UInteger & base = 10) noexcept
+    {
+
+        LD::ImmutableString<19+15+2> ret = {0};
+        LD::UInteger num = LD::UInteger(LD::Abs(number));
+        bool isFloatingPoint = ((LD::Abs(number) - num) > 0);
+        char integerPart[20] = {0};
+        bool isInf = false;
+        bool isNan = false;
+        const LD::UInteger amountOfDigits = LD::Floor(LD::FastLog10(num))+1;
+        const LD::UInteger amountToAllocate = (amountOfDigits   + 1);
+        LD::For<19>([](auto Index,
+                       LD::UInteger & num,
+                       const LD::UInteger & base,
+                       char ret[20],
+                       const LD::UInteger & isInf,
+                       const LD::UInteger & isNan,
+                       const LD::UInteger & amountToAllocate,
+                       const LD::UInteger & amountOfDigits)
         {
             const LD::Integer rem = num % base;
             ret[(amountToAllocate-1)-Index-1] = (((rem > 9)* ((rem-10) + 'a')) + (!(rem > 9)* (rem + '0'))) * (!isInf && !isNan);
             num/=base;
-            return (Index < (amountOfDigits - isNegative)) && (num != 0);
-        },num,base,returnValue,isInf,isNan,amountToAllocate,amountOfDigits,isNegative);
+            return (Index < amountOfDigits);
+        },num,base,integerPart,isInf,isNan,amountToAllocate,amountOfDigits);
 
-        returnValue[amountToAllocate-1] = '.' * (hasDecimal);
+        ret[0] = '-';
+        const bool isNegative = (number < 0);
+        for(LD::UInteger n = 0;n<19;++n)
+        {
+            ret[n+isNegative] = integerPart[n];
+        }
 
-        const LD::Float decimalPortion = (unsignedNumber - num);
-        LD::UInteger decimalInIntegerPortion = LD::Detail::CompileTimePow<10,7>::value*decimalPortion;
-        const LD::UInteger amountOfDecimalDigits = LD::Floor(LD::FastLog10(decimalInIntegerPortion))+1;
-        LD::For<7>([](auto Index,
-                char ret[20+7+2+1],
-                 LD::UInteger & num,
-                const LD::UInteger & base,
-                const LD::UInteger & isInf,
-                const LD::UInteger & isNan,
-                const LD::UInteger & amountToAllocate)
+        ret[amountOfDigits] = (isFloatingPoint)*'.';
+        LD::Float decimalPortion = LD::Abs(number) - num;
+        
+        auto onCullingRequest = [](const LD::UInteger & number) noexcept
+        {
+            return LD::Pair<bool,LD::UInteger>{true,number};
+        };
+
+        auto onDefaultRequest = [](const LD::TransactionError & ) noexcept
+        {
+            return LD::Pair<bool,LD::UInteger>{false,0};
+        };
+
+        LD::Pair<bool,LD::UInteger> request = LD::Match(precision,onCullingRequest,onDefaultRequest);
+        LD::QueryResult<LD::UInteger(LD::Float &,LD::UInteger&,LD::ImmutableString<19+15+2>&,LD::UInteger &,bool&)> cullingPredicate[2];
+        cullingPredicate[0] = LD::MakeContext(LD::TransactionError{},decimalPortion,base,ret,amountOfDigits,isFloatingPoint);
+        cullingPredicate[1] = LD::MakeContext(LD::TransactionResult{},LD::UInteger {request.GetSecond()},decimalPortion,base,ret,amountOfDigits,isFloatingPoint);
+
+
+        auto onCull = [](const LD::Context<LD::TransactionResult,LD::UInteger,LD::Float &,LD::UInteger&,LD::ImmutableString<19+15+2>&,LD::UInteger &,bool&> & context) noexcept
         {
 
-            const LD::Integer rem = num % base;
-            ret[(amountToAllocate-1)+(Index+1)]= (((rem > 9)* ((rem-10) + 'a')) + (!(rem > 9)* (rem + '0'))) * (!isInf && !isNan);;
-            num/=base;
-            return true;
+            LD::UInteger cullIndex = LD::Get(LD::Get<1>(context));
+            LD::Float & decimalPortion = LD::Get(LD::Get<2>(context));
+            const LD::UInteger & base = LD::Get(LD::Get<3>(context));
+            LD::ImmutableString<19+15+2>& ret = LD::Get(LD::Get<4>(context));
+            const LD::UInteger & amountOfDigits = LD::Get(LD::Get<5>(context));
+            const bool & isFloatingPoint = LD::Get(LD::Get<6>(context));
 
-        },returnValue,decimalInIntegerPortion,base,isInf,isNan,amountToAllocate);
-        char * returnStringBuffer = (char*)returnValue;
-        char * str = (returnStringBuffer+(amountToAllocate));
-        LD::For<7/2>([](auto Index, char * string)
-        {
-            LD::Swap(string[Index],string[7-Index-1]);
-            return true;
-        },str);
-
-
-
-        LD::For<7>([](auto Index, char * string, const LD::UInteger & precision)
-        {
-            string[Index] = (string[Index]*(precision == 0)) + ((precision > 0 && Index < precision)*(string[Index]));
-            return true;
-        },str,precision);
-
-        return LD::ImmutableString<29>{returnValue};
-    }
-
-    template<typename T>
-    constexpr LD::Enable_If_T<LD::Require<
-            LD::Detail::IsSame<T,double>::value
-    >,
-            LD::ImmutableString<20+15+2>> ToImmutableString(const T & number,const LD::UInteger  & precision = 0,const LD::UInteger & base = 10) noexcept
-    {
-
-        const LD::UInteger isNan = (number != number);
-        const LD::UInteger isInf = (number > LD::Limit<T>::GetMax());
-        char returnValue[20+15+2+1] = {0};
-        LD::Float unsignedNumber = LD::Abs(number);
-        LD::UInteger num = LD::UInteger (unsignedNumber);
-        const LD::UInteger amountOfDigits = LD::Floor(LD::FastLog10(num))+1;
-        returnValue[0] = 'n'*(isNan * !isInf);
-        returnValue[1] = 'a'*(isNan * !isInf);
-        returnValue[2] = 'n'*(isNan * !isInf);
-        returnValue[3] = '\0';
-        returnValue[0] = '+'*(!isNan * isInf) + (isNan * 'n');
-        returnValue[1] = 'i'*(!isNan * isInf) + (isNan * 'a');
-        returnValue[2] = 'n'*(!isNan * isInf) + (isNan * 'n');
-        returnValue[3] = 'f'*(!isNan * isInf);
-        returnValue[4] = '\0';
-        const LD::UInteger isNegative = (number < 0);
-        const LD::UInteger amountToAllocate = (amountOfDigits   + 1 + isNegative);
-        const LD::UInteger hasDecimal = ((unsignedNumber - num) > 0);
-        returnValue[0] = '-' * (!isNan) * (!isInf);
-        LD::For<20>([](auto Index,
-                       LD::UInteger & num,
-                       const LD::UInteger & base,
-                       char ret[20+7+2+1],
-                       const LD::UInteger & isInf,
-                       const LD::UInteger & isNan,
-                       const LD::UInteger & amountToAllocate,
-                       const LD::UInteger & amountOfDigits,
-                       const LD::UInteger & isNegative)
-        {
-           const LD::Integer rem = num % base;
-           ret[(amountToAllocate-1)-Index-1] = (((rem > 9)* ((rem-10) + 'a')) + (!(rem > 9)* (rem + '0'))) * (!isInf && !isNan);
-           num/=base;
-           return (Index < (amountOfDigits - isNegative));
-        },num,base,returnValue,isInf,isNan,amountToAllocate,amountOfDigits,isNegative);
-
-
-        returnValue[amountToAllocate-1] = '.' * (hasDecimal);
-
-
-        const LD::Float decimalPortion = (unsignedNumber - num);
-        LD::UInteger decimalInIntegerPortion = LD::Detail::CompileTimePow<10,15>::value*decimalPortion;
-        const LD::UInteger amountOfDecimalDigits = LD::Floor(LD::FastLog10(decimalInIntegerPortion))+1;
-        LD::For<15>([](auto Index,
-                      char ret[20+15+2+1],
-                      LD::UInteger & num,
-                      const LD::UInteger & base,
-                      const LD::UInteger & isInf,
-                      const LD::UInteger & isNan,
-                      const LD::UInteger & amountToAllocate)
-        {
-
-            const LD::Integer rem = num % base;
-            char currentDigit = (((rem > 9)* ((rem-10) + 'a')) + (!(rem > 9)* (rem + '0'))) * (!isInf && !isNan);;
-            ret[(amountToAllocate-1)+(Index+1)]= (currentDigit);
-            num/=base;
-
-            return   true;
-        },returnValue,decimalInIntegerPortion,base,isInf,isNan,amountToAllocate);
-
-        char * returnStringBuffer = (char*)returnValue;
-        char * str = (returnStringBuffer+(amountToAllocate));
-
-
-        LD::For<15/2>([](auto Index, char * string)
-        {
-            LD::Swap(string[Index],string[15-Index-1]);
-            return true;
-         },str);
-
-        bool foundEdgeOfTrim = false;
-
-
-        LD::For<15,0,1>([](auto Index, bool & foundEdgeOfTrim, char * str)
-        {
-            LD::IF(!(str[Index] == '0' || str[Index] == '\0'),[](bool & foundEdgeOfTrim)
+            for(LD::UInteger n = 0;n<15;++n)
             {
-                foundEdgeOfTrim=true;
+                decimalPortion*=base;
+                const LD::UInteger digit = (LD::UInteger(decimalPortion))%base;
+                ret[amountOfDigits+n+isFloatingPoint] = (isFloatingPoint && n<cullIndex)*('0' + digit);
+                decimalPortion = decimalPortion-(LD::UInteger(decimalPortion));
+            }
+        };
 
-            },foundEdgeOfTrim);
-
-            bool canAssign = ((str[Index] == '0' || str[Index] == '\0') && !foundEdgeOfTrim);
-
-
-            str[Index] = (canAssign)*'\0' + (!canAssign)*str[Index];
-
-
-            return true;
-        },foundEdgeOfTrim,str);
-
-
-        LD::For<15>([](auto Index, char * string, const LD::UInteger & precision)
+        auto onDefaultBehavior = [](const LD::Context<LD::TransactionError,LD::Float &,LD::UInteger&,LD::ImmutableString<19+15+2>&,LD::UInteger &,bool&> & context) noexcept
         {
-            string[Index] = (precision != 0)*((Index <= (precision-1))*string[Index] + (Index>(precision-1))*'\0') + (precision==0)*string[Index];
-            return true;
-         },str,precision);
+            LD::Float & decimalPortion = LD::Get(LD::Get<1>(context));
+            const LD::UInteger & base = LD::Get(LD::Get<2>(context));
+            LD::ImmutableString<19+15+2>& ret = LD::Get(LD::Get<3>(context));
+            const LD::UInteger & amountOfDigits = LD::Get(LD::Get<4>(context));
+            const bool & isFloatingPoint = LD::Get(LD::Get<5>(context));
 
 
-        return LD::ImmutableString<20+15+2>{returnValue};
+            for(LD::UInteger n = 0;n<15;++n)
+            {
+                decimalPortion*=base;
+                const LD::UInteger digit = (LD::UInteger(decimalPortion))%base;
+                ret[amountOfDigits+n+isFloatingPoint] = (isFloatingPoint)*('0' + digit);
+                decimalPortion = decimalPortion-(LD::UInteger(decimalPortion));
+            }
+        };
+
+        LD::Match(cullingPredicate[request.GetFirst()],onCull,onDefaultBehavior);
+        return ret;
     }
     template<typename T>
     constexpr LD::Enable_If_T<LD::Require<
@@ -926,6 +933,11 @@ namespace LD
 
         };
     }
+
+    template <typename CharT, LD::UInteger N> ImmutableString(const CharT (&)[N]) -> ImmutableString<N-1>;
+    template <LD::UInteger N> ImmutableString(ImmutableString<N>) -> ImmutableString<N>;
+    template<char ... Characters>
+    ImmutableString(LD::TypeString<Characters...>) -> ImmutableString<sizeof...(Characters)>;
 }
 
 #endif /* Immutable_h */

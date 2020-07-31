@@ -7,32 +7,53 @@
 #include "Primitives/General/StringView.hpp"
 #include "FetchRequest.h"
 #include "DatabaseOperationResult.h"
+#include "Primitives/General/mapboxvariant.hpp"
+#include "Primitives/General/mapboxvariantvisitor.h"
 #include <stdio.h>
+#include <memory>
 namespace LD
 {
+    struct Deleter {
+        //Called by unique_ptr to destroy/free the Resource
+        void operator()(FILE * r) {
+            if(r != nullptr)
+            {
+                fclose(r);
+            }
+        }
+
+        };
     class RowBackingStore
     {
     private:
-        FILE * mHandle;
+        std::unique_ptr<FILE,int(*)(FILE*)> mHandle;
+        //FILE  * mHandle;
         char * mLineBuffer;
         size_t mLineBufferSize;
         off64_t mCachedHandle;
     public:
-        RowBackingStore(const LD::StringView & fileToOpen) noexcept:mLineBuffer{nullptr}
+        RowBackingStore(const LD::StringView & fileToOpen) noexcept:mLineBuffer{nullptr},mHandle{std::unique_ptr<FILE, int(*)(FILE*)>(
+                nullptr, fclose)}
         {
-            mHandle = fopen(fileToOpen.data(),"r");
-            this->mCachedHandle = ftello(this->mHandle);
+            mHandle = std::unique_ptr<FILE, int(*)(FILE*)>(fopen("/proc/stat", "r"), fclose);
+
+            //std::unique_ptr<FILE, int(*)(FILE*)> fp(fopen("test.txt", "r"), fclose);
+            this->mCachedHandle = ftello64(this->mHandle.get());
         }
+        RowBackingStore(const RowBackingStore &) = delete;
+        RowBackingStore(RowBackingStore &&) = delete ;
         RowBackingStore & Reset() noexcept
         {
-            fseeko(this->mHandle,0,SEEK_SET);
-            fflush(this->mHandle);
+            fseeko(this->mHandle.get(),0,SEEK_SET);
+            fflush(this->mHandle.get());
+
+
             return (*this);
         }
 
         ~RowBackingStore() noexcept
         {
-            fclose(this->mHandle);
+            //fclose(this->mHandle);
             free(this->mLineBuffer);
         }
         template<typename ... Args>
@@ -49,12 +70,23 @@ namespace LD
         template<typename ... Args>
         LD::QueryResult<bool(Args...)> RollBack(Args && ... arguments) noexcept
         {
-            fflush(this->mHandle);
+            auto onHandle = [](FILE * fp) noexcept
+            {
+                fflush(fp);
+            };
+
+            auto onEmpty = [](LD::TransactionError & ) noexcept
+            {
+
+            };
+            LD::Match(this->mHandle,onHandle,onEmpty);
+
             return LD::MakeContext(LD::DatabaseTransactionResult{},bool{true},LD::Forward<Args>(arguments)...);
         }
         RowBackingStore & Flush() noexcept
         {
-            fflush(this->mHandle);
+            fflush(this->mHandle.get());
+
             return (*this);
         }
         template<typename ... Args>
@@ -68,7 +100,7 @@ namespace LD
                 //this->mLineBuffer[0] = '\0';
                 memset(this->mLineBuffer,0,strlen(this->mLineBuffer));
             }
-            LD::UInteger readAmount = getline(&mLineBuffer,&mLineBufferSize,this->mHandle);
+            LD::UInteger readAmount = getline(&mLineBuffer,&mLineBufferSize,this->mHandle.get());
             //LD::QueryResult<LD::StringView(Args...)> results[2];
             //results[0] = LD::MakeContext(LD::DatabaseError{},LD::Forward<Args>(arguments)...);
 
@@ -76,7 +108,7 @@ namespace LD
 
             if (readAmount != EOF)
             {
-                return LD::MakeContext(LD::DatabaseTransactionResult{},LD::StringView{this->mLineBuffer,strlen(this->mLineBuffer)-1},LD::Forward<Args>(arguments)...);
+                return LD::MakeContext(LD::TransactionResult{},LD::StringView{this->mLineBuffer,strlen(this->mLineBuffer)-1},LD::Forward<Args>(arguments)...);
             }
             //this->mLineBuffer[strlen(this->mLineBuffer)-1] = '\0';
 
@@ -86,7 +118,7 @@ namespace LD
             //std::cout << LD::StringView {this->mLineBuffer,strlen(this->mLineBuffer)-1} << std::endl;
             //results[1] =
             //return results[readAmount > 0 && readAmount != EOF];
-            return LD::MakeContext(LD::DatabaseError{},LD::Forward<Args>(arguments)...);
+            return LD::MakeContext(LD::TransactionError{},LD::Forward<Args>(arguments)...);
         }
 
         template<typename ... Args>
@@ -97,15 +129,16 @@ namespace LD
             //indicated number, or indicate we got a snag along the way and indicate that with the return of LD::QueryResult
             do
             {
-                if (!getline(&this->mLineBuffer,&this->mLineBufferSize,this->mHandle))
+                if (!getline(&this->mLineBuffer,&this->mLineBufferSize,this->mHandle.get()))
                 {
                     break;
                 }
             }while(n<index);
             LD::QueryResult<LD::StringView(Args...)> results[2];
-            results[0] = LD::MakeContext(LD::DatabaseError{LD::DatabaseIOError{}},LD::Forward<Args>(arguments)...);
-            results[1] = LD::MakeContext(LD::DatabaseTransactionResult{},LD::StringView{this->mLineBuffer,this->mLineBufferSize},LD::Forward<Args>(arguments)...);
-            return results[n == index];
+            results[0] = LD::MakeContext(LD::TransactionError{LD::IOError{}},LD::Forward<Args>(arguments)...);
+            results[1] = LD::MakeContext(LD::TransactionResult{},LD::StringView{this->mLineBuffer,this->mLineBufferSize},LD::Forward<Args>(arguments)...);
+            //return results[n == index];
+            return results[0];
         }
     };
 }

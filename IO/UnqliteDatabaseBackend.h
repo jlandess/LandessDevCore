@@ -113,8 +113,8 @@ namespace LD
             unqlite * ptr = this->mBackend.GetPointer();
             LD::UInteger dbResult = unqlite_kv_store(ptr,key.data(),key.size(),data.data(),data.size());
             Ret results[2];
-            results[0] = LD::MakeContext(LD::DatabaseError{},LD::Forward<Args>(arguements)...);
-            results[1] = LD::MakeContext(LD::DatabaseTransactionResult{},bool{true},LD::Forward<Args>(arguements)...);
+            results[0] = LD::MakeContext(LD::TransactionError{},LD::Forward<Args>(arguements)...);
+            results[1] = LD::MakeContext(LD::TransactionResult{},bool{true},LD::Forward<Args>(arguements)...);
             return results[dbResult == UNQLITE_OK];
         }
 
@@ -192,10 +192,10 @@ namespace LD
             };
             LD::UInteger dbResult = unqlite_kv_fetch_callback(ptr,key.data(),key.size(),fetchCallback, &currentFetchContext);
             Ret results[2];
-            results[0] = LD::MakeContext(LD::DatabaseError{},LD::StringView{key},LD::Forward<Args>(arguments)...);
+            results[0] = LD::MakeContext(LD::TransactionError{},LD::StringView{key},LD::Forward<Args>(arguments)...);
 
             FunctorRet & result = LD::Get<2>(currentFetchContext);
-            results[1] = LD::MakeContext(LD::DatabaseTransactionResult{},FunctorRet{result},LD::StringView{key},LD::Forward<Args>(arguments)...);
+            results[1] = LD::MakeContext(LD::TransactionResult{},FunctorRet{result},LD::StringView{key},LD::Forward<Args>(arguments)...);
             /*
 
             FetchContext pair;
@@ -223,24 +223,24 @@ namespace LD
         }
 
 
-        template<typename ... Args, typename Ret = LD::ContextualVariant<LD::Variant<LD::DatabaseError,LD::DatabaseTransactionResult>(Args...)>>
+        template<typename ... Args, typename Ret = LD::ContextualVariant<LD::Variant<LD::TransactionError,LD::DatabaseTransactionResult>(Args...)>>
         Ret Begin(Args && ... arguements) const noexcept
         {
             unqlite * ptr = this->mBackend.GetPointer();
             LD::UInteger result = unqlite_begin(ptr);
-            LD::ContextualVariant<LD::Variant<LD::DatabaseError,LD::DatabaseTransactionResult>(Args...)> results[2];
-            results[0] = LD::MakeContext(LD::DatabaseError{},LD::Forward<Args>(arguements)...);
+            LD::ContextualVariant<LD::Variant<LD::TransactionError,LD::DatabaseTransactionResult>(Args...)> results[2];
+            results[0] = LD::MakeContext(LD::TransactionError{},LD::Forward<Args>(arguements)...);
             results[1] = LD::MakeContext(LD::DatabaseTransactionResult{},LD::Forward<Args>(arguements)...);
             return results[result == UNQLITE_OK];
         }
 
-        template<typename ... Args, typename Ret = LD::ContextualVariant<LD::Variant<LD::DatabaseError,LD::DatabaseTransactionResult>(Args...)>>
+        template<typename ... Args, typename Ret = LD::ContextualVariant<LD::Variant<LD::TransactionError,LD::DatabaseTransactionResult>(Args...)>>
         Ret  Commit(Args && ... arguements) const noexcept
         {
             unqlite * ptr = this->mBackend.GetPointer();
             LD::UInteger result = unqlite_commit(ptr);
-            LD::ContextualVariant<LD::Variant<LD::DatabaseError,LD::DatabaseTransactionResult>(Args...)> results[2];
-            results[0] = LD::MakeContext(LD::DatabaseError{},LD::Forward<Args>(arguements)...);
+            LD::ContextualVariant<LD::Variant<LD::TransactionError,LD::DatabaseTransactionResult>(Args...)> results[2];
+            results[0] = LD::MakeContext(LD::TransactionError{},LD::Forward<Args>(arguements)...);
             results[1] = LD::MakeContext(LD::DatabaseTransactionResult{},LD::Forward<Args>(arguements)...);
             return results[result == UNQLITE_OK];
         }
@@ -250,8 +250,8 @@ namespace LD
         {
             LD::UInteger result = unqlite_kv_delete(this->mBackend.GetPointer(),key.data(),key.size());
             Ret queryResult[2];
-            queryResult[0] = LD::MakeContext(LD::DatabaseError{},LD::Forward<Args>(arguments)...);
-            queryResult[1] = LD::MakeContext(LD::DatabaseTransactionResult{},bool{(result == UNQLITE_OK)},LD::Forward<Args>(arguments)...);
+            queryResult[0] = LD::MakeContext(LD::TransactionError{},LD::Forward<Args>(arguments)...);
+            queryResult[1] = LD::MakeContext(LD::TransactionResult{},bool{(result == UNQLITE_OK)},LD::Forward<Args>(arguments)...);
             return queryResult[result == UNQLITE_OK];
         }
 

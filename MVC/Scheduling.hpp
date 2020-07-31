@@ -391,6 +391,211 @@ namespace LD
      
      
      */
+    template<typename ... Executor, typename ... Context>
+    class BasicApplication<LD::CT::TypeList<Executor...>(Context...),LD::Enable_If_T<
+            LD::Require<
+                    (sizeof...(Executor) > 1)
+                    >>>: public mp::fsm<BasicApplication<LD::CT::TypeList<Executor...>(Context...)>,LD::ApplicationState>
+    {
+
+    private:
+        LD::StaticArray<LD::Variant<Executor...>,sizeof...(Executor)> mExecutors;
+    public:
+        BasicApplication( Executor && ... currentExecutor) noexcept
+        {
+            //this->get_state() = LD::InitialApplicationState{};
+            auto context = LD::MakeContext(LD::Forward<Executor>(currentExecutor)...);
+            LD::For<sizeof...(Executor)>([](
+                    auto I,
+                    LD::StaticArray<LD::Variant<Executor...>,sizeof...(Executor)> & executors,
+                    auto && context) noexcept
+            {
+                executors[I] = LD::Get(LD::Get<I>(LD::Forward<decltype(context)>(context)));
+                return true;
+            }, this->mExecutors,LD::Forward<decltype(context)>(context));
+        }
+
+        template<typename State, typename Event>
+        auto OnEvent(State&, const Event&) noexcept
+        {
+
+            return PDP::nullopt;
+
+        }
+
+        /**
+         @param initialApplicationState - The application's initial state, this state only happens once per application life cycle
+         @param applicationStartedEvent - This event is called when the application has been initialized, this even is called once per application
+         @brief - This event transition occurs from the point in which the application is initiated to the application beginning the process of executing events
+         */
+        LD::ApplicationState OnEvent(const LD::InitialApplicationState & initialApplicationState, const ApplicaitonStartedEvent<Context...> & applicationStartedEvent) noexcept
+        {
+            //const bool shouldRun = this->CurrentExecutor(applicationStartedEvent);
+            bool shouldRun = true;
+            LD::For<sizeof...(Executor)>([](
+                    auto I,
+                    LD::StaticArray<LD::Variant<Executor...>,sizeof...(Executor)> & executors,
+                    const ApplicaitonStartedEvent<Context...> & applicaitonStartedEvent,
+                    bool & shouldRun) noexcept
+            {
+                shouldRun = shouldRun && executors[I](applicaitonStartedEvent);
+                return true;
+            },this->mExecutors,applicationStartedEvent,shouldRun);
+
+            return LD::ApplicationHasStartedState{shouldRun};
+        }
+
+
+
+        //the application has started, and the first frame is about to start.
+        /**
+         @param applicationHasStartedState - The application started event, this event also only occurs once per application lifecycle.
+         @param applicationFrameStartedEvent - The new frame event representing each new frame of the application
+         @brief - After the application has started, the next important aspect of the application is for the first frame of the application to be invoked.
+         */
+        LD::ApplicationState OnEvent(const LD::ApplicationHasStartedState & applicationHasStartedState, const LD::ApplicationFrameStartedEvent<Context...> & applicationFrameStartedEvent) noexcept
+        {
+            //resolve any initial conditions that have to met for the application to run, if not then just quit
+            //const bool shouldRun = this->CurrentExecutor(applicationFrameStartedEvent);
+
+            bool shouldRun = true;
+            LD::For<sizeof...(Executor)>([](
+                    auto I,
+                    LD::StaticArray<LD::Variant<Executor...>,sizeof...(Executor)> & executors,
+                    const LD::ApplicationFrameStartedEvent<Context...> & applicationFrameStartedEvent,
+                    bool & shouldRun) noexcept
+            {
+                shouldRun = shouldRun && executors[I](applicationFrameStartedEvent);
+                return true;
+            },this->mExecutors,applicationFrameStartedEvent,shouldRun);
+            return LD::ApplicationFrameStartedState{shouldRun};
+        }
+
+
+        /**
+         @param applicationFrameEndedState - The frame of the current application has ended
+         @param newFrameEvent - A new frame is starting to be processed
+         @brief - An application frame can either be transitioned from the LD::ApplicationHasStartedState or from LD::ApplicationFrameEndedState
+         */
+        LD::ApplicationState OnEvent(const LD::ApplicationFrameEndedState & applicationFrameEndedState, const LD::ApplicationFrameStartedEvent<Context...> & newFrameEvent) noexcept
+        {
+            //decide betweent the end of the last frame, and the beginning of the new frame if the application should continue to run
+            //const bool shouldRun = this->CurrentExecutor(newFrameEvent);
+            bool shouldRun = true;
+            LD::For<sizeof...(Executor)>([](
+                    auto I,
+                    LD::StaticArray<LD::Variant<Executor...>,sizeof...(Executor)> & executors,
+                    const LD::ApplicationFrameStartedEvent<Context...> & newFrameEvent,
+                    bool & shouldRun) noexcept
+            {
+
+                shouldRun = shouldRun && executors[I](newFrameEvent);
+                return true;
+            },this->mExecutors,newFrameEvent,shouldRun);
+            return LD::ApplicationFrameStartedState{true};
+        }
+
+
+        /**
+         @brief The amount of time that should be sleep before the execution event is meant to be called.  Since it is possible for that time to change over the lifetime of the
+         application's execution, it is necessary to ask for the period length once per frame
+         */
+        LD::ApplicationState OnEvent(const LD::ApplicationFrameStartedState & frameStartedState, const LD::ApplicationPeriodEvent<Context...> & sleepingEvent) noexcept
+        {
+            //PDP::Second<LD::Float> period =  this->CurrentExecutor(sleepingEvent);
+
+            PDP::Second<LD::Float> period = PDP::Second<LD::Float>{0};
+            LD::For<sizeof...(Executor)>([](
+                    auto I,
+                    LD::StaticArray<LD::Variant<Executor...>,sizeof...(Executor)> & executors,
+                    const LD::ApplicationPeriodEvent<Context...> & sleepingEvent,
+                    PDP::Second<LD::Float> & period) noexcept
+            {
+                period = PDP::Second<LD::Float>{LD::GCD(executors[I](sleepingEvent).GetValue(),period.GetValue())};
+                return true;
+            },this->mExecutors,sleepingEvent,period);
+            return LD::ApplicationPeriodState{period};
+        }
+
+
+        /**
+         @brief After the period has been calculated, we're ready to execute.
+         */
+        LD::ApplicationState OnEvent(const LD::ApplicationPeriodState & periodState, const LD::ApplicationExecutionEvent<Context...> & executionEvent) noexcept
+        {
+            //this->CurrentExecutor(executionEvent);
+
+            LD::For<sizeof...(Executor)>([](
+                    auto I,
+                    LD::StaticArray<LD::Variant<Executor...>,sizeof...(Executor)> & executors,
+                    const LD::ApplicationExecutionEvent<Context...> & executionEvent) noexcept
+            {
+
+                executors[I](executionEvent);
+                return true;
+
+            },this->mExecutors,executionEvent);
+            return LD::ApplicationExecutionState{};
+        }
+
+        /**
+         @brief After the event has been scheduled, and executed.  We're ready to go through the process of ending the frame.
+         */
+        LD::ApplicationState OnEvent(const LD::ApplicationExecutionState &, const LD::ApplicationFrameEndedEvent<Context...> & frameEndedEvent) noexcept
+        {
+            //this->CurrentExecutor(frameEndedEvent);
+
+            LD::For<sizeof...(Executor)>([](
+                    auto I,
+                    LD::StaticArray<LD::Variant<Executor...>,sizeof...(Executor)> & executors,
+                    const LD::ApplicationFrameEndedEvent<Context...> & frameEndedEvent) noexcept
+            {
+                executors[I](frameEndedEvent);
+                return true;
+            },this->mExecutors,frameEndedEvent);
+            return LD::ApplicationFrameEndedState{};
+        }
+
+        /**
+         @brief - The application reached a new frame, and has requested to quit.
+         */
+        LD::ApplicationState OnEvent(const LD::ApplicationFrameStartedState &, const LD::ApplicationQuittingEvent<Context...> & quittingEvent) noexcept
+        {
+            //this->CurrentExecutor(quittingEvent);
+
+            LD::For<sizeof...(Executor)>([](
+                    auto I,
+                    LD::StaticArray<LD::Variant<Executor...>,sizeof...(Executor)> & executors,
+                    const LD::ApplicationQuittingEvent<Context...> & quittingEvent) noexcept
+            {
+                executors[I](quittingEvent);
+                return true;
+            },this->mExecutors,quittingEvent);
+            return LD::QuittingState{};
+        }
+
+        /**
+         @brief - The application failed to meet initialization conditions and needed to quit.
+         */
+        LD::ApplicationState OnEvent(const LD::ApplicationHasStartedState &, const LD::ApplicationQuittingEvent<Context...> & quittingEvent) noexcept
+        {
+            //this->CurrentExecutor(quittingEvent);
+
+            LD::For<sizeof...(Executor)>([](
+                    auto I,
+                    LD::StaticArray<LD::Variant<Executor...>,sizeof...(Executor)> & executors,
+                    const LD::ApplicationQuittingEvent<Context...> & quittingEvent) noexcept
+            {
+
+                executors[I](quittingEvent);
+                return true;
+
+            },this->mExecutors,quittingEvent);
+            return LD::QuittingState{};
+        }
+
+
+    };
     template<typename Executor, typename ... Context>
     class BasicApplication<Executor(Context...),LD::Enable_If_T<
     LD::Require<
@@ -411,7 +616,7 @@ namespace LD
         
         
         template<typename State, typename Event>
-        auto OnEvent(State&, const Event&)
+        auto OnEvent(State&, const Event&) noexcept
         {
             
             return PDP::nullopt;
@@ -425,9 +630,9 @@ namespace LD
          @param applicationStartedEvent - This event is called when the application has been initialized, this even is called once per application
          @brief - This event transition occurs from the point in which the application is initiated to the application beginning the process of executing events
          */
-        LD::ApplicationState OnEvent(const LD::InitialApplicationState & initialApplicationState, const ApplicaitonStartedEvent<Context...> & applicationStartedEvent)
+        LD::ApplicationState OnEvent(const LD::InitialApplicationState & initialApplicationState, const ApplicaitonStartedEvent<Context...> & applicationStartedEvent) noexcept
         {
-            const bool shouldRun = this->CurrentExecutor(applicationStartedEvent);
+            const bool shouldRun = LD::Get(this->CurrentExecutor)(applicationStartedEvent);
             
             return LD::ApplicationHasStartedState{shouldRun};
             
@@ -443,10 +648,10 @@ namespace LD
          @param applicationFrameStartedEvent - The new frame event representing each new frame of the application
          @brief - After the application has started, the next important aspect of the application is for the first frame of the application to be invoked.
          */
-        LD::ApplicationState OnEvent(const LD::ApplicationHasStartedState & applicationHasStartedState, const LD::ApplicationFrameStartedEvent<Context...> & applicationFrameStartedEvent)
+        LD::ApplicationState OnEvent(const LD::ApplicationHasStartedState & applicationHasStartedState, const LD::ApplicationFrameStartedEvent<Context...> & applicationFrameStartedEvent) noexcept
         {
             //resolve any initial conditions that have to met for the application to run, if not then just quit
-            const bool shouldRun = this->CurrentExecutor(applicationFrameStartedEvent);
+            const bool shouldRun = LD::Get(this->CurrentExecutor)(applicationFrameStartedEvent);
             
             return LD::ApplicationFrameStartedState{shouldRun};
         }
@@ -457,10 +662,10 @@ namespace LD
          @param newFrameEvent - A new frame is starting to be processed
          @brief - An application frame can either be transitioned from the LD::ApplicationHasStartedState or from LD::ApplicationFrameEndedState
          */
-        LD::ApplicationState OnEvent(const LD::ApplicationFrameEndedState & applicationFrameEndedState, const LD::ApplicationFrameStartedEvent<Context...> & newFrameEvent)
+        LD::ApplicationState OnEvent(const LD::ApplicationFrameEndedState & applicationFrameEndedState, const LD::ApplicationFrameStartedEvent<Context...> & newFrameEvent) noexcept
         {
             //decide betweent the end of the last frame, and the beginning of the new frame if the application should continue to run
-            const bool shouldRun = this->CurrentExecutor(newFrameEvent);
+            const bool shouldRun = LD::Get(this->CurrentExecutor)(newFrameEvent);
             return LD::ApplicationFrameStartedState{shouldRun};
         }
         
@@ -469,9 +674,9 @@ namespace LD
          @brief The amount of time that should be sleep before the execution event is meant to be called.  Since it is possible for that time to change over the lifetime of the
          application's execution, it is necessary to ask for the period length once per frame
          */
-        LD::ApplicationState OnEvent(const LD::ApplicationFrameStartedState & frameStartedState, const LD::ApplicationPeriodEvent<Context...> & sleepingEvent)
+        LD::ApplicationState OnEvent(const LD::ApplicationFrameStartedState & frameStartedState, const LD::ApplicationPeriodEvent<Context...> & sleepingEvent) noexcept
         {
-            PDP::Second<LD::Float> period =  this->CurrentExecutor(sleepingEvent);
+            PDP::Second<LD::Float> period =  LD::Get(this->CurrentExecutor)(sleepingEvent);
             
             return LD::ApplicationPeriodState{period};
         }
@@ -480,9 +685,9 @@ namespace LD
         /**
          @brief After the period has been calculated, we're ready to execute.
          */
-        LD::ApplicationState OnEvent(const LD::ApplicationPeriodState & periodState, const LD::ApplicationExecutionEvent<Context...> & executionEvent)
+        LD::ApplicationState OnEvent(const LD::ApplicationPeriodState & periodState, const LD::ApplicationExecutionEvent<Context...> & executionEvent) noexcept
         {
-            this->CurrentExecutor(executionEvent);
+            LD::Get(this->CurrentExecutor)(executionEvent);
             
             return LD::ApplicationExecutionState{};
         }
@@ -490,9 +695,9 @@ namespace LD
         /**
          @brief After the event has been scheduled, and executed.  We're ready to go through the process of ending the frame.
          */
-        LD::ApplicationState OnEvent(const LD::ApplicationExecutionState &, const LD::ApplicationFrameEndedEvent<Context...> & frameEndedEvent)
+        LD::ApplicationState OnEvent(const LD::ApplicationExecutionState &, const LD::ApplicationFrameEndedEvent<Context...> & frameEndedEvent) noexcept
         {
-            this->CurrentExecutor(frameEndedEvent);
+            LD::Get(this->CurrentExecutor)(frameEndedEvent);
             
             return LD::ApplicationFrameEndedState{};
         }
@@ -500,9 +705,9 @@ namespace LD
         /**
          @brief - The application reached a new frame, and has requested to quit.
          */
-        LD::ApplicationState OnEvent(const LD::ApplicationFrameStartedState &, const LD::ApplicationQuittingEvent<Context...> & quittingEvent)
+        LD::ApplicationState OnEvent(const LD::ApplicationFrameStartedState &, const LD::ApplicationQuittingEvent<Context...> & quittingEvent) noexcept
         {
-            this->CurrentExecutor(quittingEvent);
+            LD::Get(this->CurrentExecutor)(quittingEvent);
             
             return LD::QuittingState{};
         }
@@ -510,9 +715,9 @@ namespace LD
         /**
          @brief - The application failed to meet initialization conditions and needed to quit.
          */
-        LD::ApplicationState OnEvent(const LD::ApplicationHasStartedState &, const LD::ApplicationQuittingEvent<Context...> & quittingEvent)
+        LD::ApplicationState OnEvent(const LD::ApplicationHasStartedState &, const LD::ApplicationQuittingEvent<Context...> & quittingEvent) noexcept
         {
-            this->CurrentExecutor(quittingEvent);
+            LD::Get(this->CurrentExecutor)(quittingEvent);
             
             return LD::QuittingState{};
         }
@@ -923,8 +1128,7 @@ namespace LD
     LD::ConvertiblyCallable<Executor, void(const LD::ApplicationExecutionEvent<typename LD::Decay<A>::type...> &)>::Value(),
     LD::ConvertiblyCallable<Executor, void(const LD::ApplicationFrameEndedEvent<typename LD::Decay<A>::type...> &)>::Value(),
     LD::ConvertiblyCallable<Executor, void(const LD::ApplicationQuittingEvent<typename LD::Decay<A>::type...> &)>::Value(),
-    LD::IsUnique<A...>,
-    !LD::IsInTuple<LD::TermBoxRenderContext,LD::VariadicPack<typename LD::Decay<A>::type...>>::value
+    LD::IsUnique<A...>
     >,int> MainLoop(Executor && executor, TimerType & applicationTimer,A && ... contextArguements)
     {
         
@@ -942,6 +1146,7 @@ namespace LD
      * @param contextArguements
      * @return
      */
+     /*
     template<typename Executor , typename ... A,typename TimerType>
     LD::Enable_If_T<
     LD::Require<
@@ -964,6 +1169,7 @@ namespace LD
 
         return LD::ApplicationLoop(currentRunnable,applicationTimer,LD::Forward<A>(contextArguements)...);
     }
+      */
 
     /*
     template<typename ... Executors , typename ... A,typename TimerType>
@@ -1006,39 +1212,6 @@ namespace LD
 
 
 
-    template<typename ... Executors , typename ... A,typename TimerType>
-    LD::Enable_If_T<
-            LD::Require<
-                    (sizeof...(Executors) > 1),
-                    LD::ConvertiblyCallable<LD::VariadicPack<Executors...>, const bool(const LD::ApplicaitonStartedEvent<typename LD::Decay<A>::type...> &)>::Value(),
-                    LD::ConvertiblyCallable<LD::VariadicPack<Executors...>, const bool(const LD::ApplicationFrameStartedEvent<typename LD::Decay<A>::type...> &)>::Value(),
-                    LD::ConvertiblyCallable<LD::VariadicPack<Executors...>, PDP::Second<LD::Float>(const LD::ApplicationPeriodEvent<typename LD::Decay<A>::type...> &)>::Value(),
-                    LD::ConvertiblyCallable<LD::VariadicPack<Executors...>, void(const LD::ApplicationExecutionEvent<typename LD::Decay<A>::type...> &)>::Value(),
-                    LD::ConvertiblyCallable<LD::VariadicPack<Executors...>, void(const LD::ApplicationFrameEndedEvent<typename LD::Decay<A>::type...> &)>::Value(),
-                    LD::ConvertiblyCallable<LD::VariadicPack<Executors...>, void(const LD::ApplicationQuittingEvent<typename LD::Decay<A>::type...> &)>::Value(),
-                    LD::IsUnique<A...>,
-                    LD::IsUnique<Executors...>,
-                    LD::IsInTuple<LD::TermBoxRenderContext,LD::VariadicPack<typename LD::Decay<A>::type...>>::value
-            >,int> Main(const LD::Tuple<Executors...> & exeuctorss, TimerType && applicationTimer,const LD::Tuple<A...> & context)
-    {
-                /*
-                 * typedef LD::BasicTermBoxApplication<typename LD::Decay<Executor>::type(typename LD::Decay<A>::type...)> TermBoxApplication;
-        typedef LD::BasicApplication<TermBoxApplication(typename LD::Decay<A>::type...)> Runnable;
-        TermBoxApplication currentTermBoxApplication(LD::Forward<Executor>(executor));
-
-
-        Runnable currentRunnable(currentTermBoxApplication);
-
-        return LD::ApplicationLoop(currentRunnable,applicationTimer,LD::Forward<A>(contextArguements)...);
-                 */
-        //LD::BasicApplication<LD::VariadicPack<typename LD::Decay<Executors>::type...>(typename LD::Decay<A>::type...)> applicationModel(LD::Forward<A>(executors)...);
-
-        //return LD::ApplicationLoop(applicationModel,applicationTimer,LD::Forward<A>(contextArguements)...);
-
-        return 0;
-    }
-    
-    
     
     /*
     int TermBoxApplicationTestExampleMooo()

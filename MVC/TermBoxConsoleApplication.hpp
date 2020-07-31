@@ -10,15 +10,19 @@
 #define __DataStructures__TermBoxConsoleApplication__
 
 
-#include <Definitions/Common.hpp>
+//#include <Definitions/Common.hpp>
+
 #include "Definitions/PDPUnits.hpp"
 #include "TermBoxRenderingContext.hpp"
 #include "SchedulingEvent.hpp"
 #include "TermBox/termbox.h"
 #include "TypeTraits/TypeList.hpp"
 #include "MVC/Mouse.h"
+#include "TermBoxCursorNavigator.hpp"
+
 namespace LD
 {
+    /*
     template<typename T, class = void>
     class BasicTermBoxApplication;
 
@@ -85,6 +89,36 @@ namespace LD
             LD::UInteger possibleYValue = LD::Get<LD::TermBoxRenderContext>(executionEvent)->GetMouse().Y();
 
             const LD::UInteger isMouseEnabled = LD::Get<LD::TermBoxRenderContext>(executionEvent)->IsMouseEnabled();
+            if(isMouseEnabled)
+            {
+
+                auto cursorLeftPredicate = [](const LD::ApplicationExecutionEvent<Context...> & context)->LD::TB::CursorLeftResult
+                {
+                    return LD::TB::CursorLeftResult{(LD::Get<LD::TermBoxRenderContext>(context)->GetEvent().key == TB_KEY_ARROW_LEFT)};
+                };
+
+
+                auto cursorRightPredicate = [](const LD::ApplicationExecutionEvent<Context...> & context)->LD::TB::CursorRightResult
+                {
+                    return LD::TB::CursorRightResult{(LD::Get<LD::TermBoxRenderContext>(context)->GetEvent().key == TB_KEY_ARROW_RIGHT)};
+                };
+
+                auto cursorUpPredicate = [](const LD::ApplicationExecutionEvent<Context...> & context)->LD::TB::CursorUpResult
+                {
+                    return LD::TB::CursorUpResult{(LD::Get<LD::TermBoxRenderContext>(context)->GetEvent().key == TB_KEY_ARROW_UP)};
+                };
+                auto cursorDownPredicate = [](const LD::ApplicationExecutionEvent<Context...> & context)->LD::TB::CursorDownResult
+                {
+                    return LD::TB::CursorDownResult{(LD::Get<LD::TermBoxRenderContext>(context)->GetEvent().key == TB_KEY_ARROW_DOWN)};
+                };
+
+
+                auto cursorNavigator = LD::TB::MakeCursorNavigator<Context...>(cursorLeftPredicate,cursorRightPredicate,cursorDownPredicate,cursorUpPredicate);
+
+                cursorNavigator(executionEvent);
+
+
+            }
             //LD::Integer  xValue = (isMouseEnabled * (((tb_width()/2)+possibleXValue)+1))-1;
             LD::Integer xValue = (isMouseEnabled)*(tb_width()/2+possibleXValue) + (!isMouseEnabled)*-1;
             //LD::Integer  yValue = (isMouseEnabled * (((tb_height()/2)+possibleYValue)+1))-1;
@@ -99,13 +133,6 @@ namespace LD
                         auto && context)
                 {
                     using ContextType = decltype(context);
-                    /*
-                    using Type = decltype(LD::Get(LD::Get<I>(LD::Declval<ContextType>())));
-                    if constexpr(LD::IsBasicMouse<Type>)
-                    {
-
-                    }
-                     */
                     return true;
                 },executionEvent);
             }
@@ -128,6 +155,7 @@ namespace LD
             }
         }
     };
+     */
 }
 namespace PDP
 {

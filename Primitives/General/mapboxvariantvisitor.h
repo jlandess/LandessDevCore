@@ -3,6 +3,26 @@
 
 #include "Definitions/Common.hpp"
 #include "mapboxvariant.hpp"
+#include "TypeTraits/FunctionalReflection.hpp"
+namespace LD
+{
+    template<class... Ts> struct Overload : Ts... { using Ts::operator()...; };
+    template<class... Ts> Overload(Ts...) -> Overload<Ts...>;
+}
+namespace LD
+{
+    template<typename T>
+    constexpr bool IsVariant(T && ) noexcept
+    {
+        return false;
+    }
+
+    template<typename ... A>
+    constexpr bool IsVariant(LD::Variant<A...>) noexcept
+    {
+        return true;
+    }
+}
 namespace mapbox
 {
     namespace util
@@ -43,11 +63,19 @@ namespace mapbox
 
 
 
+
+
+
     } // namespace util
 } // namespace mapbox
 
 namespace LD
 {
+    template <typename... Fns>
+    auto MakeVisitor(Fns&&... fns) noexcept
+    {
+        return mapbox::util::visitor<typename LD::Detail::Decay<Fns>::type...>(LD::Forward<Fns>(fns)...);
+    }
     template<typename ...T, typename ... Fns>
     auto Match(const mapbox::util::variant<T...> & variant,Fns && ... fns)
     {
@@ -55,6 +83,15 @@ namespace LD
                 mapbox::util::make_visitor(fns...),
                 variant
         );
+    }
+
+    template<typename ... V, typename Fn>
+    auto MultiMatch(Fn && function,V && ... variants) noexcept
+    {
+        //using Abc = decltype(LD::Declval<Fn>()(LD::Declval<V>()...));
+        //LD::CT::DebugTemplate<Abc>{};
+
+        return mapbox::util::apply_visitor(LD::Forward<Fn>(function),LD::Forward<V>(variants)...);
     }
 
 }

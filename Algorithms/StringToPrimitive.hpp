@@ -9,6 +9,7 @@
 #include "Primitives/General/StringView.hpp"
 #include "Primitives/General/mapboxvariant.hpp"
 #include "Primitives/General/mapboxvariantvisitor.h"
+#include "TypeTraits/Type.h"
 namespace LD
 {
     inline float atof(const char *s) noexcept
@@ -367,6 +368,16 @@ namespace LD
                 return {};
             }
             return {LD::atoull(view.data())};
+        }
+    };
+
+    template<typename T>
+    class StringToPrimitive<LD::Type<T>>
+    {
+    public:
+        LD::Variant<LD::NullClass,T> operator()(const LD::StringView & view) noexcept
+        {
+            return StringToPrimitive<T>{}(view);
         }
     };
 

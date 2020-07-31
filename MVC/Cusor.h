@@ -22,6 +22,11 @@ namespace LD
 
         }
 
+        inline explicit constexpr Cursor(const PositionType & x, const PositionType & y) noexcept :mPosition{x,y}
+        {
+
+        }
+
         const LD::BasicVec2D<PositionType> & Position() const noexcept
         {
             return this->mPosition;
@@ -31,6 +36,8 @@ namespace LD
         {
             return this->mPosition;
         }
+
+
 
 
     };

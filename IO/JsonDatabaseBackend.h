@@ -28,7 +28,7 @@ namespace LD
         {
             nlohmann::json * ptr = this->mBackend.GetPointer();
             (*ptr)[key.data()] = data.data();
-            return LD::MakeContext(LD::DatabaseTransactionResult{},bool{true},LD::Forward<Args>(arguements)...);
+            return LD::MakeContext(LD::TransactionResult{},bool{true},LD::Forward<Args>(arguements)...);
         }
 
         template<typename F, typename ... Args,
@@ -51,16 +51,16 @@ namespace LD
                 return LD::MakeContext(LD::DatabaseTransactionResult{},Ret{returnable},LD::Forward<Args>(arguments)...);
 
             }
-            return LD::MakeContext(LD::DatabaseError{},LD::Forward<Args>(arguments)...);
+            return LD::MakeContext(LD::TransactionError{},LD::Forward<Args>(arguments)...);
         }
 
 
-        template<typename ... Args, typename Ret = LD::ContextualVariant<LD::Variant<LD::DatabaseError,LD::DatabaseTransactionResult>(Args...)>>
+        template<typename ... Args, typename Ret = LD::ContextualVariant<LD::Variant<LD::TransactionError,LD::DatabaseTransactionResult>(Args...)>>
         Ret Begin(Args && ... arguements) const noexcept
         {
             return LD::MakeContext(LD::DatabaseTransactionResult{},LD::Forward<Args>(arguements)...);
         }
-        template<typename ... Args, typename Ret = LD::ContextualVariant<LD::Variant<LD::DatabaseError,LD::DatabaseTransactionResult>(Args...)>>
+        template<typename ... Args, typename Ret = LD::ContextualVariant<LD::Variant<LD::TransactionError,LD::DatabaseTransactionResult>(Args...)>>
         Ret  Commit(Args && ... arguements) const noexcept
         {
             return LD::MakeContext(LD::DatabaseTransactionResult{},LD::Forward<Args>(arguements)...);
