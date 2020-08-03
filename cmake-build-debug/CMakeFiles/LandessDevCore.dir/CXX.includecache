@@ -723,6 +723,8 @@ Chrono/Timer.h
 ../MVC/Chrono/Timer.h
 MVC/TermBoxRenderingContext.hpp
 ../MVC/MVC/TermBoxRenderingContext.hpp
+Core/HeteregenousTuple.hpp
+../MVC/Core/HeteregenousTuple.hpp
 
 ../MVC/SchedulingQuittingPredicate.hpp
 
@@ -747,6 +749,8 @@ Algorithms/StringToPrimitive.hpp
 ../MVC/TUI/Algorithms/StringToPrimitive.hpp
 TUIEvent.h
 ../MVC/TUI/TUIEvent.h
+Algorithms/StringAsNumber.h
+../MVC/TUI/Algorithms/StringAsNumber.h
 
 ../MVC/TermBoxApplication.hpp
 Definitions/Common.hpp
@@ -1527,8 +1531,6 @@ ReflectionDemoTypes.h
 /home/phoenixflower/Documents/LandessDevCore/Examples/ReflectionDemoTypes.h
 IO/RowBackingStore.h
 /home/phoenixflower/Documents/LandessDevCore/Examples/IO/RowBackingStore.h
-IO/BasicDelimeterSeperatedFile.h
-/home/phoenixflower/Documents/LandessDevCore/Examples/IO/BasicDelimeterSeperatedFile.h
 TypeTraits/FunctionalReflection.hpp
 /home/phoenixflower/Documents/LandessDevCore/Examples/TypeTraits/FunctionalReflection.hpp
 Primitives/General/Span.hpp

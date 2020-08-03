@@ -11,6 +11,7 @@
 #include "Primitives/General/ctre.hpp"
 #include "Algorithms/StringToPrimitive.hpp"
 #include "TUIEvent.h"
+#include "Algorithms/StringAsNumber.h"
 namespace LD
 {
     namespace TUI
@@ -115,8 +116,8 @@ namespace LD
                 context.SetForegroundColor(TB_YELLOW);
 
                 //the cursor is in the text region, we should now accept keyboard input
-                if (context.GetMouse().Y() == this->mPosition.Y()-1
-                && (context.GetMouse().X() > this->mPosition.X() && context.GetMouse().X() < this->mPosition.X()+Size))
+                if (context.GetCursor().Y() == this->mPosition.Y()-1
+                && (context.GetCursor().X() > this->mPosition.X() && context.GetCursor().X() < this->mPosition.X()+Size))
                 {
                     //context.RenderWithFormat(LD::ToImmutableString("{}"),{this->mPosition.X(),this->mPosition.Y()-3},LD::ToImmutableString("found it"));
 

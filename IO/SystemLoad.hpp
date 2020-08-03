@@ -116,25 +116,38 @@ namespace LD
                 const LD::UInteger  idle_time = metric.Idle();
                 const double idle_time_delta = idle_time - previous_idle_time;
                 const double total_time_delta = total_time - previous_total_time;
-                LD::Get<2>(delta[0]) = (100.0 * (1.0 - idle_time_delta / total_time_delta));
 
-                LD::Get<0>(delta[0]) = idle_time;
-                LD::Get<1>(delta[0]) = total_time;
+                if (total_time_delta != 0)
+                {
+                    LD::Get<2>(delta[0]) = (100.0 * (1.0 - idle_time_delta / total_time_delta));
+
+                    LD::Get<0>(delta[0]) = idle_time;
+                    LD::Get<1>(delta[0]) = total_time;
+                }
+
             };
             auto onCPUCoreMetric = [](auto  && stuff) noexcept -> LD::Enable_If_T<LD::Require<LD::IsCPUCore<LD::GetType<decltype(LD::GetQueryType(stuff))>>>,void>
             {
                 auto & metric = LD::Get(LD::Get<1>(LD::Forward<decltype(stuff)>(stuff)));
                 LD::Float total_time = metric.User() + metric.Nice() + metric.System() + metric.Idle() +metric.IOWait() + metric.IRQ() + metric.SoftIRQ();
+
                 SpannedMetricGlob & delta = LD::Get(LD::Get<2>(LD::Forward<decltype(stuff)>(stuff)));
                 LD::UInteger & previous_idle_time = LD::Get<0>(delta[metric.Core()+1]);
                 LD::UInteger & previous_total_time = LD::Get<1>(delta[metric.Core()+1]);
-                const LD::UInteger  idle_time = metric.Idle();
-                const double idle_time_delta = idle_time - previous_idle_time;
-                const double total_time_delta = total_time - previous_total_time;
-                LD::Get<2>(delta[metric.Core()+1]) = (100.0 * (1.0 - idle_time_delta / total_time_delta));
 
-                LD::Get<0>(delta[metric.Core()+1]) = idle_time;
-                LD::Get<1>(delta[metric.Core()+1]) = total_time;
+
+                const LD::UInteger  idle_time = metric.Idle();
+                const LD::UInteger idle_time_delta = idle_time - previous_idle_time;
+                const LD::UInteger total_time_delta = total_time - previous_total_time;
+
+                if (total_time_delta != 0)
+                {
+                    LD::Get<2>(delta[metric.Core()+1]) = (100.0 * (1.0 - double(idle_time_delta) / double(total_time_delta)));
+
+                    LD::Get<0>(delta[metric.Core()+1]) = idle_time;
+                    LD::Get<1>(delta[metric.Core()+1]) = total_time;
+                }
+
             };
 
             auto onContexSwitchMetric = [](const LD::Context<LD::TransactionResult,LD::ContextSwitchMetric,SpannedMetricGlob> & transaction) noexcept

@@ -20,20 +20,24 @@
 #include "Functor/Delegate.h"
 #include "Chrono/Timer.h"
 #include "MVC/TermBoxRenderingContext.hpp"
+#include "Core/HeteregenousTuple.hpp"
 
 namespace LD
 {
+    template<typename ... A>
+    class HeteregenousTuple;
     template<typename ... Context>
     class ApplicaitonStartedEvent
     {
     private:
         LD::HeteregenousTuple<ElementReference<Context>...> CurrentContext;
+        LD::Variant<LD::ElementReference<LD::Timer>,PDP::Second<LD::Float>> mElapsedTime;
         ElementReference<LD::Timer> TimerReference;
     public:
 
         template<typename ... A, typename = typename LD::Enable_If_T<LD::IsUniquelyContained<LD::VariadicPack<Context...>,LD::VariadicPack<A...>>::value>>
         ApplicaitonStartedEvent(const LD::HeteregenousTuple<ElementReference<A>...> & context,
-                                LD::Timer & timer):CurrentContext(context),TimerReference(timer)
+                                LD::Timer & timer) noexcept :CurrentContext(context),TimerReference(timer)
         {
             
         }
@@ -42,17 +46,33 @@ namespace LD
         LD::Require<
         LD::is_permutation_v<LD::VariadicPack<Context...>,LD::VariadicPack<A...>>
         >>>
-        ApplicaitonStartedEvent(const LD::ApplicaitonStartedEvent<A...> & event):CurrentContext(event.CurrentContext),TimerReference(event.TimerReference)
+        ApplicaitonStartedEvent(const LD::ApplicaitonStartedEvent<A...> & event) noexcept :CurrentContext(event.CurrentContext),TimerReference(event.TimerReference),mElapsedTime{event.mElapsedTime}
+        {}
+
+        template<typename ... A, typename = typename LD::Enable_If_T<
+                LD::Require<
+                        LD::is_permutation_v<LD::VariadicPack<Context...>,LD::VariadicPack<A...>>
+                >>>
+        ApplicaitonStartedEvent(const LD::ApplicaitonStartedEvent<A...> & event, const PDP::Second<LD::Float> & dt) noexcept :CurrentContext(event.CurrentContext),TimerReference(event.TimerReference),mElapsedTime{dt}
         {}
         
-        
-        PDP::Second<LD::Float> GetElapsedTime() const
+        PDP::Second<LD::Float> GetElapsedTime() const noexcept
         {
-            return PDP::Second<LD::Float>(this->TimerReference->GetElapsedTimeInSec());
+            auto onTimerOnly = [](const LD::ElementReference<LD::Timer> & timer) noexcept
+            {
+                return PDP::Second<LD::Float>(timer->GetElapsedTimeInSec());
+            };
+
+            auto onDT = [](const PDP::Second<LD::Float> & elapsedtime) noexcept
+            {
+                return elapsedtime;
+            };
+            //return PDP::Second<LD::Float>(this->TimerReference->GetElapsedTimeInSec());
+            return LD::Match(this->mElapsedTime,onTimerOnly,onDT);
         }
         
         
-        const LD::HeteregenousTuple<ElementReference<Context>...> & GetContext() const
+        const LD::HeteregenousTuple<ElementReference<Context>...> & GetContext() const noexcept
         {
             return this->CurrentContext;
         }
@@ -62,7 +82,7 @@ namespace LD
     };
     
     template<typename T, typename ... Context>
-    auto Get(const ApplicaitonStartedEvent<Context...> & applicationStartEvent)
+    auto Get(const ApplicaitonStartedEvent<Context...> & applicationStartEvent) noexcept
     {
         return LD::Get<ElementReference<T>>(applicationStartEvent.GetContext());
     }
@@ -73,30 +93,48 @@ namespace LD
     {
     private:
         LD::HeteregenousTuple<ElementReference<Context>...> CurrentContext;
+        LD::Variant<LD::ElementReference<LD::Timer>,PDP::Second<LD::Float>> mElapsedTime;
         ElementReference<LD::Timer>  TimerReference;
     public:
         
         
-        ApplicationFrameStartedEvent(){}
+        ApplicationFrameStartedEvent() noexcept{}
         template<typename ... A, typename = typename LD::Enable_If_T<IsUniquelyContained<LD::VariadicPack<Context...>,LD::VariadicPack<A...>>::value>>
-        ApplicationFrameStartedEvent(const LD::HeteregenousTuple<ElementReference<A>...> & context,LD::Timer & timer):CurrentContext(context),TimerReference(timer)
+        ApplicationFrameStartedEvent(const LD::HeteregenousTuple<ElementReference<A>...> & context,LD::Timer & timer) noexcept :CurrentContext(context),TimerReference(timer),mElapsedTime{timer}
         {}
         
         template<typename ... A, typename = typename LD::Enable_If_T<
         LD::Require<
         LD::is_permutation_v<LD::VariadicPack<Context...>, LD::VariadicPack<A...>>
         >>>
-        ApplicationFrameStartedEvent(const LD::ApplicationFrameStartedEvent<A...> & event):CurrentContext(event.CurrentContext),TimerReference(event.TimerReference)
+        ApplicationFrameStartedEvent(const LD::ApplicationFrameStartedEvent<A...> & event) noexcept :CurrentContext(event.CurrentContext),TimerReference(event.TimerReference),mElapsedTime{event.mElapsedTime}
+        {}
+
+        template<typename ... A, typename = typename LD::Enable_If_T<
+                LD::Require<
+                        LD::is_permutation_v<LD::VariadicPack<Context...>, LD::VariadicPack<A...>>
+                >>>
+        ApplicationFrameStartedEvent(const LD::ApplicationFrameStartedEvent<A...> & event, const PDP::Second<LD::Float> & dt) noexcept :CurrentContext(event.CurrentContext),TimerReference(event.TimerReference),mElapsedTime{dt}
         {}
         
-        PDP::Second<LD::Float> GetElapsedTime() const
+        PDP::Second<LD::Float> GetElapsedTime() const noexcept
         {
-            return PDP::Second<LD::Float>(this->TimerReference->GetElapsedTimeInSec());
+            auto onTimerOnly = [](const LD::ElementReference<LD::Timer> & timer) noexcept
+            {
+                return PDP::Second<LD::Float>(timer->GetElapsedTimeInSec());
+            };
+
+            auto onDT = [](const PDP::Second<LD::Float> & elapsedtime) noexcept
+            {
+                return elapsedtime;
+            };
+            //return PDP::Second<LD::Float>(this->TimerReference->GetElapsedTimeInSec());
+            return LD::Match(this->mElapsedTime,onTimerOnly,onDT);
         }
         
         
         
-        const LD::HeteregenousTuple<ElementReference<Context>...> & GetContext() const
+        const LD::HeteregenousTuple<ElementReference<Context>...> & GetContext() const noexcept
         {
             return this->CurrentContext;
         }
@@ -110,7 +148,7 @@ namespace LD
     
     
     template<typename T, typename ... Context>
-    auto Get(const ApplicationFrameStartedEvent<Context...> & applicationFrameStartedEvent)
+    auto Get(const ApplicationFrameStartedEvent<Context...> & applicationFrameStartedEvent) noexcept
     {
         return LD::Get<ElementReference<T>>(applicationFrameStartedEvent.GetContext());
     }
@@ -121,10 +159,11 @@ namespace LD
     private:
         LD::HeteregenousTuple<ElementReference<Context>...> CurrentContext;
         ElementReference<LD::Timer> TimerReference;
+        LD::Variant<LD::ElementReference<LD::Timer>,PDP::Second<LD::Float>> mElapsedTime;
     public:
         
         template<typename ... A, typename = typename LD::Enable_If_T<IsUniquelyContained<LD::VariadicPack<Context...>,LD::VariadicPack<A...>>::value>>
-        ApplicationExecutionEvent(const LD::HeteregenousTuple<ElementReference<A>...> & context,LD::Timer & timer):CurrentContext(context),TimerReference(timer)
+        ApplicationExecutionEvent(const LD::HeteregenousTuple<ElementReference<A>...> & context,LD::Timer & timer) noexcept:CurrentContext(context),TimerReference(timer),mElapsedTime{timer}
         {}
         
         
@@ -134,16 +173,34 @@ namespace LD
         LD::Require<
         LD::is_permutation_v<LD::VariadicPack<Context...>, LD::VariadicPack<A...>>
         >>>
-        ApplicationExecutionEvent(const LD::ApplicationExecutionEvent<A...> & event):CurrentContext(event.CurrentContext),TimerReference(event.TimerReference)
+        ApplicationExecutionEvent(const LD::ApplicationExecutionEvent<A...> & event) noexcept:CurrentContext(event.CurrentContext),TimerReference(event.TimerReference),mElapsedTime{event.mElapsedTime}
+        {}
+
+        //Assignable<LD::VariadicPack<Context...>,LD::VariadicPack<A...>>::value
+        template<typename ... A, typename = typename LD::Enable_If_T<
+                LD::Require<
+                        LD::is_permutation_v<LD::VariadicPack<Context...>, LD::VariadicPack<A...>>
+                >>>
+        ApplicationExecutionEvent(const LD::ApplicationExecutionEvent<A...> & event, const PDP::Second<LD::Float> & dt) noexcept:CurrentContext(event.CurrentContext),TimerReference(event.TimerReference),mElapsedTime{dt}
         {}
         
-        PDP::Second<LD::Float> GetElapsedTime() const
+        PDP::Second<LD::Float> GetElapsedTime() const noexcept
         {
-            return PDP::Second<LD::Float>(this->TimerReference->GetElapsedTimeInSec());
+            auto onTimerOnly = [](const LD::ElementReference<LD::Timer> & timer) noexcept
+            {
+                return PDP::Second<LD::Float>(timer->GetElapsedTimeInSec());
+            };
+
+            auto onDT = [](const PDP::Second<LD::Float> & elapsedtime) noexcept
+            {
+                return elapsedtime;
+            };
+            //return PDP::Second<LD::Float>(this->TimerReference->GetElapsedTimeInSec());
+            return LD::Match(this->mElapsedTime,onTimerOnly,onDT);
         }
         
         
-        const LD::HeteregenousTuple<ElementReference<Context>...> & GetContext() const
+        const LD::HeteregenousTuple<ElementReference<Context>...> & GetContext() const noexcept
         {
             return this->CurrentContext;
         }
@@ -157,7 +214,7 @@ namespace LD
     
     
     template<typename T, typename ... Context>
-    auto Get(const ApplicationExecutionEvent<Context...> & executionEvent)
+    auto Get(const ApplicationExecutionEvent<Context...> & executionEvent) noexcept
     {
         return LD::Get<ElementReference<T>>(executionEvent.GetContext());
     }
@@ -168,11 +225,12 @@ namespace LD
     {
     private:
         LD::HeteregenousTuple<ElementReference<Context>...> CurrentContext;
+        LD::Variant<LD::ElementReference<LD::Timer>,PDP::Second<LD::Float>> mElapsedTime;
         ElementReference<LD::Timer> TimerReference;
     public:
         
         template<typename ... A, typename = typename LD::Enable_If_T<IsUniquelyContained<LD::VariadicPack<Context...>,LD::VariadicPack<A...>>::value>>
-        ApplicationFrameEndedEvent(const LD::HeteregenousTuple<ElementReference<A>...> & context,LD::Timer & timer):CurrentContext(context),TimerReference(timer)
+        ApplicationFrameEndedEvent(const LD::HeteregenousTuple<ElementReference<A>...> & context,LD::Timer & timer) noexcept:CurrentContext(context),TimerReference(timer),mElapsedTime{timer}
         {}
         
         //Assignable<LD::VariadicPack<Context...>,LD::VariadicPack<A...>>::value
@@ -180,21 +238,30 @@ namespace LD
         LD::Require<
         LD::is_permutation_v<LD::VariadicPack<Context...>, LD::VariadicPack<A...>>
         >>>
-        ApplicationFrameEndedEvent(const LD::ApplicationFrameEndedEvent<A...> & event):CurrentContext(event.CurrentContext),TimerReference(event.TimerReference)
+        ApplicationFrameEndedEvent(const LD::ApplicationFrameEndedEvent<A...> & event) noexcept:CurrentContext(event.CurrentContext),TimerReference(event.TimerReference),mElapsedTime{event.mElapsedTime}
         {}
         
         
-        PDP::Second<LD::Float> GetElapsedTime() const
+        PDP::Second<LD::Float> GetElapsedTime() const noexcept
         {
-            return PDP::Second<LD::Float>(this->TimerReference->GetElapsedTimeInSec());
+            auto onTimerOnly = [](const LD::ElementReference<LD::Timer> & timer) noexcept
+            {
+                return PDP::Second<LD::Float>(timer->GetElapsedTimeInSec());
+            };
+
+            auto onDT = [](const PDP::Second<LD::Float> & elapsedtime) noexcept
+            {
+                return elapsedtime;
+            };
+            return LD::Match(this->mElapsedTime,onTimerOnly,onDT);
         }
         
         
-        ElementReference<LD::Timer> GetTimer() const
+        ElementReference<LD::Timer> GetTimer() const noexcept
         {
             return this->TimerReference;
         }
-        const LD::HeteregenousTuple<ElementReference<Context>...> & GetContext() const
+        const LD::HeteregenousTuple<ElementReference<Context>...> & GetContext() const noexcept
         {
             return this->CurrentContext;
         }
@@ -204,7 +271,7 @@ namespace LD
     };
     
     template<typename T, typename ... Context>
-    auto Get(const ApplicationFrameEndedEvent<Context...> & applicationFrameEndedEvent)
+    auto Get(const ApplicationFrameEndedEvent<Context...> & applicationFrameEndedEvent) noexcept
     {
         return LD::Get<ElementReference<T>>(applicationFrameEndedEvent.GetContext());
     }
@@ -215,28 +282,43 @@ namespace LD
     {
     private:
         LD::HeteregenousTuple<ElementReference<Context>...> CurrentContext;
+        LD::Variant<LD::ElementReference<LD::Timer>,PDP::Second<LD::Float>> mElapsedTime;
         ElementReference<LD::Timer> TimerReference;
     public:
         
         template<typename ... A, typename = typename LD::Enable_If_T<IsUniquelyContained<LD::VariadicPack<Context...>,LD::VariadicPack<A...>>::value>>
-        ApplicationQuittingEvent(const LD::HeteregenousTuple<ElementReference<A>...> & context,LD::Timer & timer):CurrentContext(context),TimerReference(timer)
+        ApplicationQuittingEvent(const LD::HeteregenousTuple<ElementReference<A>...> & context,LD::Timer & timer) noexcept:CurrentContext(context),TimerReference(timer),mElapsedTime{timer}
         {}
         
         template<typename ... A, typename = typename LD::Enable_If_T<
         LD::Require<
         LD::is_permutation_v<LD::VariadicPack<Context...>, LD::VariadicPack<A...>>
         >>>
-        ApplicationQuittingEvent(const LD::ApplicationQuittingEvent<A...> & event):CurrentContext(event.CurrentContext),TimerReference(event.TimerReference)
+        ApplicationQuittingEvent(const LD::ApplicationQuittingEvent<A...> & event) noexcept:CurrentContext(event.CurrentContext),TimerReference(event.TimerReference),mElapsedTime{event.mElapsedTime}
         {}
-        
-        
-        PDP::Second<LD::Float> GetElapsedTime() const
+
+        template<typename ... A, typename = typename LD::Enable_If_T<
+                LD::Require<
+                        LD::is_permutation_v<LD::VariadicPack<Context...>, LD::VariadicPack<A...>>
+                >>>
+        ApplicationQuittingEvent(const LD::ApplicationQuittingEvent<A...> & event, const PDP::Second<LD::Float> & dt) noexcept:CurrentContext(event.CurrentContext),TimerReference(event.TimerReference),mElapsedTime{dt}
+        {}
+        PDP::Second<LD::Float> GetElapsedTime() const noexcept
         {
-            return PDP::Second<LD::Float>(this->TimerReference->GetElapsedTimeInSec());
+            auto onTimerOnly = [](const LD::ElementReference<LD::Timer> & timer) noexcept
+            {
+                return PDP::Second<LD::Float>(timer->GetElapsedTimeInSec());
+            };
+
+            auto onDT = [](const PDP::Second<LD::Float> & elapsedtime) noexcept
+            {
+                return elapsedtime;
+            };
+            return LD::Match(this->mElapsedTime,onTimerOnly,onDT);
         }
         
         
-        const LD::HeteregenousTuple<ElementReference<Context>...> & GetContext() const
+        const LD::HeteregenousTuple<ElementReference<Context>...> & GetContext() const noexcept
         {
             return this->CurrentContext;
         }
@@ -246,7 +328,7 @@ namespace LD
     };
     
     template<typename T, typename ... Context>
-    auto Get(const ApplicationQuittingEvent<Context...> & applicationQuittingEvent)
+    auto Get(const ApplicationQuittingEvent<Context...> & applicationQuittingEvent) noexcept
     {
         return LD::Get<ElementReference<T>>(applicationQuittingEvent.GetContext());
     }
@@ -256,29 +338,45 @@ namespace LD
     {
     private:
         LD::HeteregenousTuple<ElementReference<Context>...> CurrentContext;
+        LD::Variant<LD::ElementReference<LD::Timer>,PDP::Second<LD::Float>> mElapsedTime;
         ElementReference<LD::Timer> TimerReference;
     public:
         
         template<typename ... A, typename = typename LD::Enable_If_T<IsUniquelyContained<LD::VariadicPack<Context...>,LD::VariadicPack<A...>>::value>>
-        ApplicationPeriodEvent(const LD::HeteregenousTuple<LD::ElementReference<A>...> & context,LD::Timer & timer):CurrentContext(context),TimerReference(timer)
+        ApplicationPeriodEvent(const LD::HeteregenousTuple<LD::ElementReference<A>...> & context,LD::Timer & timer) noexcept:CurrentContext(context),TimerReference(timer),mElapsedTime{timer}
         {}
         
         template<typename ... A, typename = typename LD::Enable_If_T<
         LD::Require<
         LD::is_permutation_v<LD::VariadicPack<Context...>, LD::VariadicPack<A...>>
         >>>
-        ApplicationPeriodEvent(const LD::ApplicationPeriodEvent<A...> & event):CurrentContext(event.CurrentContext),TimerReference(event.TimerReference)
+        ApplicationPeriodEvent(const LD::ApplicationPeriodEvent<A...> & event) noexcept:CurrentContext(event.CurrentContext),TimerReference(event.TimerReference),mElapsedTime{event.mElapsedTime}
+        {}
+
+        template<typename ... A, typename = typename LD::Enable_If_T<
+                LD::Require<
+                        LD::is_permutation_v<LD::VariadicPack<Context...>, LD::VariadicPack<A...>>
+                >>>
+        ApplicationPeriodEvent(const LD::ApplicationPeriodEvent<A...> & event, const PDP::Second<LD::Float> & dt) noexcept:CurrentContext(event.CurrentContext),TimerReference(event.TimerReference),mElapsedTime{dt}
         {}
         
         
-        
-        PDP::Second<LD::Float> GetElapsedTime() const
+        PDP::Second<LD::Float> GetElapsedTime() const noexcept
         {
-            return PDP::Second<LD::Float>(this->TimerReference->GetElapsedTimeInSec());
+            auto onTimerOnly = [](const LD::ElementReference<LD::Timer> & timer) noexcept
+            {
+                return PDP::Second<LD::Float>(timer->GetElapsedTimeInSec());
+            };
+
+            auto onDT = [](const PDP::Second<LD::Float> & elapsedtime) noexcept
+            {
+                return elapsedtime;
+            };
+            return LD::Match(this->mElapsedTime,onTimerOnly,onDT);
         }
         
         
-        const LD::HeteregenousTuple<ElementReference<Context>...> & GetContext() const
+        const LD::HeteregenousTuple<ElementReference<Context>...> & GetContext() const noexcept
         {
             return this->CurrentContext;
         }
@@ -289,7 +387,7 @@ namespace LD
     };
     
     template<typename T, typename ... Context>
-    auto Get(const ApplicationPeriodEvent<Context...> & applicationPeriodEvent)
+    auto Get(const ApplicationPeriodEvent<Context...> & applicationPeriodEvent) noexcept
     {
         return LD::Get<LD::ElementReference<T>>(applicationPeriodEvent.GetContext());
     }

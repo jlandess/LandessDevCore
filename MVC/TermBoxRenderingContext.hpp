@@ -205,7 +205,7 @@ namespace LD
             }
             return amountOfDelimeters;
         }
-        LD::Detail::tVec2<LD::Integer> Cursor;
+        LD::Detail::tVec2<LD::Integer> mCursor;
         LD::Detail::tVec2<LD::Integer> mMouse;
         LD::UInteger LineWidth;
         LD::TermBoxConsoleApplicationColorSpectrum CurrentSpectrum;
@@ -286,8 +286,8 @@ namespace LD
 
 
         //tb_event & GetEvent() {return this->CurrentEvent;}
-        LD::Detail::tVec2<LD::Integer > & GetCursor() {return this->Cursor;}
-        const LD::Detail::tVec2<LD::Integer > & GetCursor() const {return this->Cursor;}
+        LD::Detail::tVec2<LD::Integer > & GetCursor() {return this->mCursor;}
+        const LD::Detail::tVec2<LD::Integer > & GetCursor() const {return this->mCursor;}
         LD::Detail::tVec2<LD::Integer > & GetMouse() {return this->mMouse;}
         const LD::Detail::tVec2<LD::Integer > & GetMouse() const {return this->mMouse;}
         void SetCurrentSpectrum(const LD::TermBoxConsoleApplicationColorSpectrum & spectrum);

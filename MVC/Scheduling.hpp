@@ -10,7 +10,6 @@
 #define Schduler_h
 
 #include "Definitions/Integer.hpp"
-//#include <Primitives/General/Array.h>
 #include "Definitions/PDPUnits.hpp"
 #include "Memory/ElementReference.h"
 #include "SchedulingEvent.hpp"
@@ -606,7 +605,7 @@ namespace LD
         Executor CurrentExecutor;
     public:
         
-        BasicApplication(const Executor & currentExecutor):CurrentExecutor(currentExecutor)
+        BasicApplication(Executor && currentExecutor):CurrentExecutor{LD::Forward<Executor>(currentExecutor)}
         {
             //this->get_state() = LD::InitialApplicationState{};
             
@@ -648,25 +647,39 @@ namespace LD
          @param applicationFrameStartedEvent - The new frame event representing each new frame of the application
          @brief - After the application has started, the next important aspect of the application is for the first frame of the application to be invoked.
          */
-        LD::ApplicationState OnEvent(const LD::ApplicationHasStartedState & applicationHasStartedState, const LD::ApplicationFrameStartedEvent<Context...> & applicationFrameStartedEvent) noexcept
-        {
+        ///LD::ApplicationState OnEvent(const LD::ApplicationHasStartedState & applicationHasStartedState, const LD::ApplicationFrameStartedEvent<Context...> & applicationFrameStartedEvent) noexcept
+        //{
             //resolve any initial conditions that have to met for the application to run, if not then just quit
-            const bool shouldRun = LD::Get(this->CurrentExecutor)(applicationFrameStartedEvent);
+            //const bool shouldRun = LD::Get(this->CurrentExecutor)(applicationFrameStartedEvent);
             
-            return LD::ApplicationFrameStartedState{shouldRun};
+            //return LD::ApplicationFrameStartedState{shouldRun};
+        //}
+
+        LD::ApplicationState OnEvent(const LD::ApplicationHasStartedState & applicationHasStartedState, const LD::ApplicationPeriodEvent<Context...> & sleepingEvent) noexcept
+        {
+        //resolve any initial conditions that have to met for the application to run, if not then just quit
+            PDP::Second<LD::Float> period =  LD::Get(this->CurrentExecutor)(sleepingEvent);
+
+            return LD::ApplicationPeriodState{period};
         }
-        
         
         /**
          @param applicationFrameEndedState - The frame of the current application has ended
          @param newFrameEvent - A new frame is starting to be processed
          @brief - An application frame can either be transitioned from the LD::ApplicationHasStartedState or from LD::ApplicationFrameEndedState
          */
-        LD::ApplicationState OnEvent(const LD::ApplicationFrameEndedState & applicationFrameEndedState, const LD::ApplicationFrameStartedEvent<Context...> & newFrameEvent) noexcept
+        //LD::ApplicationState OnEvent(const LD::ApplicationFrameEndedState & applicationFrameEndedState, const LD::ApplicationFrameStartedEvent<Context...> & newFrameEvent) noexcept
+        //{
+            //decide betweent the end of the last frame, and the beginning of the new frame if the application should continue to run
+            //const bool shouldRun = LD::Get(this->CurrentExecutor)(newFrameEvent);
+            //return LD::ApplicationFrameStartedState{shouldRun};
+        //}
+
+        LD::ApplicationState OnEvent(const LD::ApplicationFrameEndedState & applicationFrameEndedState, const LD::ApplicationPeriodEvent<Context...> & sleepingEvent) noexcept
         {
             //decide betweent the end of the last frame, and the beginning of the new frame if the application should continue to run
-            const bool shouldRun = LD::Get(this->CurrentExecutor)(newFrameEvent);
-            return LD::ApplicationFrameStartedState{shouldRun};
+            PDP::Second<LD::Float> period =  LD::Get(this->CurrentExecutor)(sleepingEvent);
+            return LD::ApplicationPeriodState{period};
         }
         
         
@@ -674,18 +687,26 @@ namespace LD
          @brief The amount of time that should be sleep before the execution event is meant to be called.  Since it is possible for that time to change over the lifetime of the
          application's execution, it is necessary to ask for the period length once per frame
          */
-        LD::ApplicationState OnEvent(const LD::ApplicationFrameStartedState & frameStartedState, const LD::ApplicationPeriodEvent<Context...> & sleepingEvent) noexcept
-        {
-            PDP::Second<LD::Float> period =  LD::Get(this->CurrentExecutor)(sleepingEvent);
+        //LD::ApplicationState OnEvent(const LD::ApplicationFrameStartedState & frameStartedState, const LD::ApplicationPeriodEvent<Context...> & sleepingEvent) noexcept
+        //{
+            //PDP::Second<LD::Float> period =  LD::Get(this->CurrentExecutor)(sleepingEvent);
             
-            return LD::ApplicationPeriodState{period};
+            //return LD::ApplicationPeriodState{period};
+        //}
+
+
+        LD::ApplicationState OnEvent(const LD::ApplicationPeriodState & frameStartedState, const LD::ApplicationFrameStartedEvent<Context...> & newFrameEvent) noexcept
+        {
+            const bool shouldRun = LD::Get(this->CurrentExecutor)(newFrameEvent);
+
+            return LD::ApplicationFrameStartedState{shouldRun};
         }
         
         
         /**
          @brief After the period has been calculated, we're ready to execute.
          */
-        LD::ApplicationState OnEvent(const LD::ApplicationPeriodState & periodState, const LD::ApplicationExecutionEvent<Context...> & executionEvent) noexcept
+        LD::ApplicationState OnEvent(const LD::ApplicationFrameStartedState & periodState, const LD::ApplicationExecutionEvent<Context...> & executionEvent) noexcept
         {
             LD::Get(this->CurrentExecutor)(executionEvent);
             
@@ -1042,11 +1063,42 @@ namespace LD
         }
         applicationTimer.Stop();
         //LD::Second<LD::Float> startupTime = LD::Second<LD::Float>(applicationTimer.GetElapsedTimeInSec());
-        auto frameFunctor = [](bool & applicationShouldrun,LD::BasicApplication<Executor(Context...)> & fsm,TimerType & applicationTimer,LD::HeteregenousTuple< LD::ElementReference<typename LD::Decay<A>::type>...> & context)->const bool
+        auto frameFunctor = [](bool & applicationShouldrun,LD::BasicApplication<Executor(Context...)> & fsm,TimerType & applicationTimer,LD::HeteregenousTuple< LD::ElementReference<typename LD::Decay<A>::type>...> & context, PDP::Second<LD::Float> & dynamicTick)->const bool
         {
+            fsm.Dispatch(LD::ApplicationPeriodEvent<typename LD::Decay<Context>::type...>{context,applicationTimer});
+
+
+            PDP::Second<LD::Float> sleepingPeriod = LD::Match(fsm.get_state(),
+            [](auto &&)
+            {
+
+                return PDP::Second<LD::Float >(0);
+
+            },
+
+            [](const LD::ApplicationPeriodState & sleepingState)
+
+            {
+                //sleepingPeriod = sleepingState;
+                return PDP::Second<LD::Float>(sleepingState);
+            });
+
+
             applicationTimer.Start();//start the timer once per frame
-            
-            
+            usleep(sleepingPeriod);//sleep for the designated amount of time
+
+            PDP::Second<LD::Float> granuilarity(sleepingPeriod*0.0625);//keep multiplying 0.016 until you reach the number, it's just a frame folding constant
+            //PDP::Second<LD::Float> zero(0);
+            //soft-real time operating systems don't return an exact amount for the requested frame time, constantly adjust through the lifetime of the application
+            const bool increaseTick = (sleepingPeriod.GetValue() < applicationTimer.GetElapsedTime());
+            const bool decreaseTick = (sleepingPeriod.GetValue() > applicationTimer.GetElapsedTime());
+
+            dynamicTick += (decreaseTick*granuilarity);
+            dynamicTick -= (increaseTick*granuilarity);
+
+
+
+
             fsm.Dispatch(LD::ApplicationFrameStartedEvent<typename LD::Decay<Context>::type...>{context,applicationTimer});//dispatch the frame started event
             //bool shouldRun = false;
             applicationShouldrun = LD::Match(fsm.get_state(),
@@ -1065,7 +1117,7 @@ namespace LD
         };
         PDP::Second<LD::Float> dynamicTick = PDP::Second<LD::Float>(0);
         //check to see when the condition for running is no longer true
-        while (frameFunctor(applicationShouldRun,fsm,applicationTimer,context))
+        while (frameFunctor(applicationShouldRun,fsm,applicationTimer,context,dynamicTick))
         {
 
             fsm.Dispatch(LD::ApplicationPeriodEvent<typename LD::Decay<Context>::type...>{context,applicationTimer});
@@ -1082,16 +1134,16 @@ namespace LD
                         return PDP::Second<LD::Float>(sleepingState);
                     });
             
-            usleep(sleepingPeriod + dynamicTick);//sleep for the designated amount of time
+            //usleep(sleepingPeriod + dynamicTick);//sleep for the designated amount of time
 
-            PDP::Second<LD::Float> granuilarity(sleepingPeriod*0.0625);//keep multiplying 0.016 until you reach the number, it's just a frame folding constant
-            PDP::Second<LD::Float> zero(0);
+            //PDP::Second<LD::Float> granuilarity(sleepingPeriod*0.0625);//keep multiplying 0.016 until you reach the number, it's just a frame folding constant
+            //PDP::Second<LD::Float> zero(0);
             //soft-real time operating systems don't return an exact amount for the requested frame time, constantly adjust through the lifetime of the application
-            const bool increaseTick = (sleepingPeriod.GetValue() < applicationTimer.GetElapsedTime());
-            const bool decreaseTick = (sleepingPeriod.GetValue() > applicationTimer.GetElapsedTime());
+            //const bool increaseTick = (sleepingPeriod.GetValue() < applicationTimer.GetElapsedTime());
+            //const bool decreaseTick = (sleepingPeriod.GetValue() > applicationTimer.GetElapsedTime());
 
-            dynamicTick += (decreaseTick*granuilarity);
-            dynamicTick -= (increaseTick*granuilarity);
+            //dynamicTick += (decreaseTick*granuilarity);
+            //dynamicTick -= (increaseTick*granuilarity);
             //do event prcessing and dispatch the events of the application
             fsm.Dispatch(LD::ApplicationExecutionEvent<typename LD::Decay<Context>::type...>{context,applicationTimer});
             //declare the frame has ended

@@ -41,7 +41,7 @@ namespace LD
         static constexpr LD::UInteger NumberOfCursors = Cursor::size();
         //constexpr static auto cursorNavigator = LD::TB::MakeCursorNavigator<A...>(cursorLeftPredicate,cursorRightPredicate,cursorDownPredicate,cursorUpPredicate);
     public:
-        constexpr TermBoxApplication(T && functor)noexcept: mFunctor{LD::Forward<T>(functor)}
+        constexpr TermBoxApplication(T && functor)noexcept: mFunctor{LD::Forward<T>(functor)},StartStatus{0}
         {
         }
 
@@ -49,7 +49,11 @@ namespace LD
 
         ~TermBoxApplication() noexcept
         {
-            tb_shutdown();
+            if(this->StartStatus == 1)
+            {
+                tb_shutdown();
+            }
+
         }
 
         template<typename F, typename ... Context>
@@ -163,11 +167,14 @@ namespace LD
         {
 
 
+
             //set a default state for the output mode
             tb_select_output_mode(LD::Get<LD::TermBoxRenderContext>(executionEvent)->GetSpectrum());
             //allow the application to render out
             TermBoxApplication::Apply(this->mFunctor,executionEvent);
 
+
+            LD::ElementReference<LD::TermBoxRenderContext> renderingContext = LD::Get<LD::TermBoxRenderContext>(executionEvent);
 
             //we there's a cursor in the context, then update it
             if constexpr(NumberOfCursors > 0)
@@ -206,6 +213,8 @@ namespace LD
                 using PositionType = LD::Detail::Decay_T<decltype(position)>;
                 LD::Integer horizontalDirection = (1*rightPredicate) + -1*(leftPredicate);
                 LD::Integer verticalDirection = (1*upPredicate + -1*(downPredicate));
+
+                renderingContext->GetCursor() += LD::BasicVec2D<LD::Integer>{horizontalDirection,verticalDirection};
 
                 position += PositionType {horizontalDirection,verticalDirection};
                 tb_set_cursor((tb_width()/2+position.X()),(tb_height()/2-position.Y()));
@@ -263,145 +272,5 @@ namespace LD
     {
         return TermBoxApplication<T(A...)>{LD::Forward<T>(object)};
     }
-    /*
-    template<typename T, template<typename,typename...> class = fixed_size_function,class = void>
-    class TermBoxApplicationImpl;
-
-    template<typename ...A, template<typename,typename...> class Functor>
-    class TermBoxApplicationImpl<LD::VariadicPack<A...>,Functor,LD::Enable_If_T<
-            LD::Either<
-                    !LD::IsInTuple<LD::TermBoxRenderContext, LD::VariadicPack<A...>>::value,
-                    !LD::IsUnique<A...>
-            >>>
-    {
-        static_assert(LD::Require<LD::IsInTuple<LD::TermBoxRenderContext, LD::VariadicPack<A...>>::value,LD::IsUnique<A...>>,"Your Context must Contain LD::TermBoxRenderContext and must be unique");
-    };
-
-    template<typename ...A, template<typename,typename...> class Functor>
-    class TermBoxApplicationImpl<LD::VariadicPack<A...>,Functor,LD::Enable_If_T<
-            LD::Require<
-                    LD::IsInTuple<LD::TermBoxRenderContext, LD::VariadicPack<A...>>::value,
-                    LD::IsUnique<A...>
-            >>>
-    {
-    private:
-        Functor<const bool(const LD::ApplicaitonStartedEvent<A...> &)> ApplicationStarted;
-        Functor<const bool(const LD::ApplicationFrameStartedEvent<A...> &)> FrameStarted;
-        Functor<PDP::Second<LD::Float>(const LD::ApplicationPeriodEvent<A...> &)> SleepingEvent;
-        Functor<void(const LD::ApplicationFrameEndedEvent<A...> &)> FrameEnded;
-        Functor<void(const LD::ApplicationExecutionEvent<A...> &)> ExecutionEvent;
-        Functor<void(const LD::ApplicationQuittingEvent<A...> &)> QuittingEvent;
-    public:
-        TermBoxApplicationImpl()
-        {
-            this->ApplicationStarted = Functor<const bool(const LD::ApplicaitonStartedEvent<A...> &)>([](const LD::ApplicaitonStartedEvent<A...> &)
-                                                                                                      {
-                                                                                                          return true;
-                                                                                                      });
-            this->SleepingEvent = Functor<PDP::Second<LD::Float>(const LD::ApplicationPeriodEvent<A...> &)>([](const LD::ApplicationPeriodEvent<A...> &)
-                                                                                                            {
-                                                                                                                return PDP::Second<LD::Float>(1.0);
-                                                                                                            });
-
-            this->QuittingEvent = Functor<void(const LD::ApplicationQuittingEvent<A...> &)>([](const LD::ApplicationQuittingEvent<A...> &)
-                                                                                            {
-                                                                                            });
-
-
-        }
-
-        template<typename F>
-        LD::Enable_If_T<
-                LD::Require<
-                        LD::ConvertiblyCallable<F, bool(const LD::ApplicaitonStartedEvent<A...> &)>::Value()
-                >,TermBoxApplicationImpl &> OnApplicationStart(F && functor)
-        {
-            this->ApplicationStarted = Functor<const bool(const LD::ApplicaitonStartedEvent<A...> &)>(LD::Forward<F>(functor));
-            return (*this);
-        }
-
-        template<typename F>
-        LD::Enable_If_T<
-                LD::Require<
-                        LD::ConvertiblyCallable<F, bool(const LD::ApplicationFrameStartedEvent<A...> &)>::Value()
-                >,TermBoxApplicationImpl &> OnFrameStarted(F && functor)
-        {
-            this->FrameStarted = Functor<const bool(const LD::ApplicationFrameStartedEvent<A...> &)>(LD::Forward<F>(functor));
-            return (*this);
-        }
-
-        template<typename F>
-        LD::Enable_If_T<
-                LD::Require<
-                        LD::ConvertiblyCallable<F, PDP::Second<LD::Float>(const LD::ApplicationPeriodEvent<A...> &)>::Value()
-                >,TermBoxApplicationImpl &> OnPeriodRequest(F && functor)
-        {
-            this->SleepingEvent = Functor<PDP::Second<LD::Float>(const LD::ApplicationPeriodEvent<A...> &)>(LD::Forward<F>(functor));
-            return (*this);
-        }
-
-        template<typename F>
-        LD::Enable_If_T<
-                LD::Require<
-                        LD::ConvertiblyCallable<F, void(const LD::ApplicationFrameEndedEvent<A...> &)>::Value()
-                >,TermBoxApplicationImpl &> OnFrameEnded(F && functor)
-        {
-            this->FrameEnded = Functor<void(const LD::ApplicationFrameEndedEvent<A...> &)>(LD::Forward<F>(functor));
-            return (*this);
-        }
-
-        template<typename F>
-        LD::Enable_If_T<
-                LD::Require<
-                        LD::ConvertiblyCallable<F, void(const LD::ApplicationExecutionEvent<A...> &)>::Value()
-                >,TermBoxApplicationImpl &> OnExecution(F && functor)
-        {
-            this->ExecutionEvent = Functor<void(const LD::ApplicationExecutionEvent<A...> &)>(LD::Forward<F>(functor));
-            return (*this);
-        }
-
-
-        template<typename F>
-        LD::Enable_If_T<
-                LD::Require<
-                        LD::ConvertiblyCallable<F, void(const LD::ApplicationQuittingEvent<A...> &)>::Value()
-                >,TermBoxApplicationImpl &> OnQuit(F && functor)
-        {
-            this->QuittingEvent = Functor<void(const LD::ApplicationQuittingEvent<A...> &)>(LD::Forward<F>(functor));
-            return (*this);
-        }
-
-
-        const bool operator()(const LD::ApplicaitonStartedEvent<A...> & applicationStartedEvent)
-        {
-            return this->ApplicationStarted(applicationStartedEvent);
-        }
-
-        const bool operator()(const LD::ApplicationFrameStartedEvent<A...> & applicationFrameStartedEvent)
-        {
-            return this->FrameStarted(applicationFrameStartedEvent);
-        }
-        PDP::Second<LD::Float> operator()(const LD::ApplicationPeriodEvent<A...> & sleepingEvent)
-        {
-            return this->SleepingEvent(sleepingEvent);
-        }
-        void operator()(const LD::ApplicationExecutionEvent<A...> & executionEvent)
-        {
-            return this->ExecutionEvent(executionEvent);
-        }
-        void operator()(const LD::ApplicationFrameEndedEvent<A...> & frameEndedEvent)
-        {
-            return this->FrameEnded(frameEndedEvent);
-        }
-
-        void operator()(const LD::ApplicationQuittingEvent<A...> & quittingEvent)
-        {
-            return this->QuittingEvent(quittingEvent);
-        }
-    };
-
-    template<typename ...A>
-    using TermBoxApplication = LD::TermBoxApplicationImpl<LD::VariadicPack<A...>>;
-     */
 }
 #endif //LANDESSDEVDATASTRUCTURES_TERMBOXAPPLICATION_H

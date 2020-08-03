@@ -407,7 +407,7 @@ namespace LD
 
     void TermBoxRenderContext::Clear(const unsigned short & foregroundColor, const unsigned short & backgroundColor, const LD::TermBoxConsoleApplicationColorModifier & foregroundModifier, const LD::TermBoxConsoleApplicationColorModifier & backgroundModifier, const LD::TermBoxConsoleApplicationColorSpectrum & spectrum)
     {
-        this->Cursor = {0,0};
+        //this->mCursor = {0,0};
         this->LineWidth = tb_width();
     }
 }
