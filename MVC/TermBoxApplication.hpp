@@ -83,7 +83,7 @@ namespace LD
             //if we want mouse input then it will be dicated by the context
             if constexpr(NumberOfMice > 0)
             {
-                tb_select_input_mode(TB_INPUT_ESC | TB_INPUT_MOUSE);
+                //tb_select_input_mode(TB_INPUT_ESC | TB_INPUT_MOUSE);
             }
             //return (this->StartStatus) && this->CurrentApplication(applicationStartedEvent);
             return (this->StartStatus) && TermBoxApplication::Apply(this->mFunctor,applicationStartedEvent);
@@ -112,7 +112,8 @@ namespace LD
         bool operator()(const LD::ApplicationFrameStartedEvent<A...> & applicationFrameStartedEvent) noexcept
         {
             tb_event tbEvent;
-            tb_peek_event(&tbEvent, 0);//get the event from this frame
+
+            tb_peek_event(&tbEvent, 0);//get the even from this frame
             LD::Get<LD::TermBoxRenderContext>(applicationFrameStartedEvent)->CurrentEvent = tbEvent;
             //tb_clear_screen();
             tb_clear();//clear the buffer at the beginning of the frame
@@ -204,6 +205,10 @@ namespace LD
                 auto cursor = LD::Get<LD::CT::TypeAtIndex<0,Cursor>>(executionEvent);
 
                 auto key = LD::Get<LD::TermBoxRenderContext>(executionEvent)->GetEvent().key;
+
+
+
+                //LD::Match(event,onEmpty,onMouse,onResize,onKeyboardEvent);
                 bool rightPredicate = (key == TB_KEY_ARROW_RIGHT);
                 bool leftPredicate = (key == TB_KEY_ARROW_LEFT);
                 bool upPredicate = (key == TB_KEY_ARROW_UP);
@@ -241,6 +246,7 @@ namespace LD
          */
         void operator()(const LD::ApplicationFrameEndedEvent<A...> & frameEndedEvent) noexcept
         {
+            //LD::Get<LD::TermBoxRenderContext>(frameEndedEvent)->CurrentEvent = tb_event{};
             return TermBoxApplication::Apply(this->mFunctor,frameEndedEvent);
         }
 
@@ -256,7 +262,7 @@ namespace LD
             return;
         }
 
-        /**
+        /**x
          *
          * @param quittingEvent
          */

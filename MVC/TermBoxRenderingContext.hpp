@@ -215,7 +215,8 @@ namespace LD
         unsigned short CurrentBackgroundColor;
         unsigned short mMouseEnabled;
 
-        const TermBoxRenderContext & Write(const char & character, const LD::Detail::tVec2<LD::Integer> & translation) const;
+        const TermBoxRenderContext & Write(const char & character, const LD::Detail::tVec2<LD::Integer> & translation) const noexcept;
+        const TermBoxRenderContext & Write(const wchar_t & character, const LD::Detail::tVec2<LD::Integer> & translation) const noexcept;
     public:
 
 
@@ -249,7 +250,7 @@ namespace LD
 
         template<typename ... Args,
                 typename Ret = LD::ContextualVariant<LD::Variant<LD::TermBoxEmptyEvent,LD::TermBoxResizingEvent,LD::TermBoxMouseEvent,LD::TermBoxKeyboardEvent>(Args...)>>
-        constexpr Ret Event(Args && ... arguements) const noexcept
+        constexpr Ret Event(Args && ... arguements)  noexcept
         {
             //An event, single interaction from the user. The 'mod' and 'ch' fields are
             // valid if 'type' is TB_EVENT_KEY. The 'w' and 'h' fields are valid if 'type'
@@ -259,6 +260,7 @@ namespace LD
             // one of them can be non-zero at a time.
             Ret eventable[4];
 
+            //tb_peek_event(&CurrentEvent,0);
             eventable[0] = LD::MakeContext(LD::TermBoxEmptyEvent{},LD::Forward<Args>(arguements)...);
             eventable[1] = LD::MakeContext(LD::TermBoxMouseEvent{this->GetEvent().x,this->GetEvent().y},LD::Forward<Args>(arguements)...);
             eventable[2] = LD::MakeContext(LD::TermBoxKeyboardEvent{this->GetEvent().mod,this->GetEvent().key,this->GetEvent().ch},LD::Forward<Args>(arguements)...);
@@ -347,6 +349,13 @@ namespace LD
                 instance->Write(currentCharacter,translation+LD::Detail::tVec2<LD::Integer>{Index,0});
                 return (Index < str.GetSize());
             },str,this,translation);
+            return (*this);
+        }
+
+        template<typename T>
+        auto Render(const T & wideCharacter, const LD::Detail::tVec2<LD::Integer > & translation) noexcept -> LD::TypedRequires<LD::TermBoxRenderContext&,LD::Detail::IsSame<T, wchar_t >::value>
+        {
+            this->Write(wideCharacter,translation);
             return (*this);
         }
 

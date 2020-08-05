@@ -411,6 +411,9 @@
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/MVC/Mouse.h">
 			<Option target="LandessDevCore"/>
 		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/MVC/MultiTenantApplication.hpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/MVC/Renderable.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
@@ -442,6 +445,9 @@
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/MVC/TermBoxButton.hpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/MVC/TermBoxCheckBox.h">
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/LandessDevCore/MVC/TermBoxCursorNavigator.hpp">

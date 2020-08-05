@@ -232,7 +232,19 @@ namespace LD
     }
 
      */
-    const TermBoxRenderContext & TermBoxRenderContext::Write(const char & character, const LD::Detail::tVec2<LD::Integer> & location) const
+    const TermBoxRenderContext & TermBoxRenderContext::Write(const char & character, const LD::Detail::tVec2<LD::Integer> & location) const noexcept
+    {
+        //int x = (int)Cursor.X();
+        //int y = (int)Cursor.Y();
+
+        int x = tb_width()/2 + location.X();
+        int y = tb_height()/2 - location.Y();
+
+        tb_change_cell(x, y, character, this->CurrentForegroundColor | this->CurrentForegroundModifier, this->CurrentBackgroundColor| this->CurrentBackgroundModifier);
+        return (*this);
+    }
+
+    const TermBoxRenderContext & TermBoxRenderContext::Write(const wchar_t & character, const LD::Detail::tVec2<LD::Integer> & location) const noexcept
     {
         //int x = (int)Cursor.X();
         //int y = (int)Cursor.Y();

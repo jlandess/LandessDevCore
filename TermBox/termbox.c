@@ -189,7 +189,7 @@ void tb_present(void)
 		for (x = 0; x < front_buffer.width; ) {
 			back = &CELL(&back_buffer, x, y);
 			front = &CELL(&front_buffer, x, y);
-			w = wcwidth(back->ch);
+			//w = wcwidth(back->ch);
 			if (w < 1) w = 1;
 			if (memcmp(back, front, sizeof(struct tb_cell)) == 0) {
 				x += w;

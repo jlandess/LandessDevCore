@@ -110,7 +110,7 @@ namespace LD
              *
              * @return
              */
-            BasicImmutableTextInput & operator()( TermBoxRenderContext & context) noexcept
+            TermBoxRenderContext & operator()( TermBoxRenderContext & context) noexcept
             {
 
                 context.SetForegroundColor(TB_YELLOW);
@@ -245,7 +245,7 @@ namespace LD
 
                 context.RenderWithFormat(LD::ToImmutableString("{}"),{this->mPosition.X()+Size,this->mPosition.Y()-1},edge);
                 context.SetForegroundColor(TB_GREEN);
-                return (*this);
+                return context;
             }
         };
 
