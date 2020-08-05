@@ -151,8 +151,8 @@ namespace LD
 
                 LD::Integer horizontalDirection = (isMouseEnabled*(1*(results[RightPredicateIndex]) + -1*(results[LeftPredicateIndex])));
                 LD::Integer verticalDirection = (isMouseEnabled*(1*(results[UpPredicateIndex]) + -1*(results[DownPredicateIndex])));
-                LD::Get<LD::TermBoxRenderContext>(context)->GetMouse().X() += horizontalDirection;
-                LD::Get<LD::TermBoxRenderContext>(context)->GetMouse().Y() += verticalDirection;
+                LD::Get<LD::TermBoxRenderContext>(context)->GetCursor().X() += horizontalDirection;
+                LD::Get<LD::TermBoxRenderContext>(context)->GetCursor().Y() += verticalDirection;
                 /*
                 LD::Integer horizontalDirection = (isMouseEnabled*(1*(willGoRight) + -1*(willGoLeft)));
                 LD::Integer verticalDirection = (isMouseEnabled*(1*(willGoUp) + -1*(willGoDown)));

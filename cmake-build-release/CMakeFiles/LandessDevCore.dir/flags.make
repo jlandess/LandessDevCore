@@ -7,11 +7,11 @@ C_FLAGS = -O3 -DNDEBUG
 
 C_DEFINES = 
 
-C_INCLUDES = -I/home/phoenixflower/Documents/LandessDevCore/. 
+C_INCLUDES = -I/home/phoenixflower/Documents/Test/LandessDevCore/. 
 
 CXX_FLAGS = -march=native   -std=gnu++17
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/phoenixflower/Documents/LandessDevCore/. 
+CXX_INCLUDES = -I/home/phoenixflower/Documents/Test/LandessDevCore/. 
 

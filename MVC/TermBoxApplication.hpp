@@ -166,64 +166,22 @@ namespace LD
          */
         void operator ()(const LD::ApplicationExecutionEvent<A...> & executionEvent) noexcept
         {
-
-
-
             //set a default state for the output mode
             tb_select_output_mode(LD::Get<LD::TermBoxRenderContext>(executionEvent)->GetSpectrum());
             //allow the application to render out
             TermBoxApplication::Apply(this->mFunctor,executionEvent);
-
-
             LD::ElementReference<LD::TermBoxRenderContext> renderingContext = LD::Get<LD::TermBoxRenderContext>(executionEvent);
-
-            //we there's a cursor in the context, then update it
-            if constexpr(NumberOfCursors > 0)
-            {
-                auto cursorLeftPredicate = [](const LD::ApplicationExecutionEvent<A...> & context)->LD::TB::CursorLeftResult
-                {
-                    return LD::TB::CursorLeftResult{(LD::Get<LD::TermBoxRenderContext>(context)->GetEvent().key == TB_KEY_ARROW_LEFT)};
-                };
-
-
-                auto cursorRightPredicate = [](const LD::ApplicationExecutionEvent<A...> & context)->LD::TB::CursorRightResult
-                {
-                    return LD::TB::CursorRightResult{(LD::Get<LD::TermBoxRenderContext>(context)->GetEvent().key == TB_KEY_ARROW_RIGHT)};
-                };
-
-                auto cursorUpPredicate = [](const LD::ApplicationExecutionEvent<A...> & context)->LD::TB::CursorUpResult
-                {
-                    return LD::TB::CursorUpResult{(LD::Get<LD::TermBoxRenderContext>(context)->GetEvent().key == TB_KEY_ARROW_UP)};
-                };
-                auto cursorDownPredicate = [](const LD::ApplicationExecutionEvent<A...> & context)->LD::TB::CursorDownResult
-                {
-                    return LD::TB::CursorDownResult{(LD::Get<LD::TermBoxRenderContext>(context)->GetEvent().key == TB_KEY_ARROW_DOWN)};
-                };
-                auto cursorNavigator = LD::TB::MakeCursorNavigator<A...>(cursorLeftPredicate,cursorRightPredicate,cursorDownPredicate,cursorUpPredicate);
-                cursorNavigator(executionEvent);
-
-                auto cursor = LD::Get<LD::CT::TypeAtIndex<0,Cursor>>(executionEvent);
-
-                auto key = LD::Get<LD::TermBoxRenderContext>(executionEvent)->GetEvent().key;
-
-
-
-                //LD::Match(event,onEmpty,onMouse,onResize,onKeyboardEvent);
-                bool rightPredicate = (key == TB_KEY_ARROW_RIGHT);
-                bool leftPredicate = (key == TB_KEY_ARROW_LEFT);
-                bool upPredicate = (key == TB_KEY_ARROW_UP);
-                bool downPredicate = (key == TB_KEY_ARROW_DOWN);
-                auto & position = cursor->Position();
-
-                using PositionType = LD::Detail::Decay_T<decltype(position)>;
-                LD::Integer horizontalDirection = (1*rightPredicate) + -1*(leftPredicate);
-                LD::Integer verticalDirection = (1*upPredicate + -1*(downPredicate));
-
-                renderingContext->GetCursor() += LD::BasicVec2D<LD::Integer>{horizontalDirection,verticalDirection};
-
-                position += PositionType {horizontalDirection,verticalDirection};
-                tb_set_cursor((tb_width()/2+position.X()),(tb_height()/2-position.Y()));
-            }
+            auto left = (LD::Get<LD::TermBoxRenderContext>(executionEvent)->GetEvent().key == TB_KEY_ARROW_LEFT);
+            auto right = (LD::Get<LD::TermBoxRenderContext>(executionEvent)->GetEvent().key == TB_KEY_ARROW_RIGHT);
+            auto up = (LD::Get<LD::TermBoxRenderContext>(executionEvent)->GetEvent().key == TB_KEY_ARROW_UP);
+            auto down = (LD::Get<LD::TermBoxRenderContext>(executionEvent)->GetEvent().key == TB_KEY_ARROW_DOWN);
+            const LD::UInteger isMouseEnabled = (LD::Get<LD::TermBoxRenderContext>(executionEvent)->IsMouseEnabled());
+            LD::Integer horizontalDirection = (isMouseEnabled*(1*(right) + -1*(left)));
+            LD::Integer verticalDirection = (isMouseEnabled*(1*(up) + -1*(down)));
+            LD::Get<LD::TermBoxRenderContext>(executionEvent)->GetCursor().X() += horizontalDirection;
+            LD::Get<LD::TermBoxRenderContext>(executionEvent)->GetCursor().Y() += verticalDirection;
+            auto position = renderingContext->GetCursor();
+            tb_set_cursor((tb_width()/2+position.X()),(tb_height()/2-position.Y()));
             tb_present();
         }
 
