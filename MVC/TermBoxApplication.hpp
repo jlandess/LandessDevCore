@@ -10,7 +10,7 @@
 #include "Core/HeteregenousTuple.hpp"
 #include "Definitions/PDPUnits.hpp"
 #include "MVC/SchedulingEvent.hpp"
-#include "Mouse.h"
+#include "Mouse.hpp"
 #include "Cusor.h"
 #include "SchedulingQuittingPredicate.hpp"
 #include "TermBoxCursorNavigator.hpp"

@@ -1,4 +1,4 @@
-The system is: Linux - 5.3.0-64-generic - x86_64
+The system is: Linux - 5.4.0-7634-generic - x86_64
 Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
 Compiler: /usr/bin/clang 
 Build flags: 
@@ -10,7 +10,7 @@ The output was:
 
 Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
 
-The C compiler identification is Clang, found in "/home/phoenixflower/Documents/Test/LandessDevCore/cmake-build-release/CMakeFiles/3.17.3/CompilerIdC/a.out"
+The C compiler identification is Clang, found in "/home/phoenixflower/Documents/LandessDevCore/cmake-build-release/CMakeFiles/3.17.3/CompilerIdC/a.out"
 
 Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
 Compiler: /usr/bin/clang++ 
@@ -23,70 +23,63 @@ The output was:
 
 Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
 
-The CXX compiler identification is Clang, found in "/home/phoenixflower/Documents/Test/LandessDevCore/cmake-build-release/CMakeFiles/3.17.3/CompilerIdCXX/a.out"
+The CXX compiler identification is Clang, found in "/home/phoenixflower/Documents/LandessDevCore/cmake-build-release/CMakeFiles/3.17.3/CompilerIdCXX/a.out"
 
 Determining if the C compiler works passed with the following output:
-Change Dir: /home/phoenixflower/Documents/Test/LandessDevCore/cmake-build-release/CMakeFiles/CMakeTmp
+Change Dir: /home/phoenixflower/Documents/LandessDevCore/cmake-build-release/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/make cmTC_d7350/fast && /usr/bin/make  -f CMakeFiles/cmTC_d7350.dir/build.make CMakeFiles/cmTC_d7350.dir/build
-make[1]: Entering directory '/home/phoenixflower/Documents/Test/LandessDevCore/cmake-build-release/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_d7350.dir/testCCompiler.c.o
-/usr/bin/clang    -o CMakeFiles/cmTC_d7350.dir/testCCompiler.c.o   -c /home/phoenixflower/Documents/Test/LandessDevCore/cmake-build-release/CMakeFiles/CMakeTmp/testCCompiler.c
-Linking C executable cmTC_d7350
-/snap/clion/123/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d7350.dir/link.txt --verbose=1
-/usr/bin/clang      CMakeFiles/cmTC_d7350.dir/testCCompiler.c.o  -o cmTC_d7350 
-make[1]: Leaving directory '/home/phoenixflower/Documents/Test/LandessDevCore/cmake-build-release/CMakeFiles/CMakeTmp'
+Run Build Command(s):/usr/bin/make cmTC_960da/fast && /usr/bin/make  -f CMakeFiles/cmTC_960da.dir/build.make CMakeFiles/cmTC_960da.dir/build
+make[1]: Entering directory '/home/phoenixflower/Documents/LandessDevCore/cmake-build-release/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_960da.dir/testCCompiler.c.o
+/usr/bin/clang    -o CMakeFiles/cmTC_960da.dir/testCCompiler.c.o   -c /home/phoenixflower/Documents/LandessDevCore/cmake-build-release/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_960da
+/snap/clion/123/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_960da.dir/link.txt --verbose=1
+/usr/bin/clang      CMakeFiles/cmTC_960da.dir/testCCompiler.c.o  -o cmTC_960da 
+make[1]: Leaving directory '/home/phoenixflower/Documents/LandessDevCore/cmake-build-release/CMakeFiles/CMakeTmp'
 
 
 
 Detecting C compiler ABI info compiled with the following output:
-Change Dir: /home/phoenixflower/Documents/Test/LandessDevCore/cmake-build-release/CMakeFiles/CMakeTmp
+Change Dir: /home/phoenixflower/Documents/LandessDevCore/cmake-build-release/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/make cmTC_3fb43/fast && /usr/bin/make  -f CMakeFiles/cmTC_3fb43.dir/build.make CMakeFiles/cmTC_3fb43.dir/build
-make[1]: Entering directory '/home/phoenixflower/Documents/Test/LandessDevCore/cmake-build-release/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_3fb43.dir/CMakeCCompilerABI.c.o
-/usr/bin/clang   -v -o CMakeFiles/cmTC_3fb43.dir/CMakeCCompilerABI.c.o   -c /snap/clion/123/bin/cmake/linux/share/cmake-3.17/Modules/CMakeCCompilerABI.c
-clang version 9.0.0-2 (tags/RELEASE_900/final)
+Run Build Command(s):/usr/bin/make cmTC_227c5/fast && /usr/bin/make  -f CMakeFiles/cmTC_227c5.dir/build.make CMakeFiles/cmTC_227c5.dir/build
+make[1]: Entering directory '/home/phoenixflower/Documents/LandessDevCore/cmake-build-release/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_227c5.dir/CMakeCCompilerABI.c.o
+/usr/bin/clang   -v -o CMakeFiles/cmTC_227c5.dir/CMakeCCompilerABI.c.o   -c /snap/clion/123/bin/cmake/linux/share/cmake-3.17/Modules/CMakeCCompilerABI.c
+clang version 10.0.0-4ubuntu1 
 Target: x86_64-pc-linux-gnu
 Thread model: posix
 InstalledDir: /usr/bin
-Found candidate GCC installation: /usr/bin/../lib/gcc/i686-linux-gnu/9
-Found candidate GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/8
 Found candidate GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/9
-Found candidate GCC installation: /usr/lib/gcc/i686-linux-gnu/9
-Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/8
 Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/9
 Selected GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/9
 Candidate multilib: .;@m64
 Selected multilib: .;@m64
- "/usr/lib/llvm-9/bin/clang" -cc1 -triple x86_64-pc-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -fuse-init-array -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -v -coverage-notes-file /home/phoenixflower/Documents/Test/LandessDevCore/cmake-build-release/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_3fb43.dir/CMakeCCompilerABI.c.gcno -resource-dir /usr/lib/llvm-9/lib/clang/9.0.0 -internal-isystem /usr/local/include -internal-isystem /usr/lib/llvm-9/lib/clang/9.0.0/include -internal-externc-isystem /usr/include/x86_64-linux-gnu -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdebug-compilation-dir /home/phoenixflower/Documents/Test/LandessDevCore/cmake-build-release/CMakeFiles/CMakeTmp -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -faddrsig -o CMakeFiles/cmTC_3fb43.dir/CMakeCCompilerABI.c.o -x c /snap/clion/123/bin/cmake/linux/share/cmake-3.17/Modules/CMakeCCompilerABI.c
-clang -cc1 version 9.0.0 based upon LLVM 9.0.0 default target x86_64-pc-linux-gnu
+ (in-process)
+ "/usr/lib/llvm-10/bin/clang" -cc1 -triple x86_64-pc-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model static -mthread-model posix -mframe-pointer=all -fmath-errno -fno-rounding-math -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -fno-split-dwarf-inlining -debugger-tuning=gdb -v -resource-dir /usr/lib/llvm-10/lib/clang/10.0.0 -internal-isystem /usr/local/include -internal-isystem /usr/lib/llvm-10/lib/clang/10.0.0/include -internal-externc-isystem /usr/include/x86_64-linux-gnu -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdebug-compilation-dir /home/phoenixflower/Documents/LandessDevCore/cmake-build-release/CMakeFiles/CMakeTmp -ferror-limit 19 -fmessage-length 0 -fgnuc-version=4.2.1 -fobjc-runtime=gcc -fdiagnostics-show-option -faddrsig -o CMakeFiles/cmTC_227c5.dir/CMakeCCompilerABI.c.o -x c /snap/clion/123/bin/cmake/linux/share/cmake-3.17/Modules/CMakeCCompilerABI.c
+clang -cc1 version 10.0.0 based upon LLVM 10.0.0 default target x86_64-pc-linux-gnu
 ignoring nonexistent directory "/include"
 #include "..." search starts here:
 #include <...> search starts here:
  /usr/local/include
- /usr/lib/llvm-9/lib/clang/9.0.0/include
+ /usr/lib/llvm-10/lib/clang/10.0.0/include
  /usr/include/x86_64-linux-gnu
  /usr/include
 End of search list.
-Linking C executable cmTC_3fb43
-/snap/clion/123/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3fb43.dir/link.txt --verbose=1
-/usr/bin/clang     -v CMakeFiles/cmTC_3fb43.dir/CMakeCCompilerABI.c.o  -o cmTC_3fb43 
-clang version 9.0.0-2 (tags/RELEASE_900/final)
+Linking C executable cmTC_227c5
+/snap/clion/123/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_227c5.dir/link.txt --verbose=1
+/usr/bin/clang     -v CMakeFiles/cmTC_227c5.dir/CMakeCCompilerABI.c.o  -o cmTC_227c5 
+clang version 10.0.0-4ubuntu1 
 Target: x86_64-pc-linux-gnu
 Thread model: posix
 InstalledDir: /usr/bin
-Found candidate GCC installation: /usr/bin/../lib/gcc/i686-linux-gnu/9
-Found candidate GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/8
 Found candidate GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/9
-Found candidate GCC installation: /usr/lib/gcc/i686-linux-gnu/9
-Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/8
 Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/9
 Selected GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/9
 Candidate multilib: .;@m64
 Selected multilib: .;@m64
- "/usr/bin/ld" -z relro --hash-style=gnu --build-id --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_3fb43 /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/crt1.o /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/crti.o /usr/bin/../lib/gcc/x86_64-linux-gnu/9/crtbegin.o -L/usr/bin/../lib/gcc/x86_64-linux-gnu/9 -L/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu -L/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../lib64 -L/lib/x86_64-linux-gnu -L/lib/../lib64 -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib64 -L/usr/lib/x86_64-linux-gnu/../../lib64 -L/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../.. -L/usr/lib/llvm-9/bin/../lib -L/lib -L/usr/lib CMakeFiles/cmTC_3fb43.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/bin/../lib/gcc/x86_64-linux-gnu/9/crtend.o /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/crtn.o
-make[1]: Leaving directory '/home/phoenixflower/Documents/Test/LandessDevCore/cmake-build-release/CMakeFiles/CMakeTmp'
+ "/usr/bin/ld" -z relro --hash-style=gnu --build-id --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_227c5 /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/crt1.o /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/crti.o /usr/bin/../lib/gcc/x86_64-linux-gnu/9/crtbegin.o -L/usr/bin/../lib/gcc/x86_64-linux-gnu/9 -L/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu -L/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../lib64 -L/lib/x86_64-linux-gnu -L/lib/../lib64 -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib64 -L/usr/lib/x86_64-linux-gnu/../../lib64 -L/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../.. -L/usr/lib/llvm-10/bin/../lib -L/lib -L/usr/lib CMakeFiles/cmTC_227c5.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/bin/../lib/gcc/x86_64-linux-gnu/9/crtend.o /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/crtn.o
+make[1]: Leaving directory '/home/phoenixflower/Documents/LandessDevCore/cmake-build-release/CMakeFiles/CMakeTmp'
 
 
 
@@ -94,69 +87,62 @@ Parsed C implicit include dir info from above output: rv=done
   found start of include info
   found start of implicit include info
     add: [/usr/local/include]
-    add: [/usr/lib/llvm-9/lib/clang/9.0.0/include]
+    add: [/usr/lib/llvm-10/lib/clang/10.0.0/include]
     add: [/usr/include/x86_64-linux-gnu]
     add: [/usr/include]
   end of search list found
   collapse include dir [/usr/local/include] ==> [/usr/local/include]
-  collapse include dir [/usr/lib/llvm-9/lib/clang/9.0.0/include] ==> [/usr/lib/llvm-9/lib/clang/9.0.0/include]
+  collapse include dir [/usr/lib/llvm-10/lib/clang/10.0.0/include] ==> [/usr/lib/llvm-10/lib/clang/10.0.0/include]
   collapse include dir [/usr/include/x86_64-linux-gnu] ==> [/usr/include/x86_64-linux-gnu]
   collapse include dir [/usr/include] ==> [/usr/include]
-  implicit include dirs: [/usr/local/include;/usr/lib/llvm-9/lib/clang/9.0.0/include;/usr/include/x86_64-linux-gnu;/usr/include]
+  implicit include dirs: [/usr/local/include;/usr/lib/llvm-10/lib/clang/10.0.0/include;/usr/include/x86_64-linux-gnu;/usr/include]
 
 
 Parsed C implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
-  ignore line: [Change Dir: /home/phoenixflower/Documents/Test/LandessDevCore/cmake-build-release/CMakeFiles/CMakeTmp]
+  ignore line: [Change Dir: /home/phoenixflower/Documents/LandessDevCore/cmake-build-release/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command(s):/usr/bin/make cmTC_3fb43/fast && /usr/bin/make  -f CMakeFiles/cmTC_3fb43.dir/build.make CMakeFiles/cmTC_3fb43.dir/build]
-  ignore line: [make[1]: Entering directory '/home/phoenixflower/Documents/Test/LandessDevCore/cmake-build-release/CMakeFiles/CMakeTmp']
-  ignore line: [Building C object CMakeFiles/cmTC_3fb43.dir/CMakeCCompilerABI.c.o]
-  ignore line: [/usr/bin/clang   -v -o CMakeFiles/cmTC_3fb43.dir/CMakeCCompilerABI.c.o   -c /snap/clion/123/bin/cmake/linux/share/cmake-3.17/Modules/CMakeCCompilerABI.c]
-  ignore line: [clang version 9.0.0-2 (tags/RELEASE_900/final)]
+  ignore line: [Run Build Command(s):/usr/bin/make cmTC_227c5/fast && /usr/bin/make  -f CMakeFiles/cmTC_227c5.dir/build.make CMakeFiles/cmTC_227c5.dir/build]
+  ignore line: [make[1]: Entering directory '/home/phoenixflower/Documents/LandessDevCore/cmake-build-release/CMakeFiles/CMakeTmp']
+  ignore line: [Building C object CMakeFiles/cmTC_227c5.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/usr/bin/clang   -v -o CMakeFiles/cmTC_227c5.dir/CMakeCCompilerABI.c.o   -c /snap/clion/123/bin/cmake/linux/share/cmake-3.17/Modules/CMakeCCompilerABI.c]
+  ignore line: [clang version 10.0.0-4ubuntu1 ]
   ignore line: [Target: x86_64-pc-linux-gnu]
   ignore line: [Thread model: posix]
   ignore line: [InstalledDir: /usr/bin]
-  ignore line: [Found candidate GCC installation: /usr/bin/../lib/gcc/i686-linux-gnu/9]
-  ignore line: [Found candidate GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/8]
   ignore line: [Found candidate GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/9]
-  ignore line: [Found candidate GCC installation: /usr/lib/gcc/i686-linux-gnu/9]
-  ignore line: [Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/8]
   ignore line: [Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/9]
   ignore line: [Selected GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/9]
   ignore line: [Candidate multilib: .]
   ignore line: [@m64]
   ignore line: [Selected multilib: .]
   ignore line: [@m64]
-  ignore line: [ "/usr/lib/llvm-9/bin/clang" -cc1 -triple x86_64-pc-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -fuse-init-array -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -v -coverage-notes-file /home/phoenixflower/Documents/Test/LandessDevCore/cmake-build-release/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_3fb43.dir/CMakeCCompilerABI.c.gcno -resource-dir /usr/lib/llvm-9/lib/clang/9.0.0 -internal-isystem /usr/local/include -internal-isystem /usr/lib/llvm-9/lib/clang/9.0.0/include -internal-externc-isystem /usr/include/x86_64-linux-gnu -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdebug-compilation-dir /home/phoenixflower/Documents/Test/LandessDevCore/cmake-build-release/CMakeFiles/CMakeTmp -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -faddrsig -o CMakeFiles/cmTC_3fb43.dir/CMakeCCompilerABI.c.o -x c /snap/clion/123/bin/cmake/linux/share/cmake-3.17/Modules/CMakeCCompilerABI.c]
-  ignore line: [clang -cc1 version 9.0.0 based upon LLVM 9.0.0 default target x86_64-pc-linux-gnu]
+  ignore line: [ (in-process)]
+  ignore line: [ "/usr/lib/llvm-10/bin/clang" -cc1 -triple x86_64-pc-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model static -mthread-model posix -mframe-pointer=all -fmath-errno -fno-rounding-math -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -fno-split-dwarf-inlining -debugger-tuning=gdb -v -resource-dir /usr/lib/llvm-10/lib/clang/10.0.0 -internal-isystem /usr/local/include -internal-isystem /usr/lib/llvm-10/lib/clang/10.0.0/include -internal-externc-isystem /usr/include/x86_64-linux-gnu -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdebug-compilation-dir /home/phoenixflower/Documents/LandessDevCore/cmake-build-release/CMakeFiles/CMakeTmp -ferror-limit 19 -fmessage-length 0 -fgnuc-version=4.2.1 -fobjc-runtime=gcc -fdiagnostics-show-option -faddrsig -o CMakeFiles/cmTC_227c5.dir/CMakeCCompilerABI.c.o -x c /snap/clion/123/bin/cmake/linux/share/cmake-3.17/Modules/CMakeCCompilerABI.c]
+  ignore line: [clang -cc1 version 10.0.0 based upon LLVM 10.0.0 default target x86_64-pc-linux-gnu]
   ignore line: [ignoring nonexistent directory "/include"]
   ignore line: [#include "..." search starts here:]
   ignore line: [#include <...> search starts here:]
   ignore line: [ /usr/local/include]
-  ignore line: [ /usr/lib/llvm-9/lib/clang/9.0.0/include]
+  ignore line: [ /usr/lib/llvm-10/lib/clang/10.0.0/include]
   ignore line: [ /usr/include/x86_64-linux-gnu]
   ignore line: [ /usr/include]
   ignore line: [End of search list.]
-  ignore line: [Linking C executable cmTC_3fb43]
-  ignore line: [/snap/clion/123/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3fb43.dir/link.txt --verbose=1]
-  ignore line: [/usr/bin/clang     -v CMakeFiles/cmTC_3fb43.dir/CMakeCCompilerABI.c.o  -o cmTC_3fb43 ]
-  ignore line: [clang version 9.0.0-2 (tags/RELEASE_900/final)]
+  ignore line: [Linking C executable cmTC_227c5]
+  ignore line: [/snap/clion/123/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_227c5.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/clang     -v CMakeFiles/cmTC_227c5.dir/CMakeCCompilerABI.c.o  -o cmTC_227c5 ]
+  ignore line: [clang version 10.0.0-4ubuntu1 ]
   ignore line: [Target: x86_64-pc-linux-gnu]
   ignore line: [Thread model: posix]
   ignore line: [InstalledDir: /usr/bin]
-  ignore line: [Found candidate GCC installation: /usr/bin/../lib/gcc/i686-linux-gnu/9]
-  ignore line: [Found candidate GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/8]
   ignore line: [Found candidate GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/9]
-  ignore line: [Found candidate GCC installation: /usr/lib/gcc/i686-linux-gnu/9]
-  ignore line: [Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/8]
   ignore line: [Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/9]
   ignore line: [Selected GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/9]
   ignore line: [Candidate multilib: .]
   ignore line: [@m64]
   ignore line: [Selected multilib: .]
   ignore line: [@m64]
-  link line: [ "/usr/bin/ld" -z relro --hash-style=gnu --build-id --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_3fb43 /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/crt1.o /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/crti.o /usr/bin/../lib/gcc/x86_64-linux-gnu/9/crtbegin.o -L/usr/bin/../lib/gcc/x86_64-linux-gnu/9 -L/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu -L/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../lib64 -L/lib/x86_64-linux-gnu -L/lib/../lib64 -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib64 -L/usr/lib/x86_64-linux-gnu/../../lib64 -L/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../.. -L/usr/lib/llvm-9/bin/../lib -L/lib -L/usr/lib CMakeFiles/cmTC_3fb43.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/bin/../lib/gcc/x86_64-linux-gnu/9/crtend.o /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/crtn.o]
+  link line: [ "/usr/bin/ld" -z relro --hash-style=gnu --build-id --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_227c5 /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/crt1.o /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/crti.o /usr/bin/../lib/gcc/x86_64-linux-gnu/9/crtbegin.o -L/usr/bin/../lib/gcc/x86_64-linux-gnu/9 -L/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu -L/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../lib64 -L/lib/x86_64-linux-gnu -L/lib/../lib64 -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib64 -L/usr/lib/x86_64-linux-gnu/../../lib64 -L/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../.. -L/usr/lib/llvm-10/bin/../lib -L/lib -L/usr/lib CMakeFiles/cmTC_227c5.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/bin/../lib/gcc/x86_64-linux-gnu/9/crtend.o /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/crtn.o]
     arg [/usr/bin/ld] ==> ignore
     arg [-zrelro] ==> ignore
     arg [--hash-style=gnu] ==> ignore
@@ -167,7 +153,7 @@ Parsed C implicit link information from above output:
     arg [-dynamic-linker] ==> ignore
     arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_3fb43] ==> ignore
+    arg [cmTC_227c5] ==> ignore
     arg [/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/crt1.o] ==> ignore
     arg [/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/crti.o] ==> ignore
     arg [/usr/bin/../lib/gcc/x86_64-linux-gnu/9/crtbegin.o] ==> ignore
@@ -180,15 +166,14 @@ Parsed C implicit link information from above output:
     arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
     arg [-L/usr/lib/x86_64-linux-gnu/../../lib64] ==> dir [/usr/lib/x86_64-linux-gnu/../../lib64]
     arg [-L/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../..] ==> dir [/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../..]
-    arg [-L/usr/lib/llvm-9/bin/../lib] ==> dir [/usr/lib/llvm-9/bin/../lib]
+    arg [-L/usr/lib/llvm-10/bin/../lib] ==> dir [/usr/lib/llvm-10/bin/../lib]
     arg [-L/lib] ==> dir [/lib]
     arg [-L/usr/lib] ==> dir [/usr/lib]
-    arg [CMakeFiles/cmTC_3fb43.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [CMakeFiles/cmTC_227c5.dir/CMakeCCompilerABI.c.o] ==> ignore
     arg [-lgcc] ==> lib [gcc]
     arg [--as-needed] ==> ignore
     arg [-lgcc_s] ==> lib [gcc_s]
     arg [--no-as-needed] ==> ignore
-    arg [-lc] ==> lib [c]
     arg [-lc] ==> lib [c]
     arg [-lgcc] ==> lib [gcc]
     arg [--as-needed] ==> ignore
@@ -205,50 +190,47 @@ Parsed C implicit link information from above output:
   collapse library dir [/usr/lib/../lib64] ==> [/usr/lib64]
   collapse library dir [/usr/lib/x86_64-linux-gnu/../../lib64] ==> [/usr/lib64]
   collapse library dir [/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../..] ==> [/usr/lib]
-  collapse library dir [/usr/lib/llvm-9/bin/../lib] ==> [/usr/lib/llvm-9/lib]
+  collapse library dir [/usr/lib/llvm-10/bin/../lib] ==> [/usr/lib/llvm-10/lib]
   collapse library dir [/lib] ==> [/lib]
   collapse library dir [/usr/lib] ==> [/usr/lib]
-  implicit libs: [gcc;gcc_s;c;c;gcc;gcc_s]
-  implicit dirs: [/usr/lib/gcc/x86_64-linux-gnu/9;/usr/lib/x86_64-linux-gnu;/usr/lib64;/lib/x86_64-linux-gnu;/lib64;/usr/lib;/usr/lib/llvm-9/lib;/lib]
+  implicit libs: [gcc;gcc_s;c;gcc;gcc_s]
+  implicit dirs: [/usr/lib/gcc/x86_64-linux-gnu/9;/usr/lib/x86_64-linux-gnu;/usr/lib64;/lib/x86_64-linux-gnu;/lib64;/usr/lib;/usr/lib/llvm-10/lib;/lib]
   implicit fwks: []
 
 
 Determining if the CXX compiler works passed with the following output:
-Change Dir: /home/phoenixflower/Documents/Test/LandessDevCore/cmake-build-release/CMakeFiles/CMakeTmp
+Change Dir: /home/phoenixflower/Documents/LandessDevCore/cmake-build-release/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/make cmTC_4d1ad/fast && /usr/bin/make  -f CMakeFiles/cmTC_4d1ad.dir/build.make CMakeFiles/cmTC_4d1ad.dir/build
-make[1]: Entering directory '/home/phoenixflower/Documents/Test/LandessDevCore/cmake-build-release/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_4d1ad.dir/testCXXCompiler.cxx.o
-/usr/bin/clang++     -o CMakeFiles/cmTC_4d1ad.dir/testCXXCompiler.cxx.o -c /home/phoenixflower/Documents/Test/LandessDevCore/cmake-build-release/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
-Linking CXX executable cmTC_4d1ad
-/snap/clion/123/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4d1ad.dir/link.txt --verbose=1
-/usr/bin/clang++       CMakeFiles/cmTC_4d1ad.dir/testCXXCompiler.cxx.o  -o cmTC_4d1ad 
-make[1]: Leaving directory '/home/phoenixflower/Documents/Test/LandessDevCore/cmake-build-release/CMakeFiles/CMakeTmp'
+Run Build Command(s):/usr/bin/make cmTC_7bf95/fast && /usr/bin/make  -f CMakeFiles/cmTC_7bf95.dir/build.make CMakeFiles/cmTC_7bf95.dir/build
+make[1]: Entering directory '/home/phoenixflower/Documents/LandessDevCore/cmake-build-release/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_7bf95.dir/testCXXCompiler.cxx.o
+/usr/bin/clang++     -o CMakeFiles/cmTC_7bf95.dir/testCXXCompiler.cxx.o -c /home/phoenixflower/Documents/LandessDevCore/cmake-build-release/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTC_7bf95
+/snap/clion/123/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7bf95.dir/link.txt --verbose=1
+/usr/bin/clang++       CMakeFiles/cmTC_7bf95.dir/testCXXCompiler.cxx.o  -o cmTC_7bf95 
+make[1]: Leaving directory '/home/phoenixflower/Documents/LandessDevCore/cmake-build-release/CMakeFiles/CMakeTmp'
 
 
 
 Detecting CXX compiler ABI info compiled with the following output:
-Change Dir: /home/phoenixflower/Documents/Test/LandessDevCore/cmake-build-release/CMakeFiles/CMakeTmp
+Change Dir: /home/phoenixflower/Documents/LandessDevCore/cmake-build-release/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/make cmTC_79825/fast && /usr/bin/make  -f CMakeFiles/cmTC_79825.dir/build.make CMakeFiles/cmTC_79825.dir/build
-make[1]: Entering directory '/home/phoenixflower/Documents/Test/LandessDevCore/cmake-build-release/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_79825.dir/CMakeCXXCompilerABI.cpp.o
-/usr/bin/clang++    -v -o CMakeFiles/cmTC_79825.dir/CMakeCXXCompilerABI.cpp.o -c /snap/clion/123/bin/cmake/linux/share/cmake-3.17/Modules/CMakeCXXCompilerABI.cpp
-clang version 9.0.0-2 (tags/RELEASE_900/final)
+Run Build Command(s):/usr/bin/make cmTC_1affb/fast && /usr/bin/make  -f CMakeFiles/cmTC_1affb.dir/build.make CMakeFiles/cmTC_1affb.dir/build
+make[1]: Entering directory '/home/phoenixflower/Documents/LandessDevCore/cmake-build-release/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_1affb.dir/CMakeCXXCompilerABI.cpp.o
+/usr/bin/clang++    -v -o CMakeFiles/cmTC_1affb.dir/CMakeCXXCompilerABI.cpp.o -c /snap/clion/123/bin/cmake/linux/share/cmake-3.17/Modules/CMakeCXXCompilerABI.cpp
+clang version 10.0.0-4ubuntu1 
 Target: x86_64-pc-linux-gnu
 Thread model: posix
 InstalledDir: /usr/bin
-Found candidate GCC installation: /usr/bin/../lib/gcc/i686-linux-gnu/9
-Found candidate GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/8
 Found candidate GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/9
-Found candidate GCC installation: /usr/lib/gcc/i686-linux-gnu/9
-Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/8
 Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/9
 Selected GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/9
 Candidate multilib: .;@m64
 Selected multilib: .;@m64
- "/usr/lib/llvm-9/bin/clang" -cc1 -triple x86_64-pc-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -fuse-init-array -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -v -coverage-notes-file /home/phoenixflower/Documents/Test/LandessDevCore/cmake-build-release/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_79825.dir/CMakeCXXCompilerABI.cpp.gcno -resource-dir /usr/lib/llvm-9/lib/clang/9.0.0 -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9 -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/x86_64-linux-gnu/c++/9 -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/x86_64-linux-gnu/c++/9 -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/backward -internal-isystem /usr/local/include -internal-isystem /usr/lib/llvm-9/lib/clang/9.0.0/include -internal-externc-isystem /usr/include/x86_64-linux-gnu -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdeprecated-macro -fdebug-compilation-dir /home/phoenixflower/Documents/Test/LandessDevCore/cmake-build-release/CMakeFiles/CMakeTmp -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fcxx-exceptions -fexceptions -fdiagnostics-show-option -faddrsig -o CMakeFiles/cmTC_79825.dir/CMakeCXXCompilerABI.cpp.o -x c++ /snap/clion/123/bin/cmake/linux/share/cmake-3.17/Modules/CMakeCXXCompilerABI.cpp
-clang -cc1 version 9.0.0 based upon LLVM 9.0.0 default target x86_64-pc-linux-gnu
+ (in-process)
+ "/usr/lib/llvm-10/bin/clang" -cc1 -triple x86_64-pc-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model static -mthread-model posix -mframe-pointer=all -fmath-errno -fno-rounding-math -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -fno-split-dwarf-inlining -debugger-tuning=gdb -v -resource-dir /usr/lib/llvm-10/lib/clang/10.0.0 -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9 -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/x86_64-linux-gnu/c++/9 -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/x86_64-linux-gnu/c++/9 -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/backward -internal-isystem /usr/local/include -internal-isystem /usr/lib/llvm-10/lib/clang/10.0.0/include -internal-externc-isystem /usr/include/x86_64-linux-gnu -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdeprecated-macro -fdebug-compilation-dir /home/phoenixflower/Documents/LandessDevCore/cmake-build-release/CMakeFiles/CMakeTmp -ferror-limit 19 -fmessage-length 0 -fgnuc-version=4.2.1 -fobjc-runtime=gcc -fcxx-exceptions -fexceptions -fdiagnostics-show-option -faddrsig -o CMakeFiles/cmTC_1affb.dir/CMakeCXXCompilerABI.cpp.o -x c++ /snap/clion/123/bin/cmake/linux/share/cmake-3.17/Modules/CMakeCXXCompilerABI.cpp
+clang -cc1 version 10.0.0 based upon LLVM 10.0.0 default target x86_64-pc-linux-gnu
 ignoring nonexistent directory "/include"
 ignoring duplicate directory "/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/x86_64-linux-gnu/c++/9"
 #include "..." search starts here:
@@ -257,28 +239,24 @@ ignoring duplicate directory "/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../..
  /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/x86_64-linux-gnu/c++/9
  /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/backward
  /usr/local/include
- /usr/lib/llvm-9/lib/clang/9.0.0/include
+ /usr/lib/llvm-10/lib/clang/10.0.0/include
  /usr/include/x86_64-linux-gnu
  /usr/include
 End of search list.
-Linking CXX executable cmTC_79825
-/snap/clion/123/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_79825.dir/link.txt --verbose=1
-/usr/bin/clang++      -v CMakeFiles/cmTC_79825.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_79825 
-clang version 9.0.0-2 (tags/RELEASE_900/final)
+Linking CXX executable cmTC_1affb
+/snap/clion/123/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1affb.dir/link.txt --verbose=1
+/usr/bin/clang++      -v CMakeFiles/cmTC_1affb.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_1affb 
+clang version 10.0.0-4ubuntu1 
 Target: x86_64-pc-linux-gnu
 Thread model: posix
 InstalledDir: /usr/bin
-Found candidate GCC installation: /usr/bin/../lib/gcc/i686-linux-gnu/9
-Found candidate GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/8
 Found candidate GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/9
-Found candidate GCC installation: /usr/lib/gcc/i686-linux-gnu/9
-Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/8
 Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/9
 Selected GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/9
 Candidate multilib: .;@m64
 Selected multilib: .;@m64
- "/usr/bin/ld" -z relro --hash-style=gnu --build-id --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_79825 /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/crt1.o /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/crti.o /usr/bin/../lib/gcc/x86_64-linux-gnu/9/crtbegin.o -L/usr/bin/../lib/gcc/x86_64-linux-gnu/9 -L/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu -L/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../lib64 -L/lib/x86_64-linux-gnu -L/lib/../lib64 -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib64 -L/usr/lib/x86_64-linux-gnu/../../lib64 -L/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../.. -L/usr/lib/llvm-9/bin/../lib -L/lib -L/usr/lib CMakeFiles/cmTC_79825.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lc -lgcc_s -lgcc /usr/bin/../lib/gcc/x86_64-linux-gnu/9/crtend.o /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/crtn.o
-make[1]: Leaving directory '/home/phoenixflower/Documents/Test/LandessDevCore/cmake-build-release/CMakeFiles/CMakeTmp'
+ "/usr/bin/ld" -z relro --hash-style=gnu --build-id --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_1affb /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/crt1.o /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/crti.o /usr/bin/../lib/gcc/x86_64-linux-gnu/9/crtbegin.o -L/usr/bin/../lib/gcc/x86_64-linux-gnu/9 -L/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu -L/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../lib64 -L/lib/x86_64-linux-gnu -L/lib/../lib64 -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib64 -L/usr/lib/x86_64-linux-gnu/../../lib64 -L/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../.. -L/usr/lib/llvm-10/bin/../lib -L/lib -L/usr/lib CMakeFiles/cmTC_1affb.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/bin/../lib/gcc/x86_64-linux-gnu/9/crtend.o /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/crtn.o
+make[1]: Leaving directory '/home/phoenixflower/Documents/LandessDevCore/cmake-build-release/CMakeFiles/CMakeTmp'
 
 
 
@@ -289,7 +267,7 @@ Parsed CXX implicit include dir info from above output: rv=done
     add: [/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/x86_64-linux-gnu/c++/9]
     add: [/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/backward]
     add: [/usr/local/include]
-    add: [/usr/lib/llvm-9/lib/clang/9.0.0/include]
+    add: [/usr/lib/llvm-10/lib/clang/10.0.0/include]
     add: [/usr/include/x86_64-linux-gnu]
     add: [/usr/include]
   end of search list found
@@ -297,37 +275,34 @@ Parsed CXX implicit include dir info from above output: rv=done
   collapse include dir [/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/x86_64-linux-gnu/c++/9] ==> [/usr/include/x86_64-linux-gnu/c++/9]
   collapse include dir [/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/backward] ==> [/usr/include/c++/9/backward]
   collapse include dir [/usr/local/include] ==> [/usr/local/include]
-  collapse include dir [/usr/lib/llvm-9/lib/clang/9.0.0/include] ==> [/usr/lib/llvm-9/lib/clang/9.0.0/include]
+  collapse include dir [/usr/lib/llvm-10/lib/clang/10.0.0/include] ==> [/usr/lib/llvm-10/lib/clang/10.0.0/include]
   collapse include dir [/usr/include/x86_64-linux-gnu] ==> [/usr/include/x86_64-linux-gnu]
   collapse include dir [/usr/include] ==> [/usr/include]
-  implicit include dirs: [/usr/include/c++/9;/usr/include/x86_64-linux-gnu/c++/9;/usr/include/c++/9/backward;/usr/local/include;/usr/lib/llvm-9/lib/clang/9.0.0/include;/usr/include/x86_64-linux-gnu;/usr/include]
+  implicit include dirs: [/usr/include/c++/9;/usr/include/x86_64-linux-gnu/c++/9;/usr/include/c++/9/backward;/usr/local/include;/usr/lib/llvm-10/lib/clang/10.0.0/include;/usr/include/x86_64-linux-gnu;/usr/include]
 
 
 Parsed CXX implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
-  ignore line: [Change Dir: /home/phoenixflower/Documents/Test/LandessDevCore/cmake-build-release/CMakeFiles/CMakeTmp]
+  ignore line: [Change Dir: /home/phoenixflower/Documents/LandessDevCore/cmake-build-release/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command(s):/usr/bin/make cmTC_79825/fast && /usr/bin/make  -f CMakeFiles/cmTC_79825.dir/build.make CMakeFiles/cmTC_79825.dir/build]
-  ignore line: [make[1]: Entering directory '/home/phoenixflower/Documents/Test/LandessDevCore/cmake-build-release/CMakeFiles/CMakeTmp']
-  ignore line: [Building CXX object CMakeFiles/cmTC_79825.dir/CMakeCXXCompilerABI.cpp.o]
-  ignore line: [/usr/bin/clang++    -v -o CMakeFiles/cmTC_79825.dir/CMakeCXXCompilerABI.cpp.o -c /snap/clion/123/bin/cmake/linux/share/cmake-3.17/Modules/CMakeCXXCompilerABI.cpp]
-  ignore line: [clang version 9.0.0-2 (tags/RELEASE_900/final)]
+  ignore line: [Run Build Command(s):/usr/bin/make cmTC_1affb/fast && /usr/bin/make  -f CMakeFiles/cmTC_1affb.dir/build.make CMakeFiles/cmTC_1affb.dir/build]
+  ignore line: [make[1]: Entering directory '/home/phoenixflower/Documents/LandessDevCore/cmake-build-release/CMakeFiles/CMakeTmp']
+  ignore line: [Building CXX object CMakeFiles/cmTC_1affb.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/usr/bin/clang++    -v -o CMakeFiles/cmTC_1affb.dir/CMakeCXXCompilerABI.cpp.o -c /snap/clion/123/bin/cmake/linux/share/cmake-3.17/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [clang version 10.0.0-4ubuntu1 ]
   ignore line: [Target: x86_64-pc-linux-gnu]
   ignore line: [Thread model: posix]
   ignore line: [InstalledDir: /usr/bin]
-  ignore line: [Found candidate GCC installation: /usr/bin/../lib/gcc/i686-linux-gnu/9]
-  ignore line: [Found candidate GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/8]
   ignore line: [Found candidate GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/9]
-  ignore line: [Found candidate GCC installation: /usr/lib/gcc/i686-linux-gnu/9]
-  ignore line: [Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/8]
   ignore line: [Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/9]
   ignore line: [Selected GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/9]
   ignore line: [Candidate multilib: .]
   ignore line: [@m64]
   ignore line: [Selected multilib: .]
   ignore line: [@m64]
-  ignore line: [ "/usr/lib/llvm-9/bin/clang" -cc1 -triple x86_64-pc-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -fuse-init-array -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -v -coverage-notes-file /home/phoenixflower/Documents/Test/LandessDevCore/cmake-build-release/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_79825.dir/CMakeCXXCompilerABI.cpp.gcno -resource-dir /usr/lib/llvm-9/lib/clang/9.0.0 -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9 -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/x86_64-linux-gnu/c++/9 -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/x86_64-linux-gnu/c++/9 -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/backward -internal-isystem /usr/local/include -internal-isystem /usr/lib/llvm-9/lib/clang/9.0.0/include -internal-externc-isystem /usr/include/x86_64-linux-gnu -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdeprecated-macro -fdebug-compilation-dir /home/phoenixflower/Documents/Test/LandessDevCore/cmake-build-release/CMakeFiles/CMakeTmp -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fcxx-exceptions -fexceptions -fdiagnostics-show-option -faddrsig -o CMakeFiles/cmTC_79825.dir/CMakeCXXCompilerABI.cpp.o -x c++ /snap/clion/123/bin/cmake/linux/share/cmake-3.17/Modules/CMakeCXXCompilerABI.cpp]
-  ignore line: [clang -cc1 version 9.0.0 based upon LLVM 9.0.0 default target x86_64-pc-linux-gnu]
+  ignore line: [ (in-process)]
+  ignore line: [ "/usr/lib/llvm-10/bin/clang" -cc1 -triple x86_64-pc-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model static -mthread-model posix -mframe-pointer=all -fmath-errno -fno-rounding-math -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -fno-split-dwarf-inlining -debugger-tuning=gdb -v -resource-dir /usr/lib/llvm-10/lib/clang/10.0.0 -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9 -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/x86_64-linux-gnu/c++/9 -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/x86_64-linux-gnu/c++/9 -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/backward -internal-isystem /usr/local/include -internal-isystem /usr/lib/llvm-10/lib/clang/10.0.0/include -internal-externc-isystem /usr/include/x86_64-linux-gnu -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdeprecated-macro -fdebug-compilation-dir /home/phoenixflower/Documents/LandessDevCore/cmake-build-release/CMakeFiles/CMakeTmp -ferror-limit 19 -fmessage-length 0 -fgnuc-version=4.2.1 -fobjc-runtime=gcc -fcxx-exceptions -fexceptions -fdiagnostics-show-option -faddrsig -o CMakeFiles/cmTC_1affb.dir/CMakeCXXCompilerABI.cpp.o -x c++ /snap/clion/123/bin/cmake/linux/share/cmake-3.17/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [clang -cc1 version 10.0.0 based upon LLVM 10.0.0 default target x86_64-pc-linux-gnu]
   ignore line: [ignoring nonexistent directory "/include"]
   ignore line: [ignoring duplicate directory "/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/x86_64-linux-gnu/c++/9"]
   ignore line: [#include "..." search starts here:]
@@ -336,29 +311,25 @@ Parsed CXX implicit link information from above output:
   ignore line: [ /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/x86_64-linux-gnu/c++/9]
   ignore line: [ /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/backward]
   ignore line: [ /usr/local/include]
-  ignore line: [ /usr/lib/llvm-9/lib/clang/9.0.0/include]
+  ignore line: [ /usr/lib/llvm-10/lib/clang/10.0.0/include]
   ignore line: [ /usr/include/x86_64-linux-gnu]
   ignore line: [ /usr/include]
   ignore line: [End of search list.]
-  ignore line: [Linking CXX executable cmTC_79825]
-  ignore line: [/snap/clion/123/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_79825.dir/link.txt --verbose=1]
-  ignore line: [/usr/bin/clang++      -v CMakeFiles/cmTC_79825.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_79825 ]
-  ignore line: [clang version 9.0.0-2 (tags/RELEASE_900/final)]
+  ignore line: [Linking CXX executable cmTC_1affb]
+  ignore line: [/snap/clion/123/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1affb.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/clang++      -v CMakeFiles/cmTC_1affb.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_1affb ]
+  ignore line: [clang version 10.0.0-4ubuntu1 ]
   ignore line: [Target: x86_64-pc-linux-gnu]
   ignore line: [Thread model: posix]
   ignore line: [InstalledDir: /usr/bin]
-  ignore line: [Found candidate GCC installation: /usr/bin/../lib/gcc/i686-linux-gnu/9]
-  ignore line: [Found candidate GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/8]
   ignore line: [Found candidate GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/9]
-  ignore line: [Found candidate GCC installation: /usr/lib/gcc/i686-linux-gnu/9]
-  ignore line: [Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/8]
   ignore line: [Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/9]
   ignore line: [Selected GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/9]
   ignore line: [Candidate multilib: .]
   ignore line: [@m64]
   ignore line: [Selected multilib: .]
   ignore line: [@m64]
-  link line: [ "/usr/bin/ld" -z relro --hash-style=gnu --build-id --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_79825 /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/crt1.o /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/crti.o /usr/bin/../lib/gcc/x86_64-linux-gnu/9/crtbegin.o -L/usr/bin/../lib/gcc/x86_64-linux-gnu/9 -L/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu -L/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../lib64 -L/lib/x86_64-linux-gnu -L/lib/../lib64 -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib64 -L/usr/lib/x86_64-linux-gnu/../../lib64 -L/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../.. -L/usr/lib/llvm-9/bin/../lib -L/lib -L/usr/lib CMakeFiles/cmTC_79825.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lc -lgcc_s -lgcc /usr/bin/../lib/gcc/x86_64-linux-gnu/9/crtend.o /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/crtn.o]
+  link line: [ "/usr/bin/ld" -z relro --hash-style=gnu --build-id --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_1affb /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/crt1.o /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/crti.o /usr/bin/../lib/gcc/x86_64-linux-gnu/9/crtbegin.o -L/usr/bin/../lib/gcc/x86_64-linux-gnu/9 -L/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu -L/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../lib64 -L/lib/x86_64-linux-gnu -L/lib/../lib64 -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib64 -L/usr/lib/x86_64-linux-gnu/../../lib64 -L/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../.. -L/usr/lib/llvm-10/bin/../lib -L/lib -L/usr/lib CMakeFiles/cmTC_1affb.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/bin/../lib/gcc/x86_64-linux-gnu/9/crtend.o /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/crtn.o]
     arg [/usr/bin/ld] ==> ignore
     arg [-zrelro] ==> ignore
     arg [--hash-style=gnu] ==> ignore
@@ -369,7 +340,7 @@ Parsed CXX implicit link information from above output:
     arg [-dynamic-linker] ==> ignore
     arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_79825] ==> ignore
+    arg [cmTC_1affb] ==> ignore
     arg [/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/crt1.o] ==> ignore
     arg [/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/crti.o] ==> ignore
     arg [/usr/bin/../lib/gcc/x86_64-linux-gnu/9/crtbegin.o] ==> ignore
@@ -382,15 +353,14 @@ Parsed CXX implicit link information from above output:
     arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
     arg [-L/usr/lib/x86_64-linux-gnu/../../lib64] ==> dir [/usr/lib/x86_64-linux-gnu/../../lib64]
     arg [-L/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../..] ==> dir [/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../..]
-    arg [-L/usr/lib/llvm-9/bin/../lib] ==> dir [/usr/lib/llvm-9/bin/../lib]
+    arg [-L/usr/lib/llvm-10/bin/../lib] ==> dir [/usr/lib/llvm-10/bin/../lib]
     arg [-L/lib] ==> dir [/lib]
     arg [-L/usr/lib] ==> dir [/usr/lib]
-    arg [CMakeFiles/cmTC_79825.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [CMakeFiles/cmTC_1affb.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
     arg [-lstdc++] ==> lib [stdc++]
     arg [-lm] ==> lib [m]
     arg [-lgcc_s] ==> lib [gcc_s]
     arg [-lgcc] ==> lib [gcc]
-    arg [-lc] ==> lib [c]
     arg [-lc] ==> lib [c]
     arg [-lgcc_s] ==> lib [gcc_s]
     arg [-lgcc] ==> lib [gcc]
@@ -405,11 +375,11 @@ Parsed CXX implicit link information from above output:
   collapse library dir [/usr/lib/../lib64] ==> [/usr/lib64]
   collapse library dir [/usr/lib/x86_64-linux-gnu/../../lib64] ==> [/usr/lib64]
   collapse library dir [/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../..] ==> [/usr/lib]
-  collapse library dir [/usr/lib/llvm-9/bin/../lib] ==> [/usr/lib/llvm-9/lib]
+  collapse library dir [/usr/lib/llvm-10/bin/../lib] ==> [/usr/lib/llvm-10/lib]
   collapse library dir [/lib] ==> [/lib]
   collapse library dir [/usr/lib] ==> [/usr/lib]
-  implicit libs: [stdc++;m;gcc_s;gcc;c;c;gcc_s;gcc]
-  implicit dirs: [/usr/lib/gcc/x86_64-linux-gnu/9;/usr/lib/x86_64-linux-gnu;/usr/lib64;/lib/x86_64-linux-gnu;/lib64;/usr/lib;/usr/lib/llvm-9/lib;/lib]
+  implicit libs: [stdc++;m;gcc_s;gcc;c;gcc_s;gcc]
+  implicit dirs: [/usr/lib/gcc/x86_64-linux-gnu/9;/usr/lib/x86_64-linux-gnu;/usr/lib64;/lib/x86_64-linux-gnu;/lib64;/usr/lib;/usr/lib/llvm-10/lib;/lib]
   implicit fwks: []
 
 

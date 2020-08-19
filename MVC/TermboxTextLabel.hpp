@@ -2,8 +2,8 @@
 // Created by phoenixflower on 7/19/20.
 //
 
-#ifndef LANDESSDEVCORE_TERMBOXTEXTLABEL_H
-#define LANDESSDEVCORE_TERMBOXTEXTLABEL_H
+#ifndef LANDESSDEVCORE_TERMBOXTEXTLABEL_HPP
+#define LANDESSDEVCORE_TERMBOXTEXTLABEL_HPP
 #include "Primitives/General/Immutable.hpp"
 #include "Primitives/General/mapboxvariant.hpp"
 #include "Primitives/General/mapboxvariantvisitor.h"
@@ -59,4 +59,4 @@ namespace LD
     }
 
 }
-#endif //LANDESSDEVCORE_TERMBOXTEXTLABEL_H
+#endif //LANDESSDEVCORE_TERMBOXTEXTLABEL_HPP

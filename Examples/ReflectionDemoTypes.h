@@ -329,41 +329,37 @@ namespace LD
     };
 
 
-    class Square: public LD::Reflectable<
-            decltype("Square"_ts)(
-                    decltype("Length"_ts),      LD::Float,
-                    decltype("area"_ts),LD::FunctionView<LD::Float ()>)>
+    class Square
     {
     private:
         //LD::Float  & mLength;
+        LD::Float mLength;
     public:
-        inline Square() //noexcept :mLength((*this)["Length"_ts])
+        inline Square() noexcept:mLength{0}//noexcept :mLength((*this)["Length"_ts])
         {
-            (*this)["Length"_ts] = 0;
-            (*this)["area"_ts] = LD::FunctionView<LD::Float()>(this,&Square::GetArea);
+
         }
 
 
-        inline Square(const LD::Float & length)
+        inline Square(const LD::Float & length) noexcept:mLength{length}
         {
-            (*this)["Length"_ts] = length;
-            (*this)["area"_ts] = LD::FunctionView<LD::Float()>(this,&Square::GetArea);
+
         }
 
         LD::Float GetArea() const
         {
-            return (*this)["Length"_ts] * (*this)["Length"_ts];
+            return this->mLength*this->mLength;
         }
 
 
         const LD::Float &  Length() const noexcept
         {
-            return (*this)["Length"_ts];
+            return this->mLength;
         }
 
          LD::Float & Length() noexcept
         {
-            return (*this)["Length"_ts];
+            return this->mLength;
         }
 
 
@@ -707,6 +703,23 @@ public:
 
     using MemberList = LD::CT::TypeList<
             LD::CT::EncapsulatedMemberDescriptor<InterruptName,LD::CT::SelectOverload<LD::UInteger & (LD::SoftIRQMetric::*)(),&LD::SoftIRQMetric::Interrupts>(),LD::CT::SelectOverload<const LD::UInteger & (LD::SoftIRQMetric::*)() const,&LD::SoftIRQMetric::Interrupts>()>
+    >;
+
+
+    static constexpr MemberList Members{  };
+
+};
+
+template<>
+struct LD::CT::TypeDescriptor<LD::Square>
+{
+private:
+    static constexpr auto LengthName = ctll::basic_fixed_string("Length");
+public:
+    static constexpr auto ClassName = ctll::fixed_string{"Square"};
+
+    using MemberList = LD::CT::TypeList<
+            LD::CT::EncapsulatedMemberDescriptor<LengthName,LD::CT::SelectOverload<LD::Float & (LD::Square::*)(),&LD::Square::Length>(),LD::CT::SelectOverload<const LD::Float & (LD::Square::*)() const,&LD::Square::Length>()>
     >;
 
 

@@ -17,7 +17,7 @@ namespace LD
         {
             //todo add error handling for when the iterator is out of bounds
             if (!utf8::internal::is_code_point_valid(cp))
-                return LD::QueryResult<octet_iterator(Args...)>{LD::TransactionError{},LD::Forward<Args>(arguments)...};
+                return LD::MakeContext(LD::TransactionError{},LD::Forward<Args>(arguments)...);
 
             if (cp < 0x80)                        // one octet
                 *(result++) = static_cast<uint8_t>(cp);
@@ -36,9 +36,8 @@ namespace LD
                 *(result++) = static_cast<uint8_t>(((cp >> 6) & 0x3f)   | 0x80);
                 *(result++) = static_cast<uint8_t>((cp & 0x3f)          | 0x80);
             }
-
             //return result;
-            return LD::QueryResult<octet_iterator(Args...)>{LD::TransactionResult{},octet_iterator{result},LD::Forward<Args>(arguments)...};
+            return LD::MakeContext(LD::TransactionResult{},octet_iterator{result},LD::Forward<Args>(arguments)...);
         }
 
 
@@ -395,5 +394,127 @@ namespace LD
         }
 
     }
+}
+
+namespace LD
+{
+    namespace UTF8
+    {
+        template<LD::UInteger N>
+        constexpr LD::UInteger NumberOfBytes(const ctll::fixed_string<N> & lit) noexcept
+        {
+            LD::UInteger size = 0;
+            //we don't want to count the null terminating character
+            constexpr LD::UInteger Size = (N-1);
+            for(LD::UInteger n = 0;n<Size;++n)
+            {
+                const wchar_t & cp = lit[n];
+                if (cp < 0x80)
+                {
+                    size+=1;
+                }
+                else if (cp < 0x800)
+                {                // two octets
+                    size+=2;
+                }
+                else if (cp < 0x10000)
+                {              // three octets
+                    size+=3;
+                }
+                else
+                {
+                    size+=4;
+                }
+            }
+            return size;
+        }
+
+        template<LD::UInteger N>
+        constexpr LD::UInteger NumberOfBytes(const LD::ImmutableString<N> & lit) noexcept
+        {
+            LD::UInteger size = 0;
+            //we don't want to count the null terminating character
+            constexpr LD::UInteger Size = (N-1);
+            for(LD::UInteger n = 0;n<Size;++n)
+            {
+                const char & cp = lit[n];
+                if (cp < 0x80)
+                {
+                    size+=1;
+                }
+                else if (cp < 0x800)
+                {                // two octets
+                    size+=2;
+                }
+                else if (cp < 0x10000)
+                {              // three octets
+                    size+=3;
+                }
+                else
+                {
+                    size+=4;
+                }
+            }
+            return size;
+        }
+
+        template<char... C>
+        constexpr LD::UInteger NumberOfBytes(const LD::TypeString<C...> & lit) noexcept
+        {
+            constexpr LD::UInteger N = sizeof...(C);
+            LD::UInteger size = 0;
+            //we don't want to count the null terminating character
+            constexpr LD::UInteger Size = (N);
+            for(LD::UInteger n = 0;n<Size;++n)
+            {
+                const char & cp = lit[n];
+                if (cp < 0x80)
+                {
+                    size+=1;
+                }
+                else if (cp < 0x800)
+                {                // two octets
+                    size+=2;
+                }
+                else if (cp < 0x10000)
+                {              // three octets
+                    size+=3;
+                }
+                else
+                {
+                    size+=4;
+                }
+            }
+            return size;
+        }
+
+        template<LD::UInteger N>
+        auto Begin(const ctll::fixed_string<N> & str) noexcept
+        {
+            return (char*)str.begin();
+        }
+
+        template<LD::UInteger N>
+        auto End(const ctll::fixed_string<N> & str) noexcept
+        {
+            return (char*)str.end();
+        }
+
+
+        template<char ... C>
+        auto Begin(LD::TypeString<C...> ) noexcept
+        {
+            return LD::TypeString<C...>::cbegin();
+        }
+
+
+        template<char ... C>
+        auto End(LD::TypeString<C...> ) noexcept
+        {
+            return LD::TypeString<C...>::cend();
+        }
+
+    }
+
 }
 #endif //LANDESSDEVCORE_UTF8_HPP

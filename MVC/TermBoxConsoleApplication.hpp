@@ -17,7 +17,7 @@
 #include "SchedulingEvent.hpp"
 #include "TermBox/termbox.h"
 #include "TypeTraits/TypeList.hpp"
-#include "MVC/Mouse.h"
+#include "MVC/Mouse.hpp"
 #include "TermBoxCursorNavigator.hpp"
 
 namespace LD

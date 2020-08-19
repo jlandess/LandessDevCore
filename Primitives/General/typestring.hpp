@@ -52,6 +52,10 @@ namespace LD {
         static constexpr char const * cbegin() noexcept
         { return &vals[0]; }
 
+        constexpr const char & operator[](const LD::UInteger & idx)const  noexcept
+        {
+            return vals[idx];
+        }
         static constexpr char const * cend() noexcept
         { return &vals[sval]; }
 

@@ -14,6 +14,7 @@
 #include "Definitions/Common.hpp"
 #include "Algorithms/CompileTimeControlFlow.hpp"
 #include "TypeTraits/IsImmutable.h"
+#include "TypeTraits/Iterable.h"
 namespace LD
 {
 
@@ -405,6 +406,10 @@ namespace LD
     public:
 
 
+        void PushBack(T && object) noexcept
+        {
+            this->InternalBuffer[this->Size++] = object;
+        }
         class Iterator
         {
         private:
@@ -424,6 +429,10 @@ namespace LD
             }
 
 
+            constexpr bool operator < (const Iterator & iterator) noexcept
+            {
+                return this->mIndex < iterator.mIndex;
+            }
 
             const bool operator == (const Iterator & iterator)
             {
@@ -451,22 +460,30 @@ namespace LD
             }
             Iterator & operator++() noexcept
             {
-                return Iterator{this->mBuffer,this->mIndex+1};
+                this->mIndex+=1;
+                return (*this);
+                //return Iterator{this->mBuffer,this->mIndex+1};
             }
 
             Iterator & operator++(int) noexcept
             {
-                return Iterator{this->mBuffer,this->mIndex+1};
+                this->mIndex+=1;
+                return (*this);
+                //return Iterator{this->mBuffer,this->mIndex+1};
             }
 
             Iterator & operator--() noexcept
             {
-                return Iterator{this->mBuffer,this->mIndex-1};
+                this->mIndex-=1;
+                return (*this);
+                //return Iterator{this->mBuffer,this->mIndex-1};
             }
 
             Iterator & operator--(int) noexcept
             {
-                return Iterator{this->mBuffer,this->mIndex-1};
+                this->mIndex-=1;
+                return (*this);
+                //return Iterator{this->mBuffer,this->mIndex-1};
             }
         };
 
@@ -602,6 +619,65 @@ namespace LD
     }
 }
 
+
+
+namespace LD
+{
+    template<typename T, LD::UInteger Size>
+    class BackInserter<LD::StaticArray<T,Size>>
+    {
+    private:
+        LD::StaticArray<T,Size> & mArray;
+    public:
+        constexpr BackInserter(LD::StaticArray<T,Size> & array) noexcept: mArray{array}
+        {
+
+        }
+
+        BackInserter<LD::StaticArray<T,Size>> &  operator*() noexcept
+        {
+            return (*this);
+        }
+        BackInserter<LD::StaticArray<T,Size>> & operator = (T && object) noexcept
+        {
+            //std::cout << "Size : " << mArray.GetSize() << std::endl;
+            //mArray[mArray.GetSize()] = object;
+            mArray.PushBack(LD::Forward<T>(object));
+            return (*this);
+        }
+        constexpr BackInserter<LD::StaticArray<T,Size>> operator++() noexcept
+        {
+            return (*this);
+        }
+
+        constexpr BackInserter<LD::StaticArray<T,Size>> operator++(int) noexcept
+        {
+            return (*this);
+        }
+    };
+}
+struct Point
+{
+    float x;
+    float y;
+
+    constexpr Point(const float & x1 = 0, const float & x2 = 0) noexcept :x(x1),y(x2){}
+    constexpr const float & X() const noexcept
+    {
+        return this->x;
+    }
+
+    constexpr float & X() noexcept
+    {
+        return this->x;
+    }
+
+    void SetX(const float & x) noexcept
+    {
+        this->x = x;
+    }
+};
+
 namespace LD
 {
     namespace Detail
@@ -613,4 +689,7 @@ namespace LD
         };
     }
 }
+
+
+
 #endif

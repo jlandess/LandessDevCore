@@ -235,7 +235,7 @@ Software.
 
 #ifndef CTLL__FIXED_STRING__GPP
 #define CTLL__FIXED_STRING__GPP
-#define CTRE_STRING_IS_UTF8 1
+//#define CTRE_STRING_IS_UTF8 1
 #include <utility>
 #include <cstddef>
 #include <string_view>
@@ -280,6 +280,10 @@ namespace ctll {
         size_t real_size{0};
         bool correct_flag{true};
 
+        constexpr const char32_t * c_str() const  noexcept
+        {
+            return this->content;
+        }
         template <typename T> constexpr fixed_string(const T (&input)[N]) noexcept
         {
             if constexpr (std::is_same_v<T, char>) {

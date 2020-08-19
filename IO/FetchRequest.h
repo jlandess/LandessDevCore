@@ -467,6 +467,29 @@ namespace LD
         return true;
     }
 
+
+    template<typename T, typename ... Args>
+    constexpr bool IsErrorQuery(const LD::QueryResult<T(Args...)> & queryResult) noexcept
+    {
+        auto isErrorLamba = [](auto && context) noexcept
+        {
+            return not LD::IsTransactionalContext(LD::Forward<decltype(context)>(context));
+        };
+
+        return LD::Match(queryResult,isErrorLamba);
+    }
+
+    template<typename T, typename ... Args>
+    constexpr bool IsTransactionalQuery(const LD::QueryResult<T(Args...)> & queryResult) noexcept
+    {
+        auto isErrorLamba = [](auto && context) noexcept
+        {
+            return not LD::IsTransactionalContext(LD::Forward<decltype(context)>(context));
+        };
+
+        return LD::Match(queryResult,isErrorLamba);
+    }
+
 }
 
 #endif //LANDESSDEVCORE_FETCHREQUEST_H

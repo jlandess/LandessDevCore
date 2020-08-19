@@ -96,7 +96,7 @@ namespace internal
     }
 
     template <typename octet_iterator>
-    inline typename std::iterator_traits<octet_iterator>::difference_type
+    inline LD::UInteger
     sequence_length(octet_iterator lead_it)
     {
         uint8_t lead = utf8::internal::mask8(*lead_it);
@@ -228,8 +228,8 @@ namespace internal
 
         uint32_t cp = 0;
         // Determine the sequence length based on the lead octet
-        typedef typename std::iterator_traits<octet_iterator>::difference_type octet_difference_type;
-        const octet_difference_type length = utf8::internal::sequence_length(it);
+        //typedef typename std::iterator_traits<octet_iterator>::difference_type octet_difference_type;
+        const LD::UInteger length = utf8::internal::sequence_length(it);
 
         // Get trail octets and calculate the code point
         utf_error err = UTF8_OK;

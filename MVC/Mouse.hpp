@@ -2,8 +2,8 @@
 // Created by phoenixflower on 6/15/20.
 //
 
-#ifndef LANDESSDEVCORE_MOUSE_H
-#define LANDESSDEVCORE_MOUSE_H
+#ifndef LANDESSDEVCORE_MOUSE_HPP
+#define LANDESSDEVCORE_MOUSE_HPP
 #include "Primitives/General/Vec2.hpp"
 #include "Primitives/General/StaticArray.hpp"
 #include "TypeTraits/IntegralConstant.hpp"
@@ -64,4 +64,4 @@ namespace LD
     template<typename T>
     constexpr bool IsBasicMouse = LD::Detail::IsBasicMouse<T>::value;
 }
-#endif //LANDESSDEVCORE_MOUSE_H
+#endif //LANDESSDEVCORE_MOUSE_HPP

@@ -27,6 +27,8 @@
 #include "Unicode/UTF8.hpp"
 #include "TUI/ascii_art.h"
 #include "Examples/FullAdderExample.hpp"
+#include "IO/UnqliteDatabaseBackend.h"
+#include "IO/Database.hpp"
 template<typename T>
 class Square
 {
@@ -35,27 +37,6 @@ private:
 };
 
 
-struct Point
-{
-    float x;
-    float y;
-
-    constexpr Point(const float & x1 = 0, const float & x2 = 0) noexcept :x(x1),y(x2){}
-    constexpr const float & X() const noexcept
-    {
-        return this->x;
-    }
-
-    constexpr float & X() noexcept
-    {
-        return this->x;
-    }
-
-    void SetX(const float & x) noexcept
-    {
-        this->x = x;
-    }
-};
 
 template<>
 class LD::CT::TypeDescriptor<Point>//: public LD::CT::Reflectable<LD::CT::ClassName<SquareClassName>(LD::CT::Member<stuffings,T>)>
@@ -96,7 +77,8 @@ template<LD::UInteger N>
 constexpr LD::UInteger Size(const wchar_t (&lit)[N] )
 {
     LD::UInteger size = 0;
-    for(LD::UInteger n = 0;n<N;++n)
+    constexpr LD::UInteger Size = (N-1);
+    for(LD::UInteger n = 0;n<Size;++n)
     {
         const wchar_t & cp = lit[n];
         if (cp < 0x80)
@@ -133,38 +115,28 @@ constexpr LD::UInteger Size(const wchar_t (&lit)[N] )
 
 
 template<LD::UInteger N>
-constexpr LD::UInteger Size(const ctll::basic_fixed_string<wchar_t,N> & lit)
+constexpr LD::UInteger Size(const ctll::fixed_string<N> & lit)
 {
     LD::UInteger size = 0;
-    for(LD::UInteger n = 0;n<N;++n)
+    //we don't want to count the null terminating character
+    constexpr LD::UInteger Size = (N-1);
+    for(LD::UInteger n = 0;n<Size;++n)
     {
         const wchar_t & cp = lit[n];
         if (cp < 0x80)
         {
-            // one octet
-            //*(result++) = static_cast<uint8_t>(cp);
             size+=1;
         }
         else if (cp < 0x800)
         {                // two octets
-            //*(result++) = static_cast<uint8_t>((cp >> 6)            | 0xc0);
-            //*(result++) = static_cast<uint8_t>((cp & 0x3f)          | 0x80);
             size+=2;
         }
         else if (cp < 0x10000)
         {              // three octets
-            //*(result++) = static_cast<uint8_t>((cp >> 12)           | 0xe0);
-            //*(result++) = static_cast<uint8_t>(((cp >> 6) & 0x3f)   | 0x80);
-            //*(result++) = static_cast<uint8_t>((cp & 0x3f)          | 0x80);
             size+=3;
         }
         else
         {
-            // four octets
-            //*(result++) = static_cast<uint8_t>((cp >> 18)           | 0xf0);
-            //*(result++) = static_cast<uint8_t>(((cp >> 12) & 0x3f)  | 0x80);
-            //*(result++) = static_cast<uint8_t>(((cp >> 6) & 0x3f)   | 0x80);
-            //*(result++) = static_cast<uint8_t>((cp & 0x3f)          | 0x80);
             size+=4;
         }
     }
@@ -226,7 +198,7 @@ unsigned char* createBitmapInfoHeader(int height, int width){
             0,0,0,0, /// compression
             0,0,0,0, /// image size
             0,0,0,0, /// horizontal resolution
-            0,0,0,0, /// vertical resolution
+            0,0,0,0, /// vertical resolutionReflectionExample
             0,0,0,0, /// colors in color table
             0,0,0,0, /// important color count
     };
@@ -392,201 +364,93 @@ int main()
 
 
 
+
+
     LD::Example::FullAdderExample();
     */
-    LD::Example::DelimeterSeperatedFileExample();
-    //LD::Example::TermBoxMenuExample();
-    /*
 
-    Point pt{5,7};
+    LD::StaticArray<char,15> array;
+
+    LD::BackInserter<LD::StaticArray<char,15>> inserter{array};
+    inserter = 'a';
+    inserter = 'b';
+    //ins
+    //inserter = '\0';
+    //inserter = '\0';
+
+    std::cout << "Stuffings: " << array[1] << std::endl;
+    ctre::fixed_string abc{L"abc ¶"};
+
+    std::cout << "Size : " << Size(abc) <<  " :  " << abc.real_size <<  " : " << utf8::distance((char*)abc.content,(char*)abc.content+abc.size()) << std::endl;
+    std::cout << "Bytes : " << LD::UTF8::NumberOfBytes("abc"_ts) << std::endl;
+    auto ts = "abc"_ts;
 
 
-    pt.X() = 97;
+    auto firstLength = LD::UTF8::Distance((char*)abc.content,(char*)abc.content+abc.size());
 
-    LD::Tuple<float,float> point =  MapToTuple(pt);
-
-    std::cout << "Point : " << LD::Get<0>(point) << "," << LD::Get<1>(point) << std::endl;
+    auto secondLength = LD::UTF8::Distance(array.Begin(),array.End());
 
 
-    //LD::Hexademical<2> address{LD::BitSet<8>{1,1,1,0,1,1,1,1}};
-    //LD::Hexademical<16> number{LD::GenerateBitSet(92392423216,LD::CT::Range<0,64>{})};
-
-    LD::ImmutableByteBuffer<8> numberAsBytes{LD::GenerateBitSet(92392423216,LD::CT::Range<0,64>{})};
-    for(LD::UInteger n = 0;n<8;++n)
+    auto onDistance = [](const LD::Context<LD::TransactionResult,LD::UInteger> & context) noexcept
     {
-        std::cout  << LD::UInteger (numberAsBytes[n]) << ",";
-    }
-    std::cout << "\n";
-    for(LD::UInteger n = 0;n<16;++n)
-    {
-        std::cout << number[n];
-    }
-    std::cout << "\n";
-    for (int i = 0; i < 2; ++i) {
-        std::cout << address[i];
-    }
-    std::cout << "\n";
-    std::cout << "Test 5" << std::endl;
-    for(LD::UInteger n = 0;n<8;++n)
-    {
-        std::cout << setResult[n];
-    }
+        std::cout << "Distance : " << LD::Get(LD::Get<1>(context)) << std::endl;
+    };
 
-    auto bits = LD::GenerateBitSet(-8,LD::CT::Range<0,11>{});
-
-    std::cout << std::endl;
-    for(LD::UInteger n = 0;n<11;++n)
-    {
-        std::cout << bits[n];
-    }
-    std::cout << std::endl;
-
-    auto doubleAsBits = LD::GenerateBitSet(0.043);
-    for(LD::UInteger n = 0;n<18;++n)
-    {
-        std::cout << doubleAsBits[n];
-    }
-    /*
-     */
-    //std::printf("x = %.2lf = %.2lf * 2^%d\n", x, fraction, e);
-    /*
-    LD::RowBackingStore backingStore{"/proc/stat"};
-    LD::SpaceSpeerateValueFile<LD::RowBackingStore> file{backingStore};
-    //using ObjectPack = LD::CT::TypeList<LD::CPUPackageMetric,LD::CPUCoreMetric<0>,LD::CPUCoreMetric<1>,LD::CPUCoreMetric<2>>;
-    using ObjectPack = LD::GenerateSystemRepresentation<16>;
-    using ObjectPackVariant = LD::Rebind<ObjectPack,LD::Variant>;
-    LD::UInteger previous_idle_time=0, previous_total_time=0;
-    LD::SpaceSpeerateValueFile<LD::RowBackingStore>::Iterator<ObjectPackVariant (LD::UInteger&,LD::UInteger&)> it{previous_idle_time,previous_total_time};// = file.Begin(LD::CT::TypeList<LD::CPUPackageMetric>{},previous_idle_time,previous_total_time);
-    LD::SpaceSpeerateValueFile<LD::RowBackingStore>::Iterator<ObjectPackVariant (LD::UInteger&,LD::UInteger&)> end = file.End(ObjectPack{},previous_idle_time,previous_total_time);
-    std::cout << LD::CPUCoreMetric<0>::GetClassName() << std::endl;
-    for (LD::UInteger i = 0; i < 10; ++i)
+    auto onError = [](const LD::Context<LD::TransactionError> & context) noexcept
     {
 
-        for (auto it = file.Begin(ObjectPack{},previous_idle_time,previous_total_time); it != end; ++it)
-        {
+    };
+
+    LD::Match(firstLength,onDistance,onError);
 
 
-            //called when we get a LD::CPUPackageMetric Object
-            auto onCPUPackageMetric = [](const LD::Context<LD::DatabaseTransactionResult,const LD::CPUPackageMetric,LD::UInteger&,LD::UInteger&> & context) noexcept
-            {
 
-                std::cout << "found package " << std::endl;
-                LD::CPUPackageMetric & metric = LD::Get(LD::Get<1>(context));
-                LD::UInteger & previous_idle_time = LD::Get(LD::Get<2>(context));
-                LD::UInteger & previous_total_time = LD::Get(LD::Get<3>(context));
-                LD::Float total_time = metric.User() + metric.Nice() + metric.System() + metric.Idle() +metric.IOWait() + metric.IRQ() + metric.SoftIRQ();
-
-                //std::cout << "Previous Idle Time = " << previous_idle_time << std::endl;
-                //std::cout << "Previous Total Time = " << previous_idle_time << std::endl;
-                const LD::UInteger idle_time = metric.Idle();
-                //std::cout << "Idle Time : " << idle_time << std::endl;
-                const double idle_time_delta = idle_time - previous_idle_time;
-                const double total_time_delta = total_time - previous_total_time;
-                const double utilization = (idle_time_delta!=total_time_delta)*(100.0 * (1.0 - idle_time_delta / total_time_delta));
-                std::cout << "Utilizaiton : " <<  utilization << std::endl;
-                //std::cout << "Sum : " << total_time << std::endl;
-                LD::Float idlePercentage = (metric.Idle()*100)/total_time;
-                //std::cout << "Usage: " << ((sum-metric.Idle())*100.0)/sum << std::endl;
-
-                previous_idle_time = idle_time;
-                previous_total_time = total_time;
-            };
-
-            //called when we find an object that matches LD::CPUCoreMetric<LD::UInteger>
-            auto onCPUCoreMetric = [](auto  && stuff) noexcept -> LD::Enable_If_T<LD::Require<LD::IsCPUCore<LD::GetType<decltype(LD::GetQueryType(stuff))>>>,void>
-            {
-                using CoreType = decltype(LD::GetQueryType(stuff));
-                using Underlyingcore = LD::GetType<CoreType >;
-                constexpr static const LD::UInteger Core = Underlyingcore::Core;
-                std::cout << "found core " << Core <<  std::endl;
-
-
-                if constexpr(LD::IsCPUCore<Type>)
+    LD::StaticArray<char,500> array1;
+    LD::MultiMatch(
+            LD::Overload{
+                [](auto, auto){},
+                [&](const LD::Context<LD::TransactionResult,LD::UInteger> & ctx1, const LD::Context<LD::TransactionResult,LD::UInteger> & ctx2)
                 {
-                    using CoreType = decltype(LD::GetQueryType(stuff));
-                    using Underlyingcore = typename CoreType::type;
-                    constexpr static const LD::UInteger Core = Underlyingcore::Core;
-                    std::cout << "found core " << Core <<  std::endl;
-                }
+                    LD::BackInserter<LD::StaticArray<char,500>> backInserter{array1};
+
+                    auto length1 = LD::Get(LD::Get<1>(ctx1));
+                    auto length2 = LD::Get(LD::Get<1>(ctx2));
+
+                    auto i1 = (char*)abc.begin();
+                    for(auto i = 0;i<length1;++i)
+                    {
+                        auto possibleNextCharacter = LD::UTF8::Next(i1,(char*)abc.end());
 
 
-            };
+                        auto onError = [](const LD::Context<LD::TransactionError> & ) noexcept
+                        {
 
-            //called when we get a LD::CPUPackageMetric Object
-            auto onContextSwitchMetric = [](const LD::Context<LD::DatabaseTransactionResult,const LD::ContextSwitchMetric,LD::UInteger&,LD::UInteger&> & context) noexcept
-            {
+                        };
 
+                        auto onCharacter = [](const LD::Context<LD::TransactionResult,uint32_t> & context) noexcept
+                        {
+                            //std::cout << LD::Get<1>(context) << std::endl;
+                        };
 
-            };
-
-            auto onInterruptServiceMetric = [](const LD::Context<LD::DatabaseTransactionResult,const LD::InterruptServiceMetric,LD::UInteger&,LD::UInteger&> & context) noexcept
-            {
-
-
-            };
-
-            auto onBootUpTimeMetric = [](const LD::Context<LD::DatabaseTransactionResult,const LD::BootUpTimeMetric,LD::UInteger&,LD::UInteger&> & context) noexcept
-            {
-
-
-            };
-
-            auto onProcessMetric = [](const LD::Context<LD::DatabaseTransactionResult,const LD::ProcessesMetric,LD::UInteger&,LD::UInteger&> & context) noexcept
-            {
+                        LD::Match(possibleNextCharacter,LD::Overload{onError,onCharacter});
+                        //std::cout << utf8::next(i1,(char*)abc.end()) << std::endl;
+                    }
+                    std::cout << LD::Get(LD::Get<1>(ctx1)) << " : " << LD::Get(LD::Get<1>(ctx2)) << std::endl;
+                }},
+            firstLength,secondLength);
 
 
-            };
-
-            auto onProcessRunningMetric = [](const LD::Context<LD::DatabaseTransactionResult,const LD::ProcessesRunningMetric,LD::UInteger&,LD::UInteger&> & context) noexcept
-            {
 
 
-            };
-
-            auto onProcessBlockedMetric = [](const LD::Context<LD::DatabaseTransactionResult,const LD::ProcessesBlockedMetric,LD::UInteger&,LD::UInteger&> & context) noexcept
-            {
 
 
-            };
-
-            //LD::SoftIRQMetric
-
-            auto onSoftIRQMetric = [](const LD::Context<LD::DatabaseTransactionResult,const LD::SoftIRQMetric,LD::UInteger&,LD::UInteger&> & context) noexcept
-            {
+    LD::UnQliteBackend<char> database{"database.db",LD::OpenAndCreateIfNotExists{}};
+    LD::BasicKeyedDatabase<LD::UnQliteBackend<char>> keyedDatabase{database};
 
 
-            };
+    keyedDatabase.Insert("abc"_ts,LD::Square{});
 
-            //called if we get a Database Error, such as getting a row with no associated objectyghtytynonneaew WQQq
-            auto onDatabaseError = [](const LD::Context<LD::DatabaseError,LD::UInteger&,LD::UInteger&> & context) noexcept
-            {
+    //LD::Example::DelimeterSeperatedFileExample();
 
-                //std::cout << "found core 0 " << std::endl;
-            };
-
-
-            LD::Match(*it,
-                    onCPUPackageMetric,
-                    onDatabaseError,
-                    onCPUCoreMetric,
-                    onContextSwitchMetric,
-                    onInterruptServiceMetric,
-                    onBootUpTimeMetric,
-                    onProcessMetric,
-                    onProcessRunningMetric,
-                    onProcessBlockedMetric,
-                    onSoftIRQMetric);
-           //sleep(1);
-        }
-        sleep(1);
-    }
-     */
-    //LD::Example::TermBoxMenuExample();
-    LD::Timer currentTimer;
-    currentTimer.Start();
-    //LD::Example::ReflectionExample();
-    //LD::Example::IMGUITUIExample();
-    currentTimer.Stop();
-    //std::cout << "Execution Time: " << currentTimer.Time()/1.0_us<< std::endl;
     return 0;
 }

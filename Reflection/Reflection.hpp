@@ -114,6 +114,7 @@ namespace LD
 
 
 
+
             using DecayedType = LD::Detail::Decay_T<T>;
             LD::Detail::Conditional_T<LD::Detail::IsLValueReference<T>::value,LD::ElementReference<DecayedType>,DecayedType> mValue;
             //using AssignableType = decltype((LD::Declval<LD::Detail::Decay_T<T>>().*GetterT)());
@@ -151,6 +152,14 @@ namespace LD
                 //return {};
             }
 
+            constexpr  Ret operator()() const noexcept
+            {
+                //return LD::Get(this->mValue.*GetterT)();
+
+                ;
+                return (LD::Get(this->mValue).*GetterT)();
+                //return {};
+            }
             template<typename V>
             ProxiedEncapsulatedMemberDescriptor & operator = (V && v) noexcept
             {
@@ -167,9 +176,8 @@ namespace LD
                 return (*this);
             }
 
-
             template<typename F>
-            constexpr Ret operator()(F && object) noexcept
+            constexpr Ret operator()(F && object) const noexcept
             {
                 return (LD::Get(this->mValue).*GetterT)();
             }
@@ -415,6 +423,7 @@ namespace LD
         }
 
 
+
         /*
         template<const auto & Name, auto F>
         constexpr auto GetMemberDescirptorType(LD::CT::FunctionDescriptor<Name,F>) noexcept
@@ -433,6 +442,12 @@ namespace LD
         constexpr auto GetClassName(LD::Type<T>) noexcept
         {
             return LD::CT::TypeDescriptor<LD::Detail::Decay_T<T>>::ClassName;
+        }
+
+        template<typename T>
+        constexpr auto GetClassName(const LD::CT::TypeDescriptor<T> &) noexcept
+        {
+            return LD::CT::TypeDescriptor<T>::ClassName;
         }
 
 

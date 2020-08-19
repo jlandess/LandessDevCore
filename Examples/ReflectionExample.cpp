@@ -22,6 +22,7 @@ namespace LD
         void ReflectionExample()
         {
 
+            /*
             LD::Timer currentTimer;
             currentTimer.Start();
 
@@ -138,6 +139,7 @@ namespace LD
 
             LD::Match(deletionQueryResult,onDeletionSuccess,onDeletionError);
             currentTimer.Stop();
+             */
         }
     }
 }

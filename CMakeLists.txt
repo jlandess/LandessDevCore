@@ -174,7 +174,7 @@ add_executable(LandessDevCore
         Examples/MultithreadingExample.cpp
         MVC/TUI/TUITextLabel.h
         MVC/TUI/TUITextInput.h
-        MVC/Mouse.h MVC/Cusor.h
+        MVC/Mouse.hpp MVC/Cusor.h
         MVC/TUI/TUIEvent.h
         Examples/TermBoxInputExample.hpp
         Examples/TermBoxInputExample.cpp
@@ -219,6 +219,6 @@ add_executable(LandessDevCore
         TypeTraits/FunctionalReflection.hpp
         Algorithms/String.hpp
         Unicode/UTF8.hpp
-        TUI/ascii_art.cpp Examples/FullAdderExample.hpp Examples/FullAdderExample.cpp MVC/TermBoxProgressBar.hpp MVC/TermboxTextLabel.h MVC/ScopedRenderContextState.hpp Primitives/General/ScopedState.hpp MVC/TermBoxButton.hpp IO/SystemLoad.hpp MVC/MultiTenantApplication.hpp MVC/TermBoxCheckBox.h)
+        TUI/ascii_art.cpp Examples/FullAdderExample.hpp Examples/FullAdderExample.cpp MVC/TermBoxProgressBar.hpp MVC/TermboxTextLabel.hpp MVC/ScopedRenderContextState.hpp Primitives/General/ScopedState.hpp MVC/TermBoxButton.hpp IO/SystemLoad.hpp MVC/MultiTenantApplication.hpp MVC/TermBoxCheckBox.hpp MVC/TermBoxRadioButton.hpp MVC/TermBoxRadioButtonBar.hpp MVC/TermBoxCheckBoxBar.hpp Async/CallStack.hpp Async/Strand.hpp)
 target_link_libraries(LandessDevCore pthread)
 target_link_libraries(LandessDevCore ncurses)

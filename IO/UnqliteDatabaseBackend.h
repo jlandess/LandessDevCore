@@ -33,10 +33,10 @@ namespace LD
     private:
         LD::ElementReference<unqlite> mBackend;
     public:
-        UnQliteBackend() noexcept :mBackend(nullptr)
-        {
+        //UnQliteBackend() noexcept :mBackend(nullptr)
+        //{
 
-        }
+        //}
 
         ~UnQliteBackend()
         {

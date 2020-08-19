@@ -7,11 +7,11 @@ C_FLAGS = -g
 
 C_DEFINES = 
 
-C_INCLUDES = -I/home/phoenixflower/Documents/Test/LandessDevCore/. 
+C_INCLUDES = -I/home/phoenixflower/Documents/LandessDevCore/. 
 
 CXX_FLAGS = -g   -std=gnu++17
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/phoenixflower/Documents/Test/LandessDevCore/. 
+CXX_INCLUDES = -I/home/phoenixflower/Documents/LandessDevCore/. 
 

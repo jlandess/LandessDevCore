@@ -64,10 +64,10 @@ RM = /snap/clion/123/bin/cmake/linux/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/phoenixflower/Documents/Test/LandessDevCore
+CMAKE_SOURCE_DIR = /home/phoenixflower/Documents/LandessDevCore
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/phoenixflower/Documents/Test/LandessDevCore/cmake-build-debug
+CMAKE_BINARY_DIR = /home/phoenixflower/Documents/LandessDevCore/cmake-build-debug
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -94,14 +94,14 @@ clean: CMakeFiles/LandessDevCore.dir/clean
 CMakeFiles/LandessDevCore.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/phoenixflower/Documents/Test/LandessDevCore/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29 "Built target LandessDevCore"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/phoenixflower/Documents/LandessDevCore/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29 "Built target LandessDevCore"
 .PHONY : CMakeFiles/LandessDevCore.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/LandessDevCore.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/phoenixflower/Documents/Test/LandessDevCore/cmake-build-debug/CMakeFiles 29
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/phoenixflower/Documents/LandessDevCore/cmake-build-debug/CMakeFiles 29
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/LandessDevCore.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/phoenixflower/Documents/Test/LandessDevCore/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/phoenixflower/Documents/LandessDevCore/cmake-build-debug/CMakeFiles 0
 .PHONY : CMakeFiles/LandessDevCore.dir/rule
 
 # Convenience name for target.
