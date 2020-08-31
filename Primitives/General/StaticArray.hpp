@@ -429,6 +429,8 @@ namespace LD
             }
 
 
+
+
             constexpr bool operator < (const Iterator & iterator) noexcept
             {
                 return this->mIndex < iterator.mIndex;
@@ -494,6 +496,22 @@ namespace LD
         Iterator End()
         {
             return Iterator{nullptr,this->Size};
+        }
+
+        constexpr void PopBack() noexcept
+        {
+            this->InternalBuffer[this->Size-1] = T{};
+            this->Size--;
+        }
+
+        constexpr void Clear(const T & value = T{}) noexcept
+        {
+
+            LD::For<Amount>([](auto Index,T buffer[Amount ? Amount:1], const T & init)
+            {
+               buffer[Index] = init;
+               return true;
+            },this->InternalBuffer,value);
         }
         template<typename U,LD::UInteger Index, LD::UInteger A>
         friend constexpr U & Get(LD::StaticArray<U,Amount> & array) noexcept ;

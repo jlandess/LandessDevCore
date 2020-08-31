@@ -227,7 +227,7 @@ namespace LD
         }
 
         template<typename V>
-        LD::Enable_If_T<LD::Require<
+        constexpr LD::Enable_If_T<LD::Require<
                 (LD::GetTypeCountInTypeList<V,LD::CT::TypeList<Pack...>>::value > 0)
         >,QueryResult&> operator = (const LD::Context<LD::TransactionResult,V,Args...> & context) noexcept
         {
@@ -482,12 +482,12 @@ namespace LD
     template<typename T, typename ... Args>
     constexpr bool IsTransactionalQuery(const LD::QueryResult<T(Args...)> & queryResult) noexcept
     {
-        auto isErrorLamba = [](auto && context) noexcept
+        auto transactionLambda = [](auto && context) noexcept
         {
-            return not LD::IsTransactionalContext(LD::Forward<decltype(context)>(context));
+            return  LD::IsTransactionalContext(LD::Forward<decltype(context)>(context));
         };
 
-        return LD::Match(queryResult,isErrorLamba);
+        return LD::Match(queryResult,transactionLambda);
     }
 
 }

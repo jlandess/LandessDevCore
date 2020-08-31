@@ -161,11 +161,10 @@ namespace LD
                 //return {};
             }
             template<typename V>
-            ProxiedEncapsulatedMemberDescriptor & operator = (V && v) noexcept
+            ProxiedEncapsulatedMemberDescriptor & operator = (V && v)  noexcept
             {
 
-                T & object = LD::Get(this->mValue);
-
+                  T  &  object = LD::Get(this->mValue);
                 if constexpr(LD::CT::IsSame(SetType{},LD::CT::RemoveConst(RetType{})))
                 {
                     (object.*SetterT)() = LD::Forward<V>(v);

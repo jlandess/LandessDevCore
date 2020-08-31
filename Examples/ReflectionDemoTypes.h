@@ -362,6 +362,10 @@ namespace LD
             return this->mLength;
         }
 
+        LD::Float & GetLength() noexcept
+        {
+            return this->mLength;
+        }
 
 
     };
@@ -390,48 +394,42 @@ namespace LD
         }
     };
 
-    class Triangle: public LD::Reflectable<
-            decltype("Triangle"_ts)(
-                    decltype("Base"_ts),      LD::Float,
-                    decltype("Height"_ts),      LD::Float,
-                    decltype("area"_ts),LD::FunctionView<LD::Float ()>)>
+    class Triangle
     {
+    private:
+        LD::Float mBase;
+        LD::Float mHeight;
     public:
         inline Triangle()
         {
-            (*this)["Base"_ts] = 0;
-            (*this)["Height"_ts] = 0;
-            (*this)["area"_ts] = LD::FunctionView<LD::Float()>(this,&Triangle::GetArea);
         }
-        inline Triangle(const LD::Float & base, const LD::Float & height)
+        inline Triangle(const LD::Float & base, const LD::Float & height):mBase{base},mHeight{height}
         {
-            (*this)["Base"_ts] = base;
-            (*this)["Height"_ts] = height;
-            (*this)["area"_ts] = LD::FunctionView<LD::Float()>(this,&Triangle::GetArea);
+
         }
         LD::Float GetArea() const
         {
-            return 0.5 * (*this)["Base"_ts] * (*this)["Height"_ts];
+            return 0.5 * this->mBase * this->mHeight;
         }
 
         LD::Float  & Base() noexcept
         {
-            return (*this)["Base"_ts];
+            return this->mBase;
         }
 
         const LD::Float  & Base() const noexcept
         {
-            return (*this)["Base"_ts];
+            return this->mBase;
         }
 
         LD::Float  & Height() noexcept
         {
-            return (*this)["Height"_ts];
+            return this->mHeight;
         }
 
         const LD::Float  & Height() const noexcept
         {
-            return (*this)["Height"_ts];
+            return this->mHeight;
         }
 
     };
@@ -457,40 +455,17 @@ namespace LD
         }
     };
 
-    class Pyramid: public LD::Reflectable<
-            decltype("Pyramid"_ts)(
-                    decltype("Base"_ts),      LD::Square,
-                    decltype("Side"_ts),      LD::Triangle,
-                    decltype("area"_ts),LD::FunctionView<LD::Float ()>)>
+    class Pyramid
     {
     private:
-        LD::Square & mBase;
-        LD::Triangle & mSide;
+        LD::Square  mBase;
+        LD::Triangle  mSide;
     public:
-        inline Pyramid() noexcept :mBase((*this)["Base"_ts]),mSide((*this)["Side"_ts])
+        inline Pyramid() noexcept :mBase{},mSide{}
         {
-            (*this)["Base"_ts] = LD::Square{};
-            (*this)["Side"_ts] =  LD::Triangle{};
-            (*this)["area"_ts] = LD::FunctionView<LD::Float()>(this,&Pyramid::GetArea);
         }
-        inline Pyramid(const LD::Square & width, const LD::Triangle & height) noexcept : Pyramid()
+        inline Pyramid(const LD::Square & width, const LD::Triangle & height) noexcept : mBase{width},mSide{height}
         {
-            (*this)["Base"_ts] = LD::Square{width};
-            (*this)["Side"_ts] =  LD::Triangle{height};
-            (*this)["area"_ts] = LD::FunctionView<LD::Float()>(this,&Pyramid::GetArea);
-        }
-
-        inline Pyramid(const Pyramid & pyramid) noexcept :Pyramid()
-        {
-            (*this) = pyramid;
-        }
-
-        inline Pyramid & operator = (const Pyramid & pyramid)
-        {
-            (*this)["Base"_ts] = pyramid["Base"_ts];
-            (*this)["Side"_ts] = pyramid["Side"_ts];
-            (*this)["area"_ts] = LD::FunctionView<LD::Float()>(this,&Pyramid::GetArea);
-            return (*this);
         }
 
         LD::Square & Base() noexcept
@@ -511,10 +486,6 @@ namespace LD
         const LD::Triangle & Side() const noexcept
         {
             return  this->mSide;
-        }
-        LD::Float GetArea() const
-        {
-            return 5;
         }
     };
 }
@@ -719,7 +690,45 @@ public:
     static constexpr auto ClassName = ctll::fixed_string{"Square"};
 
     using MemberList = LD::CT::TypeList<
-            LD::CT::EncapsulatedMemberDescriptor<LengthName,LD::CT::SelectOverload<LD::Float & (LD::Square::*)(),&LD::Square::Length>(),LD::CT::SelectOverload<const LD::Float & (LD::Square::*)() const,&LD::Square::Length>()>
+            LD::CT::EncapsulatedMemberDescriptor<LengthName,LD::CT::SelectOverload<LD::Float & (LD::Square::*)(),&LD::Square::GetLength>(),LD::CT::SelectOverload<const LD::Float & (LD::Square::*)() const,&LD::Square::Length>()>
+    >;
+
+
+    static constexpr MemberList Members{  };
+
+};
+
+template<>
+struct LD::CT::TypeDescriptor<LD::Triangle>
+{
+private:
+    static constexpr auto BaseName = ctll::basic_fixed_string("Base");
+    static constexpr auto HeightName = ctll::basic_fixed_string("Height");
+public:
+    static constexpr auto ClassName = ctll::fixed_string{"Triangle"};
+
+    using MemberList = LD::CT::TypeList<
+            LD::CT::EncapsulatedMemberDescriptor<BaseName,LD::CT::SelectOverload<LD::Float & (LD::Triangle::*)(),&LD::Triangle::Base>(),LD::CT::SelectOverload<const LD::Float & (LD::Triangle::*)() const,&LD::Triangle::Base>()>,
+            LD::CT::EncapsulatedMemberDescriptor<HeightName,LD::CT::SelectOverload<LD::Float & (LD::Triangle::*)(),&LD::Triangle::Height>(),LD::CT::SelectOverload<const LD::Float & (LD::Triangle::*)() const,&LD::Triangle::Height>()>
+    >;
+
+
+    static constexpr MemberList Members{  };
+
+};
+
+template<>
+struct LD::CT::TypeDescriptor<LD::Pyramid>
+{
+private:
+    static constexpr auto BaseName = ctll::basic_fixed_string("Base");
+    static constexpr auto SideName = ctll::basic_fixed_string("Side");
+public:
+    static constexpr auto ClassName = ctll::fixed_string{"Pyramid"};
+
+    using MemberList = LD::CT::TypeList<
+            LD::CT::EncapsulatedMemberDescriptor<BaseName,LD::CT::SelectOverload<LD::Square & (LD::Pyramid::*)(),&LD::Pyramid::Base>(),LD::CT::SelectOverload<const LD::Square & (LD::Pyramid::*)() const,&LD::Pyramid::Base>()>,
+            LD::CT::EncapsulatedMemberDescriptor<SideName,LD::CT::SelectOverload<LD::Triangle & (LD::Pyramid::*)(),&LD::Pyramid::Side>(),LD::CT::SelectOverload<const LD::Triangle & (LD::Pyramid::*)() const,&LD::Pyramid::Side>()>
     >;
 
 

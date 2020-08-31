@@ -489,29 +489,49 @@ namespace LD
         }
 
         template<LD::UInteger N>
-        auto Begin(const ctll::fixed_string<N> & str) noexcept
+        inline auto Begin(const LD::StaticArray<char,N> & str) noexcept
+        {
+            return (char*)str.GetData();
+        }
+        template<LD::UInteger N>
+        inline auto End(const LD::StaticArray<char,N> & str) noexcept
+        {
+            return (char*)str.GetData()+str.GetSize();
+        }
+        template<LD::UInteger N>
+        inline auto Begin(const ctll::fixed_string<N> & str) noexcept
         {
             return (char*)str.begin();
         }
 
         template<LD::UInteger N>
-        auto End(const ctll::fixed_string<N> & str) noexcept
+        inline auto End(const ctll::fixed_string<N> & str) noexcept
         {
-            return (char*)str.end();
+            return (char*)str.content+str.size();
         }
 
 
         template<char ... C>
-        auto Begin(LD::TypeString<C...> ) noexcept
+        inline auto Begin(LD::TypeString<C...> ) noexcept
         {
             return LD::TypeString<C...>::cbegin();
         }
 
 
         template<char ... C>
-        auto End(LD::TypeString<C...> ) noexcept
+        inline auto End(LD::TypeString<C...> ) noexcept
         {
             return LD::TypeString<C...>::cend();
+        }
+
+        inline auto Begin(LD::StringView  view) noexcept
+        {
+            return view.begin();
+        }
+
+        inline auto End(LD::StringView  view) noexcept
+        {
+            return view.end();
         }
 
     }

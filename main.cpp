@@ -29,6 +29,7 @@
 #include "Examples/FullAdderExample.hpp"
 #include "IO/UnqliteDatabaseBackend.h"
 #include "IO/Database.hpp"
+#include "TypeTraits/TypeList.hpp"
 template<typename T>
 class Square
 {
@@ -379,13 +380,37 @@ int main()
     //inserter = '\0';
 
     std::cout << "Stuffings: " << array[1] << std::endl;
-    ctre::fixed_string abc{L"abc ¶"};
+    ctre::fixed_string abc{L"abc"};
 
     std::cout << "Size : " << Size(abc) <<  " :  " << abc.real_size <<  " : " << utf8::distance((char*)abc.content,(char*)abc.content+abc.size()) << std::endl;
     std::cout << "Bytes : " << LD::UTF8::NumberOfBytes("abc"_ts) << std::endl;
     auto ts = "abc"_ts;
 
 
+    LD::StaticArray<char,1024> bufferABC;
+    LD::BackInserter<LD::StaticArray<char,1024>> abcInserter{bufferABC};
+
+    for(LD::UInteger n = 0;n<3;++n)
+    {
+        LD::UTF8::Append(abc[n],abcInserter);
+    }
+    auto abcBeg = LD::UTF8::Begin(bufferABC);
+    for(LD::UInteger n = 0;n<3;++n)
+    {
+        auto res = LD::UTF8::Next(abcBeg,LD::UTF8::End(abc));
+
+        auto onTransaction = [](const LD::Context<LD::TransactionResult,uint32_t> & context) noexcept
+        {
+            printf("abc test ::%c\n",LD::Get(LD::Get<1>(context)));
+        };
+
+        auto onError = [](const LD::Context<LD::TransactionError> &) noexcept
+        {
+
+        };
+
+        LD::Match(res,onTransaction,onError);
+    }
     auto firstLength = LD::UTF8::Distance((char*)abc.content,(char*)abc.content+abc.size());
 
     auto secondLength = LD::UTF8::Distance(array.Begin(),array.End());
@@ -402,6 +427,7 @@ int main()
     };
 
     LD::Match(firstLength,onDistance,onError);
+
 
 
 
@@ -438,19 +464,33 @@ int main()
                     std::cout << LD::Get(LD::Get<1>(ctx1)) << " : " << LD::Get(LD::Get<1>(ctx2)) << std::endl;
                 }},
             firstLength,secondLength);
+    LD::UnQliteBackend<char> backingStore{"database.db",LD::OpenAndCreateIfNotExists{}};
+    LD::BasicKeyedDatabase<LD::UnQliteBackend<char>> keyedDatabase{backingStore};
 
 
 
 
+    //keyedDatabase.Insert("abc"_ts,LD::Pyramid{LD::Square{922},LD::Triangle{72.48,92.73}});
+    auto result =  keyedDatabase.Fetch("abc"_ts,LD::CT::TypeList<LD::Pyramid>{});
 
+    auto onFetch = [](const LD::Context<LD::TransactionResult,LD::Pyramid> & context) noexcept
+    {
+        LD::Pyramid & pyramid = LD::Get(LD::Get<1>(context));
+        std::cout << pyramid.Side().Base() << std::endl;
+        std::cout << pyramid.Side().Height() << std::endl;
+        std::cout << pyramid.Base().Length() << std::endl;
+    };
 
-    LD::UnQliteBackend<char> database{"database.db",LD::OpenAndCreateIfNotExists{}};
-    LD::BasicKeyedDatabase<LD::UnQliteBackend<char>> keyedDatabase{database};
+    auto onFetchError = [](auto) noexcept
+    {
 
-
-    keyedDatabase.Insert("abc"_ts,LD::Square{});
-
+    };
+    LD::Match(result,onFetch,onFetchError);
+    //backingStore.Fetch(LD::StringView{"abc.Side.Height"},[](auto context)->int
+    //{
+       // std::cout << "Key : " << LD::Get(LD::Get<0>(context)) << "    Value : " << LD::Get(LD::Get<1>(context));
+        //return 0;
+    //});
     //LD::Example::DelimeterSeperatedFileExample();
-
     return 0;
 }

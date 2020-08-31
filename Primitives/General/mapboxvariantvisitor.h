@@ -77,7 +77,7 @@ namespace LD
         return mapbox::util::visitor<typename LD::Detail::Decay<Fns>::type...>(LD::Forward<Fns>(fns)...);
     }
     template<typename ...T, typename ... Fns>
-    auto Match(const mapbox::util::variant<T...> & variant,Fns && ... fns)
+    constexpr auto Match(const mapbox::util::variant<T...> & variant,Fns && ... fns)
     {
         return mapbox::util::apply_visitor(
                 mapbox::util::make_visitor(fns...),
