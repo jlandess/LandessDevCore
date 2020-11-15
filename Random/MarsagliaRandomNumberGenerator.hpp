@@ -25,12 +25,17 @@ namespace LD
 
         }
 
-        unsigned long MaxRand() {
+        constexpr MarsagliaMultiplyWithCarryGenerator(unsigned long s) noexcept :mZ{DefZ},mW{DefW},mSeed{0},mCurrent{0}
+        {
+            this->ReSeed(s);
+        }
+
+        unsigned long MaxRand() noexcept {
 
             return  RMax;
         }
 
-        void ReSseed() {
+        void ReSseed() noexcept {
 
             mZ = (unsigned long) (DefZ + mSeed);
             mW = (unsigned long) (DefW + mSeed);
@@ -54,7 +59,7 @@ namespace LD
             return this->mCurrent;
         }
 
-        double NextFloatingPoint() {
+        double NextFloatingPoint() noexcept {
 
             return (double) this->NextInteger()/(RMax + 1.0);
         }
@@ -91,7 +96,7 @@ namespace LD
             return this->mCurrent;
         }
 
-        constexpr double NextFloatingPoint() {
+        constexpr double NextFloatingPoint() noexcept {
 
             return (double) this->NextInteger()/(RMax + 1.0);
         }

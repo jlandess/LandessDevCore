@@ -86,18 +86,120 @@ namespace LD
          */
         void operator()() noexcept
         {
+            using SystemLayout = LD::GenerateSystemRepresentation<16>;
+            LD::UInteger threadCount = LD::Thread::GetHardwareConcurrency();
 
+
+            auto onError = [](const LD::Context<LD::TransactionError,LD::StaticArray<MetricGlob ,MaxCoreCount+1>&> & ) noexcept
+            {
+
+            };
+
+            auto onCPUPackageMetric = [](const LD::Context<LD::TransactionResult,LD::CPUPackageMetric,LD::StaticArray<MetricGlob ,MaxCoreCount+1>&> & transaction) noexcept
+            {
+                LD::StaticArray<MetricGlob ,MaxCoreCount+1> & delta = LD::Get(LD::Get<2>(transaction));
+
+                LD::UInteger & previous_idle_time = LD::Get<0>(delta[0]);
+                LD::UInteger & previous_total_time = LD::Get<1>(delta[0]);
+                LD::CPUPackageMetric & metric = LD::Get(LD::Get<1>(transaction));
+                LD::Float total_time = metric.User() + metric.Nice() + metric.System() + metric.Idle() +metric.IOWait() + metric.IRQ() + metric.SoftIRQ();
+                const LD::UInteger  idle_time = metric.Idle();
+                const double idle_time_delta = idle_time - previous_idle_time;
+                const double total_time_delta = total_time - previous_total_time;
+
+                if (total_time_delta != 0)
+                {
+                    LD::Get<2>(delta[0]) = (100.0 * (1.0 - idle_time_delta / total_time_delta));
+
+                    LD::Get<0>(delta[0]) = idle_time;
+                    LD::Get<1>(delta[0]) = total_time;
+                }
+            };
+
+            auto onCPUCoreMetric = [](auto  && stuff) noexcept -> LD::Enable_If_T<LD::Require<LD::IsCPUCore<LD::GetType<decltype(LD::GetQueryType(stuff))>>>,void>
+            {
+                auto & metric = LD::Get(LD::Get<1>(LD::Forward<decltype(stuff)>(stuff)));
+                LD::Float total_time = metric.User() + metric.Nice() + metric.System() + metric.Idle() +metric.IOWait() + metric.IRQ() + metric.SoftIRQ();
+
+                LD::StaticArray<MetricGlob ,MaxCoreCount+1> & delta = LD::Get(LD::Get<2>(LD::Forward<decltype(stuff)>(stuff)));
+                LD::UInteger & previous_idle_time = LD::Get<0>(delta[metric.Core()+1]);
+                LD::UInteger & previous_total_time = LD::Get<1>(delta[metric.Core()+1]);
+
+
+                const LD::UInteger  idle_time = metric.Idle();
+                const LD::UInteger idle_time_delta = idle_time - previous_idle_time;
+                const LD::UInteger total_time_delta = total_time - previous_total_time;
+
+                if (total_time_delta != 0)
+                {
+                    LD::Get<2>(delta[metric.Core()+1]) = (100.0 * (1.0 - double(idle_time_delta) / double(total_time_delta)));
+                    LD::Get<0>(delta[metric.Core()+1]) = idle_time;
+                    LD::Get<1>(delta[metric.Core()+1]) = total_time;
+                }
+
+            };
+
+            auto onContexSwitchMetric = [](const LD::Context<LD::TransactionResult,LD::ContextSwitchMetric,LD::StaticArray<MetricGlob ,MaxCoreCount+1>&> & transaction) noexcept
+            {
+
+            };
+
+            auto onInteruptServiceMetric = [](const LD::Context<LD::TransactionResult,LD::InterruptServiceMetric,LD::StaticArray<MetricGlob ,MaxCoreCount+1>&> & transaction) noexcept
+            {
+
+            };
+
+            auto onBootUpTimeMetric = [](const LD::Context<LD::TransactionResult,LD::BootUpTimeMetric,LD::StaticArray<MetricGlob ,MaxCoreCount+1>&> & transaction) noexcept
+            {
+
+            };
+
+            auto onProcessMetric = [](const LD::Context<LD::TransactionResult,LD::ProcessesMetric,LD::StaticArray<MetricGlob ,MaxCoreCount+1>&> & transaction) noexcept
+            {
+
+            };
+
+            auto onProcessesRunningMetric = [](const LD::Context<LD::TransactionResult,LD::ProcessesRunningMetric,LD::StaticArray<MetricGlob ,MaxCoreCount+1>&> & transaction) noexcept
+            {
+
+            };
+
+            auto onProcessesBlockedMetric = [](const LD::Context<LD::TransactionResult,LD::ProcessesBlockedMetric,LD::StaticArray<MetricGlob ,MaxCoreCount+1>&> & transaction) noexcept
+            {
+
+            };
+
+            auto onSoftIRQMetric = [](const LD::Context<LD::TransactionResult,LD::SoftIRQMetric,LD::StaticArray<MetricGlob ,MaxCoreCount+1>&> & transaction) noexcept
+            {
+            };
+
+            LD::SpaceSpeerateValueFile<LD::RowBackingStore> file{backingStore};
+
+            auto end = file.End(SystemLayout{},this->mCores);
+
+            for(auto it = file.Begin(SystemLayout{},this->mCores);it!=end;++it)
+            {
+                LD::Match(*it,
+                          onError,
+                          onCPUPackageMetric,
+                          onCPUCoreMetric,
+                          onContexSwitchMetric,
+                          onInteruptServiceMetric,
+                          onBootUpTimeMetric,
+                          onProcessMetric,
+                          onProcessesRunningMetric,
+                          onProcessesBlockedMetric,
+                          onSoftIRQMetric);
+            }
+            /*
             using SystemLayout = LD::GenerateSystemRepresentation<16>;
             using MetricGlob = LD::Tuple<LD::UInteger,LD::UInteger,LD::Float>;
             using SpannedMetricGlob = LD::Span<MetricGlob>;
 
             LD::SpaceSpeerateValueFile<LD::RowBackingStore> file{backingStore};
             LD::UInteger threadCount = LD::Thread::GetHardwareConcurrency();
-            //MetricGlob cores[16];
-            //for(LD::UInteger n = 0;n<1;++n)
-            //{
-            //cores[n] = {0,0,0.0};
-            //}
+
+
             SpannedMetricGlob coreDeltasSpan{this->mCores.GetData(),threadCount+1};
             auto onError = [](const LD::Context<LD::TransactionError,SpannedMetricGlob> & ) noexcept
             {
@@ -199,6 +301,7 @@ namespace LD
                           onProcessesBlockedMetric,
                           onSoftIRQMetric);
             }
+             */
         }
 
         LD::Float Load(const LD::Variant<LD::TransactionError,LD::UInteger> & core = {}) noexcept

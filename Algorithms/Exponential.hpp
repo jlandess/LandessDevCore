@@ -298,7 +298,7 @@ namespace LD
     }
 
     template<typename T, typename U>
-    inline const T & Max(const T & a, const U & b)
+    inline const T  Max(const T & a, const U & b)
     {
 
         //return (a>b)?a:b;
@@ -306,7 +306,7 @@ namespace LD
     }
 
     template<typename T, typename U, typename V>
-    inline const T & Max(const T & a, const U & b, const V & c)
+    inline const T  Max(const T & a, const U & b, const V & c)
     {
 
         T primaryResult = (a>b)*a + (!(a>b))*b;
@@ -317,14 +317,14 @@ namespace LD
 
 
     template<typename T, typename U>
-    inline const T & Min(const T & a, const U & b)
+    inline const T  Min(const T & a, const U & b)
     {
 
         return (a>b)*a + (!(a > b))*b;
     }
 
     template<typename T, typename U, typename V>
-    inline const T & Min(const T & a, const U & b, const V & c)
+    inline const T  Min(const T & a, const U & b, const V & c)
     {
         T primaryResult = (a < b)*a + (!(a<b))*b;
 
@@ -333,7 +333,7 @@ namespace LD
         return (primaryResult < c)*primaryResult + (!(primaryResult < c))*c;
     }
     template<typename T, typename U, typename V, typename W>
-    inline const T & Min(const T & a, const U & b, const V & c, const W & d)
+    inline const T  Min(const T & a, const U & b, const V & c, const W & d)
     {
         T primaryResult = (a < b)*a + (!(a<b))*b;
         T secondaryResult = (primaryResult < c)*primaryResult + (!(primaryResult < c))*c;
@@ -344,7 +344,7 @@ namespace LD
 
 
     template <typename T>
-    inline const T & Clamp(const T& n, const T& lower, const T& upper)
+    inline const T  Clamp(const T& n, const T& lower, const T& upper)
     {
         return LD::Max(lower, LD::Min(n, upper));
     }

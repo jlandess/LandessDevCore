@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -54,35 +57,212 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a2ffdfb1-0050-446c-b0af-d02ece8e31b8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Algorithms/Benchmark.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Algorithms/Sorting.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Algorithms/TimedExecution.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Examples/IOExample.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Examples/IOExample.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Examples/WebServerExample.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Examples/WebServerExample.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/BMPHeader.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/EtcdBackingStore.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/HTMLGenerator/CSS/Flex.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/Redis/Client.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/Redis/Condition.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/Redis/Request.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/Redis/Watcher.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/Redis/alloc.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/Redis/alloc.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/Redis/async.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/Redis/async.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/Redis/async_private.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/Redis/dict.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/Redis/dict.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/Redis/fmacros.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/Redis/hiredis.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/Redis/hiredis.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/Redis/hiredis.pc.in" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/Redis/hiredis_ssl.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/Redis/hiredis_ssl.pc.in" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/Redis/net.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/Redis/net.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/Redis/read.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/Redis/read.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/Redis/sds.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/Redis/sds.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/Redis/sdsalloc.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/Redis/sockcompat.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/Redis/sockcompat.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/Redis/ssl.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/RedisBackend.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/RocksBackingStore.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/S3DatabaseBackend.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/XML/XMLAttribute.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/XML/XMLValue.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/XML/tinyxml2.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/XML/tinyxml2.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/etcd/etcdcpp.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/etcd/etcdcpp.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/rapidjson/allocators.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/rapidjson/cursorstreamwrapper.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/rapidjson/document.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/rapidjson/encodedstream.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/rapidjson/encodings.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/rapidjson/error/en.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/rapidjson/error/error.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/rapidjson/filereadstream.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/rapidjson/filewritestream.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/rapidjson/fwd.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/rapidjson/internal/biginteger.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/rapidjson/internal/clzll.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/rapidjson/internal/diyfp.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/rapidjson/internal/dtoa.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/rapidjson/internal/ieee754.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/rapidjson/internal/itoa.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/rapidjson/internal/meta.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/rapidjson/internal/pow10.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/rapidjson/internal/regex.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/rapidjson/internal/stack.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/rapidjson/internal/strfunc.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/rapidjson/internal/strtod.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/rapidjson/internal/swap.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/rapidjson/istreamwrapper.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/rapidjson/memorybuffer.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/rapidjson/memorystream.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/rapidjson/msinttypes/inttypes.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/rapidjson/msinttypes/stdint.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/rapidjson/ostreamwrapper.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/rapidjson/pointer.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/rapidjson/prettywriter.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/rapidjson/rapidjson.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/rapidjson/reader.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/rapidjson/schema.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/rapidjson/stream.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/rapidjson/stringbuffer.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/rapidjson/writer.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/toml.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/toml/color.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/toml/combinator.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/toml/comments.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/toml/datetime.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/toml/exception.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/toml/from.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/toml/get.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/toml/into.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/toml/lexer.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/toml/literal.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/toml/parser.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/toml/region.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/toml/result.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/toml/serializer.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/toml/source_location.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/toml/storage.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/toml/string.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/toml/traits.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/toml/types.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/toml/utility.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/toml/value.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Primitives/General/Boolean.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Primitives/General/DateTime.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Primitives/General/PhoneNumber.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Primitives/General/Singleton.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/REST/HTMLEmitter.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/REST/WebServer.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SPA/AppletAttributes.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SPA/Attributes.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SPA/Audio.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SPA/Backend.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SPA/Button.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SPA/Compositor.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SPA/CssAttributes.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SPA/CssBlock.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SPA/Div.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SPA/EventHandler.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SPA/Form.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SPA/Function.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SPA/GlobalAttributes.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SPA/HTML.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SPA/Img.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SPA/Input.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SPA/InputAttributes.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SPA/IsAttribute.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SPA/JSTag.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SPA/Linker.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SPA/Stylesheet.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SPA/Text.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SPA/Variable.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SPA/Video.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TypeTraits/CanBeAnImmutableString.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Examples/ReflectionDemoTypes.h" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/ReflectionDemoTypes.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Algorithms/Exponential.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Algorithms/Exponential.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Definitions/Common.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Definitions/Common.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/IO/Database.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/IO/Database.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IO/FetchRequest.h" beforeDir="false" afterPath="$PROJECT_DIR$/IO/FetchRequest.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IO/DatabaseOperationResult.h" beforeDir="false" afterPath="$PROJECT_DIR$/IO/DatabaseOperationResult.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IO/RowBackingStore.h" beforeDir="false" afterPath="$PROJECT_DIR$/IO/RowBackingStore.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IO/SystemLoad.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/IO/SystemLoad.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IO/UnqliteDatabaseBackend.h" beforeDir="false" afterPath="$PROJECT_DIR$/IO/UnqliteDatabaseBackend.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IO/path.h" beforeDir="false" afterPath="$PROJECT_DIR$/IO/path.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IO/unqlite.c" beforeDir="false" afterPath="$PROJECT_DIR$/IO/unqlite.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IO/unqlite.h" beforeDir="false" afterPath="$PROJECT_DIR$/IO/unqlite.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Primitives/General/Context.h" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/Context.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Primitives/General/Immutable.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/Immutable.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Primitives/General/Span.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/Span.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Primitives/General/StaticArray.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/StaticArray.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Primitives/General/mapboxvariantvisitor.h" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/mapboxvariantvisitor.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Reflection/Reflection.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Reflection/Reflection.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Primitives/General/Unit.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/Unit.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Random/MarsagliaRandomNumberGenerator.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Random/MarsagliaRandomNumberGenerator.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TypeTraits/Detection.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/TypeTraits/Detection.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TypeTraits/FunctionalReflection.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/TypeTraits/FunctionalReflection.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Unicode/UTF8.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Unicode/UTF8.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.17.3/CMakeDetermineCompilerABI_C.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.17.3/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.17.3/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.17.3/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.17.3/CMakeSystem.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.17.3/CMakeSystem.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/DependInfo.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/cmake_clean.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/depend.internal" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/flags.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/link.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/progress.make" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/LandessDevCore" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/LandessDevCore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/LandessDevCore.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/LandessDevCore.cbp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/database.db" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/database.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/3.17.3/CMakeDetermineCompilerABI_C.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/3.17.3/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/3.17.3/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/3.17.3/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/3.17.3/CMakeSystem.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/3.17.3/CMakeSystem.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/CMakeOutput.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/DependInfo.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/cmake_clean.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/depend.internal" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/flags.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/link.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/progress.make" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/Makefile.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/TargetDirectories.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/progress.marks" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/LandessDevCore" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/LandessDevCore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/LandessDevCore.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/LandessDevCore.cbp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release/backend.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/cmake_install.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/database.db" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/database.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
@@ -114,25 +294,29 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="cf.first.check.clang-format" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/PatternMatching" />
-    <property name="settings.editor.selected.configurable" value="CMakeSettings" />
+    <property name="full.screen.before.presentation.mode" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/IO/XML" />
+    <property name="settings.editor.selected.configurable" value="CPPToolchains" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/SPA" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/PatternMatching" />
-      <recent name="$PROJECT_DIR$/TUI" />
-      <recent name="$PROJECT_DIR$/Unicode" />
-      <recent name="$PROJECT_DIR$/Algorithms" />
+      <recent name="$PROJECT_DIR$/IO/XML" />
       <recent name="$PROJECT_DIR$/IO" />
+      <recent name="$PROJECT_DIR$/IO/simdjson" />
+      <recent name="$PROJECT_DIR$/IO/rapidjson" />
+      <recent name="$PROJECT_DIR$/IO/etcd" />
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
+    <configuration name="LandessDevCore" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="LandessDevCore" TARGET_NAME="LandessDevCore" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="LandessDevCore" RUN_TARGET_NAME="LandessDevCore">
       <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LandessDevCore" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="LandessDevCore" TARGET_NAME="LandessDevCore" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="LandessDevCore" RUN_TARGET_NAME="LandessDevCore">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -221,7 +405,31 @@
       <workItem from="1597545790700" duration="27518000" />
       <workItem from="1597655109245" duration="51568000" />
       <workItem from="1598419716086" duration="9207000" />
-      <workItem from="1598470751551" duration="93406000" />
+      <workItem from="1598470751551" duration="121110000" />
+      <workItem from="1599166947876" duration="2456000" />
+      <workItem from="1599357014778" duration="3781000" />
+      <workItem from="1600474499895" duration="118922000" />
+      <workItem from="1601138041308" duration="51563000" />
+      <workItem from="1601707384258" duration="49393000" />
+      <workItem from="1602202324130" duration="12496000" />
+      <workItem from="1602448377608" duration="609000" />
+      <workItem from="1602817833501" duration="8866000" />
+      <workItem from="1603056820613" duration="110000" />
+      <workItem from="1603201932645" duration="16453000" />
+      <workItem from="1603441486118" duration="12707000" />
+      <workItem from="1603748437079" duration="100000" />
+      <workItem from="1603748549456" duration="5833000" />
+      <workItem from="1603773114996" duration="8743000" />
+      <workItem from="1603793764539" duration="29387000" />
+      <workItem from="1604065973421" duration="85747000" />
+      <workItem from="1604438756803" duration="7464000" />
+      <workItem from="1604466862657" duration="32718000" />
+      <workItem from="1604561773703" duration="9571000" />
+      <workItem from="1604612779181" duration="17076000" />
+      <workItem from="1604916266404" duration="11015000" />
+      <workItem from="1604984924051" duration="14264000" />
+      <workItem from="1605046237040" duration="54374000" />
+      <workItem from="1605380947597" duration="21213000" />
     </task>
     <servers />
   </component>
@@ -251,77 +459,108 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="621" y="456" width="616" height="403" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1594696995860">
-      <screen x="70" y="27" width="1850" height="1053" />
+    <state x="898" y="380" width="800" height="684" key="#New_File_Extensions" timestamp="1603801671665">
+      <screen x="0" y="27" width="2560" height="1413" />
     </state>
-    <state x="621" y="456" width="616" height="403" key="#com.intellij.fileTypes.FileTypeChooser/70.27.1850.1053@70.27.1850.1053" timestamp="1594696995860" />
-    <state x="730" y="355" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1591840785008">
-      <screen x="70" y="27" width="1850" height="1053" />
+    <state x="898" y="380" width="800" height="684" key="#New_File_Extensions/0.27.2560.1413@0.27.2560.1413" timestamp="1603801671665" />
+    <state x="55" y="98" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1603307595445">
+      <screen x="0" y="27" width="2560" height="1413" />
     </state>
-    <state x="730" y="355" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/70.27.1850.1053@70.27.1850.1053" timestamp="1591840785008" />
-    <state x="170" y="142" width="1639" height="748" key="DiffContextDialog" timestamp="1593991583646">
-      <screen x="70" y="27" width="1850" height="1053" />
-    </state>
-    <state x="170" y="142" width="1639" height="748" key="DiffContextDialog/70.27.1850.1053@70.27.1850.1053" timestamp="1593991583646" />
-    <state x="743" y="311" width="424" height="491" key="FileChooserDialogImpl" timestamp="1596658048105">
+    <state x="41" y="80" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1602132488728" />
+    <state x="55" y="98" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.2560.1413@0.27.2560.1413" timestamp="1603307595445" />
+    <state x="366" y="130" width="1147" height="591" key="#com.intellij.ide.macro.MacrosDialog" timestamp="1602131100782">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="743" y="311" width="424" height="491" key="FileChooserDialogImpl/0.27.1920.1053@0.27.1920.1053" timestamp="1596658048105" />
-    <state width="1878" height="168" key="GridCell.Tab.0.bottom" timestamp="1598864341690">
+    <state x="366" y="130" width="1147" height="591" key="#com.intellij.ide.macro.MacrosDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1602131100782" />
+    <state x="685" y="355" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1600806935532">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="1878" height="168" key="GridCell.Tab.0.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1598864341690" />
-    <state width="1804" height="287" key="GridCell.Tab.0.bottom/70.27.1850.1053@70.27.1850.1053" timestamp="1595012326476" />
-    <state width="1878" height="168" key="GridCell.Tab.0.center" timestamp="1598864341690">
+    <state x="685" y="355" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1600806935532" />
+    <state x="991" y="408" width="424" height="491" key="FileChooserDialogImpl" timestamp="1603748594714">
+      <screen x="0" y="27" width="2560" height="1413" />
+    </state>
+    <state x="991" y="408" width="424" height="491" key="FileChooserDialogImpl/0.27.2560.1413@0.27.2560.1413" timestamp="1603748594714" />
+    <state width="2174" height="315" key="GridCell.Tab.0.bottom" timestamp="1605433029569">
+      <screen x="0" y="27" width="2560" height="1413" />
+    </state>
+    <state width="1655" height="192" key="GridCell.Tab.0.bottom.inPresentationMode" timestamp="1601085561595">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="1878" height="168" key="GridCell.Tab.0.center/0.27.1920.1053@0.27.1920.1053" timestamp="1598864341690" />
-    <state width="1804" height="287" key="GridCell.Tab.0.center/70.27.1850.1053@70.27.1850.1053" timestamp="1595012326475" />
-    <state width="1878" height="168" key="GridCell.Tab.0.left" timestamp="1598864341689">
+    <state width="1655" height="192" key="GridCell.Tab.0.bottom.inPresentationMode/0.27.1920.1053@0.27.1920.1053" timestamp="1601085561595" />
+    <state width="1878" height="113" key="GridCell.Tab.0.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1602366467488" />
+    <state width="2174" height="315" key="GridCell.Tab.0.bottom/0.27.2560.1413/2560.0.1920.1080@0.27.2560.1413" timestamp="1605433029569" />
+    <state width="2174" height="415" key="GridCell.Tab.0.bottom/0.27.2560.1413@0.27.2560.1413" timestamp="1604804330560" />
+    <state width="2174" height="315" key="GridCell.Tab.0.center" timestamp="1605433029569">
+      <screen x="0" y="27" width="2560" height="1413" />
+    </state>
+    <state width="1655" height="192" key="GridCell.Tab.0.center.inPresentationMode" timestamp="1601085561595">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="1878" height="168" key="GridCell.Tab.0.left/0.27.1920.1053@0.27.1920.1053" timestamp="1598864341689" />
-    <state width="1804" height="287" key="GridCell.Tab.0.left/70.27.1850.1053@70.27.1850.1053" timestamp="1595012326475" />
-    <state width="1878" height="168" key="GridCell.Tab.0.right" timestamp="1598864341690">
+    <state width="1655" height="192" key="GridCell.Tab.0.center.inPresentationMode/0.27.1920.1053@0.27.1920.1053" timestamp="1601085561595" />
+    <state width="1878" height="113" key="GridCell.Tab.0.center/0.27.1920.1053@0.27.1920.1053" timestamp="1602366467487" />
+    <state width="2174" height="315" key="GridCell.Tab.0.center/0.27.2560.1413/2560.0.1920.1080@0.27.2560.1413" timestamp="1605433029569" />
+    <state width="2174" height="415" key="GridCell.Tab.0.center/0.27.2560.1413@0.27.2560.1413" timestamp="1604804330559" />
+    <state width="2174" height="315" key="GridCell.Tab.0.left" timestamp="1605433029569">
+      <screen x="0" y="27" width="2560" height="1413" />
+    </state>
+    <state width="1655" height="192" key="GridCell.Tab.0.left.inPresentationMode" timestamp="1601085561594">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="1878" height="168" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1598864341690" />
-    <state width="1804" height="287" key="GridCell.Tab.0.right/70.27.1850.1053@70.27.1850.1053" timestamp="1595012326476" />
-    <state width="1878" height="342" key="GridCell.Tab.1.bottom" timestamp="1598864341573">
+    <state width="1655" height="192" key="GridCell.Tab.0.left.inPresentationMode/0.27.1920.1053@0.27.1920.1053" timestamp="1601085561594" />
+    <state width="1878" height="113" key="GridCell.Tab.0.left/0.27.1920.1053@0.27.1920.1053" timestamp="1602366467486" />
+    <state width="2174" height="315" key="GridCell.Tab.0.left/0.27.2560.1413/2560.0.1920.1080@0.27.2560.1413" timestamp="1605433029569" />
+    <state width="2174" height="415" key="GridCell.Tab.0.left/0.27.2560.1413@0.27.2560.1413" timestamp="1604804330559" />
+    <state width="2174" height="315" key="GridCell.Tab.0.right" timestamp="1605433029569">
+      <screen x="0" y="27" width="2560" height="1413" />
+    </state>
+    <state width="1655" height="192" key="GridCell.Tab.0.right.inPresentationMode" timestamp="1601085561595">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="1878" height="342" key="GridCell.Tab.1.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1598864341573" />
-    <state width="1804" height="230" key="GridCell.Tab.1.bottom/70.27.1850.1053@70.27.1850.1053" timestamp="1594948985167" />
-    <state width="1878" height="342" key="GridCell.Tab.1.center" timestamp="1598864341572">
+    <state width="1655" height="192" key="GridCell.Tab.0.right.inPresentationMode/0.27.1920.1053@0.27.1920.1053" timestamp="1601085561595" />
+    <state width="1878" height="113" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1602366467487" />
+    <state width="2174" height="315" key="GridCell.Tab.0.right/0.27.2560.1413/2560.0.1920.1080@0.27.2560.1413" timestamp="1605433029569" />
+    <state width="2174" height="415" key="GridCell.Tab.0.right/0.27.2560.1413@0.27.2560.1413" timestamp="1604804330560" />
+    <state width="2174" height="450" key="GridCell.Tab.1.bottom" timestamp="1604378587270">
+      <screen x="0" y="27" width="2560" height="1413" />
+    </state>
+    <state width="1878" height="342" key="GridCell.Tab.1.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1600481745726" />
+    <state width="2174" height="450" key="GridCell.Tab.1.bottom/0.27.2560.1413@0.27.2560.1413" timestamp="1604378587270" />
+    <state width="2174" height="450" key="GridCell.Tab.1.center" timestamp="1604378587269">
+      <screen x="0" y="27" width="2560" height="1413" />
+    </state>
+    <state width="1878" height="342" key="GridCell.Tab.1.center/0.27.1920.1053@0.27.1920.1053" timestamp="1600481745725" />
+    <state width="2174" height="450" key="GridCell.Tab.1.center/0.27.2560.1413@0.27.2560.1413" timestamp="1604378587269" />
+    <state width="2174" height="450" key="GridCell.Tab.1.left" timestamp="1604378587269">
+      <screen x="0" y="27" width="2560" height="1413" />
+    </state>
+    <state width="1878" height="342" key="GridCell.Tab.1.left/0.27.1920.1053@0.27.1920.1053" timestamp="1600481745724" />
+    <state width="2174" height="450" key="GridCell.Tab.1.left/0.27.2560.1413@0.27.2560.1413" timestamp="1604378587269" />
+    <state width="2174" height="450" key="GridCell.Tab.1.right" timestamp="1604378587269">
+      <screen x="0" y="27" width="2560" height="1413" />
+    </state>
+    <state width="1878" height="342" key="GridCell.Tab.1.right/0.27.1920.1053@0.27.1920.1053" timestamp="1600481745725" />
+    <state width="2174" height="450" key="GridCell.Tab.1.right/0.27.2560.1413@0.27.2560.1413" timestamp="1604378587269" />
+    <state x="823" y="523" width="824" height="515" key="IDE.errors.dialog" timestamp="1605381118162">
+      <screen x="0" y="27" width="2560" height="1413" />
+    </state>
+    <state x="823" y="523" width="824" height="515" key="IDE.errors.dialog/0.27.2560.1413/2560.0.1920.1080@0.27.2560.1413" timestamp="1605381118162" />
+    <state x="464" y="188" width="992" height="737" key="SettingsEditor" timestamp="1603056929268">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="1878" height="342" key="GridCell.Tab.1.center/0.27.1920.1053@0.27.1920.1053" timestamp="1598864341572" />
-    <state width="1804" height="230" key="GridCell.Tab.1.center/70.27.1850.1053@70.27.1850.1053" timestamp="1594948985166" />
-    <state width="1878" height="342" key="GridCell.Tab.1.left" timestamp="1598864341572">
+    <state x="464" y="188" width="992" height="737" key="SettingsEditor/0.27.1920.1053@0.27.1920.1053" timestamp="1603056929268" />
+    <state x="1041" y="505" width="547" height="434" key="refactoring.ChangeSignatureDialog" timestamp="1605394774528">
+      <screen x="0" y="27" width="2560" height="1413" />
+    </state>
+    <state x="781" y="383" width="224" height="433" key="refactoring.ChangeSignatureDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1602089168567" />
+    <state x="1041" y="505" width="547" height="434" key="refactoring.ChangeSignatureDialog/0.27.2560.1413/2560.0.1920.1080@0.27.2560.1413" timestamp="1605394774528" />
+    <state x="833" y="338" width="931" height="976" key="search.everywhere.popup" timestamp="1604037636998">
+      <screen x="0" y="27" width="2560" height="1413" />
+    </state>
+    <state x="625" y="259" width="698" height="727" key="search.everywhere.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1600894960412" />
+    <state x="833" y="338" width="931" height="976" key="search.everywhere.popup/0.27.2560.1413@0.27.2560.1413" timestamp="1604037636998" />
+    <state x="630" y="477" width="540" height="178" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1602006955706">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="1878" height="342" key="GridCell.Tab.1.left/0.27.1920.1053@0.27.1920.1053" timestamp="1598864341572" />
-    <state width="1804" height="230" key="GridCell.Tab.1.left/70.27.1850.1053@70.27.1850.1053" timestamp="1594948985166" />
-    <state width="1878" height="342" key="GridCell.Tab.1.right" timestamp="1598864341573">
-      <screen x="0" y="27" width="1920" height="1053" />
-    </state>
-    <state width="1878" height="342" key="GridCell.Tab.1.right/0.27.1920.1053@0.27.1920.1053" timestamp="1598864341573" />
-    <state width="1804" height="230" key="GridCell.Tab.1.right/70.27.1850.1053@70.27.1850.1053" timestamp="1594948985166" />
-    <state x="599" y="156" width="770" height="780" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1592982961685">
-      <screen x="70" y="27" width="1850" height="1053" />
-    </state>
-    <state x="599" y="156" width="770" height="780" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/70.27.1850.1053@70.27.1850.1053" timestamp="1592982961685" />
-    <state width="600" height="428" key="javadoc.popup" timestamp="1591146528949">
-      <screen x="70" y="27" width="1850" height="1053" />
-    </state>
-    <state width="600" height="428" key="javadoc.popup/70.27.1850.1053@70.27.1850.1053" timestamp="1591146528949" />
-    <state x="823" y="383" width="216" height="443" key="refactoring.ChangeSignatureDialog" timestamp="1592337631082">
-      <screen x="70" y="27" width="1850" height="1053" />
-    </state>
-    <state x="823" y="383" width="216" height="443" key="refactoring.ChangeSignatureDialog/70.27.1850.1053@70.27.1850.1053" timestamp="1592337631082" />
-    <state x="672" y="259" width="672" height="727" key="search.everywhere.popup" timestamp="1594089515353">
-      <screen x="70" y="27" width="1850" height="1053" />
-    </state>
-    <state x="672" y="259" width="672" height="727" key="search.everywhere.popup/70.27.1850.1053@70.27.1850.1053" timestamp="1594089515353" />
+    <state x="630" y="477" width="540" height="178" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1602006955706" />
   </component>
 </project>

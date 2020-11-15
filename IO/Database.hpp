@@ -28,6 +28,16 @@
 namespace LD
 {
 
+    namespace Detail
+    {
+        template<typename T>
+        using UTFBeginTest = decltype(LD::UTF8::Begin(LD::Declval<T>()));
+        template<typename T>
+        using UTFBEndTest = decltype(LD::UTF8::End(LD::Declval<T>()));
+    }
+
+    template<typename T>
+    constexpr bool IsUTF8Compliant = LD::Exists<LD::Detail::UTFBEndTest,T> && LD::Exists<LD::Detail::UTFBeginTest,T>;
     /**
      *
      * @tparam Backend The backend responsible for the core operations. The imperative implementation of the class.  Each operation
@@ -48,6 +58,12 @@ namespace LD
         using BeginTest = decltype(LD::Declval<Bk>().Begin(LD::Declval<Args>()...));
         template<typename Bk, typename ... Args>
         using CommitTest = decltype(LD::Declval<Bk>().Commit(LD::Declval<Args>()...));
+
+        template<typename T>
+        using UTFBeginTest = decltype(LD::UTF8::Begin(LD::Declval<T>()));
+        template<typename T>
+        using UTFBEndTest = decltype(LD::UTF8::End(LD::Declval<T>()));
+
         using Db = LD::ElementReference<Backend>;
     private:
         LD::StaticArray<char,1024> mKeyBuffer;
@@ -214,7 +230,7 @@ namespace LD
                 typename CurrentBackend = Backend>
         LD::Enable_If_T<
                 LD::Require<
-                        LD::IsTypeString<Key>,
+                        LD::IsUTF8Compliant<Key>,
                         LD::IsReflectable<LD::Detail::Decay_T<V>>,
                         LD::Exists<InsertTest,BasicKeyedDatabase<CurrentBackend>,Key,V,Args...>,
                         LD::Exists<BeginTest,CurrentBackend>,
@@ -235,7 +251,7 @@ namespace LD
                 typename CurrentBackend = Backend>
         constexpr LD::Enable_If_T<
                 LD::Require<
-                        LD::IsTypeString<Key>,
+                        LD::IsUTF8Compliant<Key>,
                         LD::CT::IsReflectable<LD::Detail::Decay_T<V>>(),
                         LD::Exists<StoreTest,CurrentBackend>
                 >,Ret> Insert(Key && key,V && object, Args && ... args) noexcept
@@ -247,6 +263,7 @@ namespace LD
             //if successful start inserting the object
             if(LD::IsTransactionalQuery(keyInjection))
             {
+
                 return this->__Insert(LD::Forward<V>(object),LD::Forward<Args>(args)...);
             }
             return LD::MakeContext(LD::TransactionError{},LD::Forward<Args>(args)...);
@@ -281,6 +298,8 @@ namespace LD
             constexpr auto members = traits.Members;
             constexpr auto NumberOfMembers = LD::CT::GetNumberOfMembers(traits);
             constexpr auto className = LD::CT::GetClassName(traits);
+
+
             using ClassNameType = LD::Detail::Decay_T<decltype(className)>;
             using Ctxt = LD::Context<LD::TransactionResult,LD::UInteger,Db,ClassNameType&,LD::Ref<BasicKeyedDatabase>>;
             //We need to get the actual length of the strings, given that it can be ASCII or Unicode based Strings
@@ -295,11 +314,13 @@ namespace LD
                 //if the classname is not a valid UTF-8 string, then we will indicate that with false
                 [](auto ) noexcept -> bool
                 {
+
                     return false;
                 },
                 //when we have a valid UTF-8 string we will attempt to append to the underlying buffer
                 [](const Ctxt & cntx1)noexcept -> bool
                 {
+
                     LD::ElementReference<BasicKeyedDatabase> instance =  LD::Get<4>(cntx1);
                     const auto & className = LD::Get(LD::Get<3>(cntx1));
                     auto backend  = LD::Get<2>(cntx1);
@@ -313,6 +334,7 @@ namespace LD
                     {
                         result =  LD::UTF8::Append(className[n],classNameBackInserter);
                     }
+                    //result =  LD::UTF8::Append('\0',classNameBackInserter);
                     if (LD::IsTransactionalQuery(result))
                     {
                         auto storeResult =  backend->Store(
@@ -334,6 +356,7 @@ namespace LD
             //if the previous actions went off without a hitch, then we can continue
             if (shouldContinue)
             {
+
                 //iterate through all of the members with a constexpr compile time for-loop (as we know all the members at compile time)
                 LD::QueryResult<bool(Args...)> resultantQuery = LD::MakeContext(LD::TransactionResult{},true,LD::Forward<Args>(args)...);
                 LD::For<NumberOfMembers>([](
@@ -372,15 +395,17 @@ namespace LD
                     };
                     LD::UInteger numberOfBytes = LD::Match(memberNameLength,LD::Overload{onMemberLength,onMemberLengthError});
                     //If the member name is UTF-8 compliant then we can go through with the serialization
+
                     if (numberOfBytes > 0)
                     {
                         if constexpr (LD::CT::IsPrimitive(LD::CT::RemoveQualifiers(type)))
 
                         {
                             auto immutableRepresentation = LD::ToImmutableString(memberAccessor());
+
                             keyedDatabase->mBackend->Store(
                                     LD::StringView{keyedDatabase->mKeyBuffer.GetData(),keyedDatabase->mKeyBuffer.GetSize()},
-                                    LD::StringView{immutableRepresentation.Data(),immutableRepresentation.Size()});
+                                    LD::StringView{immutableRepresentation.Data(),immutableRepresentation.GetSize()});
 
                         }else if constexpr (LD::CT::IsReflectable(type))
                         {
@@ -390,6 +415,9 @@ namespace LD
 
 
                     }
+                    //abc
+                    //abc.Base
+                    //abc.Height
                     //pop back the current classname
                     for(LD::UInteger n = 0;n<numberOfBytes;++n)
                     {
@@ -410,7 +438,7 @@ namespace LD
                 typename Ret = LD::QueryResult<LD::CT::RebindList<Y,LD::Variant>(Args...)>>
         LD::Enable_If_T<
                 LD::Require<
-                        LD::IsTypeString<Key>,
+                        LD::IsUTF8Compliant<Key>,
                         LD::IsTypeList<Y>::value
                 >,Ret> Fetch(Key && key, const Y & typelist ,Args && ... args) noexcept
         {
@@ -490,8 +518,8 @@ namespace LD
                                 auto targetClassNameBeginning = LD::UTF8::Begin(encodedClassName);
                                 auto fetchedClassNameEnd = LD::UTF8::End(fetchedClassName);
                                 auto targetClassNameEnd = LD::UTF8::End(encodedClassName);
-                                LD::QueryResult<uint32_t(Args...)> nextFetchedClassNameCodePoint = LD::MakeContext(LD::TransactionResult{},uint32_t{});
-                                LD::QueryResult<uint32_t(Args...)> nextTargetClassNameCodePoint = LD::MakeContext(LD::TransactionResult{},uint32_t{});
+                                LD::QueryResult<uint32_t()> nextFetchedClassNameCodePoint = LD::MakeContext(LD::TransactionResult{},uint32_t{});
+                                LD::QueryResult<uint32_t()> nextTargetClassNameCodePoint = LD::MakeContext(LD::TransactionResult{},uint32_t{});
                                 bool doesTargetClassNameMatchFetchClassName = true;
                                 for(LD::UInteger n = 0;n<length && doesTargetClassNameMatchFetchClassName && LD::IsTransactionalQuery(nextFetchedClassNameCodePoint) && LD::IsTransactionalQuery(nextTargetClassNameCodePoint);++n)
                                 {
@@ -503,6 +531,7 @@ namespace LD
                                     {
                                         return false;
                                     };
+
 
                                     auto onTransaction = [](const LD::Context<LD::TransactionResult,uint32_t> & context1,
                                                             const LD::Context<LD::TransactionResult,uint32_t> & context2) noexcept
@@ -541,7 +570,7 @@ namespace LD
                     if (shouldeSerialize)
                     {
 
-                        printf("should de-serialize \n");
+                        //printf("should de-serialize \n");
                         V object;
                         instance->__Fetch(Y{},object,keyedBuffer,LD::Forward<Args>(arguments)...);
                         ret = LD::MakeContext(LD::TransactionResult{},V{object},LD::Forward<Args>(arguments)...);
@@ -625,6 +654,7 @@ namespace LD
                 auto memberAccessor = memberInfo(*castedObject);
 
 
+
                 LD::BackInserter<LD::StaticArray<char,1024>> nosqlKey{keyedBuffer};
                 auto memberNameLength = LD::UTF8::Distance(LD::UTF8::Begin(memberName),LD::UTF8::End(memberName),nosqlKey,memberName);
 
@@ -661,33 +691,13 @@ namespace LD
                     {
                         auto primitiveFunctor = [](const auto & context) noexcept -> bool
                         {
-                            //LD::CT::DebugTemplate<decltype(context)>{};
                             auto fetchedKey = LD::Get(LD::Get<0>(context));
                             auto fetchedValue = LD::Get(LD::Get<1>(context));
                             auto memberAccessor = LD::Get(LD::Get<2>(context));
-                            //LD::CT::DebugTemplate<decltype(memberAccessor)>{};
                             using AccessedType = LD::Detail::Decay_T<decltype(memberAccessor())>;
-                            //LD::CT::DebugTemplate<AccessedType>{};
-
-
-                            printf("Key-Value-Pair ");
                             LD::StringToPrimitive<AccessedType > converter{};
-                            //LD::StringToPrimitive
                             AccessedType ret = LD::Match(converter(fetchedValue),[](auto){ return AccessedType {2};},[](const AccessedType & obj){return obj;});
                             memberAccessor = ret;
-                            for(LD::UInteger n= 0;n<fetchedKey.size();++n)
-                            {
-                                printf("%c",fetchedKey[n]);
-                            }
-                            printf(" : ");
-                            printf("%lf",ret);
-                            //for(LD::UInteger n= 0;n<fetchedValue.size();++n)
-                            //{
-                                //printf("%c",fetchedValue[n]);
-                            //}
-                            printf("\n");
-                            //printf("Key-Value-Pair => %s:%s\n",fetchedKey,fetchedValue);
-                            //printf("being called inside\n");
                             return true;
                         };
                         auto classNameQuery = instance->mBackend->Fetch(LD::StringView{keyedBuffer.GetData(),keyedBuffer.GetSize()},primitiveFunctor,memberAccessor);
@@ -709,291 +719,8 @@ namespace LD
                 return true;
             },members,object,keyedBuffer,LD::Ref<BasicKeyedDatabase>{this},LD::Forward<Args>(arguments)...);
             return LD::MakeContext(LD::TransactionError{},LD::Forward<Args>(arguments)...);
-                 /*
-            constexpr auto TypeListSize = Y::size();
-            Ret queryResult = LD::MakeContext(LD::TransactionError{},LD::Forward<Args>(args)...);
-            //iterate through all the possible types
-            LD::For<TypeListSize>([](
-                    auto I,
-                    Ret & queryResult,
-                    LD::Ref<BasicKeyedDatabase> instance,
-                    LD::StaticArray<char,1024> & keyedBuffer,
-                    Args && ... arguments)
-            {
-                using V = LD::CT::TypeAtIndex<I,Y>;
-                constexpr auto traits = LD::CT::Reflect<LD::Detail::Decay_T<V>>();
-                constexpr auto members = traits.Members;
-                constexpr auto NumberOfMembers = LD::CT::GetNumberOfMembers(traits);
-                constexpr auto className = LD::CT::GetClassName(traits);
-
-
-
-                auto backingStore = instance->mBackend;
-
-                auto classNameQuery = backingStore->Fetch(LD::StringView{keyedBuffer.GetData(),keyedBuffer.GetSize()},
-
-                [](const auto & context) noexcept ->bool
-                {
-
-                    //auto key = LD::Get(LD::Get<0>(context));
-                    auto fetchedClassName = LD::Get(LD::Get<1>(context));
-                    auto targetClassName = LD::Get(LD::Get<2>(context));
-
-                    auto fetchClassNameLength = LD::UTF8::Distance(
-                            LD::UTF8::Begin(fetchedClassName),
-                            LD::UTF8::End(fetchedClassName),
-                            fetchedClassName,
-                            targetClassName);
-
-                    auto classNameLength = LD::UTF8::Distance(
-                            LD::UTF8::Begin(targetClassName),
-                            LD::UTF8::End(targetClassName),
-                            fetchedClassName,
-                            targetClassName);
-
-                    auto onTransaction = [](
-                            const LD::Context<LD::TransactionResult,LD::UInteger,decltype(fetchedClassName)&,decltype(targetClassName)&> & cntxt1,
-                            const LD::Context<LD::TransactionResult,LD::UInteger,decltype(fetchedClassName)&,decltype(targetClassName)&> & cntxt2) noexcept
-                    {
-                        LD::StaticArray<char,1024> encodedClassName;
-                        LD::BackInserter<LD::StaticArray<char,1024>> encodedBackInserter{encodedClassName};
-                        auto length = LD::Get(LD::Get<1>(cntxt1));
-
-                        const auto & targetClassName = LD::Get(LD::Get<3>(cntxt1));
-                        for(LD::UInteger n = 0;n<length;++n)
-                        {
-                            LD::UTF8::Append(targetClassName[n],encodedBackInserter);
-                        }
-                        if (length == LD::Get(LD::Get<1>(cntxt2)))
-                        {
-                            const auto & fetchedClassName = LD::Get(LD::Get<2>(cntxt1));
-
-                            auto fetchClassNameBeginning = LD::UTF8::Begin(fetchedClassName);
-                            auto targetClassNameBeginning = LD::UTF8::Begin(encodedClassName);
-                            printf("target classname \n");
-                            for(LD::UInteger n = 0;n<length;++n)
-                            {
-                                printf("%c",targetClassName[n]);
-                            }
-                            printf("\n");
-                            auto fetchedClassNameEnd = LD::UTF8::End(fetchedClassName);
-                            auto targetClassNameEnd = LD::UTF8::End(encodedClassName);
-                            LD::QueryResult<uint32_t(Args...)> nextFetchedClassNameCodePoint = LD::MakeContext(LD::TransactionResult{},uint32_t{});
-                            LD::QueryResult<uint32_t(Args...)> nextTargetClassNameCodePoint = LD::MakeContext(LD::TransactionResult{},uint32_t{});
-                            bool doesTargetClassNameMatchFetchClassName = true;
-                            for(LD::UInteger n = 0;n<length && doesTargetClassNameMatchFetchClassName && LD::IsTransactionalQuery(nextFetchedClassNameCodePoint) && LD::IsTransactionalQuery(nextTargetClassNameCodePoint);++n)
-                            {
-
-                                nextFetchedClassNameCodePoint = LD::UTF8::Next(fetchClassNameBeginning,fetchedClassNameEnd);
-                                nextTargetClassNameCodePoint = LD::UTF8::Next(targetClassNameBeginning,targetClassNameEnd);
-
-                                auto onError = [](auto,auto) noexcept
-                                {
-                                    return false;
-                                };
-
-                                auto onTransaction = [](const LD::Context<LD::TransactionResult,uint32_t> & context1,
-                                                        const LD::Context<LD::TransactionResult,uint32_t> & context2) noexcept
-                                {
-                                    //printf("%c :: %c \n",LD::Get(LD::Get<1>(context1)),LD::Get(LD::Get<1>(context2)));
-                                    return true;
-                                };
-                                doesTargetClassNameMatchFetchClassName = LD::MultiMatch(LD::Overload{onError,onTransaction},nextFetchedClassNameCodePoint,nextTargetClassNameCodePoint);
-                            }
-                            return doesTargetClassNameMatchFetchClassName;
-                        }
-                        return false;
-                    };
-
-                    auto onError = [](
-                            auto,
-                            auto) noexcept
-                    {
-                        return false;
-                    };
-                    return LD::MultiMatch(LD::Overload{onTransaction,onError},fetchClassNameLength,classNameLength);;
-                },className);
-                auto onClassNameMatch = [](const LD::Context<LD::TransactionResult,bool,LD::StringView,decltype(className)&> & context ) noexcept
-                {
-                    return LD::Get(LD::Get<1>(context));
-                };
-                auto classNameMisMatch = [](const LD::Context<LD::TransactionError,LD::StringView,decltype(className)&> & ) noexcept
-                {
-                    return false;
-                };
-                bool shouldeSerialize = LD::Match(classNameQuery,onClassNameMatch,classNameMisMatch);
-                if (shouldeSerialize)
-                {
-                    printf("should deserialze \n");
-                    V object;
-
-                    LD::For<NumberOfMembers>([](
-                            auto I,
-                            auto members,
-                            V & object,
-                            LD::StaticArray<char,1024> & keyedBuffer,
-                            LD::Ref<BasicKeyedDatabase> instance,
-                            Args && ... args) noexcept
-                    {
-                        constexpr auto memberInfo = LD::Get<I>(members);
-                        auto memberAccessor = memberInfo(LD::Forward<V>(object));
-                        constexpr auto type = LD::CT::GetDescriptorType(memberInfo);
-                        constexpr auto memberName = LD::CT::GetMemberDescriptorName(memberInfo);
-                        LD::BackInserter<LD::StaticArray<char,1024>> nosqlKey{keyedBuffer};
-                        auto memberNameLength = LD::UTF8::Distance(LD::UTF8::Begin(memberName),LD::UTF8::End(memberName),nosqlKey,memberName);
-                        auto onMemberLength = [](const LD::Context<LD::TransactionResult,LD::UInteger,LD::BackInserter<LD::StaticArray<char,1024>>&,decltype(memberName)&> & context) noexcept ->LD::UInteger
-                        {
-                            auto length = LD::Get(LD::Get<1>(context));
-                            auto & backInserter = LD::Get(LD::Get<2>(context));
-                            using IT = LD::Detail::Decay_T<decltype(backInserter)>;
-                            const auto & memberName = LD::Get(LD::Get<3>(context));
-                            //keep track of the number of bytes that compose the classname
-                            auto numberOfBytes = LD::UTF8::NumberOfBytes(memberName);
-                            LD::QueryResult<IT()> result = LD::MakeContext(LD::TransactionResult{},IT{backInserter});
-                            result = LD::UTF8::Append('.',backInserter);
-                            for(auto i = 0;i<length && LD::IsTransactionalQuery(result);++i)
-                            {
-                                result = LD::UTF8::Append(memberName[i],backInserter);
-                            }
-                            //incorporate the idea of appending the period (which accounts for one byte)
-                            return LD::IsTransactionalQuery(result)*numberOfBytes + 1;
-                        };
-                        auto onMemberLengthError = [](const LD::Context<LD::TransactionError,LD::BackInserter<LD::StaticArray<char,1024>>&,decltype(memberName)&> & context) noexcept -> LD::UInteger
-                        {
-                            return 0;
-                        };
-
-                        LD::UInteger numberOfBytes = LD::Match(memberNameLength,LD::Overload{onMemberLength,onMemberLengthError});
-                        if(numberOfBytes > 0)
-                        {
-                            for(LD::UInteger n = 0;n<keyedBuffer.GetSize();++n)
-                            {
-                                printf("%c",keyedBuffer[n]);
-                            }
-                            printf("\n");
-                            if constexpr (LD::CT::IsPrimitive(LD::CT::RemoveQualifiers(type)))
-                            {
-
-                            }else if constexpr (LD::CT::IsReflectable(type))
-                            {
-                                using SubType = LD::CT::TypeList<LD::Detail::Decay_T<decltype(memberAccessor())>>;
-                                instance->__Fetch(SubType {},keyedBuffer,LD::Forward<Args>(args)...);
-                            }
-                        }
-                        for(LD::UInteger n = 0;n<numberOfBytes;++n)
-                        {
-                            keyedBuffer.PopBack();
-                        }
-
-                        return true;
-                    },LD::Forward<decltype(members)>(members),object,keyedBuffer,instance,LD::Forward<Args>(arguments)...);
-                }
-                return true;
-            },queryResult,LD::Ref<BasicKeyedDatabase>{this},keyedBuffer,LD::Forward<Args>(args)...);
-            */
-            //return {};
         }
 
-        /*
-        template<typename Key, typename ... TL ,typename ... Args>
-        LD::QueryResult<bool(Args...)> Remove(const Key & key, LD::CT::TypeList<TL...> ,Args && ... arguments) noexcept
-        {
-
-            using RefedResult = LD::Ref<LD::QueryResult<bool(Args...)>>;
-            using ReferencedInstance = LD::Ref<BasicDatabase>;
-            LD::QueryResult<bool(Args...)> result = LD::MakeContext(LD::DatabaseError{},LD::Forward<Args>(arguments)...);
-            using Period = LD::TypeString<'.'>;
-            LD::For<sizeof...(TL)>([](
-                    auto I,
-                    LD::Ref<Backend> handle,
-                    RefedResult result,
-                    ReferencedInstance currentInstance,
-                    Args && ... arguments)
-            {
-                using Type = typename LD::TypeAtIndex<I,LD::CT::TypeList<TL...>>::type;
-                using ClassName = decltype(Type::GetClassNameTypeString());
-                using KeySet  = typename LD::tlist_erase_at<0,LD::CT::RebindList<typename Type::KeyTypeList,LD::CT::TypeList>>::type;
-                using MemberSet  = typename LD::tlist_erase_at<0,LD::CT::RebindList<typename Type::ValueTypeList,LD::CT::TypeList>>::type;
-
-                auto onFetch = [](const LD::Context<LD::StringView,LD::StringView,LD::StringView,LD::Ref<Backend>,RefedResult> & context) noexcept
-                {
-                    const LD::StringView & data = LD::Get(LD::Get<1>(context));
-                    const LD::StringView & className = LD::Get(LD::Get<2>(context));
-                    LD::UInteger comparisonResult = (data == className);
-                    return comparisonResult;
-                };
-
-
-                LD::QueryResult<LD::UInteger(LD::StringView,LD::StringView,LD::Ref<Backend>,RefedResult)> queryResult = handle->Fetch(
-                        LD::StringView {Key::data(),Key::size()},
-                        onFetch,
-                        LD::StringView{ClassName::data(),ClassName::size()},
-                        LD::Ref<Backend>{handle},
-                        RefedResult {result});
-
-
-
-                auto onDatabaseError = [](const LD::Context<LD::DatabaseError,LD::StringView ,LD::StringView,LD::Ref<Backend>,RefedResult> &) noexcept
-                {
-
-                    return true;
-                };
-
-                auto onTransaction = [](const LD::Context<LD::DatabaseTransactionResult,LD::UInteger,LD::StringView ,LD::StringView,LD::Ref<Backend>,RefedResult> & transaction) noexcept
-                {
-                    using ReflectiveTypeStructure =  LD::CT::GenerateNamedReflectiveTypeStructure<Key,Type>;
-
-                    LD::Ref<Backend> handle = LD::Get<4>(transaction);
-                    RefedResult  res = LD::Get<5>(transaction);
-                    using Keys = typename LD::CT::TypeListChannelView<0,2,ReflectiveTypeStructure>;
-                    using Types = typename LD::CT::TypeListChannelView<1,2,ReflectiveTypeStructure>;
-
-                    //iterate through all of the keys which were generate with LD::GenerateNamedReflectiveTypeStructure
-                    //delete keys directly which are of type Reflective or Primitive Types
-                    //provide a special case for arrays and iterable structures
-                    LD::For<0,ReflectiveTypeStructure::size()/2,1>([](
-                            auto I,
-                            LD::Ref<Backend> handle)
-                    {
-                        using CurrentKey = LD::CT::TypeAtIndex<I,Keys>;
-                        using CurrentType = LD::CT::TypeAtIndex<I,Types>;
-                        if constexpr(LD::IsPrimitive<CurrentType> || LD::IsReflectable<CurrentType>)
-                        {
-                            LD::QueryResult<bool()> currentRemovalRequestRes = handle->Remove(LD::StringView{CurrentKey::data(),CurrentKey::size()});
-
-                            auto onRemovalError = [](const LD::Context<LD::DatabaseError> & context) noexcept
-                            {
-
-                            };
-
-                            auto onTransaction = [](const LD::Context<LD::DatabaseTransactionResult,bool> & context) noexcept
-                            {
-
-                            };
-
-                            LD::Match(currentRemovalRequestRes,onRemovalError,onTransaction);
-                        }
-
-                        return true;
-                    },handle);
-                    //(*res) = LD::MakeContext(LD::DatabaseTransactionResult{},bool{});
-                    return false;
-                };
-                bool shouldContinueAttemptingToDelete = LD::Match(queryResult,onDatabaseError,onTransaction);
-
-                if (!shouldContinueAttemptingToDelete)//we've found the type that we wanted to delete
-                {
-                    (*result) = LD::MakeContext(LD::DatabaseTransactionResult{},bool{true},LD::Forward<Args>(arguments)...);
-                }
-                //we're writing to the data structre eg why it's write only.
-                return shouldContinueAttemptingToDelete;
-            },LD::Ref<Backend>{this->mBackend},RefedResult{result},ReferencedInstance{this},LD::Forward<Args>(arguments)...);
-
-            //todo at object traversal to remove all keys
-            return result;
-        }
-
-         */
         template<typename Key, typename ... TL ,typename ... Args>
         LD::Enable_If_T<
                 (LD::Require<LD::IsReflectable<TL>> && ...)
@@ -1001,6 +728,7 @@ namespace LD
         LD::QueryResult<LD::Variant<LD::Type<TL>...>(Args...)>> Remove(const Key & key, LD::CT::TypeList<TL...> ,Args && ... arguments) noexcept
         {
 
+            /*
             using RefedResult = LD::Ref<LD::QueryResult<LD::Variant<LD::Type<TL>...>(Args...)>>;
             using ReferencedInstance = LD::Ref<BasicKeyedDatabase>;
             //set a default value that simply assumes the database had an error
@@ -1101,6 +829,8 @@ namespace LD
 
             //todo at object traversal to remove all keys
             return result;
+             */
+            return {};
         }
 
         template<typename TS, typename MemberTS ,typename Comparable ,typename ... Types, typename ... Args,

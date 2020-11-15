@@ -81,6 +81,10 @@ namespace LD
     {
 
     };
+    class TimeoutError
+    {
+
+    };
 
 
     using ErrorTypes = LD::CT::TypeList<
@@ -97,7 +101,8 @@ namespace LD
                 LD::RunTimeError,
                 LD::PagingError,
                 LD::MemoryError,
-                LD::EncodingError
+                LD::EncodingError,
+                LD::TimeoutError
             >;
 
     template<typename T>

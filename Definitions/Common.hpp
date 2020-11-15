@@ -5927,6 +5927,24 @@ public:
     constexpr LD::Enable_If_T< LD::ArePacksConvertible<LD::VariadicPack<Args...>, LD::VariadicPack<B...>>::value,Tuple<Args...> &> Assignment(const Tuple<B...> & tuple) noexcept ;
 };
 
+namespace Detail
+{
+    template<typename T>
+    struct IsTuple
+    {
+        static constexpr bool value = false;
+    };
+
+    template<typename ... T>
+    struct IsTuple<LD::Tuple<T...>>
+    {
+        static constexpr bool value = true;
+    };
+}
+
+template<typename T>
+constexpr bool IsTuple = LD::Detail::IsTuple<T>::value;
+
 template <> struct Tuple<> {};
 // select first element
 // get reference to _Index element of tuple

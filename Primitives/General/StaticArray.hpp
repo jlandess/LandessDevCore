@@ -406,7 +406,7 @@ namespace LD
     public:
 
 
-        void PushBack(T && object) noexcept
+        void PushBack(const T &  object) noexcept
         {
             this->InternalBuffer[this->Size++] = object;
         }
@@ -430,6 +430,10 @@ namespace LD
 
 
 
+            LD::UInteger operator-(const Iterator & it) const noexcept
+            {
+                return this->mIndex-it.mIndex;
+            }
 
             constexpr bool operator < (const Iterator & iterator) noexcept
             {
@@ -520,6 +524,8 @@ namespace LD
 
         inline StaticArray();
         inline StaticArray(const CArray<T, Amount> & cArray);
+
+
         inline constexpr StaticArray(const T & initializedState) noexcept
         {
             LD::For<Amount>([](auto Index,T buffer[Amount ? Amount:1], const T & init)
@@ -527,7 +533,6 @@ namespace LD
                 buffer[Index] = init;
                 return true;
             },this->InternalBuffer,initializedState);
-            //this->InternalBuffer={initializedState};
         }
         inline const T & operator[](const PDP::UInteger & index) const;
         inline T & operator[](const PDP::UInteger & index);
@@ -656,11 +661,20 @@ namespace LD
         {
             return (*this);
         }
+        /*
         BackInserter<LD::StaticArray<T,Size>> & operator = (T && object) noexcept
         {
             //std::cout << "Size : " << mArray.GetSize() << std::endl;
             //mArray[mArray.GetSize()] = object;
             mArray.PushBack(LD::Forward<T>(object));
+            return (*this);
+        }
+         */
+        BackInserter<LD::StaticArray<T,Size>> & operator = (const T &  object) noexcept
+        {
+            //std::cout << "Size : " << mArray.GetSize() << std::endl;
+            //mArray[mArray.GetSize()] = object;
+            mArray.PushBack(object);
             return (*this);
         }
         constexpr BackInserter<LD::StaticArray<T,Size>> operator++() noexcept

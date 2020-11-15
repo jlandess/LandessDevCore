@@ -1,4 +1,4 @@
-/snap/clion/124/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=/usr/bin/clang -DCMAKE_CXX_COMPILER=/usr/bin/clang++ -G "CodeBlocks - Unix Makefiles" /home/phoenixflower/Documents/LandessDevCore
+/snap/clion/129/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=/usr/bin/clang -DCMAKE_CXX_COMPILER=/usr/bin/clang++ -G "CodeBlocks - Unix Makefiles" /media/phoenixflower/Development/LandessDev/LandessDevCore
 -- Configuring done
 -- Generating done
--- Build files have been written to: /home/phoenixflower/Documents/LandessDevCore/cmake-build-debug
+-- Build files have been written to: /media/phoenixflower/Development/LandessDev/LandessDevCore/cmake-build-debug

@@ -162,6 +162,17 @@ namespace LD
         {
             return LD::Detail::IsPrimitiveType<T>::value;
         }
+        template<typename T>
+        constexpr bool IsTuple(LD::Type<T> ) noexcept
+        {
+            return LD::IsTuple<T>;
+        }
+        template<typename ... B>
+        constexpr auto TupleSize( LD::Type<LD::Tuple<B...>>) noexcept
+        {
+            return LD::TupleSize<LD::Tuple<B...>>::value;
+        }
+
 
         template<typename T>
         constexpr auto RemoveConst(LD::Type<T> ) noexcept

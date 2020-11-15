@@ -5,6 +5,7 @@
 #ifndef LANDESSDEVCORE_CONTEXT_H
 #define LANDESSDEVCORE_CONTEXT_H
 #include "Memory/ElementReference.h"
+#include "TypeTraits/Detection.hpp"
 namespace LD
 {
     namespace Detail

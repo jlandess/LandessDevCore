@@ -471,16 +471,16 @@ namespace Concept
 
 
     template<typename T>
-    constexpr bool PrefixIncrementable = LD::Exists<LD::Ops::PrefixIncrement,T>;
+    constexpr bool PrefixIncrementable = LD::Exists<LD::Ops::PrefixIncrement,T &>;
 
     template<typename T>
-    constexpr bool PrefixDecrementable = LD::Exists<LD::Ops::PrefixDecrement,T>;
+    constexpr bool PrefixDecrementable = LD::Exists<LD::Ops::PrefixDecrement,T &>;
 
     template<typename T>
-    constexpr bool PostfixIncrementable = LD::Exists<LD::Ops::PostfixIncrement,T>;
+    constexpr bool PostfixIncrementable = LD::Exists<LD::Ops::PostfixIncrement,T &>;
 
     template<typename T>
-    constexpr bool PostfixDecrementable = LD::Exists<LD::Ops::PostFixDecrement ,T>;
+    constexpr bool PostfixDecrementable = LD::Exists<LD::Ops::PostFixDecrement ,T &>;
 
     template<typename T>
     constexpr bool Deferenceable = LD::Exists<LD::Ops::Dereference,T>;

@@ -7,6 +7,7 @@
 #include <stdint.h>
 #include "utf8/core.h"
 #include "IO/FetchRequest.h"
+#include "Primitives/General/ctre.hpp"
 namespace LD
 {
 

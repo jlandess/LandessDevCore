@@ -8,6 +8,8 @@
 #include "Definitions/Common.hpp"
 #include "TypeTraits/Iterable.h"
 #include "TypeTraits/Detection.hpp"
+#include "TypeTraits/Type.h"
+#include "TypeTraits/FunctionalReflection.hpp"
 namespace LD
 {
 
@@ -15,28 +17,36 @@ namespace LD
     class Span;
     namespace Detail
     {
+
         template<typename T, class = void>
         struct Spannable
         {
             constexpr static const bool value = false;
         };
         template<typename T>
-        struct Spannable<T,LD::EnableIf<
+        struct Spannable<T,LD::Enable_If_T<
                 LD::Require<
-                LD::Negate<LD::Concept::ContinuousIterable<T>>
+                        LD::Exists<LD::Detail::CamelCaseBegin,T>,
+                        LD::Exists<LD::Detail::CameCaseEnd,T>,
+                        LD::Negate<LD::Exists<LD::Detail::ReverseCamelCaseBegin,T>>,
+                        LD::Negate<LD::Exists<LD::Detail::ReverseCamelCaseEnd,T>>
                 >>>
         {
-            constexpr static const bool value = false;
+            constexpr static const bool value = LD::Concept::ContinuousIterable<decltype(LD::Declval<T>().begin())>;
         };
 
         template<typename T>
-        struct Spannable<T,LD::EnableIf<
+        struct Spannable<T,LD::Enable_If_T<
                 LD::Require<
-                        LD::Concept::ContinuousIterable<T>
+                        LD::Negate<LD::Exists<LD::Detail::CamelCaseBegin,T>>,
+                        LD::Negate<LD::Exists<LD::Detail::CameCaseEnd,T>>,
+                        LD::Exists<LD::Detail::ReverseCamelCaseBegin,T>,
+                        LD::Exists<LD::Detail::ReverseCamelCaseEnd,T>
                 >>>
         {
-            constexpr static const bool value = true;
+            constexpr static const bool value = LD::Concept::ContinuousIterable<decltype(LD::Declval<T>().Begin())>;
         };
+
 
 
         template<typename T, class = void>
@@ -57,7 +67,7 @@ namespace LD
         {
         public:
             using IteratorType = decltype(LD::Declval<T>().begin());
-            using Type = decltype(*LD::Declval<IteratorType>());
+            using Type = LD::Detail::Decay_T<decltype(*LD::Declval<IteratorType>())>;
         private:
             Type * mBegin;
             LD::UInteger mSize;
@@ -66,7 +76,7 @@ namespace LD
             {
 
             }
-            constexpr SpanAdapter(const T & spannableObject) noexcept:mBegin(&spannableObject[0]),mSize(spannableObject.end() - spannableObject.begin())
+            constexpr SpanAdapter(T & spannableObject) noexcept:mBegin{(Type*)&spannableObject.begin()[0]},mSize(spannableObject.end()-spannableObject.begin())
             {
             }
 
@@ -75,7 +85,7 @@ namespace LD
                 return this->mBegin;
             }
 
-            constexpr LD::UInteger & Size() const noexcept
+            constexpr const LD::UInteger & Size() const noexcept
             {
                 return this->mSize;
             }
@@ -83,6 +93,42 @@ namespace LD
 
         };
 
+        template<typename T>
+        class SpanAdapter<T,LD::Enable_If_T<
+                LD::Require<
+                        LD::Detail::Spannable<T>::value,
+                        LD::Negate<LD::Exists<LD::Detail::CamelCaseBegin,T>>,
+                        LD::Negate<LD::Exists<LD::Detail::CameCaseEnd,T>>,
+                        LD::Exists<LD::Detail::ReverseCamelCaseBegin,T>,
+                        LD::Exists<LD::Detail::ReverseCamelCaseEnd,T>
+                >>>
+        {
+        public:
+            using IteratorType = decltype(LD::Declval<T>().Begin());
+            using Type = LD::Detail::Decay_T<decltype(*LD::Declval<IteratorType>())>;
+        private:
+            Type * mBegin;
+            LD::UInteger mSize;
+        public:
+            constexpr SpanAdapter() noexcept:mBegin(nullptr),mSize(0)
+            {
+
+            }
+            constexpr SpanAdapter(T & spannableObject) noexcept:mBegin{(Type*)&spannableObject.Begin()[0]},mSize(spannableObject.End()-spannableObject.Begin())
+            {
+            }
+
+            constexpr Type * Begin() noexcept
+            {
+                return this->mBegin;
+            }
+
+            constexpr const LD::UInteger & Size() const noexcept
+            {
+                return this->mSize;
+            }
+        };
+        /*
         template<typename T>
         class SpanAdapter<T,LD::Enable_If_T<
                 LD::Require<
@@ -119,6 +165,7 @@ namespace LD
             }
 
         };
+         */
 
         template<typename T>
         struct IsSpan: public LD::Detail::IntegralConstant<bool,false>
@@ -141,11 +188,25 @@ namespace LD
     template<typename T>
     constexpr const bool Spannable = LD::Detail::Spannable<T>::value;
 
+    namespace CT
+    {
+        template<typename T>
+        constexpr bool Spannable(LD::Type<T> )
+        {
+            return LD::Spannable<T>;
+        }
+
+
+    }
+
     template<typename T>
     class Span
     {
+    public:
+        using UType = typename LD::Detail::SpanAdapter<T>::Type;
     private:
-        T * mBuffer;
+
+        UType * mBuffer;
         LD::UInteger mSize;
     public:
         inline Span() noexcept:mBuffer(nullptr),mSize(0){}
@@ -158,7 +219,7 @@ namespace LD
 
 
         template<typename V, typename = LD::EnableIf<LD::Require<LD::Spannable<V>>>>
-        inline Span(const V & contiguousContainer) noexcept
+        inline Span(V & contiguousContainer) noexcept
         {
             LD::Detail::SpanAdapter<V> spanAdapter{contiguousContainer};
             this->mBuffer = spanAdapter.Begin();
@@ -177,9 +238,9 @@ namespace LD
         constexpr LD::UInteger Size() const noexcept{return this->mSize;}
 
 
-        inline constexpr const T & Front() const noexcept{return *(this->mBuffer);}
+        inline constexpr const UType & Front() const noexcept{return *(this->mBuffer);}
 
-        inline constexpr const T & Back() const noexcept{return *( this->mBuffer + this->mSize - 1 );}
+        inline constexpr const UType & Back() const noexcept{return *( this->mBuffer + this->mSize - 1 );}
 
         template<typename V>
         inline constexpr LD::UInteger ToSize( const V & size)
@@ -191,11 +252,35 @@ namespace LD
 
          inline constexpr bool Empty() const noexcept{return this->Size() == 0;}
 
-        inline constexpr const T & operator[]( const LD::UInteger & idx ) const noexcept{return *(mBuffer+idx);}
+        inline constexpr const UType & operator[]( const LD::UInteger & idx ) const noexcept{return *(mBuffer+idx);}
 
-        inline constexpr  T & operator[]( const LD::UInteger & idx )  noexcept{return *(mBuffer+idx);}
+        inline constexpr  UType & operator[]( const LD::UInteger & idx )  noexcept{return *(mBuffer+idx);}
 
-        inline constexpr T * Data() const noexcept{return this->mBuffer;}
+        inline constexpr UType * Data() const noexcept{return this->mBuffer;}
     };
+
+    template <typename T> Span(T & span) -> Span<T>;
+
+    namespace CT
+    {
+        template<typename T>
+        constexpr auto SpanType(LD::Type<LD::Span<T>>) noexcept
+        {
+            using SpanObjectType = LD::Span<T>;
+            using SpanInnerType = typename SpanObjectType::UType ;
+            return LD::Type<SpanInnerType>{};
+        }
+
+        template<typename T, typename U>
+        constexpr bool SpannableWithConstraint(LD::Type<T> ,LD::Type<U>) noexcept
+        {
+            if constexpr (LD::Spannable<T>)
+            {
+                constexpr auto SpanInnerType = SpanType(LD::Type<LD::Span<T>>{});
+                return LD::CT::IsSame(SpanInnerType,LD::Type<U>{});
+            }
+            return false;
+        }
+    }
 }
 #endif //LANDESSDEVCORE_SPAN_HPP

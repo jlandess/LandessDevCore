@@ -59,19 +59,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /snap/clion/124/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /snap/clion/129/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /snap/clion/124/bin/cmake/linux/bin/cmake -E rm -f
+RM = /snap/clion/129/bin/cmake/linux/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/phoenixflower/Documents/LandessDevCore
+CMAKE_SOURCE_DIR = /media/phoenixflower/Development/LandessDev/LandessDevCore
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/phoenixflower/Documents/LandessDevCore/cmake-build-release
+CMAKE_BINARY_DIR = /media/phoenixflower/Development/LandessDev/LandessDevCore/cmake-build-release
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -79,7 +79,7 @@ CMAKE_BINARY_DIR = /home/phoenixflower/Documents/LandessDevCore/cmake-build-rele
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/snap/clion/124/bin/cmake/linux/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/snap/clion/129/bin/cmake/linux/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -90,7 +90,7 @@ rebuild_cache/fast: rebuild_cache
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/snap/clion/124/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/snap/clion/129/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -100,9 +100,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/phoenixflower/Documents/LandessDevCore/cmake-build-release/CMakeFiles /home/phoenixflower/Documents/LandessDevCore/cmake-build-release/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /media/phoenixflower/Development/LandessDev/LandessDevCore/cmake-build-release/CMakeFiles /media/phoenixflower/Development/LandessDev/LandessDevCore/cmake-build-release/CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/phoenixflower/Documents/LandessDevCore/cmake-build-release/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /media/phoenixflower/Development/LandessDev/LandessDevCore/cmake-build-release/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -305,6 +305,33 @@ Examples/FullAdderExample.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.s
 .PHONY : Examples/FullAdderExample.cpp.s
 
+Examples/IOExample.o: Examples/IOExample.cpp.o
+
+.PHONY : Examples/IOExample.o
+
+# target to build an object file
+Examples/IOExample.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/IOExample.cpp.o
+.PHONY : Examples/IOExample.cpp.o
+
+Examples/IOExample.i: Examples/IOExample.cpp.i
+
+.PHONY : Examples/IOExample.i
+
+# target to preprocess a source file
+Examples/IOExample.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/IOExample.cpp.i
+.PHONY : Examples/IOExample.cpp.i
+
+Examples/IOExample.s: Examples/IOExample.cpp.s
+
+.PHONY : Examples/IOExample.s
+
+# target to generate assembly for a file
+Examples/IOExample.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/IOExample.cpp.s
+.PHONY : Examples/IOExample.cpp.s
+
 Examples/MultithreadingExample.o: Examples/MultithreadingExample.cpp.o
 
 .PHONY : Examples/MultithreadingExample.o
@@ -412,6 +439,330 @@ Examples/TermBoxMenuExample.s: Examples/TermBoxMenuExample.cpp.s
 Examples/TermBoxMenuExample.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.s
 .PHONY : Examples/TermBoxMenuExample.cpp.s
+
+Examples/WebServerExample.o: Examples/WebServerExample.cpp.o
+
+.PHONY : Examples/WebServerExample.o
+
+# target to build an object file
+Examples/WebServerExample.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.o
+.PHONY : Examples/WebServerExample.cpp.o
+
+Examples/WebServerExample.i: Examples/WebServerExample.cpp.i
+
+.PHONY : Examples/WebServerExample.i
+
+# target to preprocess a source file
+Examples/WebServerExample.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.i
+.PHONY : Examples/WebServerExample.cpp.i
+
+Examples/WebServerExample.s: Examples/WebServerExample.cpp.s
+
+.PHONY : Examples/WebServerExample.s
+
+# target to generate assembly for a file
+Examples/WebServerExample.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.s
+.PHONY : Examples/WebServerExample.cpp.s
+
+IO/Redis/alloc.o: IO/Redis/alloc.c.o
+
+.PHONY : IO/Redis/alloc.o
+
+# target to build an object file
+IO/Redis/alloc.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/alloc.c.o
+.PHONY : IO/Redis/alloc.c.o
+
+IO/Redis/alloc.i: IO/Redis/alloc.c.i
+
+.PHONY : IO/Redis/alloc.i
+
+# target to preprocess a source file
+IO/Redis/alloc.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/alloc.c.i
+.PHONY : IO/Redis/alloc.c.i
+
+IO/Redis/alloc.s: IO/Redis/alloc.c.s
+
+.PHONY : IO/Redis/alloc.s
+
+# target to generate assembly for a file
+IO/Redis/alloc.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/alloc.c.s
+.PHONY : IO/Redis/alloc.c.s
+
+IO/Redis/async.o: IO/Redis/async.c.o
+
+.PHONY : IO/Redis/async.o
+
+# target to build an object file
+IO/Redis/async.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/async.c.o
+.PHONY : IO/Redis/async.c.o
+
+IO/Redis/async.i: IO/Redis/async.c.i
+
+.PHONY : IO/Redis/async.i
+
+# target to preprocess a source file
+IO/Redis/async.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/async.c.i
+.PHONY : IO/Redis/async.c.i
+
+IO/Redis/async.s: IO/Redis/async.c.s
+
+.PHONY : IO/Redis/async.s
+
+# target to generate assembly for a file
+IO/Redis/async.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/async.c.s
+.PHONY : IO/Redis/async.c.s
+
+IO/Redis/dict.o: IO/Redis/dict.c.o
+
+.PHONY : IO/Redis/dict.o
+
+# target to build an object file
+IO/Redis/dict.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/dict.c.o
+.PHONY : IO/Redis/dict.c.o
+
+IO/Redis/dict.i: IO/Redis/dict.c.i
+
+.PHONY : IO/Redis/dict.i
+
+# target to preprocess a source file
+IO/Redis/dict.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/dict.c.i
+.PHONY : IO/Redis/dict.c.i
+
+IO/Redis/dict.s: IO/Redis/dict.c.s
+
+.PHONY : IO/Redis/dict.s
+
+# target to generate assembly for a file
+IO/Redis/dict.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/dict.c.s
+.PHONY : IO/Redis/dict.c.s
+
+IO/Redis/hiredis.o: IO/Redis/hiredis.c.o
+
+.PHONY : IO/Redis/hiredis.o
+
+# target to build an object file
+IO/Redis/hiredis.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/hiredis.c.o
+.PHONY : IO/Redis/hiredis.c.o
+
+IO/Redis/hiredis.i: IO/Redis/hiredis.c.i
+
+.PHONY : IO/Redis/hiredis.i
+
+# target to preprocess a source file
+IO/Redis/hiredis.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/hiredis.c.i
+.PHONY : IO/Redis/hiredis.c.i
+
+IO/Redis/hiredis.s: IO/Redis/hiredis.c.s
+
+.PHONY : IO/Redis/hiredis.s
+
+# target to generate assembly for a file
+IO/Redis/hiredis.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/hiredis.c.s
+.PHONY : IO/Redis/hiredis.c.s
+
+IO/Redis/net.o: IO/Redis/net.c.o
+
+.PHONY : IO/Redis/net.o
+
+# target to build an object file
+IO/Redis/net.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/net.c.o
+.PHONY : IO/Redis/net.c.o
+
+IO/Redis/net.i: IO/Redis/net.c.i
+
+.PHONY : IO/Redis/net.i
+
+# target to preprocess a source file
+IO/Redis/net.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/net.c.i
+.PHONY : IO/Redis/net.c.i
+
+IO/Redis/net.s: IO/Redis/net.c.s
+
+.PHONY : IO/Redis/net.s
+
+# target to generate assembly for a file
+IO/Redis/net.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/net.c.s
+.PHONY : IO/Redis/net.c.s
+
+IO/Redis/read.o: IO/Redis/read.c.o
+
+.PHONY : IO/Redis/read.o
+
+# target to build an object file
+IO/Redis/read.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/read.c.o
+.PHONY : IO/Redis/read.c.o
+
+IO/Redis/read.i: IO/Redis/read.c.i
+
+.PHONY : IO/Redis/read.i
+
+# target to preprocess a source file
+IO/Redis/read.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/read.c.i
+.PHONY : IO/Redis/read.c.i
+
+IO/Redis/read.s: IO/Redis/read.c.s
+
+.PHONY : IO/Redis/read.s
+
+# target to generate assembly for a file
+IO/Redis/read.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/read.c.s
+.PHONY : IO/Redis/read.c.s
+
+IO/Redis/sds.o: IO/Redis/sds.c.o
+
+.PHONY : IO/Redis/sds.o
+
+# target to build an object file
+IO/Redis/sds.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/sds.c.o
+.PHONY : IO/Redis/sds.c.o
+
+IO/Redis/sds.i: IO/Redis/sds.c.i
+
+.PHONY : IO/Redis/sds.i
+
+# target to preprocess a source file
+IO/Redis/sds.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/sds.c.i
+.PHONY : IO/Redis/sds.c.i
+
+IO/Redis/sds.s: IO/Redis/sds.c.s
+
+.PHONY : IO/Redis/sds.s
+
+# target to generate assembly for a file
+IO/Redis/sds.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/sds.c.s
+.PHONY : IO/Redis/sds.c.s
+
+IO/Redis/sockcompat.o: IO/Redis/sockcompat.c.o
+
+.PHONY : IO/Redis/sockcompat.o
+
+# target to build an object file
+IO/Redis/sockcompat.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/sockcompat.c.o
+.PHONY : IO/Redis/sockcompat.c.o
+
+IO/Redis/sockcompat.i: IO/Redis/sockcompat.c.i
+
+.PHONY : IO/Redis/sockcompat.i
+
+# target to preprocess a source file
+IO/Redis/sockcompat.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/sockcompat.c.i
+.PHONY : IO/Redis/sockcompat.c.i
+
+IO/Redis/sockcompat.s: IO/Redis/sockcompat.c.s
+
+.PHONY : IO/Redis/sockcompat.s
+
+# target to generate assembly for a file
+IO/Redis/sockcompat.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/sockcompat.c.s
+.PHONY : IO/Redis/sockcompat.c.s
+
+IO/Redis/ssl.o: IO/Redis/ssl.c.o
+
+.PHONY : IO/Redis/ssl.o
+
+# target to build an object file
+IO/Redis/ssl.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/ssl.c.o
+.PHONY : IO/Redis/ssl.c.o
+
+IO/Redis/ssl.i: IO/Redis/ssl.c.i
+
+.PHONY : IO/Redis/ssl.i
+
+# target to preprocess a source file
+IO/Redis/ssl.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/ssl.c.i
+.PHONY : IO/Redis/ssl.c.i
+
+IO/Redis/ssl.s: IO/Redis/ssl.c.s
+
+.PHONY : IO/Redis/ssl.s
+
+# target to generate assembly for a file
+IO/Redis/ssl.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/ssl.c.s
+.PHONY : IO/Redis/ssl.c.s
+
+IO/XML/tinyxml2.o: IO/XML/tinyxml2.cpp.o
+
+.PHONY : IO/XML/tinyxml2.o
+
+# target to build an object file
+IO/XML/tinyxml2.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/XML/tinyxml2.cpp.o
+.PHONY : IO/XML/tinyxml2.cpp.o
+
+IO/XML/tinyxml2.i: IO/XML/tinyxml2.cpp.i
+
+.PHONY : IO/XML/tinyxml2.i
+
+# target to preprocess a source file
+IO/XML/tinyxml2.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/XML/tinyxml2.cpp.i
+.PHONY : IO/XML/tinyxml2.cpp.i
+
+IO/XML/tinyxml2.s: IO/XML/tinyxml2.cpp.s
+
+.PHONY : IO/XML/tinyxml2.s
+
+# target to generate assembly for a file
+IO/XML/tinyxml2.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/XML/tinyxml2.cpp.s
+.PHONY : IO/XML/tinyxml2.cpp.s
+
+IO/etcd/etcdcpp.o: IO/etcd/etcdcpp.cpp.o
+
+.PHONY : IO/etcd/etcdcpp.o
+
+# target to build an object file
+IO/etcd/etcdcpp.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o
+.PHONY : IO/etcd/etcdcpp.cpp.o
+
+IO/etcd/etcdcpp.i: IO/etcd/etcdcpp.cpp.i
+
+.PHONY : IO/etcd/etcdcpp.i
+
+# target to preprocess a source file
+IO/etcd/etcdcpp.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.i
+.PHONY : IO/etcd/etcdcpp.cpp.i
+
+IO/etcd/etcdcpp.s: IO/etcd/etcdcpp.cpp.s
+
+.PHONY : IO/etcd/etcdcpp.s
+
+# target to generate assembly for a file
+IO/etcd/etcdcpp.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.s
+.PHONY : IO/etcd/etcdcpp.cpp.s
 
 IO/unqlite.o: IO/unqlite.c.o
 
@@ -926,6 +1277,9 @@ help:
 	@echo "... Examples/FullAdderExample.o"
 	@echo "... Examples/FullAdderExample.i"
 	@echo "... Examples/FullAdderExample.s"
+	@echo "... Examples/IOExample.o"
+	@echo "... Examples/IOExample.i"
+	@echo "... Examples/IOExample.s"
 	@echo "... Examples/MultithreadingExample.o"
 	@echo "... Examples/MultithreadingExample.i"
 	@echo "... Examples/MultithreadingExample.s"
@@ -938,6 +1292,42 @@ help:
 	@echo "... Examples/TermBoxMenuExample.o"
 	@echo "... Examples/TermBoxMenuExample.i"
 	@echo "... Examples/TermBoxMenuExample.s"
+	@echo "... Examples/WebServerExample.o"
+	@echo "... Examples/WebServerExample.i"
+	@echo "... Examples/WebServerExample.s"
+	@echo "... IO/Redis/alloc.o"
+	@echo "... IO/Redis/alloc.i"
+	@echo "... IO/Redis/alloc.s"
+	@echo "... IO/Redis/async.o"
+	@echo "... IO/Redis/async.i"
+	@echo "... IO/Redis/async.s"
+	@echo "... IO/Redis/dict.o"
+	@echo "... IO/Redis/dict.i"
+	@echo "... IO/Redis/dict.s"
+	@echo "... IO/Redis/hiredis.o"
+	@echo "... IO/Redis/hiredis.i"
+	@echo "... IO/Redis/hiredis.s"
+	@echo "... IO/Redis/net.o"
+	@echo "... IO/Redis/net.i"
+	@echo "... IO/Redis/net.s"
+	@echo "... IO/Redis/read.o"
+	@echo "... IO/Redis/read.i"
+	@echo "... IO/Redis/read.s"
+	@echo "... IO/Redis/sds.o"
+	@echo "... IO/Redis/sds.i"
+	@echo "... IO/Redis/sds.s"
+	@echo "... IO/Redis/sockcompat.o"
+	@echo "... IO/Redis/sockcompat.i"
+	@echo "... IO/Redis/sockcompat.s"
+	@echo "... IO/Redis/ssl.o"
+	@echo "... IO/Redis/ssl.i"
+	@echo "... IO/Redis/ssl.s"
+	@echo "... IO/XML/tinyxml2.o"
+	@echo "... IO/XML/tinyxml2.i"
+	@echo "... IO/XML/tinyxml2.s"
+	@echo "... IO/etcd/etcdcpp.o"
+	@echo "... IO/etcd/etcdcpp.i"
+	@echo "... IO/etcd/etcdcpp.s"
 	@echo "... IO/unqlite.o"
 	@echo "... IO/unqlite.i"
 	@echo "... IO/unqlite.s"

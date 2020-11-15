@@ -16,6 +16,7 @@
 #include "TypeTraits/IsImmutable.h"
 #include "TypeTraits/StaticallySized.h"
 #include "IO/FetchRequest.h"
+#include "StaticArray.hpp"
 namespace LD
 {
     class ImmutableStringWarrant
@@ -102,6 +103,20 @@ namespace LD
                     auto && string)
             {
                 instance[I] = string[I];
+                return true;
+            },this->string,string);
+        }
+        template<LD::UInteger Size, typename = typename LD::Enable_If_T<Size <= N>>
+        constexpr ImmutableString(const LD::StaticArray<char,Size> & string) noexcept
+        {
+            LD::For<Size>([](
+                    auto I,
+                    auto && instance,
+                    auto && string)
+            {
+
+                instance[I] = string[I];
+
                 return true;
             },this->string,string);
         }
@@ -403,9 +418,18 @@ namespace LD
     }
     template<typename T>
     constexpr bool IsImmutableString = LD::Detail::IsImmutableString<T>::value;
+
+
 }
 
-
+namespace LD
+{
+    template<LD::UInteger Size>
+    constexpr LD::UInteger ImmutableSize(LD::Type<LD::ImmutableString<Size>> ) noexcept
+    {
+        return Size;
+    }
+}
 template<LD::UInteger N, LD::UInteger M>
 constexpr LD::ImmutableString<(N+M)> operator+(const LD::ImmutableString<N> & a, const LD::ImmutableString<M> & b) noexcept
 {
@@ -575,6 +599,31 @@ namespace LD
         },returnable);
 
         return LD::ImmutableString<sizeof...(Characters)>{returnable};
+    }
+    template<typename T>
+    constexpr LD::Enable_If_T<LD::Require<LD::Detail::IsSame<T,bool>::value>,LD::ImmutableString<5>> ToImmutableString(const T & booleanValue)
+    {
+        LD::StaticArray<LD::ImmutableString<5>,2> results;
+
+        LD::ImmutableString<5> trueResult;
+        trueResult[0] = 't';
+        trueResult[1] = 'r';
+        trueResult[2] = 'u';
+        trueResult[3] = 'e';
+        trueResult[4] = '\0';
+
+        LD::ImmutableString<5> falseResult;
+        falseResult[0] = 'f';
+        falseResult[1] = 'a';
+        falseResult[2] = 'l';
+        falseResult[3] = 's';
+        falseResult[4] = 'e';
+
+        results[1] = trueResult;
+        results[0] = falseResult;
+        //true
+        //false
+        return results[booleanValue];
     }
     template<typename T>
      LD::Enable_If_T<LD::Require<
@@ -864,6 +913,8 @@ namespace LD
 
     template<typename T>
     using CanBeImmutableString = decltype(LD::ToImmutableString(LD::Declval<T>()));
+
+
 }
 
 namespace PDP
@@ -932,10 +983,26 @@ namespace LD
         {
 
         };
+
+
+        template<typename T>
+        using ImmtuableConversion = decltype(LD::ToImmutableString(LD::Declval<T>()));
+    }
+
+    namespace CT
+    {
+        /*
+        template<typename T>
+        constexpr bool CanBeAnImmutableString(LD::Type<T> ) noexcept
+        {
+            return LD::Exists<LD::Detail::ImmtuableConversion,T>;
+        }
+         */
     }
 
     template <typename CharT, LD::UInteger N> ImmutableString(const CharT (&)[N]) -> ImmutableString<N-1>;
     template <LD::UInteger N> ImmutableString(ImmutableString<N>) -> ImmutableString<N>;
+    template <LD::UInteger N> ImmutableString(LD::StaticArray<char,N>) -> ImmutableString<N>;
     template<char ... Characters>
     ImmutableString(LD::TypeString<Characters...>) -> ImmutableString<sizeof...(Characters)>;
 }

@@ -35,7 +35,7 @@ namespace LD
         RowBackingStore(const LD::StringView & fileToOpen) noexcept:mLineBuffer{nullptr},mHandle{std::unique_ptr<FILE, int(*)(FILE*)>(
                 nullptr, fclose)}
         {
-            mHandle = std::unique_ptr<FILE, int(*)(FILE*)>(fopen("/proc/stat", "r"), fclose);
+            mHandle = std::unique_ptr<FILE, int(*)(FILE*)>(fopen(fileToOpen.data(), "r"), fclose);
 
             //std::unique_ptr<FILE, int(*)(FILE*)> fp(fopen("test.txt", "r"), fclose);
             this->mCachedHandle = ftello64(this->mHandle.get());

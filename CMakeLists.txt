@@ -3,6 +3,10 @@ include_directories(".")
 project(LandessDevCore)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_FLAGS_RELEASE "-march=native")
+include_directories("/usr/local/include/")
+#include_directories("/home/phoenixflower/Desktop/boost/")
+include_directories("/usr/local/include/boost/")
+link_directories("/usr/local/lib/")
 add_executable(LandessDevCore
         main.cpp
         LandessDevCore.hpp
@@ -219,6 +223,55 @@ add_executable(LandessDevCore
         TypeTraits/FunctionalReflection.hpp
         Algorithms/String.hpp
         Unicode/UTF8.hpp
-        TUI/ascii_art.cpp Examples/FullAdderExample.hpp Examples/FullAdderExample.cpp MVC/TermBoxProgressBar.hpp MVC/TermboxTextLabel.hpp MVC/ScopedRenderContextState.hpp Primitives/General/ScopedState.hpp MVC/TermBoxButton.hpp IO/SystemLoad.hpp MVC/MultiTenantApplication.hpp MVC/TermBoxCheckBox.hpp MVC/TermBoxRadioButton.hpp MVC/TermBoxRadioButtonBar.hpp MVC/TermBoxCheckBoxBar.hpp Async/CallStack.hpp Async/Strand.hpp)
+        TUI/ascii_art.cpp
+        Examples/FullAdderExample.hpp
+        Examples/FullAdderExample.cpp
+        MVC/TermBoxProgressBar.hpp
+        MVC/TermboxTextLabel.hpp
+        MVC/ScopedRenderContextState.hpp
+        Primitives/General/ScopedState.hpp
+        MVC/TermBoxButton.hpp
+        IO/SystemLoad.hpp
+        MVC/MultiTenantApplication.hpp
+        MVC/TermBoxCheckBox.hpp
+        MVC/TermBoxRadioButton.hpp
+        MVC/TermBoxRadioButtonBar.hpp
+        MVC/TermBoxCheckBoxBar.hpp
+        Async/CallStack.hpp
+        Async/Strand.hpp
+        IO/Redis/alloc.c
+        IO/Redis/async.c
+        IO/Redis/dict.c
+        IO/Redis/hiredis.c
+        IO/Redis/net.c
+        IO/Redis/read.c
+        IO/Redis/sds.c
+        IO/Redis/sockcompat.c
+        IO/Redis/ssl.c IO/RedisBackend.h
+        IO/etcd/etcdcpp.cpp
+        IO/S3DatabaseBackend.h
+        Primitives/General/Singleton.hpp
+        IO/EtcdBackingStore.h
+        IO/BMPHeader.h
+        Algorithms/TimedExecution.hpp
+        IO/RocksBackingStore.h
+        SPA/Form.hpp
+        SPA/Input.hpp
+        SPA/Img.hpp
+        SPA/Video.hpp
+        SPA/Audio.hpp
+        SPA/Attributes.hpp
+        IO/HTMLGenerator/CSS/Flex.hpp
+        SPA/Backend.hpp
+        SPA/Compositor.hpp
+        SPA/Linker.hpp
+        SPA/Button.hpp
+        IO/XML/tinyxml2.cpp IO/XML/XMLAttribute.hpp IO/XML/XMLValue.hpp SPA/HTML.hpp SPA/Div.hpp SPA/Text.hpp SPA/GlobalAttributes.hpp SPA/InputAttributes.hpp SPA/AppletAttributes.hpp SPA/JSTag.h Primitives/General/Boolean.hpp SPA/CssBlock.hpp SPA/CssAttributes.hpp SPA/Stylesheet.hpp SPA/Variable.hpp SPA/EventHandler.hpp TypeTraits/CanBeAnImmutableString.hpp SPA/IsAttribute.hpp SPA/Function.hpp Algorithms/Sorting.hpp Primitives/General/DateTime.h REST/WebServer.hpp REST/HTMLEmitter.hpp Algorithms/Benchmark.hpp Examples/IOExample.hpp Examples/IOExample.cpp Examples/WebServerExample.hpp Examples/WebServerExample.cpp Primitives/General/PhoneNumber.hpp)
 target_link_libraries(LandessDevCore pthread)
 target_link_libraries(LandessDevCore ncurses)
+target_link_libraries(LandessDevCore ssl)
+target_link_libraries(LandessDevCore crypto)
+target_link_libraries(LandessDevCore curl)
+target_link_libraries(LandessDevCore s3)
+target_link_libraries(LandessDevCore rocksdb)
+target_link_libraries(LandessDevCore simdjson)

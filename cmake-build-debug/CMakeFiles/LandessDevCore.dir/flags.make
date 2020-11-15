@@ -7,11 +7,11 @@ C_FLAGS = -g
 
 C_DEFINES = 
 
-C_INCLUDES = -I/home/phoenixflower/Documents/LandessDevCore/. 
+C_INCLUDES = -I/media/phoenixflower/Development/LandessDev/LandessDevCore/. -I/usr/local/include/boost 
 
 CXX_FLAGS = -g   -std=gnu++17
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/phoenixflower/Documents/LandessDevCore/. 
+CXX_INCLUDES = -I/media/phoenixflower/Development/LandessDev/LandessDevCore/. -I/usr/local/include/boost 
 
