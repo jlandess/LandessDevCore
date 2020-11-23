@@ -1446,12 +1446,12 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  ../Primitives/General/mapboxvariantvisitor.h
  ../Primitives/General/typestring.hpp
  ../Reflection/ConstexprFor.hpp
- ../Reflection/Reflection.hpp
  ../Reflection/reflectable.hpp
  ../Reflection/tagged_tuple.hpp
  ../SPA/EventHandler.hpp
  ../SPA/GlobalAttributes.hpp
  ../SPA/IsAttribute.hpp
+ ../SPA/Text.hpp
  ../TypeTraits/AddLValueReference.hpp
  ../TypeTraits/AddPointer.hpp
  ../TypeTraits/AddRValueReference.hpp
@@ -1499,18 +1499,22 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  ../TypeTraits/__two.hpp
  ../Unicode/UTF8.hpp
  ../Unicode/utf8/core.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/Algorithms/Exponential.hpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/Algorithms/FromString.hpp
  /media/phoenixflower/Development/LandessDev/LandessDevCore/Chrono/Timer.h
  /media/phoenixflower/Development/LandessDev/LandessDevCore/Examples/ReflectionDemoTypes.h
  /media/phoenixflower/Development/LandessDev/LandessDevCore/IO/Database.hpp
  /media/phoenixflower/Development/LandessDev/LandessDevCore/IO/DatabaseOperationResult.h
  /media/phoenixflower/Development/LandessDev/LandessDevCore/IO/FetchRequest.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/IO/RowBackingStore.h
  /media/phoenixflower/Development/LandessDev/LandessDevCore/IO/XML/tinyxml2.h
  /media/phoenixflower/Development/LandessDev/LandessDevCore/IO/toml.hpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/Memory/Optional.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/Primitives/General/DateTime.h
  /media/phoenixflower/Development/LandessDev/LandessDevCore/Primitives/General/Range.h
- /media/phoenixflower/Development/LandessDev/LandessDevCore/Primitives/General/ctre.hpp
- /media/phoenixflower/Development/LandessDev/LandessDevCore/Primitives/General/typestring.hpp
  /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/HTMLEmitter.hpp
  /media/phoenixflower/Development/LandessDev/LandessDevCore/Random/MarsagliaRandomNumberGenerator.hpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/Reflection/Reflection.hpp
  /media/phoenixflower/Development/LandessDev/LandessDevCore/SPA/Attributes.hpp
  /media/phoenixflower/Development/LandessDev/LandessDevCore/SPA/Backend.hpp
  /media/phoenixflower/Development/LandessDev/LandessDevCore/SPA/Button.hpp
@@ -1524,4 +1528,9 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  /media/phoenixflower/Development/LandessDev/LandessDevCore/TUI/ascii_art.h
  /media/phoenixflower/Development/LandessDev/LandessDevCore/TypeTraits/CanBeAnImmutableString.hpp
  /media/phoenixflower/Development/LandessDev/LandessDevCore/TypeTraits/TypeList.hpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/VirtuWorks/Identification.hpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/VirtuWorks/Language.hpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/VirtuWorks/QueueLog.hpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/VirtuWorks/QueueLogStatus.hpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/VirtuWorks/VirtuWorksDate.hpp
  /media/phoenixflower/Development/LandessDev/LandessDevCore/main.cpp

@@ -1445,12 +1445,12 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Primitives/General/mapboxvariant.hp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Primitives/General/mapboxvariantvisitor.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Primitives/General/typestring.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Reflection/ConstexprFor.hpp
-CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Reflection/Reflection.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Reflection/reflectable.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Reflection/tagged_tuple.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../SPA/EventHandler.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../SPA/GlobalAttributes.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../SPA/IsAttribute.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../SPA/Text.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/AddLValueReference.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/AddPointer.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/AddRValueReference.hpp
@@ -1498,6 +1498,8 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/VariadicPack.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/__two.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Unicode/UTF8.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Unicode/utf8/core.h
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Algorithms/Exponential.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Algorithms/FromString.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Chrono/Timer.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Examples/ReflectionDemoTypes.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/Database.hpp
@@ -1507,11 +1509,11 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/RowBackingStore.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/XML/tinyxml2.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/toml.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Memory/Optional.h
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Primitives/General/DateTime.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Primitives/General/Range.h
-CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Primitives/General/ctre.hpp
-CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Primitives/General/typestring.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../REST/HTMLEmitter.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Random/MarsagliaRandomNumberGenerator.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Reflection/Reflection.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../SPA/Attributes.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../SPA/Backend.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../SPA/Button.hpp
@@ -1525,5 +1527,10 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o: ../SPA/Variable.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TUI/ascii_art.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/CanBeAnImmutableString.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/TypeList.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../VirtuWorks/Identification.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../VirtuWorks/Language.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../VirtuWorks/QueueLog.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../VirtuWorks/QueueLogStatus.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../VirtuWorks/VirtuWorksDate.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../main.cpp
 

@@ -696,7 +696,7 @@ namespace LD
                             auto memberAccessor = LD::Get(LD::Get<2>(context));
                             using AccessedType = LD::Detail::Decay_T<decltype(memberAccessor())>;
                             LD::StringToPrimitive<AccessedType > converter{};
-                            AccessedType ret = LD::Match(converter(fetchedValue),[](auto){ return AccessedType {2};},[](const AccessedType & obj){return obj;});
+                            AccessedType ret = LD::Match(converter(fetchedValue),[](auto){ return AccessedType {0};},[](const AccessedType & obj){return obj;});
                             memberAccessor = ret;
                             return true;
                         };

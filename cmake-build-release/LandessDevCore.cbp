@@ -110,6 +110,9 @@
 		<Unit filename="/media/phoenixflower/Development/LandessDev/LandessDevCore/Algorithms/Exponential.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
+		<Unit filename="/media/phoenixflower/Development/LandessDev/LandessDevCore/Algorithms/FromString.hpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
 		<Unit filename="/media/phoenixflower/Development/LandessDev/LandessDevCore/Algorithms/FullAdder.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
@@ -677,7 +680,7 @@
 		<Unit filename="/media/phoenixflower/Development/LandessDev/LandessDevCore/Primitives/General/Pair.h">
 			<Option target="LandessDevCore"/>
 		</Unit>
-		<Unit filename="/media/phoenixflower/Development/LandessDev/LandessDevCore/Primitives/General/PhoneNumber.h">
+		<Unit filename="/media/phoenixflower/Development/LandessDev/LandessDevCore/Primitives/General/PhoneNumber.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/media/phoenixflower/Development/LandessDev/LandessDevCore/Primitives/General/Quaternion.hpp">
@@ -1059,6 +1062,24 @@
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/media/phoenixflower/Development/LandessDev/LandessDevCore/Unicode/UTF8.hpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/media/phoenixflower/Development/LandessDev/LandessDevCore/VirtuWorks/CallDate.hpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/media/phoenixflower/Development/LandessDev/LandessDevCore/VirtuWorks/Identification.hpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/media/phoenixflower/Development/LandessDev/LandessDevCore/VirtuWorks/Language.hpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/media/phoenixflower/Development/LandessDev/LandessDevCore/VirtuWorks/QueueLog.hpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/media/phoenixflower/Development/LandessDev/LandessDevCore/VirtuWorks/QueueLogStatus.hpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/media/phoenixflower/Development/LandessDev/LandessDevCore/VirtuWorks/VirtuWorksDate.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/media/phoenixflower/Development/LandessDev/LandessDevCore/main.cpp">

@@ -3,7 +3,6 @@
 #include "IO/FetchRequest.h"
 #include "Examples/ReflectionDemoTypes.h"
 #include "Primitives/General/Range.h"
-#include "Primitives/General/ctre.hpp"
 #include "TUI/ascii_art.h"
 #include "IO/Database.hpp"
 #include "TypeTraits/TypeList.hpp"
@@ -15,8 +14,6 @@
 #include "SPA/Button.hpp"
 #include "SPA/HTML.hpp"
 #include "SPA/EventHandler.hpp"
-#include "SPA/Attributes.hpp"
-#include "SPA/Text.hpp"
 #include "IO/XML/tinyxml2.h"
 #include "SPA/Div.hpp"
 #include "SPA/Variable.hpp"
@@ -26,150 +23,11 @@
 #include "Memory/Optional.h"
 #include "IO/RowBackingStore.h"
 #include "Reflection/Reflection.hpp"
-class IVRDate
-{
-private:
+#include "Primitives/General/DateTime.h"
+#include "VirtuWorks/QueueLog.hpp"
+#include "VirtuWorks/VirtuWorksDate.hpp"
+#include "Algorithms/FromString.hpp"
 
-public:
-};
-
-class IVRDestination
-{
-private:
-
-public:
-};
-
-class IVRAttendant
-{
-private:
-
-};
-
-enum IVRActionType{IVRActionSelect,IVRActionTimeout,IVRHangUp,IVRWrong};
-class IVRAction
-{
-private:
-    IVRActionType mAction;
-public:
-};
-
-class IVRCallerID
-{
-private:
-    LD::ImmutableString<64> mID;
-    LD::StaticArray<char,10> mNumber;
-    LD::UInteger mCountryCode;
-public:
-};
-
-class IVROption
-{
-private:
-    LD::UInteger mOption;
-public:
-    const LD::UInteger & Option() const noexcept
-    {
-        return this->mOption;
-    }
-
-    LD::UInteger & Option() noexcept
-    {
-        return this->mOption;
-    }
-};
-
-class IVREntry
-{
-private:
-    IVRDate mCallDate;
-    IVRDate mCallStart;
-    IVRDate mCallEnd;
-    IVRCallerID mCallerID;
-    IVRDestination mDestination;
-    IVRAttendant mAttendant;
-    IVRAction mAction;
-    IVROption mOption;
-public:
-    const IVRDate & CallDate() const noexcept
-    {
-        return this->mCallDate;
-    }
-
-    IVRDate & CallDate() noexcept
-    {
-        return this->mCallDate;
-    }
-
-    const IVRDate & CallStart() const noexcept
-    {
-        return this->mCallStart;
-    }
-
-    IVRDate & CallStart() noexcept
-    {
-        return this->mCallStart;
-    }
-
-    const IVRDate & CallEnd() const noexcept
-    {
-        return this->mCallEnd;
-    }
-
-    IVRDate & CallEnd() noexcept
-    {
-        return this->mCallEnd;
-    }
-
-    const IVRCallerID & CallerID() const noexcept
-    {
-        return this->mCallerID;
-    }
-
-    IVRCallerID & CallerID() noexcept
-    {
-        return this->mCallerID;
-    }
-
-    const IVRDestination & Destination() const noexcept
-    {
-        return this->mDestination;
-    }
-    IVRDestination & Destination() noexcept
-    {
-        return this->mDestination;
-    }
-
-    const IVRAttendant & Attendant() const noexcept
-    {
-        return this->mAttendant;
-    }
-
-    IVRAttendant & Attendant() noexcept
-    {
-        return this->mAttendant;
-    }
-
-    const IVRAction & Action() const noexcept
-    {
-        return this->mAction;
-    }
-
-    IVRAction & Action() noexcept
-    {
-        return this->mAction;
-    }
-
-    const IVROption & Option() const noexcept
-    {
-        return this->mOption;
-    }
-
-    IVROption & Option() noexcept
-    {
-        return this->mOption;
-    }
-};
 
 
 
@@ -182,15 +40,73 @@ namespace LD
     class CSVParser<BackingStore,LD::CT::TypeList<A...>>
     {
     private:
+
+        //template<typename T, typename ... B>
+        //using FromString = decltype(LD::FromString(LD::Declval<LD::Type<T>>(),LD::Declval<B>()...));
         LD::Ref<BackingStore> mBackingStore;
         LD::Optional<LD::UInteger> mSelectedType;
+        static constexpr auto Regex = ctll::basic_fixed_string{"([^,]+)|(,,)"};
+        static constexpr auto NotSpaceRegularExpression = ctll::basic_fixed_string{"[^\\s^\"]+"};
+        template<typename Key>
+        static auto IncorporateKey(const Key & key, LD::StaticArray<char,1024> & keyedBuffer) noexcept -> LD::QueryResult<bool()>
+        {
+
+            auto keyLength = LD::UTF8::Distance(
+                    LD::UTF8::Begin(key),
+                    LD::UTF8::End(key),
+                    LD::ElementReference<LD::StaticArray<char,1024>>{keyedBuffer},
+                    LD::ElementReference<Key>{key});
+
+            auto onError = [](const LD::Context<LD::TransactionError,LD::StaticArray<char,1024> &,LD::ElementReference<Key>> & context) noexcept-> LD::QueryResult<bool()>
+            {
+                return LD::MakeContext(LD::TransactionError{});
+            };
+
+            auto onLength = [](const LD::Context<LD::TransactionResult,LD::UInteger,LD::StaticArray<char,1024> &,LD::ElementReference<Key>> & context) noexcept -> LD::QueryResult<bool()>
+            {
+
+                auto length = LD::Get(LD::Get<1>(context));
+
+                LD::StaticArray<char,1024>  & bufferToUse = LD::Get(LD::Get<2>(context));
+
+                const auto & key = LD::Get(LD::Get<3>(context));
+
+                LD::BackInserter<LD::StaticArray<char,1024>> backInserterToUse{bufferToUse};
+                //backInserterToUse = 'a';
+                using IT = LD::Detail::Decay_T<decltype(backInserterToUse)>;
+
+                LD::QueryResult<IT()> unicodeAppendingState = LD::MakeContext(LD::TransactionResult{},IT{backInserterToUse});
+
+                for(auto i = 0;i<length && LD::IsTransactionalQuery(unicodeAppendingState);++i)
+                {
+                    unicodeAppendingState = LD::UTF8::Append(key[i],backInserterToUse);
+                }
+
+
+                unicodeAppendingState = LD::UTF8::Append('\0',backInserterToUse);
+                auto onTransaction = [](const LD::Context<LD::TransactionResult,IT> & ) noexcept -> LD::QueryResult<bool()>
+                {
+                    return LD::MakeContext(LD::TransactionResult{},true);
+                };
+
+                auto onError = [](const LD::Context<LD::TransactionError> &) noexcept -> LD::QueryResult<bool()>
+                {
+                    return LD::MakeContext(LD::TransactionError{});
+                };
+                return LD::Match(unicodeAppendingState,onTransaction,onError);
+            };
+
+            return LD::Match(keyLength,onError,onLength);
+        }
     public:
         CSVParser(LD::Ref<BackingStore> backingStore, LD::CT::TypeList<A...> ) noexcept:mBackingStore{backingStore}
         {
+            //validation
             constexpr auto NumberOfSearchableTypes = sizeof...(A);
 
 
-            auto primaryLine = this->mBackingStore.GetLine(this->mSelectedType);
+            //auto primaryLine1 = this->mBackingStore->GetLine(this->mSelectedType);
+            auto primaryLine = this->mBackingStore->GetLine(this->mSelectedType);
 
             auto onError = [](const LD::Context<LD::TransactionError,LD::Optional<LD::UInteger>&> & error) noexcept
             {
@@ -201,101 +117,335 @@ namespace LD
             {
                 auto & selectedType = LD::Get(LD::Get<2>(transaction));
                 auto row = LD::Get(LD::Get<1>(transaction));
+                std::cout << row << std::endl;
+                auto matchSet = ctre::range<Regex>(LD::StringView {row.data(),row.size()});
                 LD::For<NumberOfSearchableTypes>([](
                         auto I,
                         LD::Optional<LD::UInteger> & selectedIndex,
-                        LD::StringView row) noexcept
+                        LD::StringView row,
+                        auto matchSet) noexcept
                 {
 
-                    return true;
-                },selectedType,row);
+                    constexpr auto traits = LD::CT::Reflect<LD::CT::TypeAtIndex<I,LD::CT::TypeList<A...>>>();
+                    constexpr auto memberTraits = LD::CT::GetMemberDescriptors(traits);
+                    constexpr auto numberOfMembers = LD::CT::GetNumberOfMembers(traits);
+                    //auto matchSet = ctre::range<Regex>(LD::StringView {row.data(),row.size()});
+
+                    auto it = matchSet.begin();
+                    bool doesHeaderMatch = false;
+                    LD::For<numberOfMembers>([](
+                            auto I,
+                            auto memberTraits,
+                            LD::StringView row,
+                            auto matchSet,
+                            auto &matchIT,
+                            bool & doesHeaderMatch) noexcept
+                    {
+                        constexpr auto currentTrait = LD::Get<I>(memberTraits);
+                        constexpr auto memberName = LD::CT::GetMemberDescriptorName(currentTrait);
+                        LD::StaticArray<char,1024> buffer;
+                        IncorporateKey(memberName,buffer);
+                        auto matchSetEnd = matchSet.end();
+                        //bool shouldContinue = true;
+                        if (matchIT != matchSetEnd)
+                        {
+
+                            auto keyLength = LD::UTF8::Distance(
+                                    LD::UTF8::Begin(memberName),
+                                    LD::UTF8::End(memberName),memberName,matchIT);
+                            auto tokenLength = LD::UTF8::Distance(LD::UTF8::Begin((*matchIT).view()),LD::UTF8::End((*matchIT).view()),memberName,matchIT);
+
+                            auto onError = [](auto,auto) noexcept
+                            {
+                                return true;
+                            };
+
+                            auto onLength = [](const LD::Context<LD::TransactionResult,LD::UInteger ,decltype(memberName)&,decltype(matchIT)&> & keyContext,const LD::Context<LD::TransactionResult,LD::UInteger ,decltype(memberName)&,decltype(matchIT)&> & tokenContext) noexcept
+                            {
+
+                                auto keyLength = LD::Get(LD::Get<1>(keyContext));
+                                auto tokenLength = LD::Get(LD::Get<1>(tokenContext));
+                                const auto & memberName = LD::Get(LD::Get<2>(keyContext));
+                                const auto token = LD::Get(LD::Get<3>(keyContext));
+                                bool didCSVHeaderMatch = false;
+                                if (tokenLength == keyLength)
+                                {
+                                    LD::StaticArray<char,1024> encodedClassName;
+                                    LD::BackInserter<LD::StaticArray<char,1024>> encodedBackInserter{encodedClassName};
+                                    for(LD::UInteger n = 0;n<keyLength;++n)
+                                    {
+                                        LD::UTF8::Append(memberName[n],encodedBackInserter);
+                                    }
+                                    LD::UTF8::Append('\0',encodedBackInserter);
+
+                                    LD::QueryResult<uint32_t()> memberIT = LD::MakeContext(LD::TransactionResult{},uint32_t{});
+                                    LD::QueryResult<uint32_t()> tokenIT = LD::MakeContext(LD::TransactionResult{},uint32_t{});
+                                    bool doesTargetClassNameMatchFetchClassName = true;
+                                    auto memberBeginning = LD::UTF8::Begin(encodedClassName);
+                                    auto memberEnd = LD::UTF8::End(encodedClassName);
+                                    auto tokenBeginning = LD::UTF8::Begin((*token).view());
+                                    auto tokenEnd = LD::UTF8::End((*token).view());
+                                    for(LD::UInteger n = 0;n<keyLength && doesTargetClassNameMatchFetchClassName && LD::IsTransactionalQuery(memberIT) && LD::IsTransactionalQuery(tokenIT);++n)
+                                    {
+                                        memberIT = LD::UTF8::Next(memberBeginning,memberEnd);
+                                        tokenIT = LD::UTF8::Next(tokenBeginning,tokenEnd);
+                                        auto onError = [](auto,auto) noexcept
+                                        {
+                                            return false;
+                                        };
+
+                                        auto onTransaction = [](const LD::Context<LD::TransactionResult,uint32_t> & context1,
+                                                                const LD::Context<LD::TransactionResult,uint32_t> & context2) noexcept
+                                        {
+                                            return LD::Get(LD::Get<1>(context1)) == LD::Get(LD::Get<1>(context2));
+                                        };
+
+                                        doesTargetClassNameMatchFetchClassName = LD::MultiMatch(LD::Overload{onError,onTransaction},tokenIT,memberIT);
+
+                                    }
+                                    didCSVHeaderMatch = doesTargetClassNameMatchFetchClassName;
+                                }
+                                return didCSVHeaderMatch;
+                            };
+
+
+                            doesHeaderMatch =  LD::MultiMatch(LD::Overload{onError,onLength},keyLength,tokenLength);
+
+                            ++matchIT;
+                        }
+                        return !doesHeaderMatch;
+                    },memberTraits,row,matchSet,it,doesHeaderMatch);
+                    if (doesHeaderMatch)
+                    {
+                        selectedIndex = LD::UInteger(I);
+                    }
+                    return !doesHeaderMatch;
+                },selectedType,row,matchSet);
             };
 
             LD::MultiMatch(LD::Overload{onError,onHeader},primaryLine);
+        }
 
+        template<typename T, typename BeginningOfPattern, typename EndOfPattern>
+        static void CSVBlockToObject(T & object, BeginningOfPattern && beginningOfPattern, EndOfPattern && endOfPattern) noexcept
+        {
+
+            if (beginningOfPattern != endOfPattern)
+            {
+                constexpr auto MetaType = LD::CT::RemoveQualifiers(LD::Type<T>{});
+                if constexpr (LD::CT::IsPrimitive(MetaType))
+                {
+                    std::cout << "Stuff:" << (*beginningOfPattern).view() << std::endl;
+                    std::cout << "Primitive type found" << std::endl;
+
+                }else if constexpr(LD::CT::IsTuple(MetaType))
+                {
+                    constexpr auto Size = LD::CT::TupleSize(MetaType);
+                    //iterate through the objects of the tuple
+                    LD::For<Size>([](
+                            auto I,
+                            auto & tuple,
+                            BeginningOfPattern & beginning,
+                            EndOfPattern && end)
+                    {
+                        CSVBlockToObject(LD::Get(LD::Get<I>(tuple)),beginning++,LD::Forward<EndOfPattern>(end));
+                        return true;
+                    },object,beginningOfPattern,LD::Forward<EndOfPattern>(endOfPattern));
+                }
+                else if constexpr(LD::CT::CanBeMadeFromStringView(MetaType,LD::CT::TypeList<T&>{}))
+                {
+                    std::cout << "Stuff:" << (*beginningOfPattern).view() << std::endl;
+                    std::cout << "Can be made from stringview" << std::endl;
+                    //LD::Ref ObjectReference{object};
+                    auto convertStringViewToObjectResult =  LD::FromStringView(MetaType,(*beginningOfPattern).view(),object);
+
+                    auto onError = [](const LD::Context<LD::TransactionError,T&> & error) noexcept
+                    {
+
+                    };
+                    auto onTransaction = [](const LD::Context<LD::TransactionResult,T,T&> context) noexcept
+                    {
+                        LD::Get(LD::Get<2>(context)) = LD::Get(LD::Get<1>(context));
+                    };
+
+                    LD::MultiMatch(LD::Overload{onError,onTransaction},convertStringViewToObjectResult);
+                }
+                else if constexpr(LD::CT::IsReflectable(MetaType))
+                {
+                    constexpr auto traits = LD::CT::Reflect(MetaType);
+                    constexpr auto members = LD::CT::GetMemberDescriptors(traits);
+                    constexpr auto NumberOfMembers = LD::CT::GetNumberOfMembers(traits);
+                    LD::For<NumberOfMembers>([](
+                            auto I,
+                            auto memebers,
+                            T & object,
+                            BeginningOfPattern & beginning,
+                            EndOfPattern && end) noexcept
+                    {
+                        constexpr auto memberInfo = LD::Get<I>(members);
+                        auto memberAccessor = memberInfo(object);
+                        CSVBlockToObject(memberAccessor(),beginning++,LD::Forward<EndOfPattern>(end));
+                        return true;
+                    },members,object,beginningOfPattern,LD::Forward<EndOfPattern>(endOfPattern));
+                }
+
+            }
 
         }
 
-        LD::Variant<A...> operator()() noexcept
+        template<typename ... B>
+        LD::QueryResult<LD::Variant<A...>(B...)> operator()(B && ... arguments) noexcept
         {
-            constexpr auto NumberOfSearchableTypes = sizeof...(A);
-
-
             if (this->mSelectedType)
             {
-                LD::For<NumberOfSearchableTypes>([](
-                        auto I,
-                        LD::UInteger selectedIndex) noexcept
+                std::cout << "CSV was validated at index " << *this->mSelectedType << std::endl;
+                LD::Variant<A...> objectFetch;
+                auto primaryLine = this->mBackingStore->GetLine(this->mSelectedType,objectFetch);
+                constexpr auto NumberOfSearchableTypes = sizeof...(A);
+                auto onError = [](const LD::Context<LD::TransactionError,LD::Optional<LD::UInteger>&,LD::Variant<A...>&> & error) noexcept
                 {
-                    return true;
-                },*this->mSelectedType);
-                return {};
+
+                };
+
+
+                auto onRow = [](const LD::Context<LD::TransactionResult,LD::StringView ,LD::Optional<LD::UInteger>&,LD::Variant<A...>&> & transaction) noexcept
+                {
+                    auto selectionIndex = LD::Get(LD::Get<2>(transaction));
+                    auto & object = LD::Get(LD::Get<3>(transaction));
+                    auto row = LD::Get(LD::Get<1>(transaction));
+                    auto matchSet = ctre::range<Regex>(LD::StringView {row.data(),row.size()});
+                    for(auto it = matchSet.begin();it!=matchSet.end();++it)
+                    {
+                        //std::cout << (*it).view() << std::endl;
+                    }
+
+                    LD::For<NumberOfSearchableTypes>([](
+                            auto I,
+                            LD::UInteger selectedIndex,
+                            auto  it,
+                            auto end,
+                            LD::Variant<A...>& object)
+                    {
+                        if (I == selectedIndex)
+                        {
+                            using TypeToDeserialize = LD::CT::TypeAtIndex<I,LD::CT::TypeList<A...>>;
+                            constexpr auto traits = LD::CT::Reflect(LD::Type<TypeToDeserialize>{});
+                            constexpr auto members = LD::CT::GetMemberDescriptors(traits);
+                            constexpr auto NumberOfMembers = LD::CT::GetNumberOfMembers(traits);
+                            TypeToDeserialize object;
+                            LD::For<NumberOfMembers>([](
+                                    auto I,
+                                    decltype(it) & it,
+                                    auto end,
+                                    auto members,
+                                    TypeToDeserialize & object)
+                            {
+                                constexpr auto memberInfo = LD::Get<I>(members);
+                                auto memberAccessor = memberInfo(object);
+                                constexpr auto MemberType = LD::CT::RemoveQualifiers(LD::CT::GetDescriptorType(memberInfo));
+                                if (it != end)
+                                {
+                                    std::cout << "view : " << (*it).view() << std::endl;
+                                    if ((*it).view() != ",,")
+                                    {
+                                        //std::cout << "Index: " << I << std::endl;
+                                        auto matchSet = ctre::range<NotSpaceRegularExpression>(LD::StringView {(*it).view().data(),(*it).view().size()});
+                                        //once we have an object (something which is found between the commas, we can now start to de-serialize it)
+                                        CSVBlockToObject(memberAccessor(),matchSet.begin(),matchSet.end());
+                                    }
+
+                                    ++it;
+                                }
+                                return true;
+                            },it,end,members,object);
+
+                        }
+                        return true;
+                    },*selectionIndex,matchSet.begin(),matchSet.end(),object);
+                };
+                LD::MultiMatch(LD::Overload{onError,onRow},primaryLine);
             }
+            return {};
         }
     };
 
     template<typename BackingStore,typename ... A> CSVParser(BackingStore & backingStore, LD::CT::TypeList<A...>) -> CSVParser<BackingStore,LD::CT::TypeList<A...>>;
 }
 
-template<>
-class LD::CT::TypeDescriptor<IVRDate>
+
+static constexpr auto  D = ctll::basic_fixed_string{"(\\d{4})-(\\d{1,2})-(\\d{1,2})"};
+static constexpr auto  F = ctll::basic_fixed_string("(\\d{4})-(\\d{1,2})-(\\d{1,2})");
+
+static constexpr auto  NotSpaceRegularExpression = ctll::basic_fixed_string("[^\\s]+");
+template<typename ... A>
+LD::QueryResult<LD::VW::Date()> FromStringView(LD::StringView view, A && ... args) noexcept
 {
-private:
-    static constexpr auto UserName = ctll::basic_fixed_string("User");
-    static constexpr auto NiceName = ctll::basic_fixed_string("Nice");
-    static constexpr auto SystemName = ctll::basic_fixed_string("System");
-    static constexpr auto IdleName = ctll::basic_fixed_string("Idle");
-    static constexpr auto IOWaitName = ctll::basic_fixed_string("IOWait");
-    static constexpr auto IRQName = ctll::basic_fixed_string("IRQ");
-    static constexpr auto SoftIRQName = ctll::basic_fixed_string("SoftIRQ");
-    static constexpr auto StealName = ctll::basic_fixed_string("Steal");
-    static constexpr auto GuestName = ctll::basic_fixed_string("Guest");
-    static constexpr auto GuestNiceName = ctll::basic_fixed_string("GuestNice");
-public:
-    static constexpr auto ClassName = ctll::basic_fixed_string("cpu");
-    using MemberList = LD::CT::TypeList<
-    >;
-    static constexpr MemberList Members{  };
-};
+    if (auto [whole, year, month, day] = ctre::match<D>("2020-11-17"); whole)
+    {
+        LD::StringToPrimitive<LD::UInteger > converter{};
+        LD::UInteger yearAsNumber = LD::Match(converter(year),[](auto){ return LD::UInteger {0};},[](const LD::UInteger & obj){return obj;});
+        LD::UInteger monthAsNumber = LD::Match(converter(month),[](auto){ return LD::UInteger {0};},[](const LD::UInteger & obj){return obj;});
+        LD::UInteger dayAsNumber = LD::Match(converter(day),[](auto){ return LD::UInteger {0};},[](const LD::UInteger & obj){return obj;});
+        std::cout << yearAsNumber << std::endl;
+        std::cout << monthAsNumber << std::endl;
+        std::cout << dayAsNumber << std::endl;
+        return LD::MakeContext(LD::TransactionResult{},LD::VW::Date{LD::Date{dayAsNumber,monthAsNumber,yearAsNumber}},LD::Forward<A>(args)...);
+    }
+    return LD::MakeContext(LD::TransactionError{},LD::Forward<A>(args)...);
+}
+
+LD::StringView ProcessRow(LD::StringView data) noexcept
+{
+    static constexpr auto CommaExpression = ctll::basic_fixed_string{"[,]+{2,}"};
+    auto matchSet = ctre::range<NotSpaceRegularExpression>(LD::StringView {data.data(),data.size()});
+    return data;
+}
 
 int main(int argc, char* argv[])
 {
+    ProcessRow(LD::StringView{"\"2020-11-17 07:20:15\",\"English Queue\",,LOGIN,101,,,,5fb3bfff602d5"});
+    auto stringToNumber = LD::StringToNumber(LD::Type<int>{},LD::StringView {"253"});
 
-    LD::Exists
-
-    LD::RowBackingStore store{"/home/phoenixflower/Desktop/export.csv"};
-
-    auto line = store.GetLine();
-
-    auto onLineError = [](const LD::Context<LD::TransactionError> &) noexcept
+    auto stringToNumberError = [](const LD::Context<LD::TransactionError> & ) noexcept
     {
 
     };
 
-    auto onLineRow = [](const LD::Context<LD::TransactionResult,LD::StringView> & transaction) noexcept
+    auto stringToNumberResult = [](const LD::Context<LD::TransactionResult,int> & result) noexcept
     {
-        std::cout << LD::Get(LD::Get<1>(transaction)) << std::endl;
+        std::cout << LD::Get(LD::Get<1>(result)) << std::endl;
     };
 
-    LD::MultiMatch(LD::Overload{onLineError,onLineRow},line);
-    /*
-    std::ifstream inputFile{"/home/phoenixflower/Desktop/PatientListReport-3.csv"};
-    std::string buffer;
-    std::getline(inputFile,buffer);
-    if(std::getline(inputFile,buffer))
+
+    LD::MultiMatch(LD::Overload{stringToNumberError,stringToNumberResult},stringToNumber);
+
+
+    auto fromStringResult = LD::FromStringView(LD::Type<int>{},LD::StringView{"55"});
+
+
+    auto StringResultError = [](const LD::Context<LD::TransactionError> &) noexcept
     {
-        static constexpr auto CommaSeperator = ctll::basic_fixed_string{"([^,]+)|(,,)"};
-        auto matchSet = ctre::range<CommaSeperator>(LD::StringView {buffer.c_str()});
-        auto it = matchSet.begin();
-        auto matchSetEnd = matchSet.end();
-        for(auto it = matchSet.begin();it!=matchSetEnd;++it)
-        {
-            std::cout << (*it).to_string() << std::endl;
-        }
-        std::cout << buffer << std::endl;
+
+    };
+
+    auto StringResultViewResult = [](const LD::Context<LD::TransactionResult,int> & result) noexcept
+    {
+        std::cout << LD::Get(LD::Get<1>(result)) << std::endl;
+    };
+    LD::MultiMatch(LD::Overload{StringResultError,StringResultViewResult},fromStringResult);
+    LD::StringView sampleData{"2020-11-17 07:20:15"};
+    auto matchSet = ctre::range<NotSpaceRegularExpression>(LD::StringView {sampleData.data(),sampleData.size()});
+
+    for(auto it = matchSet.begin();it!=matchSet.end();++it)
+    {
+        std::cout << (*it).view() << std::endl;
     }
-     */
-    //FILE  * file = fopen("/home/phoenixflower/Desktop/PatientListReport-3.csv","r");
+    FromStringView(LD::StringView{"2020-11-17 07:20:15"});
+    LD::RowBackingStore store{"/home/phoenixflower/Documents/DailyQueue.txt"};
+
+    LD::CSVParser csvParser{store,LD::CT::TypeList<LD::VW::QueueLog>{}};
+    csvParser();
+
     LD::MarsagliaMultiplyWithCarryGenerator randomNumberGenerator{static_cast<unsigned long>(time(0))};
 
     auto randomLambda = [](LD::MarsagliaMultiplyWithCarryGenerator & generator) noexcept

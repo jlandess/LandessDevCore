@@ -9,6 +9,9 @@
 
 #include <ctime>
 #include "Algorithms/Exponential.hpp"
+#include "Primitives/General/ctre.hpp"
+#include "Primitives/General/StringView.hpp"
+//#include "Algorithms/FromString.hpp"
 //
 //  Date.h
 //  DataStructures
@@ -22,46 +25,95 @@ namespace LD
     struct Time
     {
     private:
-        unsigned short Hour;
-        unsigned short Minute;
-        unsigned short Second;
+        unsigned short mHour;
+        unsigned short mMinute;
+        unsigned short mSecond;
     public:
-        void SetHour(const unsigned short hour) noexcept
+        Time() noexcept:Time(time(0))
         {
-            this->Hour = hour;
+
         }
-        void SetMinute(const unsigned short minute) noexcept
+        Time(const unsigned  short hour, const unsigned short minute, const unsigned short second) noexcept:mHour{hour},mMinute{minute},mSecond{second}
         {
-            this->Minute = minute;
+
         }
-        void SetSecond(const unsigned short second) noexcept
+        Time(const time_t tSysTime ) noexcept
         {
-            this->Second = second;
+            struct tm *ptm;
+            int y, m, d;
+            short hour,minute,second;
+
+            ptm = localtime( &tSysTime );
+
+            y = ptm->tm_year + 1900;
+            m = ptm->tm_mon + 1;
+            d = ptm->tm_mday;
+            hour = ptm->tm_hour;
+            minute = ptm->tm_min;
+            second = ptm->tm_sec;
         }
 
-
-        const unsigned short & GetHour() const noexcept
+        unsigned short & Hour()  noexcept
         {
-            return this->Hour;
+            return this->mHour;
         }
-        const unsigned short & GetMinute() const noexcept
+        unsigned short & Minute()  noexcept
         {
-            return this->Minute;
+            return this->mMinute;
         }
-        const unsigned short & GetSecond() const noexcept
+        unsigned short & Second()  noexcept
         {
-            return this->Second;
+            return this->mSecond;
+        }
+        const unsigned short & Hour() const noexcept
+        {
+            return this->mHour;
+        }
+        const unsigned short & Minute() const noexcept
+        {
+            return this->mMinute;
+        }
+        const unsigned short & Second() const noexcept
+        {
+            return this->mSecond;
         }
 
         friend class Date;
     };
+
+
+    namespace Detail
+    {
+        static constexpr auto  TimeRegularExpression0 = ctll::basic_fixed_string{"(\\d{1,2})-(\\d{1,2})-(\\d{1,2})"};
+        static constexpr auto  TimeRegularExpression1 = ctll::basic_fixed_string{"(\\d{1,2}):(\\d{1,2}):(\\d{1,2})"};
+        static constexpr auto  TimeRegularExpression2 = ctll::basic_fixed_string{"(\\d{1,2}),(\\d{1,2}),(\\d{1,2})"};
+    }
+
+    template<typename ... A>
+    LD::QueryResult<LD::Time(A...)> FromStringView(LD::Type<LD::Time>, LD::StringView view, A && ... args) noexcept
+    {
+        if (auto [whole, hour, minute, second] = ctre::match<LD::Detail::TimeRegularExpression0>(view); whole)
+        {
+            LD::MakeContext(LD::TransactionResult{},LD::Time{hour,minute,second},LD::Forward<A>(args)...);
+        }else if(auto [whole, hour, minute, second] = ctre::match<LD::Detail::TimeRegularExpression1>(view); whole)
+        {
+            LD::MakeContext(LD::TransactionResult{},LD::Time{hour,minute,second},LD::Forward<A>(args)...);
+        }else if(auto [whole, hour, minute, second] = ctre::match<LD::Detail::TimeRegularExpression2>(view); whole)
+        {
+            LD::MakeContext(LD::TransactionResult{},LD::Time{hour,minute,second},LD::Forward<A>(args)...);
+        }
+
+        return LD::MakeContext(LD::TransactionError{},LD::Forward<A>(args)...);
+    }
+
+
     class Date
     {
 
     private:
 
         unsigned long        lJulianDay;
-        Time CurrentTime;
+        //Time CurrentTime;
         //
         // Function      : YmdToJd
         //
@@ -220,10 +272,10 @@ namespace LD
             hour = ptm->tm_hour;
             minute = ptm->tm_min;
             second = ptm->tm_sec;
-            this->CurrentTime.Hour = hour;
-            this->CurrentTime.Minute = minute;
-            this->CurrentTime.Second = second;
-            lJulianDay = YmdToJd( y, m, d ,hour,minute,second);
+            //this->CurrentTime.Hour = hour;
+            //this->CurrentTime.Minute = minute;
+            //this->CurrentTime.Second = second;
+            lJulianDay = YmdToJd( y, m, d ,0,0,0);
         }
 
         //
@@ -320,24 +372,24 @@ namespace LD
         {
             this->lJulianDay = data;
         }
-        void SetTime(const Time & time) noexcept
-        {
-            this->CurrentTime = time;
-        }
+        //void SetTime(const Time & time) noexcept
+        //{
+            //this->CurrentTime = time;
+        //}
         const unsigned long GetTimeAsNumber() const noexcept
         {
             unsigned long time = 0;
-            ((short*)&time)[0] = this->CurrentTime.Hour;
-            ((short*)&time)[1] = this->CurrentTime.Minute;
-            ((short*)&time)[2] = this->CurrentTime.Second;
-            ((short*)&time)[3] = 1;
+            //((short*)&time)[0] = this->CurrentTime.Hour;
+            //((short*)&time)[1] = this->CurrentTime.Minute;
+            //((short*)&time)[2] = this->CurrentTime.Second;
+            //((short*)&time)[3] = 1;
             return time;
         }
         void SetTime(const unsigned long possibleTime) noexcept
         {
-            this->CurrentTime.Hour = ((short*)&possibleTime)[0];
-            this->CurrentTime.Minute = ((short*)&possibleTime)[1];
-            this->CurrentTime.Second = ((short*)&possibleTime)[2];
+            //this->CurrentTime.Hour = ((short*)&possibleTime)[0];
+            //this->CurrentTime.Minute = ((short*)&possibleTime)[1];
+            //this->CurrentTime.Second = ((short*)&possibleTime)[2];
         }
         LD::Integer GetDayOfYear( void ) const noexcept;
         LD::Integer GetDayOfWeek( void ) const noexcept
@@ -362,10 +414,6 @@ namespace LD
         const LD::UInteger & GetJulianDate() const noexcept
         {
             return this->lJulianDay;
-        }
-        Time GetTime() const noexcept
-        {
-            return this->CurrentTime;
         }
         //
         // Function      : Additive operators
@@ -486,7 +534,13 @@ namespace LD
 
     };
 
-
+    class DateTime
+    {
+    private:
+        LD::Date mDate;
+        LD::Time mTime;
+    public:
+    };
 
     class GregorianDate
     {

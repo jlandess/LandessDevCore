@@ -10,6 +10,7 @@
 #include "Definitions/Integer.hpp"
 #include "Primitives/General/StringView.hpp"
 #include "Algorithms/Exponential.hpp"
+
 namespace LD
 {
     namespace Detail

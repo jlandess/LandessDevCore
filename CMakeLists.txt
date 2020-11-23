@@ -266,7 +266,7 @@ add_executable(LandessDevCore
         SPA/Compositor.hpp
         SPA/Linker.hpp
         SPA/Button.hpp
-        IO/XML/tinyxml2.cpp IO/XML/XMLAttribute.hpp IO/XML/XMLValue.hpp SPA/HTML.hpp SPA/Div.hpp SPA/Text.hpp SPA/GlobalAttributes.hpp SPA/InputAttributes.hpp SPA/AppletAttributes.hpp SPA/JSTag.h Primitives/General/Boolean.hpp SPA/CssBlock.hpp SPA/CssAttributes.hpp SPA/Stylesheet.hpp SPA/Variable.hpp SPA/EventHandler.hpp TypeTraits/CanBeAnImmutableString.hpp SPA/IsAttribute.hpp SPA/Function.hpp Algorithms/Sorting.hpp Primitives/General/DateTime.h REST/WebServer.hpp REST/HTMLEmitter.hpp Algorithms/Benchmark.hpp Examples/IOExample.hpp Examples/IOExample.cpp Examples/WebServerExample.hpp Examples/WebServerExample.cpp Primitives/General/PhoneNumber.hpp)
+        IO/XML/tinyxml2.cpp IO/XML/XMLAttribute.hpp IO/XML/XMLValue.hpp SPA/HTML.hpp SPA/Div.hpp SPA/Text.hpp SPA/GlobalAttributes.hpp SPA/InputAttributes.hpp SPA/AppletAttributes.hpp SPA/JSTag.h Primitives/General/Boolean.hpp SPA/CssBlock.hpp SPA/CssAttributes.hpp SPA/Stylesheet.hpp SPA/Variable.hpp SPA/EventHandler.hpp TypeTraits/CanBeAnImmutableString.hpp SPA/IsAttribute.hpp SPA/Function.hpp Algorithms/Sorting.hpp Primitives/General/DateTime.h REST/WebServer.hpp REST/HTMLEmitter.hpp Algorithms/Benchmark.hpp Examples/IOExample.hpp Examples/IOExample.cpp Examples/WebServerExample.hpp Examples/WebServerExample.cpp Primitives/General/PhoneNumber.hpp VirtuWorks/CallDate.hpp VirtuWorks/Identification.hpp VirtuWorks/Language.hpp VirtuWorks/QueueLogStatus.hpp VirtuWorks/QueueLog.hpp VirtuWorks/VirtuWorksDate.hpp Algorithms/FromString.hpp)
 target_link_libraries(LandessDevCore pthread)
 target_link_libraries(LandessDevCore ncurses)
 target_link_libraries(LandessDevCore ssl)
