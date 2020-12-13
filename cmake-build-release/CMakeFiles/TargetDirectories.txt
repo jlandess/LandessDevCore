@@ -1,3 +1,4 @@
 /media/phoenixflower/Development/LandessDev/LandessDevCore/cmake-build-release/CMakeFiles/rebuild_cache.dir
 /media/phoenixflower/Development/LandessDev/LandessDevCore/cmake-build-release/CMakeFiles/edit_cache.dir
 /media/phoenixflower/Development/LandessDev/LandessDevCore/cmake-build-release/CMakeFiles/LandessDevCore.dir
+/media/phoenixflower/Development/LandessDev/LandessDevCore/cmake-build-release/CMakeFiles/LandessDevCoreFoundation.dir

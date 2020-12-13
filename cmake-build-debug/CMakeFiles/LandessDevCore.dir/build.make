@@ -54,10 +54,10 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /snap/clion/129/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /snap/clion/137/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /snap/clion/129/bin/cmake/linux/bin/cmake -E rm -f
+RM = /snap/clion/137/bin/cmake/linux/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -610,6 +610,279 @@ CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.s"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/phoenixflower/Development/LandessDev/LandessDevCore/Examples/WebServerExample.cpp -o CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.s
 
+CMakeFiles/LandessDevCore.dir/Examples/StringToNumberExample.cpp.o: CMakeFiles/LandessDevCore.dir/flags.make
+CMakeFiles/LandessDevCore.dir/Examples/StringToNumberExample.cpp.o: ../Examples/StringToNumberExample.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/phoenixflower/Development/LandessDev/LandessDevCore/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_42) "Building CXX object CMakeFiles/LandessDevCore.dir/Examples/StringToNumberExample.cpp.o"
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/LandessDevCore.dir/Examples/StringToNumberExample.cpp.o -c /media/phoenixflower/Development/LandessDev/LandessDevCore/Examples/StringToNumberExample.cpp
+
+CMakeFiles/LandessDevCore.dir/Examples/StringToNumberExample.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LandessDevCore.dir/Examples/StringToNumberExample.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/phoenixflower/Development/LandessDev/LandessDevCore/Examples/StringToNumberExample.cpp > CMakeFiles/LandessDevCore.dir/Examples/StringToNumberExample.cpp.i
+
+CMakeFiles/LandessDevCore.dir/Examples/StringToNumberExample.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/Examples/StringToNumberExample.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/phoenixflower/Development/LandessDev/LandessDevCore/Examples/StringToNumberExample.cpp -o CMakeFiles/LandessDevCore.dir/Examples/StringToNumberExample.cpp.s
+
+CMakeFiles/LandessDevCore.dir/REST/CPR/auth.cpp.o: CMakeFiles/LandessDevCore.dir/flags.make
+CMakeFiles/LandessDevCore.dir/REST/CPR/auth.cpp.o: ../REST/CPR/auth.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/phoenixflower/Development/LandessDev/LandessDevCore/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_43) "Building CXX object CMakeFiles/LandessDevCore.dir/REST/CPR/auth.cpp.o"
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/LandessDevCore.dir/REST/CPR/auth.cpp.o -c /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/auth.cpp
+
+CMakeFiles/LandessDevCore.dir/REST/CPR/auth.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LandessDevCore.dir/REST/CPR/auth.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/auth.cpp > CMakeFiles/LandessDevCore.dir/REST/CPR/auth.cpp.i
+
+CMakeFiles/LandessDevCore.dir/REST/CPR/auth.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/REST/CPR/auth.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/auth.cpp -o CMakeFiles/LandessDevCore.dir/REST/CPR/auth.cpp.s
+
+CMakeFiles/LandessDevCore.dir/REST/CPR/bearer.cpp.o: CMakeFiles/LandessDevCore.dir/flags.make
+CMakeFiles/LandessDevCore.dir/REST/CPR/bearer.cpp.o: ../REST/CPR/bearer.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/phoenixflower/Development/LandessDev/LandessDevCore/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_44) "Building CXX object CMakeFiles/LandessDevCore.dir/REST/CPR/bearer.cpp.o"
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/LandessDevCore.dir/REST/CPR/bearer.cpp.o -c /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/bearer.cpp
+
+CMakeFiles/LandessDevCore.dir/REST/CPR/bearer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LandessDevCore.dir/REST/CPR/bearer.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/bearer.cpp > CMakeFiles/LandessDevCore.dir/REST/CPR/bearer.cpp.i
+
+CMakeFiles/LandessDevCore.dir/REST/CPR/bearer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/REST/CPR/bearer.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/bearer.cpp -o CMakeFiles/LandessDevCore.dir/REST/CPR/bearer.cpp.s
+
+CMakeFiles/LandessDevCore.dir/REST/CPR/cookies.cpp.o: CMakeFiles/LandessDevCore.dir/flags.make
+CMakeFiles/LandessDevCore.dir/REST/CPR/cookies.cpp.o: ../REST/CPR/cookies.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/phoenixflower/Development/LandessDev/LandessDevCore/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_45) "Building CXX object CMakeFiles/LandessDevCore.dir/REST/CPR/cookies.cpp.o"
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/LandessDevCore.dir/REST/CPR/cookies.cpp.o -c /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/cookies.cpp
+
+CMakeFiles/LandessDevCore.dir/REST/CPR/cookies.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LandessDevCore.dir/REST/CPR/cookies.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/cookies.cpp > CMakeFiles/LandessDevCore.dir/REST/CPR/cookies.cpp.i
+
+CMakeFiles/LandessDevCore.dir/REST/CPR/cookies.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/REST/CPR/cookies.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/cookies.cpp -o CMakeFiles/LandessDevCore.dir/REST/CPR/cookies.cpp.s
+
+CMakeFiles/LandessDevCore.dir/REST/CPR/cprtypes.cpp.o: CMakeFiles/LandessDevCore.dir/flags.make
+CMakeFiles/LandessDevCore.dir/REST/CPR/cprtypes.cpp.o: ../REST/CPR/cprtypes.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/phoenixflower/Development/LandessDev/LandessDevCore/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_46) "Building CXX object CMakeFiles/LandessDevCore.dir/REST/CPR/cprtypes.cpp.o"
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/LandessDevCore.dir/REST/CPR/cprtypes.cpp.o -c /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/cprtypes.cpp
+
+CMakeFiles/LandessDevCore.dir/REST/CPR/cprtypes.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LandessDevCore.dir/REST/CPR/cprtypes.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/cprtypes.cpp > CMakeFiles/LandessDevCore.dir/REST/CPR/cprtypes.cpp.i
+
+CMakeFiles/LandessDevCore.dir/REST/CPR/cprtypes.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/REST/CPR/cprtypes.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/cprtypes.cpp -o CMakeFiles/LandessDevCore.dir/REST/CPR/cprtypes.cpp.s
+
+CMakeFiles/LandessDevCore.dir/REST/CPR/curl_container.cpp.o: CMakeFiles/LandessDevCore.dir/flags.make
+CMakeFiles/LandessDevCore.dir/REST/CPR/curl_container.cpp.o: ../REST/CPR/curl_container.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/phoenixflower/Development/LandessDev/LandessDevCore/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_47) "Building CXX object CMakeFiles/LandessDevCore.dir/REST/CPR/curl_container.cpp.o"
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/LandessDevCore.dir/REST/CPR/curl_container.cpp.o -c /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/curl_container.cpp
+
+CMakeFiles/LandessDevCore.dir/REST/CPR/curl_container.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LandessDevCore.dir/REST/CPR/curl_container.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/curl_container.cpp > CMakeFiles/LandessDevCore.dir/REST/CPR/curl_container.cpp.i
+
+CMakeFiles/LandessDevCore.dir/REST/CPR/curl_container.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/REST/CPR/curl_container.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/curl_container.cpp -o CMakeFiles/LandessDevCore.dir/REST/CPR/curl_container.cpp.s
+
+CMakeFiles/LandessDevCore.dir/REST/CPR/curlholder.cpp.o: CMakeFiles/LandessDevCore.dir/flags.make
+CMakeFiles/LandessDevCore.dir/REST/CPR/curlholder.cpp.o: ../REST/CPR/curlholder.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/phoenixflower/Development/LandessDev/LandessDevCore/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_48) "Building CXX object CMakeFiles/LandessDevCore.dir/REST/CPR/curlholder.cpp.o"
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/LandessDevCore.dir/REST/CPR/curlholder.cpp.o -c /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/curlholder.cpp
+
+CMakeFiles/LandessDevCore.dir/REST/CPR/curlholder.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LandessDevCore.dir/REST/CPR/curlholder.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/curlholder.cpp > CMakeFiles/LandessDevCore.dir/REST/CPR/curlholder.cpp.i
+
+CMakeFiles/LandessDevCore.dir/REST/CPR/curlholder.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/REST/CPR/curlholder.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/curlholder.cpp -o CMakeFiles/LandessDevCore.dir/REST/CPR/curlholder.cpp.s
+
+CMakeFiles/LandessDevCore.dir/REST/CPR/error.cpp.o: CMakeFiles/LandessDevCore.dir/flags.make
+CMakeFiles/LandessDevCore.dir/REST/CPR/error.cpp.o: ../REST/CPR/error.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/phoenixflower/Development/LandessDev/LandessDevCore/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_49) "Building CXX object CMakeFiles/LandessDevCore.dir/REST/CPR/error.cpp.o"
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/LandessDevCore.dir/REST/CPR/error.cpp.o -c /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/error.cpp
+
+CMakeFiles/LandessDevCore.dir/REST/CPR/error.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LandessDevCore.dir/REST/CPR/error.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/error.cpp > CMakeFiles/LandessDevCore.dir/REST/CPR/error.cpp.i
+
+CMakeFiles/LandessDevCore.dir/REST/CPR/error.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/REST/CPR/error.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/error.cpp -o CMakeFiles/LandessDevCore.dir/REST/CPR/error.cpp.s
+
+CMakeFiles/LandessDevCore.dir/REST/CPR/multipart.cpp.o: CMakeFiles/LandessDevCore.dir/flags.make
+CMakeFiles/LandessDevCore.dir/REST/CPR/multipart.cpp.o: ../REST/CPR/multipart.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/phoenixflower/Development/LandessDev/LandessDevCore/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_50) "Building CXX object CMakeFiles/LandessDevCore.dir/REST/CPR/multipart.cpp.o"
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/LandessDevCore.dir/REST/CPR/multipart.cpp.o -c /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/multipart.cpp
+
+CMakeFiles/LandessDevCore.dir/REST/CPR/multipart.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LandessDevCore.dir/REST/CPR/multipart.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/multipart.cpp > CMakeFiles/LandessDevCore.dir/REST/CPR/multipart.cpp.i
+
+CMakeFiles/LandessDevCore.dir/REST/CPR/multipart.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/REST/CPR/multipart.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/multipart.cpp -o CMakeFiles/LandessDevCore.dir/REST/CPR/multipart.cpp.s
+
+CMakeFiles/LandessDevCore.dir/REST/CPR/parameters.cpp.o: CMakeFiles/LandessDevCore.dir/flags.make
+CMakeFiles/LandessDevCore.dir/REST/CPR/parameters.cpp.o: ../REST/CPR/parameters.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/phoenixflower/Development/LandessDev/LandessDevCore/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_51) "Building CXX object CMakeFiles/LandessDevCore.dir/REST/CPR/parameters.cpp.o"
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/LandessDevCore.dir/REST/CPR/parameters.cpp.o -c /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/parameters.cpp
+
+CMakeFiles/LandessDevCore.dir/REST/CPR/parameters.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LandessDevCore.dir/REST/CPR/parameters.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/parameters.cpp > CMakeFiles/LandessDevCore.dir/REST/CPR/parameters.cpp.i
+
+CMakeFiles/LandessDevCore.dir/REST/CPR/parameters.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/REST/CPR/parameters.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/parameters.cpp -o CMakeFiles/LandessDevCore.dir/REST/CPR/parameters.cpp.s
+
+CMakeFiles/LandessDevCore.dir/REST/CPR/payload.cpp.o: CMakeFiles/LandessDevCore.dir/flags.make
+CMakeFiles/LandessDevCore.dir/REST/CPR/payload.cpp.o: ../REST/CPR/payload.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/phoenixflower/Development/LandessDev/LandessDevCore/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_52) "Building CXX object CMakeFiles/LandessDevCore.dir/REST/CPR/payload.cpp.o"
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/LandessDevCore.dir/REST/CPR/payload.cpp.o -c /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/payload.cpp
+
+CMakeFiles/LandessDevCore.dir/REST/CPR/payload.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LandessDevCore.dir/REST/CPR/payload.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/payload.cpp > CMakeFiles/LandessDevCore.dir/REST/CPR/payload.cpp.i
+
+CMakeFiles/LandessDevCore.dir/REST/CPR/payload.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/REST/CPR/payload.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/payload.cpp -o CMakeFiles/LandessDevCore.dir/REST/CPR/payload.cpp.s
+
+CMakeFiles/LandessDevCore.dir/REST/CPR/proxies.cpp.o: CMakeFiles/LandessDevCore.dir/flags.make
+CMakeFiles/LandessDevCore.dir/REST/CPR/proxies.cpp.o: ../REST/CPR/proxies.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/phoenixflower/Development/LandessDev/LandessDevCore/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_53) "Building CXX object CMakeFiles/LandessDevCore.dir/REST/CPR/proxies.cpp.o"
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/LandessDevCore.dir/REST/CPR/proxies.cpp.o -c /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/proxies.cpp
+
+CMakeFiles/LandessDevCore.dir/REST/CPR/proxies.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LandessDevCore.dir/REST/CPR/proxies.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/proxies.cpp > CMakeFiles/LandessDevCore.dir/REST/CPR/proxies.cpp.i
+
+CMakeFiles/LandessDevCore.dir/REST/CPR/proxies.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/REST/CPR/proxies.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/proxies.cpp -o CMakeFiles/LandessDevCore.dir/REST/CPR/proxies.cpp.s
+
+CMakeFiles/LandessDevCore.dir/REST/CPR/response.cpp.o: CMakeFiles/LandessDevCore.dir/flags.make
+CMakeFiles/LandessDevCore.dir/REST/CPR/response.cpp.o: ../REST/CPR/response.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/phoenixflower/Development/LandessDev/LandessDevCore/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_54) "Building CXX object CMakeFiles/LandessDevCore.dir/REST/CPR/response.cpp.o"
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/LandessDevCore.dir/REST/CPR/response.cpp.o -c /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/response.cpp
+
+CMakeFiles/LandessDevCore.dir/REST/CPR/response.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LandessDevCore.dir/REST/CPR/response.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/response.cpp > CMakeFiles/LandessDevCore.dir/REST/CPR/response.cpp.i
+
+CMakeFiles/LandessDevCore.dir/REST/CPR/response.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/REST/CPR/response.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/response.cpp -o CMakeFiles/LandessDevCore.dir/REST/CPR/response.cpp.s
+
+CMakeFiles/LandessDevCore.dir/REST/CPR/session.cpp.o: CMakeFiles/LandessDevCore.dir/flags.make
+CMakeFiles/LandessDevCore.dir/REST/CPR/session.cpp.o: ../REST/CPR/session.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/phoenixflower/Development/LandessDev/LandessDevCore/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_55) "Building CXX object CMakeFiles/LandessDevCore.dir/REST/CPR/session.cpp.o"
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/LandessDevCore.dir/REST/CPR/session.cpp.o -c /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/session.cpp
+
+CMakeFiles/LandessDevCore.dir/REST/CPR/session.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LandessDevCore.dir/REST/CPR/session.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/session.cpp > CMakeFiles/LandessDevCore.dir/REST/CPR/session.cpp.i
+
+CMakeFiles/LandessDevCore.dir/REST/CPR/session.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/REST/CPR/session.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/session.cpp -o CMakeFiles/LandessDevCore.dir/REST/CPR/session.cpp.s
+
+CMakeFiles/LandessDevCore.dir/REST/CPR/timeout.cpp.o: CMakeFiles/LandessDevCore.dir/flags.make
+CMakeFiles/LandessDevCore.dir/REST/CPR/timeout.cpp.o: ../REST/CPR/timeout.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/phoenixflower/Development/LandessDev/LandessDevCore/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_56) "Building CXX object CMakeFiles/LandessDevCore.dir/REST/CPR/timeout.cpp.o"
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/LandessDevCore.dir/REST/CPR/timeout.cpp.o -c /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/timeout.cpp
+
+CMakeFiles/LandessDevCore.dir/REST/CPR/timeout.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LandessDevCore.dir/REST/CPR/timeout.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/timeout.cpp > CMakeFiles/LandessDevCore.dir/REST/CPR/timeout.cpp.i
+
+CMakeFiles/LandessDevCore.dir/REST/CPR/timeout.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/REST/CPR/timeout.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/timeout.cpp -o CMakeFiles/LandessDevCore.dir/REST/CPR/timeout.cpp.s
+
+CMakeFiles/LandessDevCore.dir/REST/CPR/unix_socket.cpp.o: CMakeFiles/LandessDevCore.dir/flags.make
+CMakeFiles/LandessDevCore.dir/REST/CPR/unix_socket.cpp.o: ../REST/CPR/unix_socket.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/phoenixflower/Development/LandessDev/LandessDevCore/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_57) "Building CXX object CMakeFiles/LandessDevCore.dir/REST/CPR/unix_socket.cpp.o"
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/LandessDevCore.dir/REST/CPR/unix_socket.cpp.o -c /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/unix_socket.cpp
+
+CMakeFiles/LandessDevCore.dir/REST/CPR/unix_socket.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LandessDevCore.dir/REST/CPR/unix_socket.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/unix_socket.cpp > CMakeFiles/LandessDevCore.dir/REST/CPR/unix_socket.cpp.i
+
+CMakeFiles/LandessDevCore.dir/REST/CPR/unix_socket.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/REST/CPR/unix_socket.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/unix_socket.cpp -o CMakeFiles/LandessDevCore.dir/REST/CPR/unix_socket.cpp.s
+
+CMakeFiles/LandessDevCore.dir/REST/CPR/util.cpp.o: CMakeFiles/LandessDevCore.dir/flags.make
+CMakeFiles/LandessDevCore.dir/REST/CPR/util.cpp.o: ../REST/CPR/util.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/phoenixflower/Development/LandessDev/LandessDevCore/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_58) "Building CXX object CMakeFiles/LandessDevCore.dir/REST/CPR/util.cpp.o"
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/LandessDevCore.dir/REST/CPR/util.cpp.o -c /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/util.cpp
+
+CMakeFiles/LandessDevCore.dir/REST/CPR/util.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LandessDevCore.dir/REST/CPR/util.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/util.cpp > CMakeFiles/LandessDevCore.dir/REST/CPR/util.cpp.i
+
+CMakeFiles/LandessDevCore.dir/REST/CPR/util.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/REST/CPR/util.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/util.cpp -o CMakeFiles/LandessDevCore.dir/REST/CPR/util.cpp.s
+
+CMakeFiles/LandessDevCore.dir/Memory/LinearAllocator.cpp.o: CMakeFiles/LandessDevCore.dir/flags.make
+CMakeFiles/LandessDevCore.dir/Memory/LinearAllocator.cpp.o: ../Memory/LinearAllocator.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/phoenixflower/Development/LandessDev/LandessDevCore/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_59) "Building CXX object CMakeFiles/LandessDevCore.dir/Memory/LinearAllocator.cpp.o"
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/LandessDevCore.dir/Memory/LinearAllocator.cpp.o -c /media/phoenixflower/Development/LandessDev/LandessDevCore/Memory/LinearAllocator.cpp
+
+CMakeFiles/LandessDevCore.dir/Memory/LinearAllocator.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LandessDevCore.dir/Memory/LinearAllocator.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/phoenixflower/Development/LandessDev/LandessDevCore/Memory/LinearAllocator.cpp > CMakeFiles/LandessDevCore.dir/Memory/LinearAllocator.cpp.i
+
+CMakeFiles/LandessDevCore.dir/Memory/LinearAllocator.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/Memory/LinearAllocator.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/phoenixflower/Development/LandessDev/LandessDevCore/Memory/LinearAllocator.cpp -o CMakeFiles/LandessDevCore.dir/Memory/LinearAllocator.cpp.s
+
+CMakeFiles/LandessDevCore.dir/Memory/StackAllocator.cpp.o: CMakeFiles/LandessDevCore.dir/flags.make
+CMakeFiles/LandessDevCore.dir/Memory/StackAllocator.cpp.o: ../Memory/StackAllocator.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/phoenixflower/Development/LandessDev/LandessDevCore/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_60) "Building CXX object CMakeFiles/LandessDevCore.dir/Memory/StackAllocator.cpp.o"
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/LandessDevCore.dir/Memory/StackAllocator.cpp.o -c /media/phoenixflower/Development/LandessDev/LandessDevCore/Memory/StackAllocator.cpp
+
+CMakeFiles/LandessDevCore.dir/Memory/StackAllocator.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LandessDevCore.dir/Memory/StackAllocator.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/phoenixflower/Development/LandessDev/LandessDevCore/Memory/StackAllocator.cpp > CMakeFiles/LandessDevCore.dir/Memory/StackAllocator.cpp.i
+
+CMakeFiles/LandessDevCore.dir/Memory/StackAllocator.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/Memory/StackAllocator.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/phoenixflower/Development/LandessDev/LandessDevCore/Memory/StackAllocator.cpp -o CMakeFiles/LandessDevCore.dir/Memory/StackAllocator.cpp.s
+
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: CMakeFiles/LandessDevCore.dir/flags.make
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../Memory/PoolAllocator.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/phoenixflower/Development/LandessDev/LandessDevCore/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_61) "Building CXX object CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o"
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o -c /media/phoenixflower/Development/LandessDev/LandessDevCore/Memory/PoolAllocator.cpp
+
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/phoenixflower/Development/LandessDev/LandessDevCore/Memory/PoolAllocator.cpp > CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.i
+
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/phoenixflower/Development/LandessDev/LandessDevCore/Memory/PoolAllocator.cpp -o CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.s
+
+CMakeFiles/LandessDevCore.dir/Memory/FreeListAllocator.cpp.o: CMakeFiles/LandessDevCore.dir/flags.make
+CMakeFiles/LandessDevCore.dir/Memory/FreeListAllocator.cpp.o: ../Memory/FreeListAllocator.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/phoenixflower/Development/LandessDev/LandessDevCore/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_62) "Building CXX object CMakeFiles/LandessDevCore.dir/Memory/FreeListAllocator.cpp.o"
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/LandessDevCore.dir/Memory/FreeListAllocator.cpp.o -c /media/phoenixflower/Development/LandessDev/LandessDevCore/Memory/FreeListAllocator.cpp
+
+CMakeFiles/LandessDevCore.dir/Memory/FreeListAllocator.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LandessDevCore.dir/Memory/FreeListAllocator.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/phoenixflower/Development/LandessDev/LandessDevCore/Memory/FreeListAllocator.cpp > CMakeFiles/LandessDevCore.dir/Memory/FreeListAllocator.cpp.i
+
+CMakeFiles/LandessDevCore.dir/Memory/FreeListAllocator.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/Memory/FreeListAllocator.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/phoenixflower/Development/LandessDev/LandessDevCore/Memory/FreeListAllocator.cpp -o CMakeFiles/LandessDevCore.dir/Memory/FreeListAllocator.cpp.s
+
 # Object files for target LandessDevCore
 LandessDevCore_OBJECTS = \
 "CMakeFiles/LandessDevCore.dir/main.cpp.o" \
@@ -652,7 +925,28 @@ LandessDevCore_OBJECTS = \
 "CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o" \
 "CMakeFiles/LandessDevCore.dir/IO/XML/tinyxml2.cpp.o" \
 "CMakeFiles/LandessDevCore.dir/Examples/IOExample.cpp.o" \
-"CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.o"
+"CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.o" \
+"CMakeFiles/LandessDevCore.dir/Examples/StringToNumberExample.cpp.o" \
+"CMakeFiles/LandessDevCore.dir/REST/CPR/auth.cpp.o" \
+"CMakeFiles/LandessDevCore.dir/REST/CPR/bearer.cpp.o" \
+"CMakeFiles/LandessDevCore.dir/REST/CPR/cookies.cpp.o" \
+"CMakeFiles/LandessDevCore.dir/REST/CPR/cprtypes.cpp.o" \
+"CMakeFiles/LandessDevCore.dir/REST/CPR/curl_container.cpp.o" \
+"CMakeFiles/LandessDevCore.dir/REST/CPR/curlholder.cpp.o" \
+"CMakeFiles/LandessDevCore.dir/REST/CPR/error.cpp.o" \
+"CMakeFiles/LandessDevCore.dir/REST/CPR/multipart.cpp.o" \
+"CMakeFiles/LandessDevCore.dir/REST/CPR/parameters.cpp.o" \
+"CMakeFiles/LandessDevCore.dir/REST/CPR/payload.cpp.o" \
+"CMakeFiles/LandessDevCore.dir/REST/CPR/proxies.cpp.o" \
+"CMakeFiles/LandessDevCore.dir/REST/CPR/response.cpp.o" \
+"CMakeFiles/LandessDevCore.dir/REST/CPR/session.cpp.o" \
+"CMakeFiles/LandessDevCore.dir/REST/CPR/timeout.cpp.o" \
+"CMakeFiles/LandessDevCore.dir/REST/CPR/unix_socket.cpp.o" \
+"CMakeFiles/LandessDevCore.dir/REST/CPR/util.cpp.o" \
+"CMakeFiles/LandessDevCore.dir/Memory/LinearAllocator.cpp.o" \
+"CMakeFiles/LandessDevCore.dir/Memory/StackAllocator.cpp.o" \
+"CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o" \
+"CMakeFiles/LandessDevCore.dir/Memory/FreeListAllocator.cpp.o"
 
 # External object files for target LandessDevCore
 LandessDevCore_EXTERNAL_OBJECTS =
@@ -698,9 +992,30 @@ LandessDevCore: CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o
 LandessDevCore: CMakeFiles/LandessDevCore.dir/IO/XML/tinyxml2.cpp.o
 LandessDevCore: CMakeFiles/LandessDevCore.dir/Examples/IOExample.cpp.o
 LandessDevCore: CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.o
+LandessDevCore: CMakeFiles/LandessDevCore.dir/Examples/StringToNumberExample.cpp.o
+LandessDevCore: CMakeFiles/LandessDevCore.dir/REST/CPR/auth.cpp.o
+LandessDevCore: CMakeFiles/LandessDevCore.dir/REST/CPR/bearer.cpp.o
+LandessDevCore: CMakeFiles/LandessDevCore.dir/REST/CPR/cookies.cpp.o
+LandessDevCore: CMakeFiles/LandessDevCore.dir/REST/CPR/cprtypes.cpp.o
+LandessDevCore: CMakeFiles/LandessDevCore.dir/REST/CPR/curl_container.cpp.o
+LandessDevCore: CMakeFiles/LandessDevCore.dir/REST/CPR/curlholder.cpp.o
+LandessDevCore: CMakeFiles/LandessDevCore.dir/REST/CPR/error.cpp.o
+LandessDevCore: CMakeFiles/LandessDevCore.dir/REST/CPR/multipart.cpp.o
+LandessDevCore: CMakeFiles/LandessDevCore.dir/REST/CPR/parameters.cpp.o
+LandessDevCore: CMakeFiles/LandessDevCore.dir/REST/CPR/payload.cpp.o
+LandessDevCore: CMakeFiles/LandessDevCore.dir/REST/CPR/proxies.cpp.o
+LandessDevCore: CMakeFiles/LandessDevCore.dir/REST/CPR/response.cpp.o
+LandessDevCore: CMakeFiles/LandessDevCore.dir/REST/CPR/session.cpp.o
+LandessDevCore: CMakeFiles/LandessDevCore.dir/REST/CPR/timeout.cpp.o
+LandessDevCore: CMakeFiles/LandessDevCore.dir/REST/CPR/unix_socket.cpp.o
+LandessDevCore: CMakeFiles/LandessDevCore.dir/REST/CPR/util.cpp.o
+LandessDevCore: CMakeFiles/LandessDevCore.dir/Memory/LinearAllocator.cpp.o
+LandessDevCore: CMakeFiles/LandessDevCore.dir/Memory/StackAllocator.cpp.o
+LandessDevCore: CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o
+LandessDevCore: CMakeFiles/LandessDevCore.dir/Memory/FreeListAllocator.cpp.o
 LandessDevCore: CMakeFiles/LandessDevCore.dir/build.make
 LandessDevCore: CMakeFiles/LandessDevCore.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/media/phoenixflower/Development/LandessDev/LandessDevCore/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_42) "Linking CXX executable LandessDevCore"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/media/phoenixflower/Development/LandessDev/LandessDevCore/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_63) "Linking CXX executable LandessDevCore"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/LandessDevCore.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

@@ -906,6 +906,94 @@ CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o
  /media/phoenixflower/Development/LandessDev/LandessDevCore/Examples/ReflectionDemoTypes.h
  /media/phoenixflower/Development/LandessDev/LandessDevCore/Examples/ReflectionExample.cpp
  /media/phoenixflower/Development/LandessDev/LandessDevCore/Examples/ReflectionExample.hpp
+CMakeFiles/LandessDevCore.dir/Examples/StringToNumberExample.cpp.o
+ ../Algorithms/CompileTimeControlFlow.hpp
+ ../Algorithms/Exponential.hpp
+ ../Algorithms/FromString.hpp
+ ../Algorithms/StringAsNumber.h
+ ../Algorithms/Swap.hpp
+ ../Algorithms/vdt/asin.h
+ ../Algorithms/vdt/atan.h
+ ../Algorithms/vdt/atan2.h
+ ../Algorithms/vdt/cos.h
+ ../Algorithms/vdt/exp.h
+ ../Algorithms/vdt/identity.h
+ ../Algorithms/vdt/inv.h
+ ../Algorithms/vdt/log.h
+ ../Algorithms/vdt/sin.h
+ ../Algorithms/vdt/sincos.h
+ ../Algorithms/vdt/sqrt.h
+ ../Algorithms/vdt/tan.h
+ ../Algorithms/vdt/vdtcore_common.h
+ ../Algorithms/vdt/vdtmath.h
+ ../Definitions/Common.hpp
+ ../Definitions/Float.hpp
+ ../Definitions/Integer.hpp
+ ../Functor/Lambda.h
+ ../Functor/LightWeightDelegate.h
+ ../Functor/LightWeightDelegateBase.h
+ ../IO/DatabaseOperationResult.h
+ ../IO/FetchRequest.h
+ ../Memory/ElementReference.h
+ ../Memory/Optional.h
+ ../Primitives/General/Context.h
+ ../Primitives/General/ContextualVariant.h
+ ../Primitives/General/Hash.hpp
+ ../Primitives/General/Immutable.hpp
+ ../Primitives/General/ImproperFraction.hpp
+ ../Primitives/General/Pair.h
+ ../Primitives/General/Range.h
+ ../Primitives/General/StaticArray.hpp
+ ../Primitives/General/StringView.hpp
+ ../Primitives/General/Tuple.hpp
+ ../Primitives/General/ctre.hpp
+ ../Primitives/General/mapboxrecursive_wrapper.hpp
+ ../Primitives/General/mapboxvariant.hpp
+ ../Primitives/General/mapboxvariantvisitor.h
+ ../Primitives/General/typestring.hpp
+ ../TypeTraits/AddLValueReference.hpp
+ ../TypeTraits/AddPointer.hpp
+ ../TypeTraits/AddRValueReference.hpp
+ ../TypeTraits/Conditional.hpp
+ ../TypeTraits/Decay.hpp
+ ../TypeTraits/Declval.hpp
+ ../TypeTraits/Detection.hpp
+ ../TypeTraits/EnableIf.hpp
+ ../TypeTraits/FunctionalReflection.hpp
+ ../TypeTraits/IntegerSequence.hpp
+ ../TypeTraits/IntegralConstant.hpp
+ ../TypeTraits/IsArray.hpp
+ ../TypeTraits/IsAssignable.hpp
+ ../TypeTraits/IsBaseOf.hpp
+ ../TypeTraits/IsClassType.hpp
+ ../TypeTraits/IsConst.hpp
+ ../TypeTraits/IsConstructible.hpp
+ ../TypeTraits/IsConvertible.hpp
+ ../TypeTraits/IsDestructible.hpp
+ ../TypeTraits/IsFunction.hpp
+ ../TypeTraits/IsImmutable.h
+ ../TypeTraits/IsIntegralType.hpp
+ ../TypeTraits/IsNullPtr.hpp
+ ../TypeTraits/IsPointer.hpp
+ ../TypeTraits/IsReference.hpp
+ ../TypeTraits/IsSame.hpp
+ ../TypeTraits/IsSwappable.hpp
+ ../TypeTraits/IsUnion.hpp
+ ../TypeTraits/IsVoid.hpp
+ ../TypeTraits/IsVolatile.hpp
+ ../TypeTraits/Iterable.h
+ ../TypeTraits/Limit.hpp
+ ../TypeTraits/RemoveAllExtents.hpp
+ ../TypeTraits/RemoveCV.hpp
+ ../TypeTraits/RemoveConst.hpp
+ ../TypeTraits/RemoveExtent.hpp
+ ../TypeTraits/RemoveReference.hpp
+ ../TypeTraits/StaticallySized.h
+ ../TypeTraits/Type.h
+ ../TypeTraits/TypeList.hpp
+ ../TypeTraits/VariadicPack.hpp
+ ../TypeTraits/__two.hpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/Examples/StringToNumberExample.cpp
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxInputExample.cpp.o
  /media/phoenixflower/Development/LandessDev/LandessDevCore/Examples/TermBoxInputExample.cpp
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o
@@ -1371,6 +1459,253 @@ CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o
  /media/phoenixflower/Development/LandessDev/LandessDevCore/MVC/TermBoxCursorNavigator.hpp
  /media/phoenixflower/Development/LandessDev/LandessDevCore/MVC/TermBoxEnumerations.hpp
  /media/phoenixflower/Development/LandessDev/LandessDevCore/MVC/TermBoxRenderingContext.hpp
+CMakeFiles/LandessDevCore.dir/Memory/LinearAllocator.cpp.o
+ ../Algorithms/CompileTimeControlFlow.hpp
+ ../Algorithms/Exponential.hpp
+ ../Algorithms/Swap.hpp
+ ../Algorithms/vdt/asin.h
+ ../Algorithms/vdt/atan.h
+ ../Algorithms/vdt/atan2.h
+ ../Algorithms/vdt/cos.h
+ ../Algorithms/vdt/exp.h
+ ../Algorithms/vdt/identity.h
+ ../Algorithms/vdt/inv.h
+ ../Algorithms/vdt/log.h
+ ../Algorithms/vdt/sin.h
+ ../Algorithms/vdt/sincos.h
+ ../Algorithms/vdt/sqrt.h
+ ../Algorithms/vdt/tan.h
+ ../Algorithms/vdt/vdtcore_common.h
+ ../Algorithms/vdt/vdtmath.h
+ ../Definitions/Common.hpp
+ ../Definitions/Float.hpp
+ ../Definitions/Integer.hpp
+ ../Functor/Lambda.h
+ ../Functor/LightWeightDelegate.h
+ ../Functor/LightWeightDelegateBase.h
+ ../Memory/ElementReference.h
+ ../Primitives/General/ImproperFraction.hpp
+ ../Primitives/General/Range.h
+ ../Primitives/General/StaticArray.hpp
+ ../Primitives/General/Tuple.hpp
+ ../TypeTraits/AddLValueReference.hpp
+ ../TypeTraits/AddPointer.hpp
+ ../TypeTraits/AddRValueReference.hpp
+ ../TypeTraits/Conditional.hpp
+ ../TypeTraits/Decay.hpp
+ ../TypeTraits/Declval.hpp
+ ../TypeTraits/Detection.hpp
+ ../TypeTraits/EnableIf.hpp
+ ../TypeTraits/IntegerSequence.hpp
+ ../TypeTraits/IntegralConstant.hpp
+ ../TypeTraits/IsArray.hpp
+ ../TypeTraits/IsAssignable.hpp
+ ../TypeTraits/IsBaseOf.hpp
+ ../TypeTraits/IsClassType.hpp
+ ../TypeTraits/IsConst.hpp
+ ../TypeTraits/IsConstructible.hpp
+ ../TypeTraits/IsConvertible.hpp
+ ../TypeTraits/IsDestructible.hpp
+ ../TypeTraits/IsFunction.hpp
+ ../TypeTraits/IsImmutable.h
+ ../TypeTraits/IsIntegralType.hpp
+ ../TypeTraits/IsNullPtr.hpp
+ ../TypeTraits/IsPointer.hpp
+ ../TypeTraits/IsReference.hpp
+ ../TypeTraits/IsSame.hpp
+ ../TypeTraits/IsSwappable.hpp
+ ../TypeTraits/IsUnion.hpp
+ ../TypeTraits/IsVoid.hpp
+ ../TypeTraits/IsVolatile.hpp
+ ../TypeTraits/Iterable.h
+ ../TypeTraits/Limit.hpp
+ ../TypeTraits/RemoveAllExtents.hpp
+ ../TypeTraits/RemoveCV.hpp
+ ../TypeTraits/RemoveConst.hpp
+ ../TypeTraits/RemoveExtent.hpp
+ ../TypeTraits/RemoveReference.hpp
+ ../TypeTraits/TypeList.hpp
+ ../TypeTraits/VariadicPack.hpp
+ ../TypeTraits/__two.hpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/Memory/CorePrimitiveAllocator.hpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/Memory/LinearAllocator.cpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/Memory/LinearAllocator.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/Memory/MemoryResource.hpp
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/Memory/PoolAllocator.cpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/Memory/PoolAllocator.h
+CMakeFiles/LandessDevCore.dir/Memory/StackAllocator.cpp.o
+ ../Algorithms/CompileTimeControlFlow.hpp
+ ../Algorithms/Exponential.hpp
+ ../Algorithms/Swap.hpp
+ ../Algorithms/vdt/asin.h
+ ../Algorithms/vdt/atan.h
+ ../Algorithms/vdt/atan2.h
+ ../Algorithms/vdt/cos.h
+ ../Algorithms/vdt/exp.h
+ ../Algorithms/vdt/identity.h
+ ../Algorithms/vdt/inv.h
+ ../Algorithms/vdt/log.h
+ ../Algorithms/vdt/sin.h
+ ../Algorithms/vdt/sincos.h
+ ../Algorithms/vdt/sqrt.h
+ ../Algorithms/vdt/tan.h
+ ../Algorithms/vdt/vdtcore_common.h
+ ../Algorithms/vdt/vdtmath.h
+ ../Definitions/Common.hpp
+ ../Definitions/Float.hpp
+ ../Definitions/Integer.hpp
+ ../Functor/Lambda.h
+ ../Functor/LightWeightDelegate.h
+ ../Functor/LightWeightDelegateBase.h
+ ../Memory/ElementReference.h
+ ../Primitives/General/ImproperFraction.hpp
+ ../Primitives/General/Range.h
+ ../Primitives/General/StaticArray.hpp
+ ../Primitives/General/Tuple.hpp
+ ../TypeTraits/AddLValueReference.hpp
+ ../TypeTraits/AddPointer.hpp
+ ../TypeTraits/AddRValueReference.hpp
+ ../TypeTraits/Conditional.hpp
+ ../TypeTraits/Decay.hpp
+ ../TypeTraits/Declval.hpp
+ ../TypeTraits/Detection.hpp
+ ../TypeTraits/EnableIf.hpp
+ ../TypeTraits/IntegerSequence.hpp
+ ../TypeTraits/IntegralConstant.hpp
+ ../TypeTraits/IsArray.hpp
+ ../TypeTraits/IsAssignable.hpp
+ ../TypeTraits/IsBaseOf.hpp
+ ../TypeTraits/IsClassType.hpp
+ ../TypeTraits/IsConst.hpp
+ ../TypeTraits/IsConstructible.hpp
+ ../TypeTraits/IsConvertible.hpp
+ ../TypeTraits/IsDestructible.hpp
+ ../TypeTraits/IsFunction.hpp
+ ../TypeTraits/IsImmutable.h
+ ../TypeTraits/IsIntegralType.hpp
+ ../TypeTraits/IsNullPtr.hpp
+ ../TypeTraits/IsPointer.hpp
+ ../TypeTraits/IsReference.hpp
+ ../TypeTraits/IsSame.hpp
+ ../TypeTraits/IsSwappable.hpp
+ ../TypeTraits/IsUnion.hpp
+ ../TypeTraits/IsVoid.hpp
+ ../TypeTraits/IsVolatile.hpp
+ ../TypeTraits/Iterable.h
+ ../TypeTraits/Limit.hpp
+ ../TypeTraits/RemoveAllExtents.hpp
+ ../TypeTraits/RemoveCV.hpp
+ ../TypeTraits/RemoveConst.hpp
+ ../TypeTraits/RemoveExtent.hpp
+ ../TypeTraits/RemoveReference.hpp
+ ../TypeTraits/TypeList.hpp
+ ../TypeTraits/VariadicPack.hpp
+ ../TypeTraits/__two.hpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/Memory/CorePrimitiveAllocator.hpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/Memory/MemoryResource.hpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/Memory/StackAllocator.cpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/Memory/StackAllocator.hpp
+CMakeFiles/LandessDevCore.dir/REST/CPR/auth.cpp.o
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/auth.cpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/auth.h
+CMakeFiles/LandessDevCore.dir/REST/CPR/bearer.cpp.o
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/bearer.cpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/bearer.h
+CMakeFiles/LandessDevCore.dir/REST/CPR/cookies.cpp.o
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/cookies.cpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/cookies.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/curlholder.h
+CMakeFiles/LandessDevCore.dir/REST/CPR/cprtypes.cpp.o
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/cprtypes.cpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/cprtypes.h
+CMakeFiles/LandessDevCore.dir/REST/CPR/curl_container.cpp.o
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/curl_container.cpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/curl_container.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/curlholder.h
+CMakeFiles/LandessDevCore.dir/REST/CPR/curlholder.cpp.o
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/curlholder.cpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/curlholder.h
+CMakeFiles/LandessDevCore.dir/REST/CPR/error.cpp.o
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/cprtypes.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/error.cpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/error.h
+CMakeFiles/LandessDevCore.dir/REST/CPR/multipart.cpp.o
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/multipart.cpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/multipart.h
+CMakeFiles/LandessDevCore.dir/REST/CPR/parameters.cpp.o
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/callback.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/cookies.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/cprtypes.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/curl_container.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/curlholder.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/parameters.cpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/parameters.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/util.h
+CMakeFiles/LandessDevCore.dir/REST/CPR/payload.cpp.o
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/callback.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/cookies.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/cprtypes.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/curl_container.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/curlholder.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/payload.cpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/payload.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/util.h
+CMakeFiles/LandessDevCore.dir/REST/CPR/proxies.cpp.o
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/proxies.cpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/proxies.h
+CMakeFiles/LandessDevCore.dir/REST/CPR/response.cpp.o
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/callback.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/cookies.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/cprtypes.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/curlholder.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/error.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/response.cpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/response.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/ssl_options.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/util.h
+CMakeFiles/LandessDevCore.dir/REST/CPR/session.cpp.o
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/auth.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/bearer.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/body.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/callback.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/connect_timeout.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/cookies.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/cprtypes.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/curl_container.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/curlholder.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/digest.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/error.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/limit_rate.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/low_speed.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/max_redirects.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/multipart.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/ntlm.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/parameters.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/payload.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/proxies.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/response.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/session.cpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/session.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/ssl_options.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/timeout.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/unix_socket.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/user_agent.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/util.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/verbose.h
+CMakeFiles/LandessDevCore.dir/REST/CPR/timeout.cpp.o
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/timeout.cpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/timeout.h
+CMakeFiles/LandessDevCore.dir/REST/CPR/unix_socket.cpp.o
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/unix_socket.cpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/unix_socket.h
+CMakeFiles/LandessDevCore.dir/REST/CPR/util.cpp.o
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/callback.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/cookies.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/cprtypes.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/curlholder.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/util.cpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/util.h
 CMakeFiles/LandessDevCore.dir/TUI/ascii_art.cpp.o
  /media/phoenixflower/Development/LandessDev/LandessDevCore/TUI/ascii_art.cpp
  /media/phoenixflower/Development/LandessDev/LandessDevCore/TUI/ascii_art.h
@@ -1380,8 +1715,8 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  ../Algorithms/CompileTimeControlFlow.hpp
  ../Algorithms/CompileTimeOperations.hpp
  ../Algorithms/Exponential.hpp
+ ../Algorithms/FromString.hpp
  ../Algorithms/StringAsNumber.h
- ../Algorithms/StringToPrimitive.hpp
  ../Algorithms/Swap.hpp
  ../Algorithms/vdt/asin.h
  ../Algorithms/vdt/atan.h
@@ -1427,6 +1762,7 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  ../IO/toml/utility.hpp
  ../IO/toml/value.hpp
  ../Memory/ElementReference.h
+ ../Memory/Optional.h
  ../Primitives/General/Boolean.hpp
  ../Primitives/General/Context.h
  ../Primitives/General/ContextualVariant.h
@@ -1434,6 +1770,8 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  ../Primitives/General/Immutable.hpp
  ../Primitives/General/ImproperFraction.hpp
  ../Primitives/General/Pair.h
+ ../Primitives/General/PhoneNumber.hpp
+ ../Primitives/General/Range.h
  ../Primitives/General/Ratio.hpp
  ../Primitives/General/Span.hpp
  ../Primitives/General/StaticArray.hpp
@@ -1452,9 +1790,11 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  ../SPA/GlobalAttributes.hpp
  ../SPA/IsAttribute.hpp
  ../SPA/Text.hpp
+ ../Sovereignty/Countries.h
  ../TypeTraits/AddLValueReference.hpp
  ../TypeTraits/AddPointer.hpp
  ../TypeTraits/AddRValueReference.hpp
+ ../TypeTraits/CanBeMadeFromStringView.hpp
  ../TypeTraits/Conditional.hpp
  ../TypeTraits/Decay.hpp
  ../TypeTraits/Declval.hpp
@@ -1469,10 +1809,8 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  ../TypeTraits/IsBaseOf.hpp
  ../TypeTraits/IsClassType.hpp
  ../TypeTraits/IsConst.hpp
- ../TypeTraits/IsConstructible.hpp
  ../TypeTraits/IsConvertible.hpp
  ../TypeTraits/IsDestructible.hpp
- ../TypeTraits/IsFunction.hpp
  ../TypeTraits/IsImmutable.h
  ../TypeTraits/IsIntegralType.hpp
  ../TypeTraits/IsMemberPointer.hpp
@@ -1499,19 +1837,50 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  ../TypeTraits/__two.hpp
  ../Unicode/UTF8.hpp
  ../Unicode/utf8/core.h
- /media/phoenixflower/Development/LandessDev/LandessDevCore/Algorithms/Exponential.hpp
- /media/phoenixflower/Development/LandessDev/LandessDevCore/Algorithms/FromString.hpp
+ ../VirtuWorks/DateTime.hpp
  /media/phoenixflower/Development/LandessDev/LandessDevCore/Chrono/Timer.h
  /media/phoenixflower/Development/LandessDev/LandessDevCore/Examples/ReflectionDemoTypes.h
- /media/phoenixflower/Development/LandessDev/LandessDevCore/IO/Database.hpp
- /media/phoenixflower/Development/LandessDev/LandessDevCore/IO/DatabaseOperationResult.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/IO/CSVParser.hpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/IO/EphemiralRowBackingStore.hpp
  /media/phoenixflower/Development/LandessDev/LandessDevCore/IO/FetchRequest.h
- /media/phoenixflower/Development/LandessDev/LandessDevCore/IO/RowBackingStore.h
  /media/phoenixflower/Development/LandessDev/LandessDevCore/IO/XML/tinyxml2.h
  /media/phoenixflower/Development/LandessDev/LandessDevCore/IO/toml.hpp
- /media/phoenixflower/Development/LandessDev/LandessDevCore/Memory/Optional.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/Memory/CorePrimitiveAllocator.hpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/Memory/FreeList.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/Memory/FreeListPolicies.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/Memory/MemoryResource.hpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/PBX/MIrta/Date.hpp
  /media/phoenixflower/Development/LandessDev/LandessDevCore/Primitives/General/DateTime.h
- /media/phoenixflower/Development/LandessDev/LandessDevCore/Primitives/General/Range.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/api.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/auth.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/bearer.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/body.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/callback.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/connect_timeout.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/cookies.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/cpr.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/cprtypes.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/curl_container.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/curlholder.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/digest.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/error.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/limit_rate.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/low_speed.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/max_redirects.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/multipart.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/ntlm.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/parameters.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/payload.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/proxies.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/response.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/session.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/ssl_options.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/status_codes.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/timeout.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/unix_socket.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/user_agent.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/util.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/CPR/verbose.h
  /media/phoenixflower/Development/LandessDev/LandessDevCore/REST/HTMLEmitter.hpp
  /media/phoenixflower/Development/LandessDev/LandessDevCore/Random/MarsagliaRandomNumberGenerator.hpp
  /media/phoenixflower/Development/LandessDev/LandessDevCore/Reflection/Reflection.hpp
@@ -1526,11 +1895,30 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  /media/phoenixflower/Development/LandessDev/LandessDevCore/SPA/Text.hpp
  /media/phoenixflower/Development/LandessDev/LandessDevCore/SPA/Variable.hpp
  /media/phoenixflower/Development/LandessDev/LandessDevCore/TUI/ascii_art.h
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/TypeTraits/AddRValueReference.hpp
  /media/phoenixflower/Development/LandessDev/LandessDevCore/TypeTraits/CanBeAnImmutableString.hpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/TypeTraits/Conditional.hpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/TypeTraits/Declval.hpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/TypeTraits/IntegralConstant.hpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/TypeTraits/IsAssignable.hpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/TypeTraits/IsBaseOf.hpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/TypeTraits/IsConst.hpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/TypeTraits/IsConstructible.hpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/TypeTraits/IsConvertible.hpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/TypeTraits/IsErasedOrConvertible.hpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/TypeTraits/IsFunction.hpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/TypeTraits/IsNullPtr.hpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/TypeTraits/IsReference.hpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/TypeTraits/IsSame.hpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/TypeTraits/IsSwappable.hpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/TypeTraits/IsUnion.hpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/TypeTraits/RemoveAllExtents.hpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/TypeTraits/RemoveConst.hpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/TypeTraits/RemoveReference.hpp
  /media/phoenixflower/Development/LandessDev/LandessDevCore/TypeTraits/TypeList.hpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/TypeTraits/__or.hpp
  /media/phoenixflower/Development/LandessDev/LandessDevCore/VirtuWorks/Identification.hpp
  /media/phoenixflower/Development/LandessDev/LandessDevCore/VirtuWorks/Language.hpp
  /media/phoenixflower/Development/LandessDev/LandessDevCore/VirtuWorks/QueueLog.hpp
  /media/phoenixflower/Development/LandessDev/LandessDevCore/VirtuWorks/QueueLogStatus.hpp
- /media/phoenixflower/Development/LandessDev/LandessDevCore/VirtuWorks/VirtuWorksDate.hpp
  /media/phoenixflower/Development/LandessDev/LandessDevCore/main.cpp

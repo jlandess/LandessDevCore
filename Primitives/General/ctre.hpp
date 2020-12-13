@@ -241,6 +241,7 @@ Software.
 #include <string_view>
 #include <cstdint>
 #include "typestring.hpp"
+#include "Primitives/General/Immutable.hpp"
 
 namespace ctll {
 

@@ -184,6 +184,8 @@ namespace LD
 
         }
 
+
+
         constexpr QueryResult(const LD::TransactionError & transaction, const LD::Context<Args...> & context) noexcept
         {
             LD::Context<LD::TransactionError,Args...> cntxt;
@@ -236,6 +238,11 @@ namespace LD
         }
     };
 
+    template<typename T, typename ... A>
+    constexpr LD::CT::TypeList<T,A...> GetContextTypeList(const LD::Type<LD::QueryResult<T(A...)>> &) noexcept
+    {
+        return LD::CT::TypeList<T,A...>{};
+    }
 
     template<typename ... B,
             typename BList = LD::CT::TypeList<B...>,

@@ -117,10 +117,10 @@ namespace PDP
         // of 2 sub maxmms.
         Rope(Rope<T,Alloc>&& lhs,
              Rope<T,Alloc> && rhs)
-                : tag_(tag::APPEND),
+                noexcept: tag_(tag::APPEND),
                   height_(LD::Max(lhs.height_, rhs.height_) + 1),
                   size_(lhs.size_ + rhs.size_),
-                  parent_(nullptr) {
+                  parent_(nullptr){
 
 
 
@@ -134,7 +134,7 @@ namespace PDP
         }
 
         // @brief Move Constructor
-        Rope(Rope<T,Alloc> && copy)
+        Rope(Rope<T,Alloc> && copy) noexcept
         {
 
 

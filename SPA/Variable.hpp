@@ -8,6 +8,7 @@
 #include "Primitives/General/Immutable.hpp"
 #include "TypeTraits/Detection.hpp"
 #include "Compositor.hpp"
+#include "Algorithms/Exponential.hpp"
 namespace LD
 {
     namespace SPA

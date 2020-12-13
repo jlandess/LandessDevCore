@@ -4,14 +4,16 @@
 
 #ifndef LANDESSDEVCORE_QUEUELOG_HPP
 #define LANDESSDEVCORE_QUEUELOG_HPP
-#include "Primitives/General/DateTime.h"
+#include "VirtuWorks/DateTime.hpp"
 #include "Language.hpp"
 #include "Primitives/General/Immutable.hpp"
 #include "QueueLogStatus.hpp"
 #include "Identification.hpp"
-#include "VirtuWorksDate.hpp"
+
 #include "Reflection/Reflection.hpp"
 #include "Primitives/General/ctre.hpp"
+#include "Primitives/General/PhoneNumber.hpp"
+
 namespace LD
 {
     namespace VW
@@ -19,9 +21,11 @@ namespace LD
         class QueueLog
         {
         private:
-            LD::Tuple<LD::VW::Date,LD::Time> mDateTime;
+            //LD::Tuple<LD::VW::Date,LD::Time> mDateTime;
+            LD::VW::DateTime mDateTime;
             LD::VW::Language mLanguage;
-            LD::ImmutableString<14> mPhoneNumber;
+            //LD::ImmutableString<14> mPhoneNumber;
+            LD::PhoneNumber mPhoneNumber;
             LD::VW::QueueLogStatus mStatus;
             LD::UInteger mExtension;
             LD::UInteger mHoldtime;
@@ -30,12 +34,12 @@ namespace LD
             LD::VW::CallIdentification mID;
         public:
 
-            const LD::Tuple<LD::VW::Date,LD::Time> & DateTime() const noexcept
+            const LD::VW::DateTime & DateTime() const noexcept
             {
                 return this->mDateTime;
             }
 
-            LD::Tuple<LD::VW::Date,LD::Time> & DateTime() noexcept
+            LD::VW::DateTime & DateTime() noexcept
             {
                 return this->mDateTime;
             }
@@ -50,11 +54,11 @@ namespace LD
                 return this->mLanguage;
             }
 
-            const LD::ImmutableString<14> & PhoneNumber() const noexcept
+            const LD::PhoneNumber & PhoneNumber() const noexcept
             {
                 return this->mPhoneNumber;
             }
-            LD::ImmutableString<14> & PhoneNumber() noexcept
+            LD::PhoneNumber & PhoneNumber() noexcept
             {
                 return this->mPhoneNumber;
             }
@@ -136,9 +140,9 @@ private:
 public:
     static constexpr auto ClassName = ctll::basic_fixed_string("VirtuWorksCall");
     using MemberList = LD::CT::TypeList<
-            LD::CT::EncapsulatedMemberDescriptor<TimeLabel,LD::CT::SelectOverload<LD::Tuple<LD::VW::Date,LD::Time> & (LD::VW::QueueLog::*)(),&LD::VW::QueueLog::DateTime>(),LD::CT::SelectOverload<const LD::Tuple<LD::VW::Date,LD::Time> & (LD::VW::QueueLog::*)() const,&LD::VW::QueueLog::DateTime>()>,
+            LD::CT::EncapsulatedMemberDescriptor<TimeLabel,LD::CT::SelectOverload<LD::VW::DateTime & (LD::VW::QueueLog::*)(),&LD::VW::QueueLog::DateTime>(),LD::CT::SelectOverload<const LD::VW::DateTime & (LD::VW::QueueLog::*)() const,&LD::VW::QueueLog::DateTime>()>,
             LD::CT::EncapsulatedMemberDescriptor<QueueName,LD::CT::SelectOverload<LD::VW::Language & (LD::VW::QueueLog::*)(),&LD::VW::QueueLog::Language>(),LD::CT::SelectOverload<const LD::VW::Language & (LD::VW::QueueLog::*)() const,&LD::VW::QueueLog::Language>()>,
-            LD::CT::EncapsulatedMemberDescriptor<PhoneNumberLabel,LD::CT::SelectOverload<LD::ImmutableString<14> & (LD::VW::QueueLog::*)(),&LD::VW::QueueLog::PhoneNumber>(),LD::CT::SelectOverload<const LD::ImmutableString<14> & (LD::VW::QueueLog::*)() const,&LD::VW::QueueLog::PhoneNumber>()>,
+            LD::CT::EncapsulatedMemberDescriptor<PhoneNumberLabel,LD::CT::SelectOverload<LD::PhoneNumber & (LD::VW::QueueLog::*)(),&LD::VW::QueueLog::PhoneNumber>(),LD::CT::SelectOverload<const LD::PhoneNumber & (LD::VW::QueueLog::*)() const,&LD::VW::QueueLog::PhoneNumber>()>,
             LD::CT::EncapsulatedMemberDescriptor<DispositionLabel,LD::CT::SelectOverload<LD::VW::QueueLogStatus & (LD::VW::QueueLog::*)(),&LD::VW::QueueLog::Status>(),LD::CT::SelectOverload<const LD::VW::QueueLogStatus & (LD::VW::QueueLog::*)() const,&LD::VW::QueueLog::Status>()>,
             LD::CT::EncapsulatedMemberDescriptor<AgentLabel,LD::CT::SelectOverload<LD::UInteger & (LD::VW::QueueLog::*)(),&LD::VW::QueueLog::Extension>(),LD::CT::SelectOverload<const LD::UInteger & (LD::VW::QueueLog::*)() const,&LD::VW::QueueLog::Extension>()>,
             LD::CT::EncapsulatedMemberDescriptor<HoldTimeLabel,LD::CT::SelectOverload<LD::UInteger & (LD::VW::QueueLog::*)(),&LD::VW::QueueLog::HoldTime>(),LD::CT::SelectOverload<const LD::UInteger & (LD::VW::QueueLog::*)() const,&LD::VW::QueueLog::HoldTime>()>,

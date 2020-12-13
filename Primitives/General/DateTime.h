@@ -2,8 +2,8 @@
 // Created by phoenixflower on 11/14/20.
 //
 
-#ifndef LANDESSDEVCORE_DATETIME_H
-#define LANDESSDEVCORE_DATETIME_H
+#ifndef LANDESSDEVCORE_DATETIME_HPP
+#define LANDESSDEVCORE_DATETIME_HPP
 #ifndef H__DATE_H
 #define H__DATE_H
 
@@ -21,7 +21,264 @@
 //
 namespace LD
 {
-    class Date;
+    class Date
+    {
+    private:
+        int mYear;
+        int mMonth;
+        int mDay;
+        LD::Date  NextDate() const noexcept
+        {
+            LD::Date date = (*this);
+            if (this->Valid())
+            {
+                LD::Date date = LD::Date{this->mYear,this->mMonth,this->mDay+1};
+                if (date.Valid())
+                {
+                    return date;
+                }
+                date = LD::Date{this->mYear,this->mMonth+1,1};
+                if (date.Valid())
+                {
+                    return date;
+                }
+                date = LD::Date{this->mYear+1,1,1};
+                return date;
+            }
+            date = (*this);
+            return date;
+        }
+        LD::Date PreviousDate() const noexcept
+        {
+            LD::Date ndat = (*this);
+            if (!ndat.Valid())
+            {
+                return ndat;
+            }
+            ndat = LD::Date{this->mYear,this->mMonth,this->mDay-1};
+            if (ndat.Valid())
+            {
+                return ndat;
+            }
+            ndat = LD::Date{this->mYear,this->mMonth-1,31};
+            if (ndat.Valid())
+            {
+                return ndat;
+            }
+            ndat = LD::Date{this->mYear,this->mMonth-1,30};
+            if (ndat.Valid())
+            {
+                return ndat;
+            }
+            ndat = LD::Date{this->mYear,this->mMonth-1,29};
+            if (ndat.Valid())
+            {
+                return ndat;
+            }
+            ndat = LD::Date{this->mYear,this->mMonth-1,28};
+            if (ndat.Valid())
+            {
+                return ndat;
+            }
+            ndat = LD::Date{this->mYear-1,12,31};
+            return ndat;
+
+        }
+    public:
+        Date() noexcept:mYear{0},mMonth{0},mDay{0}{}
+        Date(int year, int month, int day) noexcept:mYear{year},mMonth{month},mDay{day}{}
+
+        bool Valid() const
+        {
+            if (this->mYear < 0)
+            {
+                return false;
+            }
+            if (this->mMonth > 12 || this->mMonth < 1)
+            {
+                return false;
+            }
+            if (this->mDay > 31 || this->mDay < 1)
+            {
+                return false;
+            }
+            if (this->mDay == 31 && (this->mMonth == 2 || this->mMonth == 4 || this->mMonth == 6 || this->mMonth == 9 || this->mMonth == 11))
+            {
+                return false;
+            }
+            if (this->mDay == 30 && this->mMonth == 2)
+            {
+                return false;
+            }
+
+            if (this->mYear < 2000)
+            {
+                if ((this->mDay == 29 && this->mMonth == 2) && !(this->mYear-1900)%4 == 0)
+                {
+                    return false;
+                }
+            }
+
+            if (this->mYear > 2000)
+            {
+                if ((this->mDay == 29 && this->mMonth == 2) && !(this->mYear-2000)%4 == 0)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        int Day() const noexcept{return this->mDay;}
+        int Month() const noexcept{return this->mMonth;}
+        int Year() const noexcept{return this->mYear;}
+
+        int & Day() noexcept{return this->mDay;}
+        int & Month() noexcept{return this->mMonth;}
+        int & Year() noexcept{return this->mYear;}
+
+        LD::Date & operator++() noexcept
+        {
+            (*this) = this->NextDate();
+            return (*this);
+        }
+        LD::Date & operator++(int) noexcept
+        {
+            (*this) = this->NextDate();
+            return (*this);
+        }
+        LD::Date & operator--() noexcept
+        {
+            (*this) = this->PreviousDate();
+            return (*this);
+        }
+        LD::Date & operator--(int) noexcept
+        {
+            (*this) = this->PreviousDate();
+            return (*this);
+        }
+        //DateTest & operator++() noexcept;
+        //DateTest & operator++(int) noexcept;
+        //DateTest & operator--() noexcept;
+        //DateTest & operator--(int) noexcept;
+
+        bool operator == (const Date & date) const noexcept
+        {
+            if (!this->Valid() || !date.Valid())
+            {
+                return false;
+            }
+
+            if (this->mDay == date.mDay && this->mMonth == date.mMonth && this->mYear == date.mYear)
+            {
+                return true;
+            }
+            return false;
+        }
+        bool operator != (const Date & date) const noexcept
+        {
+            return !((*this)==date);
+        }
+        bool operator < (const Date & date) const noexcept
+        {
+            if (!this->Valid() || !date.Valid())
+            {
+                return false;
+            }
+            if (this->mYear < date.mYear)
+            {
+                return true;
+            }else if(this->mYear > date.mYear)
+            {
+                return false;
+            }else
+            {
+                if (this->mMonth < date.mMonth)
+                {
+                    return true;
+                }else if(this->mMonth > date.mMonth)
+                {
+                    return true;
+                }else
+                {
+                    if (this->mDay < date.mDay)
+                    {
+                        return true;
+                    }else
+                    {
+                        return false;
+                    }
+                }
+            }
+            return false;
+        }
+        bool operator > (const Date & date) const noexcept
+        {
+            if ((*this) == date)
+            {
+                return false;
+            }
+            if ((*this) < date)
+            {
+                return false;
+            }
+            return true;
+        }
+        bool operator <= (const Date & date) const noexcept
+        {
+            if ((*this) == date)
+            {
+                return true;
+            }
+            return ((*this) < date);
+        }
+        bool operator >= (const Date & date) const noexcept
+        {
+            if ((*this) == date)
+            {
+                return true;
+            }
+            return ((*this) > date);
+        }
+    };
+
+
+    inline LD::ImmutableString<(2+2+4)+2> ToImmutableString(const LD::Date & date) noexcept
+    {
+        auto yearAsImmutableString = LD::ToImmutableString(date.Year());
+        LD::ImmutableString<(2+2+4)+2> dateAsString;
+        auto monthAsImmutableString = LD::ToImmutableString(date.Month());
+        for(LD::UInteger n =0;n<4;++n)
+        {
+            dateAsString[n] = yearAsImmutableString[n];
+        }
+        LD::UInteger monthOffset = 0;
+        dateAsString[4] = '-';
+        if (date.Month() < 10)
+        {
+            dateAsString[5] = '0';
+            monthAsImmutableString[6] = monthAsImmutableString[0];
+        }else
+        {
+            dateAsString[5] = monthAsImmutableString[0];
+            dateAsString[6] = monthAsImmutableString[1];
+        }
+        auto dayAsImmutableString = LD::ToImmutableString(date.Day());
+        dateAsString[7] = '-';
+        if (date.Day() < 10)
+        {
+            dateAsString[8] = '0';
+            dateAsString[9] = dayAsImmutableString[0];
+        }else
+        {
+            dateAsString[8] = dayAsImmutableString[0];
+            dateAsString[9] = dayAsImmutableString[1];
+        }
+        return dateAsString;
+        //return LD::ToImmutableString(date.Year()) + LD::ImmutableString{"-"} + LD::ToImmutableString(date.Month()) + LD::ImmutableString{"-"} + LD::ToImmutableString(date.Day());
+    }
+    //class Date;
     struct Time
     {
     private:
@@ -107,12 +364,13 @@ namespace LD
     }
 
 
+    /*
     class Date
     {
 
     private:
 
-        unsigned long        lJulianDay;
+        long        lJulianDay;
         //Time CurrentTime;
         //
         // Function      : YmdToJd
@@ -533,6 +791,7 @@ namespace LD
         }
 
     };
+     */
 
     class DateTime
     {
@@ -603,4 +862,4 @@ namespace LD
 
 
 #endif
-#endif //LANDESSDEVCORE_DATETIME_H
+#endif //LANDESSDEVCORE_DATETIME_HPP

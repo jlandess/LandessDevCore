@@ -438,8 +438,16 @@ constexpr LD::ImmutableString<(N+M)> operator+(const LD::ImmutableString<N> & a,
     LD::UInteger firstSize = a.GetSize();
     LD::UInteger secondSize = b.GetSize();
 
-    LD::UInteger n = 0;
-
+    //LD::UInteger n = 0;+
+    for(LD::UInteger n = 0;n<firstSize;++n)
+    {
+        ret[n] = a[n];
+    }
+    for(LD::UInteger n = 0;n<secondSize;++n)
+    {
+        ret[firstSize+n] = b[n];
+    }
+    /*
     LD::For<N>([](
             auto I,
             LD::UInteger &n,
@@ -462,6 +470,7 @@ constexpr LD::ImmutableString<(N+M)> operator+(const LD::ImmutableString<N> & a,
         return (I < size);
 
     },n,secondSize,b,ret);
+     */
 
     return ret;
 }
@@ -624,6 +633,13 @@ namespace LD
         //true
         //false
         return results[booleanValue];
+    }
+    template<typename T>
+    constexpr LD::Enable_If_T<LD::Require<LD::Detail::IsSame<T,unsigned char>::value>,LD::ImmutableString<1>> ToImmutableString(const T & character)
+    {
+        LD::ImmutableString<1> mString;
+        mString[0] = character;
+        return character;
     }
     template<typename T>
      LD::Enable_If_T<LD::Require<

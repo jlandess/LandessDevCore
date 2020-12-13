@@ -9,6 +9,7 @@
 #include "Primitives/General/StringView.hpp"
 #include "Primitives/General/ctre.hpp"
 #include "Exponential.hpp"
+#include "StringAsNumber.h"
 namespace LD
 {
     template<typename T, typename ... A>
@@ -156,29 +157,55 @@ namespace LD
         }
         return LD::MakeContext(LD::TransactionError{},LD::Forward<A>(args)...);
     }
+    template<typename T,typename ... A>
+    LD::Enable_If_T<LD::Require<LD::IsFloatingPoint<T>>,LD::QueryResult<double(A...)>> FromStringView(LD::Type<T>, LD::StringView view,A && ... args) noexcept
+    {
+        if (LD::Detail::IsSignedIntegerNumber(view))
+        {
+            const LD::UInteger stringSize = view.size();
+            if (view.data() == nullptr || stringSize == 0)
+            {
+                return LD::MakeContext(LD::TransactionError{},LD::Forward<A>(args)...);
+            }
+            const bool isNegative = (view[0] == '-');
+            T sign = 1*(!isNegative) + -1*(isNegative);
+            T sum = {0};
+            //sum = view[0]-'0';
+            for (LD::UInteger i = isNegative; i < view.size(); ++i)
+            {
+                sum += LD::Power(10,view.size()-i-1)*(view[i]-'0');
+            }
+            return LD::MakeContext(LD::TransactionResult{},T{sum*sign},LD::Forward<A>(args)...);
+        }else if(LD::Detail::IsFloatingPointNumber(view))
+        {
+            auto match = ctre::range<LD::Detail::NotCommaPattern>(view);
+            auto it = match.begin();
+            LD::StringView firstSegment = (*it).get<0>();
+            ++it;
+            LD::StringView secondSegment = (*it).get<0>();
+            T sum = {0};
+            const bool isNegative = (firstSegment[0] == '-');
+            T sign = 1*(!isNegative) + -1*(isNegative);
+            for (LD::UInteger i = isNegative; i < firstSegment.size(); ++i)
+            {
+                sum += LD::Power(10,firstSegment.size()-i-1)*(firstSegment[i]-'0');
+            }
+            T secondarySum = {0};
+            for (LD::UInteger i = 0; i < secondSegment.size(); ++i)
+            {
+                secondarySum += LD::Power(10,secondSegment.size()-i-1)*(secondSegment[i]-'0');
+            }
+            sum+=(secondarySum/LD::Power(10,secondSegment.size()));
+            return LD::MakeContext(LD::TransactionResult{},T{sum*sign},LD::Forward<A>(args)...);
+        }
+        return LD::MakeContext(LD::TransactionError{},LD::Forward<A>(args)...);
+    }
     template<typename T>
     LD::Optional<short> OptionallyFromStringView(LD::Type<short>, LD::StringView view) noexcept
     {
         return LD::Optional<short>{};
     }
 
-    namespace CT
-    {
-        namespace Detail
-        {
-            template<typename T,typename ... A>
-            using FromStringViewTest = decltype(LD::FromStringView(LD::Declval<LD::Type<T>>(),LD::Declval<LD::StringView>(),LD::Declval<A>()...));
-        }
-        template<typename T>
-        constexpr bool CanBeMadeFromStringView(LD::Type<T>) noexcept
-        {
-            return LD::Exists<LD::CT::Detail::FromStringViewTest,T>;
-        }
-        template<typename T, typename ... A>
-        constexpr bool CanBeMadeFromStringView(LD::Type<T>, LD::CT::TypeList<A...>) noexcept
-        {
-            return LD::Exists<LD::CT::Detail::FromStringViewTest,T,A...>;
-        }
-    }
+
 }
 #endif //LANDESSDEVCORE_FROMSTRING_HPP

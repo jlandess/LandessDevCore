@@ -59,10 +59,10 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /snap/clion/129/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /snap/clion/137/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /snap/clion/129/bin/cmake/linux/bin/cmake -E rm -f
+RM = /snap/clion/137/bin/cmake/linux/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -79,7 +79,7 @@ CMAKE_BINARY_DIR = /media/phoenixflower/Development/LandessDev/LandessDevCore/cm
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/snap/clion/129/bin/cmake/linux/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/snap/clion/137/bin/cmake/linux/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -90,7 +90,7 @@ rebuild_cache/fast: rebuild_cache
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/snap/clion/129/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/snap/clion/137/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -143,6 +143,19 @@ LandessDevCore/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/build
 .PHONY : LandessDevCore/fast
 
+#=============================================================================
+# Target rules for targets named LandessDevCoreFoundation
+
+# Build rule for target.
+LandessDevCoreFoundation: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 LandessDevCoreFoundation
+.PHONY : LandessDevCoreFoundation
+
+# fast build rule for target.
+LandessDevCoreFoundation/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/build
+.PHONY : LandessDevCoreFoundation/fast
+
 Algorithms/vdt/vdtmath.o: Algorithms/vdt/vdtmath.cpp.o
 
 .PHONY : Algorithms/vdt/vdtmath.o
@@ -150,6 +163,7 @@ Algorithms/vdt/vdtmath.o: Algorithms/vdt/vdtmath.cpp.o
 # target to build an object file
 Algorithms/vdt/vdtmath.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Algorithms/vdt/vdtmath.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Algorithms/vdt/vdtmath.cpp.o
 .PHONY : Algorithms/vdt/vdtmath.cpp.o
 
 Algorithms/vdt/vdtmath.i: Algorithms/vdt/vdtmath.cpp.i
@@ -159,6 +173,7 @@ Algorithms/vdt/vdtmath.i: Algorithms/vdt/vdtmath.cpp.i
 # target to preprocess a source file
 Algorithms/vdt/vdtmath.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Algorithms/vdt/vdtmath.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Algorithms/vdt/vdtmath.cpp.i
 .PHONY : Algorithms/vdt/vdtmath.cpp.i
 
 Algorithms/vdt/vdtmath.s: Algorithms/vdt/vdtmath.cpp.s
@@ -168,6 +183,7 @@ Algorithms/vdt/vdtmath.s: Algorithms/vdt/vdtmath.cpp.s
 # target to generate assembly for a file
 Algorithms/vdt/vdtmath.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Algorithms/vdt/vdtmath.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Algorithms/vdt/vdtmath.cpp.s
 .PHONY : Algorithms/vdt/vdtmath.cpp.s
 
 Async/Thread.o: Async/Thread.cpp.o
@@ -177,6 +193,7 @@ Async/Thread.o: Async/Thread.cpp.o
 # target to build an object file
 Async/Thread.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Async/Thread.cpp.o
 .PHONY : Async/Thread.cpp.o
 
 Async/Thread.i: Async/Thread.cpp.i
@@ -186,6 +203,7 @@ Async/Thread.i: Async/Thread.cpp.i
 # target to preprocess a source file
 Async/Thread.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Async/Thread.cpp.i
 .PHONY : Async/Thread.cpp.i
 
 Async/Thread.s: Async/Thread.cpp.s
@@ -195,6 +213,7 @@ Async/Thread.s: Async/Thread.cpp.s
 # target to generate assembly for a file
 Async/Thread.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Async/Thread.cpp.s
 .PHONY : Async/Thread.cpp.s
 
 Chrono/Timer.o: Chrono/Timer.cpp.o
@@ -204,6 +223,7 @@ Chrono/Timer.o: Chrono/Timer.cpp.o
 # target to build an object file
 Chrono/Timer.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Chrono/Timer.cpp.o
 .PHONY : Chrono/Timer.cpp.o
 
 Chrono/Timer.i: Chrono/Timer.cpp.i
@@ -213,6 +233,7 @@ Chrono/Timer.i: Chrono/Timer.cpp.i
 # target to preprocess a source file
 Chrono/Timer.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Chrono/Timer.cpp.i
 .PHONY : Chrono/Timer.cpp.i
 
 Chrono/Timer.s: Chrono/Timer.cpp.s
@@ -222,6 +243,7 @@ Chrono/Timer.s: Chrono/Timer.cpp.s
 # target to generate assembly for a file
 Chrono/Timer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Chrono/Timer.cpp.s
 .PHONY : Chrono/Timer.cpp.s
 
 Examples/CalculusExample.o: Examples/CalculusExample.cpp.o
@@ -231,6 +253,7 @@ Examples/CalculusExample.o: Examples/CalculusExample.cpp.o
 # target to build an object file
 Examples/CalculusExample.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/CalculusExample.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Examples/CalculusExample.cpp.o
 .PHONY : Examples/CalculusExample.cpp.o
 
 Examples/CalculusExample.i: Examples/CalculusExample.cpp.i
@@ -240,6 +263,7 @@ Examples/CalculusExample.i: Examples/CalculusExample.cpp.i
 # target to preprocess a source file
 Examples/CalculusExample.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/CalculusExample.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Examples/CalculusExample.cpp.i
 .PHONY : Examples/CalculusExample.cpp.i
 
 Examples/CalculusExample.s: Examples/CalculusExample.cpp.s
@@ -249,6 +273,7 @@ Examples/CalculusExample.s: Examples/CalculusExample.cpp.s
 # target to generate assembly for a file
 Examples/CalculusExample.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/CalculusExample.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Examples/CalculusExample.cpp.s
 .PHONY : Examples/CalculusExample.cpp.s
 
 Examples/DelimeterSeperateFileExample.o: Examples/DelimeterSeperateFileExample.cpp.o
@@ -258,6 +283,7 @@ Examples/DelimeterSeperateFileExample.o: Examples/DelimeterSeperateFileExample.c
 # target to build an object file
 Examples/DelimeterSeperateFileExample.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Examples/DelimeterSeperateFileExample.cpp.o
 .PHONY : Examples/DelimeterSeperateFileExample.cpp.o
 
 Examples/DelimeterSeperateFileExample.i: Examples/DelimeterSeperateFileExample.cpp.i
@@ -267,6 +293,7 @@ Examples/DelimeterSeperateFileExample.i: Examples/DelimeterSeperateFileExample.c
 # target to preprocess a source file
 Examples/DelimeterSeperateFileExample.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Examples/DelimeterSeperateFileExample.cpp.i
 .PHONY : Examples/DelimeterSeperateFileExample.cpp.i
 
 Examples/DelimeterSeperateFileExample.s: Examples/DelimeterSeperateFileExample.cpp.s
@@ -276,6 +303,7 @@ Examples/DelimeterSeperateFileExample.s: Examples/DelimeterSeperateFileExample.c
 # target to generate assembly for a file
 Examples/DelimeterSeperateFileExample.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Examples/DelimeterSeperateFileExample.cpp.s
 .PHONY : Examples/DelimeterSeperateFileExample.cpp.s
 
 Examples/FullAdderExample.o: Examples/FullAdderExample.cpp.o
@@ -285,6 +313,7 @@ Examples/FullAdderExample.o: Examples/FullAdderExample.cpp.o
 # target to build an object file
 Examples/FullAdderExample.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Examples/FullAdderExample.cpp.o
 .PHONY : Examples/FullAdderExample.cpp.o
 
 Examples/FullAdderExample.i: Examples/FullAdderExample.cpp.i
@@ -294,6 +323,7 @@ Examples/FullAdderExample.i: Examples/FullAdderExample.cpp.i
 # target to preprocess a source file
 Examples/FullAdderExample.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Examples/FullAdderExample.cpp.i
 .PHONY : Examples/FullAdderExample.cpp.i
 
 Examples/FullAdderExample.s: Examples/FullAdderExample.cpp.s
@@ -303,6 +333,7 @@ Examples/FullAdderExample.s: Examples/FullAdderExample.cpp.s
 # target to generate assembly for a file
 Examples/FullAdderExample.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Examples/FullAdderExample.cpp.s
 .PHONY : Examples/FullAdderExample.cpp.s
 
 Examples/IOExample.o: Examples/IOExample.cpp.o
@@ -312,6 +343,7 @@ Examples/IOExample.o: Examples/IOExample.cpp.o
 # target to build an object file
 Examples/IOExample.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/IOExample.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Examples/IOExample.cpp.o
 .PHONY : Examples/IOExample.cpp.o
 
 Examples/IOExample.i: Examples/IOExample.cpp.i
@@ -321,6 +353,7 @@ Examples/IOExample.i: Examples/IOExample.cpp.i
 # target to preprocess a source file
 Examples/IOExample.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/IOExample.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Examples/IOExample.cpp.i
 .PHONY : Examples/IOExample.cpp.i
 
 Examples/IOExample.s: Examples/IOExample.cpp.s
@@ -330,6 +363,7 @@ Examples/IOExample.s: Examples/IOExample.cpp.s
 # target to generate assembly for a file
 Examples/IOExample.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/IOExample.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Examples/IOExample.cpp.s
 .PHONY : Examples/IOExample.cpp.s
 
 Examples/MultithreadingExample.o: Examples/MultithreadingExample.cpp.o
@@ -339,6 +373,7 @@ Examples/MultithreadingExample.o: Examples/MultithreadingExample.cpp.o
 # target to build an object file
 Examples/MultithreadingExample.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/MultithreadingExample.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Examples/MultithreadingExample.cpp.o
 .PHONY : Examples/MultithreadingExample.cpp.o
 
 Examples/MultithreadingExample.i: Examples/MultithreadingExample.cpp.i
@@ -348,6 +383,7 @@ Examples/MultithreadingExample.i: Examples/MultithreadingExample.cpp.i
 # target to preprocess a source file
 Examples/MultithreadingExample.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/MultithreadingExample.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Examples/MultithreadingExample.cpp.i
 .PHONY : Examples/MultithreadingExample.cpp.i
 
 Examples/MultithreadingExample.s: Examples/MultithreadingExample.cpp.s
@@ -357,6 +393,7 @@ Examples/MultithreadingExample.s: Examples/MultithreadingExample.cpp.s
 # target to generate assembly for a file
 Examples/MultithreadingExample.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/MultithreadingExample.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Examples/MultithreadingExample.cpp.s
 .PHONY : Examples/MultithreadingExample.cpp.s
 
 Examples/ReflectionExample.o: Examples/ReflectionExample.cpp.o
@@ -366,6 +403,7 @@ Examples/ReflectionExample.o: Examples/ReflectionExample.cpp.o
 # target to build an object file
 Examples/ReflectionExample.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Examples/ReflectionExample.cpp.o
 .PHONY : Examples/ReflectionExample.cpp.o
 
 Examples/ReflectionExample.i: Examples/ReflectionExample.cpp.i
@@ -375,6 +413,7 @@ Examples/ReflectionExample.i: Examples/ReflectionExample.cpp.i
 # target to preprocess a source file
 Examples/ReflectionExample.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Examples/ReflectionExample.cpp.i
 .PHONY : Examples/ReflectionExample.cpp.i
 
 Examples/ReflectionExample.s: Examples/ReflectionExample.cpp.s
@@ -384,7 +423,38 @@ Examples/ReflectionExample.s: Examples/ReflectionExample.cpp.s
 # target to generate assembly for a file
 Examples/ReflectionExample.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Examples/ReflectionExample.cpp.s
 .PHONY : Examples/ReflectionExample.cpp.s
+
+Examples/StringToNumberExample.o: Examples/StringToNumberExample.cpp.o
+
+.PHONY : Examples/StringToNumberExample.o
+
+# target to build an object file
+Examples/StringToNumberExample.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/StringToNumberExample.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Examples/StringToNumberExample.cpp.o
+.PHONY : Examples/StringToNumberExample.cpp.o
+
+Examples/StringToNumberExample.i: Examples/StringToNumberExample.cpp.i
+
+.PHONY : Examples/StringToNumberExample.i
+
+# target to preprocess a source file
+Examples/StringToNumberExample.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/StringToNumberExample.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Examples/StringToNumberExample.cpp.i
+.PHONY : Examples/StringToNumberExample.cpp.i
+
+Examples/StringToNumberExample.s: Examples/StringToNumberExample.cpp.s
+
+.PHONY : Examples/StringToNumberExample.s
+
+# target to generate assembly for a file
+Examples/StringToNumberExample.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/StringToNumberExample.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Examples/StringToNumberExample.cpp.s
+.PHONY : Examples/StringToNumberExample.cpp.s
 
 Examples/TermBoxInputExample.o: Examples/TermBoxInputExample.cpp.o
 
@@ -393,6 +463,7 @@ Examples/TermBoxInputExample.o: Examples/TermBoxInputExample.cpp.o
 # target to build an object file
 Examples/TermBoxInputExample.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/TermBoxInputExample.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Examples/TermBoxInputExample.cpp.o
 .PHONY : Examples/TermBoxInputExample.cpp.o
 
 Examples/TermBoxInputExample.i: Examples/TermBoxInputExample.cpp.i
@@ -402,6 +473,7 @@ Examples/TermBoxInputExample.i: Examples/TermBoxInputExample.cpp.i
 # target to preprocess a source file
 Examples/TermBoxInputExample.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/TermBoxInputExample.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Examples/TermBoxInputExample.cpp.i
 .PHONY : Examples/TermBoxInputExample.cpp.i
 
 Examples/TermBoxInputExample.s: Examples/TermBoxInputExample.cpp.s
@@ -411,6 +483,7 @@ Examples/TermBoxInputExample.s: Examples/TermBoxInputExample.cpp.s
 # target to generate assembly for a file
 Examples/TermBoxInputExample.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/TermBoxInputExample.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Examples/TermBoxInputExample.cpp.s
 .PHONY : Examples/TermBoxInputExample.cpp.s
 
 Examples/TermBoxMenuExample.o: Examples/TermBoxMenuExample.cpp.o
@@ -420,6 +493,7 @@ Examples/TermBoxMenuExample.o: Examples/TermBoxMenuExample.cpp.o
 # target to build an object file
 Examples/TermBoxMenuExample.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Examples/TermBoxMenuExample.cpp.o
 .PHONY : Examples/TermBoxMenuExample.cpp.o
 
 Examples/TermBoxMenuExample.i: Examples/TermBoxMenuExample.cpp.i
@@ -429,6 +503,7 @@ Examples/TermBoxMenuExample.i: Examples/TermBoxMenuExample.cpp.i
 # target to preprocess a source file
 Examples/TermBoxMenuExample.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Examples/TermBoxMenuExample.cpp.i
 .PHONY : Examples/TermBoxMenuExample.cpp.i
 
 Examples/TermBoxMenuExample.s: Examples/TermBoxMenuExample.cpp.s
@@ -438,6 +513,7 @@ Examples/TermBoxMenuExample.s: Examples/TermBoxMenuExample.cpp.s
 # target to generate assembly for a file
 Examples/TermBoxMenuExample.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Examples/TermBoxMenuExample.cpp.s
 .PHONY : Examples/TermBoxMenuExample.cpp.s
 
 Examples/WebServerExample.o: Examples/WebServerExample.cpp.o
@@ -447,6 +523,7 @@ Examples/WebServerExample.o: Examples/WebServerExample.cpp.o
 # target to build an object file
 Examples/WebServerExample.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Examples/WebServerExample.cpp.o
 .PHONY : Examples/WebServerExample.cpp.o
 
 Examples/WebServerExample.i: Examples/WebServerExample.cpp.i
@@ -456,6 +533,7 @@ Examples/WebServerExample.i: Examples/WebServerExample.cpp.i
 # target to preprocess a source file
 Examples/WebServerExample.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Examples/WebServerExample.cpp.i
 .PHONY : Examples/WebServerExample.cpp.i
 
 Examples/WebServerExample.s: Examples/WebServerExample.cpp.s
@@ -465,6 +543,7 @@ Examples/WebServerExample.s: Examples/WebServerExample.cpp.s
 # target to generate assembly for a file
 Examples/WebServerExample.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Examples/WebServerExample.cpp.s
 .PHONY : Examples/WebServerExample.cpp.s
 
 IO/Redis/alloc.o: IO/Redis/alloc.c.o
@@ -474,6 +553,7 @@ IO/Redis/alloc.o: IO/Redis/alloc.c.o
 # target to build an object file
 IO/Redis/alloc.c.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/alloc.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/IO/Redis/alloc.c.o
 .PHONY : IO/Redis/alloc.c.o
 
 IO/Redis/alloc.i: IO/Redis/alloc.c.i
@@ -483,6 +563,7 @@ IO/Redis/alloc.i: IO/Redis/alloc.c.i
 # target to preprocess a source file
 IO/Redis/alloc.c.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/alloc.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/IO/Redis/alloc.c.i
 .PHONY : IO/Redis/alloc.c.i
 
 IO/Redis/alloc.s: IO/Redis/alloc.c.s
@@ -492,6 +573,7 @@ IO/Redis/alloc.s: IO/Redis/alloc.c.s
 # target to generate assembly for a file
 IO/Redis/alloc.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/alloc.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/IO/Redis/alloc.c.s
 .PHONY : IO/Redis/alloc.c.s
 
 IO/Redis/async.o: IO/Redis/async.c.o
@@ -501,6 +583,7 @@ IO/Redis/async.o: IO/Redis/async.c.o
 # target to build an object file
 IO/Redis/async.c.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/async.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/IO/Redis/async.c.o
 .PHONY : IO/Redis/async.c.o
 
 IO/Redis/async.i: IO/Redis/async.c.i
@@ -510,6 +593,7 @@ IO/Redis/async.i: IO/Redis/async.c.i
 # target to preprocess a source file
 IO/Redis/async.c.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/async.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/IO/Redis/async.c.i
 .PHONY : IO/Redis/async.c.i
 
 IO/Redis/async.s: IO/Redis/async.c.s
@@ -519,6 +603,7 @@ IO/Redis/async.s: IO/Redis/async.c.s
 # target to generate assembly for a file
 IO/Redis/async.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/async.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/IO/Redis/async.c.s
 .PHONY : IO/Redis/async.c.s
 
 IO/Redis/dict.o: IO/Redis/dict.c.o
@@ -528,6 +613,7 @@ IO/Redis/dict.o: IO/Redis/dict.c.o
 # target to build an object file
 IO/Redis/dict.c.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/dict.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/IO/Redis/dict.c.o
 .PHONY : IO/Redis/dict.c.o
 
 IO/Redis/dict.i: IO/Redis/dict.c.i
@@ -537,6 +623,7 @@ IO/Redis/dict.i: IO/Redis/dict.c.i
 # target to preprocess a source file
 IO/Redis/dict.c.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/dict.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/IO/Redis/dict.c.i
 .PHONY : IO/Redis/dict.c.i
 
 IO/Redis/dict.s: IO/Redis/dict.c.s
@@ -546,6 +633,7 @@ IO/Redis/dict.s: IO/Redis/dict.c.s
 # target to generate assembly for a file
 IO/Redis/dict.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/dict.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/IO/Redis/dict.c.s
 .PHONY : IO/Redis/dict.c.s
 
 IO/Redis/hiredis.o: IO/Redis/hiredis.c.o
@@ -555,6 +643,7 @@ IO/Redis/hiredis.o: IO/Redis/hiredis.c.o
 # target to build an object file
 IO/Redis/hiredis.c.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/hiredis.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/IO/Redis/hiredis.c.o
 .PHONY : IO/Redis/hiredis.c.o
 
 IO/Redis/hiredis.i: IO/Redis/hiredis.c.i
@@ -564,6 +653,7 @@ IO/Redis/hiredis.i: IO/Redis/hiredis.c.i
 # target to preprocess a source file
 IO/Redis/hiredis.c.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/hiredis.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/IO/Redis/hiredis.c.i
 .PHONY : IO/Redis/hiredis.c.i
 
 IO/Redis/hiredis.s: IO/Redis/hiredis.c.s
@@ -573,6 +663,7 @@ IO/Redis/hiredis.s: IO/Redis/hiredis.c.s
 # target to generate assembly for a file
 IO/Redis/hiredis.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/hiredis.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/IO/Redis/hiredis.c.s
 .PHONY : IO/Redis/hiredis.c.s
 
 IO/Redis/net.o: IO/Redis/net.c.o
@@ -582,6 +673,7 @@ IO/Redis/net.o: IO/Redis/net.c.o
 # target to build an object file
 IO/Redis/net.c.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/net.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/IO/Redis/net.c.o
 .PHONY : IO/Redis/net.c.o
 
 IO/Redis/net.i: IO/Redis/net.c.i
@@ -591,6 +683,7 @@ IO/Redis/net.i: IO/Redis/net.c.i
 # target to preprocess a source file
 IO/Redis/net.c.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/net.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/IO/Redis/net.c.i
 .PHONY : IO/Redis/net.c.i
 
 IO/Redis/net.s: IO/Redis/net.c.s
@@ -600,6 +693,7 @@ IO/Redis/net.s: IO/Redis/net.c.s
 # target to generate assembly for a file
 IO/Redis/net.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/net.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/IO/Redis/net.c.s
 .PHONY : IO/Redis/net.c.s
 
 IO/Redis/read.o: IO/Redis/read.c.o
@@ -609,6 +703,7 @@ IO/Redis/read.o: IO/Redis/read.c.o
 # target to build an object file
 IO/Redis/read.c.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/read.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/IO/Redis/read.c.o
 .PHONY : IO/Redis/read.c.o
 
 IO/Redis/read.i: IO/Redis/read.c.i
@@ -618,6 +713,7 @@ IO/Redis/read.i: IO/Redis/read.c.i
 # target to preprocess a source file
 IO/Redis/read.c.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/read.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/IO/Redis/read.c.i
 .PHONY : IO/Redis/read.c.i
 
 IO/Redis/read.s: IO/Redis/read.c.s
@@ -627,6 +723,7 @@ IO/Redis/read.s: IO/Redis/read.c.s
 # target to generate assembly for a file
 IO/Redis/read.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/read.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/IO/Redis/read.c.s
 .PHONY : IO/Redis/read.c.s
 
 IO/Redis/sds.o: IO/Redis/sds.c.o
@@ -636,6 +733,7 @@ IO/Redis/sds.o: IO/Redis/sds.c.o
 # target to build an object file
 IO/Redis/sds.c.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/sds.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/IO/Redis/sds.c.o
 .PHONY : IO/Redis/sds.c.o
 
 IO/Redis/sds.i: IO/Redis/sds.c.i
@@ -645,6 +743,7 @@ IO/Redis/sds.i: IO/Redis/sds.c.i
 # target to preprocess a source file
 IO/Redis/sds.c.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/sds.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/IO/Redis/sds.c.i
 .PHONY : IO/Redis/sds.c.i
 
 IO/Redis/sds.s: IO/Redis/sds.c.s
@@ -654,6 +753,7 @@ IO/Redis/sds.s: IO/Redis/sds.c.s
 # target to generate assembly for a file
 IO/Redis/sds.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/sds.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/IO/Redis/sds.c.s
 .PHONY : IO/Redis/sds.c.s
 
 IO/Redis/sockcompat.o: IO/Redis/sockcompat.c.o
@@ -663,6 +763,7 @@ IO/Redis/sockcompat.o: IO/Redis/sockcompat.c.o
 # target to build an object file
 IO/Redis/sockcompat.c.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/sockcompat.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/IO/Redis/sockcompat.c.o
 .PHONY : IO/Redis/sockcompat.c.o
 
 IO/Redis/sockcompat.i: IO/Redis/sockcompat.c.i
@@ -672,6 +773,7 @@ IO/Redis/sockcompat.i: IO/Redis/sockcompat.c.i
 # target to preprocess a source file
 IO/Redis/sockcompat.c.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/sockcompat.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/IO/Redis/sockcompat.c.i
 .PHONY : IO/Redis/sockcompat.c.i
 
 IO/Redis/sockcompat.s: IO/Redis/sockcompat.c.s
@@ -681,6 +783,7 @@ IO/Redis/sockcompat.s: IO/Redis/sockcompat.c.s
 # target to generate assembly for a file
 IO/Redis/sockcompat.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/sockcompat.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/IO/Redis/sockcompat.c.s
 .PHONY : IO/Redis/sockcompat.c.s
 
 IO/Redis/ssl.o: IO/Redis/ssl.c.o
@@ -690,6 +793,7 @@ IO/Redis/ssl.o: IO/Redis/ssl.c.o
 # target to build an object file
 IO/Redis/ssl.c.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/ssl.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/IO/Redis/ssl.c.o
 .PHONY : IO/Redis/ssl.c.o
 
 IO/Redis/ssl.i: IO/Redis/ssl.c.i
@@ -699,6 +803,7 @@ IO/Redis/ssl.i: IO/Redis/ssl.c.i
 # target to preprocess a source file
 IO/Redis/ssl.c.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/ssl.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/IO/Redis/ssl.c.i
 .PHONY : IO/Redis/ssl.c.i
 
 IO/Redis/ssl.s: IO/Redis/ssl.c.s
@@ -708,6 +813,7 @@ IO/Redis/ssl.s: IO/Redis/ssl.c.s
 # target to generate assembly for a file
 IO/Redis/ssl.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/Redis/ssl.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/IO/Redis/ssl.c.s
 .PHONY : IO/Redis/ssl.c.s
 
 IO/XML/tinyxml2.o: IO/XML/tinyxml2.cpp.o
@@ -717,6 +823,7 @@ IO/XML/tinyxml2.o: IO/XML/tinyxml2.cpp.o
 # target to build an object file
 IO/XML/tinyxml2.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/XML/tinyxml2.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/IO/XML/tinyxml2.cpp.o
 .PHONY : IO/XML/tinyxml2.cpp.o
 
 IO/XML/tinyxml2.i: IO/XML/tinyxml2.cpp.i
@@ -726,6 +833,7 @@ IO/XML/tinyxml2.i: IO/XML/tinyxml2.cpp.i
 # target to preprocess a source file
 IO/XML/tinyxml2.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/XML/tinyxml2.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/IO/XML/tinyxml2.cpp.i
 .PHONY : IO/XML/tinyxml2.cpp.i
 
 IO/XML/tinyxml2.s: IO/XML/tinyxml2.cpp.s
@@ -735,6 +843,7 @@ IO/XML/tinyxml2.s: IO/XML/tinyxml2.cpp.s
 # target to generate assembly for a file
 IO/XML/tinyxml2.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/XML/tinyxml2.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/IO/XML/tinyxml2.cpp.s
 .PHONY : IO/XML/tinyxml2.cpp.s
 
 IO/etcd/etcdcpp.o: IO/etcd/etcdcpp.cpp.o
@@ -744,6 +853,7 @@ IO/etcd/etcdcpp.o: IO/etcd/etcdcpp.cpp.o
 # target to build an object file
 IO/etcd/etcdcpp.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/IO/etcd/etcdcpp.cpp.o
 .PHONY : IO/etcd/etcdcpp.cpp.o
 
 IO/etcd/etcdcpp.i: IO/etcd/etcdcpp.cpp.i
@@ -753,6 +863,7 @@ IO/etcd/etcdcpp.i: IO/etcd/etcdcpp.cpp.i
 # target to preprocess a source file
 IO/etcd/etcdcpp.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/IO/etcd/etcdcpp.cpp.i
 .PHONY : IO/etcd/etcdcpp.cpp.i
 
 IO/etcd/etcdcpp.s: IO/etcd/etcdcpp.cpp.s
@@ -762,6 +873,7 @@ IO/etcd/etcdcpp.s: IO/etcd/etcdcpp.cpp.s
 # target to generate assembly for a file
 IO/etcd/etcdcpp.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/IO/etcd/etcdcpp.cpp.s
 .PHONY : IO/etcd/etcdcpp.cpp.s
 
 IO/unqlite.o: IO/unqlite.c.o
@@ -771,6 +883,7 @@ IO/unqlite.o: IO/unqlite.c.o
 # target to build an object file
 IO/unqlite.c.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/unqlite.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/IO/unqlite.c.o
 .PHONY : IO/unqlite.c.o
 
 IO/unqlite.i: IO/unqlite.c.i
@@ -780,6 +893,7 @@ IO/unqlite.i: IO/unqlite.c.i
 # target to preprocess a source file
 IO/unqlite.c.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/unqlite.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/IO/unqlite.c.i
 .PHONY : IO/unqlite.c.i
 
 IO/unqlite.s: IO/unqlite.c.s
@@ -789,6 +903,7 @@ IO/unqlite.s: IO/unqlite.c.s
 # target to generate assembly for a file
 IO/unqlite.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/IO/unqlite.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/IO/unqlite.c.s
 .PHONY : IO/unqlite.c.s
 
 MVC/TermBoxApplication.o: MVC/TermBoxApplication.cpp.o
@@ -798,6 +913,7 @@ MVC/TermBoxApplication.o: MVC/TermBoxApplication.cpp.o
 # target to build an object file
 MVC/TermBoxApplication.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/MVC/TermBoxApplication.cpp.o
 .PHONY : MVC/TermBoxApplication.cpp.o
 
 MVC/TermBoxApplication.i: MVC/TermBoxApplication.cpp.i
@@ -807,6 +923,7 @@ MVC/TermBoxApplication.i: MVC/TermBoxApplication.cpp.i
 # target to preprocess a source file
 MVC/TermBoxApplication.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/MVC/TermBoxApplication.cpp.i
 .PHONY : MVC/TermBoxApplication.cpp.i
 
 MVC/TermBoxApplication.s: MVC/TermBoxApplication.cpp.s
@@ -816,7 +933,116 @@ MVC/TermBoxApplication.s: MVC/TermBoxApplication.cpp.s
 # target to generate assembly for a file
 MVC/TermBoxApplication.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/MVC/TermBoxApplication.cpp.s
 .PHONY : MVC/TermBoxApplication.cpp.s
+
+Memory/FreeListAllocator.o: Memory/FreeListAllocator.cpp.o
+
+.PHONY : Memory/FreeListAllocator.o
+
+# target to build an object file
+Memory/FreeListAllocator.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Memory/FreeListAllocator.cpp.o
+.PHONY : Memory/FreeListAllocator.cpp.o
+
+Memory/FreeListAllocator.i: Memory/FreeListAllocator.cpp.i
+
+.PHONY : Memory/FreeListAllocator.i
+
+# target to preprocess a source file
+Memory/FreeListAllocator.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Memory/FreeListAllocator.cpp.i
+.PHONY : Memory/FreeListAllocator.cpp.i
+
+Memory/FreeListAllocator.s: Memory/FreeListAllocator.cpp.s
+
+.PHONY : Memory/FreeListAllocator.s
+
+# target to generate assembly for a file
+Memory/FreeListAllocator.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Memory/FreeListAllocator.cpp.s
+.PHONY : Memory/FreeListAllocator.cpp.s
+
+Memory/LinearAllocator.o: Memory/LinearAllocator.cpp.o
+
+.PHONY : Memory/LinearAllocator.o
+
+# target to build an object file
+Memory/LinearAllocator.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Memory/LinearAllocator.cpp.o
+.PHONY : Memory/LinearAllocator.cpp.o
+
+Memory/LinearAllocator.i: Memory/LinearAllocator.cpp.i
+
+.PHONY : Memory/LinearAllocator.i
+
+# target to preprocess a source file
+Memory/LinearAllocator.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Memory/LinearAllocator.cpp.i
+.PHONY : Memory/LinearAllocator.cpp.i
+
+Memory/LinearAllocator.s: Memory/LinearAllocator.cpp.s
+
+.PHONY : Memory/LinearAllocator.s
+
+# target to generate assembly for a file
+Memory/LinearAllocator.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Memory/LinearAllocator.cpp.s
+.PHONY : Memory/LinearAllocator.cpp.s
+
+Memory/PoolAllocator.o: Memory/PoolAllocator.cpp.o
+
+.PHONY : Memory/PoolAllocator.o
+
+# target to build an object file
+Memory/PoolAllocator.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o
+.PHONY : Memory/PoolAllocator.cpp.o
+
+Memory/PoolAllocator.i: Memory/PoolAllocator.cpp.i
+
+.PHONY : Memory/PoolAllocator.i
+
+# target to preprocess a source file
+Memory/PoolAllocator.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.i
+.PHONY : Memory/PoolAllocator.cpp.i
+
+Memory/PoolAllocator.s: Memory/PoolAllocator.cpp.s
+
+.PHONY : Memory/PoolAllocator.s
+
+# target to generate assembly for a file
+Memory/PoolAllocator.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.s
+.PHONY : Memory/PoolAllocator.cpp.s
+
+Memory/StackAllocator.o: Memory/StackAllocator.cpp.o
+
+.PHONY : Memory/StackAllocator.o
+
+# target to build an object file
+Memory/StackAllocator.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Memory/StackAllocator.cpp.o
+.PHONY : Memory/StackAllocator.cpp.o
+
+Memory/StackAllocator.i: Memory/StackAllocator.cpp.i
+
+.PHONY : Memory/StackAllocator.i
+
+# target to preprocess a source file
+Memory/StackAllocator.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Memory/StackAllocator.cpp.i
+.PHONY : Memory/StackAllocator.cpp.i
+
+Memory/StackAllocator.s: Memory/StackAllocator.cpp.s
+
+.PHONY : Memory/StackAllocator.s
+
+# target to generate assembly for a file
+Memory/StackAllocator.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Memory/StackAllocator.cpp.s
+.PHONY : Memory/StackAllocator.cpp.s
 
 Process/clock.posix.o: Process/clock.posix.c.o
 
@@ -825,6 +1051,7 @@ Process/clock.posix.o: Process/clock.posix.c.o
 # target to build an object file
 Process/clock.posix.c.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Process/clock.posix.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Process/clock.posix.c.o
 .PHONY : Process/clock.posix.c.o
 
 Process/clock.posix.i: Process/clock.posix.c.i
@@ -834,6 +1061,7 @@ Process/clock.posix.i: Process/clock.posix.c.i
 # target to preprocess a source file
 Process/clock.posix.c.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Process/clock.posix.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Process/clock.posix.c.i
 .PHONY : Process/clock.posix.c.i
 
 Process/clock.posix.s: Process/clock.posix.c.s
@@ -843,6 +1071,7 @@ Process/clock.posix.s: Process/clock.posix.c.s
 # target to generate assembly for a file
 Process/clock.posix.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Process/clock.posix.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Process/clock.posix.c.s
 .PHONY : Process/clock.posix.c.s
 
 Process/drain.o: Process/drain.c.o
@@ -852,6 +1081,7 @@ Process/drain.o: Process/drain.c.o
 # target to build an object file
 Process/drain.c.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Process/drain.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Process/drain.c.o
 .PHONY : Process/drain.c.o
 
 Process/drain.i: Process/drain.c.i
@@ -861,6 +1091,7 @@ Process/drain.i: Process/drain.c.i
 # target to preprocess a source file
 Process/drain.c.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Process/drain.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Process/drain.c.i
 .PHONY : Process/drain.c.i
 
 Process/drain.s: Process/drain.c.s
@@ -870,6 +1101,7 @@ Process/drain.s: Process/drain.c.s
 # target to generate assembly for a file
 Process/drain.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Process/drain.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Process/drain.c.s
 .PHONY : Process/drain.c.s
 
 Process/error.posix.o: Process/error.posix.c.o
@@ -879,6 +1111,7 @@ Process/error.posix.o: Process/error.posix.c.o
 # target to build an object file
 Process/error.posix.c.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Process/error.posix.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Process/error.posix.c.o
 .PHONY : Process/error.posix.c.o
 
 Process/error.posix.i: Process/error.posix.c.i
@@ -888,6 +1121,7 @@ Process/error.posix.i: Process/error.posix.c.i
 # target to preprocess a source file
 Process/error.posix.c.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Process/error.posix.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Process/error.posix.c.i
 .PHONY : Process/error.posix.c.i
 
 Process/error.posix.s: Process/error.posix.c.s
@@ -897,6 +1131,7 @@ Process/error.posix.s: Process/error.posix.c.s
 # target to generate assembly for a file
 Process/error.posix.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Process/error.posix.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Process/error.posix.c.s
 .PHONY : Process/error.posix.c.s
 
 Process/handle.posix.o: Process/handle.posix.c.o
@@ -906,6 +1141,7 @@ Process/handle.posix.o: Process/handle.posix.c.o
 # target to build an object file
 Process/handle.posix.c.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Process/handle.posix.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Process/handle.posix.c.o
 .PHONY : Process/handle.posix.c.o
 
 Process/handle.posix.i: Process/handle.posix.c.i
@@ -915,6 +1151,7 @@ Process/handle.posix.i: Process/handle.posix.c.i
 # target to preprocess a source file
 Process/handle.posix.c.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Process/handle.posix.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Process/handle.posix.c.i
 .PHONY : Process/handle.posix.c.i
 
 Process/handle.posix.s: Process/handle.posix.c.s
@@ -924,6 +1161,7 @@ Process/handle.posix.s: Process/handle.posix.c.s
 # target to generate assembly for a file
 Process/handle.posix.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Process/handle.posix.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Process/handle.posix.c.s
 .PHONY : Process/handle.posix.c.s
 
 Process/init.posix.o: Process/init.posix.c.o
@@ -933,6 +1171,7 @@ Process/init.posix.o: Process/init.posix.c.o
 # target to build an object file
 Process/init.posix.c.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Process/init.posix.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Process/init.posix.c.o
 .PHONY : Process/init.posix.c.o
 
 Process/init.posix.i: Process/init.posix.c.i
@@ -942,6 +1181,7 @@ Process/init.posix.i: Process/init.posix.c.i
 # target to preprocess a source file
 Process/init.posix.c.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Process/init.posix.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Process/init.posix.c.i
 .PHONY : Process/init.posix.c.i
 
 Process/init.posix.s: Process/init.posix.c.s
@@ -951,6 +1191,7 @@ Process/init.posix.s: Process/init.posix.c.s
 # target to generate assembly for a file
 Process/init.posix.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Process/init.posix.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Process/init.posix.c.s
 .PHONY : Process/init.posix.c.s
 
 Process/options.o: Process/options.c.o
@@ -960,6 +1201,7 @@ Process/options.o: Process/options.c.o
 # target to build an object file
 Process/options.c.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Process/options.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Process/options.c.o
 .PHONY : Process/options.c.o
 
 Process/options.i: Process/options.c.i
@@ -969,6 +1211,7 @@ Process/options.i: Process/options.c.i
 # target to preprocess a source file
 Process/options.c.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Process/options.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Process/options.c.i
 .PHONY : Process/options.c.i
 
 Process/options.s: Process/options.c.s
@@ -978,6 +1221,7 @@ Process/options.s: Process/options.c.s
 # target to generate assembly for a file
 Process/options.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Process/options.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Process/options.c.s
 .PHONY : Process/options.c.s
 
 Process/pipe.posix.o: Process/pipe.posix.c.o
@@ -987,6 +1231,7 @@ Process/pipe.posix.o: Process/pipe.posix.c.o
 # target to build an object file
 Process/pipe.posix.c.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Process/pipe.posix.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Process/pipe.posix.c.o
 .PHONY : Process/pipe.posix.c.o
 
 Process/pipe.posix.i: Process/pipe.posix.c.i
@@ -996,6 +1241,7 @@ Process/pipe.posix.i: Process/pipe.posix.c.i
 # target to preprocess a source file
 Process/pipe.posix.c.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Process/pipe.posix.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Process/pipe.posix.c.i
 .PHONY : Process/pipe.posix.c.i
 
 Process/pipe.posix.s: Process/pipe.posix.c.s
@@ -1005,6 +1251,7 @@ Process/pipe.posix.s: Process/pipe.posix.c.s
 # target to generate assembly for a file
 Process/pipe.posix.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Process/pipe.posix.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Process/pipe.posix.c.s
 .PHONY : Process/pipe.posix.c.s
 
 Process/process.posix.o: Process/process.posix.c.o
@@ -1014,6 +1261,7 @@ Process/process.posix.o: Process/process.posix.c.o
 # target to build an object file
 Process/process.posix.c.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Process/process.posix.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Process/process.posix.c.o
 .PHONY : Process/process.posix.c.o
 
 Process/process.posix.i: Process/process.posix.c.i
@@ -1023,6 +1271,7 @@ Process/process.posix.i: Process/process.posix.c.i
 # target to preprocess a source file
 Process/process.posix.c.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Process/process.posix.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Process/process.posix.c.i
 .PHONY : Process/process.posix.c.i
 
 Process/process.posix.s: Process/process.posix.c.s
@@ -1032,6 +1281,7 @@ Process/process.posix.s: Process/process.posix.c.s
 # target to generate assembly for a file
 Process/process.posix.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Process/process.posix.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Process/process.posix.c.s
 .PHONY : Process/process.posix.c.s
 
 Process/redirect.o: Process/redirect.c.o
@@ -1041,6 +1291,7 @@ Process/redirect.o: Process/redirect.c.o
 # target to build an object file
 Process/redirect.c.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Process/redirect.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Process/redirect.c.o
 .PHONY : Process/redirect.c.o
 
 Process/redirect.i: Process/redirect.c.i
@@ -1050,6 +1301,7 @@ Process/redirect.i: Process/redirect.c.i
 # target to preprocess a source file
 Process/redirect.c.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Process/redirect.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Process/redirect.c.i
 .PHONY : Process/redirect.c.i
 
 Process/redirect.s: Process/redirect.c.s
@@ -1059,6 +1311,7 @@ Process/redirect.s: Process/redirect.c.s
 # target to generate assembly for a file
 Process/redirect.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Process/redirect.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Process/redirect.c.s
 .PHONY : Process/redirect.c.s
 
 Process/redirect.posix.o: Process/redirect.posix.c.o
@@ -1068,6 +1321,7 @@ Process/redirect.posix.o: Process/redirect.posix.c.o
 # target to build an object file
 Process/redirect.posix.c.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Process/redirect.posix.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Process/redirect.posix.c.o
 .PHONY : Process/redirect.posix.c.o
 
 Process/redirect.posix.i: Process/redirect.posix.c.i
@@ -1077,6 +1331,7 @@ Process/redirect.posix.i: Process/redirect.posix.c.i
 # target to preprocess a source file
 Process/redirect.posix.c.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Process/redirect.posix.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Process/redirect.posix.c.i
 .PHONY : Process/redirect.posix.c.i
 
 Process/redirect.posix.s: Process/redirect.posix.c.s
@@ -1086,6 +1341,7 @@ Process/redirect.posix.s: Process/redirect.posix.c.s
 # target to generate assembly for a file
 Process/redirect.posix.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Process/redirect.posix.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Process/redirect.posix.c.s
 .PHONY : Process/redirect.posix.c.s
 
 Process/reproc.o: Process/reproc.c.o
@@ -1095,6 +1351,7 @@ Process/reproc.o: Process/reproc.c.o
 # target to build an object file
 Process/reproc.c.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Process/reproc.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Process/reproc.c.o
 .PHONY : Process/reproc.c.o
 
 Process/reproc.i: Process/reproc.c.i
@@ -1104,6 +1361,7 @@ Process/reproc.i: Process/reproc.c.i
 # target to preprocess a source file
 Process/reproc.c.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Process/reproc.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Process/reproc.c.i
 .PHONY : Process/reproc.c.i
 
 Process/reproc.s: Process/reproc.c.s
@@ -1113,6 +1371,7 @@ Process/reproc.s: Process/reproc.c.s
 # target to generate assembly for a file
 Process/reproc.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Process/reproc.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Process/reproc.c.s
 .PHONY : Process/reproc.c.s
 
 Process/run.o: Process/run.c.o
@@ -1122,6 +1381,7 @@ Process/run.o: Process/run.c.o
 # target to build an object file
 Process/run.c.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Process/run.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Process/run.c.o
 .PHONY : Process/run.c.o
 
 Process/run.i: Process/run.c.i
@@ -1131,6 +1391,7 @@ Process/run.i: Process/run.c.i
 # target to preprocess a source file
 Process/run.c.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Process/run.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Process/run.c.i
 .PHONY : Process/run.c.i
 
 Process/run.s: Process/run.c.s
@@ -1140,7 +1401,488 @@ Process/run.s: Process/run.c.s
 # target to generate assembly for a file
 Process/run.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Process/run.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/Process/run.c.s
 .PHONY : Process/run.c.s
+
+REST/CPR/auth.o: REST/CPR/auth.cpp.o
+
+.PHONY : REST/CPR/auth.o
+
+# target to build an object file
+REST/CPR/auth.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/REST/CPR/auth.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/REST/CPR/auth.cpp.o
+.PHONY : REST/CPR/auth.cpp.o
+
+REST/CPR/auth.i: REST/CPR/auth.cpp.i
+
+.PHONY : REST/CPR/auth.i
+
+# target to preprocess a source file
+REST/CPR/auth.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/REST/CPR/auth.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/REST/CPR/auth.cpp.i
+.PHONY : REST/CPR/auth.cpp.i
+
+REST/CPR/auth.s: REST/CPR/auth.cpp.s
+
+.PHONY : REST/CPR/auth.s
+
+# target to generate assembly for a file
+REST/CPR/auth.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/REST/CPR/auth.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/REST/CPR/auth.cpp.s
+.PHONY : REST/CPR/auth.cpp.s
+
+REST/CPR/bearer.o: REST/CPR/bearer.cpp.o
+
+.PHONY : REST/CPR/bearer.o
+
+# target to build an object file
+REST/CPR/bearer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/REST/CPR/bearer.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/REST/CPR/bearer.cpp.o
+.PHONY : REST/CPR/bearer.cpp.o
+
+REST/CPR/bearer.i: REST/CPR/bearer.cpp.i
+
+.PHONY : REST/CPR/bearer.i
+
+# target to preprocess a source file
+REST/CPR/bearer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/REST/CPR/bearer.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/REST/CPR/bearer.cpp.i
+.PHONY : REST/CPR/bearer.cpp.i
+
+REST/CPR/bearer.s: REST/CPR/bearer.cpp.s
+
+.PHONY : REST/CPR/bearer.s
+
+# target to generate assembly for a file
+REST/CPR/bearer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/REST/CPR/bearer.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/REST/CPR/bearer.cpp.s
+.PHONY : REST/CPR/bearer.cpp.s
+
+REST/CPR/cookies.o: REST/CPR/cookies.cpp.o
+
+.PHONY : REST/CPR/cookies.o
+
+# target to build an object file
+REST/CPR/cookies.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/REST/CPR/cookies.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/REST/CPR/cookies.cpp.o
+.PHONY : REST/CPR/cookies.cpp.o
+
+REST/CPR/cookies.i: REST/CPR/cookies.cpp.i
+
+.PHONY : REST/CPR/cookies.i
+
+# target to preprocess a source file
+REST/CPR/cookies.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/REST/CPR/cookies.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/REST/CPR/cookies.cpp.i
+.PHONY : REST/CPR/cookies.cpp.i
+
+REST/CPR/cookies.s: REST/CPR/cookies.cpp.s
+
+.PHONY : REST/CPR/cookies.s
+
+# target to generate assembly for a file
+REST/CPR/cookies.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/REST/CPR/cookies.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/REST/CPR/cookies.cpp.s
+.PHONY : REST/CPR/cookies.cpp.s
+
+REST/CPR/cprtypes.o: REST/CPR/cprtypes.cpp.o
+
+.PHONY : REST/CPR/cprtypes.o
+
+# target to build an object file
+REST/CPR/cprtypes.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/REST/CPR/cprtypes.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/REST/CPR/cprtypes.cpp.o
+.PHONY : REST/CPR/cprtypes.cpp.o
+
+REST/CPR/cprtypes.i: REST/CPR/cprtypes.cpp.i
+
+.PHONY : REST/CPR/cprtypes.i
+
+# target to preprocess a source file
+REST/CPR/cprtypes.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/REST/CPR/cprtypes.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/REST/CPR/cprtypes.cpp.i
+.PHONY : REST/CPR/cprtypes.cpp.i
+
+REST/CPR/cprtypes.s: REST/CPR/cprtypes.cpp.s
+
+.PHONY : REST/CPR/cprtypes.s
+
+# target to generate assembly for a file
+REST/CPR/cprtypes.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/REST/CPR/cprtypes.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/REST/CPR/cprtypes.cpp.s
+.PHONY : REST/CPR/cprtypes.cpp.s
+
+REST/CPR/curl_container.o: REST/CPR/curl_container.cpp.o
+
+.PHONY : REST/CPR/curl_container.o
+
+# target to build an object file
+REST/CPR/curl_container.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/REST/CPR/curl_container.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/REST/CPR/curl_container.cpp.o
+.PHONY : REST/CPR/curl_container.cpp.o
+
+REST/CPR/curl_container.i: REST/CPR/curl_container.cpp.i
+
+.PHONY : REST/CPR/curl_container.i
+
+# target to preprocess a source file
+REST/CPR/curl_container.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/REST/CPR/curl_container.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/REST/CPR/curl_container.cpp.i
+.PHONY : REST/CPR/curl_container.cpp.i
+
+REST/CPR/curl_container.s: REST/CPR/curl_container.cpp.s
+
+.PHONY : REST/CPR/curl_container.s
+
+# target to generate assembly for a file
+REST/CPR/curl_container.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/REST/CPR/curl_container.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/REST/CPR/curl_container.cpp.s
+.PHONY : REST/CPR/curl_container.cpp.s
+
+REST/CPR/curlholder.o: REST/CPR/curlholder.cpp.o
+
+.PHONY : REST/CPR/curlholder.o
+
+# target to build an object file
+REST/CPR/curlholder.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/REST/CPR/curlholder.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/REST/CPR/curlholder.cpp.o
+.PHONY : REST/CPR/curlholder.cpp.o
+
+REST/CPR/curlholder.i: REST/CPR/curlholder.cpp.i
+
+.PHONY : REST/CPR/curlholder.i
+
+# target to preprocess a source file
+REST/CPR/curlholder.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/REST/CPR/curlholder.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/REST/CPR/curlholder.cpp.i
+.PHONY : REST/CPR/curlholder.cpp.i
+
+REST/CPR/curlholder.s: REST/CPR/curlholder.cpp.s
+
+.PHONY : REST/CPR/curlholder.s
+
+# target to generate assembly for a file
+REST/CPR/curlholder.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/REST/CPR/curlholder.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/REST/CPR/curlholder.cpp.s
+.PHONY : REST/CPR/curlholder.cpp.s
+
+REST/CPR/error.o: REST/CPR/error.cpp.o
+
+.PHONY : REST/CPR/error.o
+
+# target to build an object file
+REST/CPR/error.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/REST/CPR/error.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/REST/CPR/error.cpp.o
+.PHONY : REST/CPR/error.cpp.o
+
+REST/CPR/error.i: REST/CPR/error.cpp.i
+
+.PHONY : REST/CPR/error.i
+
+# target to preprocess a source file
+REST/CPR/error.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/REST/CPR/error.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/REST/CPR/error.cpp.i
+.PHONY : REST/CPR/error.cpp.i
+
+REST/CPR/error.s: REST/CPR/error.cpp.s
+
+.PHONY : REST/CPR/error.s
+
+# target to generate assembly for a file
+REST/CPR/error.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/REST/CPR/error.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/REST/CPR/error.cpp.s
+.PHONY : REST/CPR/error.cpp.s
+
+REST/CPR/multipart.o: REST/CPR/multipart.cpp.o
+
+.PHONY : REST/CPR/multipart.o
+
+# target to build an object file
+REST/CPR/multipart.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/REST/CPR/multipart.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/REST/CPR/multipart.cpp.o
+.PHONY : REST/CPR/multipart.cpp.o
+
+REST/CPR/multipart.i: REST/CPR/multipart.cpp.i
+
+.PHONY : REST/CPR/multipart.i
+
+# target to preprocess a source file
+REST/CPR/multipart.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/REST/CPR/multipart.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/REST/CPR/multipart.cpp.i
+.PHONY : REST/CPR/multipart.cpp.i
+
+REST/CPR/multipart.s: REST/CPR/multipart.cpp.s
+
+.PHONY : REST/CPR/multipart.s
+
+# target to generate assembly for a file
+REST/CPR/multipart.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/REST/CPR/multipart.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/REST/CPR/multipart.cpp.s
+.PHONY : REST/CPR/multipart.cpp.s
+
+REST/CPR/parameters.o: REST/CPR/parameters.cpp.o
+
+.PHONY : REST/CPR/parameters.o
+
+# target to build an object file
+REST/CPR/parameters.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/REST/CPR/parameters.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/REST/CPR/parameters.cpp.o
+.PHONY : REST/CPR/parameters.cpp.o
+
+REST/CPR/parameters.i: REST/CPR/parameters.cpp.i
+
+.PHONY : REST/CPR/parameters.i
+
+# target to preprocess a source file
+REST/CPR/parameters.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/REST/CPR/parameters.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/REST/CPR/parameters.cpp.i
+.PHONY : REST/CPR/parameters.cpp.i
+
+REST/CPR/parameters.s: REST/CPR/parameters.cpp.s
+
+.PHONY : REST/CPR/parameters.s
+
+# target to generate assembly for a file
+REST/CPR/parameters.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/REST/CPR/parameters.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/REST/CPR/parameters.cpp.s
+.PHONY : REST/CPR/parameters.cpp.s
+
+REST/CPR/payload.o: REST/CPR/payload.cpp.o
+
+.PHONY : REST/CPR/payload.o
+
+# target to build an object file
+REST/CPR/payload.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/REST/CPR/payload.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/REST/CPR/payload.cpp.o
+.PHONY : REST/CPR/payload.cpp.o
+
+REST/CPR/payload.i: REST/CPR/payload.cpp.i
+
+.PHONY : REST/CPR/payload.i
+
+# target to preprocess a source file
+REST/CPR/payload.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/REST/CPR/payload.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/REST/CPR/payload.cpp.i
+.PHONY : REST/CPR/payload.cpp.i
+
+REST/CPR/payload.s: REST/CPR/payload.cpp.s
+
+.PHONY : REST/CPR/payload.s
+
+# target to generate assembly for a file
+REST/CPR/payload.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/REST/CPR/payload.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/REST/CPR/payload.cpp.s
+.PHONY : REST/CPR/payload.cpp.s
+
+REST/CPR/proxies.o: REST/CPR/proxies.cpp.o
+
+.PHONY : REST/CPR/proxies.o
+
+# target to build an object file
+REST/CPR/proxies.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/REST/CPR/proxies.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/REST/CPR/proxies.cpp.o
+.PHONY : REST/CPR/proxies.cpp.o
+
+REST/CPR/proxies.i: REST/CPR/proxies.cpp.i
+
+.PHONY : REST/CPR/proxies.i
+
+# target to preprocess a source file
+REST/CPR/proxies.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/REST/CPR/proxies.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/REST/CPR/proxies.cpp.i
+.PHONY : REST/CPR/proxies.cpp.i
+
+REST/CPR/proxies.s: REST/CPR/proxies.cpp.s
+
+.PHONY : REST/CPR/proxies.s
+
+# target to generate assembly for a file
+REST/CPR/proxies.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/REST/CPR/proxies.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/REST/CPR/proxies.cpp.s
+.PHONY : REST/CPR/proxies.cpp.s
+
+REST/CPR/response.o: REST/CPR/response.cpp.o
+
+.PHONY : REST/CPR/response.o
+
+# target to build an object file
+REST/CPR/response.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/REST/CPR/response.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/REST/CPR/response.cpp.o
+.PHONY : REST/CPR/response.cpp.o
+
+REST/CPR/response.i: REST/CPR/response.cpp.i
+
+.PHONY : REST/CPR/response.i
+
+# target to preprocess a source file
+REST/CPR/response.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/REST/CPR/response.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/REST/CPR/response.cpp.i
+.PHONY : REST/CPR/response.cpp.i
+
+REST/CPR/response.s: REST/CPR/response.cpp.s
+
+.PHONY : REST/CPR/response.s
+
+# target to generate assembly for a file
+REST/CPR/response.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/REST/CPR/response.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/REST/CPR/response.cpp.s
+.PHONY : REST/CPR/response.cpp.s
+
+REST/CPR/session.o: REST/CPR/session.cpp.o
+
+.PHONY : REST/CPR/session.o
+
+# target to build an object file
+REST/CPR/session.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/REST/CPR/session.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/REST/CPR/session.cpp.o
+.PHONY : REST/CPR/session.cpp.o
+
+REST/CPR/session.i: REST/CPR/session.cpp.i
+
+.PHONY : REST/CPR/session.i
+
+# target to preprocess a source file
+REST/CPR/session.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/REST/CPR/session.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/REST/CPR/session.cpp.i
+.PHONY : REST/CPR/session.cpp.i
+
+REST/CPR/session.s: REST/CPR/session.cpp.s
+
+.PHONY : REST/CPR/session.s
+
+# target to generate assembly for a file
+REST/CPR/session.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/REST/CPR/session.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/REST/CPR/session.cpp.s
+.PHONY : REST/CPR/session.cpp.s
+
+REST/CPR/timeout.o: REST/CPR/timeout.cpp.o
+
+.PHONY : REST/CPR/timeout.o
+
+# target to build an object file
+REST/CPR/timeout.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/REST/CPR/timeout.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/REST/CPR/timeout.cpp.o
+.PHONY : REST/CPR/timeout.cpp.o
+
+REST/CPR/timeout.i: REST/CPR/timeout.cpp.i
+
+.PHONY : REST/CPR/timeout.i
+
+# target to preprocess a source file
+REST/CPR/timeout.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/REST/CPR/timeout.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/REST/CPR/timeout.cpp.i
+.PHONY : REST/CPR/timeout.cpp.i
+
+REST/CPR/timeout.s: REST/CPR/timeout.cpp.s
+
+.PHONY : REST/CPR/timeout.s
+
+# target to generate assembly for a file
+REST/CPR/timeout.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/REST/CPR/timeout.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/REST/CPR/timeout.cpp.s
+.PHONY : REST/CPR/timeout.cpp.s
+
+REST/CPR/unix_socket.o: REST/CPR/unix_socket.cpp.o
+
+.PHONY : REST/CPR/unix_socket.o
+
+# target to build an object file
+REST/CPR/unix_socket.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/REST/CPR/unix_socket.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/REST/CPR/unix_socket.cpp.o
+.PHONY : REST/CPR/unix_socket.cpp.o
+
+REST/CPR/unix_socket.i: REST/CPR/unix_socket.cpp.i
+
+.PHONY : REST/CPR/unix_socket.i
+
+# target to preprocess a source file
+REST/CPR/unix_socket.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/REST/CPR/unix_socket.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/REST/CPR/unix_socket.cpp.i
+.PHONY : REST/CPR/unix_socket.cpp.i
+
+REST/CPR/unix_socket.s: REST/CPR/unix_socket.cpp.s
+
+.PHONY : REST/CPR/unix_socket.s
+
+# target to generate assembly for a file
+REST/CPR/unix_socket.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/REST/CPR/unix_socket.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/REST/CPR/unix_socket.cpp.s
+.PHONY : REST/CPR/unix_socket.cpp.s
+
+REST/CPR/util.o: REST/CPR/util.cpp.o
+
+.PHONY : REST/CPR/util.o
+
+# target to build an object file
+REST/CPR/util.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/REST/CPR/util.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/REST/CPR/util.cpp.o
+.PHONY : REST/CPR/util.cpp.o
+
+REST/CPR/util.i: REST/CPR/util.cpp.i
+
+.PHONY : REST/CPR/util.i
+
+# target to preprocess a source file
+REST/CPR/util.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/REST/CPR/util.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/REST/CPR/util.cpp.i
+.PHONY : REST/CPR/util.cpp.i
+
+REST/CPR/util.s: REST/CPR/util.cpp.s
+
+.PHONY : REST/CPR/util.s
+
+# target to generate assembly for a file
+REST/CPR/util.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/REST/CPR/util.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/REST/CPR/util.cpp.s
+.PHONY : REST/CPR/util.cpp.s
 
 TUI/ascii_art.o: TUI/ascii_art.cpp.o
 
@@ -1149,6 +1891,7 @@ TUI/ascii_art.o: TUI/ascii_art.cpp.o
 # target to build an object file
 TUI/ascii_art.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/TUI/ascii_art.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/TUI/ascii_art.cpp.o
 .PHONY : TUI/ascii_art.cpp.o
 
 TUI/ascii_art.i: TUI/ascii_art.cpp.i
@@ -1158,6 +1901,7 @@ TUI/ascii_art.i: TUI/ascii_art.cpp.i
 # target to preprocess a source file
 TUI/ascii_art.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/TUI/ascii_art.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/TUI/ascii_art.cpp.i
 .PHONY : TUI/ascii_art.cpp.i
 
 TUI/ascii_art.s: TUI/ascii_art.cpp.s
@@ -1167,6 +1911,7 @@ TUI/ascii_art.s: TUI/ascii_art.cpp.s
 # target to generate assembly for a file
 TUI/ascii_art.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/TUI/ascii_art.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/TUI/ascii_art.cpp.s
 .PHONY : TUI/ascii_art.cpp.s
 
 TermBox/termbox.o: TermBox/termbox.c.o
@@ -1176,6 +1921,7 @@ TermBox/termbox.o: TermBox/termbox.c.o
 # target to build an object file
 TermBox/termbox.c.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/TermBox/termbox.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/TermBox/termbox.c.o
 .PHONY : TermBox/termbox.c.o
 
 TermBox/termbox.i: TermBox/termbox.c.i
@@ -1185,6 +1931,7 @@ TermBox/termbox.i: TermBox/termbox.c.i
 # target to preprocess a source file
 TermBox/termbox.c.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/TermBox/termbox.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/TermBox/termbox.c.i
 .PHONY : TermBox/termbox.c.i
 
 TermBox/termbox.s: TermBox/termbox.c.s
@@ -1194,6 +1941,7 @@ TermBox/termbox.s: TermBox/termbox.c.s
 # target to generate assembly for a file
 TermBox/termbox.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/TermBox/termbox.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/TermBox/termbox.c.s
 .PHONY : TermBox/termbox.c.s
 
 TermBox/utf8.o: TermBox/utf8.c.o
@@ -1203,6 +1951,7 @@ TermBox/utf8.o: TermBox/utf8.c.o
 # target to build an object file
 TermBox/utf8.c.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/TermBox/utf8.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/TermBox/utf8.c.o
 .PHONY : TermBox/utf8.c.o
 
 TermBox/utf8.i: TermBox/utf8.c.i
@@ -1212,6 +1961,7 @@ TermBox/utf8.i: TermBox/utf8.c.i
 # target to preprocess a source file
 TermBox/utf8.c.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/TermBox/utf8.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/TermBox/utf8.c.i
 .PHONY : TermBox/utf8.c.i
 
 TermBox/utf8.s: TermBox/utf8.c.s
@@ -1221,6 +1971,7 @@ TermBox/utf8.s: TermBox/utf8.c.s
 # target to generate assembly for a file
 TermBox/utf8.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/TermBox/utf8.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCoreFoundation.dir/build.make CMakeFiles/LandessDevCoreFoundation.dir/TermBox/utf8.c.s
 .PHONY : TermBox/utf8.c.s
 
 main.o: main.cpp.o
@@ -1259,6 +2010,7 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... LandessDevCore"
+	@echo "... LandessDevCoreFoundation"
 	@echo "... Algorithms/vdt/vdtmath.o"
 	@echo "... Algorithms/vdt/vdtmath.i"
 	@echo "... Algorithms/vdt/vdtmath.s"
@@ -1286,6 +2038,9 @@ help:
 	@echo "... Examples/ReflectionExample.o"
 	@echo "... Examples/ReflectionExample.i"
 	@echo "... Examples/ReflectionExample.s"
+	@echo "... Examples/StringToNumberExample.o"
+	@echo "... Examples/StringToNumberExample.i"
+	@echo "... Examples/StringToNumberExample.s"
 	@echo "... Examples/TermBoxInputExample.o"
 	@echo "... Examples/TermBoxInputExample.i"
 	@echo "... Examples/TermBoxInputExample.s"
@@ -1334,6 +2089,18 @@ help:
 	@echo "... MVC/TermBoxApplication.o"
 	@echo "... MVC/TermBoxApplication.i"
 	@echo "... MVC/TermBoxApplication.s"
+	@echo "... Memory/FreeListAllocator.o"
+	@echo "... Memory/FreeListAllocator.i"
+	@echo "... Memory/FreeListAllocator.s"
+	@echo "... Memory/LinearAllocator.o"
+	@echo "... Memory/LinearAllocator.i"
+	@echo "... Memory/LinearAllocator.s"
+	@echo "... Memory/PoolAllocator.o"
+	@echo "... Memory/PoolAllocator.i"
+	@echo "... Memory/PoolAllocator.s"
+	@echo "... Memory/StackAllocator.o"
+	@echo "... Memory/StackAllocator.i"
+	@echo "... Memory/StackAllocator.s"
 	@echo "... Process/clock.posix.o"
 	@echo "... Process/clock.posix.i"
 	@echo "... Process/clock.posix.s"
@@ -1370,6 +2137,54 @@ help:
 	@echo "... Process/run.o"
 	@echo "... Process/run.i"
 	@echo "... Process/run.s"
+	@echo "... REST/CPR/auth.o"
+	@echo "... REST/CPR/auth.i"
+	@echo "... REST/CPR/auth.s"
+	@echo "... REST/CPR/bearer.o"
+	@echo "... REST/CPR/bearer.i"
+	@echo "... REST/CPR/bearer.s"
+	@echo "... REST/CPR/cookies.o"
+	@echo "... REST/CPR/cookies.i"
+	@echo "... REST/CPR/cookies.s"
+	@echo "... REST/CPR/cprtypes.o"
+	@echo "... REST/CPR/cprtypes.i"
+	@echo "... REST/CPR/cprtypes.s"
+	@echo "... REST/CPR/curl_container.o"
+	@echo "... REST/CPR/curl_container.i"
+	@echo "... REST/CPR/curl_container.s"
+	@echo "... REST/CPR/curlholder.o"
+	@echo "... REST/CPR/curlholder.i"
+	@echo "... REST/CPR/curlholder.s"
+	@echo "... REST/CPR/error.o"
+	@echo "... REST/CPR/error.i"
+	@echo "... REST/CPR/error.s"
+	@echo "... REST/CPR/multipart.o"
+	@echo "... REST/CPR/multipart.i"
+	@echo "... REST/CPR/multipart.s"
+	@echo "... REST/CPR/parameters.o"
+	@echo "... REST/CPR/parameters.i"
+	@echo "... REST/CPR/parameters.s"
+	@echo "... REST/CPR/payload.o"
+	@echo "... REST/CPR/payload.i"
+	@echo "... REST/CPR/payload.s"
+	@echo "... REST/CPR/proxies.o"
+	@echo "... REST/CPR/proxies.i"
+	@echo "... REST/CPR/proxies.s"
+	@echo "... REST/CPR/response.o"
+	@echo "... REST/CPR/response.i"
+	@echo "... REST/CPR/response.s"
+	@echo "... REST/CPR/session.o"
+	@echo "... REST/CPR/session.i"
+	@echo "... REST/CPR/session.s"
+	@echo "... REST/CPR/timeout.o"
+	@echo "... REST/CPR/timeout.i"
+	@echo "... REST/CPR/timeout.s"
+	@echo "... REST/CPR/unix_socket.o"
+	@echo "... REST/CPR/unix_socket.i"
+	@echo "... REST/CPR/unix_socket.s"
+	@echo "... REST/CPR/util.o"
+	@echo "... REST/CPR/util.i"
+	@echo "... REST/CPR/util.s"
 	@echo "... TUI/ascii_art.o"
 	@echo "... TUI/ascii_art.i"
 	@echo "... TUI/ascii_art.s"

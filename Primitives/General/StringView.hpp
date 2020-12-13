@@ -535,6 +535,7 @@ namespace nonstd { namespace sv_lite {
                 return data_at( pos );
             }
 
+
             nssv_constexpr14 const_reference at( size_type pos ) const
             {
 #if nssv_CONFIG_NO_EXCEPTIONS
