@@ -205,7 +205,6 @@ namespace LD
     public:
         using UType = typename LD::Detail::SpanAdapter<T>::Type;
     private:
-
         UType * mBuffer;
         LD::UInteger mSize;
     public:

@@ -12,13 +12,24 @@
 #include "Primitives/General/Span.hpp"
 namespace LD
 {
+    namespace Detail
+    {
+        template<typename T>
+        using CanBeCompared = decltype(LD::Declval<T>() == LD::Declval<T>());
+    }
+
+    template<typename T, class = void >
+    class Equality;
     template<typename T>
-    class Less
+    class Equality<T,LD::Enable_If_T<
+            LD::Require<
+                    LD::Exists<LD::Detail::CanBeCompared,T>
+    >>>
     {
     public:
         bool operator()(const T & a, const T & b) noexcept
         {
-            return a < b;
+            return a == b;
         }
     };
 

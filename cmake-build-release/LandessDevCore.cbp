@@ -214,6 +214,9 @@
 			<Option target="LandessDevCore"/>
 			<Option target="LandessDevCoreFoundation"/>
 		</Unit>
+		<Unit filename="/media/phoenixflower/Development/LandessDev/LandessDevCore/Algorithms/Searching.hpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
 		<Unit filename="/media/phoenixflower/Development/LandessDev/LandessDevCore/Algorithms/Sorting.hpp">
 			<Option target="LandessDevCore"/>
 			<Option target="LandessDevCoreFoundation"/>

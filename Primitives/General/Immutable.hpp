@@ -76,6 +76,7 @@ namespace LD
          const LD::UInteger GetSize() const
         {
 
+            /*
             LD::UInteger currentSize = 0;
 
             LD::For<0,N>([](auto I, LD::UInteger & size, const ImmutableString<N> * instance)
@@ -84,8 +85,10 @@ namespace LD
 
                 return true;
             },currentSize,this);
+             */
 
-            return currentSize;
+            //return currentSize;
+            return strlen(this->string);
         }
 
         template<char ... Characters,typename = typename LD::Enable_If_T<sizeof...(Characters) <= N>>

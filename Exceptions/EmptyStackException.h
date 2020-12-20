@@ -11,7 +11,6 @@
 
 
 #include <Exceptions/UnderFlowException.h>
-
 namespace PDP
 {
     namespace DataStructures

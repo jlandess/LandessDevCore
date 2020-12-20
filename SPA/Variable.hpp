@@ -179,8 +179,10 @@ namespace LD
             LD::Tuple<Variables...> mTuple;
             Operator mOperatorSymbol;
             LD::UInteger mOrder;
-        public:
 
+        public:
+            using OpType = OperationType;
+            using Op = Operator;
             using TL = LD::CT::TypeList<Variables...>;
             VarExpression(LD::Type<T>, OperationType,Operator && operatorSymbol,Variables && ... variables) noexcept:mTuple{LD::Forward<Variables>(variables)...},mOperatorSymbol{LD::Forward<Operator>(operatorSymbol)},mOrder{0}
             {
@@ -359,7 +361,31 @@ namespace LD
             }
         }
     }
+    template<typename ... A>
+    constexpr LD::UInteger GetRequiredSizeForExpressions(LD::CT::TypeList<A...>) noexcept
+    {
+        LD::UInteger requiredAmount = 0;
+        constexpr LD::UInteger NumberOfExpressions = sizeof...(A);
+        LD::For<NumberOfExpressions>([](
+                auto I,
+                LD::UInteger & amount) noexcept
+        {
+            using ExpressionType = LD::Detail::Decay_T<LD::CT::TypeAtIndex<I,LD::CT::TypeList<A...>>>;
+            //LD::CT::DebugTemplate<ExpressionType>{};
+            using OperationType = typename ExpressionType::OpType;
+            using Operator = typename ExpressionType::Op;
+            using Determiner = LD::SPA::DetermineNumberOfVariablesInExpression<ExpressionType>;
+            using DeterminerVariables = typename Determiner ::type;
 
+            constexpr LD::UInteger AmountDueToVar = 3*DeterminerVariables::size();
+            constexpr LD::UInteger AmountDueToVariableNames = 22*DeterminerVariables::size();
+            constexpr LD::UInteger AmountToOperator = LD::SPA::Detail::CalculateOperandLength(LD::Type<OperationType>{},DeterminerVariables::size(),LD::ImmutableSize(LD::Type<Operator>{}));
+            constexpr LD::UInteger TotalAmount = AmountDueToVar+AmountDueToVariableNames+AmountToOperator+1;
+            amount += TotalAmount;
+            return true;
+        },requiredAmount);
+        return requiredAmount;
+    }
     template<typename T,typename Operator, typename OperationType,typename ... Variables>
     auto ToImmutableString(const LD::SPA::VarExpression<T,LD::CT::TypeList<Variables...>,Operator,OperationType> & expression) noexcept
     {
@@ -369,7 +395,7 @@ namespace LD
         constexpr LD::UInteger AmountDueToVar = 3*DeterminerVariables::size();
         constexpr LD::UInteger AmountDueToVariableNames = 22*DeterminerVariables::size();
         constexpr LD::UInteger AmountToOperator = LD::SPA::Detail::CalculateOperandLength(LD::Type<OperationType>{},DeterminerVariables::size(),LD::ImmutableSize(LD::Type<Operator>{}));
-        constexpr LD::UInteger TotalAmount = AmountDueToVar+AmountDueToVariableNames+AmountToOperator*50+1;
+        constexpr LD::UInteger TotalAmount = AmountDueToVar+AmountDueToVariableNames+AmountToOperator+1;
         LD::StaticArray<char,TotalAmount> buffer;
         LD::BackInserter<LD::StaticArray<char,TotalAmount>> characterInserter{buffer};
         const auto & composition = expression.Composition();

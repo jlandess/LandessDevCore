@@ -33,6 +33,8 @@ namespace LD
                 return this->mSourceCode;
             }
         };
+
+        template<typename Expression> Javascript(EventType &&, Expression &&) -> Javascript<Expression>;
     }
 }
 

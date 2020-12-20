@@ -15,6 +15,7 @@
 #include "IO/XML/tinyxml2.h"
 #include "SPA/Div.hpp"
 #include "SPA/Variable.hpp"
+#include "SPA/Function.hpp"
 #include "Random/MarsagliaRandomNumberGenerator.hpp"
 #include "TypeTraits/CanBeAnImmutableString.hpp"
 #include "REST/HTMLEmitter.hpp"
@@ -31,9 +32,12 @@
 #include "TypeTraits/IsErasedOrConvertible.hpp"
 #include "Memory/CorePrimitiveAllocator.hpp"
 #include "Memory/FreeList.h"
-template<typename KeyType,typename TennantType>
+
 #include <stdio.h>
 #include <stdlib.h>
+#include "Algorithms/Searching.hpp"
+#include "Algorithms/Sorting.hpp"
+template<typename KeyType,typename TennantType>
 class MirtaPBX
 {
 private:
@@ -94,6 +98,9 @@ public:
 
 void SaveMissedCalls(LD::Date date) noexcept
 {
+
+
+
     auto fileName = LD::ImmutableString{"/home/phoenixflower/SeaDrive/My Libraries/PBXTests/"}+LD::ToImmutableString(LD::PBX::MT::Date{date});
     FILE  * file = fopen(fileName.Data(),"w+");
     MirtaPBX pbxInstance{LD::ImmutableString{"EbcHbsnXAqSrTKBb"},LD::ImmutableString{"CarrieLandess"}};
@@ -140,74 +147,32 @@ void SaveMissedCalls(LD::Date date) noexcept
 }
 
 
-#include <memory_resource>
 
-
-
-using word_t = intptr_t;
-
-struct Block {
-
-    // -------------------------------------
-    // 1. Object header
-
-    /**
-     * Block size.
-     */
-    size_t size;
-
-    /**
-     * Whether this block is currently used.
-     */
-    bool used;
-
-    /**
-     * Next block in the list.
-     */
-    Block *next;
-
-    // -------------------------------------
-    // 2. User data
-
-    /**
-     * Payload pointer.
-     */
-    word_t data[1];
-
-};
-inline size_t allocSize(size_t size) {
-    return size + sizeof(Block) - sizeof(std::declval<Block>().data);
-}
-
-inline size_t align(size_t n) {
-    return (n + sizeof(word_t) - 1) & ~(sizeof(word_t) - 1);
-}
-
-Block *getHeader(void *data) {
-    Block* header = (Block*)(LD::Mem::pointer_math::subtract(data, sizeof(Block)));
-    return header;
-}
-
-void *requestFromOS(size_t size, size_t alignment)
-{
-    void * mem = aligned_alloc(alignment,allocSize(size));
-    LD::Mem::u8 adjustment = LD::Mem::pointer_math::alignForwardAdjustmentWithHeader(mem, alignment, sizeof(Block));
-    void* aligned_address = LD::Mem::pointer_math::add(mem, adjustment);
-    Block* header = (Block*)(LD::Mem::pointer_math::subtract(aligned_address, sizeof(Block)));
-    header->size = 24;
-    header->used = true;
-    header->next = nullptr;
-    //header->data[0] = word_t {77};
-
-    return aligned_address;
-}
 
 
 int main(int argc, char* argv[])
 {
 
-    //SaveMissedCalls(LD::Date{2020,12,7});
 
+    LD::StaticArray<int,10> rawrbunnies;
+    for(LD::UInteger n = 0;n<10;++n)
+    {
+        rawrbunnies.PushBack(rand()%50);
+        //rawrbunnies[n] = rand()%50;
+    }
+    std::cout << "Static Array Size: " << rawrbunnies.End()-rawrbunnies.Begin() << std::endl;
+    LD::QuickSort(rawrbunnies,[](int a, int b) noexcept {return a<b;});
+    for(LD::UInteger n = 0;n<10;++n)
+    {
+        std::cout << rawrbunnies[n] << std::endl;
+    }
+    auto binarySearchResult = LD::BinarySearch(rawrbunnies,35,[](int a,int b){return a==b;},[](int a,int b){return a<b;});
+    auto onBinaryFound = [](const LD::Context<LD::TransactionResult,LD::UInteger> & context) noexcept
+    {
+        std::cout << "found result at index: " << LD::Get(LD::Get<1>(context)) << std::endl;
+    };
+    LD::MultiMatch(LD::Overload{onBinaryFound,[](auto){std::cout << "found error" << std::endl;}},binarySearchResult);
+    //SaveMissedCalls(LD::Date{2020,12,7});
 
 
     LD::MarsagliaMultiplyWithCarryGenerator randomNumberGenerator{static_cast<unsigned long>(time(0))};
@@ -219,17 +184,19 @@ int main(int argc, char* argv[])
     LD::SPA::Var varType3{7,randomLambda,randomNumberGenerator};
     LD::SPA::Var varType4{7,randomLambda,randomNumberGenerator};
 
+
+    //LD::ImmutableString
     auto expression = (varType+varType3)+(varType4+varType4);
 
     LD::SPA::EventHandler handler{LD::SPA::OnLoad{},expression};
     LD::SPA::Div gotcha2{handler,LD::SPA::Text{7}};
 
+    LD::SPA::Function function{expression};
+    LD::ToImmutableString(function);
     std::cout << LD::ToImmutableString(expression).Data() << std::endl;
 
     LD::SPA::ClassName divClassName77{LD::StringView {"bomb"}};
     LD::SPA::Language domLanguage77{LD::StringView {"en-US"}};
-    //LD::SPA::StyleSheet emiiter{gotcha2};
-    //std::cout << emiiter.ToString().GetData() << std::endl;
     LD::SPA::Compositor<LD::CT::TypeList<>> compositor;
     LD::SPA::Button button{compositor,LD::StringView{"agc"}};
     LD::SPA::Div gotcha{LD::SPA::Text{7}};

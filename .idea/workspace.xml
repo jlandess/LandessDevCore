@@ -58,138 +58,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a2ffdfb1-0050-446c-b0af-d02ece8e31b8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Examples/StringToNumberExample.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Examples/StringToNumberExample.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IO/CSVParser.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IO/EphemiralRowBackingStore.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Memory/AlignedStorage.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Memory/CorePrimitiveAllocator.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Memory/FreeList.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Memory/FreeListAllocator.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Memory/FreeListAllocator.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Memory/FreeListPolicies.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Memory/LinearAllocator.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Memory/LinearAllocator.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Memory/MemoryResource.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Memory/PolyMorphicAllocator.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Memory/PoolAllocator.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Memory/PoolAllocator.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Memory/StackAllocator.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Memory/StackAllocator.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PBX/MIrta/Date.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PF/Address.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PF/Age.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PF/DateOfBirth.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PF/Encounter.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PF/PhoneNumber.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PF/PreferredContact.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PF/Record.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PF/RecordNumber.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PF/Status.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Prefix/NamePrefix.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/REST/CPR/api.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/REST/CPR/auth.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/REST/CPR/auth.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/REST/CPR/bearer.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/REST/CPR/bearer.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/REST/CPR/body.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/REST/CPR/callback.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/REST/CPR/connect_timeout.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/REST/CPR/cookies.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/REST/CPR/cookies.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/REST/CPR/cpr.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/REST/CPR/cprtypes.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/REST/CPR/cprtypes.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/REST/CPR/curl_container.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/REST/CPR/curl_container.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/REST/CPR/curlholder.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/REST/CPR/curlholder.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/REST/CPR/digest.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/REST/CPR/error.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/REST/CPR/error.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/REST/CPR/limit_rate.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/REST/CPR/low_speed.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/REST/CPR/max_redirects.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/REST/CPR/multipart.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/REST/CPR/multipart.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/REST/CPR/ntlm.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/REST/CPR/parameters.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/REST/CPR/parameters.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/REST/CPR/payload.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/REST/CPR/payload.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/REST/CPR/proxies.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/REST/CPR/proxies.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/REST/CPR/response.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/REST/CPR/response.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/REST/CPR/session.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/REST/CPR/session.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/REST/CPR/ssl_options.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/REST/CPR/status_codes.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/REST/CPR/timeout.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/REST/CPR/timeout.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/REST/CPR/unix_socket.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/REST/CPR/unix_socket.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/REST/CPR/user_agent.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/REST/CPR/util.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/REST/CPR/util.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/REST/CPR/verbose.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sovereignty/Countries.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Suffix/NameSuffix.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TypeTraits/CanBeMadeFromStringView.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TypeTraits/IsErasedOrConvertible.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TypeTraits/UsesAlloc.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TypeTraits/__or.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/VirtuWorks/DateTime.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/Algorithms/Searching.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Algorithms/FromString.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Algorithms/FromString.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Algorithms/Sorting.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Algorithms/Sorting.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IO/FetchRequest.h" beforeDir="false" afterPath="$PROJECT_DIR$/IO/FetchRequest.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Primitives/General/DateTime.h" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/DateTime.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Exceptions/EmptyStackException.h" beforeDir="false" afterPath="$PROJECT_DIR$/Exceptions/EmptyStackException.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Primitives/General/Immutable.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/Immutable.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Primitives/General/PhoneNumber.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/PhoneNumber.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Primitives/General/Rope.h" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/Rope.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Primitives/General/StringView.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/StringView.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Primitives/General/ctre.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/ctre.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Primitives/General/Span.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/Span.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SPA/Function.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/SPA/Function.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SPA/JSTag.h" beforeDir="false" afterPath="$PROJECT_DIR$/SPA/JSTag.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SPA/Variable.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/SPA/Variable.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/VirtuWorks/Identification.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/VirtuWorks/Identification.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/VirtuWorks/QueueLog.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/VirtuWorks/QueueLog.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/VirtuWorks/QueueLogStatus.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/VirtuWorks/QueueLogStatus.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/VirtuWorks/VirtuWorksDate.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/VirtuWorks/VirtuWorksDate.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TypeTraits/Iterable.h" beforeDir="false" afterPath="$PROJECT_DIR$/TypeTraits/Iterable.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/CXX.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/DependInfo.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/build.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/cmake_clean.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/depend.internal" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/depend.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/link.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCore.dir/progress.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCoreFoundation.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/LandessDevCoreFoundation.dir/CXX.includecache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/LandessDevCore" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/LandessDevCore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/LandessDevCore.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/LandessDevCore.cbp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/CXX.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/DependInfo.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/build.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/cmake_clean.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/depend.internal" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/depend.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/link.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/progress.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/Makefile.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/Makefile2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/TargetDirectories.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/clion-log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/progress.marks" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCoreFoundation.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCoreFoundation.dir/CXX.includecache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/LandessDevCore" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/LandessDevCore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/LandessDevCore.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/LandessDevCore.cbp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -392,7 +284,13 @@
       <workItem from="1607527018404" duration="4389000" />
       <workItem from="1607618751154" duration="7115000" />
       <workItem from="1607756870602" duration="3761000" />
-      <workItem from="1607837562242" duration="10468000" />
+      <workItem from="1607837562242" duration="10833000" />
+      <workItem from="1607974468237" duration="3349000" />
+      <workItem from="1608058147289" duration="3209000" />
+      <workItem from="1608109173291" duration="5184000" />
+      <workItem from="1608184563009" duration="14654000" />
+      <workItem from="1608264861837" duration="7401000" />
+      <workItem from="1608332946430" duration="17791000" />
     </task>
     <servers />
   </component>

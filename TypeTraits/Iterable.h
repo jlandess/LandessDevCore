@@ -158,5 +158,7 @@ namespace LD
     public:
     };
 
+    template<typename T> BackInserter(T &) -> BackInserter<T>;
+
 }
 #endif //LANDESSDEVCORE_ITERABLE_H

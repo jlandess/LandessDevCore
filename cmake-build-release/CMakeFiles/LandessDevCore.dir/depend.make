@@ -1459,6 +1459,8 @@ CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../MVC/TermBoxCursor
 CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../MVC/TermBoxEnumerations.hpp
 CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../MVC/TermBoxRenderingContext.hpp
 
+CMakeFiles/LandessDevCore.dir/Memory/FreeListAllocator.cpp.o: ../Memory/FreeListAllocator.cpp
+
 CMakeFiles/LandessDevCore.dir/Memory/LinearAllocator.cpp.o: ../Algorithms/CompileTimeControlFlow.hpp
 CMakeFiles/LandessDevCore.dir/Memory/LinearAllocator.cpp.o: ../Algorithms/Exponential.hpp
 CMakeFiles/LandessDevCore.dir/Memory/LinearAllocator.cpp.o: ../Algorithms/Swap.hpp
@@ -1531,6 +1533,59 @@ CMakeFiles/LandessDevCore.dir/Memory/LinearAllocator.cpp.o: ../Memory/LinearAllo
 CMakeFiles/LandessDevCore.dir/Memory/LinearAllocator.cpp.o: ../Memory/LinearAllocator.h
 CMakeFiles/LandessDevCore.dir/Memory/LinearAllocator.cpp.o: ../Memory/MemoryResource.hpp
 
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../Algorithms/CompileTimeControlFlow.hpp
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../Algorithms/Swap.hpp
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../Definitions/Common.hpp
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../Definitions/Float.hpp
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../Definitions/Integer.hpp
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../Functor/Lambda.h
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../Functor/LightWeightDelegate.h
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../Functor/LightWeightDelegateBase.h
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../Memory/ElementReference.h
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../Primitives/General/Range.h
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../Primitives/General/StaticArray.hpp
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../Primitives/General/Tuple.hpp
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../TypeTraits/AddLValueReference.hpp
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../TypeTraits/AddPointer.hpp
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../TypeTraits/AddRValueReference.hpp
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../TypeTraits/Conditional.hpp
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../TypeTraits/Decay.hpp
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../TypeTraits/Declval.hpp
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../TypeTraits/Detection.hpp
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../TypeTraits/EnableIf.hpp
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../TypeTraits/IntegerSequence.hpp
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../TypeTraits/IntegralConstant.hpp
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../TypeTraits/IsArray.hpp
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../TypeTraits/IsAssignable.hpp
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../TypeTraits/IsBaseOf.hpp
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../TypeTraits/IsClassType.hpp
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../TypeTraits/IsConst.hpp
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../TypeTraits/IsConstructible.hpp
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../TypeTraits/IsConvertible.hpp
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../TypeTraits/IsDestructible.hpp
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../TypeTraits/IsFunction.hpp
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../TypeTraits/IsImmutable.h
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../TypeTraits/IsIntegralType.hpp
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../TypeTraits/IsNullPtr.hpp
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../TypeTraits/IsPointer.hpp
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../TypeTraits/IsReference.hpp
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../TypeTraits/IsSame.hpp
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../TypeTraits/IsSwappable.hpp
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../TypeTraits/IsUnion.hpp
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../TypeTraits/IsVoid.hpp
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../TypeTraits/IsVolatile.hpp
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../TypeTraits/Iterable.h
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../TypeTraits/Limit.hpp
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../TypeTraits/RemoveAllExtents.hpp
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../TypeTraits/RemoveCV.hpp
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../TypeTraits/RemoveConst.hpp
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../TypeTraits/RemoveExtent.hpp
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../TypeTraits/RemoveReference.hpp
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../TypeTraits/TypeList.hpp
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../TypeTraits/VariadicPack.hpp
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../TypeTraits/__two.hpp
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../Memory/CorePrimitiveAllocator.hpp
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../Memory/MemoryResource.hpp
 CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../Memory/PoolAllocator.cpp
 CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../Memory/PoolAllocator.h
 
@@ -1837,6 +1892,9 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/__two.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Unicode/UTF8.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Unicode/utf8/core.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../VirtuWorks/DateTime.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Algorithms/Searching.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Algorithms/Sorting.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Algorithms/Swap.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Chrono/Timer.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Examples/ReflectionDemoTypes.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/CSVParser.hpp
@@ -1889,6 +1947,7 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o: ../SPA/Button.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../SPA/Compositor.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../SPA/Div.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../SPA/EventHandler.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../SPA/Function.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../SPA/HTML.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../SPA/Linker.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../SPA/Text.hpp

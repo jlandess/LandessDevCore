@@ -1459,6 +1459,8 @@ CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o
  /media/phoenixflower/Development/LandessDev/LandessDevCore/MVC/TermBoxCursorNavigator.hpp
  /media/phoenixflower/Development/LandessDev/LandessDevCore/MVC/TermBoxEnumerations.hpp
  /media/phoenixflower/Development/LandessDev/LandessDevCore/MVC/TermBoxRenderingContext.hpp
+CMakeFiles/LandessDevCore.dir/Memory/FreeListAllocator.cpp.o
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/Memory/FreeListAllocator.cpp
 CMakeFiles/LandessDevCore.dir/Memory/LinearAllocator.cpp.o
  ../Algorithms/CompileTimeControlFlow.hpp
  ../Algorithms/Exponential.hpp
@@ -1532,6 +1534,59 @@ CMakeFiles/LandessDevCore.dir/Memory/LinearAllocator.cpp.o
  /media/phoenixflower/Development/LandessDev/LandessDevCore/Memory/LinearAllocator.h
  /media/phoenixflower/Development/LandessDev/LandessDevCore/Memory/MemoryResource.hpp
 CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o
+ ../Algorithms/CompileTimeControlFlow.hpp
+ ../Algorithms/Swap.hpp
+ ../Definitions/Common.hpp
+ ../Definitions/Float.hpp
+ ../Definitions/Integer.hpp
+ ../Functor/Lambda.h
+ ../Functor/LightWeightDelegate.h
+ ../Functor/LightWeightDelegateBase.h
+ ../Memory/ElementReference.h
+ ../Primitives/General/Range.h
+ ../Primitives/General/StaticArray.hpp
+ ../Primitives/General/Tuple.hpp
+ ../TypeTraits/AddLValueReference.hpp
+ ../TypeTraits/AddPointer.hpp
+ ../TypeTraits/AddRValueReference.hpp
+ ../TypeTraits/Conditional.hpp
+ ../TypeTraits/Decay.hpp
+ ../TypeTraits/Declval.hpp
+ ../TypeTraits/Detection.hpp
+ ../TypeTraits/EnableIf.hpp
+ ../TypeTraits/IntegerSequence.hpp
+ ../TypeTraits/IntegralConstant.hpp
+ ../TypeTraits/IsArray.hpp
+ ../TypeTraits/IsAssignable.hpp
+ ../TypeTraits/IsBaseOf.hpp
+ ../TypeTraits/IsClassType.hpp
+ ../TypeTraits/IsConst.hpp
+ ../TypeTraits/IsConstructible.hpp
+ ../TypeTraits/IsConvertible.hpp
+ ../TypeTraits/IsDestructible.hpp
+ ../TypeTraits/IsFunction.hpp
+ ../TypeTraits/IsImmutable.h
+ ../TypeTraits/IsIntegralType.hpp
+ ../TypeTraits/IsNullPtr.hpp
+ ../TypeTraits/IsPointer.hpp
+ ../TypeTraits/IsReference.hpp
+ ../TypeTraits/IsSame.hpp
+ ../TypeTraits/IsSwappable.hpp
+ ../TypeTraits/IsUnion.hpp
+ ../TypeTraits/IsVoid.hpp
+ ../TypeTraits/IsVolatile.hpp
+ ../TypeTraits/Iterable.h
+ ../TypeTraits/Limit.hpp
+ ../TypeTraits/RemoveAllExtents.hpp
+ ../TypeTraits/RemoveCV.hpp
+ ../TypeTraits/RemoveConst.hpp
+ ../TypeTraits/RemoveExtent.hpp
+ ../TypeTraits/RemoveReference.hpp
+ ../TypeTraits/TypeList.hpp
+ ../TypeTraits/VariadicPack.hpp
+ ../TypeTraits/__two.hpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/Memory/CorePrimitiveAllocator.hpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/Memory/MemoryResource.hpp
  /media/phoenixflower/Development/LandessDev/LandessDevCore/Memory/PoolAllocator.cpp
  /media/phoenixflower/Development/LandessDev/LandessDevCore/Memory/PoolAllocator.h
 CMakeFiles/LandessDevCore.dir/Memory/StackAllocator.cpp.o
@@ -1838,6 +1893,9 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  ../Unicode/UTF8.hpp
  ../Unicode/utf8/core.h
  ../VirtuWorks/DateTime.hpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/Algorithms/Searching.hpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/Algorithms/Sorting.hpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/Algorithms/Swap.hpp
  /media/phoenixflower/Development/LandessDev/LandessDevCore/Chrono/Timer.h
  /media/phoenixflower/Development/LandessDev/LandessDevCore/Examples/ReflectionDemoTypes.h
  /media/phoenixflower/Development/LandessDev/LandessDevCore/IO/CSVParser.hpp
@@ -1890,6 +1948,7 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  /media/phoenixflower/Development/LandessDev/LandessDevCore/SPA/Compositor.hpp
  /media/phoenixflower/Development/LandessDev/LandessDevCore/SPA/Div.hpp
  /media/phoenixflower/Development/LandessDev/LandessDevCore/SPA/EventHandler.hpp
+ /media/phoenixflower/Development/LandessDev/LandessDevCore/SPA/Function.hpp
  /media/phoenixflower/Development/LandessDev/LandessDevCore/SPA/HTML.hpp
  /media/phoenixflower/Development/LandessDev/LandessDevCore/SPA/Linker.hpp
  /media/phoenixflower/Development/LandessDev/LandessDevCore/SPA/Text.hpp

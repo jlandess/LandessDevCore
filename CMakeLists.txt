@@ -660,7 +660,7 @@ add_executable(LandessDevCore
         REST/CPR/session.cpp
         REST/CPR/timeout.cpp
         REST/CPR/unix_socket.cpp
-        REST/CPR/util.cpp IO/EphemiralRowBackingStore.hpp PBX/MIrta/Date.hpp TypeTraits/CanBeMadeFromStringView.hpp Memory/MemoryResource.hpp Memory/PolyMorphicAllocator.hpp TypeTraits/__or.hpp TypeTraits/UsesAlloc.h TypeTraits/IsErasedOrConvertible.hpp Memory/CorePrimitiveAllocator.hpp Memory/LinearAllocator.h Memory/LinearAllocator.cpp Memory/StackAllocator.hpp Memory/StackAllocator.cpp  Memory/PoolAllocator.cpp Memory/PoolAllocator.h Memory/FreeListAllocator.cpp Memory/FreeListAllocator.h)
+        REST/CPR/util.cpp IO/EphemiralRowBackingStore.hpp PBX/MIrta/Date.hpp TypeTraits/CanBeMadeFromStringView.hpp Memory/MemoryResource.hpp Memory/PolyMorphicAllocator.hpp TypeTraits/__or.hpp TypeTraits/UsesAlloc.h TypeTraits/IsErasedOrConvertible.hpp Memory/CorePrimitiveAllocator.hpp Memory/LinearAllocator.h Memory/LinearAllocator.cpp Memory/StackAllocator.hpp Memory/StackAllocator.cpp  Memory/PoolAllocator.cpp Memory/PoolAllocator.h Memory/FreeListAllocator.cpp Memory/FreeListAllocator.h Algorithms/Searching.hpp)
 target_link_libraries(LandessDevCore pthread)
 target_link_libraries(LandessDevCore ncurses)
 target_link_libraries(LandessDevCore ssl)
