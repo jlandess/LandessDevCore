@@ -17,6 +17,7 @@
 #include <iostream>
 #include "IO/EtcdBackingStore.h"
 #include "IO/etcd/etcdcpp.h"
+#include "IO/RedisBackend.h"
 #include "IO/Database.hpp"
 namespace LD
 {
@@ -242,14 +243,14 @@ namespace LD
     namespace my_program_state
     {
         std::size_t
-        request_count()
+        inline request_count()
         {
             static std::size_t count = 0;
             return ++count;
         }
 
         std::time_t
-        now()
+        inline now()
         {
             return std::time(0);
         }
@@ -259,19 +260,20 @@ namespace LD
     class http_connection : public std::enable_shared_from_this<http_connection>
     {
     private:
-        etcdcpp::etcd_host etcdHost{"192.168.149.170",2379};
-        etcdcpp::etcd_session session{{etcdHost}};
+        //etcdcpp::etcd_host etcdHost{"192.168.149.170",2379};
+        LD::RedisBackingStore session{"redis.landesshome.com",55000};
+        //etcdcpp::etcd_session session{{etcdHost}};
     public:
         http_connection(tcp::socket socket)
                 : socket_(std::move(socket))
         {
             std::string s = socket_.remote_endpoint().address().to_string();
-            LD::BasicKeyedDatabase<etcdcpp::etcd_session> etcdKeyedDatabase{session};
-            LD::QueryResult<LD::Variant<ProgramCount>(LD::StringView,LD::BasicKeyedDatabase<etcdcpp::etcd_session>&)> result =  etcdKeyedDatabase.Fetch(LD::StringView {s.c_str()},LD::CT::TypeList<ProgramCount>{},LD::StringView{s.c_str()},etcdKeyedDatabase);
+            LD::BasicKeyedDatabase<LD::RedisBackingStore> etcdKeyedDatabase{session};
+            LD::QueryResult<LD::Variant<ProgramCount>(LD::StringView, LD::BasicKeyedDatabase<LD::RedisBackingStore>&)> result =  etcdKeyedDatabase.Fetch(LD::StringView {s.c_str()},LD::CT::TypeList<ProgramCount>{},LD::StringView{s.c_str()},etcdKeyedDatabase);
 
             //etcdKeyedDatabase.Fetch(LD::StringView{},LD::CT::TypeList<ProgramCount>{},LD::StringView{});
             std::cout <<"Remote : " << s << std::endl;
-            auto onError = [](const LD::Context<LD::TransactionError,LD::StringView,LD::BasicKeyedDatabase<etcdcpp::etcd_session>&> & context) noexcept
+            auto onError = [](const LD::Context<LD::TransactionError,LD::StringView, LD::BasicKeyedDatabase<LD::RedisBackingStore>&> & context) noexcept
             {
                 std::cout << "not found" << std::endl;
                 auto & db = LD::Get(LD::Get<2>(context));
@@ -279,7 +281,7 @@ namespace LD
                 db.Insert(LD::StringView{viewOfKey},ProgramCount{});
             };
 
-            auto onSuccess = [](const LD::Context<LD::TransactionResult,ProgramCount,LD::StringView,LD::BasicKeyedDatabase<etcdcpp::etcd_session>&> & context) noexcept
+            auto onSuccess = [](const LD::Context<LD::TransactionResult,ProgramCount,LD::StringView, LD::BasicKeyedDatabase<LD::RedisBackingStore>&> & context) noexcept
             {
 
             };
@@ -372,13 +374,13 @@ namespace LD
             std::string s = socket_.remote_endpoint().address().to_string();
             std::string t = socket_.local_endpoint().address().to_string();
 
-            LD::BasicKeyedDatabase<etcdcpp::etcd_session> etcdKeyedDatabase{session};
+            LD::BasicKeyedDatabase<LD::RedisBackingStore> etcdKeyedDatabase{session};
 
             if(request_.target() == "/count")
             {
-                LD::QueryResult<LD::Variant<ProgramCount>(LD::StringView,LD::BasicKeyedDatabase<etcdcpp::etcd_session>&)> result =  etcdKeyedDatabase.Fetch(LD::StringView {s.c_str()},LD::CT::TypeList<ProgramCount>{},LD::StringView{s.c_str()},etcdKeyedDatabase);
+                LD::QueryResult<LD::Variant<ProgramCount>(LD::StringView, LD::BasicKeyedDatabase<LD::RedisBackingStore>&)> result =  etcdKeyedDatabase.Fetch(LD::StringView {s.c_str()},LD::CT::TypeList<ProgramCount>{},LD::StringView{s.c_str()},etcdKeyedDatabase);
 
-                auto onError = [](const LD::Context<LD::TransactionError,LD::StringView,LD::BasicKeyedDatabase<etcdcpp::etcd_session>&> & context) noexcept ->LD::UInteger
+                auto onError = [](const LD::Context<LD::TransactionError,LD::StringView, LD::BasicKeyedDatabase<LD::RedisBackingStore>&> & context) noexcept ->LD::UInteger
                 {
                     std::cout << "not found" << std::endl;
                     auto & db = LD::Get(LD::Get<2>(context));
@@ -386,8 +388,7 @@ namespace LD
                     db.Insert(LD::StringView{viewOfKey},ProgramCount{});
                     return 0;
                 };
-
-                auto onSuccess = [](const LD::Context<LD::TransactionResult,ProgramCount,LD::StringView,LD::BasicKeyedDatabase<etcdcpp::etcd_session>&> & context) noexcept -> LD::UInteger
+                auto onSuccess = [](const LD::Context<LD::TransactionResult,ProgramCount,LD::StringView, LD::BasicKeyedDatabase<LD::RedisBackingStore>&> & context) noexcept -> LD::UInteger
                 {
 
 
@@ -478,7 +479,7 @@ namespace LD
     };
 
 // "Loop" forever accepting new connections.
-    void
+   inline  void
     http_server(tcp::acceptor& acceptor, tcp::socket& socket)
     {
         acceptor.async_accept(socket,

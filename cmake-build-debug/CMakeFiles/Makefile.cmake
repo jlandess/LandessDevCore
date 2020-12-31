@@ -23,12 +23,11 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/snap/clion/137/bin/cmake/linux/share/cmake-3.17/Modules/CMakeSystemSpecificInformation.cmake"
   "/snap/clion/137/bin/cmake/linux/share/cmake-3.17/Modules/CMakeSystemSpecificInitialize.cmake"
   "/snap/clion/137/bin/cmake/linux/share/cmake-3.17/Modules/Compiler/CMakeCommonCompilerMacros.cmake"
-  "/snap/clion/137/bin/cmake/linux/share/cmake-3.17/Modules/Compiler/Clang-C.cmake"
   "/snap/clion/137/bin/cmake/linux/share/cmake-3.17/Modules/Compiler/Clang-CXX.cmake"
   "/snap/clion/137/bin/cmake/linux/share/cmake-3.17/Modules/Compiler/Clang.cmake"
+  "/snap/clion/137/bin/cmake/linux/share/cmake-3.17/Modules/Compiler/GNU-C.cmake"
   "/snap/clion/137/bin/cmake/linux/share/cmake-3.17/Modules/Compiler/GNU.cmake"
   "/snap/clion/137/bin/cmake/linux/share/cmake-3.17/Modules/Internal/CMakeCheckCompilerFlag.cmake"
-  "/snap/clion/137/bin/cmake/linux/share/cmake-3.17/Modules/Platform/Linux-Clang-C.cmake"
   "/snap/clion/137/bin/cmake/linux/share/cmake-3.17/Modules/Platform/Linux-Clang-CXX.cmake"
   "/snap/clion/137/bin/cmake/linux/share/cmake-3.17/Modules/Platform/Linux-GNU-C.cmake"
   "/snap/clion/137/bin/cmake/linux/share/cmake-3.17/Modules/Platform/Linux-GNU-CXX.cmake"
@@ -52,5 +51,4 @@ set(CMAKE_MAKEFILE_PRODUCTS
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/LandessDevCore.dir/DependInfo.cmake"
-  "CMakeFiles/LandessDevCoreFoundation.dir/DependInfo.cmake"
   )

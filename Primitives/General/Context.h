@@ -6,6 +6,7 @@
 #define LANDESSDEVCORE_CONTEXT_H
 #include "Memory/ElementReference.h"
 #include "TypeTraits/Detection.hpp"
+#include "TypeTraits/Type.h"
 namespace LD
 {
     namespace Detail
@@ -34,6 +35,21 @@ namespace LD
     constexpr auto MakeContext(Arguements && ... arguements) noexcept -> R
     {
         return R{LD::Forward<Arguements>(arguements)...};
+    }
+
+    namespace CT
+    {
+        template<typename T>
+        constexpr bool IsElementReference(LD::Type<T>)  noexcept
+        {
+            return false;
+        }
+
+        template<typename T>
+        constexpr bool IsElementReference(LD::Type<LD::ElementReference<T>> ) noexcept
+        {
+            return true;
+        }
     }
 }
 #endif //LANDESSDEVCORE_CONTEXT_H

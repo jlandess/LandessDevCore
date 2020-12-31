@@ -295,6 +295,7 @@ CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../TypeTraits/IsNullPtr.hpp
 CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../TypeTraits/IsPointer.hpp
 CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../TypeTraits/IsReference.hpp
 CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../TypeTraits/IsSame.hpp
+CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../TypeTraits/IsString.hpp
 CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../TypeTraits/IsSwappable.hpp
 CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../TypeTraits/IsUnion.hpp
 CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../TypeTraits/IsVoid.hpp
@@ -533,6 +534,7 @@ CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../Ty
 CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../TypeTraits/IsPointer.hpp
 CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../TypeTraits/IsReference.hpp
 CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../TypeTraits/IsSame.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../TypeTraits/IsString.hpp
 CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../TypeTraits/IsSwappable.hpp
 CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../TypeTraits/IsUnion.hpp
 CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../TypeTraits/IsVoid.hpp
@@ -610,6 +612,7 @@ CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../TypeTraits/IsN
 CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../TypeTraits/IsPointer.hpp
 CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../TypeTraits/IsReference.hpp
 CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../TypeTraits/IsSame.hpp
+CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../TypeTraits/IsString.hpp
 CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../TypeTraits/IsSwappable.hpp
 CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../TypeTraits/IsUnion.hpp
 CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../TypeTraits/IsVoid.hpp
@@ -770,6 +773,7 @@ CMakeFiles/LandessDevCore.dir/Examples/IOExample.cpp.o: ../TypeTraits/IsNullPtr.
 CMakeFiles/LandessDevCore.dir/Examples/IOExample.cpp.o: ../TypeTraits/IsPointer.hpp
 CMakeFiles/LandessDevCore.dir/Examples/IOExample.cpp.o: ../TypeTraits/IsReference.hpp
 CMakeFiles/LandessDevCore.dir/Examples/IOExample.cpp.o: ../TypeTraits/IsSame.hpp
+CMakeFiles/LandessDevCore.dir/Examples/IOExample.cpp.o: ../TypeTraits/IsString.hpp
 CMakeFiles/LandessDevCore.dir/Examples/IOExample.cpp.o: ../TypeTraits/IsSwappable.hpp
 CMakeFiles/LandessDevCore.dir/Examples/IOExample.cpp.o: ../TypeTraits/IsUnion.hpp
 CMakeFiles/LandessDevCore.dir/Examples/IOExample.cpp.o: ../TypeTraits/IsVoid.hpp
@@ -883,6 +887,7 @@ CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/Is
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/IsPointer.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/IsReference.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/IsSame.hpp
+CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/IsString.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/IsSwappable.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/IsUnion.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/IsVoid.hpp
@@ -976,6 +981,7 @@ CMakeFiles/LandessDevCore.dir/Examples/StringToNumberExample.cpp.o: ../TypeTrait
 CMakeFiles/LandessDevCore.dir/Examples/StringToNumberExample.cpp.o: ../TypeTraits/IsPointer.hpp
 CMakeFiles/LandessDevCore.dir/Examples/StringToNumberExample.cpp.o: ../TypeTraits/IsReference.hpp
 CMakeFiles/LandessDevCore.dir/Examples/StringToNumberExample.cpp.o: ../TypeTraits/IsSame.hpp
+CMakeFiles/LandessDevCore.dir/Examples/StringToNumberExample.cpp.o: ../TypeTraits/IsString.hpp
 CMakeFiles/LandessDevCore.dir/Examples/StringToNumberExample.cpp.o: ../TypeTraits/IsSwappable.hpp
 CMakeFiles/LandessDevCore.dir/Examples/StringToNumberExample.cpp.o: ../TypeTraits/IsUnion.hpp
 CMakeFiles/LandessDevCore.dir/Examples/StringToNumberExample.cpp.o: ../TypeTraits/IsVoid.hpp
@@ -1109,6 +1115,7 @@ CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../TypeTraits/I
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../TypeTraits/IsPointer.hpp
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../TypeTraits/IsReference.hpp
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../TypeTraits/IsSame.hpp
+CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../TypeTraits/IsString.hpp
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../TypeTraits/IsSwappable.hpp
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../TypeTraits/IsUnion.hpp
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../TypeTraits/IsVoid.hpp
@@ -1161,6 +1168,11 @@ CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.o: ../IO/Database.hp
 CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.o: ../IO/DatabaseOperationResult.h
 CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.o: ../IO/EtcdBackingStore.h
 CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.o: ../IO/FetchRequest.h
+CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.o: ../IO/Redis/alloc.h
+CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.o: ../IO/Redis/hiredis.h
+CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.o: ../IO/Redis/read.h
+CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.o: ../IO/Redis/sds.h
+CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.o: ../IO/RedisBackend.h
 CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.o: ../IO/etcd/etcdcpp.h
 CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.o: ../IO/rapidjson/allocators.h
 CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.o: ../IO/rapidjson/document.h
@@ -1232,6 +1244,7 @@ CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.o: ../TypeTraits/IsN
 CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.o: ../TypeTraits/IsPointer.hpp
 CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.o: ../TypeTraits/IsReference.hpp
 CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.o: ../TypeTraits/IsSame.hpp
+CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.o: ../TypeTraits/IsString.hpp
 CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.o: ../TypeTraits/IsSwappable.hpp
 CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.o: ../TypeTraits/IsUnion.hpp
 CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.o: ../TypeTraits/IsVoid.hpp
@@ -1329,6 +1342,7 @@ CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o: ../TypeTraits/IsNullPtr.hpp
 CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o: ../TypeTraits/IsPointer.hpp
 CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o: ../TypeTraits/IsReference.hpp
 CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o: ../TypeTraits/IsSame.hpp
+CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o: ../TypeTraits/IsString.hpp
 CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o: ../TypeTraits/IsSwappable.hpp
 CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o: ../TypeTraits/IsUnion.hpp
 CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o: ../TypeTraits/IsVoid.hpp
@@ -1433,6 +1447,7 @@ CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../TypeTraits/IsNull
 CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../TypeTraits/IsPointer.hpp
 CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../TypeTraits/IsReference.hpp
 CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../TypeTraits/IsSame.hpp
+CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../TypeTraits/IsString.hpp
 CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../TypeTraits/IsSwappable.hpp
 CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../TypeTraits/IsUnion.hpp
 CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../TypeTraits/IsVoid.hpp
@@ -1771,6 +1786,7 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Algorithms/CompileTimeOperations.hp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Algorithms/Exponential.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Algorithms/FromString.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Algorithms/StringAsNumber.h
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Algorithms/StringToPrimitive.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Algorithms/Swap.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Algorithms/vdt/asin.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Algorithms/vdt/atan.h
@@ -1793,7 +1809,37 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Functor/FunctionView.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Functor/Lambda.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Functor/LightWeightDelegate.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Functor/LightWeightDelegateBase.h
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/Database.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/DatabaseOperationResult.h
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/EtcdBackingStore.h
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/FetchRequest.h
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/Redis/alloc.h
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/Redis/hiredis.h
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/Redis/read.h
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/Redis/sds.h
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/RedisBackend.h
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/etcd/etcdcpp.h
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/rapidjson/allocators.h
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/rapidjson/document.h
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/rapidjson/encodedstream.h
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/rapidjson/encodings.h
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/rapidjson/error/error.h
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/rapidjson/internal/biginteger.h
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/rapidjson/internal/clzll.h
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/rapidjson/internal/diyfp.h
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/rapidjson/internal/ieee754.h
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/rapidjson/internal/meta.h
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/rapidjson/internal/pow10.h
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/rapidjson/internal/stack.h
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/rapidjson/internal/strfunc.h
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/rapidjson/internal/strtod.h
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/rapidjson/internal/swap.h
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/rapidjson/memorystream.h
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/rapidjson/msinttypes/inttypes.h
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/rapidjson/msinttypes/stdint.h
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/rapidjson/rapidjson.h
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/rapidjson/reader.h
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/rapidjson/stream.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/toml/color.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/toml/combinator.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/toml/comments.hpp
@@ -1837,6 +1883,7 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Primitives/General/mapboxrecursive_
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Primitives/General/mapboxvariant.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Primitives/General/mapboxvariantvisitor.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Primitives/General/typestring.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Random/GenericRandomNumberGenerator.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Reflection/ConstexprFor.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Reflection/reflectable.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Reflection/tagged_tuple.hpp
@@ -1865,6 +1912,7 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsClassType.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsConst.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsConvertible.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsDestructible.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsExternalObjectSymbol.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsImmutable.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsIntegralType.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsMemberPointer.hpp
@@ -1872,6 +1920,7 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsNullPtr.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsPointer.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsReference.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsSame.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsString.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsSwappable.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsUnion.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsVoid.hpp
@@ -1897,6 +1946,7 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Algorithms/Sorting.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Algorithms/Swap.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Chrono/Timer.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Examples/ReflectionDemoTypes.h
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Examples/WebServerExample.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/CSVParser.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/EphemiralRowBackingStore.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/FetchRequest.h
@@ -1939,12 +1989,15 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o: ../REST/CPR/user_agent.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../REST/CPR/util.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../REST/CPR/verbose.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../REST/HTMLEmitter.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../REST/WebServer.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Random/BasicRandomNumberGenerator.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Random/MarsagliaRandomNumberGenerator.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Reflection/Reflection.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../SPA/Attributes.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../SPA/Backend.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../SPA/Button.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../SPA/Compositor.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../SPA/Console.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../SPA/Div.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../SPA/EventHandler.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../SPA/Function.hpp

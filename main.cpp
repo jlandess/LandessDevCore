@@ -35,8 +35,14 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <IO/RedisBackend.h>
+#include <Random/GenericRandomNumberGenerator.hpp>
 #include "Algorithms/Searching.hpp"
 #include "Algorithms/Sorting.hpp"
+#include "REST/WebServer.hpp"
+#include "Examples/WebServerExample.hpp"
+#include "Random/BasicRandomNumberGenerator.hpp"
+#include "SPA/Console.hpp"
 template<typename KeyType,typename TennantType>
 class MirtaPBX
 {
@@ -150,10 +156,29 @@ void SaveMissedCalls(LD::Date date) noexcept
 
 
 
+
 int main(int argc, char* argv[])
 {
 
+    LD::RedisBackingStore redisBackingStore{"redis.landesshome.com",55000};
+    LD::BasicKeyedDatabase<LD::RedisBackingStore> redisKeyedDatabase{redisBackingStore};
+    redisKeyedDatabase.Insert(LD::StringView{"abc"},LD::ProgramCount{99});
 
+    LD::QueryResult<LD::Variant<LD::ProgramCount>()> result =  redisKeyedDatabase.Fetch(LD::StringView {"abc"},LD::CT::TypeList<LD::ProgramCount>{});
+
+
+    auto onError = [](const LD::Context<LD::TransactionError> & context) noexcept ->LD::UInteger
+    {
+        std::cout << "found error" << std::endl;
+        return 0;
+    };
+
+    auto onSuccess = [](const LD::Context<LD::TransactionResult,LD::ProgramCount> & context) noexcept -> LD::UInteger
+    {
+        return LD::Get(LD::Get<1>(context)).Count();
+    };
+    std::cout << "Current Program Counter: " << LD::MultiMatch(LD::Overload{onError,onSuccess},result) << std::endl;
+    //LD::WebServerExample();
     LD::StaticArray<int,10> rawrbunnies;
     for(LD::UInteger n = 0;n<10;++n)
     {
@@ -162,6 +187,7 @@ int main(int argc, char* argv[])
     }
     std::cout << "Static Array Size: " << rawrbunnies.End()-rawrbunnies.Begin() << std::endl;
     LD::QuickSort(rawrbunnies,[](int a, int b) noexcept {return a<b;});
+
     for(LD::UInteger n = 0;n<10;++n)
     {
         std::cout << rawrbunnies[n] << std::endl;
@@ -176,25 +202,44 @@ int main(int argc, char* argv[])
 
 
     LD::MarsagliaMultiplyWithCarryGenerator randomNumberGenerator{static_cast<unsigned long>(time(0))};
+
+
+
+
+
     auto randomLambda = [](LD::MarsagliaMultiplyWithCarryGenerator & generator) noexcept
     {
         return generator.NextInteger();
     };
-    LD::SPA::Var varType{7,randomLambda,randomNumberGenerator};
-    LD::SPA::Var varType3{7,randomLambda,randomNumberGenerator};
-    LD::SPA::Var varType4{7,randomLambda,randomNumberGenerator};
 
 
-    //LD::ImmutableString
+
+    LD::GenericRandomIntegerGenerator integerGeneration{randomNumberGenerator};
+    LD::SPA::Var varType{7,integerGeneration};
+    LD::SPA::Var varType3{7,integerGeneration};
+    LD::SPA::Var varType4{7,integerGeneration};
     auto expression = (varType+varType3)+(varType4+varType4);
+    LD::SPA::VarExpression expression5{LD::Type<void>{},LD::SPA::FunctionalOperator{},LD::ImmutableString{"show"},expression};
+    LD::SPA::Function function{integerGeneration,expression5};
+    LD::SPA::Console consoleExample{integerGeneration};
+    auto expressionAssert = consoleExample.Assert(expression5,LD::ImmutableString{"rawrbunnies"});
+    std::cout << "Expression assert example: " << LD::ToImmutableString(expressionAssert).Data() << std::endl;
+
+    std::cout << LD::ToImmutableString(LD::ImmutableString{"abc"}).Data() << std::endl;
+
+
+    LD::SPA::Function function1{integerGeneration,expressionAssert};
 
     LD::SPA::EventHandler handler{LD::SPA::OnLoad{},expression};
     LD::SPA::Div gotcha2{handler,LD::SPA::Text{7}};
 
-    LD::SPA::Function function{expression};
-    LD::ToImmutableString(function);
-    std::cout << LD::ToImmutableString(expression).Data() << std::endl;
 
+    //std::cout << LD::ToImmutableString(expression).Data() << std::endl;
+
+    ;
+    std::cout << LD::ToImmutableString(function).Data() << std::endl;
+    std::cout << LD::ToImmutableString(function1).Data() << std::endl;
+    //std::cout << "Functional Expression : " << LD::ToImmutableString(expression5).Data() << std::endl;
     LD::SPA::ClassName divClassName77{LD::StringView {"bomb"}};
     LD::SPA::Language domLanguage77{LD::StringView {"en-US"}};
     LD::SPA::Compositor<LD::CT::TypeList<>> compositor;

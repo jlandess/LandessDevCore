@@ -30,7 +30,7 @@ namespace LD
         {
             srand(mSeed);
         }
-        inline unsigned long next() noexcept
+        inline unsigned long NextInteger() noexcept
         {
             this->mCurr = rand();
             return this->mCurr;
@@ -42,7 +42,7 @@ namespace LD
         /// by getCurr(), but returns a floating point normalized value in [0,1).
         /// Due to the implementation of the standard library rand(),
         /// this affects all the instances of GS_SysR_BRNG.
-        inline double next01() noexcept
+        inline double NextFloatingPoint() noexcept
         {
             this->mCurr = rand();
             return (double) double(this->mCurr)/(double(RandMax) + 1.0);

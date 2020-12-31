@@ -17,6 +17,7 @@
 #include "TypeTraits/StaticallySized.h"
 #include "IO/FetchRequest.h"
 #include "StaticArray.hpp"
+#include "TypeTraits/IsString.hpp"
 namespace LD
 {
     class ImmutableStringWarrant
@@ -36,7 +37,7 @@ namespace LD
     private:
         char string[N+1];
     public:
-
+        static constexpr LD::UInteger StringSize = N;
 
         constexpr inline ImmutableStringWarrant GetImmutableStringWarrant() const
         {
@@ -66,11 +67,17 @@ namespace LD
         template<typename U, typename = typename LD::Enable_If_T<LD::Require<LD::IsInteger<U>,LD::IsUnsignedInteger<U>>>>
         constexpr ImmutableString(const U & value) noexcept
         {
+            for(LD::UInteger n = 0;n<N+1;++n)
+            {
+                this->string[n] = value;
+            }
+            /*
             LD::For<0,N+1>([](auto I, LD::ImmutableString<N> * instance, const U & value)
             {
                 instance->string[I] = value;
                 return true;
             },this,value);
+             */
         }
 
          const LD::UInteger GetSize() const
@@ -112,6 +119,11 @@ namespace LD
         template<LD::UInteger Size, typename = typename LD::Enable_If_T<Size <= N>>
         constexpr ImmutableString(const LD::StaticArray<char,Size> & string) noexcept
         {
+            for(LD::UInteger n = 0;n<Size;++n)
+            {
+                this->string[n] = string[n];
+            }
+            /*
             LD::For<Size>([](
                     auto I,
                     auto && instance,
@@ -122,6 +134,7 @@ namespace LD
 
                 return true;
             },this->string,string);
+             */
         }
 
         constexpr ImmutableString(const char (&lit)[N + 1]): ImmutableString()
@@ -597,6 +610,11 @@ namespace LD
         },lit,str);
         return str;
     }
+    template<LD::UInteger Size>
+    LD::ImmutableString<Size> ToImmutableString(const LD::ImmutableString<Size> & string) noexcept
+    {
+        return string;
+    }
 
 
     template<char ... Characters>
@@ -1025,5 +1043,15 @@ namespace LD
     template<char ... Characters>
     ImmutableString(LD::TypeString<Characters...>) -> ImmutableString<sizeof...(Characters)>;
 }
-
+namespace LD
+{
+    namespace CT
+    {
+        template<LD::UInteger Size>
+        constexpr bool IsString(LD::Type<LD::ImmutableString<Size>> )  noexcept
+        {
+            return true;
+        }
+    }
+}
 #endif /* Immutable_h */
