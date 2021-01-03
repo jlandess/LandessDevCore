@@ -8,7 +8,13 @@
 namespace LD
 {
     template<typename T>
-    constexpr bool IsExternalObjectSymbol(LD::Type<T> ) noexcept
+    constexpr bool IsExternalObjectFunctionalSymbol(LD::Type<T> ) noexcept
+    {
+        return false;
+    }
+
+    template<typename T>
+    constexpr bool IsExternalObjectMemberSymbol(LD::Type<T> ) noexcept
     {
         return false;
     }

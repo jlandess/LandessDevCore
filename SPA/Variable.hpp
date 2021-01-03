@@ -31,13 +31,14 @@ namespace LD
         };
 
         template<typename T,typename StringType>
-        class ExternalObjectSymbol
+        class ExternalObjectFunctionalSymbol
         {
         private:
             StringType mName;
         public:
-            ExternalObjectSymbol() = default;
-            ExternalObjectSymbol(LD::Type<T>,StringType && name) noexcept: mName{LD::Forward<StringType>(name)}
+            using NameType = StringType;
+            ExternalObjectFunctionalSymbol() = default;
+            ExternalObjectFunctionalSymbol(LD::Type<T>,StringType && name) noexcept: mName{LD::Forward<StringType>(name)}
             {
 
             }
@@ -47,7 +48,24 @@ namespace LD
             }
         };
 
-        template <typename T, typename StringType> ExternalObjectSymbol(LD::Type<T>, StringType &&) -> ExternalObjectSymbol<T,StringType>;
+        template<typename T, typename StringType>
+        class ExternalObjectFunctionalMemberSymbol
+        {
+        private:
+            StringType mName;
+        public:
+            ExternalObjectFunctionalMemberSymbol() = default;
+            ExternalObjectFunctionalMemberSymbol(LD::Type<T>,StringType && name) noexcept: mName{LD::Forward<StringType>(name)}
+            {
+
+            }
+            StringType Symbol() const noexcept
+            {
+                return this->mName;
+            }
+        };
+
+        template <typename T, typename StringType> ExternalObjectFunctionalSymbol(LD::Type<T>, StringType &&) -> ExternalObjectFunctionalSymbol<T,StringType>;
 
 
 
@@ -271,7 +289,13 @@ namespace LD
     namespace CT
     {
         template<typename T, typename StringType>
-        constexpr bool IsExternalObjectSymbol(LD::Type<LD::SPA::ExternalObjectSymbol<T,StringType>> ) noexcept
+        inline constexpr bool IsExternalObjectFunctionalSymbol(LD::Type<LD::SPA::ExternalObjectFunctionalSymbol<T,StringType>> ) noexcept
+        {
+            return true;
+        }
+
+        template<typename T, typename StringType>
+        inline constexpr bool IsExternalObjectMemberSymbol(LD::Type<LD::SPA::ExternalObjectFunctionalMemberSymbol<T,StringType>> ) noexcept
         {
             return true;
         }
@@ -334,6 +358,17 @@ namespace LD
                 }else if constexpr(LD::CT::IsSameWithoutQualifiers(LD::Type<OperationType>{},LD::Type<LD::SPA::FunctionalOperator>{}))
                 {
                     return sizeOfOperand + 2 + (numberOfArguments/2);
+                }
+                return 0;
+            }
+            template<typename OperationType>
+            constexpr LD::UInteger CalculateOperationTypeLength(LD::Type<OperationType> operationType, LD::UInteger numberOfArguments) noexcept
+            {
+                if constexpr (LD::CT::IsExternalObjectFunctionalSymbol(LD::Type<OperationType>{}))
+                {
+                    using Name = typename OperationType::NameType;
+                    constexpr LD::UInteger NameSize = Name::StringSize;
+                    return NameSize + (numberOfArguments)/2 + 2;
                 }
                 return 0;
             }
@@ -413,7 +448,7 @@ namespace LD
                         return true;
                     },characterInserter,composition);
                     characterInserter = ')';
-                }else if constexpr (LD::CT::IsExternalObjectSymbol(LD::Type<OperationType>{}))
+                }else if constexpr (LD::CT::IsExternalObjectFunctionalSymbol(LD::Type<OperationType>{}))
                 {
                     const auto & operandSymbol = operandType.Symbol();
                     for(LD::UInteger n=0;n<operandSymbol.GetSize();++n)
@@ -430,15 +465,15 @@ namespace LD
                             auto I,
                             CharacterInserter characterInserter,
                             const auto & composition)
-                                                      {
-                                                          const auto & currentVariable = LD::Get(LD::Get<I>(composition));
-                                                          LD::SPA::Detail::RecurseExpression(currentVariable,characterInserter);
-                                                          if constexpr (I < sizeof...(Variables)-1)
-                                                          {
-                                                              characterInserter = ',';
-                                                          }
-                                                          return true;
-                                                      },characterInserter,composition);
+                    {
+                        const auto & currentVariable = LD::Get(LD::Get<I>(composition));
+                        LD::SPA::Detail::RecurseExpression(currentVariable,characterInserter);
+                        if constexpr (I < sizeof...(Variables)-1)
+                        {
+                            characterInserter = ',';
+                        }
+                        return true;
+                    },characterInserter,composition);
                     characterInserter = ')';
                 }
 
@@ -446,7 +481,7 @@ namespace LD
         }
     }
     template<typename T,typename Op,typename OpType,typename ... A>
-    constexpr LD::UInteger GetRequriedSizeForExpression(LD::Type<LD::SPA::VarExpression<T,Op,OpType,A...>> ) noexcept
+    inline constexpr LD::UInteger GetRequriedSizeForExpression(LD::Type<LD::SPA::VarExpression<T,Op,OpType,A...>> ) noexcept
     {
         using ExpressionType = LD::SPA::VarExpression<T,Op,OpType,A...>;
         using OperationType = typename ExpressionType::OpType;
@@ -456,8 +491,9 @@ namespace LD
 
         constexpr LD::UInteger AmountDueToVar = 3*DeterminerVariables::size();
         constexpr LD::UInteger AmountDueToVariableNames = 22*DeterminerVariables::size();
-        constexpr LD::UInteger AmountToOperator = LD::SPA::Detail::CalculateOperandLength(LD::Type<OperationType>{},DeterminerVariables::size(),LD::ImmutableSize(LD::Type<Operator>{}));
-        constexpr LD::UInteger TotalAmount = AmountDueToVar+AmountDueToVariableNames+AmountToOperator+1;
+        constexpr LD::UInteger AmountToOperator = LD::SPA::Detail::CalculateOperandLength(LD::Type<Operator>{},DeterminerVariables::size(),LD::ImmutableSize(LD::Type<Operator>{}));
+        constexpr LD::UInteger AmountToOperatorType = LD::SPA::Detail::CalculateOperationTypeLength(LD::Type<OperationType>{},DeterminerVariables::size());
+        constexpr LD::UInteger TotalAmount = AmountDueToVar+AmountDueToVariableNames+AmountToOperator+AmountToOperatorType+1;
         return TotalAmount;
     }
     template<typename ... A>
