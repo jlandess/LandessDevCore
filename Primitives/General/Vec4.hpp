@@ -1399,7 +1399,7 @@ namespace LD
             {
                 return LD::Detail::tVec4<T>((*this)[3],(*this)[3],(*this)[1],(*this)[2]);
             }
-            inline PDLDP::Detail::tVec4<T> WWYW() const
+            inline LD::Detail::tVec4<T> WWYW() const
             {
                 return LD::Detail::tVec4<T>((*this)[3],(*this)[3],(*this)[1],(*this)[3]);
             }

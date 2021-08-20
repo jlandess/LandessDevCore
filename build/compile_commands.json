@@ -1,0 +1,392 @@
+[
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang++-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -march=native -std=gnu++17 -o CMakeFiles/LandessDevCore.dir/main.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/main.cpp",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/main.cpp"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang++-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -march=native -std=gnu++17 -o CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/Chrono/Timer.cpp",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/Chrono/Timer.cpp"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang++-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -march=native -std=gnu++17 -o CMakeFiles/LandessDevCore.dir/Algorithms/vdt/vdtmath.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/Algorithms/vdt/vdtmath.cpp",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/Algorithms/vdt/vdtmath.cpp"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang++-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -march=native -std=gnu++17 -o CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/MVC/TermBoxApplication.cpp",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/MVC/TermBoxApplication.cpp"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -O3 -DNDEBUG -o CMakeFiles/LandessDevCore.dir/TermBox/termbox.c.o -c /home/phoenixflower/Documents/LandessDevCore/TermBox/termbox.c",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/TermBox/termbox.c"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -O3 -DNDEBUG -o CMakeFiles/LandessDevCore.dir/TermBox/utf8.c.o -c /home/phoenixflower/Documents/LandessDevCore/TermBox/utf8.c",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/TermBox/utf8.c"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -O3 -DNDEBUG -o CMakeFiles/LandessDevCore.dir/Process/clock.posix.c.o -c /home/phoenixflower/Documents/LandessDevCore/Process/clock.posix.c",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/Process/clock.posix.c"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -O3 -DNDEBUG -o CMakeFiles/LandessDevCore.dir/Process/drain.c.o -c /home/phoenixflower/Documents/LandessDevCore/Process/drain.c",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/Process/drain.c"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -O3 -DNDEBUG -o CMakeFiles/LandessDevCore.dir/Process/error.posix.c.o -c /home/phoenixflower/Documents/LandessDevCore/Process/error.posix.c",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/Process/error.posix.c"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -O3 -DNDEBUG -o CMakeFiles/LandessDevCore.dir/Process/handle.posix.c.o -c /home/phoenixflower/Documents/LandessDevCore/Process/handle.posix.c",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/Process/handle.posix.c"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -O3 -DNDEBUG -o CMakeFiles/LandessDevCore.dir/Process/init.posix.c.o -c /home/phoenixflower/Documents/LandessDevCore/Process/init.posix.c",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/Process/init.posix.c"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -O3 -DNDEBUG -o CMakeFiles/LandessDevCore.dir/Process/pipe.posix.c.o -c /home/phoenixflower/Documents/LandessDevCore/Process/pipe.posix.c",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/Process/pipe.posix.c"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -O3 -DNDEBUG -o CMakeFiles/LandessDevCore.dir/Process/process.posix.c.o -c /home/phoenixflower/Documents/LandessDevCore/Process/process.posix.c",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/Process/process.posix.c"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -O3 -DNDEBUG -o CMakeFiles/LandessDevCore.dir/Process/redirect.c.o -c /home/phoenixflower/Documents/LandessDevCore/Process/redirect.c",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/Process/redirect.c"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -O3 -DNDEBUG -o CMakeFiles/LandessDevCore.dir/Process/redirect.posix.c.o -c /home/phoenixflower/Documents/LandessDevCore/Process/redirect.posix.c",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/Process/redirect.posix.c"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -O3 -DNDEBUG -o CMakeFiles/LandessDevCore.dir/Process/reproc.c.o -c /home/phoenixflower/Documents/LandessDevCore/Process/reproc.c",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/Process/reproc.c"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -O3 -DNDEBUG -o CMakeFiles/LandessDevCore.dir/Process/run.c.o -c /home/phoenixflower/Documents/LandessDevCore/Process/run.c",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/Process/run.c"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -O3 -DNDEBUG -o CMakeFiles/LandessDevCore.dir/Process/options.c.o -c /home/phoenixflower/Documents/LandessDevCore/Process/options.c",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/Process/options.c"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -O3 -DNDEBUG -o CMakeFiles/LandessDevCore.dir/IO/unqlite.c.o -c /home/phoenixflower/Documents/LandessDevCore/IO/unqlite.c",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/IO/unqlite.c"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang++-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -march=native -std=gnu++17 -o CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/Examples/ReflectionExample.cpp",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/Examples/ReflectionExample.cpp"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang++-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -march=native -std=gnu++17 -o CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/Examples/TermBoxMenuExample.cpp",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/Examples/TermBoxMenuExample.cpp"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang++-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -march=native -std=gnu++17 -o CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/Async/Thread.cpp",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/Async/Thread.cpp"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang++-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -march=native -std=gnu++17 -o CMakeFiles/LandessDevCore.dir/Examples/CalculusExample.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/Examples/CalculusExample.cpp",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/Examples/CalculusExample.cpp"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang++-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -march=native -std=gnu++17 -o CMakeFiles/LandessDevCore.dir/Examples/MultithreadingExample.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/Examples/MultithreadingExample.cpp",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/Examples/MultithreadingExample.cpp"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang++-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -march=native -std=gnu++17 -o CMakeFiles/LandessDevCore.dir/Examples/TermBoxInputExample.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/Examples/TermBoxInputExample.cpp",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/Examples/TermBoxInputExample.cpp"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang++-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -march=native -std=gnu++17 -o CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/Examples/DelimeterSeperateFileExample.cpp",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/Examples/DelimeterSeperateFileExample.cpp"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang++-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -march=native -std=gnu++17 -o CMakeFiles/LandessDevCore.dir/TUI/ascii_art.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/TUI/ascii_art.cpp",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/TUI/ascii_art.cpp"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang++-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -march=native -std=gnu++17 -o CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/Examples/FullAdderExample.cpp",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/Examples/FullAdderExample.cpp"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -O3 -DNDEBUG -o CMakeFiles/LandessDevCore.dir/IO/Redis/alloc.c.o -c /home/phoenixflower/Documents/LandessDevCore/IO/Redis/alloc.c",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/IO/Redis/alloc.c"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -O3 -DNDEBUG -o CMakeFiles/LandessDevCore.dir/IO/Redis/async.c.o -c /home/phoenixflower/Documents/LandessDevCore/IO/Redis/async.c",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/IO/Redis/async.c"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -O3 -DNDEBUG -o CMakeFiles/LandessDevCore.dir/IO/Redis/dict.c.o -c /home/phoenixflower/Documents/LandessDevCore/IO/Redis/dict.c",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/IO/Redis/dict.c"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -O3 -DNDEBUG -o CMakeFiles/LandessDevCore.dir/IO/Redis/hiredis.c.o -c /home/phoenixflower/Documents/LandessDevCore/IO/Redis/hiredis.c",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/IO/Redis/hiredis.c"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -O3 -DNDEBUG -o CMakeFiles/LandessDevCore.dir/IO/Redis/net.c.o -c /home/phoenixflower/Documents/LandessDevCore/IO/Redis/net.c",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/IO/Redis/net.c"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -O3 -DNDEBUG -o CMakeFiles/LandessDevCore.dir/IO/Redis/read.c.o -c /home/phoenixflower/Documents/LandessDevCore/IO/Redis/read.c",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/IO/Redis/read.c"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -O3 -DNDEBUG -o CMakeFiles/LandessDevCore.dir/IO/Redis/sds.c.o -c /home/phoenixflower/Documents/LandessDevCore/IO/Redis/sds.c",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/IO/Redis/sds.c"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -O3 -DNDEBUG -o CMakeFiles/LandessDevCore.dir/IO/Redis/sockcompat.c.o -c /home/phoenixflower/Documents/LandessDevCore/IO/Redis/sockcompat.c",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/IO/Redis/sockcompat.c"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -O3 -DNDEBUG -o CMakeFiles/LandessDevCore.dir/IO/Redis/ssl.c.o -c /home/phoenixflower/Documents/LandessDevCore/IO/Redis/ssl.c",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/IO/Redis/ssl.c"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang++-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -march=native -std=gnu++17 -o CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/IO/etcd/etcdcpp.cpp",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/IO/etcd/etcdcpp.cpp"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang++-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -march=native -std=gnu++17 -o CMakeFiles/LandessDevCore.dir/IO/XML/tinyxml2.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/IO/XML/tinyxml2.cpp",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/IO/XML/tinyxml2.cpp"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang++-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -march=native -std=gnu++17 -o CMakeFiles/LandessDevCore.dir/Examples/IOExample.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/Examples/IOExample.cpp",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/Examples/IOExample.cpp"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang++-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -march=native -std=gnu++17 -o CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/Examples/WebServerExample.cpp",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/Examples/WebServerExample.cpp"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang++-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -march=native -std=gnu++17 -o CMakeFiles/LandessDevCore.dir/Examples/StringToNumberExample.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/Examples/StringToNumberExample.cpp",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/Examples/StringToNumberExample.cpp"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang++-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -march=native -std=gnu++17 -o CMakeFiles/LandessDevCore.dir/REST/CPR/auth.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/REST/CPR/auth.cpp",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/REST/CPR/auth.cpp"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang++-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -march=native -std=gnu++17 -o CMakeFiles/LandessDevCore.dir/REST/CPR/bearer.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/REST/CPR/bearer.cpp",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/REST/CPR/bearer.cpp"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang++-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -march=native -std=gnu++17 -o CMakeFiles/LandessDevCore.dir/REST/CPR/cookies.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/REST/CPR/cookies.cpp",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/REST/CPR/cookies.cpp"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang++-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -march=native -std=gnu++17 -o CMakeFiles/LandessDevCore.dir/REST/CPR/cprtypes.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/REST/CPR/cprtypes.cpp",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/REST/CPR/cprtypes.cpp"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang++-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -march=native -std=gnu++17 -o CMakeFiles/LandessDevCore.dir/REST/CPR/curl_container.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/REST/CPR/curl_container.cpp",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/REST/CPR/curl_container.cpp"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang++-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -march=native -std=gnu++17 -o CMakeFiles/LandessDevCore.dir/REST/CPR/curlholder.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/REST/CPR/curlholder.cpp",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/REST/CPR/curlholder.cpp"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang++-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -march=native -std=gnu++17 -o CMakeFiles/LandessDevCore.dir/REST/CPR/error.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/REST/CPR/error.cpp",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/REST/CPR/error.cpp"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang++-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -march=native -std=gnu++17 -o CMakeFiles/LandessDevCore.dir/REST/CPR/multipart.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/REST/CPR/multipart.cpp",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/REST/CPR/multipart.cpp"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang++-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -march=native -std=gnu++17 -o CMakeFiles/LandessDevCore.dir/REST/CPR/parameters.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/REST/CPR/parameters.cpp",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/REST/CPR/parameters.cpp"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang++-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -march=native -std=gnu++17 -o CMakeFiles/LandessDevCore.dir/REST/CPR/payload.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/REST/CPR/payload.cpp",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/REST/CPR/payload.cpp"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang++-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -march=native -std=gnu++17 -o CMakeFiles/LandessDevCore.dir/REST/CPR/proxies.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/REST/CPR/proxies.cpp",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/REST/CPR/proxies.cpp"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang++-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -march=native -std=gnu++17 -o CMakeFiles/LandessDevCore.dir/REST/CPR/response.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/REST/CPR/response.cpp",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/REST/CPR/response.cpp"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang++-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -march=native -std=gnu++17 -o CMakeFiles/LandessDevCore.dir/REST/CPR/session.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/REST/CPR/session.cpp",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/REST/CPR/session.cpp"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang++-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -march=native -std=gnu++17 -o CMakeFiles/LandessDevCore.dir/REST/CPR/timeout.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/REST/CPR/timeout.cpp",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/REST/CPR/timeout.cpp"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang++-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -march=native -std=gnu++17 -o CMakeFiles/LandessDevCore.dir/REST/CPR/unix_socket.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/REST/CPR/unix_socket.cpp",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/REST/CPR/unix_socket.cpp"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang++-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -march=native -std=gnu++17 -o CMakeFiles/LandessDevCore.dir/REST/CPR/util.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/REST/CPR/util.cpp",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/REST/CPR/util.cpp"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang++-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -march=native -std=gnu++17 -o CMakeFiles/LandessDevCore.dir/Memory/LinearAllocator.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/Memory/LinearAllocator.cpp",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/Memory/LinearAllocator.cpp"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang++-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -march=native -std=gnu++17 -o CMakeFiles/LandessDevCore.dir/Memory/StackAllocator.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/Memory/StackAllocator.cpp",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/Memory/StackAllocator.cpp"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang++-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -march=native -std=gnu++17 -o CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/Memory/PoolAllocator.cpp",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/Memory/PoolAllocator.cpp"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang++-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -march=native -std=gnu++17 -o CMakeFiles/LandessDevCore.dir/Memory/FreeListAllocator.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/Memory/FreeListAllocator.cpp",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/Memory/FreeListAllocator.cpp"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang++-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -march=native -std=gnu++17 -o CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/Graphics/DearImGUI/imgui.cpp",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/Graphics/DearImGUI/imgui.cpp"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang++-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -march=native -std=gnu++17 -o CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_impl_glfw.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/Graphics/DearImGUI/imgui_impl_glfw.cpp",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/Graphics/DearImGUI/imgui_impl_glfw.cpp"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang++-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -march=native -std=gnu++17 -o CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_draw.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/Graphics/DearImGUI/imgui_draw.cpp",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/Graphics/DearImGUI/imgui_draw.cpp"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang++-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -march=native -std=gnu++17 -o CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_impl_opengl3.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/Graphics/DearImGUI/imgui_impl_opengl3.cpp",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/Graphics/DearImGUI/imgui_impl_opengl3.cpp"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang++-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -march=native -std=gnu++17 -o CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_tables.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/Graphics/DearImGUI/imgui_tables.cpp",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/Graphics/DearImGUI/imgui_tables.cpp"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang++-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -march=native -std=gnu++17 -o CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_widgets.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/Graphics/DearImGUI/imgui_widgets.cpp",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/Graphics/DearImGUI/imgui_widgets.cpp"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang++-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -march=native -std=gnu++17 -o CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_demo.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/Graphics/DearImGUI/imgui_demo.cpp",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/Graphics/DearImGUI/imgui_demo.cpp"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang++-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -march=native -std=gnu++17 -o CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imnodes.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/Graphics/DearImGUI/imnodes.cpp",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/Graphics/DearImGUI/imnodes.cpp"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang++-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -march=native -std=gnu++17 -o CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/NodeEditor/crude_json.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/Graphics/DearImGUI/NodeEditor/crude_json.cpp",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/Graphics/DearImGUI/NodeEditor/crude_json.cpp"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang++-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -march=native -std=gnu++17 -o CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/NodeEditor/imgui_canvas.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/Graphics/DearImGUI/NodeEditor/imgui_canvas.cpp",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/Graphics/DearImGUI/NodeEditor/imgui_canvas.cpp"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang++-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -march=native -std=gnu++17 -o CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/NodeEditor/imgui_node_editor.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/Graphics/DearImGUI/NodeEditor/imgui_node_editor.cpp",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/Graphics/DearImGUI/NodeEditor/imgui_node_editor.cpp"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang++-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -march=native -std=gnu++17 -o CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/NodeEditor/imgui_node_editor_api.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/Graphics/DearImGUI/NodeEditor/imgui_node_editor_api.cpp",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/Graphics/DearImGUI/NodeEditor/imgui_node_editor_api.cpp"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang++-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -march=native -std=gnu++17 -o CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/Examples/IMGUIExample1.cpp",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/Examples/IMGUIExample1.cpp"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang++-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -march=native -std=gnu++17 -o CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample2.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/Examples/IMGUIExample2.cpp",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/Examples/IMGUIExample2.cpp"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -O3 -DNDEBUG -o CMakeFiles/LandessDevCore.dir/Network/ipv6.c.o -c /home/phoenixflower/Documents/LandessDevCore/Network/ipv6.c",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/Network/ipv6.c"
+},
+{
+  "directory": "/home/phoenixflower/Documents/LandessDevCore/build",
+  "command": "/usr/bin/clang++-11  -I/home/phoenixflower/Documents/LandessDevCore/. -I/usr/local/include/boost -I/media/glusterfs/Dependencies/include -march=native -std=gnu++17 -o CMakeFiles/LandessDevCore.dir/Network/ssdp.cpp.o -c /home/phoenixflower/Documents/LandessDevCore/Network/ssdp.cpp",
+  "file": "/home/phoenixflower/Documents/LandessDevCore/Network/ssdp.cpp"
+}
+]

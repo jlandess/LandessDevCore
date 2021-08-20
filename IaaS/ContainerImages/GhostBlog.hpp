@@ -1,0 +1,8 @@
+//
+// Created by phoenixflower on 2/14/21.
+//
+
+#ifndef LANDESSDEVCORE_GHOSTBLOG_HPP
+#define LANDESSDEVCORE_GHOSTBLOG_HPP
+
+#endif //LANDESSDEVCORE_GHOSTBLOG_HPP

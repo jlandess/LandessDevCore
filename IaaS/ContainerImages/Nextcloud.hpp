@@ -1,0 +1,8 @@
+//
+// Created by phoenixflower on 2/14/21.
+//
+
+#ifndef LANDESSDEVCORE_NEXTCLOUD_HPP
+#define LANDESSDEVCORE_NEXTCLOUD_HPP
+
+#endif //LANDESSDEVCORE_NEXTCLOUD_HPP

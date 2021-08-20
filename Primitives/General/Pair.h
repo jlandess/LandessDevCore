@@ -8,7 +8,7 @@
 
 #ifndef DataStructures_Pair_h
 #define DataStructures_Pair_h
-
+#include "TypeTraits/Type.h"
 namespace LD
 {
     /**
@@ -70,6 +70,23 @@ namespace LD
     template<typename T, typename Q> void Pair<T,Q>::SetFirst(const T & first){this->First = first;}
 
     template<typename T, typename Q> void Pair<T,Q>::SetSecond(const Q & second){this->Second = second;}
+
+    template<typename T,typename V> Pair(T &&, V &&) -> Pair<T,V>;
+
+    namespace CT
+    {
+        template<typename T, typename U>
+        constexpr LD::Type<T> Key(LD::Type<LD::Pair<T,U>> ) noexcept
+        {
+            return LD::Type<T>{};
+        }
+
+        template<typename T, typename U>
+        constexpr LD::Type<U> Value(LD::Type<LD::Pair<T,U>> ) noexcept
+        {
+            return LD::Type<U>{};
+        }
+    }
 
 }
 

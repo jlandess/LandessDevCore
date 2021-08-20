@@ -296,14 +296,14 @@ namespace PDP
     
     // static cast of shared_ptr
     template<class T, class U>
-    SharedPointer<T> static_pointer_cast(const SharedPointer<U>& ptr) // never throws
+    SharedPointer<T> static_pointer_cast(const SharedPointer<U>& ptr)  noexcept// never throws
     {
         return SharedPointer<T>(ptr, static_cast<typename SharedPointer<T>::element_type*>(ptr.get()));
     }
     
     // dynamic cast of shared_ptr
     template<class T, class U>
-    SharedPointer<T> dynamic_pointer_cast(const SharedPointer<U>& ptr) // never throws
+    SharedPointer<T> dynamic_pointer_cast(const SharedPointer<U>& ptr) noexcept// never throws
     {
         T* p = dynamic_cast<typename SharedPointer<T>::element_type*>(ptr.get());
         if (nullptr != p)
@@ -330,37 +330,37 @@ namespace PDP
         friend class shared_ptr_count;
 
         
-        inline WeakPointer()
+        inline WeakPointer() noexcept
         {
             
         }
         inline WeakPointer(const PDP::SharedPointer<T> & sharedPointer):AtomicCounter(sharedPointer.pn.pn),ObjectPointer(sharedPointer.px)
         {
         }
-        inline WeakPointer & operator = (const PDP::SharedPointer<T> & sharedPointer)
+        inline WeakPointer & operator = (const PDP::SharedPointer<T> & sharedPointer) noexcept
         {
             this->ObjectPointer = sharedPointer.px;
             this->AtomicCounter = sharedPointer.pn.pn;
             return (*this);
         }
-        inline WeakPointer & operator = (const WeakPointer<T> & weakPointer)
+        inline WeakPointer & operator = (const WeakPointer<T> & weakPointer) noexcept
         {
             this->ObjectPointer = weakPointer.ObjectPointer;
             this->AtomicCounter = weakPointer.AtomicCounter;
             return (*this);
         }
         
-        const bool IsValid() const
+        const bool IsValid() const noexcept
         {
             return AtomicCounter != nullptr && AtomicCounter->load(PDP::AcquireRelease) >=1;
         }
         
-        const bool IsExpired() const
+        const bool IsExpired() const noexcept
         {
             return AtomicCounter == nullptr || AtomicCounter->load(PDP::AcquireRelease) == 0;
         }
         
-        SharedPointer<T> Lock() const
+        SharedPointer<T> Lock() const noexcept
         {
             if (IsValid())
             {
@@ -370,21 +370,21 @@ namespace PDP
             return SharedPointer<T>();
         }
         
-        inline T * operator->()
+        inline T * operator->() noexcept
         {
             return IsValid()?ObjectPointer:nullptr;
         }
-        inline const T * operator ->() const
-        {
-            return IsValid()?ObjectPointer:nullptr;
-        }
-        
-        inline T * Get()
+        inline const T * operator ->() const noexcept
         {
             return IsValid()?ObjectPointer:nullptr;
         }
         
-        inline const T * Get() const
+        inline T * Get() noexcept
+        {
+            return IsValid()?ObjectPointer:nullptr;
+        }
+        
+        inline const T * Get() const noexcept
         {
             return IsValid()?ObjectPointer:nullptr;
         }
@@ -400,7 +400,7 @@ namespace PDP
     template<typename T, typename ... Pack>
     LD::Enable_If_T<LD::Require<
             LD::IsConstructible<T,LD::Decay<Pack>...>::value
-            >,PDP::SharedPointer<T>> MakeShared(Pack && ... arguements)
+            >,PDP::SharedPointer<T>> MakeShared(Pack && ... arguements) noexcept
     {
                 //new (noexcept(T(LD::Forward<Pack>(arguements)...))) T(LD::Forward<Pack>(arguements)...);
         T * p = new (std::nothrow) T(LD::Forward<Pack>(arguements)...);
@@ -416,7 +416,7 @@ namespace PDP
     template<typename T, typename Allocator ,typename ... Pack>
     LD::Enable_If_T<LD::Require<
             LD::IsConstructible<T,LD::Decay<Pack>...>::value
-    >,PDP::SharedPointer<T>> MakeShared(Allocator && allocator,Pack && ... arguements)
+    >,PDP::SharedPointer<T>> MakeShared(Allocator && allocator,Pack && ... arguements) noexcept
     {
         return PDP::SharedPointer<T>(new T(LD::Forward<Pack>(arguements)...));
     }

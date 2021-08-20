@@ -1,0 +1,8 @@
+//
+// Created by phoenixflower on 2/14/21.
+//
+
+#ifndef LANDESSDEVCORE_ADGUARDHOME_HPP
+#define LANDESSDEVCORE_ADGUARDHOME_HPP
+
+#endif //LANDESSDEVCORE_ADGUARDHOME_HPP

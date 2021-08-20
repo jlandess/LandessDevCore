@@ -1,0 +1,8 @@
+//
+// Created by phoenixflower on 2/14/21.
+//
+
+#ifndef LANDESSDEVCORE_MARIADB_HPP
+#define LANDESSDEVCORE_MARIADB_HPP
+
+#endif //LANDESSDEVCORE_MARIADB_HPP

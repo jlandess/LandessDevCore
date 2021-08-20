@@ -10,6 +10,7 @@
 #include "Primitives/General/mapboxvariant.hpp"
 #include "Primitives/General/mapboxvariantvisitor.h"
 #include "TypeTraits/Type.h"
+#include "Core/NullClass.hpp"
 namespace LD
 {
     inline float atof(const char *s) noexcept

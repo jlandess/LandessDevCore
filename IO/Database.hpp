@@ -24,20 +24,12 @@
 #include "FetchRequest.h"
 #include "TypeTraits/Type.h"
 #include "Unicode/UTF8.hpp"
-
+#include "Unicode/IsUTF8Compliant.hpp"
 namespace LD
 {
 
-    namespace Detail
-    {
-        template<typename T>
-        using UTFBeginTest = decltype(LD::UTF8::Begin(LD::Declval<T>()));
-        template<typename T>
-        using UTFBEndTest = decltype(LD::UTF8::End(LD::Declval<T>()));
-    }
 
-    template<typename T>
-    constexpr bool IsUTF8Compliant = LD::Exists<LD::Detail::UTFBEndTest,T> && LD::Exists<LD::Detail::UTFBeginTest,T>;
+
     /**
      *
      * @tparam Backend The backend responsible for the core operations. The imperative implementation of the class.  Each operation

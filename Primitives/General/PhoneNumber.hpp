@@ -58,7 +58,28 @@ namespace LD
         {
             return LD::ToImmutableString(this->mNumber);
         }
+        bool operator < (const PhoneNumber & number) const noexcept
+        {
+            return this->mNumber < number.mNumber;
+        }
+        bool operator > (const LD::PhoneNumber & number) const noexcept
+        {
+            return this->mNumber > number.mNumber;
+        }
+        bool operator == (const LD::PhoneNumber & number) const noexcept
+        {
+            return this->mNumber == number.mNumber;
+        }
+        bool operator != (const LD::PhoneNumber & number) const noexcept
+        {
+            return this->mNumber != number.mNumber;
+        }
     };
+
+    inline auto ToImmutableString(const LD::PhoneNumber & phone) noexcept
+    {
+        return phone.Number();
+    }
 
 
     template<typename ... A>

@@ -10,11 +10,12 @@ extern "C" {
 read, `function` is called with `context`. If a sink returns a non-zero value,
 `reproc_drain` will return immediately with the same value. */
 typedef struct reproc_sink {
-  int (*function)(REPROC_STREAM stream,
-                  const uint8_t *buffer,
-                  size_t size,
-                  void *context);
-  void *context;
+    int (*function)(REPROC_STREAM stream,
+                    const uint8_t *buffer,
+                    size_t size,
+                    void *context);
+
+    void *context;
 } reproc_sink;
 
 /*! Pass `REPROC_SINK_NULL` as the sink for output streams that have not been
@@ -73,3 +74,7 @@ REPROC_EXPORT reproc_sink reproc_sink_discard(void);
 allocated by `reproc_sink_string`. This avoids issues with allocating across
 module (DLL) boundaries on Windows. */
 REPROC_EXPORT void *reproc_free(void *ptr);
+
+#ifdef __cplusplus
+}
+#endif

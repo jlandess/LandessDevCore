@@ -155,8 +155,6 @@ namespace LD
             constexpr  Ret operator()() const noexcept
             {
                 //return LD::Get(this->mValue.*GetterT)();
-
-                ;
                 return (LD::Get(this->mValue).*GetterT)();
                 //return {};
             }
@@ -176,9 +174,23 @@ namespace LD
             }
 
             template<typename F>
+            constexpr Ret operator()(F && object)  noexcept
+            {
+                auto & ref = LD::Get(this->mValue);
+
+                return (ref.*GetterT)();
+            }
+            template<typename F>
             constexpr Ret operator()(F && object) const noexcept
             {
-                return (LD::Get(this->mValue).*GetterT)();
+                auto & ref = LD::Get(this->mValue);
+
+                return (ref.*GetterT)();
+            }
+
+            T & Reference() noexcept
+            {
+                return LD::Get(this->mValue);
             }
 
 

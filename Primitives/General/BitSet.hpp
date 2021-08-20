@@ -7,7 +7,7 @@
 #include "Definitions/Integer.hpp"
 #include "Immutable.hpp"
 #include "TypeTraits/IsConvertible.hpp"
-#include "Definitions/Common.hpp"
+//#include "Definitions/Common.hpp"
 #include "Primitives/General/StaticArray.hpp"
 namespace LD
 {

@@ -1,0 +1,8 @@
+//
+// Created by phoenixflower on 2/14/21.
+//
+
+#ifndef LANDESSDEVCORE_FREERSS_HPP
+#define LANDESSDEVCORE_FREERSS_HPP
+
+#endif //LANDESSDEVCORE_FREERSS_HPP

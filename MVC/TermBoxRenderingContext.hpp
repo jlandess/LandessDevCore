@@ -13,7 +13,7 @@
 #include "Primitives/General/Vec2.hpp"
 #include "Definitions/Integer.hpp"
 #include "Definitions/Float.hpp"
-#include "Definitions/Common.hpp"
+//#include "Definitions/Common.hpp"
 #include "TermBox/termbox.h"
 #include "Primitives/General/mapboxvariant.hpp"
 #include "Primitives/General/mapboxvariantvisitor.h"

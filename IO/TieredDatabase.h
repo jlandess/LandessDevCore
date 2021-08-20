@@ -29,13 +29,13 @@ namespace LD
 
     };
     template<typename PrimaryDataStore, typename SecondaryDataStore>
-    class TieredDatabase
+    class TieredKeyValueStore
     {
 
     };
 
     template<typename PrimaryDataStore, typename ... Tiers>
-    class TieredDatabase<PrimaryDataStore,LD::CT::TypeList<Tiers...>>
+    class TieredKeyValueStore<PrimaryDataStore,LD::CT::TypeList<Tiers...>>
     {
 
     };

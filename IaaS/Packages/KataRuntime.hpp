@@ -1,0 +1,8 @@
+//
+// Created by phoenixflower on 2/14/21.
+//
+
+#ifndef LANDESSDEVCORE_KATARUNTIME_HPP
+#define LANDESSDEVCORE_KATARUNTIME_HPP
+
+#endif //LANDESSDEVCORE_KATARUNTIME_HPP

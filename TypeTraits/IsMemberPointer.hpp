@@ -5,7 +5,7 @@
 #ifndef LANDESSDEVDATASTRUCTURES_ISMEMBERPOINTER_H
 #define LANDESSDEVDATASTRUCTURES_ISMEMBERPOINTER_H
 
-#include "Definitions/Common.hpp"
+//#include "Definitions/Common.hpp"
 namespace LD
 {
     namespace Detail

@@ -4,6 +4,7 @@
 
 #ifndef LANDESSDEVCORE_ISCONVERTIBLE_HPP
 #define LANDESSDEVCORE_ISCONVERTIBLE_HPP
+#include "Declval.hpp"
 namespace LD
 {
 

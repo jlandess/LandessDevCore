@@ -54,7 +54,7 @@ namespace LD
         };
     }
 
-    auto ToImmutableString(const LD::VW::QueueLogStatus & status) noexcept
+    inline auto ToImmutableString(const LD::VW::QueueLogStatus & status) noexcept
     {
         if (status.Status() == LD::VW::Answered)
         {

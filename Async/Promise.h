@@ -8,6 +8,7 @@
 
 #ifndef DataStructures_Promise_h
 #define DataStructures_Promise_h
+#include "Core/NullClass.hpp"
 #include <atomic>
 #include "Memory/AutomaticReferenceCounting.h"
 #include "Async/Future.h"
@@ -18,7 +19,7 @@
 #include "Memory/ElementReference.h"
 #include <memory>
 //#include <memory>
-namespace PDP
+namespace LD
 {
     /**
      @tparam T - The type to utilize - By default an atomic spin lock will be used but in certain cases where the underlying class only has atomic operations - a Spinlock will not be cessary
@@ -76,7 +77,7 @@ namespace PDP
         }
         
         //const Future<T> & GetFuture() const {return this->ReturnValue;}
-        Future<T>  GetFuture() const
+        LD::Future<T>  GetFuture() const
         {
             Future<T> stuffings;
             // bool readyIndicator = false;
@@ -170,11 +171,11 @@ namespace PDP
     class Promise
     {
     private:
-        PDP::SharedPointer<SharedFuture<T>> CurrentSharedFuture;
+        //PDP::Memory::AutomaticReferenceCounter<SharedFuture<T>> CurrentSharedFuture;
 
         //PDP::Memory::AutomaticReferenceCounter<SharedFuture<T>> CurrentSharedFuture;
 
-        //std::shared_ptr<SharedFuture<T>> CurrentSharedFuture;
+        std::shared_ptr<SharedFuture<T>> CurrentSharedFuture;
 
         PDP::Atomic<PDP::UInteger> BrokenStatus;
         //PDP::Atomic<PDP::UInteger > Ready;
@@ -184,7 +185,7 @@ namespace PDP
         {
             //this->CurrentSharedFuture =  PDP::SharedPointer<SharedFuture<T>>(new SharedFuture<T>());
 
-            this->CurrentSharedFuture = PDP::MakeShared<SharedFuture<T>>();
+            this->CurrentSharedFuture = std::make_shared<SharedFuture<T>>();
             //this->CurrentSharedFuture = PDP::Memory::AutomaticReferenceCounter<SharedFuture<T>>( new SharedFuture<T>());
 
             //this->CurrentSharedFuture = std::make_shared<SharedFuture<T>>();
@@ -204,28 +205,28 @@ namespace PDP
             this->BrokenStatus.store(true,PDP::AcquireRelease);
         }
 
-        explicit  operator LD::Variant<LD::NullClass,T,PDP::BrokenPromise> () const
+        explicit  operator LD::Variant<LD::NullClass,T,LD::BrokenPromise> () const
         {
-            mapbox::util::variant<LD::NullClass,T,PDP::BrokenPromise> currentState;
+            mapbox::util::variant<LD::NullClass,T,LD::BrokenPromise> currentState;
             if(this->HasCompleted())
             {
                 currentState = this->GetFuture().Get();
             }else if(this->WasBroken())
             {
-                currentState = PDP::BrokenPromise{};
+                currentState = LD::BrokenPromise{};
             }
             return currentState;
         }
 
-        LD::Variant<LD::NullClass,T,PDP::BrokenPromise> GetVariant() const
+        LD::Variant<LD::NullClass,T,LD::BrokenPromise> GetVariant() const
         {
-            mapbox::util::variant<LD::NullClass,T,PDP::BrokenPromise> currentState;
+            mapbox::util::variant<LD::NullClass,T,LD::BrokenPromise> currentState;
             if(this->HasCompleted())
             {
                 currentState = this->GetFuture().Get();
             }else if(this->WasBroken())
             {
-                currentState = PDP::BrokenPromise{};
+                currentState = LD::BrokenPromise{};
             }
             return currentState;
         }
@@ -242,9 +243,9 @@ namespace PDP
         }
 
         
-        const PDP::Future<T> GetFuture() const
+        const LD::Future<T> GetFuture() const
         {
-            PDP::Future<T> currentFuture = CurrentSharedFuture->GetFuture();
+            LD::Future<T> currentFuture = CurrentSharedFuture->GetFuture();
             return currentFuture;
             
         }
@@ -257,10 +258,20 @@ namespace PDP
     class Promise<void>
     {
     private:
-        PDP::SharedPointer<SharedFuture<PDP::UInteger>> CurrentSharedFuture;
+        std::shared_ptr<SharedFuture<PDP::UInteger>> CurrentSharedFuture;
+        //PDP::SharedPointer<SharedFuture<PDP::UInteger>> CurrentSharedFuture;
         PDP::Atomic<PDP::UInteger> BrokenStatus;
     public:
-        
+        inline Promise()
+        {
+            //this->CurrentSharedFuture =  PDP::SharedPointer<SharedFuture<T>>(new SharedFuture<T>());
+
+            this->CurrentSharedFuture = std::make_shared<SharedFuture<LD::UInteger>>();
+            //this->CurrentSharedFuture = PDP::Memory::AutomaticReferenceCounter<SharedFuture<T>>( new SharedFuture<T>());
+
+            //this->CurrentSharedFuture = std::make_shared<SharedFuture<T>>();
+            this->BrokenStatus.store(false,PDP::AcquireRelease);
+        }
         inline void ExceptionWasThrown()
         {
             this->BrokenStatus.store(true,PDP::AcquireRelease);
@@ -277,9 +288,9 @@ namespace PDP
             return  this->CurrentSharedFuture->GetReadyStatus();
         }
         
-        const PDP::Future<PDP::UInteger> GetFuture() const
+        const LD::Future<PDP::UInteger> GetFuture() const
         {
-            PDP::Future<PDP::UInteger> currentFuture = CurrentSharedFuture->GetFuture();
+            LD::Future<PDP::UInteger> currentFuture = CurrentSharedFuture->GetFuture();
             return currentFuture;
             
         }

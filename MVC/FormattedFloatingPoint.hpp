@@ -5,7 +5,7 @@
 #ifndef LANDESSDEVCORE_FORMATTEDFLOATINGPOINT_HPP
 #define LANDESSDEVCORE_FORMATTEDFLOATINGPOINT_HPP
 
-#include "Definitions/Common.hpp"
+//#include "Definitions/Common.hpp"
 #include "RenderableConcept.hpp"
 #include "TermBoxRenderingContext.hpp"
 namespace LD

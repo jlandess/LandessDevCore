@@ -1,0 +1,8 @@
+//
+// Created by phoenixflower on 2/14/21.
+//
+
+#ifndef LANDESSDEVCORE_SEAFILE_HPP
+#define LANDESSDEVCORE_SEAFILE_HPP
+
+#endif //LANDESSDEVCORE_SEAFILE_HPP

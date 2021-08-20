@@ -5,7 +5,7 @@
 #ifndef LANDESSDEVDATASTRUCTURES_FUNCTIONVIEW_H
 #define LANDESSDEVDATASTRUCTURES_FUNCTIONVIEW_H
 
-#include "Definitions/Common.hpp"
+//#include "Definitions/Common.hpp"
 /*
 namespace LD
 {
@@ -136,7 +136,7 @@ namespace LD
 }
 */
 #include "LightWeightDelegateBase.h"
-#include "Definitions/Common.hpp"
+//#include "Definitions/Common.hpp"
 #include "Primitives/General/Tuple.hpp"
 namespace LD
 {

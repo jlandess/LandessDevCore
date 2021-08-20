@@ -8,13 +8,42 @@
 #include "utf8/core.h"
 #include "IO/FetchRequest.h"
 #include "Primitives/General/ctre.hpp"
+#include "Core/RequestResponse.hpp"
+#include "Primitives/General/StringView.hpp"
 namespace LD
 {
 
     namespace UTF8
     {
+        template<typename octet_iterator, typename ... Args>
+        LD::RequestResponse<octet_iterator(Args...)> AppendOctet(uint32_t cp, octet_iterator result, Args && ... arguments) noexcept
+        {
+            //todo add error handling for when the iterator is out of bounds
+            if (!utf8::internal::is_code_point_valid(cp))
+                return LD::CreateResponse(LD::Type<octet_iterator>{},LD::TransactionError{},LD::Forward<Args>(arguments)...);
+
+            if (cp < 0x80)                        // one octet
+                *(result++) = static_cast<uint8_t>(cp);
+            else if (cp < 0x800) {                // two octets
+                *(result++) = static_cast<uint8_t>((cp >> 6)            | 0xc0);
+                *(result++) = static_cast<uint8_t>((cp & 0x3f)          | 0x80);
+            }
+            else if (cp < 0x10000) {              // three octets
+                *(result++) = static_cast<uint8_t>((cp >> 12)           | 0xe0);
+                *(result++) = static_cast<uint8_t>(((cp >> 6) & 0x3f)   | 0x80);
+                *(result++) = static_cast<uint8_t>((cp & 0x3f)          | 0x80);
+            }
+            else {                                // four octets
+                *(result++) = static_cast<uint8_t>((cp >> 18)           | 0xf0);
+                *(result++) = static_cast<uint8_t>(((cp >> 12) & 0x3f)  | 0x80);
+                *(result++) = static_cast<uint8_t>(((cp >> 6) & 0x3f)   | 0x80);
+                *(result++) = static_cast<uint8_t>((cp & 0x3f)          | 0x80);
+            }
+            //return result;
+            return LD::CreateResponse(LD::Type<octet_iterator>{},octet_iterator{result},LD::Forward<Args>(arguments)...);
+        }
         template <typename octet_iterator, typename ... Args>
-        LD::QueryResult<octet_iterator(Args...)> Append(uint32_t cp, octet_iterator result, Args && ... arguments) noexcept
+        LD::QueryResult<octet_iterator(Args...)> Append(uint32_t cp, octet_iterator  result, Args && ... arguments) noexcept
         {
             //todo add error handling for when the iterator is out of bounds
             if (!utf8::internal::is_code_point_valid(cp))
@@ -154,10 +183,43 @@ namespace LD
             //return cp;
         }
 
+        template<typename octet_iterator, typename ... Args>
+        LD::RequestResponse<uint32_t(Args...)> NextOctet(octet_iterator & it, octet_iterator end, Args && ... arguments) noexcept
+        {
+            uint32_t cp = 0;
+            utf8::internal::utf_error err_code = utf8::internal::validate_next(it, end, cp);
+            switch (err_code) {
+                case utf8::internal::UTF8_OK :
+                    break;
+                case utf8::internal::NOT_ENOUGH_ROOM :
+                    return LD::CreateResponse(LD::Type<uint32_t >{},LD::TransactionError{},LD::Forward<Args>(arguments)...);
+                    //return LD::QueryResult<uint32_t(Args...)>{LD::TransactionError{},LD::Forward<Args>(arguments)...};//throw not_enough_room();
+                case utf8::internal::INVALID_LEAD :
+                    [[fallthrough]];
+                case utf8::internal::INCOMPLETE_SEQUENCE :
+                    [[fallthrough]];
+                case utf8::internal::OVERLONG_SEQUENCE :
+                    return LD::CreateResponse(LD::Type<uint32_t >{},LD::TransactionError{},LD::Forward<Args>(arguments)...);
+                    //throw invalid_utf8(*it);
+                case utf8::internal::INVALID_CODE_POINT :
+                    return LD::CreateResponse(LD::Type<uint32_t>{},LD::TransactionError{},LD::Forward<Args>(arguments)...);
+                    //return {};
+                    //return LD::QueryResult<uint32_t(Args...)>{LD::TransactionError{},LD::Forward<Args>(arguments)...};//throw invalid_code_point(cp);
+            }
+            return LD::CreateResponse(LD::Type<uint32_t>{},uint32_t {cp},LD::Forward<Args>(arguments)...);
+        }
+
+
         template <typename octet_iterator, typename ... Args>
         LD::QueryResult<uint32_t(Args...)> PeekNext(octet_iterator it, octet_iterator end, Args && ... arguments) noexcept
         {
             return LD::UTF8::Next(it,end,LD::Forward<Args>(arguments)...);
+        }
+
+        template<typename octet_iterator, typename ... Args>
+        LD::RequestResponse<uint32_t(Args...)> PeekNextOctet(octet_iterator it, octet_iterator end, Args && ... arguments) noexcept
+        {
+            return LD::UTF8::NextOctet(it,end,LD::Forward<Args>(arguments)...);
         }
 
         template <typename octet_iterator, typename ... Args>
@@ -183,6 +245,14 @@ namespace LD
             }
             return LD::UTF8::PeekNext(it, end,LD::Forward<Args>(arguments)...);
         }
+        template <typename octet_iterator, typename ... Args>
+        LD::RequestResponse<uint32_t(Args...)> PriorOctet(octet_iterator it, octet_iterator start, Args && ... arguments) noexcept
+        {
+            if (it == start)
+            {
+                return LD::CreateResponse(LD::Type<uint32_t>{},LD::TransactionError{},LD::Forward<Args>(arguments)...);
+            }
+        }
 
         template <typename octet_iterator, typename ... Args>
         LD::QueryResult<uint32_t(Args...)> Previous(octet_iterator& it, octet_iterator pass_start, Args && ... arguments) noexcept
@@ -202,6 +272,25 @@ namespace LD
             return LD::UTF8::Next(temp,end,LD::Forward<Args>(arguments)...);
         }
 
+        template<typename octet_iterator, typename ... Args>
+        LD::RequestResponse<uint32_t(Args...)> PreviousOctet(octet_iterator it, octet_iterator pass_start, Args && ... arguments) noexcept
+        {
+            octet_iterator end = it;
+            while (utf8::internal::is_trail(*(--it)))
+            {
+                if (it == pass_start)
+                {
+                    //throw invalid_utf8(*it); // error - no lead byte in the sequence
+                    //return LD::QueryResult<uint32_t(Args...)>{LD::TransactionError{},LD::Forward<Args>(arguments)...};
+                    return LD::CreateResponse(LD::Type<uint32_t>{},LD::TransactionError{},LD::Forward<Args>(arguments)...);
+                }
+
+            }
+            octet_iterator temp = it;
+            return LD::UTF8::NextOctet(temp,end,LD::Forward<Args>(arguments)...);
+        }
+
+
         template <typename octet_iterator, typename distance_type, typename ... Args>
         LD::QueryResult<uint32_t(Args...)> Advance (octet_iterator& it, distance_type n, octet_iterator end, Args && ... arguments) noexcept
         {
@@ -209,6 +298,17 @@ namespace LD
             for (distance_type i = 0; i < n; ++i)
             {
                 resultant = LD::UTF8::Next(it, end,LD::Forward<Args>(arguments)...);
+            }
+            return resultant;
+        }
+        template<typename octet_iterator, typename distance_type, typename ... Args>
+        LD::RequestResponse<uint32_t (Args...)> AdvanceOctet(octet_iterator it, distance_type n, octet_iterator end, Args && ... arguments) noexcept
+        {
+            //LD::RequestResponse<uint32_t(Args...)> resultant = LD::QueryResult<uint32_t(Args...)>{LD::TransactionError{},LD::Forward<Args>(arguments)...};
+            LD::RequestResponse<uint32_t (Args...)> resultant = LD::CreateResponse(LD::Type<uint32_t>{},LD::TransactionError{},LD::Forward<Args>(arguments)...);
+            for (distance_type i = 0; i < n; ++i)
+            {
+                resultant = LD::UTF8::NextOctet(it, end,LD::Forward<Args>(arguments)...);
             }
             return resultant;
         }
@@ -239,6 +339,33 @@ namespace LD
             LD::QueryResult<LD::UInteger(Args...)> possibilities[2];
             possibilities[0] = LD::MakeContext(LD::TransactionError{},LD::Forward<Args>(arguments)...);
             possibilities[1] = LD::MakeContext(LD::TransactionResult{},LD::UInteger{dist},LD::Forward<Args>(arguments)...);;
+            return possibilities[shouldContinue];
+        }
+
+        template<typename octet_iterator, typename ... Args>
+        LD::RequestResponse<LD::UInteger (Args...)> DistanceOfOctets(octet_iterator first, octet_iterator last, Args && ... arguments) noexcept
+        {
+            LD::UInteger dist = {};
+            LD::RequestResponse<LD::UInteger (Args...)> result = LD::CreateResponse(LD::Type<LD::UInteger>{},LD::TransactionError{},LD::Forward<Args>(arguments)...);
+            bool shouldContinue = true;
+            for(dist = 0;first<last && shouldContinue;++dist)
+            {
+
+                LD::RequestResponse<uint32_t ()> it = LD::UTF8::NextOctet(first,last);
+                auto onFoundCharacter = [](uint32_t character) noexcept
+                {
+                    return true;
+                };
+
+                auto onTransactionError = [](LD::TransactionError error) noexcept
+                {
+                    return false;
+                };
+                shouldContinue = LD::InvokeVisitation(LD::Overload{onFoundCharacter,onTransactionError},it);
+            }
+            LD::RequestResponse<LD::UInteger (Args...)> possibilities[2];
+            possibilities[0] = LD::CreateResponse(LD::Type<LD::UInteger>{},LD::TransactionError{},LD::Forward<Args>(arguments)...);
+            possibilities[1] = LD::CreateResponse(LD::Type<LD::UInteger>{},dist,LD::Forward<Args>(arguments)...);
             return possibilities[shouldContinue];
         }
 

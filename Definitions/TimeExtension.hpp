@@ -31,6 +31,7 @@
 
 #include "PDPUnits.hpp"
 #include <time.h>
+#include "Primitives/General/Unit.hpp"
 #if defined (_WIN32)
 #define _WIN32_WINNT 0x0500
 #include <windows.h>
@@ -97,6 +98,11 @@ template<typename T>
 LD::Enable_If_T<LD::Detail::IsPrimitiveType<T>::value,void> usleep(const PDP::Second<T> & time)
 {
     usleep(time.GetValue()*1E6);
+}
+template<typename T>
+LD::Enable_If_T<LD::Detail::IsPrimitiveType<T>::value,void> usleep(const LD::Second<T> & time)
+{
+    usleep(time.NativeRepresentation().Value()*1E6);
 }
 
 

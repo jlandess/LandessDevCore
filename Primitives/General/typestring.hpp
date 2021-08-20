@@ -15,7 +15,8 @@
 #ifndef IRQUS_TYPESTRING_HH_
 #define IRQUS_TYPESTRING_HH_
 
-#include "Definitions/Common.hpp"
+#include "Definitions/Integer.hpp"
+#include "TypeTraits/IntegralConstant.hpp"
 namespace LD {
 
 /*~
@@ -328,7 +329,7 @@ namespace LD
 {
     namespace Detail
     {
-        constexpr std::size_t num_digits(const LD::UInteger & n) noexcept
+        constexpr LD::UInteger num_digits(const LD::UInteger & n) noexcept
         {
             return n <  10 ? 1 : num_digits(n / 10) + 1;
         }
@@ -355,7 +356,7 @@ namespace LD
             using type = typename converter<D - 1, N / 10, '0' + N % 10, Chars...>::type;
         };
 
-        template<std::size_t N, char... Chars>
+        template<LD::UInteger N, char... Chars>
         struct converter<1, N, Chars...> {
             using type = LD::TypeString<'0' + N, Chars...>;
         };

@@ -1,264 +1,317 @@
-#include "Chrono/Timer.h"
-#include <iostream>
-#include "IO/FetchRequest.h"
 #include "Examples/ReflectionDemoTypes.h"
-#include "TUI/ascii_art.h"
-#include "TypeTraits/TypeList.hpp"
-#include "IO/toml.hpp"
-#include <stdexcept>
-#include "SPA/Backend.hpp"
-#include "SPA/Compositor.hpp"
-#include "SPA/Linker.hpp"
-#include "SPA/Button.hpp"
-#include "SPA/HTML.hpp"
-#include "SPA/EventHandler.hpp"
-#include "IO/XML/tinyxml2.h"
-#include "SPA/Div.hpp"
-#include "SPA/Variable.hpp"
-#include "SPA/Function.hpp"
-#include "Random/MarsagliaRandomNumberGenerator.hpp"
-#include "TypeTraits/CanBeAnImmutableString.hpp"
-#include "REST/HTMLEmitter.hpp"
-#include "Reflection/Reflection.hpp"
-#include "Primitives/General/DateTime.h"
+#include "Examples/IMGUIExample1.h"
+#include "Examples/IMGUIExample2.h"
 #include "REST/CPR/cpr.h"
-#include "PBX/MIrta/Date.hpp"
-#include "IO/EphemiralRowBackingStore.hpp"
-#include "VirtuWorks/QueueLog.hpp"
-#include "IO/CSVParser.hpp"
-#include "TypeTraits/__or.hpp"
-#include "TypeTraits/IsConstructible.hpp"
-#include <map>
-#include "TypeTraits/IsErasedOrConvertible.hpp"
-#include "Memory/CorePrimitiveAllocator.hpp"
-#include "Memory/FreeList.h"
-
-#include <stdio.h>
-#include <stdlib.h>
+#include "Primitives/General/StringView.hpp"
+#include "Primitives/General/ctre.hpp"
+#include <IO/UnqliteDatabaseBackend.h>
+#include <IO/Database.hpp>
 #include <IO/RedisBackend.h>
-#include <Random/GenericRandomNumberGenerator.hpp>
-#include "Algorithms/Searching.hpp"
-#include "Algorithms/Sorting.hpp"
-#include "REST/WebServer.hpp"
-#include "Examples/WebServerExample.hpp"
-#include "Random/BasicRandomNumberGenerator.hpp"
-#include "SPA/Console.hpp"
-template<typename KeyType,typename TennantType>
-class MirtaPBX
+#include <Algorithms/Benchmark.hpp>
+#include "REST/Proxmox/Parameters/NetworkBridge.hpp"
+#include "REST/Proxmox/Parameters/FeatureSet.hpp"
+#include "REST/Proxmox/Parameters/SSHKey.h"
+#include "REST/Proxmox/Parameters/Swap.hpp"
+#include "REST/Proxmox/ProxyAPI.h"
+#include "REST/Proxmox/Parameters/BridgeIndex.hpp"
+#include "REST/Proxmox/Parameters/BridgeName.hpp"
+#include "REST/Proxmox/Parameters/InterfaceIndex.hpp"
+#include "REST/Proxmox/Parameters/FirewallStatus.hpp"
+#include "Primitives/General/Unit.hpp"
+#include "Network/MacAddress.hpp"
+#include "Network/IPV4Address.hpp"
+#include "SumTypes/MPark/variant.hpp"
+#include "Reflection/NamedTuple.h"
+#include "Core/RequestResponse.hpp"
+#include "Network/SSH/SSH.hpp"
+#include "IO/json.hpp"
+#include "Memory/Optional.h"
+#include "Reflection/Reflection.hpp"
+#include "IaaS/DockerManifest.hpp"
+#include "Algorithms/ToJSON.hpp"
+#include "Async/GrandCentralDispatch.h"
+#include <webdav/client.hpp>
+#include "Algorithms/CTREImmutableExtension.hpp"
+#include "IaaS/ClusteringMetaData.hpp"
+#include "IO/Database1.h"
+#include "IO/JsonDatabaseBackend.h"
+#include "Process/Command.hpp"
+#include "Algorithms/TDD.hpp"
+#include <opendht.h>
+#include <PBX/Mirta/Date.hpp>
+#include "IO/DHTBackend.hpp"
+#include "IO/TieredDatabase.h"
+#include "IaaS/ArtifactRepository.hpp"
+#include "Algorithms/FromJSON.hpp"
+#include "IaaS/HashiVault/HashiVault.hpp"
+#include "Examples/WebDavExample.h"
+//{"data":"UPID:virtualhome:00004556:065341E5:6020F7FA:vzcreate:110:root@pam:"}
+//UPID:([a-zA-Z0-9]+):([0-9a-fA-F]+):([0-9a-fA-F]+):([0-9a-fA-F]+):(\\w+):(\\d+):(\\w+)@([a-zA-Z0-9:]+)
+
+void ParseResponse(LD::StringView view) noexcept
 {
-private:
-    KeyType mAPIKey;
-    TennantType mTennant;
-public:
-    MirtaPBX(KeyType && apiKey, TennantType && tennant) noexcept:mAPIKey{apiKey},mTennant{tennant}
+    if (auto [whole, nodeName, hex1, hex2,hex3,creationMethod,index,username,base] = ctre::match<LD::PVE::Detail::CreationRegex>(view); whole)
     {
-
+        std::cout << nodeName.view() << std::endl;
+        std::cout << hex1.view() << std::endl;
+        std::cout << hex2.view() << std::endl;
+        std::cout << hex3.view() << std::endl;
+        std::cout << creationMethod.view() << std::endl;
+        std::cout << index.view() << std::endl;
+        std::cout << username.view() << std::endl;
+        std::cout << base.view() << std::endl;
+        //return LD::MakeContext(LD::TransactionResult{},LD::VW::DateTime{LD::Date(LD::Year<LD::UInteger>{LD::UInteger{year}},LD::Month<LD::UInteger>{month},LD::Day<LD::UInteger>{day}),LD::Time(hour,minute,second)},LD::Forward<A>(args)...);
     }
-    LD::EphemiralRowBackingStore FetchQueueInfo(LD::PBX::MT::Date mStart, LD::PBX::MT::Date mEnd)
-    {
-
-        std::cout << "Date Start: " << LD::ToImmutableString(mStart).Data() << std::endl;
-        cpr::Response r = cpr::Get(cpr::Url{"https://voip.virtuworks.net/pbx/proxyapi.php"},
-                                   cpr::Parameters
-                                           {{"key", this->mAPIKey.Data()},
-                                            {"reqtype", "INFO"},
-                                            {"info","QUEUELOGS"},
-                                            {"format","csv"},
-                                            {"tenant",this->mTennant.Data()},
-                                            {"start",LD::ToImmutableString(mStart).Data()},//2020-11-17 LD::ToImmutableString(mStart).Data()
-                                            {"end",LD::ToImmutableString(mStart++).Data()}});//2020-11-18 LD::ToImmutableString(mEnd).Data()
-
-        return LD::EphemiralRowBackingStore{std::make_unique<std::string>(r.text)};
-    }
-};
-template<typename KeyType, typename TennantType> MirtaPBX(KeyType &&, TennantType &&) -> MirtaPBX<KeyType,TennantType>;
-
-class Encounters
-{
-private:
-    LD::UInteger mNumber;
-public:
-    Encounters() noexcept:mNumber{0}
-    {
-
-    }
-    const LD::UInteger Number() const noexcept
-    {
-        return this->mNumber;
-    }
-    Encounters & operator++() noexcept
-    {
-        this->mNumber++;
-        return (*this);
-    }
-    Encounters & operator++(int) noexcept
-    {
-        this->mNumber++;
-        return (*this);
-    }
-};
-
-
-
-
-
-void SaveMissedCalls(LD::Date date) noexcept
-{
-
-
-
-    auto fileName = LD::ImmutableString{"/home/phoenixflower/SeaDrive/My Libraries/PBXTests/"}+LD::ToImmutableString(LD::PBX::MT::Date{date});
-    FILE  * file = fopen(fileName.Data(),"w+");
-    MirtaPBX pbxInstance{LD::ImmutableString{"EbcHbsnXAqSrTKBb"},LD::ImmutableString{"CarrieLandess"}};
-    LD::EphemiralRowBackingStore rows = pbxInstance.FetchQueueInfo(date,++date);
-    LD::CSVParser csvParser{rows,LD::CT::TypeList<LD::VW::QueueLog>{}};
-    std::map<std::string,Encounters> encounters;
-    for(auto beingOfCSV = csvParser.Begin();beingOfCSV!=csvParser.End();++beingOfCSV)
-    {
-        auto object = (*beingOfCSV);
-
-        auto onLog = [&](
-                const LD::Context<LD::TransactionResult,LD::VW::QueueLog> & context
-        ) noexcept
-        {
-            const LD::VW::QueueLog & log = LD::Get(LD::Get<1>(context));
-            if (log.Status() == LD::VW::Abandoned || log.Status() == LD::VW::Timeout)
-            {
-                auto number = log.PhoneNumber().Number();
-                encounters[number.Data()]++;
-                //fwrite(number.Data(),sizeof(char),number.GetSize(),file);
-                //fwrite("\n",sizeof(char),1,file);
-            }
-        };
-
-        auto onError = [](
-                const LD::Context<LD::TransactionError> & context
-        ) noexcept
-        {};
-
-        LD::MultiMatch(LD::Overload{onLog,onError},object);
-    }
-
-    for(auto it = encounters.begin();it!=encounters.end();++it)
-    {
-        const char * format = ": ";
-        (*it).first.c_str();
-        fwrite((*it).first.c_str(),sizeof(char),(*it).first.size(),file);
-        fwrite(format,sizeof(char),strlen(format),file);
-        auto numberAsString = LD::ToImmutableString((*it).second.Number());
-        fwrite(numberAsString.Data(),sizeof(char),numberAsString.GetSize(),file);
-        fwrite("\n",sizeof(char),1,file);
-    }
-    fclose(file);
 }
 
-
-
-
-
-
-int main(int argc, char* argv[])
+class TestClass
 {
-
-    LD::RedisBackingStore redisBackingStore{"redis.landesshome.com",55000};
-    LD::BasicKeyedDatabase<LD::RedisBackingStore> redisKeyedDatabase{redisBackingStore};
-    redisKeyedDatabase.Insert(LD::StringView{"abc"},LD::ProgramCount{99});
-
-    LD::QueryResult<LD::Variant<LD::ProgramCount>()> result =  redisKeyedDatabase.Fetch(LD::StringView {"abc"},LD::CT::TypeList<LD::ProgramCount>{});
-
-
-    auto onError = [](const LD::Context<LD::TransactionError> & context) noexcept ->LD::UInteger
+private:
+    LD::ImmutableString<15> mLabel;
+    LD::Float mPrecision;
+public:
+    TestClass():mLabel{LD::ToImmutableString("abc")},mPrecision{7.5}
     {
-        std::cout << "found error" << std::endl;
-        return 0;
-    };
 
-    auto onSuccess = [](const LD::Context<LD::TransactionResult,LD::ProgramCount> & context) noexcept -> LD::UInteger
-    {
-        return LD::Get(LD::Get<1>(context)).Count();
-    };
-    std::cout << "Current Program Counter: " << LD::MultiMatch(LD::Overload{onError,onSuccess},result) << std::endl;
-    //LD::WebServerExample();
-    LD::StaticArray<int,10> rawrbunnies;
-    for(LD::UInteger n = 0;n<10;++n)
-    {
-        rawrbunnies.PushBack(rand()%50);
-        //rawrbunnies[n] = rand()%50;
     }
-    std::cout << "Static Array Size: " << rawrbunnies.End()-rawrbunnies.Begin() << std::endl;
-    LD::QuickSort(rawrbunnies,[](int a, int b) noexcept {return a<b;});
+    const LD::ImmutableString<15> & Label() const noexcept {return this->mLabel;}
+    LD::ImmutableString<15> & Label() noexcept{return this->mLabel;}
 
-    for(LD::UInteger n = 0;n<10;++n)
+
+    const LD::Float & Precision() const noexcept{return this->mPrecision;}
+    LD::Float  & Precision() noexcept{return this->mPrecision;}
+
+};
+
+class DNSResponse
+{
+private:
+    LD::ImmutableString<15> mDomainName;
+    LD::StaticArray<LD::Variant<LD::IPV4Address,LD::IPV6Address>,30> mIPAddress;
+    LD::UInteger mTTL;
+public:
+
+};
+
+template<>
+struct LD::CT::TypeDescriptor<TestClass>
+{
+private:
+    static constexpr auto LabelName = ctll::basic_fixed_string("Label");
+    static constexpr auto PrecisionName = ctll::basic_fixed_string("Precision");
+public:
+    static constexpr auto ClassName = ctll::fixed_string{"TestClass"};
+
+    using MemberList = LD::CT::TypeList<
+            LD::CT::EncapsulatedMemberDescriptor<LabelName,LD::CT::SelectOverload<LD::ImmutableString<15> & (TestClass::*)(),&TestClass::Label>(),LD::CT::SelectOverload<const LD::ImmutableString<15> & (TestClass::*)() const,&TestClass::Label>()>,
+            LD::CT::EncapsulatedMemberDescriptor<PrecisionName,LD::CT::SelectOverload<LD::Float & (TestClass::*)(),&TestClass::Precision>(),LD::CT::SelectOverload<const LD::Float & (TestClass::*)() const,&TestClass::Precision>()>
+    >;
+
+
+    static constexpr MemberList Members{  };
+
+};
+
+/**
+ * Iterate 1-100
+If divisible by 3 print “Fizz”
+If divisible by 5 print “Buzz”
+If divisible by 3 and 5 print “FizzBuzz”
+If not divisible by 3 or 5 print number
+
+ * @param size
+ */
+#define SEC_PER_DAY   86400
+#define SEC_PER_HOUR  3600
+#define SEC_PER_MIN   60
+int main(int argc, char **argv)
+{
+    LD::Hour<LD::UInteger> hourUnit;
+
+    hourUnit.NativeRepresentation().Value();
+
+
+
+
+    LD::Milisecond<LD::UInteger> mMili;
+    LD::HashiVault vault{
+        LD::ImmutableString{"http://192.168.30.50:8200"},
+        LD::ImmutableString{"s.w8hIFCNwl59CMABCvaZ1qlGV"}};
+
+    auto vaultResponse = vault.Query(LD::Type<LD::Square>{},LD::ImmutableString{"demoapplications"},LD::ImmutableString{"square"});
+
+
+    auto onVaultSquare = [](const LD::Square & square) noexcept
     {
-        std::cout << rawrbunnies[n] << std::endl;
+        std::cout << "Vault Square Length: " << square.Length() << std::endl;
+    };
+
+    LD::InvokeVisitation(LD::Overload{onVaultSquare,[](auto){}},vaultResponse);
+
+
+    nlohmann::json jsonToJsonTest;
+    LD::ToJson(jsonToJsonTest,LD::Pyramid{LD::Square{7},LD::Triangle{7,9}});
+
+
+    std::cout << jsonToJsonTest.dump(2) << std::endl;
+
+    simdjson::dom::parser parser;
+
+    simdjson::dom::element parsedResponse = parser.parse(jsonToJsonTest.dump(2));
+
+
+    //parsedResponse.get_c_str().
+    //parsedResponse.get_c_str()
+
+    auto parsedSquare = LD::FromJSON(LD::Type<TestClass>{},parsedResponse);
+
+    auto onParsedSquare = [](const TestClass & square) noexcept
+    {
+        std::cout << "Parsed Square Length: " << square.Label().Data() << std::endl;
+    };
+
+    auto onFailedSquare = [](const LD::TransactionError & error) noexcept
+    {
+
+    };
+
+    LD::InvokeVisitation(LD::Overload{onParsedSquare,onFailedSquare},parsedSquare);
+
+    LD::TieredKeyValueStore<LD::RedisBackingStore,LD::CT::TypeList<LD::OpenDHTBackend>> dnsEntries;
+    LD::UnQliteBackend<char> sqliteDB{"database1.db",LD::OpenAndCreateIfNotExists{}};
+    LD::Timer currentTimer;
+    nlohmann::json json;
+    LD::JsonBackend jsonBackend{json};
+    LD::OpenDHTBackend mBackend{LD::IPV6Address{"fd00:1700:81b8:401e:0:d9:191:4a34"},LD::Port{4222},LD::Port{4222}};
+    auto test1 = [&](LD::UnQliteBackend<char> & db, const auto & serializableObject) -> int
+    {
+        LD::Insert(db,LD::ImmutableString{"key1"},serializableObject,[](){return true;});
+
+        mBackend.Query(LD::StringView{"lucario"},[](LD::StringView key, LD::StringView value)->int
+        {
+            std::cout << "Key : " << key << "     |   Value: " << value << std::endl;
+            return 5;
+        });
+
+        return 5;
+    };
+    auto testResult = LD::TDD::Execute(
+            LD::ImmutableString{"Insertion Test"},
+            currentTimer,
+            test1,
+            5,
+            sqliteDB,
+            LD::Pyramid{LD::Square{928},LD::Triangle{65,50}});
+
+    LD::ArtifactRepository repository{LD::ElementReference<LD::JsonBackend>{jsonBackend}};
+
+    repository.Insert(
+            LD::Pair{LD::ImmutableString{"rawrbunnies"},testResult},
+            LD::Pair{LD::ImmutableString{"lucario"},testResult},
+            LD::Pair{LD::ImmutableString{"lucario77"},testResult}
+    );
+    std::cout << json.dump(2) << std::endl;
+    /*
+    int abc = 0;
+    mBackend.Listen();
+    while(abc < 25)
+    {
+
+        ++abc;
+        sleep(1);
     }
-    auto binarySearchResult = LD::BinarySearch(rawrbunnies,35,[](int a,int b){return a==b;},[](int a,int b){return a<b;});
-    auto onBinaryFound = [](const LD::Context<LD::TransactionResult,LD::UInteger> & context) noexcept
+     */
+    /*
+    // put some data on the dht
+    /*
+     */
+    LD::Timer timer;
+    timer.Start();
+    // get data from the dht
+    dht::InfoHash id;
+    /*
+    /*
+     */
+    LD::UnQliteBackend<char> unqliteBackingStore{"database.db",LD::OpenAndCreateIfNotExists{}};
+
+    unqliteBackingStore.Query(LD::StringView{"key.Length"},[](auto a, auto b)
     {
-        std::cout << "found result at index: " << LD::Get(LD::Get<1>(context)) << std::endl;
-    };
-    LD::MultiMatch(LD::Overload{onBinaryFound,[](auto){std::cout << "found error" << std::endl;}},binarySearchResult);
-    //SaveMissedCalls(LD::Date{2020,12,7});
+        //std::cout << "Key : " << a << " Value:" << b << std::endl;
+        return 7;
+    });
+
+    LD::Insert(unqliteBackingStore,LD::ImmutableString{"key1"},LD::Pyramid{LD::Square{928},LD::Triangle{65,50}},[](){return true;});
+    auto fetchResponse = LD::Fetch(unqliteBackingStore,LD::ImmutableString{"key1"},LD::Type<LD::Pyramid>{});
 
 
-    LD::MarsagliaMultiplyWithCarryGenerator randomNumberGenerator{static_cast<unsigned long>(time(0))};
-
-
-
-
-
-    auto randomLambda = [](LD::MarsagliaMultiplyWithCarryGenerator & generator) noexcept
+    auto onResponse = [](LD::Pyramid geometry) noexcept
     {
-        return generator.NextInteger();
+        std::cout << "Geometry length: " << geometry.Base().Length() << std::endl;
+        std::cout << "Side Base:" << geometry.Side().Base() << std::endl;
+        std::cout << "Side Height:" << geometry.Side().Height() << std::endl;
     };
 
+    auto onError = [](LD::TransactionError ) noexcept
+    {
 
+    };
+    LD::InvokeVisitation(LD::Overload{onResponse,onError},fetchResponse);
 
-    LD::GenericRandomIntegerGenerator integerGeneration{randomNumberGenerator};
-    LD::SPA::Var varType{7,integerGeneration};
-    LD::SPA::Var varType3{7,integerGeneration};
-    LD::SPA::Var varType4{7,integerGeneration};
-    auto expression = (varType+varType3)+(varType4+varType4);
-    LD::SPA::VarExpression expression5{LD::Type<void>{},LD::SPA::FunctionalOperator{},LD::ImmutableString{"show"},expression};
-    LD::SPA::Function function{integerGeneration,expression5};
-    LD::SPA::Console consoleExample{integerGeneration};
-    auto expressionAssert = consoleExample.Assert(expression5,LD::ImmutableString{"rawrbunnies"});
-    std::cout << "Expression assert example: " << LD::ToImmutableString(expressionAssert).Data() << std::endl;
+    LD::Example::WebDavExample();
+    //LD::Example::IMGUIExample1();
+    //LD::Example::IMGUIExample2();
+    /*
+    std::map<std::string, std::string> options =
+            {
+                    {"webdav_hostname", "https://nextcloud.landesshome.com/remote.php/dav/files/phoenixflower/"},
+                    {"webdav_username", "phoenixflower"},
+                    {"webdav_password", "Next_Cloud_Dcs1224"}
+            };
+    std::unique_ptr<WebDAV::Client> client = std::make_unique<WebDAV::Client>(options);
 
-    std::cout << LD::ToImmutableString(LD::ImmutableString{"abc"}).Data() << std::endl;
+    char * string = "abcad;lfjas;ldfksadjf;sdaflkasj";
 
+    LD::Timer timer;
+    timer.Start();
+    client->upload_from("Carrie Landess MD/abc.txt",string,strlen(string));
+    bool check_connection = client->check();
+    std::cout << "test connection with WebDAV drive is "
+              << (check_connection ? "" : "not ")
+              << "successful"<< std::endl;
+    auto directories = client->list();
 
-    LD::SPA::Function function1{integerGeneration,expressionAssert};
+    timer.Stop();
 
-    LD::SPA::EventHandler handler{LD::SPA::OnLoad{},expression};
-    LD::SPA::Div gotcha2{handler,LD::SPA::Text{7}};
+    std::cout << "Time Elapsed " << LD::ToImmutableString(timer.Time()/LD::MicroSecond<LD::UInteger>{LD::UInteger(1)}).Data() << std::endl;
+    for(const auto & dir: directories)
+    {
+        std::cout << dir << std::endl;
+    }
+     */
+    //ndp1();
+    //std::cout << LD::ToImmutableString(address).Data() << std::endl;
 
-
-    //std::cout << LD::ToImmutableString(expression).Data() << std::endl;
-
+    /*
+    LD::NDP ndp1;
+    ndp * ndpSocket = nullptr;
+    ndp_open(&ndpSocket);
+    //run_main_loop(ndpSocket);
     ;
-    std::cout << LD::ToImmutableString(function).Data() << std::endl;
-    std::cout << LD::ToImmutableString(function1).Data() << std::endl;
-    //std::cout << "Functional Expression : " << LD::ToImmutableString(expression5).Data() << std::endl;
-    LD::SPA::ClassName divClassName77{LD::StringView {"bomb"}};
-    LD::SPA::Language domLanguage77{LD::StringView {"en-US"}};
-    LD::SPA::Compositor<LD::CT::TypeList<>> compositor;
-    LD::SPA::Button button{compositor,LD::StringView{"agc"}};
-    LD::SPA::Div gotcha{LD::SPA::Text{7}};
-    LD::SPA::Language domLanguage{LD::StringView {"en-US"}};
-    LD::SPA::Language divLanguage{LD::StringView {"en-US"}};
-    LD::SPA::ClassName divClassName{LD::StringView {"bomb"}};
-    LD::SPA::Div div{LD::Pyramid{LD::Square{5},LD::Triangle{5,5}},divClassName,divLanguage};
-    LD::SPA::HTML document{div,domLanguage,gotcha2};
+    run_cmd_monitor(ndpSocket,NDP_MSG_ALL,if_nametoindex("ens22"));
+    ndp_close(ndpSocket);
+    ndp1();
 
-    LD::HTMLEmitter printer;
-    printer.Print(document);
-    tinyxml2::XMLPrinter prettyPrinter;
-    printer.xmlDoc.Accept( &prettyPrinter );
+    std::visit(overload{
+            [](LightItem&, LightItem& ) { std::cout << "2 light items\n"; },
+            [](LightItem&, HeavyItem& ) { std::cout << "light & heavy items\n"; },
+            [](HeavyItem&, LightItem& ) { std::cout << "heavy & light items\n"; },
+            [](HeavyItem&, HeavyItem& ) { std::cout << "2 heavy items\n"; },
+    }, basicPackA, basicPackB);
+    std::variant<Fluid, LightItem, HeavyItem, FragileItem> package;
 
-    std::cout << prettyPrinter.CStr() << std::endl;
+    ParseResponse("UPID:virtualhome:00004556:065341E5:6020F7FA:vzcreate:110:root@pam:");
 
-    LD::SPA::Linker<LD::CT::TypeList<>> linker{compositor};
-    
+
+    */
     return 0;
 }

@@ -4,6 +4,7 @@
 
 #ifndef LANDESSDEVCORE_ADDLVALUEREFERENCE_HPP
 #define LANDESSDEVCORE_ADDLVALUEREFERENCE_HPP
+#include "Decay.hpp"
 namespace LD
 {
     namespace Detail

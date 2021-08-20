@@ -160,7 +160,7 @@ namespace LD
 
         static LD::StringView ProcessRow(LD::StringView data) noexcept
         {
-            std::cout << "Row : " << data << std::endl;
+            //std::cout << "Row : " << data << std::endl;
             auto leftShift = [](char* words, int len) noexcept
             {
                 int i;
@@ -309,8 +309,6 @@ namespace LD
                         LD::StringView row,
                         auto matchSet) noexcept
                 {
-
-
                     constexpr auto traits = LD::CT::Reflect<LD::CT::TypeAtIndex<I,LD::CT::TypeList<A...>>>();
                     constexpr auto memberTraits = LD::CT::GetMemberDescriptors(traits);
                     constexpr auto numberOfMembers = LD::CT::GetNumberOfMembers(traits);
@@ -344,8 +342,6 @@ namespace LD
                             {
                                 return true;
                             };
-
-
                             auto onLength = [](const LD::Context<LD::TransactionResult,LD::UInteger ,decltype(memberName)&,decltype(matchIT)&> & keyContext,const LD::Context<LD::TransactionResult,LD::UInteger ,decltype(memberName)&,decltype(matchIT)&> & tokenContext) noexcept
                             {
 
@@ -479,6 +475,17 @@ namespace LD
                         return true;
                     },object,beginningOfPattern,LD::Forward<EndOfPattern>(endOfPattern));
                 }
+                else if constexpr (LD::CT::IsImmutableString(MetaType))
+                {
+                    auto view = (*beginningOfPattern).view();
+                    constexpr LD::UInteger ImmutableStringCapacity = LD::CT::ImmutableStringCapacity(MetaType);
+                    LD::UInteger viewSize = view.size();
+                    LD::UInteger size = LD::Min(viewSize,ImmutableStringCapacity);
+                    for(LD::UInteger n = 0;n<size;++n)
+                    {
+                        object[n] = view[n];
+                    }
+                }
                 else if constexpr(LD::CT::CanBeMadeFromStringView(MetaType,LD::CT::TypeList<T&>{}))
                 {
                     auto convertStringViewToObjectResult =  LD::FromStringView(MetaType,(*beginningOfPattern).view(),object);
@@ -514,7 +521,7 @@ namespace LD
                     },members,object,beginningOfPattern,LD::Forward<EndOfPattern>(endOfPattern));
                 }else
                 {
-                    std::cout << "Stuff is confused:" << (*beginningOfPattern).view() << std::endl;
+                    //std::cout << "Stuff is confused:" << (*beginningOfPattern).view() << std::endl;
                 }
 
             }

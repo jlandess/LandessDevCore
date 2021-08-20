@@ -1,0 +1,8 @@
+//
+// Created by phoenixflower on 2/14/21.
+//
+
+#ifndef LANDESSDEVCORE_WIREGUARD_HPP
+#define LANDESSDEVCORE_WIREGUARD_HPP
+
+#endif //LANDESSDEVCORE_WIREGUARD_HPP

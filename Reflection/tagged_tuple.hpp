@@ -2,10 +2,11 @@
 #define REFLECTABLE_TAGGED_TUPLE_H_INCLUDED
 
 
-#include <Definitions/Common.hpp>
+//#include <Definitions/Common.hpp>
 #include "Primitives/General/mapboxvariant.hpp"
 #include "TypeTraits/TypeList.hpp"
-#include "Primitives/General/Tuple.hpp"
+//#include "Primitives/General/Tuple.hpp"
+#include "Core/Tuple.hpp"
 namespace LD
 {
     // ************************************************************************************************

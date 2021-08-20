@@ -5,7 +5,7 @@
 #ifndef LANDESSDEVCORE_TERMBOXCURSORNAVIGATOR_HPP
 #define LANDESSDEVCORE_TERMBOXCURSORNAVIGATOR_HPP
 
-#include "Definitions/Common.hpp"
+//#include "Definitions/Common.hpp"
 //#include "MVC/Scheduling.hpp"
 #include "Memory/ElementReference.h"
 #include "Definitions/PDPUnits.hpp"

@@ -1,0 +1,8 @@
+//
+// Created by phoenixflower on 2/14/21.
+//
+
+#ifndef LANDESSDEVCORE_CALIBRE_HPP
+#define LANDESSDEVCORE_CALIBRE_HPP
+
+#endif //LANDESSDEVCORE_CALIBRE_HPP

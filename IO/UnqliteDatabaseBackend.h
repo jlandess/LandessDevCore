@@ -17,6 +17,8 @@
 #include "DatabaseOpenMode.h"
 #include "TypeTraits/IsConstructible.hpp"
 #include "FetchRequest.h"
+#include "TypeTraits/Conditional.hpp"
+#include "Core/RequestResponse.hpp"
 namespace LD
 {
     template<typename T>
@@ -80,6 +82,58 @@ namespace LD
 
             this->mBackend = LD::Match(context,openReadOnly,openInMemory,openReadWrite,openAndCreateIfNotExists);
         }
+
+
+        template<typename ... Args>
+        LD::RequestResponse<bool(Args...)> Insert(const LD::BasicStringView<BufferType> key, const LD::BasicStringView<BufferType> data, Args && ... arguments) const noexcept
+        {
+            unqlite * ptr = this->mBackend.GetPointer();
+            LD::UInteger dbResult = unqlite_kv_store(ptr,key.data(),key.size(),data.data(),data.size());
+            if (dbResult == UNQLITE_OK)
+            {
+                return LD::CreateResponse(LD::Type<bool>{},true,LD::Forward<Args>(arguments)...);
+            }
+            return LD::CreateResponse(LD::Type<bool>{},LD::TransactionError{},LD::Forward<Args>(arguments)...);
+        }
+
+        template<typename ... Args, typename F>
+        auto Query(LD::BasicStringView<BufferType> key, F && functor, Args && ... arguments) const noexcept -> LD::RequestResponse<decltype(LD::Declval<F>()(LD::Declval<LD::StringView>(),LD::Declval<LD::StringView>()))(Args&&...)>
+        {
+            using ReturnType = decltype(LD::Declval<F>()(LD::Declval<LD::StringView>(),LD::Declval<LD::StringView>()));
+            using FunctorDef = LD::fixed_size_function<ReturnType (LD::StringView ,LD::StringView ,Args&&...)>;
+            auto context = LD::MakeContext(LD::StringView {key},LD::StringView{},LD::Forward<Args>(arguments)...);
+
+            using StorageClass = LD::Conditonal<LD::CT::IsSameWithoutQualifiers(LD::Type<void>{},LD::Type<ReturnType>{}),int,ReturnType>;
+            using FetchContext = LD::Tuple<LD::Ref<FunctorDef>,LD::Ref<decltype(context)>,StorageClass>;
+            auto fetchCallback = [](const void * input, unsigned int dataSize, void * inputPointer)->int
+            {
+                FetchContext * instance = (FetchContext*)inputPointer;
+                FunctorDef  & function = LD::Get(LD::Get<0>(*instance));
+                auto & context = LD::Get(LD::Get<1>(*instance));
+                LD::Get(LD::Get<1>(context)) = LD::StringView{(const char*)input,dataSize};
+                if constexpr (LD::CT::IsSameWithoutQualifiers(LD::Type<void>{},LD::Type<ReturnType>{}))
+                {
+                    LD::Invoke(function,context);
+                }else
+                {
+                    LD::Get(LD::Get<2>(*instance)) = LD::Invoke(function,context);
+                }
+
+                return 0;
+            };
+            FetchContext currentFetchContext;
+            FunctorDef function = FunctorDef{LD::Forward<F>(functor)};
+            LD::Get<0>(currentFetchContext) = LD::Ref<FunctorDef>{function};
+            LD::Get<1>(currentFetchContext) = LD::Ref<decltype(context)>{context};
+            unqlite * ptr = this->mBackend.GetPointer();
+            LD::UInteger dbResult = unqlite_kv_fetch_callback(ptr,key.data(),key.size(),fetchCallback, &currentFetchContext);
+            if (dbResult == UNQLITE_OK)
+            {
+                return LD::CreateResponse(LD::Type<ReturnType>{},LD::Get(LD::Get<2>(currentFetchContext)),LD::Forward<Args>(arguments)...);
+            }
+            return LD::CreateResponse(LD::Type<ReturnType>{},LD::TransactionError{},LD::Forward<Args>(arguments)...);
+        }
+
         template<typename ... Args,typename Ret = LD::QueryResult<bool(Args...)>>
         Ret Store(const LD::BasicStringView<BufferType> & key, const LD::BasicStringView<BufferType> & data, Args && ... arguements) const noexcept
         {

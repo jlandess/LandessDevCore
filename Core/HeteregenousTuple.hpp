@@ -9,10 +9,11 @@
 #ifndef HeteregenousTuple_h
 #define HeteregenousTuple_h
 
-#include "Definitions/Common.hpp"
+//#include "Definitions/Common.hpp"
 #include "Memory/ElementReference.h"
 #include "TypeTraits/Decay.hpp"
 #include "TypeTraits/TypeList.hpp"
+#include "TypeTraits/IsUnique.hpp"
 namespace LD
 {
     namespace Detail
@@ -29,12 +30,14 @@ namespace LD
 }
 namespace LD
 {
+    /*
     template <typename...>
     inline constexpr auto IsUnique = LD::TrueType{};
 
     template <typename T, typename... Rest>
     inline constexpr auto IsUnique<T, Rest...> = LD::Detail::IntegralConstant<bool,(!LD::Detail::IsSame<T, Rest>::value && ...) && IsUnique<Rest...>
     >{};
+     */
 
 
     template<typename P0, typename P1, class = void>

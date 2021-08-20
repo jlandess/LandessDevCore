@@ -12,7 +12,7 @@
 #include <stdio.h>
 
 #include "Definitions/Float.hpp"
-#include "Definitions/Common.hpp"
+//#include "Definitions/Common.hpp"
 #include "vdt/vdtmath.h"
 #include "Primitives/General/ImproperFraction.hpp"
 #include "Primitives/General/StaticArray.hpp"

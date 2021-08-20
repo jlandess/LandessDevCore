@@ -6,6 +6,7 @@
 #define LANDESSDEVCORE_FUNCTIONALREFLECTION_HPP
 #include "TypeList.hpp"
 #include "Type.h"
+#include "Core/Tuple.hpp"
 namespace LD
 {
     namespace CT

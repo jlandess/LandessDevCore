@@ -631,6 +631,18 @@ CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../TypeTraits/Var
 CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../TypeTraits/__two.hpp
 CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../Examples/FullAdderExample.cpp
 
+CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../Graphics/DearImGUI/imconfig.h
+CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../Graphics/DearImGUI/imgui.h
+CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../Graphics/DearImGUI/imgui_impl_glfw.h
+CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../Graphics/DearImGUI/imgui_impl_opengl3.h
+CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../Examples/IMGUIExample1.cpp
+
+CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample2.cpp.o: ../Graphics/DearImGUI/imconfig.h
+CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample2.cpp.o: ../Graphics/DearImGUI/imgui.h
+CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample2.cpp.o: ../Graphics/DearImGUI/imgui_impl_glfw.h
+CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample2.cpp.o: ../Graphics/DearImGUI/imgui_impl_opengl3.h
+CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample2.cpp.o: ../Examples/IMGUIExample2.cpp
+
 CMakeFiles/LandessDevCore.dir/Examples/IOExample.cpp.o: ../Algorithms/Benchmark.hpp
 CMakeFiles/LandessDevCore.dir/Examples/IOExample.cpp.o: ../Algorithms/CompileTimeControlFlow.hpp
 CMakeFiles/LandessDevCore.dir/Examples/IOExample.cpp.o: ../Algorithms/CompileTimeOperations.hpp
@@ -1265,6 +1277,46 @@ CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.o: ../TypeTraits/__t
 CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.o: ../Unicode/UTF8.hpp
 CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.o: ../Unicode/utf8/core.h
 CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.o: ../Examples/WebServerExample.cpp
+
+CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui.cpp.o: ../Graphics/DearImGUI/imconfig.h
+CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui.cpp.o: ../Graphics/DearImGUI/imgui.cpp
+CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui.cpp.o: ../Graphics/DearImGUI/imgui.h
+CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui.cpp.o: ../Graphics/DearImGUI/imgui_internal.h
+CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui.cpp.o: ../Graphics/DearImGUI/imstb_textedit.h
+
+CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_demo.cpp.o: ../Graphics/DearImGUI/imconfig.h
+CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_demo.cpp.o: ../Graphics/DearImGUI/imgui.h
+CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_demo.cpp.o: ../Graphics/DearImGUI/imgui_demo.cpp
+
+CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_draw.cpp.o: ../Graphics/DearImGUI/imconfig.h
+CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_draw.cpp.o: ../Graphics/DearImGUI/imgui.h
+CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_draw.cpp.o: ../Graphics/DearImGUI/imgui_draw.cpp
+CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_draw.cpp.o: ../Graphics/DearImGUI/imgui_internal.h
+CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_draw.cpp.o: ../Graphics/DearImGUI/imstb_rectpack.h
+CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_draw.cpp.o: ../Graphics/DearImGUI/imstb_textedit.h
+CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_draw.cpp.o: ../Graphics/DearImGUI/imstb_truetype.h
+
+CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_impl_glfw.cpp.o: ../Graphics/DearImGUI/imconfig.h
+CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_impl_glfw.cpp.o: ../Graphics/DearImGUI/imgui.h
+CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_impl_glfw.cpp.o: ../Graphics/DearImGUI/imgui_impl_glfw.cpp
+CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_impl_glfw.cpp.o: ../Graphics/DearImGUI/imgui_impl_glfw.h
+
+CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_impl_opengl3.cpp.o: ../Graphics/DearImGUI/imconfig.h
+CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_impl_opengl3.cpp.o: ../Graphics/DearImGUI/imgui.h
+CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_impl_opengl3.cpp.o: ../Graphics/DearImGUI/imgui_impl_opengl3.cpp
+CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_impl_opengl3.cpp.o: ../Graphics/DearImGUI/imgui_impl_opengl3.h
+
+CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_tables.cpp.o: ../Graphics/DearImGUI/imconfig.h
+CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_tables.cpp.o: ../Graphics/DearImGUI/imgui.h
+CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_tables.cpp.o: ../Graphics/DearImGUI/imgui_internal.h
+CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_tables.cpp.o: ../Graphics/DearImGUI/imgui_tables.cpp
+CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_tables.cpp.o: ../Graphics/DearImGUI/imstb_textedit.h
+
+CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_widgets.cpp.o: ../Graphics/DearImGUI/imconfig.h
+CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_widgets.cpp.o: ../Graphics/DearImGUI/imgui.h
+CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_widgets.cpp.o: ../Graphics/DearImGUI/imgui_internal.h
+CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_widgets.cpp.o: ../Graphics/DearImGUI/imgui_widgets.cpp
+CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_widgets.cpp.o: ../Graphics/DearImGUI/imstb_textedit.h
 
 CMakeFiles/LandessDevCore.dir/IO/XML/tinyxml2.cpp.o: ../IO/XML/tinyxml2.cpp
 CMakeFiles/LandessDevCore.dir/IO/XML/tinyxml2.cpp.o: ../IO/XML/tinyxml2.h
@@ -1910,9 +1962,11 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsAssignable.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsBaseOf.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsClassType.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsConst.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsConstructible.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsConvertible.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsDestructible.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsExternalObjectSymbol.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsFunction.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsImmutable.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsIntegralType.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsMemberPointer.hpp
@@ -1945,17 +1999,14 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Algorithms/Searching.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Algorithms/Sorting.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Algorithms/Swap.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Chrono/Timer.h
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Examples/IMGUIExample1.h
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Examples/IMGUIExample2.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Examples/ReflectionDemoTypes.h
-CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Examples/WebServerExample.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/CSVParser.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/EphemiralRowBackingStore.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/FetchRequest.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/XML/tinyxml2.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/toml.hpp
-CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Memory/CorePrimitiveAllocator.hpp
-CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Memory/FreeList.h
-CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Memory/FreeListPolicies.h
-CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Memory/MemoryResource.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../PBX/MIrta/Date.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Primitives/General/DateTime.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../REST/CPR/api.h
@@ -2006,28 +2057,8 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o: ../SPA/Linker.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../SPA/Text.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../SPA/Variable.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TUI/ascii_art.h
-CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/AddRValueReference.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/CanBeAnImmutableString.hpp
-CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/Conditional.hpp
-CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/Declval.hpp
-CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IntegralConstant.hpp
-CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsAssignable.hpp
-CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsBaseOf.hpp
-CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsConst.hpp
-CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsConstructible.hpp
-CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsConvertible.hpp
-CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsErasedOrConvertible.hpp
-CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsFunction.hpp
-CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsNullPtr.hpp
-CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsReference.hpp
-CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsSame.hpp
-CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsSwappable.hpp
-CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsUnion.hpp
-CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/RemoveAllExtents.hpp
-CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/RemoveConst.hpp
-CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/RemoveReference.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/TypeList.hpp
-CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/__or.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../VirtuWorks/Identification.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../VirtuWorks/Language.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../VirtuWorks/QueueLog.hpp

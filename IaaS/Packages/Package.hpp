@@ -1,0 +1,5 @@
+#ifndef LANDESSDEVCORE_IAAS_PACKAGE_HPP
+#define LANDESSDEVCORE_IAAS_PACKAGE_HPP
+#include "SSH/SSHCommandSet.hpp"
+
+#endif

@@ -1,0 +1,8 @@
+//
+// Created by phoenixflower on 2/14/21.
+//
+
+#ifndef LANDESSDEVCORE_INGRESS_HPP
+#define LANDESSDEVCORE_INGRESS_HPP
+
+#endif //LANDESSDEVCORE_INGRESS_HPP

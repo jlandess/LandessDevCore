@@ -14,6 +14,7 @@
 #include "TypeTraits/Declval.hpp"
 #include "TypeTraits/Detection.hpp"
 #include "Primitives/General/Range.h"
+#include "Algorithms/Move.hpp"
 namespace LD
 {
     namespace Detail

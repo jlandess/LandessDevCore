@@ -9,6 +9,7 @@
 #include "Algorithms/Swap.hpp"
 #include "IsConstructible.hpp"
 #include "IsSame.hpp"
+#include "IsConstructible.hpp"
 namespace LD
 {
     namespace Detail
@@ -57,7 +58,7 @@ namespace LD
                         Detail::can_call_swap<T>::value &&
                         (!Detail::would_call_std_swap<T>::value ||
                          (LD::IsMoveAssignable<T>::value &&
-                          IsMoveConstructible<T>::value))
+                          LD::IsMoveConstructible<T>::value))
                 > { };
     }
 

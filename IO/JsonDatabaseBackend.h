@@ -12,6 +12,7 @@
 #include "Primitives/General/Context.h"
 #include "TypeTraits/Detection.hpp"
 #include "Functor/fixed_size_function.hpp"
+#include "Core/RequestResponse.hpp"
 namespace LD
 {
     class JsonBackend
@@ -29,6 +30,14 @@ namespace LD
             nlohmann::json * ptr = this->mBackend.GetPointer();
             (*ptr)[key.data()] = data.data();
             return LD::MakeContext(LD::TransactionResult{},bool{true},LD::Forward<Args>(arguements)...);
+        }
+
+        template<typename ... Args>
+        LD::RequestResponse<bool(Args...)> Insert(const LD::StringView & key, const LD::StringView & data, Args && ... arguements) const noexcept
+        {
+            nlohmann::json * ptr = this->mBackend.GetPointer();
+            (*ptr)[key.data()] = data.data();
+            return LD::CreateResponse(LD::Type<bool>{},LD::TransactionError{},LD::Forward<Args>(arguements)...);
         }
 
         template<typename F, typename ... Args,

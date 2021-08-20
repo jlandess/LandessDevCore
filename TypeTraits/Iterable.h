@@ -160,5 +160,42 @@ namespace LD
 
     template<typename T> BackInserter(T &) -> BackInserter<T>;
 
+
+    template<typename T>
+    auto Begin(T && object) noexcept
+    {
+        if constexpr (LD::Exists<LD::Detail::CamelCaseBegin,T>)
+        {
+            return object.begin();
+        }else
+        {
+            return object.Begin();
+        }
+    }
+
+    template<typename T>
+    auto End(T && object) noexcept
+    {
+        if constexpr (LD::Exists<LD::Detail::CamelCaseBegin,T>)
+        {
+            return object.end();
+        }else
+        {
+            return object.end();
+        }
+    }
+
+    template<typename T>
+    auto CBegin(T && object) noexcept
+    {
+
+    }
+
+    template<typename T>
+    auto CEnd(T && object) noexcept
+    {
+
+    }
+
 }
 #endif //LANDESSDEVCORE_ITERABLE_H

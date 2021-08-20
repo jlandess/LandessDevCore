@@ -10,13 +10,14 @@
 #define DataStructures_PackagedTask_h
 
 #include "Memory/ElementReference.h"
-#include "Definitions/Common.hpp"
+//#include "Definitions/Common.hpp"
 #include "Functor/FastDelegate.h"
 #include "Async/Promise.h"
 #include "Async/Commitment.h"
 #include "Functor/Delegate.h"
 #include "Primitives/General/mapboxoptional.hpp"
 #include "TypeTraits/Decay.hpp"
+#include "Algorithms/Invoke.hpp"
 
 //#include <tuple>
 
@@ -26,19 +27,23 @@ namespace LD
 {
     namespace Detail
     {
+        /*
         template<typename F, typename ... Args,LD::UInteger ...Indices >
         auto InvokeFold(LD::IndexSequence<Indices...> sequence, F && function, const LD::Tuple<Args...> & tuple)
         {
             return function(LD::Get<Indices>(tuple)...);
         }
+         */
     }
 
+    /*
     //return Delegate(PDP::Get<S>(Arguements) ...);
     template<typename F, typename ... Args>
     auto Invoke(F && function, const LD::Tuple<Args...> & tuple)
     {
         return LD::Detail::InvokeFold(LD::MakeIndexSequence_T<sizeof...(Args)>{}, LD::Forward<F>(function), tuple);
     }
+     */
 
 
     template<typename Executor,typename T>
@@ -50,7 +55,7 @@ namespace LD
     private:
         Executor CurrentExecutor;
         LD::Tuple<Args...> Arguement;
-        mapbox::util::variant<PDP::Promise<T>,PDP::Commitment<T>> CurrentPromise;
+        mapbox::util::variant<LD::Promise<T>,PDP::Commitment<T>> CurrentPromise;
     public:
 
         inline PackagedTask()
@@ -59,7 +64,7 @@ namespace LD
         }
         inline PackagedTask(const Executor & executor,
                             const LD::Tuple<Args...> & arguements,
-                            const mapbox::util::variant<PDP::Promise<T>,PDP::Commitment<T>> & promise):CurrentExecutor(executor),Arguement(arguements),CurrentPromise(promise)
+                            const mapbox::util::variant<LD::Promise<T>,PDP::Commitment<T>> & promise):CurrentExecutor(executor),Arguement(arguements),CurrentPromise(promise)
         {
 
         }
@@ -69,7 +74,7 @@ namespace LD
             mapbox::util::apply_visitor(*this, CurrentPromise);
         }
 
-        void operator()(PDP::Promise<T> & promise)
+        void operator()(LD::Promise<T> & promise)
         {
             promise.SetValue(LD::Invoke(CurrentExecutor, Arguement));
 
@@ -89,7 +94,7 @@ namespace LD
     private:
         Executor CurrentExecutor;
         LD::Tuple<Args...> Arguement;
-        mapbox::util::variant<PDP::Promise<void>,PDP::Commitment<void>> CurrentPromise;
+        mapbox::util::variant<LD::Promise<void>,PDP::Commitment<void>> CurrentPromise;
     public:
 
         inline PackagedTask()
@@ -98,7 +103,7 @@ namespace LD
         }
         inline PackagedTask(const Executor & executor,
                             const LD::Tuple<Args...> & arguements,
-                            const mapbox::util::variant<PDP::Promise<void>,PDP::Commitment<void>> & promise):CurrentExecutor(executor),Arguement(arguements),CurrentPromise(promise)
+                            const mapbox::util::variant<LD::Promise<void>,PDP::Commitment<void>> & promise):CurrentExecutor(executor),Arguement(arguements),CurrentPromise(promise)
         {
 
         }
@@ -108,7 +113,7 @@ namespace LD
             mapbox::util::apply_visitor(*this, CurrentPromise);
         }
 
-        void operator()(PDP::Promise<void> & promise)
+        void operator()(LD::Promise<void> & promise)
         {
 
         }
@@ -176,7 +181,7 @@ namespace PDP
     private:
 
 
-        PDP::Promise<Ret> CurrentPromise;
+        LD::Promise<Ret> CurrentPromise;
 
 
         Object CurrentObject;
@@ -195,7 +200,7 @@ namespace PDP
         }
     public:
 
-        TypedTask(const PDP::Promise<Ret> & promise, const Object & object, const MemberPointer & memberPointer ,Args  && ...arguements):Arguements(LD::Forward<Args>(arguements)...),CurrentObject(object),CurrentPromise(promise),CurrentMemberPointer(memberPointer)
+        TypedTask(const LD::Promise<Ret> & promise, const Object & object, const MemberPointer & memberPointer ,Args  && ...arguements):Arguements(LD::Forward<Args>(arguements)...),CurrentObject(object),CurrentPromise(promise),CurrentMemberPointer(memberPointer)
         {
 
         }
@@ -224,7 +229,7 @@ namespace PDP
     public:
         typedef Ret (Object::*MemberPointer)(Args...) const;
     private:
-        PDP::Promise<Ret> CurrentPromise;
+        LD::Promise<Ret> CurrentPromise;
         const Object CurrentObject;
         MemberPointer CurrentMemberPointer;
 
@@ -240,7 +245,7 @@ namespace PDP
     public:
 
 
-        ConstTypedTask(const PDP::Promise<Ret> & promise, const Object & object, const MemberPointer & memberPointer ,Args  && ...arguements):Arguements(LD::Forward<Args>(arguements)...),CurrentObject(object),CurrentPromise(promise),CurrentMemberPointer(memberPointer)
+        ConstTypedTask(const LD::Promise<Ret> & promise, const Object & object, const MemberPointer & memberPointer ,Args  && ...arguements):Arguements(LD::Forward<Args>(arguements)...),CurrentObject(object),CurrentPromise(promise),CurrentMemberPointer(memberPointer)
         {
 
         }
@@ -267,7 +272,7 @@ namespace PDP
     class DelegatedPackageTask<T(Args...)>: public Task
     {
     private:
-        PDP::Promise<T> CurrentPromise;
+        LD::Promise<T> CurrentPromise;
         PDP::Delegate<T(Args...)> Delegate;
         std::tuple<Args...> Arguements;
         template<int ...S>
@@ -278,7 +283,7 @@ namespace PDP
 
     public:
 
-        DelegatedPackageTask(const PDP::Promise<T> & promise,const PDP::Delegate<T(Args...)> & delegate, Args  && ...arguements):Arguements(LD::Forward<Args>(arguements)...),Delegate(delegate),CurrentPromise(promise)
+        DelegatedPackageTask(const LD::Promise<T> & promise,const PDP::Delegate<T(Args...)> & delegate, Args  && ...arguements):Arguements(LD::Forward<Args>(arguements)...),Delegate(delegate),CurrentPromise(promise)
         {
 
         }
@@ -303,7 +308,7 @@ namespace PDP
     class FastDelegatedPackageTask<T(Args...)>: public Task
     {
     private:
-        PDP::Promise<T> CurrentPromise;
+        LD::Promise<T> CurrentPromise;
         PDP::FastDelegate<T(Args...)> Delegate;
         std::tuple<Args...> Arguements;
         template<int ...S>
@@ -313,7 +318,7 @@ namespace PDP
         }
     public:
 
-        FastDelegatedPackageTask(const PDP::Promise<T> & promise,const PDP::FastDelegate<T(Args...)> & delegate, Args  && ...arguements):Arguements(LD::Forward<Args>(arguements)...),Delegate(delegate),CurrentPromise(promise)
+        FastDelegatedPackageTask(const LD::Promise<T> & promise,const PDP::FastDelegate<T(Args...)> & delegate, Args  && ...arguements):Arguements(LD::Forward<Args>(arguements)...),Delegate(delegate),CurrentPromise(promise)
         {
 
         }
@@ -373,7 +378,7 @@ namespace PDP
     class LightWeightDelegatedPackageTask<T(Args...)>: public Task
     {
     private:
-        PDP::Promise<T> CurrentPromise;
+        LD::Promise<T> CurrentPromise;
         PDP::LightWeightDelegate<T(Args...)> Delegate;
         std::tuple<Args...> Arguements;
 
@@ -384,7 +389,7 @@ namespace PDP
             return Delegate(std::get<S>(Arguements) ...);
         }
     public:
-        LightWeightDelegatedPackageTask(const PDP::Promise<T> & promise,const PDP::LightWeightDelegate<T(Args...)> & delegate, Args && ... arguements):Arguements(LD::Forward<Args>(arguements)...),Delegate(delegate),CurrentPromise(promise)
+        LightWeightDelegatedPackageTask(const LD::Promise<T> & promise,const PDP::LightWeightDelegate<T(Args...)> & delegate, Args && ... arguements):Arguements(LD::Forward<Args>(arguements)...),Delegate(delegate),CurrentPromise(promise)
         {
 
         }
@@ -415,7 +420,7 @@ namespace PDP
     public:
         typedef Functor<T(Args...)> FunctorType;
     private:
-        PDP::Promise<T> CurrentPromise;
+        LD::Promise<T> CurrentPromise;
         Functor<T(Args...)> Delegate;
         LD::Tuple<LD::Detail::Decay_T<Args>...> Arguements;
 
@@ -432,12 +437,12 @@ namespace PDP
         {
 
         }
-        PackagedTask(const PDP::Promise<T> & promise,const Functor<T(Args...)> & delegate, const LD::Detail::Decay_T<Args> & ... arguements):Arguements(LD::Forward<Args>(arguements)...),Delegate(delegate),CurrentPromise(promise)
+        PackagedTask(const LD::Promise<T> & promise,const Functor<T(Args...)> & delegate, const LD::Detail::Decay_T<Args> & ... arguements):Arguements(LD::Forward<Args>(arguements)...),Delegate(delegate),CurrentPromise(promise)
         {
 
         }
 
-        inline void SetPromise(const PDP::Promise<T> & currentPromise)
+        inline void SetPromise(const LD::Promise<T> & currentPromise)
         {
             this->CurrentPromise = currentPromise;
         }
@@ -605,7 +610,7 @@ namespace PDP
     private:
         Functor<T(PDP::Commitment<U>,Args...)> Delegate;
         LD::Tuple<PDP::Commitment<U>,LD::Detail::Decay_T<Args>...> Arguements;
-        PDP::Promise<T> CurrentPromise;
+        LD::Promise<T> CurrentPromise;
 
 
 
@@ -624,14 +629,14 @@ namespace PDP
         {
 
         }
-        PackagedTask(const PDP::Promise<T> & currentPromise,const PDP::Commitment<U> &currentCommitment ,const Functor<T(PDP::Commitment<T> &,Args...)> & delegate, const LD::Detail::Decay_T<Args> & ... arguements):Arguements(LD::Forward<Args>(arguements)...),Delegate(delegate),CurrentPromise(currentPromise)
+        PackagedTask(const LD::Promise<T> & currentPromise,const PDP::Commitment<U> &currentCommitment ,const Functor<T(PDP::Commitment<T> &,Args...)> & delegate, const LD::Detail::Decay_T<Args> & ... arguements):Arguements(LD::Forward<Args>(arguements)...),Delegate(delegate),CurrentPromise(currentPromise)
         {
 
             LD::Get<0>(Arguements) = currentCommitment;
         }
 
 
-        inline void SetPromise(const PDP::Promise<T> & currentPromise)
+        inline void SetPromise(const LD::Promise<T> & currentPromise)
         {
             this->CurrentPromise = currentPromise;
         }

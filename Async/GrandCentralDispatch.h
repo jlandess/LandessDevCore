@@ -9,7 +9,7 @@
 #ifndef GrandCentralDispatch_h
 #define GrandCentralDispatch_hf
 
-#include "Definitions/Common.hpp"
+//#include "Definitions/Common.hpp"
 #include "Atomic/Atomic.h"
 #include "Definitions/Integer.hpp"
 #include "Functor/fixed_size_function.hpp"
@@ -102,7 +102,9 @@ namespace LD
         //todo Replace LD::fized_size_function<void()> with LD::Variant<LD::fized_size_function,LD::LightWeightDelegate<void()>,LD::Function<void()>> to take advantage of optimizations
         //and dealing with very large functor calls
         moodycamel::ConcurrentQueue<LD::fixed_size_function<void()>>  Tasks;
-        PDP::DataStructures::Array<LD::Tuple<PDP::CUTThread,TaskDispatcherMetaData<A...>>> Threads;
+
+        //PDP::DataStructures::Array<LD::Tuple<LD::CUTThread,TaskDispatcherMetaData<A...>>> Threads;
+        std::vector<LD::Tuple<LD::CUTThread,TaskDispatcherMetaData<A...>>> Threads;
         PDP::Atomic<LD::UInteger> WorkingStatus;
         PDP::Atomic<LD::UInteger> RequestedNumberOfThreads;
         PDP::SpinLock CurrentSpinLock;
@@ -115,8 +117,8 @@ namespace LD
             //LD::UInteger threadAffinity = PDP::Thread::GetThreadAffinity();
             //BasicTaskDispatcher<LD::VariadicPack<A...>> * currentPool = (BasicTaskDispatcher<LD::VariadicPack<A...>>*)data;
 
-
-
+            BasicTaskDispatcher<LD::VariadicPack<A...>> * currentPool = (BasicTaskDispatcher<LD::VariadicPack<A...>> *)LD::Get<void*>(*passedInContext);
+            /*
             BasicTaskDispatcher<LD::VariadicPack<A...>> * currentPool = (BasicTaskDispatcher<LD::VariadicPack<A...>> *)LD::Get<void*>(*passedInContext);
             LD::Application<LD::ThreadAffinity> application;
             LD::Tuple<A...> & schedulingHeuerestics = LD::Get<LD::Tuple<A...>>(*passedInContext);
@@ -156,19 +158,21 @@ namespace LD
 
             application([&](const LD::ApplicationPeriodEvent<LD::ThreadAffinity> & event)
             {
-                LD::Second<LD::Float> period = LD::Second<LD::Float >(0);
+                LD::Second<LD::Float> period = LD::Second<LD::Float >(LD::Float(0));
 
                 if constexpr (sizeof...(A) > 0)
                 {
                     LD::For<sizeof...(A)>([&](auto I)
                     {
                         LD::Second<LD::Float> currentPeriod = LD::Get<I>(schedulingHeuerestics)(event);
-                        period = LD::Second<LD::Float>(period.GetValue()+currentPeriod.GetValue());
+
+                        period = LD::Second<LD::Float>(period.NativeRepresentation().Value()+currentPeriod.NativeRepresentation().Value());
 
                         return true;
                     });
                 }
-                period = LD::Second<LD::Float >(period.GetValue()+0.01666666667);
+
+                period = LD::Second<LD::Float >(period.NativeRepresentation().Value()+0.01666666667);
                 //todo - change to dynamic tick based on load
                 return period;
             });
@@ -221,7 +225,8 @@ namespace LD
                     });
                 }
             });
-            /*
+             */
+
             while (currentPool->GetWorkingStatus() == true)
             {
 
@@ -234,12 +239,12 @@ namespace LD
                 usleep(LD::Second<LD::Float>(0.01666666667));
 
             }
-             */
 
 
-            PDP::DataStructures::Timer currentTimer;
-            LD::ThreadAffinity affinity = PDP::Thread::GetThreadAffinity();
-            LD::MainLoop(application,currentTimer,affinity);
+
+            //LD::Timer currentTimer;
+            //LD::ThreadAffinity affinity = LD::Thread::GetThreadAffinity();
+            //LD::MainLoop(application,currentTimer,affinity);
             return nullptr;
         }
 
@@ -261,11 +266,12 @@ namespace LD
                 PDP::SharedPointer<LD::Tuple<LD::Tuple<A...>,void*>> managedPtr = threadMetaData.Data();
 
                 //this is only safe because the pointer is being managed by a shared pointer and will only go out of scope when the instance of this class does.
-                PDP::CUTThread thread = PDP::CutStartThread(&BasicTaskDispatcher::InternalThreadFunction, managedPtr.Get());
-                LD::Tuple<PDP::CUTThread ,LD::TaskDispatcherMetaData<A...>> blob;
-                LD::Get<PDP::CUTThread>(blob) = thread;
+                LD::CUTThread thread = LD::CutStartThread(&BasicTaskDispatcher::InternalThreadFunction, managedPtr.Get());
+                LD::Tuple<LD::CUTThread ,LD::TaskDispatcherMetaData<A...>> blob;
+                LD::Get<LD::CUTThread>(blob) = thread;
                 LD::Get< TaskDispatcherMetaData<A...>>(blob) = threadMetaData;
-                this->Threads.PushBack(blob);
+                //this->Threads.PushBack(blob);
+                this->Threads.push_back(blob);
 
             }
 
@@ -301,28 +307,29 @@ namespace LD
 
             this->WorkingStatus.store(false,PDP::AcquireRelease);
 
-            for(LD::UInteger n = 0 ;n<this->Threads.GetSize();++n)
+            for(LD::UInteger n = 0 ;n<this->Threads.size();++n)
             {
-                PDP::CutEndThread(LD::Get<PDP::CUTThread>(this->Threads[n]));
+
+                LD::CutEndThread(LD::Get<LD::CUTThread>(this->Threads[n]));
             }
             //PDP::CutWaitForThreads(this->Threads.GetBuffer(), this->Threads.GetSize());
 
         }
 
         template<typename F, typename ... Args>
-        inline PDP::Promise<decltype(LD::Declval<F>()(LD::Declval<Args>()...)  )> EnqueueWithPromise(
+        inline LD::Promise<decltype(LD::Declval<F>()(LD::Declval<Args>()...)  )> EnqueueWithPromise(
                 F && function,
-                Args && ... arguements)
+                Args && ... arguements) noexcept
         {
             typedef decltype(LD::Declval<F>()(LD::Declval<Args>()...)  ) Ret;
 
-            PDP::Promise<Ret> promise;
+            LD::Promise<Ret> promise;
 
-            PackagedTask<F, Ret(LD::Decay_T<Args>...)> currentPackage(function,LD::MakeTuple(LD::Forward<Args>(arguements)...),promise);
+            PackagedTask<F, Ret(LD::Detail::Decay_T<Args>...)> currentPackage(function,LD::MakeTuple(LD::Forward<Args>(arguements)...),promise);
 
             LD::fixed_size_function<void()> workerFunction = LD::fixed_size_function<void()>([currentPackage]()
                                                                                              {
-                                                                                                 PackagedTask<F, Ret(LD::Decay_T<Args>...)> localizedPackage = currentPackage;
+                                                                                                 PackagedTask<F, Ret(LD::Detail::Decay_T<Args>...)> localizedPackage = currentPackage;
                                                                                                  localizedPackage();
                                                                                              });
 
@@ -336,7 +343,7 @@ namespace LD
         template<typename F, typename ... Args>
         inline PDP::Commitment<decltype(LD::Declval<F>()(LD::Declval<Args>()...)  )> EnqueueWithCommitment(
                 F && function,
-                Args && ... arguements)
+                Args && ... arguements) noexcept
         {
             typedef decltype(LD::Declval<F>()(LD::Declval<Args>()...)  ) Ret;
             PDP::Commitment<Ret> commitment;
@@ -346,7 +353,7 @@ namespace LD
 
             LD::fixed_size_function<void()> workerFunction = LD::fixed_size_function<void()>([currentPackage]()
                                                                                              {
-                                                                                                 PackagedTask<F, Ret(LD::Decay_T<Args>...)> localizedPackage = currentPackage;
+                                                                                                 PackagedTask<F, Ret(LD::Detail::Decay_T<Args>...)> localizedPackage = currentPackage;
                                                                                                  localizedPackage();
                                                                                              });
 
@@ -360,7 +367,7 @@ namespace LD
         inline PDP::Commitment<decltype(LD::Declval<F>()(LD::Declval<Args>()...)  )> & EnqueueWithCommitment(
                 const PDP::Commitment<decltype(LD::Declval<F>()(LD::Declval<Args>()...)  )> & commitment,
                 F && function,
-                Args && ... arguements)
+                Args && ... arguements) noexcept
         {
             typedef decltype(LD::Declval<F>()(LD::Declval<Args>()...)  ) Ret;
 
@@ -369,7 +376,7 @@ namespace LD
 
             LD::fixed_size_function<void()> workerFunction = LD::fixed_size_function<void()>([currentPackage]()
                                                                                              {
-                                                                                                 PackagedTask<F, Ret(LD::Decay_T<Args>...)> localizedPackage = currentPackage;
+                                                                                                 PackagedTask<F, Ret(LD::Detail::Decay_T<Args>...)> localizedPackage = currentPackage;
                                                                                                  localizedPackage();
                                                                                              });
 
@@ -381,19 +388,19 @@ namespace LD
 
         }
 
-        inline const LD::UInteger  GetAmountOfActiveThreads()
+        inline const LD::UInteger  GetAmountOfActiveThreads() noexcept
         {
             LD::UInteger amount;
             CurrentSpinLock.Lock();
             {
-                amount = this->Threads.GetSize();
+                amount = this->Threads.size();
             }
             CurrentSpinLock.Unlock();
 
             return amount;
         }
 
-        inline const LD::UInteger GetAmountOfRequestedThreads() const
+        inline const LD::UInteger GetAmountOfRequestedThreads() const noexcept
         {
 
 
@@ -401,7 +408,7 @@ namespace LD
         }
 
 
-        const bool GetWorkingStatus() const
+        const bool GetWorkingStatus() const noexcept
         {
 
             return WorkingStatus.load(PDP::AcquireRelease);

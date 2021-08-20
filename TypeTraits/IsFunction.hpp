@@ -10,6 +10,7 @@
 #include "IsReference.hpp"
 #include "IsNullPtr.hpp"
 #include "IsConst.hpp"
+#include "TypeTraits/__two.hpp"
 namespace __libcpp_is_function_imp
 {
     struct __dummy_type {};

@@ -1,7 +1,7 @@
 #ifndef MAPBOX_UTIL_VARIANT_VISITOR_HPP
 #define MAPBOX_UTIL_VARIANT_VISITOR_HPP
 
-#include "Definitions/Common.hpp"
+//#include "Definitions/Common.hpp"
 #include "mapboxvariant.hpp"
 #include "TypeTraits/FunctionalReflection.hpp"
 namespace LD

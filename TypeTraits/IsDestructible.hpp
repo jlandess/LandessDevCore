@@ -9,6 +9,7 @@
 #include "RemoveAllExtents.hpp"
 #include "IntegralConstant.hpp"
 #include "IsFunction.hpp"
+#include "Declval.hpp"
 namespace LD
 {
     //  if it's a reference, return true

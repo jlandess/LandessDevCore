@@ -9,7 +9,7 @@
 #ifndef SoftwareQuaternion_h
 #define SoftwareQuaternion_h
 
-#include "Definitions/Common.hpp"
+//#include "Definitions/Common.hpp"
 #include "TypeTraits/StaticallySized.h"
 //#include <Algorithms/SSE_Trig.h>
 #include "Algorithms/Periodic.hpp"

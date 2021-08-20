@@ -16,6 +16,7 @@ namespace LD
         namespace Detail
         {
             static constexpr auto  DateTimeRegularExpression = ctll::basic_fixed_string{"\"(\\d{4})-(\\d{1,2})-(\\d{1,2}) (\\d{1,2}):(\\d{1,2}):(\\d{1,2})\""};
+            static constexpr auto  DateTimeRegularExpression1 = ctll::basic_fixed_string{"(\\d{4})-(\\d{1,2})-(\\d{1,2})"};
         }
         class DateTime
         {
@@ -63,7 +64,20 @@ namespace LD
             LD::UInteger minute = (minuteView.view()[0]-'0')*10 + (minuteView.view()[1]-'0')*1;
             LD::UInteger second = (secondView.view()[0]-'0')*10 + (secondView.view()[1] - '0')*1;
 
-            return LD::MakeContext(LD::TransactionResult{},LD::VW::DateTime{LD::Date(year,month,day),LD::Time(hour,minute,second)},LD::Forward<A>(args)...);
+            return LD::MakeContext(LD::TransactionResult{},LD::VW::DateTime{LD::Date(LD::Year<LD::UInteger>{LD::UInteger{year}},LD::Month<LD::UInteger>{month},LD::Day<LD::UInteger>{day}),LD::Time(hour,minute,second)},LD::Forward<A>(args)...);
+        }
+        else if (auto [whole, yearView, monthView, dayView] = ctre::match<LD::VW::Detail::DateTimeRegularExpression1>(view); whole)
+        {
+
+            //std::cout << "DateTime Year: " << yearView.view() << std::endl;
+            LD::UInteger year = (yearView.view()[0]-'0')*1000 + (yearView.view()[1] - '0')*100 + (yearView.view()[2] - '0')*10 + (yearView.view()[3] - '0')*1;
+            //std::cout << "DateTime Calculation: " << year << std::endl;
+            LD::UInteger month = (monthView.view()[0]-'0')*10 + (monthView.view()[1] - '0')*1;
+            LD::UInteger day = (dayView.view()[0] -'0')*10 + (dayView.view()[1]-'0')*1;
+
+            std::cout << "Year : " << year << " , " << month << " , " << day << std::endl;
+
+            return LD::MakeContext(LD::TransactionResult{},LD::VW::DateTime{LD::Date(LD::Year<LD::UInteger>{LD::UInteger{year}},LD::Month<LD::UInteger>{month},LD::Day<LD::UInteger>{day}),LD::Time(0,0,0)},LD::Forward<A>(args)...);
         }
         return LD::MakeContext(LD::TransactionError{},LD::Forward<A>(args)...);
     }

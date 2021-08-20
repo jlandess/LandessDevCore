@@ -10,9 +10,10 @@
 #define __Memory__AutomaticReferenceCounting__
 #include <stdlib.h>
 #include <stdio.h>
-#include <Definitions/Common.hpp>
+//#include <Definitions/Common.hpp>
 #include "Async/Atomic/Atomic.h"
 #include "ElementReference.h"
+#include "TypeTraits/IsKindOf.hpp"
 //#include <Memory/ElementReference.h>
 //#include "ElementReference.h"
 namespace PDP

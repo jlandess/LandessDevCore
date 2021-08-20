@@ -9,7 +9,7 @@
 #ifndef Immutable_h
 #define Immutable_h
 
-#include <Definitions/Common.hpp>
+//#include <Definitions/Common.hpp>
 #include "Primitives/General/typestring.hpp"
 #include "Algorithms/CompileTimeControlFlow.hpp"
 #include "Primitives/General/Hash.hpp"
@@ -18,6 +18,12 @@
 #include "IO/FetchRequest.h"
 #include "StaticArray.hpp"
 #include "TypeTraits/IsString.hpp"
+#include "TypeTraits/Iterable.h"
+#include "Algorithms/Abs.hpp"
+#include "Algorithms/Floor.hpp"
+#include "Algorithms/FastLog10.hpp"
+#include "TypeTraits/IsPackConvertible.hpp"
+#include "TypeTraits/Limit.hpp"
 namespace LD
 {
     class ImmutableStringWarrant
@@ -46,23 +52,22 @@ namespace LD
 
         static constexpr LD::UInteger Length = N;
 
-        constexpr ImmutableString() noexcept
+        constexpr ImmutableString() noexcept:string{'\0'}
         {
+            //for(LD::UInteger n = 0;n<N;++n)
+            //{
+                //this->string[n] = '\0';
+            //}
+            /*
             LD::For<0,N+1>([](auto I, LD::ImmutableString<N> * instance)
             {
                 instance->string[I] = '\0';
                 return true;
             },this);
+             */
         }
 
-        constexpr ImmutableString(const char & value) noexcept: ImmutableString()
-        {
-            LD::For<0,N>([](auto I, LD::ImmutableString<N> * instance, const char & value)
-            {
-                instance->string[I] = value;
-                return true;
-            },this,value);
-        }
+        constexpr ImmutableString(const char & value) noexcept: string{value}{}
 
         template<typename U, typename = typename LD::Enable_If_T<LD::Require<LD::IsInteger<U>,LD::IsUnsignedInteger<U>>>>
         constexpr ImmutableString(const U & value) noexcept
@@ -1052,6 +1057,59 @@ namespace LD
         {
             return true;
         }
+        template<typename T>
+        constexpr bool IsImmutableString(LD::Type<T>) noexcept
+        {
+            return false;
+        }
+        template<LD::UInteger Size>
+        constexpr bool IsImmutableString(LD::Type<LD::ImmutableString<Size>> )  noexcept
+        {
+            return true;
+        }
+        template<LD::UInteger Size>
+        constexpr LD::UInteger ImmutableStringCapacity(LD::Type<LD::ImmutableString<Size>> ) noexcept
+        {
+            return Size;
+        }
     }
+}
+namespace LD
+{
+    template<LD::UInteger Size>
+    class BackInserter<LD::ImmutableString<Size>>
+    {
+    private:
+        LD::ElementReference<LD::ImmutableString<Size>>  mArray;
+        LD::UInteger mUsableOffset;
+    public:
+        BackInserter(LD::ImmutableString<Size> & array) noexcept: mArray{array},mUsableOffset{0}
+        {
+
+        }
+        BackInserter(const BackInserter & inserter ) noexcept: mArray{inserter.mArray},mUsableOffset{inserter.mUsableOffset}
+        {
+
+        }
+
+        BackInserter<LD::ImmutableString<Size>> &  operator*() noexcept
+        {
+            return (*this);
+        }
+        BackInserter<LD::ImmutableString<Size>> & operator = (const char &  object) noexcept
+        {
+            (*mArray)[this->mUsableOffset++] = object;
+            return (*this);
+        }
+        constexpr BackInserter<LD::ImmutableString<Size>> & operator++() noexcept
+        {
+            return (*this);
+        }
+
+        constexpr BackInserter<LD::ImmutableString<Size>> & operator++(int) noexcept
+        {
+            return (*this);
+        }
+    };
 }
 #endif /* Immutable_h */

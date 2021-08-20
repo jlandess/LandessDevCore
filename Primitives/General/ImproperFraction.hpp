@@ -9,7 +9,10 @@
 #ifndef DataStructures_Fraction_h
 #define DataStructures_Fraction_h
 
-#include "Definitions/Common.hpp"
+//#include "Definitions/Common.hpp"
+#include "Algorithms/Abs.hpp"
+#include "Algorithms/Floor.hpp"
+#include "TypeTraits/Detection.hpp"
 namespace PDP
 {
 

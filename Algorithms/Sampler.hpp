@@ -9,9 +9,10 @@
 #ifndef Sampler_h
 #define Sampler_h
 
-#include "Definitions/Common.hpp"
+//#include "Definitions/Common.hpp"
 #include "Primitives/General/StaticArray.hpp"
 #include "TypeTraits/StaticallySized.h"
+#include "Core/NullClass.hpp"
 namespace LD
 {
     template<typename T, LD::UInteger N = 4, class Filter = LD::NullClass, class sfinae = void>

@@ -5,7 +5,7 @@
 #ifndef LANDESSDEVCORE_SPAN_HPP
 #define LANDESSDEVCORE_SPAN_HPP
 #include "Definitions/Integer.hpp"
-#include "Definitions/Common.hpp"
+//#include "Definitions/Common.hpp"
 #include "TypeTraits/Iterable.h"
 #include "TypeTraits/Detection.hpp"
 #include "TypeTraits/Type.h"

@@ -9,8 +9,10 @@
 #ifndef DataStructures_ElementReference_h
 #define DataStructures_ElementReference_h
 
-#include "Definitions/Common.hpp"
-#include "Primitives/General/Tuple.hpp"
+//#include "Definitions/Common.hpp"
+#include "Core/Tuple.hpp"
+//#include "Primitives/General/Tuple.hpp"
+//#include "TypeTraits/Type.h"
 namespace PDP
 {
     //
@@ -60,7 +62,7 @@ namespace PDP
         constexpr T * operator -> () noexcept {return this->value;}
         constexpr const T * operator ->() const noexcept {return this->value;}
 
-
+        operator T&() noexcept { return (*this->value); }
         constexpr T & operator*() noexcept {return (*this->value);}
         constexpr const T & operator*() const noexcept {return (*this->value);}
 

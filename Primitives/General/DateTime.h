@@ -11,6 +11,7 @@
 #include "Algorithms/Exponential.hpp"
 #include "Primitives/General/ctre.hpp"
 #include "Primitives/General/StringView.hpp"
+#include "Core/NullClass.hpp"
 //#include "Algorithms/FromString.hpp"
 //
 //  Date.h
@@ -19,265 +20,1000 @@
 //  Created by James Landess on 10/23/14.
 //  Copyright (c) 2014 LandessDev. All rights reserved.
 //
+#include "Primitives/General/Unit.hpp"
 namespace LD
 {
-    class Date
+    namespace CT
     {
-    private:
-        int mYear;
-        int mMonth;
-        int mDay;
-        LD::Date  NextDate() const noexcept
+
+        template<typename T>
+        inline constexpr bool IsHour(LD::Type<T>) noexcept
         {
-            LD::Date date = (*this);
-            if (this->Valid())
-            {
-                LD::Date date = LD::Date{this->mYear,this->mMonth,this->mDay+1};
-                if (date.Valid())
-                {
-                    return date;
-                }
-                date = LD::Date{this->mYear,this->mMonth+1,1};
-                if (date.Valid())
-                {
-                    return date;
-                }
-                date = LD::Date{this->mYear+1,1,1};
-                return date;
-            }
-            date = (*this);
-            return date;
+            return false;
         }
-        LD::Date PreviousDate() const noexcept
+
+        template<typename T>
+        inline constexpr bool IsHour(LD::Type<LD::Hour<T>> ) noexcept
         {
-            LD::Date ndat = (*this);
-            if (!ndat.Valid())
-            {
-                return ndat;
-            }
-            ndat = LD::Date{this->mYear,this->mMonth,this->mDay-1};
-            if (ndat.Valid())
-            {
-                return ndat;
-            }
-            ndat = LD::Date{this->mYear,this->mMonth-1,31};
-            if (ndat.Valid())
-            {
-                return ndat;
-            }
-            ndat = LD::Date{this->mYear,this->mMonth-1,30};
-            if (ndat.Valid())
-            {
-                return ndat;
-            }
-            ndat = LD::Date{this->mYear,this->mMonth-1,29};
-            if (ndat.Valid())
-            {
-                return ndat;
-            }
-            ndat = LD::Date{this->mYear,this->mMonth-1,28};
-            if (ndat.Valid())
-            {
-                return ndat;
-            }
-            ndat = LD::Date{this->mYear-1,12,31};
-            return ndat;
-
-        }
-    public:
-        Date() noexcept:mYear{0},mMonth{0},mDay{0}{}
-        Date(int year, int month, int day) noexcept:mYear{year},mMonth{month},mDay{day}{}
-
-        bool Valid() const
-        {
-            if (this->mYear < 0)
-            {
-                return false;
-            }
-            if (this->mMonth > 12 || this->mMonth < 1)
-            {
-                return false;
-            }
-            if (this->mDay > 31 || this->mDay < 1)
-            {
-                return false;
-            }
-            if (this->mDay == 31 && (this->mMonth == 2 || this->mMonth == 4 || this->mMonth == 6 || this->mMonth == 9 || this->mMonth == 11))
-            {
-                return false;
-            }
-            if (this->mDay == 30 && this->mMonth == 2)
-            {
-                return false;
-            }
-
-            if (this->mYear < 2000)
-            {
-                if ((this->mDay == 29 && this->mMonth == 2) && !(this->mYear-1900)%4 == 0)
-                {
-                    return false;
-                }
-            }
-
-            if (this->mYear > 2000)
-            {
-                if ((this->mDay == 29 && this->mMonth == 2) && !(this->mYear-2000)%4 == 0)
-                {
-                    return false;
-                }
-            }
-
             return true;
         }
 
-        int Day() const noexcept{return this->mDay;}
-        int Month() const noexcept{return this->mMonth;}
-        int Year() const noexcept{return this->mYear;}
-
-        int & Day() noexcept{return this->mDay;}
-        int & Month() noexcept{return this->mMonth;}
-        int & Year() noexcept{return this->mYear;}
-
-        LD::Date & operator++() noexcept
+        template<typename T>
+        inline constexpr bool IsMinute(LD::Type<T>) noexcept
         {
-            (*this) = this->NextDate();
-            return (*this);
-        }
-        LD::Date & operator++(int) noexcept
-        {
-            (*this) = this->NextDate();
-            return (*this);
-        }
-        LD::Date & operator--() noexcept
-        {
-            (*this) = this->PreviousDate();
-            return (*this);
-        }
-        LD::Date & operator--(int) noexcept
-        {
-            (*this) = this->PreviousDate();
-            return (*this);
-        }
-        //DateTest & operator++() noexcept;
-        //DateTest & operator++(int) noexcept;
-        //DateTest & operator--() noexcept;
-        //DateTest & operator--(int) noexcept;
-
-        bool operator == (const Date & date) const noexcept
-        {
-            if (!this->Valid() || !date.Valid())
-            {
-                return false;
-            }
-
-            if (this->mDay == date.mDay && this->mMonth == date.mMonth && this->mYear == date.mYear)
-            {
-                return true;
-            }
             return false;
         }
-        bool operator != (const Date & date) const noexcept
+
+        template<typename T>
+        inline constexpr bool IsMinute(LD::Type<LD::Minute<T>> ) noexcept
         {
-            return !((*this)==date);
-        }
-        bool operator < (const Date & date) const noexcept
-        {
-            if (!this->Valid() || !date.Valid())
-            {
-                return false;
-            }
-            if (this->mYear < date.mYear)
-            {
-                return true;
-            }else if(this->mYear > date.mYear)
-            {
-                return false;
-            }else
-            {
-                if (this->mMonth < date.mMonth)
-                {
-                    return true;
-                }else if(this->mMonth > date.mMonth)
-                {
-                    return true;
-                }else
-                {
-                    if (this->mDay < date.mDay)
-                    {
-                        return true;
-                    }else
-                    {
-                        return false;
-                    }
-                }
-            }
-            return false;
-        }
-        bool operator > (const Date & date) const noexcept
-        {
-            if ((*this) == date)
-            {
-                return false;
-            }
-            if ((*this) < date)
-            {
-                return false;
-            }
             return true;
         }
-        bool operator <= (const Date & date) const noexcept
+
+        template<typename T>
+        inline constexpr bool IsSecond(LD::Type<T>) noexcept
         {
-            if ((*this) == date)
-            {
-                return true;
-            }
-            return ((*this) < date);
+            return false;
         }
-        bool operator >= (const Date & date) const noexcept
+
+        template<typename T>
+        inline constexpr bool IsSecond(LD::Type<LD::Second<T>> ) noexcept
         {
-            if ((*this) == date)
-            {
-                return true;
-            }
-            return ((*this) > date);
+            return true;
         }
+
+        template<typename T>
+        inline constexpr bool IsMiliSecond(LD::Type<T>) noexcept
+        {
+            return false;
+        }
+
+        template<typename T>
+        inline constexpr bool IsMiliSecond(LD::Type<LD::Milisecond<T>> ) noexcept
+        {
+            return true;
+        }
+
+        template<typename T>
+        inline constexpr bool IsDay(LD::Type<T>) noexcept
+        {
+            return false;
+        }
+
+        template<typename T>
+        inline constexpr bool IsDay(LD::Type<LD::Day<T>> ) noexcept
+        {
+            return true;
+        }
+
+        template<typename T>
+        inline constexpr bool IsMonth(LD::Type<T>) noexcept
+        {
+            return false;
+        }
+
+        template<typename T>
+        inline constexpr bool IsMonth(LD::Type<LD::Month<T>> ) noexcept
+        {
+            return true;
+        }
+
+        template<typename T>
+        inline constexpr bool IsYear(LD::Type<T>) noexcept
+        {
+            return false;
+        }
+
+        template<typename T>
+        inline constexpr bool IsYear(LD::Type<LD::Year<T>> ) noexcept
+        {
+            return true;
+        }
+
+        namespace Detail
+        {
+            template<typename First, typename Second, typename Third, class = void>
+            struct ExtractDayTypeImpl;
+
+
+            template<typename First, typename Second, typename Third, class = void>
+            struct ExtractMonthTypeImpl;
+
+            template<typename First, typename Second, typename Third, class = void>
+            struct ExtractYearTypeImpl;
+
+            template<typename First, typename Second, typename Third, typename Fourth ,class = void>
+            struct ExtractHourTypeImpl;
+
+            template<typename First, typename Second, typename Third, typename Fourth, class = void>
+            struct ExtractMinuteTypeImpl;
+
+            template<typename First, typename Second, typename Third, typename Fourth, class = void>
+            struct ExtractSecondTypeImpl;
+
+
+            template<typename First, typename Second, typename Third, typename Fourth, class = void>
+            struct ExtractMilisecondTypeImpl;
+
+
+            template<typename First, typename Second, typename Third>
+            struct ExtractDayTypeImpl<First,Second,Third,LD::Enable_If_T<
+                    LD::Require<
+                    LD::CT::IsDay(LD::Type<First>{}),
+                    !LD::CT::IsDay(LD::Type<Second>{}),
+                    !LD::CT::IsDay(LD::Type<Third>{})
+                    >>>
+            {
+                using type = First;
+            };
+
+            template<typename First, typename Second, typename Third>
+            struct ExtractDayTypeImpl<First,Second,Third,LD::Enable_If_T<
+                    LD::Require<
+                            !LD::CT::IsDay(LD::Type<First>{}),
+                            LD::CT::IsDay(LD::Type<Second>{}),
+                            !LD::CT::IsDay(LD::Type<Third>{})
+                    >>>
+            {
+                using type = Second;
+            };
+
+            template<typename First, typename Second, typename Third>
+            struct ExtractDayTypeImpl<First,Second,Third,LD::Enable_If_T<
+                    LD::Require<
+                            !LD::CT::IsDay(LD::Type<First>{}),
+                            !LD::CT::IsDay(LD::Type<Second>{}),
+                            LD::CT::IsDay(LD::Type<Third>{})
+                    >>>
+            {
+                using type = Third;
+            };
+
+
+            template<typename First, typename Second, typename Third>
+            struct ExtractMonthTypeImpl<First,Second,Third,LD::Enable_If_T<
+                    LD::Require<
+                            LD::CT::IsMonth(LD::Type<First>{}),
+                            !LD::CT::IsMonth(LD::Type<Second>{}),
+                            !LD::CT::IsMonth(LD::Type<Third>{})
+                    >>>
+            {
+                using type = First;
+            };
+
+            template<typename First, typename Second, typename Third>
+            struct ExtractMonthTypeImpl<First,Second,Third,LD::Enable_If_T<
+                    LD::Require<
+                            !LD::CT::IsMonth(LD::Type<First>{}),
+                            LD::CT::IsMonth(LD::Type<Second>{}),
+                            !LD::CT::IsMonth(LD::Type<Third>{})
+                    >>>
+            {
+                using type = Second;
+            };
+
+            template<typename First, typename Second, typename Third>
+            struct ExtractMonthTypeImpl<First,Second,Third,LD::Enable_If_T<
+                    LD::Require<
+                            !LD::CT::IsMonth(LD::Type<First>{}),
+                            !LD::CT::IsMonth(LD::Type<Second>{}),
+                            LD::CT::IsMonth(LD::Type<Third>{})
+                    >>>
+            {
+                using type = Third;
+            };
+
+
+            template<typename First, typename Second, typename Third>
+            struct ExtractYearTypeImpl<First,Second,Third,LD::Enable_If_T<
+                    LD::Require<
+                            LD::CT::IsYear(LD::Type<First>{}),
+                            !LD::CT::IsYear(LD::Type<Second>{}),
+                            !LD::CT::IsYear(LD::Type<Third>{})
+                    >>>
+            {
+                using type = First;
+            };
+
+            template<typename First, typename Second, typename Third>
+            struct ExtractYearTypeImpl<First,Second,Third,LD::Enable_If_T<
+                    LD::Require<
+                            !LD::CT::IsYear(LD::Type<First>{}),
+                            LD::CT::IsYear(LD::Type<Second>{}),
+                            !LD::CT::IsYear(LD::Type<Third>{})
+                    >>>
+            {
+                using type = Second;
+            };
+
+            template<typename First, typename Second, typename Third>
+            struct ExtractYearTypeImpl<First,Second,Third,LD::Enable_If_T<
+                    LD::Require<
+                            !LD::CT::IsYear(LD::Type<First>{}),
+                            !LD::CT::IsYear(LD::Type<Second>{}),
+                            LD::CT::IsYear(LD::Type<Third>{})
+                    >>>
+            {
+                using type = Third;
+            };
+
+            template<typename First, typename Second, typename Third, typename Fourth>
+            struct ExtractHourTypeImpl<First,Second,Third,Fourth,LD::Enable_If_T<
+                    LD::Require<
+                            LD::CT::IsHour(LD::Type<First>{}),
+                            !LD::CT::IsHour(LD::Type<Second>{}),
+                            !LD::CT::IsHour(LD::Type<Third>{}),
+                            !LD::CT::IsHour(LD::Type<Fourth>{})
+                    >>>
+            {
+                using type = First;
+            };
+
+            template<typename First, typename Second, typename Third, typename Fourth>
+            struct ExtractHourTypeImpl<First,Second,Third,Fourth,LD::Enable_If_T<
+                    LD::Require<
+                            !LD::CT::IsHour(LD::Type<First>{}),
+                            LD::CT::IsHour(LD::Type<Second>{}),
+                            !LD::CT::IsHour(LD::Type<Third>{}),
+                            !LD::CT::IsHour(LD::Type<Fourth>{})
+                    >>>
+            {
+                using type = Second;
+            };
+
+            template<typename First, typename Second, typename Third, typename Fourth>
+            struct ExtractHourTypeImpl<First,Second,Third,Fourth,LD::Enable_If_T<
+                    LD::Require<
+                            !LD::CT::IsHour(LD::Type<First>{}),
+                            !LD::CT::IsHour(LD::Type<Second>{}),
+                            LD::CT::IsHour(LD::Type<Third>{}),
+                            !LD::CT::IsHour(LD::Type<Fourth>{})
+                    >>>
+            {
+                using type = Third;
+            };
+
+            template<typename First, typename Second, typename Third, typename Fourth>
+            struct ExtractHourTypeImpl<First,Second,Third,Fourth,LD::Enable_If_T<
+                    LD::Require<
+                            !LD::CT::IsHour(LD::Type<First>{}),
+                            !LD::CT::IsHour(LD::Type<Second>{}),
+                            !LD::CT::IsHour(LD::Type<Third>{}),
+                            LD::CT::IsHour(LD::Type<Fourth>{})
+                    >>>
+            {
+                using type = Fourth;
+            };
+
+            template<typename First, typename Second, typename Third, typename Fourth>
+            struct ExtractMinuteTypeImpl<First,Second,Third,Fourth,LD::Enable_If_T<
+                    LD::Require<
+                            LD::CT::IsMinute(LD::Type<First>{}),
+                            !LD::CT::IsMinute(LD::Type<Second>{}),
+                            !LD::CT::IsMinute(LD::Type<Third>{}),
+                            !LD::CT::IsMinute(LD::Type<Fourth>{})
+                    >>>
+            {
+                using type = First;
+            };
+
+            template<typename First, typename Second, typename Third, typename Fourth>
+            struct ExtractMinuteTypeImpl<First,Second,Third,Fourth,LD::Enable_If_T<
+                    LD::Require<
+                            !LD::CT::IsMinute(LD::Type<First>{}),
+                            LD::CT::IsMinute(LD::Type<Second>{}),
+                            !LD::CT::IsMinute(LD::Type<Third>{}),
+                            !LD::CT::IsMinute(LD::Type<Fourth>{})
+                    >>>
+            {
+                using type = Second;
+            };
+
+            template<typename First, typename Second, typename Third, typename Fourth>
+            struct ExtractMinuteTypeImpl<First,Second,Third,Fourth,LD::Enable_If_T<
+                    LD::Require<
+                            !LD::CT::IsMinute(LD::Type<First>{}),
+                            !LD::CT::IsMinute(LD::Type<Second>{}),
+                            LD::CT::IsMinute(LD::Type<Third>{}),
+                            !LD::CT::IsMinute(LD::Type<Fourth>{})
+                    >>>
+            {
+                using type = Third;
+            };
+
+            template<typename First, typename Second, typename Third, typename Fourth>
+            struct ExtractMinuteTypeImpl<First,Second,Third,Fourth,LD::Enable_If_T<
+                    LD::Require<
+                            !LD::CT::IsMinute(LD::Type<First>{}),
+                            !LD::CT::IsMinute(LD::Type<Second>{}),
+                            !LD::CT::IsMinute(LD::Type<Third>{}),
+                            LD::CT::IsMinute(LD::Type<Fourth>{})
+                    >>>
+            {
+                using type = Fourth;
+            };
+
+            template<typename First, typename Second, typename Third, typename Fourth>
+            struct ExtractSecondTypeImpl<First,Second,Third,Fourth,LD::Enable_If_T<
+                    LD::Require<
+                            LD::CT::IsSecond(LD::Type<First>{}),
+                            !LD::CT::IsSecond(LD::Type<Second>{}),
+                            !LD::CT::IsSecond(LD::Type<Third>{}),
+                            !LD::CT::IsSecond(LD::Type<Fourth>{})
+                    >>>
+            {
+                using type = First;
+            };
+
+            template<typename First, typename Second, typename Third, typename Fourth>
+            struct ExtractSecondTypeImpl<First,Second,Third,Fourth,LD::Enable_If_T<
+                    LD::Require<
+                            !LD::CT::IsSecond(LD::Type<First>{}),
+                            LD::CT::IsSecond(LD::Type<Second>{}),
+                            !LD::CT::IsSecond(LD::Type<Third>{}),
+                            !LD::CT::IsSecond(LD::Type<Fourth>{})
+                    >>>
+            {
+                using type = Second;
+            };
+
+            template<typename First, typename Second, typename Third, typename Fourth>
+            struct ExtractSecondTypeImpl<First,Second,Third,Fourth,LD::Enable_If_T<
+                    LD::Require<
+                            !LD::CT::IsSecond(LD::Type<First>{}),
+                            !LD::CT::IsSecond(LD::Type<Second>{}),
+                            LD::CT::IsSecond(LD::Type<Third>{}),
+                            !LD::CT::IsSecond(LD::Type<Fourth>{})
+                    >>>
+            {
+                using type = Third;
+            };
+
+            template<typename First, typename Second, typename Third, typename Fourth>
+            struct ExtractSecondTypeImpl<First,Second,Third,Fourth,LD::Enable_If_T<
+                    LD::Require<
+                            !LD::CT::IsSecond(LD::Type<First>{}),
+                            !LD::CT::IsSecond(LD::Type<Second>{}),
+                            !LD::CT::IsSecond(LD::Type<Third>{}),
+                            LD::CT::IsSecond(LD::Type<Fourth>{})
+                    >>>
+            {
+                using type = Fourth;
+            };
+
+            template<typename First, typename Second, typename Third, typename Fourth>
+            struct ExtractMilisecondTypeImpl<First,Second,Third,Fourth,LD::Enable_If_T<
+                    LD::Require<
+                            LD::CT::IsMiliSecond(LD::Type<First>{}),
+                            !LD::CT::IsMiliSecond(LD::Type<Second>{}),
+                            !LD::CT::IsMiliSecond(LD::Type<Third>{}),
+                            !LD::CT::IsMiliSecond(LD::Type<Fourth>{})
+                    >>>
+            {
+                using type = First;
+            };
+
+            template<typename First, typename Second, typename Third, typename Fourth>
+            struct ExtractMilisecondTypeImpl<First,Second,Third,Fourth,LD::Enable_If_T<
+                    LD::Require<
+                            !LD::CT::IsMiliSecond(LD::Type<First>{}),
+                            LD::CT::IsMiliSecond(LD::Type<Second>{}),
+                            !LD::CT::IsMiliSecond(LD::Type<Third>{}),
+                            !LD::CT::IsMiliSecond(LD::Type<Fourth>{})
+                    >>>
+            {
+                using type = Second;
+            };
+
+            template<typename First, typename Second, typename Third, typename Fourth>
+            struct ExtractMilisecondTypeImpl<First,Second,Third,Fourth,LD::Enable_If_T<
+                    LD::Require<
+                            !LD::CT::IsMiliSecond(LD::Type<First>{}),
+                            !LD::CT::IsMiliSecond(LD::Type<Second>{}),
+                            LD::CT::IsMiliSecond(LD::Type<Third>{}),
+                            !LD::CT::IsMiliSecond(LD::Type<Fourth>{})
+                    >>>
+            {
+                using type = Third;
+            };
+
+            template<typename First, typename Second, typename Third, typename Fourth>
+            struct ExtractMilisecondTypeImpl<First,Second,Third,Fourth,LD::Enable_If_T<
+                    LD::Require<
+                            !LD::CT::IsMiliSecond(LD::Type<First>{}),
+                            !LD::CT::IsMiliSecond(LD::Type<Second>{}),
+                            !LD::CT::IsMiliSecond(LD::Type<Third>{}),
+                            LD::CT::IsMiliSecond(LD::Type<Fourth>{})
+                    >>>
+            {
+                using type = Fourth;
+            };
+
+            template <typename First, typename Second, typename Third> using ExtractDayType = typename LD::CT::Detail::ExtractDayTypeImpl<First,Second,Third>::type ;
+
+            template <typename First, typename Second, typename Third> using ExtractMonthType = typename LD::CT::Detail::ExtractMonthTypeImpl<First,Second,Third>::type ;
+
+            template <typename First, typename Second, typename Third> using ExtractYearType = typename LD::CT::Detail::ExtractYearTypeImpl<First,Second,Third>::type ;
+
+            template <typename First, typename Second, typename Third, typename Fourth> using ExtractHourType = typename LD::CT::Detail::ExtractHourTypeImpl<First,Second,Third,Fourth>::type ;
+
+            template <typename First, typename Second, typename Third, typename Fourth> using ExtractMinuteType = typename LD::CT::Detail::ExtractMinuteTypeImpl<First,Second,Third,Fourth>::type ;
+
+            template <typename First, typename Second, typename Third, typename Fourth> using ExtractSecondType = typename LD::CT::Detail::ExtractSecondTypeImpl<First,Second,Third,Fourth>::type ;
+
+            template <typename First, typename Second, typename Third, typename Fourth> using ExtractMilisecondType = typename LD::CT::Detail::ExtractMilisecondTypeImpl<First,Second,Third,Fourth>::type ;
+        }
+    }
+    template<typename First, typename Second, typename Third, class = void>
+    struct BasicDateRegexGenerator
+    {
+        static constexpr auto  DateDetectionRegex = ctll::basic_fixed_string{"(\\d{4})-(\\d{1,2})-(\\d{1,2})"};
     };
 
 
-    inline LD::ImmutableString<(2+2+4)+2> ToImmutableString(const LD::Date & date) noexcept
+    template<typename First, typename Second, typename Third>
+    struct BasicDateRegexGenerator<First,Second,Third,LD::Enable_If_T<
+            LD::Require<
+                    LD::CT::IsMonth(LD::Type<First>{}),
+                    LD::CT::IsDay(LD::Type<Second>{}),
+                    LD::CT::IsYear(LD::Type<Third>{})
+            >>>
     {
-        auto yearAsImmutableString = LD::ToImmutableString(date.Year());
-        LD::ImmutableString<(2+2+4)+2> dateAsString;
-        auto monthAsImmutableString = LD::ToImmutableString(date.Month());
-        for(LD::UInteger n =0;n<4;++n)
+        static constexpr auto  DateDetectionRegex = ctll::basic_fixed_string{"(\\d{4})-(\\d{1,2})-(\\d{1,2})"};
+    };
+
+    template<typename First, typename Second, typename Third>
+    struct BasicDateRegexGenerator<First,Second,Third,LD::Enable_If_T<
+            LD::Require<
+                    LD::CT::IsDay(LD::Type<Second>{}),
+                    LD::CT::IsMonth(LD::Type<First>{}),
+                    LD::CT::IsYear(LD::Type<Third>{})
+            >>>
+    {
+        static constexpr auto  DateDetectionRegex = ctll::basic_fixed_string{"(\\d{4})-(\\d{1,2})-(\\d{1,2})"};
+    };
+    template<typename First, typename Second, typename Third, class = void>
+    class BasicDate;
+
+    template<typename First, typename Second, typename Third>
+    class BasicDate<First,Second,Third,LD::Enable_If_T<
+            LD::Require<
+                    true
+            >>>
+    {
+    private:
+        First mFirst;
+        Second mSecond;
+        Third mThird;
+    public:
+
+        //static constexpr auto  DateDetectionRegex = ctll::basic_fixed_string{"(\\d{4})-(\\d{1,2})-(\\d{1,2})"};
+        BasicDate() noexcept:mFirst{0ul},mSecond{0ul},mThird{0ul}
         {
-            dateAsString[n] = yearAsImmutableString[n];
+            time_t t = time(NULL);
+            struct tm tm = *localtime(&t);
+            if constexpr (LD::CT::IsDay(LD::Type<First>{}))
+            {
+
+                this->mFirst = LD::Day<LD::UInteger>{LD::UInteger (tm.tm_mday)};
+            }else if constexpr (LD::CT::IsMonth(LD::Type<First>{}))
+            {
+                this->mFirst = LD::Month<LD::UInteger>{LD::UInteger (tm.tm_mon +1)};
+            }else if constexpr (LD::CT::IsYear(LD::Type<First>{}))
+            {
+                this->mFirst = LD::Year<LD::UInteger>{LD::UInteger (tm.tm_year + 1900)};
+            }
+
+            if constexpr (LD::CT::IsDay(LD::Type<Second>{}))
+            {
+                this->mSecond = LD::Day<LD::UInteger>{LD::UInteger (tm.tm_mday)};
+            }else if constexpr (LD::CT::IsMonth(LD::Type<Second>{}))
+            {
+                this->mSecond = LD::Month<LD::UInteger>{LD::UInteger (tm.tm_mon +1)};
+            }else if constexpr (LD::CT::IsYear(LD::Type<Second>{}))
+            {
+                this->mSecond = LD::Year<LD::UInteger>{LD::UInteger (tm.tm_year + 1900)};
+            }
+
+            if constexpr (LD::CT::IsDay(LD::Type<Third>{}))
+            {
+                this->mThird = LD::Day<LD::UInteger>{LD::UInteger (tm.tm_mday)};
+            }else if constexpr (LD::CT::IsMonth(LD::Type<Third>{}))
+            {
+                this->mThird = LD::Month<LD::UInteger>{LD::UInteger (tm.tm_mon +1)};
+            }else if constexpr (LD::CT::IsYear(LD::Type<Third>{}))
+            {
+                this->mThird = LD::Year<LD::UInteger>{LD::UInteger (tm.tm_year + 1900)};
+            }
         }
-        LD::UInteger monthOffset = 0;
-        dateAsString[4] = '-';
-        if (date.Month() < 10)
+        BasicDate(First year, Second month, Third day) noexcept:mFirst{year},mSecond{month},mThird{day}{}
+
+        template<typename V, typename W, typename X>
+        BasicDate(const BasicDate<V,W,X> & date) noexcept
         {
-            dateAsString[5] = '0';
-            monthAsImmutableString[6] = monthAsImmutableString[0];
-        }else
-        {
-            dateAsString[5] = monthAsImmutableString[0];
-            dateAsString[6] = monthAsImmutableString[1];
+            (*this) = date;
         }
-        auto dayAsImmutableString = LD::ToImmutableString(date.Day());
-        dateAsString[7] = '-';
-        if (date.Day() < 10)
+
+        template<typename V, typename W, typename X>
+        BasicDate & operator = (const BasicDate<V,W,X> & date) noexcept
         {
-            dateAsString[8] = '0';
-            dateAsString[9] = dayAsImmutableString[0];
-        }else
-        {
-            dateAsString[8] = dayAsImmutableString[0];
-            dateAsString[9] = dayAsImmutableString[1];
+            this->Day() = date.Day();
+            this->Month() = date.Month();
+            this->Year() = date.Year();
+            return (*this);
         }
-        return dateAsString;
-        //return LD::ToImmutableString(date.Year()) + LD::ImmutableString{"-"} + LD::ToImmutableString(date.Month()) + LD::ImmutableString{"-"} + LD::ToImmutableString(date.Day());
+
+        const LD::CT::Detail::ExtractDayType<First,Second,Third> & Day() const noexcept
+        {
+            if constexpr (LD::CT::IsDay(LD::Type<First>{}))
+            {
+                return this->mFirst;
+            } else if constexpr (LD::CT::IsDay(LD::Type<Second>{}))
+            {
+                return this->mSecond;
+            }else
+            {
+                return this->mThird;
+            }
+
+        }
+        const LD::CT::Detail::ExtractMonthType<First,Second,Third> & Month() const noexcept
+        {
+            if constexpr (LD::CT::IsMonth(LD::Type<First>{}))
+            {
+                return this->mFirst;
+            } else if constexpr (LD::CT::IsMonth(LD::Type<Second>{}))
+            {
+                return this->mSecond;
+            }else
+            {
+                return this->mThird;
+            }
+
+        }
+        const LD::CT::Detail::ExtractYearType<First,Second,Third> & Year() const noexcept
+        {
+            if constexpr (LD::CT::IsYear(LD::Type<First>{}))
+            {
+                return this->mFirst;
+            } else if constexpr (LD::CT::IsYear(LD::Type<Second>{}))
+            {
+                return this->mSecond;
+            }else
+            {
+                return this->mThird;
+            }
+
+        }
+
+        LD::CT::Detail::ExtractDayType<First,Second,Third> & Day() noexcept
+        {
+            if constexpr (LD::CT::IsDay(LD::Type<First>{}))
+            {
+                return this->mFirst;
+            } else if constexpr (LD::CT::IsDay(LD::Type<Second>{}))
+            {
+                return this->mSecond;
+            }else
+            {
+                return this->mThird;
+            }
+
+        }
+        LD::CT::Detail::ExtractMonthType<First,Second,Third> & Month() noexcept
+        {
+            if constexpr (LD::CT::IsMonth(LD::Type<First>{}))
+            {
+                return this->mFirst;
+            } else if constexpr (LD::CT::IsMonth(LD::Type<Second>{}))
+            {
+                return this->mSecond;
+            }else
+            {
+                return this->mThird;
+            }
+        }
+        LD::CT::Detail::ExtractYearType<First,Second,Third> & Year() noexcept
+        {
+            if constexpr (LD::CT::IsYear(LD::Type<First>{}))
+            {
+                return this->mFirst;
+            } else if constexpr (LD::CT::IsYear(LD::Type<Second>{}))
+            {
+                return this->mSecond;
+            }else
+            {
+                return this->mThird;
+            }
+
+        }
+
+        BasicDate & operator++() noexcept
+        {
+            //(*this) = this->NextDate();
+            time_t t = time(NULL);
+            struct tm tm = *localtime(&t);
+            tm.tm_year = this->Year().NativeRepresentation().Value() - 1900;
+            tm.tm_mon = this->Month().NativeRepresentation().Value() - 1;
+            tm.tm_mday = this->Day().NativeRepresentation().Value();
+            tm.tm_sec+=1;
+            mktime(&tm);
+            this->Year() = LD::Year<LD::UInteger>{LD::UInteger (tm.tm_year + 1900)};
+            this->Month() = LD::Month<LD::UInteger>{LD::UInteger (tm.tm_mon +1)};
+            this->Day() = LD::Day<LD::UInteger>{LD::UInteger (tm.tm_mday)};
+            return (*this);
+        }
+        BasicDate & operator++(int) noexcept
+        {
+            time_t t = time(NULL);
+            struct tm tm = *localtime(&t);
+            tm.tm_year = this->Year().NativeRepresentation().Value() - 1900;
+            tm.tm_mon = this->Month().NativeRepresentation().Value() - 1;
+            tm.tm_mday = this->Day().NativeRepresentation().Value();
+            tm.tm_sec+=1;
+            mktime(&tm);
+            this->Year() = LD::Year<LD::UInteger>{LD::UInteger (tm.tm_year + 1900)};
+            this->Month() = LD::Month<LD::UInteger>{LD::UInteger(tm.tm_mon +1)};
+            this->Day() = LD::Day<LD::UInteger>{LD::UInteger (tm.tm_mday)};
+            return (*this);
+        }
+        BasicDate & operator--() noexcept
+        {
+            time_t t = time(NULL);
+            struct tm tm = *localtime(&t);
+            tm.tm_year = this->Year().NativeRepresentation().Value() - 1900;
+            tm.tm_mon = this->Month().NativeRepresentation().Value() - 1;
+            tm.tm_mday = this->Day().NativeRepresentation().Value();
+            tm.tm_sec-=1;
+            mktime(&tm);
+            this->Year() = LD::Year<LD::UInteger>{LD::UInteger (tm.tm_year + 1900)};
+            this->Month() = LD::Month<LD::UInteger>{LD::UInteger (tm.tm_mon +1)};
+            this->Day() = LD::Day<LD::UInteger>{LD::UInteger (tm.tm_mday)};
+            return (*this);
+        }
+        BasicDate & operator--(int) noexcept
+        {
+            //(*this) = this->PreviousDate();
+            time_t t = time(NULL);
+            struct tm tm = *localtime(&t);
+            tm.tm_year = this->Year().NativeRepresentation().Value() - 1900;
+            tm.tm_mon = this->Month().NativeRepresentation().Value() - 1;
+            tm.tm_mday = this->Day().NativeRepresentation().Value();
+            tm.tm_sec-=1;
+            mktime(&tm);
+            this->Year() = LD::Year<LD::UInteger>{LD::UInteger (tm.tm_year + 1900)};
+            this->Month() = LD::Month<LD::UInteger>{LD::UInteger (tm.tm_mon +1)};
+            this->Day() = LD::Day<LD::UInteger>{LD::UInteger (tm.tm_mday)};
+            return (*this);
+        }
+
+        BasicDate & operator+=(const LD::Second<LD::Float> & timeOffset)  noexcept
+        {
+            time_t t = time(NULL);
+            struct tm tm = *localtime(&t);
+            tm.tm_year = this->Year().NativeRepresentation().Value() - 1900;
+            tm.tm_mon = this->Month().NativeRepresentation().Value() - 1;
+            tm.tm_mday = this->Day().NativeRepresentation().Value();
+            tm.tm_sec += timeOffset.NativeRepresentation().Value();
+            mktime(&tm);
+            this->Year() = LD::Year<LD::UInteger>{LD::UInteger (tm.tm_year + 1900)};
+            this->Month() = LD::Month<LD::UInteger>{LD::UInteger (tm.tm_mon +1)};
+            this->Day() = LD::Day<LD::UInteger>{LD::UInteger (tm.tm_mday)};
+            return (*this);
+        }
+        BasicDate & operator-=(const LD::Second<LD::Float> & timeOffset)  noexcept
+        {
+            time_t t = time(NULL);
+            struct tm tm = *localtime(&t);
+            tm.tm_year = this->Year().NativeRepresentation().Value() - 1900;
+            tm.tm_mon = this->Month().NativeRepresentation().Value() - 1;
+            tm.tm_mday = this->Day().NativeRepresentation().Value();
+            tm.tm_sec -= timeOffset.NativeRepresentation().Value();
+            mktime(&tm);
+            this->Year() = LD::Year<LD::UInteger>{LD::UInteger (tm.tm_year + 1900)};
+            this->Month() = LD::Month<LD::UInteger>{LD::UInteger (tm.tm_mon +1)};
+            this->Day() = LD::Day<LD::UInteger>{LD::UInteger (tm.tm_mday)};
+            return (*this);
+        }
+        BasicDate operator+(const LD::Second<LD::Float> timeOffset) const noexcept
+        {
+            BasicDate instance{*this};
+            time_t t = time(NULL);
+            struct tm tm = *localtime(&t);
+            tm.tm_year = instance.Year().NativeRepresentation().Value() - 1900;
+            tm.tm_mon = instance.Month().NativeRepresentation().Value() - 1;
+            tm.tm_mday = instance.Day().NativeRepresentation().Value();
+            tm.tm_sec += timeOffset.NativeRepresentation().Value();
+            mktime(&tm);
+            instance.Year() = LD::Year<LD::UInteger>{LD::UInteger (tm.tm_year + 1900)};
+            instance.Month() = LD::Month<LD::UInteger>{LD::UInteger (tm.tm_mon +1)};
+            instance.Day() = LD::Day<LD::UInteger>{LD::UInteger (tm.tm_mday)};
+            return instance;
+        }
+        BasicDate operator-(const LD::Second<LD::Float> timeOffset) const noexcept
+        {
+            BasicDate instance{*this};
+            time_t t = time(NULL);
+            struct tm tm = *localtime(&t);
+            tm.tm_year = instance.Year().NativeRepresentation().Value() - 1900;
+            tm.tm_mon = instance.Month().NativeRepresentation().Value() - 1;
+            tm.tm_mday = instance.Day().NativeRepresentation().Value();
+            tm.tm_sec -= timeOffset.NativeRepresentation().Value();
+            mktime(&tm);
+            instance.Year() = LD::Year<LD::UInteger>{LD::UInteger (tm.tm_year + 1900)};
+            instance.Month() = LD::Month<LD::UInteger>{LD::UInteger (tm.tm_mon +1)};
+            instance.Day() = LD::Day<LD::UInteger>{LD::UInteger (tm.tm_mday)};
+            return instance;
+        }
+        template<typename First1, typename Second1, typename Third1>
+        bool operator == (const BasicDate<First1,Second1,Third1> & date) const noexcept
+        {
+            return this->Day() == date.Day() && this->Month() == date.Month() && this->Year() == date.Year();
+        }
+        template<typename First1, typename Second1, typename Third1>
+        bool operator != (const BasicDate<First1,Second1,Third1> & date) const noexcept
+        {
+            return !((*this)==date);
+        }
+        template<typename First1, typename Second1, typename Third1>
+        bool operator < (const BasicDate<First1,Second1,Third1> & date) const noexcept
+        {
+            return (LD::Second<LD::UInteger>{this->Year()}+LD::Second<LD::UInteger>{this->Month()}+LD::Second<LD::UInteger>{this->Day()}) <
+                   (LD::Second<LD::UInteger>{date.Year()} + LD::Second<LD::UInteger>{date.Month()} + LD::Second<LD::UInteger>{date.Day()});
+        }
+        template<typename First1, typename Second1, typename Third1>
+        bool operator > (const BasicDate<First1,Second1,Third1> & date) const noexcept
+        {
+            return (LD::Second<LD::UInteger>{this->Year()}+LD::Second<LD::UInteger>{this->Month()}+LD::Second<LD::UInteger>{this->Day()}) >
+                   (LD::Second<LD::UInteger>{date.Year()} + LD::Second<LD::UInteger>{date.Month()} + LD::Second<LD::UInteger>{date.Day()});
+        }
+        template<typename First1, typename Second1, typename Third1>
+        bool operator <= (const BasicDate<First1,Second1,Third1> & date) const noexcept
+        {
+            return ((*this) == date) || ((*this) < date);
+        }
+        template<typename First1, typename Second1, typename Third1>
+        bool operator >= (const BasicDate<First1,Second1,Third1> & date) const noexcept
+        {
+            return ((*this) == date) || ((*this) > date);
+        }
+    };
+    using Date = BasicDate<LD::Year<LD::UInteger>,LD::Month<LD::UInteger>,LD::Day<LD::UInteger>>;
+
+
+    /*
+    template<typename First, typename Second, typename Third,typename ... A>
+    LD::QueryResult<LD::BasicDate<First,Second,Third>(A...)> FromStringView(LD::Type<LD::BasicDate<First,Second,Third>>, LD::StringView view, A && ... args) noexcept
+    {
+
+
+
+        return LD::MakeContext(LD::TransactionError{},LD::Forward<A>(args)...);
     }
+     */
+    template<typename First, typename Second, typename Third>
+    inline LD::ImmutableString<75> ToImmutableString(const LD::BasicDate<First,Second,Third> & date) noexcept
+    {
+
+        if constexpr (
+                LD::CT::IsMonth(LD::Type<First>{}) &&
+                LD::CT::IsDay(LD::Type<Second>{})&&
+                LD::CT::IsYear(LD::Type<Second>{}))
+        {
+            //printf("being called at all \n");
+            //printf("rawrbunnies %s \n",date.Day().ToImmutableString().Data());
+            return date.Month().ToImmutableString()+LD::ImmutableString{"-"}+date.Day().ToImmutableString()+LD::ImmutableString{"-"}+date.Year().ToImmutableString();
+        }
+        else if constexpr(LD::CT::IsDay(LD::Type<First>{}) &&
+                          LD::CT::IsMonth(LD::Type<Second>{}) &&
+                          LD::CT::IsYear(LD::Type<Third>{}))
+        {
+
+            return date.Day().ToImmutableString()+LD::ImmutableString{"-"}+date.Month().ToImmutableString()+LD::ImmutableString{"-"}+date.Year().ToImmutableString();
+        }
+        else if constexpr(LD::CT::IsMonth(LD::Type<First>{}) &&
+                          LD::CT::IsDay(LD::Type<Second>{}) &&
+                          LD::CT::IsYear(LD::Type<Third>{}))
+        {
+
+            return date.Month().ToImmutableString()+LD::ImmutableString{"-"}+date.Day().ToImmutableString()+LD::ImmutableString{"-"}+date.Year().ToImmutableString();
+        }
+        else if constexpr(LD::CT::IsYear(LD::Type<First>{}) &&
+                          LD::CT::IsMonth(LD::Type<Second>{}) &&
+                          LD::CT::IsDay(LD::Type<Third>{}))
+        {
+            return date.Year().ToImmutableString()+LD::ImmutableString{"-"}+((date.Month().NativeRepresentation().Value() < 10)?LD::ImmutableString{"0"}:LD::ImmutableString{""})+date.Month().ToImmutableString()+LD::ImmutableString{"-"}+((date.Day().NativeRepresentation().Value() < 10)?LD::ImmutableString{"0"}:LD::ImmutableString{""})+date.Day().ToImmutableString();
+        }
+
+        return date.Month().ToImmutableString()+LD::ImmutableString{"-"}+date.Day().ToImmutableString()+LD::ImmutableString{"-"}+date.Year().ToImmutableString();
+    }
+
+    template<typename First, typename Second, typename Third, typename Fourth = LD::NullClass ,class = void>
+    class BasicTime;
+
+
+    template<typename T1, typename T2, typename T3, typename T4>
+    class BasicTime<T1,T2,T3,T4,
+            LD::Enable_If_T<
+            LD::Either<
+                    LD::Require<
+                            LD::CT::IsHour(LD::Type<T1>{}),
+                            LD::CT::IsMinute(LD::Type<T2>{}),
+                            LD::CT::IsSecond(LD::Type<T3>{}),
+                            LD::CT::IsMiliSecond(LD::Type<T4>{})
+                    >
+            >>>
+    {
+    private:
+        T1 mFirst;
+        T2 mSecond;
+        T3 mThird;
+        T4 mFourth;
+    public:
+
+        BasicTime() noexcept:mFirst{},mSecond{},mThird{},mFourth{}
+        {
+            static constexpr LD::UInteger SEC_PER_DAY = 86400;
+            static constexpr LD::UInteger SEC_PER_HOUR = 3600;
+            static constexpr LD::UInteger SEC_PER_MIN = 60;
+
+            timeval tv;
+            struct timezone   tz;
+            gettimeofday(&tv, &tz);
+            int milli = tv.tv_usec / 1000;
+
+            // Form the seconds of the day
+            long hms = tv.tv_sec % SEC_PER_DAY;
+            hms += tz.tz_dsttime * SEC_PER_HOUR;
+            hms -= tz.tz_minuteswest * SEC_PER_MIN;
+            // mod `hms` to insure in positive range of [0...SEC_PER_DAY)
+            hms = (hms + SEC_PER_DAY) % SEC_PER_DAY;
+
+            // Tear apart hms into h:m:s
+            int hour = hms / SEC_PER_HOUR;
+            int min = (hms % SEC_PER_HOUR) / SEC_PER_MIN;
+            int sec = (hms % SEC_PER_HOUR) % SEC_PER_MIN; // or hms % SEC_PER_MIN
+
+            //this->Hour() = hour;
+        }
+
+        const LD::CT::Detail::ExtractHourType<T1,T2,T3,T4> & Hour() const noexcept
+        {
+            if constexpr (LD::CT::IsHour(LD::Type<T1>{}))
+            {
+                return this->mFirst;
+            } else if constexpr (LD::CT::IsHour(LD::Type<T2>{}))
+            {
+                return this->mSecond;
+            }else if constexpr(LD::CT::IsHour(LD::Type<T3>{}))
+            {
+                return this->mThird;
+            }else
+            {
+                return this->mFourth;
+            }
+        }
+
+        LD::CT::Detail::ExtractHourType<T1,T2,T3,T4> & Hour()  noexcept
+        {
+            if constexpr (LD::CT::IsHour(LD::Type<T1>{}))
+            {
+                return this->mFirst;
+            } else if constexpr (LD::CT::IsHour(LD::Type<T2>{}))
+            {
+                return this->mSecond;
+            }else if constexpr(LD::CT::IsHour(LD::Type<T3>{}))
+            {
+                return this->mThird;
+            }else
+            {
+                return this->mFourth;
+            }
+        }
+
+        const LD::CT::Detail::ExtractMinuteType<T1,T2,T3,T4> & Minute() const noexcept
+        {
+            if constexpr (LD::CT::IsMinute(LD::Type<T1>{}))
+            {
+                return this->mFirst;
+            } else if constexpr (LD::CT::IsMinute(LD::Type<T2>{}))
+            {
+                return this->mSecond;
+            }else if constexpr(LD::CT::IsMinute(LD::Type<T3>{}))
+            {
+                return this->mThird;
+            }else
+            {
+                return this->mFourth;
+            }
+        }
+
+        LD::CT::Detail::ExtractMinuteType<T1,T2,T3,T4> & Minute()  noexcept
+        {
+            if constexpr (LD::CT::IsMinute(LD::Type<T1>{}))
+            {
+                return this->mFirst;
+            } else if constexpr (LD::CT::IsMinute(LD::Type<T2>{}))
+            {
+                return this->mSecond;
+            }else if constexpr(LD::CT::IsMinute(LD::Type<T3>{}))
+            {
+                return this->mThird;
+            }else
+            {
+                return this->mFourth;
+            }
+        }
+
+        const LD::CT::Detail::ExtractSecondType<T1,T2,T3,T4> & Second() const noexcept
+        {
+            if constexpr (LD::CT::IsMinute(LD::Type<T1>{}))
+            {
+                return this->mFirst;
+            } else if constexpr (LD::CT::IsMinute(LD::Type<T2>{}))
+            {
+                return this->mSecond;
+            }else if constexpr(LD::CT::IsMinute(LD::Type<T3>{}))
+            {
+                return this->mThird;
+            }else
+            {
+                return this->mFourth;
+            }
+        }
+
+        LD::CT::Detail::ExtractSecondType<T1,T2,T3,T4> & Second()  noexcept
+        {
+            if constexpr (LD::CT::IsMinute(LD::Type<T1>{}))
+            {
+                return this->mFirst;
+            } else if constexpr (LD::CT::IsMinute(LD::Type<T2>{}))
+            {
+                return this->mSecond;
+            }else if constexpr(LD::CT::IsMinute(LD::Type<T3>{}))
+            {
+                return this->mThird;
+            }else
+            {
+                return this->mFourth;
+            }
+        }
+
+        const LD::CT::Detail::ExtractMilisecondType<T1,T2,T3,T4> & MiliSecond() const noexcept
+        {
+            if constexpr (LD::CT::IsMiliSecond(LD::Type<T1>{}))
+            {
+                return this->mFirst;
+            } else if constexpr (LD::CT::IsMiliSecond(LD::Type<T2>{}))
+            {
+                return this->mSecond;
+            }else if constexpr(LD::CT::IsMiliSecond(LD::Type<T3>{}))
+            {
+                return this->mThird;
+            }else
+            {
+                return this->mFourth;
+            }
+        }
+
+        LD::CT::Detail::ExtractMilisecondType<T1,T2,T3,T4> & MiliSecond()  noexcept
+        {
+            if constexpr (LD::CT::IsMiliSecond(LD::Type<T1>{}))
+            {
+                return this->mFirst;
+            } else if constexpr (LD::CT::IsMiliSecond(LD::Type<T2>{}))
+            {
+                return this->mSecond;
+            }else if constexpr(LD::CT::IsMiliSecond(LD::Type<T3>{}))
+            {
+                return this->mThird;
+            }else
+            {
+                return this->mFourth;
+            }
+        }
+    };
+
     //class Date;
     struct Time
     {
@@ -288,6 +1024,7 @@ namespace LD
     public:
         Time() noexcept:Time(time(0))
         {
+
 
         }
         Time(const unsigned  short hour, const unsigned short minute, const unsigned short second) noexcept:mHour{hour},mMinute{minute},mSecond{second}
@@ -305,9 +1042,10 @@ namespace LD
             y = ptm->tm_year + 1900;
             m = ptm->tm_mon + 1;
             d = ptm->tm_mday;
-            hour = ptm->tm_hour;
-            minute = ptm->tm_min;
-            second = ptm->tm_sec;
+
+            this->mHour = ptm->tm_hour;
+            this->mMinute = ptm->tm_min;
+            this->mSecond = ptm->tm_sec;
         }
 
         unsigned short & Hour()  noexcept
@@ -335,9 +1073,37 @@ namespace LD
             return this->mSecond;
         }
 
-        friend class Date;
+        //friend class Date;
     };
 
+    inline auto ToImmutableString(const LD::Time & time) noexcept
+    {
+        //return LD::ToImmutableString(time.Hour())+
+        //LD::ImmutableString{":"}+
+        //LD::ToImmutableString(time.Minute()) +
+        //LD::ImmutableString{":"} +
+        //LD::ToImmutableString(time.Second());
+        //((time.Hour() < 10)?LD::ImmutableString{"0"}:LD::ImmutableString{""})
+        return ((time.Hour() < 10)?LD::ImmutableString{"0"}:LD::ImmutableString{""})+LD::ToImmutableString(time.Hour())+LD::ImmutableString{":"}+((time.Minute() < 10)?LD::ImmutableString{"0"}:LD::ImmutableString{""})+LD::ToImmutableString(time.Minute())+LD::ImmutableString{":"}+((time.Second() < 10)?LD::ImmutableString{"0"}:LD::ImmutableString{""})+LD::ToImmutableString(time.Second());
+    }
+
+
+    template<typename T1, typename T2, typename T3, typename T4>
+    inline auto ToImmutableString(const LD::BasicTime<T1,T2,T3,T4> & time) noexcept
+    {
+        using HourType = LD::CT::Detail::ExtractHourType<T1,T2,T3,T4>;
+        using MinuteType = LD::CT::Detail::ExtractMinuteType<T1,T2,T3,T4>;
+        using SecondType = LD::CT::Detail::ExtractSecondType<T1,T2,T3,T4>;
+        using UnderlyingHourType = LD::GetType<decltype(LD::CT::RetrieveUnitUnderlyingType(LD::Type<HourType>{}))>;
+        //using UnderlyingHourType = LD::GetType<decltype(LD::CT::RetrieveUnitUnderlyingType(LD::Type<HourType>{}))>;
+        //return LD::ToImmutableString(time.Hour())+
+        //LD::ImmutableString{":"}+
+        //LD::ToImmutableString(time.Minute()) +
+        //LD::ImmutableString{":"} +
+        //LD::ToImmutableString(time.Second());
+        //((time.Hour() < 10)?LD::ImmutableString{"0"}:LD::ImmutableString{""})
+        return ((time.Hour() < HourType (UnderlyingHourType (10)))?LD::ImmutableString{"0"}:LD::ImmutableString{""})+LD::ToImmutableString(time.Hour())+LD::ImmutableString{":"}+((time.Minute() < MinuteType (LD::UInteger(10))?LD::ImmutableString{"0"}:LD::ImmutableString{""})+LD::ToImmutableString(time.Minute())+LD::ImmutableString{":"}+((time.Second() < SecondType (LD::UInteger (10)))?LD::ImmutableString{"0"}:LD::ImmutableString{""})+LD::ToImmutableString(time.Second()));
+    }
 
     namespace Detail
     {
@@ -793,13 +1559,68 @@ namespace LD
     };
      */
 
+    template<typename Date, typename Time, class = void>
+    class BasicDateTime;
+
+
+    template<typename DateType, typename TimeType>
+    class BasicDateTime<DateType,TimeType,LD::Enable_If_T<LD::Require<true>>>
+    {
+    private:
+        TimeType mTime;
+        DateType mDate;
+    public:
+        BasicDateTime() noexcept:mTime{},mDate{}
+        {
+
+        }
+        BasicDateTime(DateType && date, TimeType && time) noexcept
+        {
+
+        }
+
+        const DateType & Date () const noexcept {return this->mDate;}
+        DateType & Date() noexcept {return this->mDate;}
+
+
+        const TimeType & Time() const noexcept{return this->mTime;}
+        TimeType & Time() noexcept{return this->mTime;}
+    };
+
+
+
+    using DateTime = LD::BasicDateTime<LD::Date,LD::BasicTime<LD::Hour<LD::UInteger>,LD::Minute<LD::UInteger>,LD::Second<LD::UInteger>,LD::Milisecond<LD::UInteger>>>;
+
+    /*
     class DateTime
     {
     private:
         LD::Date mDate;
         LD::Time mTime;
     public:
+
+        const LD::Date & Date() const noexcept
+        {
+            return this->mDate;
+        }
+
+        const LD::Time & Time() const noexcept
+        {
+            return this->mTime;
+        }
     };
+     */
+
+
+
+
+    inline auto ToImmutableString(const LD::DateTime & dateTime) noexcept
+    {
+        return LD::ToImmutableString(dateTime.Date()) +
+        LD::ImmutableString{" "} +
+        LD::ToImmutableString(dateTime.Time());
+    }
+
 
     class GregorianDate
     {
@@ -857,6 +1678,9 @@ namespace LD
         inline GregorianDate( const LD::Integer & iDay, const LD::Integer &  iMonth, const LD::Integer &  iYear );
         inline GregorianDate( const time_t tSysTime );
     };
+
+
+
 }
 
 

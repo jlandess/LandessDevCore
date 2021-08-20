@@ -1,4 +1,4 @@
-/snap/clion/137/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Release -G "CodeBlocks - Unix Makefiles" /home/phoenixflower/Documents/LandessDevCore
+/home/phoenixflower/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/211.7628.27/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=/usr/bin/clang -DCMAKE_CXX_COMPILER=/usr/bin/clang++ -G "CodeBlocks - Unix Makefiles" /home/phoenixflower/Documents/Development/LandessDevCore
 -- Configuring done
 -- Generating done
--- Build files have been written to: /home/phoenixflower/Documents/LandessDevCore/cmake-build-release
+-- Build files have been written to: /home/phoenixflower/Documents/Development/LandessDevCore/cmake-build-release

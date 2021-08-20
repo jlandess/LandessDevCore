@@ -59,19 +59,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /snap/clion/137/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /snap/clion/138/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /snap/clion/137/bin/cmake/linux/bin/cmake -E rm -f
+RM = /snap/clion/138/bin/cmake/linux/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/phoenixflower/Documents/LandessDevCore
+CMAKE_SOURCE_DIR = /media/phoenixflower/Development/LandessDev/LandessDevCore
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/phoenixflower/Documents/LandessDevCore/cmake-build-debug
+CMAKE_BINARY_DIR = /media/phoenixflower/Development/LandessDev/LandessDevCore/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -79,7 +79,7 @@ CMAKE_BINARY_DIR = /home/phoenixflower/Documents/LandessDevCore/cmake-build-debu
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/snap/clion/137/bin/cmake/linux/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/snap/clion/138/bin/cmake/linux/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -90,7 +90,7 @@ rebuild_cache/fast: rebuild_cache
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/snap/clion/137/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/snap/clion/138/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -100,9 +100,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/phoenixflower/Documents/LandessDevCore/cmake-build-debug/CMakeFiles /home/phoenixflower/Documents/LandessDevCore/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /media/phoenixflower/Development/LandessDev/LandessDevCore/cmake-build-debug/CMakeFiles /media/phoenixflower/Development/LandessDev/LandessDevCore/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/phoenixflower/Documents/LandessDevCore/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /media/phoenixflower/Development/LandessDev/LandessDevCore/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -305,6 +305,60 @@ Examples/FullAdderExample.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.s
 .PHONY : Examples/FullAdderExample.cpp.s
 
+Examples/IMGUIExample1.o: Examples/IMGUIExample1.cpp.o
+
+.PHONY : Examples/IMGUIExample1.o
+
+# target to build an object file
+Examples/IMGUIExample1.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o
+.PHONY : Examples/IMGUIExample1.cpp.o
+
+Examples/IMGUIExample1.i: Examples/IMGUIExample1.cpp.i
+
+.PHONY : Examples/IMGUIExample1.i
+
+# target to preprocess a source file
+Examples/IMGUIExample1.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.i
+.PHONY : Examples/IMGUIExample1.cpp.i
+
+Examples/IMGUIExample1.s: Examples/IMGUIExample1.cpp.s
+
+.PHONY : Examples/IMGUIExample1.s
+
+# target to generate assembly for a file
+Examples/IMGUIExample1.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.s
+.PHONY : Examples/IMGUIExample1.cpp.s
+
+Examples/IMGUIExample2.o: Examples/IMGUIExample2.cpp.o
+
+.PHONY : Examples/IMGUIExample2.o
+
+# target to build an object file
+Examples/IMGUIExample2.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample2.cpp.o
+.PHONY : Examples/IMGUIExample2.cpp.o
+
+Examples/IMGUIExample2.i: Examples/IMGUIExample2.cpp.i
+
+.PHONY : Examples/IMGUIExample2.i
+
+# target to preprocess a source file
+Examples/IMGUIExample2.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample2.cpp.i
+.PHONY : Examples/IMGUIExample2.cpp.i
+
+Examples/IMGUIExample2.s: Examples/IMGUIExample2.cpp.s
+
+.PHONY : Examples/IMGUIExample2.s
+
+# target to generate assembly for a file
+Examples/IMGUIExample2.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample2.cpp.s
+.PHONY : Examples/IMGUIExample2.cpp.s
+
 Examples/IOExample.o: Examples/IOExample.cpp.o
 
 .PHONY : Examples/IOExample.o
@@ -493,6 +547,195 @@ Examples/WebServerExample.s: Examples/WebServerExample.cpp.s
 Examples/WebServerExample.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.s
 .PHONY : Examples/WebServerExample.cpp.s
+
+Graphics/DearImGUI/imgui.o: Graphics/DearImGUI/imgui.cpp.o
+
+.PHONY : Graphics/DearImGUI/imgui.o
+
+# target to build an object file
+Graphics/DearImGUI/imgui.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui.cpp.o
+.PHONY : Graphics/DearImGUI/imgui.cpp.o
+
+Graphics/DearImGUI/imgui.i: Graphics/DearImGUI/imgui.cpp.i
+
+.PHONY : Graphics/DearImGUI/imgui.i
+
+# target to preprocess a source file
+Graphics/DearImGUI/imgui.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui.cpp.i
+.PHONY : Graphics/DearImGUI/imgui.cpp.i
+
+Graphics/DearImGUI/imgui.s: Graphics/DearImGUI/imgui.cpp.s
+
+.PHONY : Graphics/DearImGUI/imgui.s
+
+# target to generate assembly for a file
+Graphics/DearImGUI/imgui.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui.cpp.s
+.PHONY : Graphics/DearImGUI/imgui.cpp.s
+
+Graphics/DearImGUI/imgui_demo.o: Graphics/DearImGUI/imgui_demo.cpp.o
+
+.PHONY : Graphics/DearImGUI/imgui_demo.o
+
+# target to build an object file
+Graphics/DearImGUI/imgui_demo.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_demo.cpp.o
+.PHONY : Graphics/DearImGUI/imgui_demo.cpp.o
+
+Graphics/DearImGUI/imgui_demo.i: Graphics/DearImGUI/imgui_demo.cpp.i
+
+.PHONY : Graphics/DearImGUI/imgui_demo.i
+
+# target to preprocess a source file
+Graphics/DearImGUI/imgui_demo.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_demo.cpp.i
+.PHONY : Graphics/DearImGUI/imgui_demo.cpp.i
+
+Graphics/DearImGUI/imgui_demo.s: Graphics/DearImGUI/imgui_demo.cpp.s
+
+.PHONY : Graphics/DearImGUI/imgui_demo.s
+
+# target to generate assembly for a file
+Graphics/DearImGUI/imgui_demo.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_demo.cpp.s
+.PHONY : Graphics/DearImGUI/imgui_demo.cpp.s
+
+Graphics/DearImGUI/imgui_draw.o: Graphics/DearImGUI/imgui_draw.cpp.o
+
+.PHONY : Graphics/DearImGUI/imgui_draw.o
+
+# target to build an object file
+Graphics/DearImGUI/imgui_draw.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_draw.cpp.o
+.PHONY : Graphics/DearImGUI/imgui_draw.cpp.o
+
+Graphics/DearImGUI/imgui_draw.i: Graphics/DearImGUI/imgui_draw.cpp.i
+
+.PHONY : Graphics/DearImGUI/imgui_draw.i
+
+# target to preprocess a source file
+Graphics/DearImGUI/imgui_draw.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_draw.cpp.i
+.PHONY : Graphics/DearImGUI/imgui_draw.cpp.i
+
+Graphics/DearImGUI/imgui_draw.s: Graphics/DearImGUI/imgui_draw.cpp.s
+
+.PHONY : Graphics/DearImGUI/imgui_draw.s
+
+# target to generate assembly for a file
+Graphics/DearImGUI/imgui_draw.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_draw.cpp.s
+.PHONY : Graphics/DearImGUI/imgui_draw.cpp.s
+
+Graphics/DearImGUI/imgui_impl_glfw.o: Graphics/DearImGUI/imgui_impl_glfw.cpp.o
+
+.PHONY : Graphics/DearImGUI/imgui_impl_glfw.o
+
+# target to build an object file
+Graphics/DearImGUI/imgui_impl_glfw.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_impl_glfw.cpp.o
+.PHONY : Graphics/DearImGUI/imgui_impl_glfw.cpp.o
+
+Graphics/DearImGUI/imgui_impl_glfw.i: Graphics/DearImGUI/imgui_impl_glfw.cpp.i
+
+.PHONY : Graphics/DearImGUI/imgui_impl_glfw.i
+
+# target to preprocess a source file
+Graphics/DearImGUI/imgui_impl_glfw.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_impl_glfw.cpp.i
+.PHONY : Graphics/DearImGUI/imgui_impl_glfw.cpp.i
+
+Graphics/DearImGUI/imgui_impl_glfw.s: Graphics/DearImGUI/imgui_impl_glfw.cpp.s
+
+.PHONY : Graphics/DearImGUI/imgui_impl_glfw.s
+
+# target to generate assembly for a file
+Graphics/DearImGUI/imgui_impl_glfw.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_impl_glfw.cpp.s
+.PHONY : Graphics/DearImGUI/imgui_impl_glfw.cpp.s
+
+Graphics/DearImGUI/imgui_impl_opengl3.o: Graphics/DearImGUI/imgui_impl_opengl3.cpp.o
+
+.PHONY : Graphics/DearImGUI/imgui_impl_opengl3.o
+
+# target to build an object file
+Graphics/DearImGUI/imgui_impl_opengl3.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_impl_opengl3.cpp.o
+.PHONY : Graphics/DearImGUI/imgui_impl_opengl3.cpp.o
+
+Graphics/DearImGUI/imgui_impl_opengl3.i: Graphics/DearImGUI/imgui_impl_opengl3.cpp.i
+
+.PHONY : Graphics/DearImGUI/imgui_impl_opengl3.i
+
+# target to preprocess a source file
+Graphics/DearImGUI/imgui_impl_opengl3.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_impl_opengl3.cpp.i
+.PHONY : Graphics/DearImGUI/imgui_impl_opengl3.cpp.i
+
+Graphics/DearImGUI/imgui_impl_opengl3.s: Graphics/DearImGUI/imgui_impl_opengl3.cpp.s
+
+.PHONY : Graphics/DearImGUI/imgui_impl_opengl3.s
+
+# target to generate assembly for a file
+Graphics/DearImGUI/imgui_impl_opengl3.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_impl_opengl3.cpp.s
+.PHONY : Graphics/DearImGUI/imgui_impl_opengl3.cpp.s
+
+Graphics/DearImGUI/imgui_tables.o: Graphics/DearImGUI/imgui_tables.cpp.o
+
+.PHONY : Graphics/DearImGUI/imgui_tables.o
+
+# target to build an object file
+Graphics/DearImGUI/imgui_tables.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_tables.cpp.o
+.PHONY : Graphics/DearImGUI/imgui_tables.cpp.o
+
+Graphics/DearImGUI/imgui_tables.i: Graphics/DearImGUI/imgui_tables.cpp.i
+
+.PHONY : Graphics/DearImGUI/imgui_tables.i
+
+# target to preprocess a source file
+Graphics/DearImGUI/imgui_tables.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_tables.cpp.i
+.PHONY : Graphics/DearImGUI/imgui_tables.cpp.i
+
+Graphics/DearImGUI/imgui_tables.s: Graphics/DearImGUI/imgui_tables.cpp.s
+
+.PHONY : Graphics/DearImGUI/imgui_tables.s
+
+# target to generate assembly for a file
+Graphics/DearImGUI/imgui_tables.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_tables.cpp.s
+.PHONY : Graphics/DearImGUI/imgui_tables.cpp.s
+
+Graphics/DearImGUI/imgui_widgets.o: Graphics/DearImGUI/imgui_widgets.cpp.o
+
+.PHONY : Graphics/DearImGUI/imgui_widgets.o
+
+# target to build an object file
+Graphics/DearImGUI/imgui_widgets.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_widgets.cpp.o
+.PHONY : Graphics/DearImGUI/imgui_widgets.cpp.o
+
+Graphics/DearImGUI/imgui_widgets.i: Graphics/DearImGUI/imgui_widgets.cpp.i
+
+.PHONY : Graphics/DearImGUI/imgui_widgets.i
+
+# target to preprocess a source file
+Graphics/DearImGUI/imgui_widgets.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_widgets.cpp.i
+.PHONY : Graphics/DearImGUI/imgui_widgets.cpp.i
+
+Graphics/DearImGUI/imgui_widgets.s: Graphics/DearImGUI/imgui_widgets.cpp.s
+
+.PHONY : Graphics/DearImGUI/imgui_widgets.s
+
+# target to generate assembly for a file
+Graphics/DearImGUI/imgui_widgets.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_widgets.cpp.s
+.PHONY : Graphics/DearImGUI/imgui_widgets.cpp.s
 
 IO/Redis/alloc.o: IO/Redis/alloc.c.o
 
@@ -1844,6 +2087,12 @@ help:
 	@echo "... Examples/FullAdderExample.o"
 	@echo "... Examples/FullAdderExample.i"
 	@echo "... Examples/FullAdderExample.s"
+	@echo "... Examples/IMGUIExample1.o"
+	@echo "... Examples/IMGUIExample1.i"
+	@echo "... Examples/IMGUIExample1.s"
+	@echo "... Examples/IMGUIExample2.o"
+	@echo "... Examples/IMGUIExample2.i"
+	@echo "... Examples/IMGUIExample2.s"
 	@echo "... Examples/IOExample.o"
 	@echo "... Examples/IOExample.i"
 	@echo "... Examples/IOExample.s"
@@ -1865,6 +2114,27 @@ help:
 	@echo "... Examples/WebServerExample.o"
 	@echo "... Examples/WebServerExample.i"
 	@echo "... Examples/WebServerExample.s"
+	@echo "... Graphics/DearImGUI/imgui.o"
+	@echo "... Graphics/DearImGUI/imgui.i"
+	@echo "... Graphics/DearImGUI/imgui.s"
+	@echo "... Graphics/DearImGUI/imgui_demo.o"
+	@echo "... Graphics/DearImGUI/imgui_demo.i"
+	@echo "... Graphics/DearImGUI/imgui_demo.s"
+	@echo "... Graphics/DearImGUI/imgui_draw.o"
+	@echo "... Graphics/DearImGUI/imgui_draw.i"
+	@echo "... Graphics/DearImGUI/imgui_draw.s"
+	@echo "... Graphics/DearImGUI/imgui_impl_glfw.o"
+	@echo "... Graphics/DearImGUI/imgui_impl_glfw.i"
+	@echo "... Graphics/DearImGUI/imgui_impl_glfw.s"
+	@echo "... Graphics/DearImGUI/imgui_impl_opengl3.o"
+	@echo "... Graphics/DearImGUI/imgui_impl_opengl3.i"
+	@echo "... Graphics/DearImGUI/imgui_impl_opengl3.s"
+	@echo "... Graphics/DearImGUI/imgui_tables.o"
+	@echo "... Graphics/DearImGUI/imgui_tables.i"
+	@echo "... Graphics/DearImGUI/imgui_tables.s"
+	@echo "... Graphics/DearImGUI/imgui_widgets.o"
+	@echo "... Graphics/DearImGUI/imgui_widgets.i"
+	@echo "... Graphics/DearImGUI/imgui_widgets.s"
 	@echo "... IO/Redis/alloc.o"
 	@echo "... IO/Redis/alloc.i"
 	@echo "... IO/Redis/alloc.s"

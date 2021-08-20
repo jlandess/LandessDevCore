@@ -4,6 +4,9 @@
 
 #ifndef LANDESSDEVCORE_TYPE_H
 #define LANDESSDEVCORE_TYPE_H
+#include "Definitions/Integer.hpp"
+#include "TypeTraits/EnableIf.hpp"
+#include "TypeTraits/Detection.hpp"
 namespace LD
 {
     template<typename T>

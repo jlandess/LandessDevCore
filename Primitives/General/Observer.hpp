@@ -5,7 +5,7 @@
 #ifndef LANDESSDEVCORE_OBSERVER_HPP
 #define LANDESSDEVCORE_OBSERVER_HPP
 
-#include "Definitions/Common.hpp"
+//#include "Definitions/Common.hpp"
 #include "Memory/ElementReference.h"
 namespace LD
 {

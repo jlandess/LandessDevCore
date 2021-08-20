@@ -10,6 +10,7 @@
 #include "Definitions/Integer.hpp"
 #include "Primitives/General/StringView.hpp"
 #include "Algorithms/Exponential.hpp"
+#include "Algorithms/Power.hpp"
 
 namespace LD
 {

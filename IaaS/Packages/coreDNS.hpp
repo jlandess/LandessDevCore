@@ -1,0 +1,8 @@
+//
+// Created by phoenixflower on 2/15/21.
+//
+
+#ifndef LANDESSDEVCORE_COREDNS_HPP
+#define LANDESSDEVCORE_COREDNS_HPP
+
+#endif //LANDESSDEVCORE_COREDNS_HPP

@@ -4,6 +4,8 @@
 
 #ifndef LANDESSDEVCORE_ISIMMUTABLE_H
 #define LANDESSDEVCORE_ISIMMUTABLE_H
+//#include "Type.h"
+//#include "Primitives/General/Immutable.hpp"
 namespace LD
 {
     namespace Detail
@@ -17,5 +19,6 @@ namespace LD
 
     template<typename T>
     constexpr bool IsImmutable = LD::Detail::IsImmutable<T>::value;
+
 }
 #endif //LANDESSDEVCORE_ISIMMUTABLE_H

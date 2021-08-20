@@ -5,7 +5,7 @@
 #ifndef LANDESSDEVCORE_TERMBOXMENU_HPP
 #define LANDESSDEVCORE_TERMBOXMENU_HPP
 
-#include "Definitions/Common.hpp"
+//#include "Definitions/Common.hpp"
 #include "Primitives/General/Immutable.hpp"
 #include "Primitives/General/StaticArray.hpp"
 #include "MVC/TermBoxRenderingContext.hpp"

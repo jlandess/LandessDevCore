@@ -1,0 +1,8 @@
+//
+// Created by phoenixflower on 2/15/21.
+//
+
+#ifndef LANDESSDEVCORE_COCKROACHDB_HPP
+#define LANDESSDEVCORE_COCKROACHDB_HPP
+
+#endif //LANDESSDEVCORE_COCKROACHDB_HPP

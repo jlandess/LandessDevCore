@@ -1,4 +1,7 @@
 {
     "C_Cpp.loggingLevel": "Debug",
-    "cmake.configureOnOpen": true
+    "cmake.configureOnOpen": true,
+    "files.associations": {
+        "coroutine": "cpp"
+    }
 }

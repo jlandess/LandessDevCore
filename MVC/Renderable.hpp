@@ -8,7 +8,7 @@
 #include "Primitives/General/Vec2.hpp"
 #include "Memory/ElementReference.h"
 #include "Primitives/General/Immutable.hpp"
-#include "Definitions/Common.hpp"
+//#include "Definitions/Common.hpp"
 #include "Primitives/General/StringView.hpp"
 namespace LD
 {

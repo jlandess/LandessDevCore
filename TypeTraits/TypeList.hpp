@@ -8,6 +8,8 @@
 #include "TypeTraits/IntegralConstant.hpp"
 #include "TypeTraits/IsSame.hpp"
 #include "Definitions/Integer.hpp"
+#include "TypeTraits/Decay.hpp"
+#include "TypeTraits/Declval.hpp"
 //#include "TypeTraits/Detection.hpp"
 #pragma once
 

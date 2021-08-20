@@ -10,7 +10,9 @@
 #define DataStructures_LightWeightDelegate_h
 
 #include "LightWeightDelegateBase.h"
-#include "Definitions/Common.hpp"
+#include "Algorithms/Move.hpp"
+#include "Algorithms/Forward.hpp"
+//#include "Definitions/Common.hpp"
 namespace PDP
 {
     template<class R=fastdelegate::detail::DefaultVoid, class ...P>

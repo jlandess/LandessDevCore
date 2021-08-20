@@ -5,7 +5,8 @@
 #ifndef LANDESSDEVDATASTRUCTURES_SEARCHABLEVARIADICPACK_H
 #define LANDESSDEVDATASTRUCTURES_SEARCHABLEVARIADICPACK_H
 
-#include "Definitions/Common.hpp"
+//#include "Definitions/Common.hpp"
+#include "Core/NullClass.hpp"
 namespace LD
 {
     template <typename Head, typename ... Tail>

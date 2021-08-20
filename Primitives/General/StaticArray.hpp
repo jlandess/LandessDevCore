@@ -11,7 +11,7 @@
 
 #include "Definitions/Integer.hpp"
 #include "Functor/Lambda.h"
-#include "Definitions/Common.hpp"
+//#include "Definitions/Common.hpp"
 #include "Algorithms/CompileTimeControlFlow.hpp"
 #include "TypeTraits/IsImmutable.h"
 #include "TypeTraits/Iterable.h"
@@ -406,10 +406,14 @@ namespace LD
     public:
 
 
+        //StaticArray<int,10>::Iterator;
+        //Iterator<StaticArray<int,10>>
         void PushBack(const T &  object) noexcept
         {
             this->InternalBuffer[this->Size++] = object;
         }
+
+        //describe ownership
         class Iterator
         {
         private:
@@ -657,6 +661,16 @@ namespace LD
 
         }
 
+        BackInserter(const BackInserter<LD::StaticArray<T,Size>> & array) noexcept:mArray{array.mArray}
+        {
+
+        }
+
+        BackInserter<LD::StaticArray<T,Size>> & operator = (const BackInserter<LD::StaticArray<T,Size>> & array) noexcept
+        {
+            this->mArray = array.mArray;
+            return (*this);
+        }
         BackInserter<LD::StaticArray<T,Size>> &  operator*() noexcept
         {
             return (*this);

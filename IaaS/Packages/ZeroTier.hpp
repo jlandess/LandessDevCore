@@ -1,0 +1,8 @@
+//
+// Created by phoenixflower on 2/14/21.
+//
+
+#ifndef LANDESSDEVCORE_ZEROTIER_HPP
+#define LANDESSDEVCORE_ZEROTIER_HPP
+
+#endif //LANDESSDEVCORE_ZEROTIER_HPP

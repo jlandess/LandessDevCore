@@ -1,0 +1,14 @@
+//
+// Created by phoenixflower on 2/14/21.
+//
+
+#ifndef LANDESSDEVCORE_SSHPUBLICAUTHENTICATIONAUTO_HPP
+#define LANDESSDEVCORE_SSHPUBLICAUTHENTICATIONAUTO_HPP
+namespace LD
+{
+    class SSHPublicKeyAuthentication
+    {
+
+    };
+}
+#endif //LANDESSDEVCORE_SSHPUBLICAUTHENTICATIONAUTO_HPP

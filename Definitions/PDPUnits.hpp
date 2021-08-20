@@ -9,7 +9,10 @@
 #ifndef __DataStructures__Units__
 #define __DataStructures__Units__
 
-#include "Common.hpp"
+//#include "Common.hpp"
+#include "TypeTraits/IsKindOf.hpp"
+#include "TypeTraits/Detection.hpp"
+#include "Algorithms/Move.hpp"
 namespace PDP
 {
 #define CreateUnitsClassImplementation(name) private: T CurrentValue; public: inline name():CurrentValue(LD::Move(T())){} inline name(const T & value):CurrentValue(value){} inline name & operator = (const T & value){this->CurrentValue = value; return(*this);}  inline const T & Get##name() const {return this->CurrentValue;} inline void Set##name(const T & value){this->CurrentValue = value;} inline void SetValue(const T & value){this->CurrentValue = value;} virtual const T & GetValue() const {return this->CurrentValue;}
