@@ -166,7 +166,7 @@ namespace LD
     {
         extern void DeploymentExample()
         {
-            LD::PVE::ProxyAPI proxmox{LD::ImmutableString{"https://virtualhome.landesshome.com:8006"},LD::ImmutableString{"root"},LD::ImmutableString{"Virtual_Home_Dcs1224"}};
+            LD::PVE::ProxyAPI proxmox{LD::ImmutableString{"null"},LD::ImmutableString{"null"},LD::ImmutableString{"null"}};
 
 
             LD::PVE::NetworkBridge bridge{
