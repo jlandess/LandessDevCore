@@ -857,6 +857,10 @@ namespace LD
             static constexpr LD::UInteger SEC_PER_HOUR = 3600;
             static constexpr LD::UInteger SEC_PER_MIN = 60;
 
+            using HourType = LD::CT::Detail::ExtractHourType<T1,T2,T3,T4>;
+            using MinuteType = LD::CT::Detail::ExtractMinuteType<T1,T2,T3,T4>;
+            using SecondType = LD::CT::Detail::ExtractSecondType<T1,T2,T3,T4>;
+
             timeval tv;
             struct timezone   tz;
             gettimeofday(&tv, &tz);
@@ -874,7 +878,9 @@ namespace LD
             int min = (hms % SEC_PER_HOUR) / SEC_PER_MIN;
             int sec = (hms % SEC_PER_HOUR) % SEC_PER_MIN; // or hms % SEC_PER_MIN
 
-            //this->Hour() = hour;
+            this->Hour() = HourType{LD::UInteger (hour)};
+            this->Minute() = MinuteType{LD::UInteger (min)};
+            this->Second() = SecondType{LD::UInteger (sec)};
         }
 
         const LD::CT::Detail::ExtractHourType<T1,T2,T3,T4> & Hour() const noexcept
@@ -947,13 +953,13 @@ namespace LD
 
         const LD::CT::Detail::ExtractSecondType<T1,T2,T3,T4> & Second() const noexcept
         {
-            if constexpr (LD::CT::IsMinute(LD::Type<T1>{}))
+            if constexpr (LD::CT::IsSecond(LD::Type<T1>{}))
             {
                 return this->mFirst;
-            } else if constexpr (LD::CT::IsMinute(LD::Type<T2>{}))
+            } else if constexpr (LD::CT::IsSecond(LD::Type<T2>{}))
             {
                 return this->mSecond;
-            }else if constexpr(LD::CT::IsMinute(LD::Type<T3>{}))
+            }else if constexpr(LD::CT::IsSecond(LD::Type<T3>{}))
             {
                 return this->mThird;
             }else
@@ -964,13 +970,13 @@ namespace LD
 
         LD::CT::Detail::ExtractSecondType<T1,T2,T3,T4> & Second()  noexcept
         {
-            if constexpr (LD::CT::IsMinute(LD::Type<T1>{}))
+            if constexpr (LD::CT::IsSecond(LD::Type<T1>{}))
             {
                 return this->mFirst;
-            } else if constexpr (LD::CT::IsMinute(LD::Type<T2>{}))
+            } else if constexpr (LD::CT::IsSecond(LD::Type<T2>{}))
             {
                 return this->mSecond;
-            }else if constexpr(LD::CT::IsMinute(LD::Type<T3>{}))
+            }else if constexpr(LD::CT::IsSecond(LD::Type<T3>{}))
             {
                 return this->mThird;
             }else

@@ -30,25 +30,20 @@ namespace LD
             return (*this);
         }
 
-        template<typename ... Pairs,
-                bool PairsHaveImmutableTestNameAsKey = (LD::CT::IsImmutableString(LD::CT::RemoveQualifiers(LD::CT::Key(LD::CT::RemoveQualifiers(LD::Type<Pairs>{})))) && ...),
+        /**
+         * bool PairsHaveImmutableTestNameAsKey = (LD::CT::IsImmutableString(LD::CT::RemoveQualifiers(LD::CT::Key(LD::CT::RemoveQualifiers(LD::Type<Pairs>{})))) && ...),
                 bool PairsHaveResultAsValue = (LD::TDD::CT::IsResult(LD::CT::RemoveQualifiers(LD::CT::Value(LD::CT::RemoveQualifiers(LD::Type<Pairs>{})))) && ...)>
-        LD::Enable_If_T<LD::Require<PairsHaveImmutableTestNameAsKey && PairsHaveResultAsValue>,ArtifactRepository> & Insert(Pairs && ... kv) noexcept
+         */
+        template<typename ... Pairs,
+                bool IsTDDTest = (LD::TDD::CT::IsResult(LD::CT::RemoveQualifiers(LD::Type<Pairs>{})) && ...)
+                        >
+        LD::Enable_If_T<LD::Require<IsTDDTest>,ArtifactRepository> & Insert(Pairs && ... kv) noexcept
         {
             auto context = LD::MakeContext(LD::Forward<Pairs>(kv)...);
             auto dateTimeKey = LD::ToImmutableString(LD::DateTime{});
 
-            LD::For<sizeof...(Pairs)>([](
-                    auto I,
-                    const auto date ,
-                    LD::ElementReference<RepositoryType> repo,
-                    const auto & context) noexcept
-                                      {
-                                          const auto & kvPair = LD::Get(LD::Get<I>(context));
-                                          auto key = kvPair.GetFirst() + LD::ImmutableString{" "} + date;
-                                          LD::Insert(LD::Get(repo),key,LD::Get(kvPair.GetSecond()),[](){return true;});
-                                          return true;
-                                      },dateTimeKey,this->mRepository,context);
+
+            LD::Insert(LD::Get(this->mRepository),dateTimeKey,context);
             return (*this);
         }
     };

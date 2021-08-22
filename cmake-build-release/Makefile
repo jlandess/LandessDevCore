@@ -223,6 +223,33 @@ Chrono/Timer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.s
 .PHONY : Chrono/Timer.cpp.s
 
+Examples/AlgorithmicJSONTest.o: Examples/AlgorithmicJSONTest.cpp.o
+
+.PHONY : Examples/AlgorithmicJSONTest.o
+
+# target to build an object file
+Examples/AlgorithmicJSONTest.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/AlgorithmicJSONTest.cpp.o
+.PHONY : Examples/AlgorithmicJSONTest.cpp.o
+
+Examples/AlgorithmicJSONTest.i: Examples/AlgorithmicJSONTest.cpp.i
+
+.PHONY : Examples/AlgorithmicJSONTest.i
+
+# target to preprocess a source file
+Examples/AlgorithmicJSONTest.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/AlgorithmicJSONTest.cpp.i
+.PHONY : Examples/AlgorithmicJSONTest.cpp.i
+
+Examples/AlgorithmicJSONTest.s: Examples/AlgorithmicJSONTest.cpp.s
+
+.PHONY : Examples/AlgorithmicJSONTest.s
+
+# target to generate assembly for a file
+Examples/AlgorithmicJSONTest.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/AlgorithmicJSONTest.cpp.s
+.PHONY : Examples/AlgorithmicJSONTest.cpp.s
+
 Examples/CalculusExample.o: Examples/CalculusExample.cpp.o
 
 .PHONY : Examples/CalculusExample.o
@@ -2428,6 +2455,9 @@ help:
 	@echo "... Chrono/Timer.o"
 	@echo "... Chrono/Timer.i"
 	@echo "... Chrono/Timer.s"
+	@echo "... Examples/AlgorithmicJSONTest.o"
+	@echo "... Examples/AlgorithmicJSONTest.i"
+	@echo "... Examples/AlgorithmicJSONTest.s"
 	@echo "... Examples/CalculusExample.o"
 	@echo "... Examples/CalculusExample.i"
 	@echo "... Examples/CalculusExample.s"

@@ -359,6 +359,9 @@ CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../TypeTraits/__two.hpp
 CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../Chrono/Timer.cpp
 CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../Chrono/Timer.h
 
+CMakeFiles/LandessDevCore.dir/Examples/AlgorithmicJSONTest.cpp.o: ../Examples/AlgorithmicJSONTest.cpp
+CMakeFiles/LandessDevCore.dir/Examples/AlgorithmicJSONTest.cpp.o: ../Examples/AlgorithmicJSONTest.h
+
 CMakeFiles/LandessDevCore.dir/Examples/CalculusExample.cpp.o: ../Algorithms/Abs.hpp
 CMakeFiles/LandessDevCore.dir/Examples/CalculusExample.cpp.o: ../Algorithms/Calculus.h
 CMakeFiles/LandessDevCore.dir/Examples/CalculusExample.cpp.o: ../Algorithms/CompileTimeControlFlow.hpp

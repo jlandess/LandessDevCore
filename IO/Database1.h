@@ -22,6 +22,44 @@ namespace LD
             LD::Require<
                     LD::CT::IsPrimitive(LD::CT::RemoveQualifiers(LD::Type<V>{}))
             >,
+            LD::RequestResponse<bool(Args...)>> Insert(T & document, Key && key ,V && object, Args && ... args) noexcept;
+
+
+
+    template<typename T, typename V, typename Key,typename ... Args>
+    LD::Enable_If_T<
+            LD::Require<
+                    LD::CT::CanBeAnImmutableString(LD::CT::RemoveQualifiers(LD::Type<V>{})),
+                    !LD::CT::IsPrimitive(LD::CT::RemoveQualifiers(LD::Type<V>{}))
+
+            >,
+            LD::RequestResponse<bool(Args...)>> Insert(T & document, Key && key ,V && object, Args && ... args) noexcept;
+
+    template<typename T, typename V, typename Key,typename ... Args>
+    LD::Enable_If_T<
+            LD::Require<
+                    LD::CT::IsTuple(LD::CT::RemoveQualifiers(LD::Type<V>{}))
+            >,
+            LD::RequestResponse<bool(Args...)>> Insert(T & document, Key && key ,V && object, Args && ... args) noexcept;
+
+    template<typename T, typename V, typename Key,typename ... Args>
+    LD::Enable_If_T<
+            LD::Require<
+                    LD::CT::IsReflectable<LD::Detail::Decay_T<V>>()
+            >,
+            LD::RequestResponse<bool(Args...)>> Insert(T & document, Key && key,V && object,Args && ... args) noexcept;
+
+
+
+
+
+
+
+    template<typename T, typename V, typename Key,typename ... Args>
+    LD::Enable_If_T<
+            LD::Require<
+                    LD::CT::IsPrimitive(LD::CT::RemoveQualifiers(LD::Type<V>{}))
+            >,
             LD::RequestResponse<bool(Args...)>> Insert(T & document, Key && key ,V && object, Args && ... args) noexcept
     {
         auto immutableRepresentation = LD::ToImmutableString(LD::Forward<V>(object));
@@ -59,12 +97,64 @@ namespace LD
         return LD::CreateResponse(LD::Type<bool>{},LD::TransactionError{},LD::Forward<Args>(args)...);
     }
 
-    template<typename T, typename V, typename Key,typename ErrorHandler,typename ... Args>
+    template<typename T, typename V, typename Key,typename ... Args>
+    LD::Enable_If_T<
+            LD::Require<
+                    LD::CT::IsTuple(LD::CT::RemoveQualifiers(LD::Type<V>{}))
+            >,
+            LD::RequestResponse<bool(Args...)>> Insert(T & document, Key && key ,V && object, Args && ... args) noexcept
+    {
+        constexpr LD::UInteger CurrentTupleSize = LD::CT::TupleSize(LD::Type<LD::Detail::Decay_T<V>>{});
+        bool didInsert = true;
+        LD::For<CurrentTupleSize>([](auto I, Key && key, V && object, T & document, bool & insertStatus)
+        {
+
+            using CurrentType = LD::Detail::Decay_T<decltype(LD::Get<I>(LD::Forward<V>(object)))>;
+
+            if constexpr(LD::CT::IsReflectable(LD::Type<CurrentType>{}))
+            {
+                auto response = LD::Insert(
+                        document,
+                        key+LD::ImmutableString{"."}+LD::ToImmutableString(LD::UInteger (I)),
+                        LD::Get(LD::Get<I>(LD::Forward<V>(object))));
+                insertStatus = (insertStatus && LD::IsTransactionalResponse(response));
+
+            }else
+            {
+
+                auto response = LD::Insert(
+                        document,
+                        key+LD::ImmutableString{"."}+LD::ToImmutableString(LD::UInteger (I)),
+                        LD::Get(LD::Get<I>(LD::Forward<V>(object))));
+                insertStatus = (insertStatus && LD::IsTransactionalResponse(response));
+            }
+
+
+
+
+
+
+
+
+            return insertStatus;
+        },LD::Forward<Key>(key),LD::Forward<V>(object),document,didInsert);
+
+        if (didInsert == true)
+        {
+            return LD::CreateResponse(LD::Type<bool>{},bool{true},LD::Forward<Args>(args)...);
+        }
+        return LD::CreateResponse(LD::Type<bool>{},LD::TransactionError{},LD::Forward<Args>(args)...);
+    }
+    template<typename T, typename V, typename Key,typename ... Args>
     LD::Enable_If_T<
             LD::Require<
                     LD::CT::IsReflectable<LD::Detail::Decay_T<V>>()
             >,
-            LD::RequestResponse<bool(Args...)>> Insert(T & document, Key && key,V && object, ErrorHandler && handler,Args && ... args) noexcept
+            LD::RequestResponse<bool(Args...)>> Insert(
+                    T & document,
+                    Key && key,
+                    V && object,
+                    Args && ... args) noexcept
     {
         constexpr auto traits = LD::CT::Reflect<LD::Detail::Decay_T<V>>();
         constexpr auto members = traits.Members;
@@ -81,8 +171,7 @@ namespace LD
                     auto classBuffer,
                     T & document,
                     bool & status,
-                    Key && key,
-                    ErrorHandler && handler)
+                    Key && key)
             {
 
                 constexpr auto memberInfo = LD::Get<I>(members);
@@ -95,7 +184,7 @@ namespace LD
                 if (memberBuffer.GetSize() > 0)
                 {
                     const auto & member = memberAccessor();
-                    //if constexpr (LD::CT::IsPrimitive(LD::CT::RemoveQualifiers(type)))
+
                     if constexpr(!LD::CT::IsReflectable(type))
                     {
                         auto response = Insert(document,currentKey,member);
@@ -113,14 +202,14 @@ namespace LD
                         bool responseValue = LD::InvokeVisitation(LD::Overload{onResponse,onError},response);
                         if (!responseValue)
                         {
-                            status = handler();
+                            //status = handler();
                         }
 
 
                     }
                     else if constexpr (LD::CT::IsReflectable(type))
                     {
-                        auto response = Insert(document,currentKey,memberAccessor(),LD::Forward<ErrorHandler>(handler));
+                        auto response = Insert(document,currentKey,memberAccessor());
 
                         auto onResponse = [](auto object) noexcept
                         {
@@ -136,14 +225,14 @@ namespace LD
 
                         if (!responseValue)
                         {
-                            status = handler();
+                            //status = handler();
                         }
                     }
 
                 }
                 return true;
 
-            },members,LD::Forward<V>(object),classBuffer,document,status,LD::Forward<Key>(key),LD::Forward<ErrorHandler>(handler));
+            },members,LD::Forward<V>(object),classBuffer,document,status,LD::Forward<Key>(key));
         }
         if (status)
         {

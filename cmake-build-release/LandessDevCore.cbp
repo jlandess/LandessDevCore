@@ -319,6 +319,12 @@
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Definitions/TimeExtension.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Examples/AlgorithmicJSONTest.cpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Examples/AlgorithmicJSONTest.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Examples/CPUMetric.h">
 			<Option target="LandessDevCore"/>
 		</Unit>

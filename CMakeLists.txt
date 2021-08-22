@@ -864,7 +864,7 @@ add_executable(LandessDevCore
         IaaS/ClusteringMetaData.hpp
         IO/Database1.h
         Algorithms/CTREImmutableExtension.hpp
-        Process/run.c Process/Command.hpp IO/DHTBackend.hpp Algorithms/TDD.hpp Examples/PVEGUIDeploymentExample.h Examples/PVEGUIDeploymentExample.cpp IaaS/BasicCluster.hpp IaaS/ArtifactRepository.hpp Examples/DeploymentExample.hpp Examples/DeploymentExample.cpp Examples/WebDavExample.h Examples/WebDavExample.cpp Graphics/DearImGUI/imgui_impl_datepicker.h Graphics/DearImGUI/imgui_impl_datepicker.cpp Graphics/DearImGUI/DatePicker.hpp Algorithms/FromJSON.hpp)
+        Process/run.c Process/Command.hpp IO/DHTBackend.hpp Algorithms/TDD.hpp Examples/PVEGUIDeploymentExample.h Examples/PVEGUIDeploymentExample.cpp IaaS/BasicCluster.hpp IaaS/ArtifactRepository.hpp Examples/DeploymentExample.hpp Examples/DeploymentExample.cpp Examples/WebDavExample.h Examples/WebDavExample.cpp Graphics/DearImGUI/imgui_impl_datepicker.h Graphics/DearImGUI/imgui_impl_datepicker.cpp Graphics/DearImGUI/DatePicker.hpp Algorithms/FromJSON.hpp Examples/AlgorithmicJSONTest.h Examples/AlgorithmicJSONTest.cpp)
 
 target_link_libraries(LandessDevCore pthread)
 target_link_libraries(LandessDevCore ncurses)

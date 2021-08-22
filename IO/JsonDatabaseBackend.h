@@ -37,7 +37,7 @@ namespace LD
         {
             nlohmann::json * ptr = this->mBackend.GetPointer();
             (*ptr)[key.data()] = data.data();
-            return LD::CreateResponse(LD::Type<bool>{},LD::TransactionError{},LD::Forward<Args>(arguements)...);
+            return LD::CreateResponse(LD::Type<bool>{},bool{true},LD::Forward<Args>(arguements)...);
         }
 
         template<typename F, typename ... Args,

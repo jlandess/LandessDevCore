@@ -126,19 +126,14 @@ If not divisible by 3 or 5 print number
 #define SEC_PER_MIN   60
 int main(int argc, char **argv)
 {
-    LD::Hour<LD::UInteger> hourUnit;
-
-    hourUnit.NativeRepresentation().Value();
-
-
-
-
-    LD::Milisecond<LD::UInteger> mMili;
     LD::HashiVault vault{
         LD::ImmutableString{"http://192.168.30.50:8200"},
         LD::ImmutableString{"s.w8hIFCNwl59CMABCvaZ1qlGV"}};
 
-    auto vaultResponse = vault.Query(LD::Type<LD::Square>{},LD::ImmutableString{"demoapplications"},LD::ImmutableString{"square"});
+    auto vaultResponse = vault.Query(
+            LD::Type<LD::Square>{},
+            LD::ImmutableString{"demoapplications"},
+            LD::ImmutableString{"square"});
 
 
     auto onVaultSquare = [](const LD::Square & square) noexcept
@@ -159,9 +154,6 @@ int main(int argc, char **argv)
 
     simdjson::dom::element parsedResponse = parser.parse(jsonToJsonTest.dump(2));
 
-
-    //parsedResponse.get_c_str().
-    //parsedResponse.get_c_str()
 
     auto parsedSquare = LD::FromJSON(LD::Type<TestClass>{},parsedResponse);
 
@@ -185,7 +177,7 @@ int main(int argc, char **argv)
     LD::OpenDHTBackend mBackend{LD::IPV6Address{"fd00:1700:81b8:401e:0:d9:191:4a34"},LD::Port{4222},LD::Port{4222}};
     auto test1 = [&](LD::UnQliteBackend<char> & db, const auto & serializableObject) -> int
     {
-        LD::Insert(db,LD::ImmutableString{"key1"},serializableObject,[](){return true;});
+        LD::Insert(db,LD::ImmutableString{"key1"},serializableObject);
 
         mBackend.Query(LD::StringView{"lucario"},[](LD::StringView key, LD::StringView value)->int
         {
@@ -205,10 +197,12 @@ int main(int argc, char **argv)
 
     LD::ArtifactRepository repository{LD::ElementReference<LD::JsonBackend>{jsonBackend}};
 
+
+    LD::Insert(jsonBackend,LD::ImmutableString{"keyone"},LD::MakeTuple(1.9,7,'a',LD::Square{7}));
     repository.Insert(
-            LD::Pair{LD::ImmutableString{"rawrbunnies"},testResult},
-            LD::Pair{LD::ImmutableString{"lucario"},testResult},
-            LD::Pair{LD::ImmutableString{"lucario77"},testResult}
+            testResult,
+            testResult,
+            testResult
     );
     std::cout << json.dump(2) << std::endl;
     /*
@@ -240,7 +234,7 @@ int main(int argc, char **argv)
         return 7;
     });
 
-    LD::Insert(unqliteBackingStore,LD::ImmutableString{"key1"},LD::Pyramid{LD::Square{928},LD::Triangle{65,50}},[](){return true;});
+    LD::Insert(unqliteBackingStore,LD::ImmutableString{"key1"},LD::Pyramid{LD::Square{928},LD::Triangle{65,50}});
     auto fetchResponse = LD::Fetch(unqliteBackingStore,LD::ImmutableString{"key1"},LD::Type<LD::Pyramid>{});
 
 
