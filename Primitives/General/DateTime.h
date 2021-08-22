@@ -12,6 +12,7 @@
 #include "Primitives/General/ctre.hpp"
 #include "Primitives/General/StringView.hpp"
 #include "Core/NullClass.hpp"
+#include "Primitives/General/Unit.hpp"
 //#include "Algorithms/FromString.hpp"
 //
 //  Date.h
@@ -20,101 +21,84 @@
 //  Created by James Landess on 10/23/14.
 //  Copyright (c) 2014 LandessDev. All rights reserved.
 //
-#include "Primitives/General/Unit.hpp"
 namespace LD
 {
     namespace CT
     {
-
         template<typename T>
         inline constexpr bool IsHour(LD::Type<T>) noexcept
         {
             return false;
         }
-
         template<typename T>
         inline constexpr bool IsHour(LD::Type<LD::Hour<T>> ) noexcept
         {
             return true;
         }
-
         template<typename T>
         inline constexpr bool IsMinute(LD::Type<T>) noexcept
         {
             return false;
         }
-
         template<typename T>
         inline constexpr bool IsMinute(LD::Type<LD::Minute<T>> ) noexcept
         {
             return true;
         }
-
         template<typename T>
         inline constexpr bool IsSecond(LD::Type<T>) noexcept
         {
             return false;
         }
-
         template<typename T>
         inline constexpr bool IsSecond(LD::Type<LD::Second<T>> ) noexcept
         {
             return true;
         }
-
         template<typename T>
         inline constexpr bool IsMiliSecond(LD::Type<T>) noexcept
         {
             return false;
         }
-
         template<typename T>
         inline constexpr bool IsMiliSecond(LD::Type<LD::Milisecond<T>> ) noexcept
         {
             return true;
         }
-
         template<typename T>
         inline constexpr bool IsDay(LD::Type<T>) noexcept
         {
             return false;
         }
-
         template<typename T>
         inline constexpr bool IsDay(LD::Type<LD::Day<T>> ) noexcept
         {
             return true;
         }
-
         template<typename T>
         inline constexpr bool IsMonth(LD::Type<T>) noexcept
         {
             return false;
         }
-
         template<typename T>
         inline constexpr bool IsMonth(LD::Type<LD::Month<T>> ) noexcept
         {
             return true;
         }
-
         template<typename T>
         inline constexpr bool IsYear(LD::Type<T>) noexcept
         {
             return false;
         }
-
         template<typename T>
         inline constexpr bool IsYear(LD::Type<LD::Year<T>> ) noexcept
         {
             return true;
         }
-
         namespace Detail
         {
             template<typename First, typename Second, typename Third, class = void>
             struct ExtractDayTypeImpl;
-
 
             template<typename First, typename Second, typename Third, class = void>
             struct ExtractMonthTypeImpl;
@@ -131,10 +115,8 @@ namespace LD
             template<typename First, typename Second, typename Third, typename Fourth, class = void>
             struct ExtractSecondTypeImpl;
 
-
             template<typename First, typename Second, typename Third, typename Fourth, class = void>
             struct ExtractMilisecondTypeImpl;
-
 
             template<typename First, typename Second, typename Third>
             struct ExtractDayTypeImpl<First,Second,Third,LD::Enable_If_T<
@@ -146,7 +128,6 @@ namespace LD
             {
                 using type = First;
             };
-
             template<typename First, typename Second, typename Third>
             struct ExtractDayTypeImpl<First,Second,Third,LD::Enable_If_T<
                     LD::Require<
@@ -157,7 +138,6 @@ namespace LD
             {
                 using type = Second;
             };
-
             template<typename First, typename Second, typename Third>
             struct ExtractDayTypeImpl<First,Second,Third,LD::Enable_If_T<
                     LD::Require<
@@ -168,8 +148,6 @@ namespace LD
             {
                 using type = Third;
             };
-
-
             template<typename First, typename Second, typename Third>
             struct ExtractMonthTypeImpl<First,Second,Third,LD::Enable_If_T<
                     LD::Require<
@@ -180,7 +158,6 @@ namespace LD
             {
                 using type = First;
             };
-
             template<typename First, typename Second, typename Third>
             struct ExtractMonthTypeImpl<First,Second,Third,LD::Enable_If_T<
                     LD::Require<
@@ -191,7 +168,6 @@ namespace LD
             {
                 using type = Second;
             };
-
             template<typename First, typename Second, typename Third>
             struct ExtractMonthTypeImpl<First,Second,Third,LD::Enable_If_T<
                     LD::Require<
@@ -202,8 +178,6 @@ namespace LD
             {
                 using type = Third;
             };
-
-
             template<typename First, typename Second, typename Third>
             struct ExtractYearTypeImpl<First,Second,Third,LD::Enable_If_T<
                     LD::Require<
@@ -214,7 +188,6 @@ namespace LD
             {
                 using type = First;
             };
-
             template<typename First, typename Second, typename Third>
             struct ExtractYearTypeImpl<First,Second,Third,LD::Enable_If_T<
                     LD::Require<
@@ -225,7 +198,6 @@ namespace LD
             {
                 using type = Second;
             };
-
             template<typename First, typename Second, typename Third>
             struct ExtractYearTypeImpl<First,Second,Third,LD::Enable_If_T<
                     LD::Require<
@@ -236,7 +208,6 @@ namespace LD
             {
                 using type = Third;
             };
-
             template<typename First, typename Second, typename Third, typename Fourth>
             struct ExtractHourTypeImpl<First,Second,Third,Fourth,LD::Enable_If_T<
                     LD::Require<
@@ -248,7 +219,6 @@ namespace LD
             {
                 using type = First;
             };
-
             template<typename First, typename Second, typename Third, typename Fourth>
             struct ExtractHourTypeImpl<First,Second,Third,Fourth,LD::Enable_If_T<
                     LD::Require<
@@ -260,7 +230,6 @@ namespace LD
             {
                 using type = Second;
             };
-
             template<typename First, typename Second, typename Third, typename Fourth>
             struct ExtractHourTypeImpl<First,Second,Third,Fourth,LD::Enable_If_T<
                     LD::Require<
@@ -272,7 +241,6 @@ namespace LD
             {
                 using type = Third;
             };
-
             template<typename First, typename Second, typename Third, typename Fourth>
             struct ExtractHourTypeImpl<First,Second,Third,Fourth,LD::Enable_If_T<
                     LD::Require<
@@ -284,7 +252,6 @@ namespace LD
             {
                 using type = Fourth;
             };
-
             template<typename First, typename Second, typename Third, typename Fourth>
             struct ExtractMinuteTypeImpl<First,Second,Third,Fourth,LD::Enable_If_T<
                     LD::Require<
@@ -296,7 +263,6 @@ namespace LD
             {
                 using type = First;
             };
-
             template<typename First, typename Second, typename Third, typename Fourth>
             struct ExtractMinuteTypeImpl<First,Second,Third,Fourth,LD::Enable_If_T<
                     LD::Require<
@@ -308,7 +274,6 @@ namespace LD
             {
                 using type = Second;
             };
-
             template<typename First, typename Second, typename Third, typename Fourth>
             struct ExtractMinuteTypeImpl<First,Second,Third,Fourth,LD::Enable_If_T<
                     LD::Require<
@@ -320,7 +285,6 @@ namespace LD
             {
                 using type = Third;
             };
-
             template<typename First, typename Second, typename Third, typename Fourth>
             struct ExtractMinuteTypeImpl<First,Second,Third,Fourth,LD::Enable_If_T<
                     LD::Require<
@@ -332,7 +296,6 @@ namespace LD
             {
                 using type = Fourth;
             };
-
             template<typename First, typename Second, typename Third, typename Fourth>
             struct ExtractSecondTypeImpl<First,Second,Third,Fourth,LD::Enable_If_T<
                     LD::Require<
@@ -344,7 +307,6 @@ namespace LD
             {
                 using type = First;
             };
-
             template<typename First, typename Second, typename Third, typename Fourth>
             struct ExtractSecondTypeImpl<First,Second,Third,Fourth,LD::Enable_If_T<
                     LD::Require<
@@ -356,7 +318,6 @@ namespace LD
             {
                 using type = Second;
             };
-
             template<typename First, typename Second, typename Third, typename Fourth>
             struct ExtractSecondTypeImpl<First,Second,Third,Fourth,LD::Enable_If_T<
                     LD::Require<
@@ -368,7 +329,6 @@ namespace LD
             {
                 using type = Third;
             };
-
             template<typename First, typename Second, typename Third, typename Fourth>
             struct ExtractSecondTypeImpl<First,Second,Third,Fourth,LD::Enable_If_T<
                     LD::Require<
@@ -380,7 +340,6 @@ namespace LD
             {
                 using type = Fourth;
             };
-
             template<typename First, typename Second, typename Third, typename Fourth>
             struct ExtractMilisecondTypeImpl<First,Second,Third,Fourth,LD::Enable_If_T<
                     LD::Require<
@@ -392,7 +351,6 @@ namespace LD
             {
                 using type = First;
             };
-
             template<typename First, typename Second, typename Third, typename Fourth>
             struct ExtractMilisecondTypeImpl<First,Second,Third,Fourth,LD::Enable_If_T<
                     LD::Require<
@@ -404,7 +362,6 @@ namespace LD
             {
                 using type = Second;
             };
-
             template<typename First, typename Second, typename Third, typename Fourth>
             struct ExtractMilisecondTypeImpl<First,Second,Third,Fourth,LD::Enable_If_T<
                     LD::Require<
@@ -416,7 +373,6 @@ namespace LD
             {
                 using type = Third;
             };
-
             template<typename First, typename Second, typename Third, typename Fourth>
             struct ExtractMilisecondTypeImpl<First,Second,Third,Fourth,LD::Enable_If_T<
                     LD::Require<
@@ -428,7 +384,6 @@ namespace LD
             {
                 using type = Fourth;
             };
-
             template <typename First, typename Second, typename Third> using ExtractDayType = typename LD::CT::Detail::ExtractDayTypeImpl<First,Second,Third>::type ;
 
             template <typename First, typename Second, typename Third> using ExtractMonthType = typename LD::CT::Detail::ExtractMonthTypeImpl<First,Second,Third>::type ;
@@ -449,8 +404,6 @@ namespace LD
     {
         static constexpr auto  DateDetectionRegex = ctll::basic_fixed_string{"(\\d{4})-(\\d{1,2})-(\\d{1,2})"};
     };
-
-
     template<typename First, typename Second, typename Third>
     struct BasicDateRegexGenerator<First,Second,Third,LD::Enable_If_T<
             LD::Require<
@@ -461,7 +414,6 @@ namespace LD
     {
         static constexpr auto  DateDetectionRegex = ctll::basic_fixed_string{"(\\d{4})-(\\d{1,2})-(\\d{1,2})"};
     };
-
     template<typename First, typename Second, typename Third>
     struct BasicDateRegexGenerator<First,Second,Third,LD::Enable_If_T<
             LD::Require<
@@ -533,7 +485,6 @@ namespace LD
         {
             (*this) = date;
         }
-
         template<typename V, typename W, typename X>
         BasicDate & operator = (const BasicDate<V,W,X> & date) noexcept
         {
@@ -627,7 +578,6 @@ namespace LD
             }
 
         }
-
         BasicDate & operator++() noexcept
         {
             //(*this) = this->NextDate();
@@ -780,17 +730,6 @@ namespace LD
     };
     using Date = BasicDate<LD::Year<LD::UInteger>,LD::Month<LD::UInteger>,LD::Day<LD::UInteger>>;
 
-
-    /*
-    template<typename First, typename Second, typename Third,typename ... A>
-    LD::QueryResult<LD::BasicDate<First,Second,Third>(A...)> FromStringView(LD::Type<LD::BasicDate<First,Second,Third>>, LD::StringView view, A && ... args) noexcept
-    {
-
-
-
-        return LD::MakeContext(LD::TransactionError{},LD::Forward<A>(args)...);
-    }
-     */
     template<typename First, typename Second, typename Third>
     inline LD::ImmutableString<75> ToImmutableString(const LD::BasicDate<First,Second,Third> & date) noexcept
     {
@@ -851,6 +790,10 @@ namespace LD
         T4 mFourth;
     public:
 
+        BasicTime(T1 && first, T2 && second, T3 && third) noexcept:mFirst{LD::Forward<T1>(first)},mSecond{LD::Forward<T2>(second)},mThird{LD::Forward<T3>(third)},mFourth{}
+        {
+
+        }
         BasicTime() noexcept:mFirst{},mSecond{},mThird{},mFourth{}
         {
             static constexpr LD::UInteger SEC_PER_DAY = 86400;
@@ -860,6 +803,7 @@ namespace LD
             using HourType = LD::CT::Detail::ExtractHourType<T1,T2,T3,T4>;
             using MinuteType = LD::CT::Detail::ExtractMinuteType<T1,T2,T3,T4>;
             using SecondType = LD::CT::Detail::ExtractSecondType<T1,T2,T3,T4>;
+            using MiliSecondType = LD::CT::Detail::ExtractMilisecondType<T1,T2,T3,T4>;
 
             timeval tv;
             struct timezone   tz;
@@ -881,8 +825,8 @@ namespace LD
             this->Hour() = HourType{LD::UInteger (hour)};
             this->Minute() = MinuteType{LD::UInteger (min)};
             this->Second() = SecondType{LD::UInteger (sec)};
+            this->MiliSecond() = MiliSecondType{LD::UInteger (milli)};
         }
-
         const LD::CT::Detail::ExtractHourType<T1,T2,T3,T4> & Hour() const noexcept
         {
             if constexpr (LD::CT::IsHour(LD::Type<T1>{}))
@@ -899,7 +843,6 @@ namespace LD
                 return this->mFourth;
             }
         }
-
         LD::CT::Detail::ExtractHourType<T1,T2,T3,T4> & Hour()  noexcept
         {
             if constexpr (LD::CT::IsHour(LD::Type<T1>{}))
@@ -916,7 +859,6 @@ namespace LD
                 return this->mFourth;
             }
         }
-
         const LD::CT::Detail::ExtractMinuteType<T1,T2,T3,T4> & Minute() const noexcept
         {
             if constexpr (LD::CT::IsMinute(LD::Type<T1>{}))
@@ -933,7 +875,6 @@ namespace LD
                 return this->mFourth;
             }
         }
-
         LD::CT::Detail::ExtractMinuteType<T1,T2,T3,T4> & Minute()  noexcept
         {
             if constexpr (LD::CT::IsMinute(LD::Type<T1>{}))
@@ -967,7 +908,6 @@ namespace LD
                 return this->mFourth;
             }
         }
-
         LD::CT::Detail::ExtractSecondType<T1,T2,T3,T4> & Second()  noexcept
         {
             if constexpr (LD::CT::IsSecond(LD::Type<T1>{}))
@@ -1019,80 +959,7 @@ namespace LD
             }
         }
     };
-
-    //class Date;
-    struct Time
-    {
-    private:
-        unsigned short mHour;
-        unsigned short mMinute;
-        unsigned short mSecond;
-    public:
-        Time() noexcept:Time(time(0))
-        {
-
-
-        }
-        Time(const unsigned  short hour, const unsigned short minute, const unsigned short second) noexcept:mHour{hour},mMinute{minute},mSecond{second}
-        {
-
-        }
-        Time(const time_t tSysTime ) noexcept
-        {
-            struct tm *ptm;
-            int y, m, d;
-            short hour,minute,second;
-
-            ptm = localtime( &tSysTime );
-
-            y = ptm->tm_year + 1900;
-            m = ptm->tm_mon + 1;
-            d = ptm->tm_mday;
-
-            this->mHour = ptm->tm_hour;
-            this->mMinute = ptm->tm_min;
-            this->mSecond = ptm->tm_sec;
-        }
-
-        unsigned short & Hour()  noexcept
-        {
-            return this->mHour;
-        }
-        unsigned short & Minute()  noexcept
-        {
-            return this->mMinute;
-        }
-        unsigned short & Second()  noexcept
-        {
-            return this->mSecond;
-        }
-        const unsigned short & Hour() const noexcept
-        {
-            return this->mHour;
-        }
-        const unsigned short & Minute() const noexcept
-        {
-            return this->mMinute;
-        }
-        const unsigned short & Second() const noexcept
-        {
-            return this->mSecond;
-        }
-
-        //friend class Date;
-    };
-
-    inline auto ToImmutableString(const LD::Time & time) noexcept
-    {
-        //return LD::ToImmutableString(time.Hour())+
-        //LD::ImmutableString{":"}+
-        //LD::ToImmutableString(time.Minute()) +
-        //LD::ImmutableString{":"} +
-        //LD::ToImmutableString(time.Second());
-        //((time.Hour() < 10)?LD::ImmutableString{"0"}:LD::ImmutableString{""})
-        return ((time.Hour() < 10)?LD::ImmutableString{"0"}:LD::ImmutableString{""})+LD::ToImmutableString(time.Hour())+LD::ImmutableString{":"}+((time.Minute() < 10)?LD::ImmutableString{"0"}:LD::ImmutableString{""})+LD::ToImmutableString(time.Minute())+LD::ImmutableString{":"}+((time.Second() < 10)?LD::ImmutableString{"0"}:LD::ImmutableString{""})+LD::ToImmutableString(time.Second());
-    }
-
+    using Time = LD::BasicTime<LD::Hour<LD::UInteger>,LD::Minute<LD::UInteger>,LD::Second<LD::UInteger>,LD::Milisecond<LD::UInteger>>;
 
     template<typename T1, typename T2, typename T3, typename T4>
     inline auto ToImmutableString(const LD::BasicTime<T1,T2,T3,T4> & time) noexcept
@@ -1101,14 +968,10 @@ namespace LD
         using MinuteType = LD::CT::Detail::ExtractMinuteType<T1,T2,T3,T4>;
         using SecondType = LD::CT::Detail::ExtractSecondType<T1,T2,T3,T4>;
         using UnderlyingHourType = LD::GetType<decltype(LD::CT::RetrieveUnitUnderlyingType(LD::Type<HourType>{}))>;
-        //using UnderlyingHourType = LD::GetType<decltype(LD::CT::RetrieveUnitUnderlyingType(LD::Type<HourType>{}))>;
-        //return LD::ToImmutableString(time.Hour())+
-        //LD::ImmutableString{":"}+
-        //LD::ToImmutableString(time.Minute()) +
-        //LD::ImmutableString{":"} +
-        //LD::ToImmutableString(time.Second());
-        //((time.Hour() < 10)?LD::ImmutableString{"0"}:LD::ImmutableString{""})
-        return ((time.Hour() < HourType (UnderlyingHourType (10)))?LD::ImmutableString{"0"}:LD::ImmutableString{""})+LD::ToImmutableString(time.Hour())+LD::ImmutableString{":"}+((time.Minute() < MinuteType (LD::UInteger(10))?LD::ImmutableString{"0"}:LD::ImmutableString{""})+LD::ToImmutableString(time.Minute())+LD::ImmutableString{":"}+((time.Second() < SecondType (LD::UInteger (10)))?LD::ImmutableString{"0"}:LD::ImmutableString{""})+LD::ToImmutableString(time.Second()));
+        using UnderlyingMinuteType = LD::GetType<decltype(LD::CT::RetrieveUnitUnderlyingType(LD::Type<MinuteType>{}))>;
+        using UnderlyingSecondType = LD::GetType<decltype(LD::CT::RetrieveUnitUnderlyingType(LD::Type<SecondType>{}))>;
+
+        return ((time.Hour() < HourType (UnderlyingHourType (10)))?LD::ImmutableString{"0"}:LD::ImmutableString{""})+LD::ToImmutableString(time.Hour())+LD::ImmutableString{":"}+((time.Minute() < MinuteType (UnderlyingMinuteType (10))?LD::ImmutableString{"0"}:LD::ImmutableString{""})+LD::ToImmutableString(time.Minute())+LD::ImmutableString{":"}+((time.Second() < SecondType (UnderlyingSecondType (10)))?LD::ImmutableString{"0"}:LD::ImmutableString{""})+LD::ToImmutableString(time.Second()));
     }
 
     namespace Detail
@@ -1118,452 +981,31 @@ namespace LD
         static constexpr auto  TimeRegularExpression2 = ctll::basic_fixed_string{"(\\d{1,2}),(\\d{1,2}),(\\d{1,2})"};
     }
 
-    template<typename ... A>
-    LD::QueryResult<LD::Time(A...)> FromStringView(LD::Type<LD::Time>, LD::StringView view, A && ... args) noexcept
+    template<typename T1, typename T2, typename T3, typename T4,typename ... A>
+    LD::QueryResult<LD::Time(A...)> FromStringView(LD::Type<LD::BasicTime<T1,T2,T3,T4>>, LD::StringView view, A && ... args) noexcept
     {
+        using HourType = LD::CT::Detail::ExtractHourType<T1,T2,T3,T4>;
+        using MinuteType = LD::CT::Detail::ExtractMinuteType<T1,T2,T3,T4>;
+        using SecondType = LD::CT::Detail::ExtractSecondType<T1,T2,T3,T4>;
+        using MiliSecondType = LD::CT::Detail::ExtractMilisecondType<T1,T2,T3,T4>;
+
+
         if (auto [whole, hour, minute, second] = ctre::match<LD::Detail::TimeRegularExpression0>(view); whole)
         {
-            LD::MakeContext(LD::TransactionResult{},LD::Time{hour,minute,second},LD::Forward<A>(args)...);
+            LD::MakeContext(LD::TransactionResult{},LD::BasicTime<T1,T2,T3,T4>{LD::Hour<LD::UInteger>{LD::UInteger (hour)},LD::Minute<LD::UInteger>{LD::UInteger (hour)},LD::Second<LD::UInteger>{LD::UInteger (hour)}},LD::Forward<A>(args)...);
         }else if(auto [whole, hour, minute, second] = ctre::match<LD::Detail::TimeRegularExpression1>(view); whole)
         {
-            LD::MakeContext(LD::TransactionResult{},LD::Time{hour,minute,second},LD::Forward<A>(args)...);
+            LD::MakeContext(LD::TransactionResult{},LD::BasicTime<T1,T2,T3,T4>{LD::Hour<LD::UInteger>{LD::UInteger (hour)},LD::Minute<LD::UInteger>{LD::UInteger (hour)}},LD::Forward<A>(args)...);
         }else if(auto [whole, hour, minute, second] = ctre::match<LD::Detail::TimeRegularExpression2>(view); whole)
         {
-            LD::MakeContext(LD::TransactionResult{},LD::Time{hour,minute,second},LD::Forward<A>(args)...);
+            LD::MakeContext(LD::TransactionResult{},LD::BasicTime<T1,T2,T3,T4>{LD::Hour<LD::UInteger>{LD::UInteger (hour)},LD::Minute<LD::UInteger>{LD::UInteger (hour)}},LD::Forward<A>(args)...);
         }
 
         return LD::MakeContext(LD::TransactionError{},LD::Forward<A>(args)...);
     }
 
 
-    /*
-    class Date
-    {
 
-    private:
-
-        long        lJulianDay;
-        //Time CurrentTime;
-        //
-        // Function      : YmdToJd
-        //
-        // Author        : Todd Knarr
-        //
-        // Creation date : 29 Nov 1995
-        //
-        // Parameters    : int year, month, day
-        //
-        // Return values : long julian day
-        //
-        // Description   :
-        //
-        // Internal routine that does the physical conversion
-        // from YMD form to Julian day number.
-        //
-        static const LD::Float YmdToJd( const LD::Integer & iYear, const LD::Integer & iMonth, const LD::Integer & iDay, const LD::Float &  hour, const LD::Float & minute, const LD::Float & second ) noexcept
-        {
-            const LD::Integer a = (14-iMonth)/12;
-            const LD::Integer y = iYear + 4800 -a;
-            const LD::Integer m = iMonth+12*a -3;
-
-            LD::Integer result = iDay + LD::Floor(((153*m)+2)/5) +365*y + LD::Floor(y/4) - 32083;
-            const LD::Float  date = (LD::Float)result + (((LD::Float)hour-12.0f)/24.0f)+((LD::Float)minute/1440.0f)+((LD::Float)second/86400.0f);
-            return date;
-        }
-
-        //
-        // Function      : JdToYmd
-        //
-        // Author        : Todd Knarr
-        //
-        // Creation date : 29 Nov 1995
-        //
-        // Parameters    : long julian day, pointers to int year, month, day
-        //
-        // Return values : none
-        //
-        // Description   :
-        //
-        // Internal routine that reverses the conversion, turning a Julian
-        // day number into YMD values.
-        //
-        static void JdToYmd( const LD::UInteger & J, LD::Integer *piYear, LD::Integer *piMonth,
-                             LD::Integer *piDay ) noexcept
-        {
-            const LD::Integer b =274277;
-            const LD::Integer c = -38;
-            const LD::Integer v = 3;
-            const LD::Integer r = 4;
-            const LD::Integer j = 1401;
-            const LD::Integer f = (LD::Integer)(J + j + (((4 * J + b) / 146097) * 3) / 4 + c);
-            const LD::Integer e =  r * f + v;
-            const LD::Integer p = 1461;
-            const LD::Integer w = 2;
-            const LD::Integer g = (e%p)/r;
-            const LD::Integer u = 5;
-            const LD::Integer h = u * g + w;
-            const LD::Integer m = 2;
-            const LD::Integer n = 12;
-            const LD::Integer y = 4716;
-            const LD::Integer s = 153;
-            *piDay = (h%s)/u +1;
-            *piMonth = (h/2+m)%n +1;
-            *piYear = (e/p) - y+(n+m-*piMonth)/n;
-        }
-
-    public:
-
-        //
-        // Function      : IsLeapYear
-        //
-        // Author        : Todd Knarr
-        //
-        // Creation date : 5 Dec 1995
-        //
-        // Parameters    : int year
-        //
-        // Return values : 1 if the year given is a leap year
-        //                 0 if it is not
-        //
-        static const bool IsLeapYear( const LD::Integer & iYear ) noexcept
-        {
-            LD::Integer jd1, jd2;
-            jd1 = YmdToJd( iYear, 2, 28 ,0,0,0);
-            jd2 = YmdToJd( iYear, 3, 1 ,0,0,0);
-            return ( ( jd2 - jd1 ) > 1 );
-        }
-
-        //
-        // Function      : default constructor
-        //
-        // Author        : Todd Knarr
-        //
-        // Creation date : 29 Nov 1995
-        //
-        // Parameters    : none
-        //
-        // Return values : none
-        //
-        // Description   :
-        //
-        // Constructs a new object initialized to 1 Jan 4713BC
-        //
-        Date() noexcept:Date(time(0))
-        {
-
-        }
-
-        //
-        // Function      : copy constructor
-        //
-        // Author        : Todd Knarr
-        //
-        // Creation date : 13 Mar 1996
-        //
-        // Parameters    :
-        //
-        // Return values :
-        //
-        Date( const Date& Orig ) noexcept { lJulianDay = Orig.lJulianDay; }
-        Date& operator=( const Date& Orig ) noexcept
-        {
-            lJulianDay = Orig.lJulianDay;
-            return *this;
-        }
-
-        //
-        // Function      : time_t constructor
-        //
-        // Author        : Todd Knarr
-        //
-        // Creation date : 29 Nov 1995
-        //
-        // Parameters    : none
-        //
-        // Return values : none
-        //
-        // Description   :
-        //
-        // Constructs an object initialized to the date
-        // represented by a system time value.
-        //
-        Date( const time_t tSysTime ) noexcept
-        {
-            struct tm *ptm;
-            int y, m, d;
-            short hour,minute,second;
-
-
-            ptm = localtime( &tSysTime );
-
-            y = ptm->tm_year + 1900;
-            m = ptm->tm_mon + 1;
-            d = ptm->tm_mday;
-            hour = ptm->tm_hour;
-            minute = ptm->tm_min;
-            second = ptm->tm_sec;
-            //this->CurrentTime.Hour = hour;
-            //this->CurrentTime.Minute = minute;
-            //this->CurrentTime.Second = second;
-            lJulianDay = YmdToJd( y, m, d ,0,0,0);
-        }
-
-        //
-        // Function      : char* ( string ) constructor
-        //
-        // Author        : Todd Knarr
-        //
-        // Creation date : 30 Nov 1995
-        //
-        // Parameters    :
-        //
-        // Return values :
-        //
-        // Description   :
-        //
-        // Constructs an object from a string.
-        // The string is formatted as the ASCII representation
-        // of the long Julian day number.
-        //
-        Date( const char *String ) noexcept
-        {
-            lJulianDay = atol( String );
-        }
-
-        //
-        // Function      : year/month/day constructor
-        //
-        // Author        : Todd Knarr
-        //
-        // Creation date : 29 Nov 1995
-        //
-        // Parameters    : int year, month, day
-        //
-        // Return values : none
-        //
-        // Description   :
-        //
-        // Constructs an object initialized to
-        // the date given by the arguments
-        //
-        Date( const LD::Integer & iDay, const LD::Integer &  iMonth, const LD::Integer &  iYear ) noexcept
-        {
-            lJulianDay = YmdToJd( iYear, iMonth, iDay ,0,0,0);
-        }
-
-        //
-        // Function      : Year, Month, Day, DayOfYear, DayOfWeek, DayOfWorkWeek,
-        //                 IsLeapYear, YMD
-        //
-        // Author        : Todd Knarr
-        //
-        // Creation date : 29 Nov 1995
-        //
-        // Parameters    : none
-        //
-        // Return values : int or none
-        //
-        // Description   :
-        //
-        // Functions to return various parts of the date. The Year(),
-        // Month() and Day() functions return the corresponding parts
-        // of the date. The DayOfYear() returns the day of the year,
-        // with 1 Jan being day 1. The DayOfWeek() and DayOfWorkWeek()
-        // functions return the day of the week, from 0 through 6, with
-        // the DayOfWeek() matching localtime()'s convention ( 0 = Sunday,
-        // 6 = Saturday ) and DayOfWorkWeek() starting the week on
-        // Monday ( 0 = Monday, 6 = Sunday ). IsLeapYear() returns 1 if
-        // the date is in a leap year, 0 otherwise. YMD() puts the
-        // year, month and day values directly into three integer variables,
-        // for times when you need all three at the same time.
-        //
-        LD::Integer GetYear( void ) const noexcept
-        {
-            LD::Integer y, m, d;
-
-            JdToYmd( lJulianDay, &y, &m, &d );
-            return y;
-        }
-        LD::Integer GetMonth( void ) const noexcept
-        {
-            LD::Integer y, m, d;
-
-            JdToYmd( lJulianDay, &y, &m, &d );
-            return m;
-        }
-        LD::Integer GetDay( void ) const noexcept
-        {
-            LD::Integer y, m, d;
-
-            JdToYmd( lJulianDay, &y, &m, &d );
-            return d;
-        }
-        void SetJulianDay(const unsigned long data) noexcept
-        {
-            this->lJulianDay = data;
-        }
-        //void SetTime(const Time & time) noexcept
-        //{
-            //this->CurrentTime = time;
-        //}
-        const unsigned long GetTimeAsNumber() const noexcept
-        {
-            unsigned long time = 0;
-            //((short*)&time)[0] = this->CurrentTime.Hour;
-            //((short*)&time)[1] = this->CurrentTime.Minute;
-            //((short*)&time)[2] = this->CurrentTime.Second;
-            //((short*)&time)[3] = 1;
-            return time;
-        }
-        void SetTime(const unsigned long possibleTime) noexcept
-        {
-            //this->CurrentTime.Hour = ((short*)&possibleTime)[0];
-            //this->CurrentTime.Minute = ((short*)&possibleTime)[1];
-            //this->CurrentTime.Second = ((short*)&possibleTime)[2];
-        }
-        LD::Integer GetDayOfYear( void ) const noexcept;
-        LD::Integer GetDayOfWeek( void ) const noexcept
-        {
-            return (LD::Integer)   fmodf(    fmodf(lJulianDay, 7.0f)+1.0f,7.0f)      ;
-        }
-        LD::Integer GetDayOfWorkWeek( void ) const
-        {
-            return (LD::Integer)fmodf(lJulianDay, 7.0f);
-        }
-        bool IsLeapYear( void ) const noexcept
-        {
-            LD::Integer y, m, d;
-            JdToYmd( lJulianDay, &y, &m, &d );
-            return (bool)IsLeapYear( y );
-        }
-        void YMD( LD::Integer *pY, LD::Integer *pM, LD::Integer *pD ) noexcept
-        {
-            JdToYmd( lJulianDay, pY, pM, pD );
-            return;
-        }
-        const LD::UInteger & GetJulianDate() const noexcept
-        {
-            return this->lJulianDay;
-        }
-        //
-        // Function      : Additive operators
-        //
-        // Author        : Todd Knarr
-        //
-        // Creation date : 30 Nov 1995
-        //
-        // Parameters    : Date value and integer, or
-        //                 Two date values
-        //
-        // Return values : New Date, or difference between two Dates
-        //
-        // Description   :
-        //
-        // Adding an integral type to a Date adds the number of
-        // days in the integral type to the Date. Adding two Dates
-        // is not defined. Subtracting two dates yields the difference
-        // between them in days.
-        //
-        friend Date operator+( const Date& Left, const long Right ) noexcept
-        {
-            Date Temp = Left;
-            Temp.lJulianDay += Right;
-            return Temp;
-        }
-        friend Date operator+( const long Left, const Date& Right ) noexcept
-        {
-            Date Temp = Right;
-            Temp.lJulianDay += Left;
-            return Temp;
-        }
-        Date& operator+=( const long Right ) noexcept
-        {
-            lJulianDay += Right;
-            return *this;
-        }
-        friend Date operator-( const Date& Left, const long Right ) noexcept
-        {
-            Date Temp = Left;
-            Temp.lJulianDay -= Right;
-            return Temp;
-        }
-        friend Date operator-( const long Left, const Date& Right ) noexcept
-        {
-            Date Temp = Right;
-            Temp.lJulianDay -= Left;
-            return Temp;
-        }
-        Date& operator-=( const long Right ) noexcept
-        {
-            lJulianDay -= Right;
-            return *this;
-        }
-        long operator-( const Date& Right ) noexcept
-        {
-            return lJulianDay - Right.lJulianDay;
-        }
-
-        //
-        // Function      : ++ and -- operators, prefix and postfix forms
-        //
-        // Author        : Todd Knarr
-        //
-        // Creation date : 1 Dec 1995
-        //
-        // Parameters    : none
-        //
-        // Return values : New Date
-        //
-        Date& operator++() noexcept
-        {
-            lJulianDay++;
-            return *this;
-        }
-        Date operator++( int ) noexcept
-        {
-            Date Temp = *this;
-            lJulianDay++;
-            return Temp;
-        }
-        Date& operator--() noexcept
-        {
-            lJulianDay--;
-            return *this;
-        }
-        Date operator--( int ) noexcept
-        {
-            Date Temp = *this;
-            lJulianDay--;
-            return Temp;
-        }
-
-        int operator==( const Date& Right ) const noexcept
-        {
-            return lJulianDay == Right.lJulianDay;
-        }
-        int operator!=( const Date& Right ) const noexcept
-        {
-            return lJulianDay != Right.lJulianDay;
-        }
-        int operator<( const Date& Right ) const noexcept
-        {
-            return lJulianDay < Right.lJulianDay;
-        }
-        int operator<=( const Date& Right ) const noexcept
-        {
-            return lJulianDay <= Right.lJulianDay;
-        }
-        int operator>( const Date& Right ) const noexcept
-        {
-            return lJulianDay > Right.lJulianDay;
-        }
-        int operator>=( const Date& Right ) const noexcept
-        {
-            return lJulianDay >= Right.lJulianDay;
-        }
-
-    };
-     */
 
     template<typename Date, typename Time, class = void>
     class BasicDateTime;
@@ -1596,27 +1038,6 @@ namespace LD
 
 
     using DateTime = LD::BasicDateTime<LD::Date,LD::BasicTime<LD::Hour<LD::UInteger>,LD::Minute<LD::UInteger>,LD::Second<LD::UInteger>,LD::Milisecond<LD::UInteger>>>;
-
-    /*
-    class DateTime
-    {
-    private:
-        LD::Date mDate;
-        LD::Time mTime;
-    public:
-
-        const LD::Date & Date() const noexcept
-        {
-            return this->mDate;
-        }
-
-        const LD::Time & Time() const noexcept
-        {
-            return this->mTime;
-        }
-    };
-     */
-
 
 
 
@@ -1684,12 +1105,6 @@ namespace LD
         inline GregorianDate( const LD::Integer & iDay, const LD::Integer &  iMonth, const LD::Integer &  iYear );
         inline GregorianDate( const time_t tSysTime );
     };
-
-
-
 }
-
-
-
 #endif
 #endif //LANDESSDEVCORE_DATETIME_HPP

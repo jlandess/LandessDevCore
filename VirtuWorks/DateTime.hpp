@@ -64,7 +64,7 @@ namespace LD
             LD::UInteger minute = (minuteView.view()[0]-'0')*10 + (minuteView.view()[1]-'0')*1;
             LD::UInteger second = (secondView.view()[0]-'0')*10 + (secondView.view()[1] - '0')*1;
 
-            return LD::MakeContext(LD::TransactionResult{},LD::VW::DateTime{LD::Date(LD::Year<LD::UInteger>{LD::UInteger{year}},LD::Month<LD::UInteger>{month},LD::Day<LD::UInteger>{day}),LD::Time(hour,minute,second)},LD::Forward<A>(args)...);
+            return LD::MakeContext(LD::TransactionResult{},LD::VW::DateTime{LD::Date(LD::Year<LD::UInteger>{LD::UInteger{year}},LD::Month<LD::UInteger>{month},LD::Day<LD::UInteger>{day}),LD::Time(LD::Hour<LD::UInteger>{LD::UInteger (hour)},LD::Minute<LD::UInteger>{LD::UInteger (hour)},LD::Second<LD::UInteger>{LD::UInteger (hour)})},LD::Forward<A>(args)...);
         }
         else if (auto [whole, yearView, monthView, dayView] = ctre::match<LD::VW::Detail::DateTimeRegularExpression1>(view); whole)
         {
@@ -77,7 +77,7 @@ namespace LD
 
             std::cout << "Year : " << year << " , " << month << " , " << day << std::endl;
 
-            return LD::MakeContext(LD::TransactionResult{},LD::VW::DateTime{LD::Date(LD::Year<LD::UInteger>{LD::UInteger{year}},LD::Month<LD::UInteger>{month},LD::Day<LD::UInteger>{day}),LD::Time(0,0,0)},LD::Forward<A>(args)...);
+            return LD::MakeContext(LD::TransactionResult{},LD::VW::DateTime{LD::Date(LD::Year<LD::UInteger>{LD::UInteger{year}},LD::Month<LD::UInteger>{month},LD::Day<LD::UInteger>{day}),LD::Time(LD::Hour<LD::UInteger>{LD::UInteger (0)},LD::Minute<LD::UInteger>{LD::UInteger (0)},LD::Second<LD::UInteger>{LD::UInteger (0)})},LD::Forward<A>(args)...);
         }
         return LD::MakeContext(LD::TransactionError{},LD::Forward<A>(args)...);
     }

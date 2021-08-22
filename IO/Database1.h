@@ -108,32 +108,11 @@ namespace LD
         bool didInsert = true;
         LD::For<CurrentTupleSize>([](auto I, Key && key, V && object, T & document, bool & insertStatus)
         {
-
-            using CurrentType = LD::Detail::Decay_T<decltype(LD::Get<I>(LD::Forward<V>(object)))>;
-
-            if constexpr(LD::CT::IsReflectable(LD::Type<CurrentType>{}))
-            {
-                auto response = LD::Insert(
-                        document,
-                        key+LD::ImmutableString{"."}+LD::ToImmutableString(LD::UInteger (I)),
-                        LD::Get(LD::Get<I>(LD::Forward<V>(object))));
-                insertStatus = (insertStatus && LD::IsTransactionalResponse(response));
-
-            }else
-            {
-
-                auto response = LD::Insert(
-                        document,
-                        key+LD::ImmutableString{"."}+LD::ToImmutableString(LD::UInteger (I)),
-                        LD::Get(LD::Get<I>(LD::Forward<V>(object))));
-                insertStatus = (insertStatus && LD::IsTransactionalResponse(response));
-            }
-
-
-
-
-
-
+            auto response = LD::Insert(
+                    document,
+                    key+LD::ImmutableString{"."}+LD::ToImmutableString(LD::UInteger (I)),
+                    LD::Get(LD::Get<I>(LD::Forward<V>(object))));
+            insertStatus = (insertStatus && LD::IsTransactionalResponse(response));
 
 
             return insertStatus;

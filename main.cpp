@@ -126,6 +126,8 @@ If not divisible by 3 or 5 print number
 #define SEC_PER_MIN   60
 int main(int argc, char **argv)
 {
+    LD::Hour<LD::UInteger> hour;
+    //hour.NativeRepresentation().Value()
     LD::HashiVault vault{
         LD::ImmutableString{"http://192.168.30.50:8200"},
         LD::ImmutableString{"s.w8hIFCNwl59CMABCvaZ1qlGV"}};
