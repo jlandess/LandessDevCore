@@ -15,6 +15,52 @@
 #include "IO/json.hpp"
 #include "IaaS/DockerManifest.hpp"
 #include "Algorithms/ToJSON.hpp"
+#include "IaaS/HashiVault/HashiVault.hpp"
+#include "Reflection/Reflection.hpp"
+
+namespace LD
+{
+    namespace Example
+    {
+        class PVECredentials
+        {
+        private:
+            LD::ImmutableString<64> mHostName;
+            LD::ImmutableString<64> mUserName;
+            LD::ImmutableString<64> mPassword;
+        public:
+
+            const LD::ImmutableString<64> & HostName() const noexcept{return this->mHostName;}
+            LD::ImmutableString<64> & HostName() noexcept{return this->mHostName;}
+
+            const LD::ImmutableString<64> & UserName() const noexcept{return this->mUserName;}
+            LD::ImmutableString<64> & UserName() noexcept {return this->mUserName;}
+
+            const LD::ImmutableString<64> & Password() const noexcept{return this->mPassword;}
+            LD::ImmutableString<64> & Password() noexcept {return this->mPassword;}
+        };
+    }
+}
+template<>
+struct LD::CT::TypeDescriptor<LD::Example::PVECredentials>
+{
+private:
+    static constexpr auto HostNameLabel = LD::ImmutableString{"HostName"};
+    static constexpr auto UserNameLabel = LD::ImmutableString("UserName");
+    static constexpr auto PassWordLabel = LD::ImmutableString("Password");
+public:
+    static constexpr auto ClassName = LD::ImmutableString{"PVEKey"};
+
+    using MemberList = LD::CT::TypeList<
+            LD::CT::EncapsulatedMemberDescriptor<HostNameLabel,LD::CT::SelectOverload<LD::ImmutableString<64> & (LD::Example::PVECredentials::*)(),&LD::Example::PVECredentials::HostName>(),LD::CT::SelectOverload<const LD::ImmutableString<64> & (LD::Example::PVECredentials::*)() const,&LD::Example::PVECredentials::HostName>()>,
+            LD::CT::EncapsulatedMemberDescriptor<UserNameLabel,LD::CT::SelectOverload<LD::ImmutableString<64> & (LD::Example::PVECredentials::*)(),&LD::Example::PVECredentials::UserName>(),LD::CT::SelectOverload<const LD::ImmutableString<64> & (LD::Example::PVECredentials::*)() const,&LD::Example::PVECredentials::UserName>()>,
+            LD::CT::EncapsulatedMemberDescriptor<PassWordLabel,LD::CT::SelectOverload<LD::ImmutableString<64> & (LD::Example::PVECredentials::*)(),&LD::Example::PVECredentials::Password>(),LD::CT::SelectOverload<const LD::ImmutableString<64> & (LD::Example::PVECredentials::*)() const,&LD::Example::PVECredentials::Password>()>
+    >;
+
+
+    static constexpr MemberList Members{  };
+
+};
 namespace LD
 {
     template<typename ... ManifestOptiosn>
@@ -166,7 +212,41 @@ namespace LD
     {
         extern void DeploymentExample()
         {
-            LD::PVE::ProxyAPI proxmox{LD::ImmutableString{"null"},LD::ImmutableString{"null"},LD::ImmutableString{"null"}};
+
+            LD::HashiVault vault{
+                    LD::ImmutableString{"http://192.168.30.50:8200"},
+                    LD::ImmutableString{"s.w8hIFCNwl59CMABCvaZ1qlGV"}};
+
+
+            auto vaultResponse = vault.Query(
+                    LD::Type<LD::Example::PVECredentials>{},
+                    LD::ImmutableString{"demoapplications"},
+                    LD::ImmutableString{"pvedeployexample"});
+
+
+            auto onPVEKey = [](const LD::Example::PVECredentials & key) noexcept
+            {
+                return LD::Optional<LD::Example::PVECredentials>{key};
+            };
+
+            auto onVaultError = [](const LD::TransactionError & error) noexcept
+            {
+                return LD::Optional<LD::Example::PVECredentials>{};
+            };
+
+            LD::Optional<LD::Example::PVECredentials> generatedCredentials = LD::InvokeVisitation(LD::Overload{onPVEKey,onVaultError},vaultResponse);
+
+            if (!generatedCredentials.HasValue())
+            {
+                return;
+            }
+
+            LD::Example::PVECredentials credential = (*generatedCredentials);
+
+            LD::PVE::ProxyAPI proxmox{
+                LD::ImmutableString<64>{credential.HostName()},
+                LD::ImmutableString<64>{credential.UserName()},
+                LD::ImmutableString<64>{credential.Password()}};
 
 
             LD::PVE::NetworkBridge bridge{
