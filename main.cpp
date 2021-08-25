@@ -64,24 +64,7 @@ void ParseResponse(LD::StringView view) noexcept
     }
 }
 
-class TestClass
-{
-private:
-    LD::ImmutableString<15> mLabel;
-    LD::Float mPrecision;
-public:
-    TestClass():mLabel{LD::ToImmutableString("abc")},mPrecision{7.5}
-    {
 
-    }
-    const LD::ImmutableString<15> & Label() const noexcept {return this->mLabel;}
-    LD::ImmutableString<15> & Label() noexcept{return this->mLabel;}
-
-
-    const LD::Float & Precision() const noexcept{return this->mPrecision;}
-    LD::Float  & Precision() noexcept{return this->mPrecision;}
-
-};
 
 class DNSResponse
 {
@@ -93,41 +76,43 @@ public:
 
 };
 
-template<>
-struct LD::CT::TypeDescriptor<TestClass>
-{
-private:
-    static constexpr auto LabelName = ctll::basic_fixed_string("Label");
-    static constexpr auto PrecisionName = ctll::basic_fixed_string("Precision");
-public:
-    static constexpr auto ClassName = ctll::fixed_string{"TestClass"};
-
-    using MemberList = LD::CT::TypeList<
-            LD::CT::EncapsulatedMemberDescriptor<LabelName,LD::CT::SelectOverload<LD::ImmutableString<15> & (TestClass::*)(),&TestClass::Label>(),LD::CT::SelectOverload<const LD::ImmutableString<15> & (TestClass::*)() const,&TestClass::Label>()>,
-            LD::CT::EncapsulatedMemberDescriptor<PrecisionName,LD::CT::SelectOverload<LD::Float & (TestClass::*)(),&TestClass::Precision>(),LD::CT::SelectOverload<const LD::Float & (TestClass::*)() const,&TestClass::Precision>()>
-    >;
 
 
-    static constexpr MemberList Members{  };
 
-};
-
-/**
- * Iterate 1-100
-If divisible by 3 print “Fizz”
-If divisible by 5 print “Buzz”
-If divisible by 3 and 5 print “FizzBuzz”
-If not divisible by 3 or 5 print number
-
- * @param size
- */
-#define SEC_PER_DAY   86400
-#define SEC_PER_HOUR  3600
-#define SEC_PER_MIN   60
 int main(int argc, char **argv)
 {
-    LD::Hour<LD::UInteger> hour;
-    //hour.NativeRepresentation().Value()
+    std::cout << LD::CT::CanBeMadeFromStringView(LD::Type<int>{}) << std::endl;
+    nlohmann::json json123;
+    LD::JsonBackend jsonBackend123{json123};
+
+    LD::Insert(
+            jsonBackend123,
+            LD::ImmutableString{"key1"},
+            LD::Pyramid{LD::Square{8},LD::Triangle{7,98}});
+
+
+    LD::Pyramid testPyramid;
+    LD::Fetch(
+            jsonBackend123,
+            LD::ImmutableString{"key1"},
+            testPyramid);
+
+    LD::Insert(
+            jsonBackend123,
+            LD::ImmutableString{"abc"},
+            23);
+    LD::UInteger memesz;
+    LD::Fetch(
+            jsonBackend123,
+            LD::ImmutableString{"abc"},
+            memesz);
+
+    std::cout << "ABC Number: " << memesz << std::endl;
+
+    std::cout << json123.dump(2) << std::endl;
+    std::cout << testPyramid.Side().Base() << std::endl;
+
+
     LD::HashiVault vault{
         LD::ImmutableString{"http://192.168.30.50:8200"},
         LD::ImmutableString{"s.w8hIFCNwl59CMABCvaZ1qlGV"}};
@@ -156,20 +141,6 @@ int main(int argc, char **argv)
 
     simdjson::dom::element parsedResponse = parser.parse(jsonToJsonTest.dump(2));
 
-
-    auto parsedSquare = LD::FromJSON(LD::Type<TestClass>{},parsedResponse);
-
-    auto onParsedSquare = [](const TestClass & square) noexcept
-    {
-        std::cout << "Parsed Square Length: " << square.Label().Data() << std::endl;
-    };
-
-    auto onFailedSquare = [](const LD::TransactionError & error) noexcept
-    {
-
-    };
-
-    LD::InvokeVisitation(LD::Overload{onParsedSquare,onFailedSquare},parsedSquare);
 
     LD::TieredKeyValueStore<LD::RedisBackingStore,LD::CT::TypeList<LD::OpenDHTBackend>> dnsEntries;
     LD::UnQliteBackend<char> sqliteDB{"database1.db",LD::OpenAndCreateIfNotExists{}};
@@ -257,32 +228,6 @@ int main(int argc, char **argv)
     //LD::Example::IMGUIExample1();
     //LD::Example::IMGUIExample2();
     /*
-    std::map<std::string, std::string> options =
-            {
-                    {"webdav_hostname", "https://nextcloud.landesshome.com/remote.php/dav/files/phoenixflower/"},
-                    {"webdav_username", "phoenixflower"},
-                    {"webdav_password", "Next_Cloud_Dcs1224"}
-            };
-    std::unique_ptr<WebDAV::Client> client = std::make_unique<WebDAV::Client>(options);
-
-    char * string = "abcad;lfjas;ldfksadjf;sdaflkasj";
-
-    LD::Timer timer;
-    timer.Start();
-    client->upload_from("Carrie Landess MD/abc.txt",string,strlen(string));
-    bool check_connection = client->check();
-    std::cout << "test connection with WebDAV drive is "
-              << (check_connection ? "" : "not ")
-              << "successful"<< std::endl;
-    auto directories = client->list();
-
-    timer.Stop();
-
-    std::cout << "Time Elapsed " << LD::ToImmutableString(timer.Time()/LD::MicroSecond<LD::UInteger>{LD::UInteger(1)}).Data() << std::endl;
-    for(const auto & dir: directories)
-    {
-        std::cout << dir << std::endl;
-    }
      */
     //ndp1();
     //std::cout << LD::ToImmutableString(address).Data() << std::endl;

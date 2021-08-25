@@ -57,9 +57,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a2ffdfb1-0050-446c-b0af-d02ece8e31b8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/Algorithms/FromJSON.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Algorithms/FromJSON.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Algorithms/FromString.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Algorithms/FromString.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/IO/Database1.h" beforeDir="false" afterPath="$PROJECT_DIR$/IO/Database1.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Primitives/General/DateTime.h" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/DateTime.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/VirtuWorks/DateTime.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/VirtuWorks/DateTime.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IO/JsonDatabaseBackend.h" beforeDir="false" afterPath="$PROJECT_DIR$/IO/JsonDatabaseBackend.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IO/UnqliteDatabaseBackend.h" beforeDir="false" afterPath="$PROJECT_DIR$/IO/UnqliteDatabaseBackend.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IaaS/ArtifactRepository.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/IaaS/ArtifactRepository.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/CXX.includecache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/LandessDevCore" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/LandessDevCore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/Testing/Temporary/LastTest.log" afterDir="false" />
@@ -347,7 +350,7 @@
       <workItem from="1626319557559" duration="26365000" />
       <workItem from="1626559289191" duration="12016000" />
       <workItem from="1626601213705" duration="106088000" />
-      <workItem from="1629051768912" duration="86838000" />
+      <workItem from="1629051768912" duration="107046000" />
     </task>
     <servers />
   </component>

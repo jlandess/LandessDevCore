@@ -30,10 +30,6 @@ namespace LD
             return (*this);
         }
 
-        /**
-         * bool PairsHaveImmutableTestNameAsKey = (LD::CT::IsImmutableString(LD::CT::RemoveQualifiers(LD::CT::Key(LD::CT::RemoveQualifiers(LD::Type<Pairs>{})))) && ...),
-                bool PairsHaveResultAsValue = (LD::TDD::CT::IsResult(LD::CT::RemoveQualifiers(LD::CT::Value(LD::CT::RemoveQualifiers(LD::Type<Pairs>{})))) && ...)>
-         */
         template<typename ... Pairs,
                 bool IsTDDTest = (LD::TDD::CT::IsResult(LD::CT::RemoveQualifiers(LD::Type<Pairs>{})) && ...)
                         >
@@ -41,8 +37,6 @@ namespace LD
         {
             auto context = LD::MakeContext(LD::Forward<Pairs>(kv)...);
             auto dateTimeKey = LD::ToImmutableString(LD::DateTime{});
-
-
             LD::Insert(LD::Get(this->mRepository),dateTimeKey,context);
             return (*this);
         }

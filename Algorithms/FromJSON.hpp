@@ -17,6 +17,8 @@
 namespace LD
 {
 
+    template<typename V,typename ... A>
+    LD::Enable_If_T<LD::Require<LD::CT::IsReflectable(LD::CT::RemoveQualifiers(LD::Type<V>{}))>,LD::RequestResponse<V(A...)>> FromJSON(V & object, const simdjson::dom::element & json,A && ... args) noexcept;
 
     template<typename V,typename ... A>
     LD::Enable_If_T<LD::Require<LD::CT::IsReflectable(LD::CT::RemoveQualifiers(LD::Type<V>{}))>,LD::RequestResponse<V(A...)>> FromJSON(V & object, const simdjson::dom::element & json,A && ... args) noexcept

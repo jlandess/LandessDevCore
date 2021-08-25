@@ -40,6 +40,27 @@ namespace LD
             return LD::CreateResponse(LD::Type<bool>{},bool{true},LD::Forward<Args>(arguements)...);
         }
 
+
+        //LD::RequestResponse<decltype(LD::Declval<F>()(LD::Declval<LD::StringView>(),LD::Declval<LD::StringView>()))(Args&&...)>
+        template<typename ... Args, typename F,
+                typename Ret = decltype(LD::Declval<F>()(LD::Declval<LD::StringView>(),LD::Declval<StringView>(),LD::Declval<Args>()...))>
+        auto Query(LD::StringView key, F && functor, Args && ... arguments) const noexcept -> LD::RequestResponse<Ret(Args&&...)>
+        {
+
+
+            //using ReturnType = decltype(LD::Declval<F>()(LD::Declval<LD::StringView>(),LD::Declval<LD::StringView>()));
+            nlohmann::json * ptr = this->mBackend.GetPointer();
+            auto it = (*ptr).find(key.data());
+            if (it != (*ptr).end())
+            {
+                LD::StringView resultantValue;
+                (*it).get_to(resultantValue);
+                Ret returnable = functor(LD::StringView{key},LD::StringView{resultantValue},LD::Forward<Args>(arguments)...);
+                return LD::CreateResponse(LD::Type<Ret>{},returnable,LD::Forward<Args>(arguments)...);
+            }
+
+            return LD::CreateResponse(LD::Type<Ret>{},LD::TransactionError{},LD::Forward<Args>(arguments)...);
+        }
         template<typename F, typename ... Args,
                 typename FunctorRet = decltype(LD::Declval<F>()(LD::Declval<LD::Context<LD::StringView,LD::StringView,Args...>>())),
                 typename Ret = LD::QueryResult<FunctorRet(LD::StringView,Args...)>>

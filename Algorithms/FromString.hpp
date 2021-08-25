@@ -393,7 +393,38 @@ namespace LD
     {
         return LD::Optional<short>{};
     }
+}
 
+namespace LD
+{
+    namespace CT
+    {
+        namespace Detail
+        {
+            template<typename T>
+            using Fartz12345 = decltype(LD::FromString(LD::Declval<LD::Type<T>>(),LD::Declval<LD::StringView>()));
+
+            template<typename T, typename ... A>
+            using Fartz123456 = decltype(LD::FromString(LD::Declval<LD::Type<T>>(),LD::Declval<LD::StringView>(),LD::Declval<A>()...));
+        }
+
+
+        template<typename T>
+        constexpr bool CanBeConstructedFromString(LD::Type<T> ) noexcept
+        {
+
+            //LD::CT::DebugTemplate<Fartz1234<LD::Detail::Decay_T<T>>>{};
+            return LD::Exists<LD::CT::Detail::Fartz12345 ,T>;
+        }
+
+        template<typename T, typename ... A>
+        constexpr bool CanBeConstructedFromString(LD::Type<T>, LD::Type<A> ... ) noexcept
+        {
+
+            //LD::CT::DebugTemplate<Fartz1234<LD::Detail::Decay_T<T>>>{};
+            return LD::Exists<LD::CT::Detail::Fartz123456 ,T,A...>;
+        }
+    }
 
 }
 #endif //LANDESSDEVCORE_FROMSTRING_HPP
