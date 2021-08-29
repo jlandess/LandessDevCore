@@ -4,11 +4,8 @@
 //#include "Definitions/Common.hpp"
 #include "mapboxvariant.hpp"
 #include "TypeTraits/FunctionalReflection.hpp"
-namespace LD
-{
-    template<class... Ts> struct Overload : Ts... { using Ts::operator()...; };
-    template<class... Ts> Overload(Ts...) -> Overload<Ts...>;
-}
+#include "Algorithms/Overload.hpp"
+
 namespace LD
 {
     template<typename T>

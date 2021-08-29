@@ -262,8 +262,10 @@ CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o
  ../Algorithms/Floor.hpp
  ../Algorithms/Forward.hpp
  ../Algorithms/FromString.hpp
+ ../Algorithms/GenericResize.h
  ../Algorithms/Invoke.hpp
  ../Algorithms/Move.hpp
+ ../Algorithms/Overload.hpp
  ../Algorithms/Power.hpp
  ../Algorithms/StringAsNumber.h
  ../Algorithms/Swap.hpp
@@ -369,7 +371,9 @@ CMakeFiles/LandessDevCore.dir/Examples/CalculusExample.cpp.o
  ../Algorithms/Exponential.hpp
  ../Algorithms/Floor.hpp
  ../Algorithms/Forward.hpp
+ ../Algorithms/GenericResize.h
  ../Algorithms/Move.hpp
+ ../Algorithms/Overload.hpp
  ../Algorithms/Swap.hpp
  ../Algorithms/vdt/asin.h
  ../Algorithms/vdt/atan.h
@@ -453,8 +457,10 @@ CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o
  ../Algorithms/Floor.hpp
  ../Algorithms/Forward.hpp
  ../Algorithms/FromString.hpp
+ ../Algorithms/GenericResize.h
  ../Algorithms/Invoke.hpp
  ../Algorithms/Move.hpp
+ ../Algorithms/Overload.hpp
  ../Algorithms/Power.hpp
  ../Algorithms/Sampler.hpp
  ../Algorithms/StringAsNumber.h
@@ -638,8 +644,10 @@ CMakeFiles/LandessDevCore.dir/Examples/DeploymentExample.cpp.o
  ../Algorithms/Forward.hpp
  ../Algorithms/FromJSON.hpp
  ../Algorithms/FromString.hpp
+ ../Algorithms/GenericResize.h
  ../Algorithms/Invoke.hpp
  ../Algorithms/Move.hpp
+ ../Algorithms/Overload.hpp
  ../Algorithms/Power.hpp
  ../Algorithms/StringAsNumber.h
  ../Algorithms/Swap.hpp
@@ -852,8 +860,10 @@ CMakeFiles/LandessDevCore.dir/Examples/FibonnaciExample.cpp.o
  ../Algorithms/Floor.hpp
  ../Algorithms/Forward.hpp
  ../Algorithms/FromString.hpp
+ ../Algorithms/GenericResize.h
  ../Algorithms/Invoke.hpp
  ../Algorithms/Move.hpp
+ ../Algorithms/Overload.hpp
  ../Algorithms/Power.hpp
  ../Algorithms/StringAsNumber.h
  ../Algorithms/Swap.hpp
@@ -894,6 +904,7 @@ CMakeFiles/LandessDevCore.dir/Examples/FibonnaciExample.cpp.o
  ../Primitives/General/ImproperFraction.hpp
  ../Primitives/General/Pair.h
  ../Primitives/General/Range.h
+ ../Primitives/General/Span.hpp
  ../Primitives/General/StaticArray.hpp
  ../Primitives/General/StringView.hpp
  ../Primitives/General/ctre.hpp
@@ -938,6 +949,7 @@ CMakeFiles/LandessDevCore.dir/Examples/FibonnaciExample.cpp.o
  ../TypeTraits/IsString.hpp
  ../TypeTraits/IsSwappable.hpp
  ../TypeTraits/IsUnion.hpp
+ ../TypeTraits/IsVariant.hpp
  ../TypeTraits/IsVoid.hpp
  ../TypeTraits/IsVolatile.hpp
  ../TypeTraits/Iterable.h
@@ -951,6 +963,7 @@ CMakeFiles/LandessDevCore.dir/Examples/FibonnaciExample.cpp.o
  ../TypeTraits/Type.h
  ../TypeTraits/TypeList.hpp
  ../TypeTraits/VariadicPack.hpp
+ ../TypeTraits/VariantTypes.h
  ../TypeTraits/__two.hpp
  /home/phoenixflower/Documents/Development/LandessDevCore/Examples/FibonnaciExample.cpp
 CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o
@@ -961,7 +974,9 @@ CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o
  ../Algorithms/Floor.hpp
  ../Algorithms/Forward.hpp
  ../Algorithms/FullAdder.hpp
+ ../Algorithms/GenericResize.h
  ../Algorithms/Move.hpp
+ ../Algorithms/Overload.hpp
  ../Algorithms/Swap.hpp
  ../Core/Tuple.hpp
  ../Definitions/Float.hpp
@@ -1042,8 +1057,10 @@ CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o
  ../Algorithms/Forward.hpp
  ../Algorithms/FromJSON.hpp
  ../Algorithms/FromString.hpp
+ ../Algorithms/GenericResize.h
  ../Algorithms/Invoke.hpp
  ../Algorithms/Move.hpp
+ ../Algorithms/Overload.hpp
  ../Algorithms/Periodic.hpp
  ../Algorithms/Power.hpp
  ../Algorithms/Sampler.hpp
@@ -1280,8 +1297,10 @@ CMakeFiles/LandessDevCore.dir/Examples/IOExample.cpp.o
  ../Algorithms/Floor.hpp
  ../Algorithms/Forward.hpp
  ../Algorithms/FromString.hpp
+ ../Algorithms/GenericResize.h
  ../Algorithms/Invoke.hpp
  ../Algorithms/Move.hpp
+ ../Algorithms/Overload.hpp
  ../Algorithms/Power.hpp
  ../Algorithms/StringAsNumber.h
  ../Algorithms/StringToPrimitive.hpp
@@ -1454,6 +1473,94 @@ CMakeFiles/LandessDevCore.dir/Examples/IOExample.cpp.o
  /home/phoenixflower/Documents/Development/LandessDevCore/Examples/ReflectionDemoTypes.h
 CMakeFiles/LandessDevCore.dir/Examples/MultithreadingExample.cpp.o
  /home/phoenixflower/Documents/Development/LandessDevCore/Examples/MultithreadingExample.cpp
+CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o
+ ../Algorithms/Abs.hpp
+ ../Algorithms/CompileTimeControlFlow.hpp
+ ../Algorithms/FastLog10.hpp
+ ../Algorithms/Floor.hpp
+ ../Algorithms/Forward.hpp
+ ../Algorithms/GenericResize.h
+ ../Algorithms/Move.hpp
+ ../Algorithms/Overload.hpp
+ ../Algorithms/Swap.hpp
+ ../Core/Tuple.hpp
+ ../Definitions/Float.hpp
+ ../Definitions/Integer.hpp
+ ../Functor/Lambda.h
+ ../Functor/LightWeightDelegate.h
+ ../Functor/LightWeightDelegateBase.h
+ ../IO/DatabaseOperationResult.h
+ ../IO/FetchRequest.h
+ ../Memory/ElementReference.h
+ ../Network/NDP/NDP.hpp
+ ../Network/NDP/ndp.h
+ ../Primitives/General/Context.h
+ ../Primitives/General/ContextualVariant.h
+ ../Primitives/General/Hash.hpp
+ ../Primitives/General/Immutable.hpp
+ ../Primitives/General/Pair.h
+ ../Primitives/General/Range.h
+ ../Primitives/General/StaticArray.hpp
+ ../Primitives/General/ctre.hpp
+ ../Primitives/General/mapboxrecursive_wrapper.hpp
+ ../Primitives/General/mapboxvariant.hpp
+ ../Primitives/General/mapboxvariantvisitor.h
+ ../Primitives/General/typestring.hpp
+ ../Process/arguments.hpp
+ ../Process/detail/array.hpp
+ ../Process/detail/type_traits.hpp
+ ../Process/drain.hpp
+ ../Process/environment.hpp
+ ../Process/export.h
+ ../Process/export.hpp
+ ../Process/input.hpp
+ ../Process/reproc.h
+ ../Process/reproc.hpp
+ ../TypeTraits/AddLValueReference.hpp
+ ../TypeTraits/AddPointer.hpp
+ ../TypeTraits/AddRValueReference.hpp
+ ../TypeTraits/Conditional.hpp
+ ../TypeTraits/Decay.hpp
+ ../TypeTraits/Declval.hpp
+ ../TypeTraits/Detection.hpp
+ ../TypeTraits/EnableIf.hpp
+ ../TypeTraits/FunctionalReflection.hpp
+ ../TypeTraits/IntegerSequence.hpp
+ ../TypeTraits/IntegralConstant.hpp
+ ../TypeTraits/IsArray.hpp
+ ../TypeTraits/IsAssignable.hpp
+ ../TypeTraits/IsBaseOf.hpp
+ ../TypeTraits/IsClassType.hpp
+ ../TypeTraits/IsConst.hpp
+ ../TypeTraits/IsConstructible.hpp
+ ../TypeTraits/IsConvertible.hpp
+ ../TypeTraits/IsDestructible.hpp
+ ../TypeTraits/IsFunction.hpp
+ ../TypeTraits/IsImmutable.h
+ ../TypeTraits/IsIntegralType.hpp
+ ../TypeTraits/IsNullPtr.hpp
+ ../TypeTraits/IsPackConvertible.hpp
+ ../TypeTraits/IsPointer.hpp
+ ../TypeTraits/IsReference.hpp
+ ../TypeTraits/IsSame.hpp
+ ../TypeTraits/IsString.hpp
+ ../TypeTraits/IsSwappable.hpp
+ ../TypeTraits/IsUnion.hpp
+ ../TypeTraits/IsVoid.hpp
+ ../TypeTraits/IsVolatile.hpp
+ ../TypeTraits/Iterable.h
+ ../TypeTraits/Limit.hpp
+ ../TypeTraits/RemoveAllExtents.hpp
+ ../TypeTraits/RemoveCV.hpp
+ ../TypeTraits/RemoveConst.hpp
+ ../TypeTraits/RemoveExtent.hpp
+ ../TypeTraits/RemoveReference.hpp
+ ../TypeTraits/StaticallySized.h
+ ../TypeTraits/Type.h
+ ../TypeTraits/TypeList.hpp
+ ../TypeTraits/VariadicPack.hpp
+ ../TypeTraits/__two.hpp
+ /home/phoenixflower/Documents/Development/LandessDevCore/Examples/NDPExample.cpp
 CMakeFiles/LandessDevCore.dir/Examples/PVEGUIDeploymentExample.cpp.o
  ../Algorithms/Abs.hpp
  ../Algorithms/AddAll.hpp
@@ -1464,8 +1571,10 @@ CMakeFiles/LandessDevCore.dir/Examples/PVEGUIDeploymentExample.cpp.o
  ../Algorithms/Floor.hpp
  ../Algorithms/Forward.hpp
  ../Algorithms/FromString.hpp
+ ../Algorithms/GenericResize.h
  ../Algorithms/Invoke.hpp
  ../Algorithms/Move.hpp
+ ../Algorithms/Overload.hpp
  ../Algorithms/Periodic.hpp
  ../Algorithms/Power.hpp
  ../Algorithms/StringAsNumber.h
@@ -1643,8 +1752,10 @@ CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o
  ../Algorithms/Floor.hpp
  ../Algorithms/Forward.hpp
  ../Algorithms/FromString.hpp
+ ../Algorithms/GenericResize.h
  ../Algorithms/Invoke.hpp
  ../Algorithms/Move.hpp
+ ../Algorithms/Overload.hpp
  ../Algorithms/Power.hpp
  ../Algorithms/StringAsNumber.h
  ../Algorithms/StringToPrimitive.hpp
@@ -1772,8 +1883,10 @@ CMakeFiles/LandessDevCore.dir/Examples/StringToNumberExample.cpp.o
  ../Algorithms/Floor.hpp
  ../Algorithms/Forward.hpp
  ../Algorithms/FromString.hpp
+ ../Algorithms/GenericResize.h
  ../Algorithms/Invoke.hpp
  ../Algorithms/Move.hpp
+ ../Algorithms/Overload.hpp
  ../Algorithms/Power.hpp
  ../Algorithms/StringAsNumber.h
  ../Algorithms/Swap.hpp
@@ -1876,8 +1989,10 @@ CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o
  ../Algorithms/Floor.hpp
  ../Algorithms/Forward.hpp
  ../Algorithms/FromString.hpp
+ ../Algorithms/GenericResize.h
  ../Algorithms/Invoke.hpp
  ../Algorithms/Move.hpp
+ ../Algorithms/Overload.hpp
  ../Algorithms/Power.hpp
  ../Algorithms/Sampler.hpp
  ../Algorithms/StringAsNumber.h
@@ -2022,6 +2137,55 @@ CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o
  /home/phoenixflower/Documents/Development/LandessDevCore/Examples/ReflectionDemoTypes.h
  /home/phoenixflower/Documents/Development/LandessDevCore/Examples/TermBoxMenuExample.cpp
  /home/phoenixflower/Documents/Development/LandessDevCore/Examples/TermBoxMenuExample.hpp
+CMakeFiles/LandessDevCore.dir/Examples/VisitationExample.cpp.o
+ ../Algorithms/Forward.hpp
+ ../Algorithms/Move.hpp
+ ../Algorithms/Overload.hpp
+ ../Algorithms/Swap.hpp
+ ../Core/Tuple.hpp
+ ../Definitions/Integer.hpp
+ ../Primitives/General/mapboxrecursive_wrapper.hpp
+ ../Primitives/General/mapboxvariant.hpp
+ ../Primitives/General/mapboxvariantvisitor.h
+ ../TypeTraits/AddLValueReference.hpp
+ ../TypeTraits/AddPointer.hpp
+ ../TypeTraits/AddRValueReference.hpp
+ ../TypeTraits/Conditional.hpp
+ ../TypeTraits/Decay.hpp
+ ../TypeTraits/Declval.hpp
+ ../TypeTraits/Detection.hpp
+ ../TypeTraits/EnableIf.hpp
+ ../TypeTraits/FunctionalReflection.hpp
+ ../TypeTraits/IntegerSequence.hpp
+ ../TypeTraits/IntegralConstant.hpp
+ ../TypeTraits/IsArray.hpp
+ ../TypeTraits/IsAssignable.hpp
+ ../TypeTraits/IsBaseOf.hpp
+ ../TypeTraits/IsClassType.hpp
+ ../TypeTraits/IsConst.hpp
+ ../TypeTraits/IsConstructible.hpp
+ ../TypeTraits/IsConvertible.hpp
+ ../TypeTraits/IsDestructible.hpp
+ ../TypeTraits/IsFunction.hpp
+ ../TypeTraits/IsIntegralType.hpp
+ ../TypeTraits/IsNullPtr.hpp
+ ../TypeTraits/IsPointer.hpp
+ ../TypeTraits/IsReference.hpp
+ ../TypeTraits/IsSame.hpp
+ ../TypeTraits/IsSwappable.hpp
+ ../TypeTraits/IsUnion.hpp
+ ../TypeTraits/IsVoid.hpp
+ ../TypeTraits/IsVolatile.hpp
+ ../TypeTraits/RemoveAllExtents.hpp
+ ../TypeTraits/RemoveCV.hpp
+ ../TypeTraits/RemoveConst.hpp
+ ../TypeTraits/RemoveExtent.hpp
+ ../TypeTraits/RemoveReference.hpp
+ ../TypeTraits/Type.h
+ ../TypeTraits/TypeList.hpp
+ ../TypeTraits/VariadicPack.hpp
+ ../TypeTraits/__two.hpp
+ /home/phoenixflower/Documents/Development/LandessDevCore/Examples/VisitationExample.cpp
 CMakeFiles/LandessDevCore.dir/Examples/WebDavExample.cpp.o
  ../Algorithms/Abs.hpp
  ../Algorithms/CompileTimeControlFlow.hpp
@@ -2032,8 +2196,10 @@ CMakeFiles/LandessDevCore.dir/Examples/WebDavExample.cpp.o
  ../Algorithms/Forward.hpp
  ../Algorithms/FromJSON.hpp
  ../Algorithms/FromString.hpp
+ ../Algorithms/GenericResize.h
  ../Algorithms/Invoke.hpp
  ../Algorithms/Move.hpp
+ ../Algorithms/Overload.hpp
  ../Algorithms/Power.hpp
  ../Algorithms/StringAsNumber.h
  ../Algorithms/Swap.hpp
@@ -2177,8 +2343,10 @@ CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.o
  ../Algorithms/FastLog10.hpp
  ../Algorithms/Floor.hpp
  ../Algorithms/Forward.hpp
+ ../Algorithms/GenericResize.h
  ../Algorithms/Invoke.hpp
  ../Algorithms/Move.hpp
+ ../Algorithms/Overload.hpp
  ../Algorithms/Power.hpp
  ../Algorithms/StringAsNumber.h
  ../Algorithms/StringToPrimitive.hpp
@@ -2414,8 +2582,10 @@ CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o
  ../Algorithms/FastLog10.hpp
  ../Algorithms/Floor.hpp
  ../Algorithms/Forward.hpp
+ ../Algorithms/GenericResize.h
  ../Algorithms/Invoke.hpp
  ../Algorithms/Move.hpp
+ ../Algorithms/Overload.hpp
  ../Algorithms/StringToPrimitive.hpp
  ../Algorithms/Swap.hpp
  ../Core/NullClass.hpp
@@ -2524,8 +2694,10 @@ CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o
  ../Algorithms/Floor.hpp
  ../Algorithms/Forward.hpp
  ../Algorithms/FromString.hpp
+ ../Algorithms/GenericResize.h
  ../Algorithms/Invoke.hpp
  ../Algorithms/Move.hpp
+ ../Algorithms/Overload.hpp
  ../Algorithms/Power.hpp
  ../Algorithms/Sampler.hpp
  ../Algorithms/StringAsNumber.h
@@ -2704,6 +2876,7 @@ CMakeFiles/LandessDevCore.dir/Memory/LinearAllocator.cpp.o
  ../Algorithms/Exponential.hpp
  ../Algorithms/Floor.hpp
  ../Algorithms/Forward.hpp
+ ../Algorithms/GenericResize.h
  ../Algorithms/Move.hpp
  ../Algorithms/Swap.hpp
  ../Algorithms/vdt/asin.h
@@ -2775,6 +2948,7 @@ CMakeFiles/LandessDevCore.dir/Memory/LinearAllocator.cpp.o
 CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o
  ../Algorithms/CompileTimeControlFlow.hpp
  ../Algorithms/Forward.hpp
+ ../Algorithms/GenericResize.h
  ../Algorithms/Move.hpp
  ../Algorithms/Swap.hpp
  ../Core/Tuple.hpp
@@ -2834,6 +3008,7 @@ CMakeFiles/LandessDevCore.dir/Memory/StackAllocator.cpp.o
  ../Algorithms/Exponential.hpp
  ../Algorithms/Floor.hpp
  ../Algorithms/Forward.hpp
+ ../Algorithms/GenericResize.h
  ../Algorithms/Move.hpp
  ../Algorithms/Swap.hpp
  ../Algorithms/vdt/asin.h
@@ -3022,8 +3197,10 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  ../Algorithms/Floor.hpp
  ../Algorithms/Forward.hpp
  ../Algorithms/FromString.hpp
+ ../Algorithms/GenericResize.h
  ../Algorithms/Invoke.hpp
  ../Algorithms/Move.hpp
+ ../Algorithms/Overload.hpp
  ../Algorithms/Power.hpp
  ../Algorithms/Sampler.hpp
  ../Algorithms/StringAsNumber.h
@@ -3208,6 +3385,7 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  ../TypeTraits/Type.h
  ../TypeTraits/TypeList.hpp
  ../TypeTraits/VariadicPack.hpp
+ ../TypeTraits/VariantTypes.h
  ../TypeTraits/__two.hpp
  ../Unicode/IsUTF8Compliant.hpp
  ../Unicode/UTF8.hpp

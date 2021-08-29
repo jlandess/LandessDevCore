@@ -51,6 +51,12 @@ namespace LD
             return {};
         }
 
+        template<typename ... A>
+        constexpr LD::UInteger TypeListSize(LD::Type<LD::CT::TypeList<A...>> ) noexcept
+        {
+            return sizeof...(A);
+        }
+
     }
 
 

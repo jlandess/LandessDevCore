@@ -160,6 +160,9 @@
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/GaussianElimination.h">
 			<Option target="LandessDevCore"/>
 		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/GenericResize.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/GetDecimalPlaces.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
@@ -182,6 +185,9 @@
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/NewtonAppleDelanauy.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/Overload.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/Periodic.hpp">
@@ -227,6 +233,9 @@
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/ToJSON.hpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/Visitation.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/for_constexpr.hpp">
@@ -382,6 +391,12 @@
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Examples/MultithreadingExample.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Examples/NDExample.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Examples/NDPExample.cpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Examples/PVEGUIDeploymentExample.cpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
@@ -413,6 +428,12 @@
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Examples/TermBoxMenuExample.hpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Examples/VisitationExample.cpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Examples/VisitationExample.h">
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Examples/WebDavExample.cpp">
@@ -1880,6 +1901,9 @@
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/TypeTraits/VariadicPack.hpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/TypeTraits/VariantTypes.h">
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/TypeTraits/__or.hpp">

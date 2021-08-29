@@ -11,6 +11,7 @@
 
 #include "Definitions/Integer.hpp"
 #include "Functor/Lambda.h"
+#include "Algorithms/GenericResize.h"
 //#include "Definitions/Common.hpp"
 #include "Algorithms/CompileTimeControlFlow.hpp"
 #include "TypeTraits/IsImmutable.h"
@@ -413,6 +414,11 @@ namespace LD
             this->InternalBuffer[this->Size++] = object;
         }
 
+        void Resize(LD::UInteger requestedSize) noexcept
+        {
+            this->Size = requestedSize;
+        }
+
         //describe ownership
         class Iterator
         {
@@ -737,5 +743,23 @@ namespace LD
 }
 
 
+namespace LD
+{
+    template<typename T, LD::UInteger Size>
+    class GenericResize<LD::StaticArray<T,Size>>
+    {
+    private:
+        LD::StaticArray<T,Size> & mStaticArray;
+    public:
+        GenericResize(LD::StaticArray<T,Size> & array) noexcept:mStaticArray{array}{}
 
+
+        void Resize(const LD::UInteger size) noexcept
+        {
+            this->mStaticArray.Resize(size);
+        }
+
+
+    };
+}
 #endif

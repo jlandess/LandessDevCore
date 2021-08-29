@@ -15,6 +15,9 @@
 #include "Algorithms/FromString.hpp"
 #include "TypeTraits/CanBeAnImmutableString.hpp"
 #include "TypeTraits/CanBeMadeFromStringView.hpp"
+#include "TypeTraits/IsVariant.hpp"
+#include "TypeTraits/VariantTypes.h"
+#include "Primitives/General/Span.hpp"
 namespace LD
 {
     template<typename T, typename V, typename Key,typename ... Args>
@@ -42,6 +45,21 @@ namespace LD
             >,
             LD::RequestResponse<bool(Args...)>> Insert(T & document, Key && key ,V && object, Args && ... args) noexcept;
 
+    template<typename T, typename V, typename Key,typename ... Args>
+    LD::Enable_If_T<
+            LD::Require<
+                    LD::CT::IsVariant(LD::CT::RemoveQualifiers(LD::Type<V>{}))
+            >,
+            LD::RequestResponse<bool(Args...)>> Insert(T & document, Key && key ,V && object, Args && ... args) noexcept;
+
+
+    template<typename T, typename V, typename Key,typename ... Args>
+    LD::Enable_If_T<
+            LD::Require<
+                    LD::CT::Spannable(LD::CT::RemoveQualifiers(LD::Type<V>{})),
+                    !LD::CT::CanBeAnImmutableString(LD::CT::RemoveQualifiers(LD::Type<V>{}))
+            >,
+            LD::RequestResponse<bool(Args...)>> Insert(T & document, Key && key ,V && object, Args && ... args) noexcept;
     template<typename T, typename V, typename Key,typename ... Args>
     LD::Enable_If_T<
             LD::Require<
@@ -123,6 +141,21 @@ namespace LD
             return LD::CreateResponse(LD::Type<bool>{},bool{true},LD::Forward<Args>(args)...);
         }
         return LD::CreateResponse(LD::Type<bool>{},LD::TransactionError{},LD::Forward<Args>(args)...);
+    }
+
+    template<typename T, typename V, typename Key,typename ... Args>
+    LD::Enable_If_T<
+            LD::Require<
+                    LD::CT::IsVariant(LD::CT::RemoveQualifiers(LD::Type<V>{}))
+            >,
+            LD::RequestResponse<bool(Args...)>> Insert(T & document, Key && key ,V && object, Args && ... args) noexcept
+    {
+        auto onObject = [&](const auto & object) noexcept
+        {
+            return LD::Insert(document,LD::Forward<Key>(key),object,LD::Forward<Args>(args)...);
+        };
+        return LD::MultiMatch(onObject,LD::Forward<V>(object));
+        //return LD::CreateResponse(LD::Type<bool>{},LD::TransactionError{},LD::Forward<Args>(args)...);
     }
     template<typename T, typename V, typename Key,typename ... Args>
     LD::Enable_If_T<
@@ -225,6 +258,46 @@ namespace LD
     template<typename T, typename V, typename Key,typename ... Args>
     LD::Enable_If_T<
             LD::Require<
+                    LD::CT::Spannable(LD::CT::RemoveQualifiers(LD::Type<V>{})),
+                    !LD::CT::CanBeAnImmutableString(LD::CT::RemoveQualifiers(LD::Type<V>{}))
+            >,
+            LD::RequestResponse<bool(Args...)>> Insert(T & document, Key && key ,V && object, Args && ... args) noexcept
+    {
+        LD::Detail::Conditional_T<(LD::Detail::IsLValueReference<V>::value),V &,LD::Detail::Decay_T<V>> mappedObject{LD::Forward<V>(object)};
+        LD::Span spannedObject{mappedObject} ;
+        LD::UInteger spanSize = spannedObject.Size();
+        LD::UInteger serializedAmount = 0;
+        LD::Insert(
+                document,
+                key + LD::ImmutableString{"."} + LD::ToImmutableString("LandessDevSpanSize"),
+                spanSize);
+        for(LD::UInteger n = 0;n<spanSize;++n)
+        {
+            LD::RequestResponse<bool()> response =  LD::Insert(
+                    document,
+                    key + LD::ImmutableString{"."} + LD::ToImmutableString(n),
+                            spannedObject[n]);
+            auto onResponse = [](bool ) noexcept
+            {
+                return true;
+            };
+
+            auto onFailure = [](LD::TransactionError ) noexcept
+            {
+                return false;
+            };
+
+            serializedAmount +=  (LD::InvokeVisitation(LD::Overload{onResponse,onFailure},response));
+        }
+        if (serializedAmount == spanSize)
+        {
+            return LD::CreateResponse(LD::Type<bool>{},bool{true},LD::Forward<Args>(args)...);
+        }
+        return LD::CreateResponse(LD::Type<bool>{},LD::TransactionError{},LD::Forward<Args>(args)...);
+    }
+    template<typename T, typename V, typename Key,typename ... Args>
+    LD::Enable_If_T<
+            LD::Require<
                     LD::CT::IsReflectable<LD::Detail::Decay_T<V>>()
             >,
             LD::RequestResponse<bool(Args...)>> Fetch(T & document, Key && key,V & object, Args && ... args) noexcept;
@@ -265,7 +338,12 @@ namespace LD
                     LD::CT::IsImmutableString(LD::CT::RemoveQualifiers(LD::Type<V>{}))
             >,
             LD::RequestResponse<V(Args...)>> Fetch(T & document, Key && key ,LD::Type<V>, Args && ... args) noexcept;
-
+    template<typename T, typename V, typename Key,typename ... Args>
+    LD::Enable_If_T<
+            LD::Require<
+                    LD::CT::IsTuple(LD::CT::RemoveQualifiers(LD::Type<V>{}))
+            >,
+            LD::RequestResponse<bool(Args...)>> Fetch(T & document, Key && key ,V & primitiveType, Args && ... args) noexcept;
 
     template<typename T, typename V, typename Key,typename ... Args>
     LD::Enable_If_T<
@@ -273,13 +351,33 @@ namespace LD
                     LD::CT::IsTuple(LD::CT::RemoveQualifiers(LD::Type<V>{}))
             >,
             LD::RequestResponse<V(Args...)>> Fetch(T & document, Key && key ,LD::Type<V>, Args && ... args) noexcept;
-
     template<typename T, typename V, typename Key,typename ... Args>
     LD::Enable_If_T<
             LD::Require<
-                    LD::CT::IsTuple(LD::CT::RemoveQualifiers(LD::Type<V>{}))
+                    LD::CT::IsVariant(LD::CT::RemoveQualifiers(LD::Type<V>{}))
             >,
             LD::RequestResponse<bool(Args...)>> Fetch(T & document, Key && key ,V & primitiveType, Args && ... args) noexcept;
+    template<typename T, typename V, typename Key,typename ... Args>
+    LD::Enable_If_T<
+            LD::Require<
+                    LD::CT::IsVariant(LD::CT::RemoveQualifiers(LD::Type<V>{}))
+            >,
+            LD::RequestResponse<V(Args...)>> Fetch(T & document, Key && key ,LD::Type<V>, Args && ... args) noexcept;
+    template<typename T, typename V, typename Key,typename ... Args>
+    LD::Enable_If_T<
+            LD::Require<
+                    LD::CT::Spannable(LD::CT::RemoveQualifiers(LD::Type<V>{}))
+            >,
+            LD::RequestResponse<bool(Args...)>> Fetch(T & document, Key && key ,V & primitiveType, Args && ... args) noexcept;
+    template<typename T, typename V, typename Key,typename ... Args>
+    LD::Enable_If_T<
+            LD::Require<
+                    LD::CT::Spannable(LD::CT::RemoveQualifiers(LD::Type<V>{}))
+            >,
+            LD::RequestResponse<V(Args...)>> Fetch(T & document, Key && key ,LD::Type<V>, Args && ... args) noexcept;
+
+
+
 
     template<typename T, typename V, typename Key,typename ... Args>
     LD::Enable_If_T<
@@ -445,6 +543,223 @@ namespace LD
         if (immutableString.HasValue())
         {
             return LD::CreateResponse(LD::Type<V>{},V{*immutableString},LD::Forward<Args>(args)...);
+        }
+        return LD::CreateResponse(LD::Type<V>{},LD::TransactionError{},LD::Forward<Args>(args)...);
+    }
+
+    template<typename T, typename V, typename Key,typename ... Args>
+    LD::Enable_If_T<
+            LD::Require<
+                    LD::CT::IsTuple(LD::CT::RemoveQualifiers(LD::Type<V>{}))
+            >,
+            LD::RequestResponse<bool(Args...)>> Fetch(T & document, Key && key ,V & tuple, Args && ... args) noexcept
+    {
+        constexpr LD::UInteger CurrentTupleSize = LD::CT::TupleSize(LD::Type<LD::Detail::Decay_T<V>>{});
+
+        LD::For<CurrentTupleSize>([](
+                auto I,
+                T & document,
+                Key && key,
+                V & tuple) noexcept
+        {
+            auto & objectAtIndex = LD::Get(LD::Get<I>(tuple));
+            LD::RequestResponse<bool()> response =  LD::Fetch(document,key+LD::ImmutableString{"."}+LD::ToImmutableString(LD::UInteger(I)),objectAtIndex);
+
+            auto onResponse = [](bool status) noexcept
+            {
+                return true;
+            };
+
+
+            auto onError = [](LD::TransactionError ) noexcept
+            {
+                return false;
+            };
+
+            return LD::InvokeVisitation(LD::Overload{onResponse,onError},response);
+        },document,LD::Forward<Key>(key),tuple);
+        return LD::CreateResponse(LD::Type<bool>{},LD::TransactionError{},LD::Forward<Args>(args)...);
+    }
+
+    template<typename T, typename V, typename Key,typename ... Args>
+    LD::Enable_If_T<
+            LD::Require<
+                    LD::CT::IsTuple(LD::CT::RemoveQualifiers(LD::Type<V>{}))
+            >,
+            LD::RequestResponse<V(Args...)>> Fetch(T & document, Key && key ,LD::Type<V>, Args && ... args) noexcept
+    {
+        V tuple;
+        LD::RequestResponse<bool()> request =  LD::Fetch(document,key,tuple);
+
+        auto onFetch = [](bool status) noexcept
+        {
+            return true;
+        };
+
+        auto onError = [](LD::TransactionError) noexcept
+        {
+            return false;
+        };
+        bool isValid = LD::InvokeVisitation(LD::Overload{onFetch,onError},request);
+
+        if(isValid)
+        {
+            return LD::CreateResponse(LD::Type<V>{},V{tuple},LD::Forward<Args>(args)...);
+        }
+        return LD::CreateResponse(LD::Type<V>{},LD::TransactionError{},LD::Forward<Args>(args)...);
+    }
+
+    template<typename T, typename V, typename Key,typename ... Args>
+    LD::Enable_If_T<
+            LD::Require<
+                    LD::CT::IsVariant(LD::CT::RemoveQualifiers(LD::Type<V>{}))
+            >,
+            LD::RequestResponse<bool(Args...)>> Fetch(T & document, Key && key ,V & variantType, Args && ... args) noexcept
+    {
+        auto TypesToCheck = LD::CT::VariantTypes(LD::Type<V>{});
+
+        constexpr LD::UInteger NumberOfTypesToCheck = LD::CT::TypeListSize(LD::Type<decltype(TypesToCheck)>{});
+
+        LD::For<NumberOfTypesToCheck>([](
+                auto I) noexcept
+        {
+
+
+            return true;
+        });
+        auto onVariantType = [&](auto & object) noexcept
+        {
+            return LD::Fetch(document,LD::Forward<Key>(key),object,LD::Forward<Args>(args)...);
+        };
+
+        return LD::MultiMatch(LD::Overload{onVariantType},variantType);
+    }
+
+    template<typename T, typename V, typename Key,typename ... Args>
+    LD::Enable_If_T<
+            LD::Require<
+                    LD::CT::IsVariant(LD::CT::RemoveQualifiers(LD::Type<V>{}))
+            >,
+            LD::RequestResponse<V(Args...)>> Fetch(T & document, Key && key ,LD::Type<V>, Args && ... args) noexcept
+    {
+        V variant;
+        LD::RequestResponse<bool()> variantResponse = LD::Fetch(document,LD::Forward<Key>(key),variant);
+
+        auto onFoundVariant = [&](bool status) noexcept
+        {
+            return LD::CreateResponse(LD::Type<V>{},V{variant},LD::Forward<Args>(args)...);
+        };
+
+
+        auto onError = [&](LD::TransactionError) noexcept
+        {
+            return LD::CreateResponse(LD::Type<V>{},LD::TransactionError{},LD::Forward<Args>(args)...);
+        };
+
+        return LD::InvokeVisitation(LD::Overload{onFoundVariant,onError},variantResponse);
+    }
+
+
+    template<typename T, typename V, typename Key,typename ... Args>
+    LD::Enable_If_T<
+            LD::Require<
+                    LD::CT::Spannable(LD::CT::RemoveQualifiers(LD::Type<V>{}))
+            >,
+            LD::RequestResponse<bool(Args...)>> Fetch(T & document, Key && key ,V & spannableType, Args && ... args) noexcept
+    {
+
+        auto spannableSizeRequest = LD::Fetch(
+                document,
+                key+ LD::ImmutableString{"."} + LD::ToImmutableString("LandessDevSpanSize"),
+                LD::Type<LD::UInteger>{},
+                document,
+                LD::Forward<Key>(key),
+                spannableType,
+                LD::Forward<Args>(args)...);
+        auto onSpannableSize = [](
+                LD::UInteger size,
+                T & document,
+                Key  key,
+                V & spannableObject,
+                Args  && ... args) noexcept
+        {
+            LD::BackInserter<V> inserter{spannableObject};
+
+
+            LD::UInteger foundElements = 0;
+            for(LD::UInteger n = 0;n<size;++n)
+            {
+                auto indexResponse =  LD::Fetch(
+                        document,
+                        key + LD::ImmutableString{"."} + LD::ToImmutableString(n),
+                        LD::CT::SpanType(LD::Type<LD::Span<V>>{}),
+                        inserter);
+
+                auto onFoundElement = [](
+                        auto Object,
+                        LD::BackInserter<V> & inserter) noexcept
+                {
+                    inserter = Object;
+                    return true;
+                };
+
+                auto onElementError = [](
+                        LD::TransactionError ,
+                        LD::BackInserter<V> & inserter) noexcept
+                {
+                    return false;
+                };
+
+                foundElements += (LD::InvokeVisitation(LD::Overload{onFoundElement,onElementError},indexResponse));
+            }
+            if (foundElements == size)
+            {
+                return LD::CreateResponse(LD::Type<bool>{},bool{true},LD::Forward<Args>(args)...);
+            }
+            return LD::CreateResponse(LD::Type<bool>{},LD::TransactionError{},LD::Forward<Args>(args)...);
+        };
+
+        auto onFailedToFetchSpanSize = [](
+                LD::TransactionError,
+                T &,
+                Key  key,
+                V &,
+                Args && ... args  ) noexcept
+        {
+            return LD::CreateResponse(LD::Type<bool>{},LD::TransactionError{},LD::Forward<Args>(args)...);
+        };
+
+        return LD::InvokeVisitation(
+                LD::Overload{onSpannableSize,onFailedToFetchSpanSize},
+                spannableSizeRequest);
+    }
+
+    template<typename T, typename V, typename Key,typename ... Args>
+    LD::Enable_If_T<
+            LD::Require<
+                    LD::CT::Spannable(LD::CT::RemoveQualifiers(LD::Type<V>{}))
+            >,
+            LD::RequestResponse<V(Args...)>> Fetch(T & document, Key && key ,LD::Type<V>, Args && ... args) noexcept
+    {
+        V spannableObject;
+        auto arrayFetchResponse =  LD::Fetch(document,LD::Forward<Key>(key),spannableObject);
+
+        auto onFetch = [](V array) noexcept -> LD::Optional<V>
+        {
+            return LD::Optional<V>{array};
+        };
+
+
+        auto onError = [](LD::TransactionError) noexcept -> LD::Optional<V>
+        {
+            return LD::Optional<V>{};
+        };
+
+        LD::Optional<V> object = LD::InvokeVisitation(LD::Overload{onFetch,onError},arrayFetchResponse);
+
+        if (object.HasValue())
+        {
+            return LD::CreateResponse(LD::Type<V>{},V{*object},LD::Forward<Args>(args)...);
         }
         return LD::CreateResponse(LD::Type<V>{},LD::TransactionError{},LD::Forward<Args>(args)...);
     }

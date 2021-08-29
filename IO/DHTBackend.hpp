@@ -70,27 +70,49 @@ namespace LD
             this->mCondition->notify_one();
         }
 
-        void Listen()
+        template<typename F>
+        void Listen(LD::StringView room, F && function)
         {
-            auto listenLambda  = [](const std::vector<std::shared_ptr<dht::Value> > & answers) -> bool
+            auto listenLambda  = [&](const std::vector<std::shared_ptr<dht::Value> > & answers) -> bool
             {
                 for(const auto & answer: answers)
                 {
-                    std::cout << *answer << std::endl;
+                    //values[n]->data.size()
+                    function(LD::StringView {(const char*)answer->data.data(),answer->data.size()});
+                    //std::cout << *answer << std::endl;
                 }
                 return true;
             };
 
-            this->mNode.listen("room", listenLambda);
+            this->mNode.listen(room.data(), listenLambda);
         }
         template<typename ... Args>
         LD::RequestResponse<bool(Args...)> Insert(const LD::StringView key, const LD::StringView data, Args && ... arguments) const noexcept
         {
-            auto successHandler = [&](bool success) noexcept
+            auto successHandler = [=](bool success) noexcept
             {
+                std::cout << "Success : " << success << "\n";
                 this->DoneDB(success);
             };
-            this->mNode.put(key.data(),data.data(),successHandler);
+            printf("key %s , value %s \n",key.data(),data.data());
+
+
+            /*
+            auto managedValue = std::make_shared<dht::Value>(
+                    dht::ValueType::USER_DATA.USER_DATA,
+                    std::vector<uint8_t> {data.begin(), data.end()});
+            managedValue->user_type = "text/plain";
+
+             */
+
+            std::vector<uint8_t> some_data(data.begin(), data.end());
+            this->mNode.put(key.data(), some_data,successHandler);
+            /*
+            this->mNode.put(
+                    dht::InfoHash(std::string{key.begin(),key.end()}),
+                    managedValue,
+                    successHandler);
+                    */
             this->Wait();
             return LD::CreateResponse(LD::Type<bool>{},LD::TransactionError{},LD::Forward<Args>(arguments)...);
         }
@@ -108,6 +130,7 @@ namespace LD
                     (const char*)values[values.size()-1]->data.data(),
                     values[values.size()-1]->data.size()},
                     LD::Forward<Args>(arguments)...);
+                std::cout << "Memes: " << *values[values.size()-1] << "\n";
 
                 return true; // return false to stop the search
             },

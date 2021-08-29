@@ -493,6 +493,33 @@ Examples/MultithreadingExample.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/MultithreadingExample.cpp.s
 .PHONY : Examples/MultithreadingExample.cpp.s
 
+Examples/NDPExample.o: Examples/NDPExample.cpp.o
+
+.PHONY : Examples/NDPExample.o
+
+# target to build an object file
+Examples/NDPExample.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o
+.PHONY : Examples/NDPExample.cpp.o
+
+Examples/NDPExample.i: Examples/NDPExample.cpp.i
+
+.PHONY : Examples/NDPExample.i
+
+# target to preprocess a source file
+Examples/NDPExample.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.i
+.PHONY : Examples/NDPExample.cpp.i
+
+Examples/NDPExample.s: Examples/NDPExample.cpp.s
+
+.PHONY : Examples/NDPExample.s
+
+# target to generate assembly for a file
+Examples/NDPExample.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.s
+.PHONY : Examples/NDPExample.cpp.s
+
 Examples/PVEGUIDeploymentExample.o: Examples/PVEGUIDeploymentExample.cpp.o
 
 .PHONY : Examples/PVEGUIDeploymentExample.o
@@ -627,6 +654,33 @@ Examples/TermBoxMenuExample.s: Examples/TermBoxMenuExample.cpp.s
 Examples/TermBoxMenuExample.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.s
 .PHONY : Examples/TermBoxMenuExample.cpp.s
+
+Examples/VisitationExample.o: Examples/VisitationExample.cpp.o
+
+.PHONY : Examples/VisitationExample.o
+
+# target to build an object file
+Examples/VisitationExample.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/VisitationExample.cpp.o
+.PHONY : Examples/VisitationExample.cpp.o
+
+Examples/VisitationExample.i: Examples/VisitationExample.cpp.i
+
+.PHONY : Examples/VisitationExample.i
+
+# target to preprocess a source file
+Examples/VisitationExample.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/VisitationExample.cpp.i
+.PHONY : Examples/VisitationExample.cpp.i
+
+Examples/VisitationExample.s: Examples/VisitationExample.cpp.s
+
+.PHONY : Examples/VisitationExample.s
+
+# target to generate assembly for a file
+Examples/VisitationExample.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/VisitationExample.cpp.s
+.PHONY : Examples/VisitationExample.cpp.s
 
 Examples/WebDavExample.o: Examples/WebDavExample.cpp.o
 
@@ -2485,6 +2539,9 @@ help:
 	@echo "... Examples/MultithreadingExample.o"
 	@echo "... Examples/MultithreadingExample.i"
 	@echo "... Examples/MultithreadingExample.s"
+	@echo "... Examples/NDPExample.o"
+	@echo "... Examples/NDPExample.i"
+	@echo "... Examples/NDPExample.s"
 	@echo "... Examples/PVEGUIDeploymentExample.o"
 	@echo "... Examples/PVEGUIDeploymentExample.i"
 	@echo "... Examples/PVEGUIDeploymentExample.s"
@@ -2500,6 +2557,9 @@ help:
 	@echo "... Examples/TermBoxMenuExample.o"
 	@echo "... Examples/TermBoxMenuExample.i"
 	@echo "... Examples/TermBoxMenuExample.s"
+	@echo "... Examples/VisitationExample.o"
+	@echo "... Examples/VisitationExample.i"
+	@echo "... Examples/VisitationExample.s"
 	@echo "... Examples/WebDavExample.o"
 	@echo "... Examples/WebDavExample.i"
 	@echo "... Examples/WebDavExample.s"

@@ -16,7 +16,7 @@ namespace LD
             return false;
         }
         template<typename ... T>
-        constexpr bool IsVariant(LD::Type<mpark::variant<T...>> ) noexcept
+        constexpr bool IsVariant(LD::Type<LD::Variant<T...>> ) noexcept
         {
             return true;
         }

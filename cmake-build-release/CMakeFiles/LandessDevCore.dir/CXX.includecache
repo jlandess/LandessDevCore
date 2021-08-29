@@ -92,6 +92,8 @@ StringAsNumber.h
 Core/RequestResponse.hpp
 ../Algorithms/Core/RequestResponse.hpp
 
+../Algorithms/GenericResize.h
+
 ../Algorithms/Invoke.hpp
 Definitions/Integer.hpp
 ../Algorithms/Definitions/Integer.hpp
@@ -109,6 +111,8 @@ TypeTraits/RemoveReference.hpp
 ../Algorithms/TypeTraits/RemoveReference.hpp
 TypeTraits/Detection.hpp
 ../Algorithms/TypeTraits/Detection.hpp
+
+../Algorithms/Overload.hpp
 
 ../Algorithms/Power.hpp
 Definitions/Integer.hpp
@@ -1035,6 +1039,8 @@ Definitions/Integer.hpp
 ../Primitives/General/Definitions/Integer.hpp
 Functor/Lambda.h
 ../Primitives/General/Functor/Lambda.h
+Algorithms/GenericResize.h
+../Primitives/General/Algorithms/GenericResize.h
 Algorithms/CompileTimeControlFlow.hpp
 ../Primitives/General/Algorithms/CompileTimeControlFlow.hpp
 TypeTraits/IsImmutable.h
@@ -1101,6 +1107,8 @@ mapboxvariant.hpp
 ../Primitives/General/mapboxvariant.hpp
 TypeTraits/FunctionalReflection.hpp
 ../Primitives/General/TypeTraits/FunctionalReflection.hpp
+Algorithms/Overload.hpp
+../Primitives/General/Algorithms/Overload.hpp
 
 ../Primitives/General/typestring.hpp
 Definitions/Integer.hpp
@@ -1626,6 +1634,14 @@ Conditional.hpp
 TypeTraits/TypeList.hpp
 ../TypeTraits/TypeTraits/TypeList.hpp
 
+../TypeTraits/VariantTypes.h
+Primitives/General/mapboxvariant.hpp
+../TypeTraits/Primitives/General/mapboxvariant.hpp
+TypeList.hpp
+../TypeTraits/TypeList.hpp
+Type.h
+../TypeTraits/Type.h
+
 ../TypeTraits/__two.hpp
 
 ../Unicode/IsUTF8Compliant.hpp
@@ -1877,6 +1893,12 @@ TypeTraits/CanBeAnImmutableString.hpp
 /home/phoenixflower/Documents/Development/LandessDevCore/IO/TypeTraits/CanBeAnImmutableString.hpp
 TypeTraits/CanBeMadeFromStringView.hpp
 /home/phoenixflower/Documents/Development/LandessDevCore/IO/TypeTraits/CanBeMadeFromStringView.hpp
+TypeTraits/IsVariant.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/IO/TypeTraits/IsVariant.hpp
+TypeTraits/VariantTypes.h
+/home/phoenixflower/Documents/Development/LandessDevCore/IO/TypeTraits/VariantTypes.h
+Primitives/General/Span.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/IO/Primitives/General/Span.hpp
 
 /home/phoenixflower/Documents/Development/LandessDevCore/IO/JsonDatabaseBackend.h
 json.hpp

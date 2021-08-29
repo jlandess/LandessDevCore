@@ -864,7 +864,7 @@ add_executable(LandessDevCore
         IaaS/ClusteringMetaData.hpp
         IO/Database1.h
         Algorithms/CTREImmutableExtension.hpp
-        Process/run.c Process/Command.hpp IO/DHTBackend.hpp Algorithms/TDD.hpp Examples/PVEGUIDeploymentExample.h Examples/PVEGUIDeploymentExample.cpp IaaS/BasicCluster.hpp IaaS/ArtifactRepository.hpp Examples/DeploymentExample.hpp Examples/DeploymentExample.cpp Examples/WebDavExample.h Examples/WebDavExample.cpp Graphics/DearImGUI/imgui_impl_datepicker.h Graphics/DearImGUI/imgui_impl_datepicker.cpp Graphics/DearImGUI/DatePicker.hpp Algorithms/FromJSON.hpp Examples/AlgorithmicJSONTest.h Examples/AlgorithmicJSONTest.cpp)
+        Process/run.c Process/Command.hpp IO/DHTBackend.hpp Algorithms/TDD.hpp Examples/PVEGUIDeploymentExample.h Examples/PVEGUIDeploymentExample.cpp IaaS/BasicCluster.hpp IaaS/ArtifactRepository.hpp Examples/DeploymentExample.hpp Examples/DeploymentExample.cpp Examples/WebDavExample.h Examples/WebDavExample.cpp Graphics/DearImGUI/imgui_impl_datepicker.h Graphics/DearImGUI/imgui_impl_datepicker.cpp Graphics/DearImGUI/DatePicker.hpp Algorithms/FromJSON.hpp Examples/AlgorithmicJSONTest.h Examples/AlgorithmicJSONTest.cpp Examples/NDPExample.cpp Examples/NDExample.h Examples/VisitationExample.h Examples/VisitationExample.cpp Algorithms/Visitation.hpp Algorithms/Overload.hpp TypeTraits/VariantTypes.h Algorithms/GenericResize.h)
 
 target_link_libraries(LandessDevCore pthread)
 target_link_libraries(LandessDevCore ncurses)

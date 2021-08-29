@@ -77,10 +77,11 @@ public:
 };
 
 
-
-
 int main(int argc, char **argv)
 {
+    std::cout << LD::CT::Spannable(LD::Type<LD::StaticArray<LD::Variant<LD::IPV4Address,LD::IPV6Address>,30>>{}) << "\n";
+    //LD::CT::TypeList
+    //LD::MakeVisitor();
     std::cout << LD::CT::CanBeMadeFromStringView(LD::Type<int>{}) << std::endl;
     nlohmann::json json123;
     LD::JsonBackend jsonBackend123{json123};
@@ -90,6 +91,28 @@ int main(int argc, char **argv)
             LD::ImmutableString{"key1"},
             LD::Pyramid{LD::Square{8},LD::Triangle{7,98}});
 
+
+    LD::Insert(
+            jsonBackend123,
+            LD::ImmutableString{"keyone"},
+            LD::MakeTuple(1.9,7,'a',LD::Square{49}));
+
+
+    LD::StaticArray<LD::Pyramid,5> memeArray;
+    memeArray.PushBack(LD::Pyramid{LD::Square{8},LD::Triangle{7,98}});
+    memeArray.PushBack(LD::Pyramid{LD::Square{19},LD::Triangle{79,22}});
+    memeArray.PushBack(LD::Pyramid{LD::Square{25},LD::Triangle{19,9}});
+    memeArray.PushBack(LD::Pyramid{LD::Square{9},LD::Triangle{12,36}});
+    memeArray.PushBack(LD::Pyramid{LD::Square{8},LD::Triangle{7,98}});
+    LD::Insert(
+            jsonBackend123,
+            LD::ImmutableString{"staticArray"},
+            memeArray);
+
+    LD::Insert(
+            jsonBackend123,
+            LD::ImmutableString{"keytwo"},
+            LD::Variant<LD::Square,int>{LD::Square{96}});
 
     LD::Pyramid testPyramid;
     LD::Fetch(
@@ -112,7 +135,60 @@ int main(int argc, char **argv)
     std::cout << json123.dump(2) << std::endl;
     std::cout << testPyramid.Side().Base() << std::endl;
 
+    LD::Tuple<LD::Float,LD::UInteger,char,LD::Square> tupleToDeserialize;
+    LD::Fetch(
+            jsonBackend123,
+            LD::ImmutableString{"keyone"},
+            tupleToDeserialize);
 
+    std::cout <<
+    LD::Get(LD::Get<0>(tupleToDeserialize)) <<
+    "," <<
+    LD::Get(LD::Get<1>(tupleToDeserialize)) <<
+    "," <<
+    LD::Get(LD::Get<2>(tupleToDeserialize)) <<
+    "," <<
+    LD::Get(LD::Get<3>(tupleToDeserialize)).Length() <<
+    "\n";
+
+    LD::Variant<LD::Square,int> mMemeVariant;
+    LD::Fetch(
+            jsonBackend123,
+            LD::ImmutableString{"keytwo"},
+            mMemeVariant);
+
+    auto onMemeSquare = [](const LD::Square & square) noexcept
+    {
+        std::cout << "Meme Square: " << square.Length() << "\n";
+    };
+
+
+    LD::MultiMatch(LD::Overload{onMemeSquare,[](auto){}},mMemeVariant);
+
+
+    LD::OpenDHTBackend mBackend{LD::IPV6Address{"fd00:1700:81b8:401e:0:d9:191:4a34"},LD::Port{4222},LD::Port{4222}};
+
+
+    mBackend.Query(LD::StringView{"room.Side.Height"},[](LD::StringView key, LD::StringView value)->int
+    {
+        std::cout << "Key : " << key << "     |   Value: " << value << std::endl;
+        return 5;
+    });
+
+    LD::Insert(mBackend,LD::ImmutableString{"room"},LD::Pyramid{LD::Square{8},LD::Triangle{7,98}});
+    mBackend.Listen(LD::StringView{"room"},[](LD::StringView answer) noexcept
+    {
+        std::cout << "room answer: " << answer << "\n";
+    });
+    LD::StaticArray<LD::Pyramid,5> usableMemeArray;
+
+    LD::Fetch(
+            jsonBackend123,
+            LD::ImmutableString{"staticArray"},
+            usableMemeArray);
+
+    std::cout << usableMemeArray[1].Base().Length() << std::endl;
+    /*
     LD::HashiVault vault{
         LD::ImmutableString{"http://192.168.30.50:8200"},
         LD::ImmutableString{"s.w8hIFCNwl59CMABCvaZ1qlGV"}};
@@ -192,13 +268,12 @@ int main(int argc, char **argv)
     // put some data on the dht
     /*
      */
+    /*
     LD::Timer timer;
     timer.Start();
     // get data from the dht
     dht::InfoHash id;
-    /*
-    /*
-     */
+
     LD::UnQliteBackend<char> unqliteBackingStore{"database.db",LD::OpenAndCreateIfNotExists{}};
 
     unqliteBackingStore.Query(LD::StringView{"key.Length"},[](auto a, auto b)
@@ -207,8 +282,12 @@ int main(int argc, char **argv)
         return 7;
     });
 
-    LD::Insert(unqliteBackingStore,LD::ImmutableString{"key1"},LD::Pyramid{LD::Square{928},LD::Triangle{65,50}});
+    LD::Insert(
+            unqliteBackingStore,
+            LD::ImmutableString{"key1"},
+            LD::Pyramid{LD::Square{928},LD::Triangle{65,50}});
     auto fetchResponse = LD::Fetch(unqliteBackingStore,LD::ImmutableString{"key1"},LD::Type<LD::Pyramid>{});
+
 
 
     auto onResponse = [](LD::Pyramid geometry) noexcept
@@ -223,36 +302,12 @@ int main(int argc, char **argv)
 
     };
     LD::InvokeVisitation(LD::Overload{onResponse,onError},fetchResponse);
-
     LD::Example::WebDavExample();
     //LD::Example::IMGUIExample1();
     //LD::Example::IMGUIExample2();
     /*
-     */
-    //ndp1();
-    //std::cout << LD::ToImmutableString(address).Data() << std::endl;
-
-    /*
-    LD::NDP ndp1;
-    ndp * ndpSocket = nullptr;
-    ndp_open(&ndpSocket);
-    //run_main_loop(ndpSocket);
-    ;
-    run_cmd_monitor(ndpSocket,NDP_MSG_ALL,if_nametoindex("ens22"));
-    ndp_close(ndpSocket);
-    ndp1();
-
-    std::visit(overload{
-            [](LightItem&, LightItem& ) { std::cout << "2 light items\n"; },
-            [](LightItem&, HeavyItem& ) { std::cout << "light & heavy items\n"; },
-            [](HeavyItem&, LightItem& ) { std::cout << "heavy & light items\n"; },
-            [](HeavyItem&, HeavyItem& ) { std::cout << "2 heavy items\n"; },
-    }, basicPackA, basicPackB);
-    std::variant<Fluid, LightItem, HeavyItem, FragileItem> package;
-
     ParseResponse("UPID:virtualhome:00004556:065341E5:6020F7FA:vzcreate:110:root@pam:");
-
-
     */
+    sleep(5);
     return 0;
 }

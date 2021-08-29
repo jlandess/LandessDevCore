@@ -1181,6 +1181,32 @@ CMakeFiles/LandessDevCore.dir/Examples/AlgorithmicJSONTest.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/Examples/AlgorithmicJSONTest.cpp.s"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/phoenixflower/Documents/Development/LandessDevCore/Examples/AlgorithmicJSONTest.cpp -o CMakeFiles/LandessDevCore.dir/Examples/AlgorithmicJSONTest.cpp.s
 
+CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o: CMakeFiles/LandessDevCore.dir/flags.make
+CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o: ../Examples/NDPExample.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/phoenixflower/Documents/Development/LandessDevCore/cmake-build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_86) "Building CXX object CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o -c /home/phoenixflower/Documents/Development/LandessDevCore/Examples/NDPExample.cpp
+
+CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/phoenixflower/Documents/Development/LandessDevCore/Examples/NDPExample.cpp > CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.i
+
+CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/phoenixflower/Documents/Development/LandessDevCore/Examples/NDPExample.cpp -o CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.s
+
+CMakeFiles/LandessDevCore.dir/Examples/VisitationExample.cpp.o: CMakeFiles/LandessDevCore.dir/flags.make
+CMakeFiles/LandessDevCore.dir/Examples/VisitationExample.cpp.o: ../Examples/VisitationExample.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/phoenixflower/Documents/Development/LandessDevCore/cmake-build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_87) "Building CXX object CMakeFiles/LandessDevCore.dir/Examples/VisitationExample.cpp.o"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/LandessDevCore.dir/Examples/VisitationExample.cpp.o -c /home/phoenixflower/Documents/Development/LandessDevCore/Examples/VisitationExample.cpp
+
+CMakeFiles/LandessDevCore.dir/Examples/VisitationExample.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LandessDevCore.dir/Examples/VisitationExample.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/phoenixflower/Documents/Development/LandessDevCore/Examples/VisitationExample.cpp > CMakeFiles/LandessDevCore.dir/Examples/VisitationExample.cpp.i
+
+CMakeFiles/LandessDevCore.dir/Examples/VisitationExample.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/Examples/VisitationExample.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/phoenixflower/Documents/Development/LandessDevCore/Examples/VisitationExample.cpp -o CMakeFiles/LandessDevCore.dir/Examples/VisitationExample.cpp.s
+
 # Object files for target LandessDevCore
 LandessDevCore_OBJECTS = \
 "CMakeFiles/LandessDevCore.dir/main.cpp.o" \
@@ -1267,7 +1293,9 @@ LandessDevCore_OBJECTS = \
 "CMakeFiles/LandessDevCore.dir/Examples/DeploymentExample.cpp.o" \
 "CMakeFiles/LandessDevCore.dir/Examples/WebDavExample.cpp.o" \
 "CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_impl_datepicker.cpp.o" \
-"CMakeFiles/LandessDevCore.dir/Examples/AlgorithmicJSONTest.cpp.o"
+"CMakeFiles/LandessDevCore.dir/Examples/AlgorithmicJSONTest.cpp.o" \
+"CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o" \
+"CMakeFiles/LandessDevCore.dir/Examples/VisitationExample.cpp.o"
 
 # External object files for target LandessDevCore
 LandessDevCore_EXTERNAL_OBJECTS =
@@ -1357,9 +1385,11 @@ LandessDevCore: CMakeFiles/LandessDevCore.dir/Examples/DeploymentExample.cpp.o
 LandessDevCore: CMakeFiles/LandessDevCore.dir/Examples/WebDavExample.cpp.o
 LandessDevCore: CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_impl_datepicker.cpp.o
 LandessDevCore: CMakeFiles/LandessDevCore.dir/Examples/AlgorithmicJSONTest.cpp.o
+LandessDevCore: CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o
+LandessDevCore: CMakeFiles/LandessDevCore.dir/Examples/VisitationExample.cpp.o
 LandessDevCore: CMakeFiles/LandessDevCore.dir/build.make
 LandessDevCore: CMakeFiles/LandessDevCore.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/phoenixflower/Documents/Development/LandessDevCore/cmake-build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_86) "Linking CXX executable LandessDevCore"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/phoenixflower/Documents/Development/LandessDevCore/cmake-build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_88) "Linking CXX executable LandessDevCore"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/LandessDevCore.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
