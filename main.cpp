@@ -175,8 +175,11 @@ int main(int argc, char **argv)
         return 5;
     });
 
-    LD::Insert(mBackend,LD::ImmutableString{"room"},LD::Pyramid{LD::Square{8},LD::Triangle{7,98}});
-    mBackend.Listen(LD::StringView{"room"},[](LD::StringView answer) noexcept
+    LD::Insert(mBackend,LD::ImmutableString{"room"},LD::Pyramid{LD::Square{8},LD::Triangle{7,105}});
+
+
+
+    mBackend.Subscribe(LD::StringView{"room.Side.Height"},[](LD::StringView answer) noexcept
     {
         std::cout << "room answer: " << answer << "\n";
     });

@@ -664,6 +664,9 @@
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/IO/JsonDatabaseBackend.h">
 			<Option target="LandessDevCore"/>
 		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/IO/PublisherSubscriber.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/IO/Redis/alloc.c">
 			<Option target="LandessDevCore"/>
 		</Unit>

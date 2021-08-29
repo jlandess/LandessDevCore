@@ -57,35 +57,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a2ffdfb1-0050-446c-b0af-d02ece8e31b8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Algorithms/GenericResize.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Algorithms/Overload.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Algorithms/Visitation.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Examples/NDExample.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Examples/NDPExample.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Examples/VisitationExample.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Examples/VisitationExample.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TypeTraits/VariantTypes.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/PublisherSubscriber.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/IO/DHTBackend.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/IO/DHTBackend.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IO/Database1.h" beforeDir="false" afterPath="$PROJECT_DIR$/IO/Database1.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Primitives/General/StaticArray.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/StaticArray.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Primitives/General/mapboxvariantvisitor.h" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/mapboxvariantvisitor.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TypeTraits/IsVariant.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/TypeTraits/IsVariant.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TypeTraits/Type.h" beforeDir="false" afterPath="$PROJECT_DIR$/TypeTraits/Type.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/CXX.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/DependInfo.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/build.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/cmake_clean.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/depend.internal" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/depend.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/link.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/progress.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/Makefile2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/progress.marks" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/LandessDevCore" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/LandessDevCore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/LandessDevCore.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/LandessDevCore.cbp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/Testing/Temporary/LastTest.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
@@ -371,7 +348,7 @@
       <workItem from="1626319557559" duration="26365000" />
       <workItem from="1626559289191" duration="12016000" />
       <workItem from="1626601213705" duration="106088000" />
-      <workItem from="1629051768912" duration="161454000" />
+      <workItem from="1629051768912" duration="170208000" />
     </task>
     <servers />
   </component>

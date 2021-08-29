@@ -70,15 +70,15 @@ namespace LD
             this->mCondition->notify_one();
         }
 
-        template<typename F>
-        void Listen(LD::StringView room, F && function)
+        template<typename F, typename ... A>
+        LD::Enable_If_T<LD::Require<LD::ConvertiblyCallable<F,void(LD::StringView,A && ...)>::Value()>,void>  Subscribe(LD::StringView room, F && function, A && ... args) noexcept
         {
             auto listenLambda  = [&](const std::vector<std::shared_ptr<dht::Value> > & answers) -> bool
             {
                 for(const auto & answer: answers)
                 {
                     //values[n]->data.size()
-                    function(LD::StringView {(const char*)answer->data.data(),answer->data.size()});
+                    function(LD::StringView {(const char*)answer->data.data(),answer->data.size()},LD::Forward<A>(args)...);
                     //std::cout << *answer << std::endl;
                 }
                 return true;
@@ -86,6 +86,7 @@ namespace LD
 
             this->mNode.listen(room.data(), listenLambda);
         }
+
         template<typename ... Args>
         LD::RequestResponse<bool(Args...)> Insert(const LD::StringView key, const LD::StringView data, Args && ... arguments) const noexcept
         {
