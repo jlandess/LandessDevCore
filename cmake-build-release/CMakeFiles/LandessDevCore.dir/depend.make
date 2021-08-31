@@ -3409,6 +3409,7 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Examples/WebDavExample.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/DHTBackend.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/Database1.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/JsonDatabaseBackend.h
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/PublisherSubscriber.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/TieredDatabase.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/json.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IaaS/ArtifactRepository.hpp

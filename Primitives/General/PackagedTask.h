@@ -55,7 +55,7 @@ namespace LD
     private:
         Executor CurrentExecutor;
         LD::Tuple<Args...> Arguement;
-        mapbox::util::variant<LD::Promise<T>,PDP::Commitment<T>> CurrentPromise;
+        mapbox::util::variant<LD::Promise<T>,LD::Commitment<T>> CurrentPromise;
     public:
 
         inline PackagedTask()
@@ -64,7 +64,7 @@ namespace LD
         }
         inline PackagedTask(const Executor & executor,
                             const LD::Tuple<Args...> & arguements,
-                            const mapbox::util::variant<LD::Promise<T>,PDP::Commitment<T>> & promise):CurrentExecutor(executor),Arguement(arguements),CurrentPromise(promise)
+                            const mapbox::util::variant<LD::Promise<T>,LD::Commitment<T>> & promise):CurrentExecutor(executor),Arguement(arguements),CurrentPromise(promise)
         {
 
         }
@@ -80,7 +80,7 @@ namespace LD
 
         }
 
-        void operator()(PDP::Commitment<T> & promise)
+        void operator()(LD::Commitment<T> & promise)
         {
             promise.AddItem(LD::Invoke(CurrentExecutor, Arguement));
         }
@@ -94,7 +94,7 @@ namespace LD
     private:
         Executor CurrentExecutor;
         LD::Tuple<Args...> Arguement;
-        mapbox::util::variant<LD::Promise<void>,PDP::Commitment<void>> CurrentPromise;
+        mapbox::util::variant<LD::Promise<void>,LD::Commitment<void>> CurrentPromise;
     public:
 
         inline PackagedTask()
@@ -103,7 +103,7 @@ namespace LD
         }
         inline PackagedTask(const Executor & executor,
                             const LD::Tuple<Args...> & arguements,
-                            const mapbox::util::variant<LD::Promise<void>,PDP::Commitment<void>> & promise):CurrentExecutor(executor),Arguement(arguements),CurrentPromise(promise)
+                            const mapbox::util::variant<LD::Promise<void>,LD::Commitment<void>> & promise):CurrentExecutor(executor),Arguement(arguements),CurrentPromise(promise)
         {
 
         }
@@ -118,7 +118,7 @@ namespace LD
 
         }
 
-        void operator()(PDP::Commitment<void> & promise)
+        void operator()(LD::Commitment<void> & promise)
         {
 
         }
@@ -345,7 +345,7 @@ namespace PDP
     {
     private:
         PDP::LightWeightDelegate<T(Args...)> Delegate;
-        PDP::Commitment<T> CurrentCommittment;
+        LD::Commitment<T> CurrentCommittment;
         std::tuple<Args...> Arguements;
 
 
@@ -355,7 +355,7 @@ namespace PDP
             return Delegate(std::get<S>(Arguements) ...);
         }
     public:
-        LightWeightCommittedLightWeightPackagedTask(const PDP::Commitment<T> & promise,const PDP::LightWeightDelegate<T(Args...)> & delegate, Args && ... arguements):Arguements(LD::Forward<Args>(arguements)...),Delegate(delegate),CurrentCommittment(promise)
+        LightWeightCommittedLightWeightPackagedTask(const LD::Commitment<T> & promise,const PDP::LightWeightDelegate<T(Args...)> & delegate, Args && ... arguements):Arguements(LD::Forward<Args>(arguements)...),Delegate(delegate),CurrentCommittment(promise)
         {
 
         }
@@ -533,15 +533,15 @@ namespace PDP
      @brief - This class's expected uses is when you wish to dispatch a function which has a return type of void and simply want to monitor progress or get data streamed back to you from the thread
      */
     template<typename T, template<typename> class Functor, typename ... Args>
-    class PackagedTask<T(PDP::Commitment<T>,Args...),Functor,LD::Enable_If_T<LD::Detail::IsSame<LD::Detail::Decay_T<T>, void>::value>>: public PDP::Task
+    class PackagedTask<T(LD::Commitment<T>,Args...),Functor,LD::Enable_If_T<LD::Detail::IsSame<LD::Detail::Decay_T<T>, void>::value>>: public PDP::Task
     {
     private:
 
 
-        Functor<T(PDP::Commitment<T>,Args...)> Delegate;
+        Functor<T(LD::Commitment<T>,Args...)> Delegate;
 
 
-        LD::Tuple<PDP::Commitment<T>,LD::Detail::Decay_T<Args>...> Arguements;
+        LD::Tuple<LD::Commitment<T>,LD::Detail::Decay_T<Args>...> Arguements;
 
 
         //PDP::Commitment<T> CurrentCommitment;
@@ -559,25 +559,25 @@ namespace PDP
         {
 
         }
-        PackagedTask(const PDP::Commitment<T> &currentCommitment ,const Functor<T(PDP::Commitment<T> &,Args...)> & delegate, const LD::Detail::Decay_T<Args> & ... arguements):Arguements(LD::Forward<Args>(arguements)...),Delegate(delegate)
+        PackagedTask(const LD::Commitment<T> &currentCommitment ,const Functor<T(LD::Commitment<T> &,Args...)> & delegate, const LD::Detail::Decay_T<Args> & ... arguements):Arguements(LD::Forward<Args>(arguements)...),Delegate(delegate)
         {
             LD::Get<0>(Arguements) = currentCommitment;
         }
 
-        inline void SetArguements(const PDP::Commitment<T> &currentCommitment, const LD::Detail::Decay_T<Args> & ... arguements)
+        inline void SetArguements(const LD::Commitment<T> &currentCommitment, const LD::Detail::Decay_T<Args> & ... arguements)
         {
             this->Arguements = LD::Tuple<LD::Detail::Decay_T<Args>...>(currentCommitment,arguements...);
         }
 
 
-        inline void SetCommitment(const PDP::Commitment<T> & currentCommitment)
+        inline void SetCommitment(const LD::Commitment<T> & currentCommitment)
         {
             LD::Get<0>(Arguements) = currentCommitment;
             //this->CurrentCommitment = currentCommitment;
         }
 
 
-        inline void SetDelegate(const Functor<T(PDP::Commitment<T> , Args...)> & delegate)
+        inline void SetDelegate(const Functor<T(LD::Commitment<T> , Args...)> & delegate)
         {
             this->Delegate = delegate;
         }
@@ -605,11 +605,11 @@ namespace PDP
      @brief - This implementation of PDP::PackagedTask is exptected to be used when you want to stream data (such as a progress indicators) and want a final value at the end.  An example of this is when you download a file.  You would like to get progress indicators while the file downloads and then you want the file at the end
      */
     template<typename T, typename U, template<typename> class Functor, typename ... Args>
-    class PackagedTask<T(PDP::Commitment<U> ,Args...),Functor,LD::Enable_If_T<!LD::Detail::IsSame<LD::Detail::Decay_T<T>, void>::value>>: public PDP::Task
+    class PackagedTask<T(LD::Commitment<U> ,Args...),Functor,LD::Enable_If_T<!LD::Detail::IsSame<LD::Detail::Decay_T<T>, void>::value>>: public PDP::Task
     {
     private:
-        Functor<T(PDP::Commitment<U>,Args...)> Delegate;
-        LD::Tuple<PDP::Commitment<U>,LD::Detail::Decay_T<Args>...> Arguements;
+        Functor<T(LD::Commitment<U>,Args...)> Delegate;
+        LD::Tuple<LD::Commitment<U>,LD::Detail::Decay_T<Args>...> Arguements;
         LD::Promise<T> CurrentPromise;
 
 
@@ -629,7 +629,7 @@ namespace PDP
         {
 
         }
-        PackagedTask(const LD::Promise<T> & currentPromise,const PDP::Commitment<U> &currentCommitment ,const Functor<T(PDP::Commitment<T> &,Args...)> & delegate, const LD::Detail::Decay_T<Args> & ... arguements):Arguements(LD::Forward<Args>(arguements)...),Delegate(delegate),CurrentPromise(currentPromise)
+        PackagedTask(const LD::Promise<T> & currentPromise,const LD::Commitment<U> &currentCommitment ,const Functor<T(LD::Commitment<T> &,Args...)> & delegate, const LD::Detail::Decay_T<Args> & ... arguements):Arguements(LD::Forward<Args>(arguements)...),Delegate(delegate),CurrentPromise(currentPromise)
         {
 
             LD::Get<0>(Arguements) = currentCommitment;
@@ -641,19 +641,19 @@ namespace PDP
             this->CurrentPromise = currentPromise;
         }
 
-        inline void SetCommitment(const PDP::Commitment<U> & currentCommitment)
+        inline void SetCommitment(const LD::Commitment<U> & currentCommitment)
         {
             //this->CurrentCommitment = currentCommitment;
             LD::Get<0>(Arguements) = currentCommitment;
         }
 
 
-        inline void SetArguements(const PDP::Commitment<U> & commitment, const LD::Detail::Decay_T<Args> & ... arguements)
+        inline void SetArguements(const LD::Commitment<U> & commitment, const LD::Detail::Decay_T<Args> & ... arguements)
         {
             this->Arguements = LD::Tuple<LD::Detail::Decay_T<Args>...>(commitment,arguements...);
         }
 
-        inline void SetDelegate(const Functor<T(PDP::Commitment<U> , Args...)> & delegate)
+        inline void SetDelegate(const Functor<T(LD::Commitment<U> , Args...)> & delegate)
         {
             this->Delegate = delegate;
         }

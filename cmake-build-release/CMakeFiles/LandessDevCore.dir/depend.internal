@@ -3410,6 +3410,7 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  /home/phoenixflower/Documents/Development/LandessDevCore/IO/DHTBackend.hpp
  /home/phoenixflower/Documents/Development/LandessDevCore/IO/Database1.h
  /home/phoenixflower/Documents/Development/LandessDevCore/IO/JsonDatabaseBackend.h
+ /home/phoenixflower/Documents/Development/LandessDevCore/IO/PublisherSubscriber.h
  /home/phoenixflower/Documents/Development/LandessDevCore/IO/TieredDatabase.h
  /home/phoenixflower/Documents/Development/LandessDevCore/IO/json.hpp
  /home/phoenixflower/Documents/Development/LandessDevCore/IaaS/ArtifactRepository.hpp

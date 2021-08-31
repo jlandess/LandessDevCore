@@ -341,12 +341,12 @@ namespace LD
 
 
         template<typename F, typename ... Args>
-        inline PDP::Commitment<decltype(LD::Declval<F>()(LD::Declval<Args>()...)  )> EnqueueWithCommitment(
+        inline LD::Commitment<decltype(LD::Declval<F>()(LD::Declval<Args>()...)  )> EnqueueWithCommitment(
                 F && function,
                 Args && ... arguements) noexcept
         {
             typedef decltype(LD::Declval<F>()(LD::Declval<Args>()...)  ) Ret;
-            PDP::Commitment<Ret> commitment;
+            LD::Commitment<Ret> commitment;
 
             PackagedTask<F, Ret(Args...)> currentPackage(function,LD::MakeTuple(LD::Forward<Args>(arguements)...),commitment);
 
@@ -364,8 +364,8 @@ namespace LD
         }
 
         template<typename F, typename ... Args>
-        inline PDP::Commitment<decltype(LD::Declval<F>()(LD::Declval<Args>()...)  )> & EnqueueWithCommitment(
-                const PDP::Commitment<decltype(LD::Declval<F>()(LD::Declval<Args>()...)  )> & commitment,
+        inline LD::Commitment<decltype(LD::Declval<F>()(LD::Declval<Args>()...)  )> & EnqueueWithCommitment(
+                const LD::Commitment<decltype(LD::Declval<F>()(LD::Declval<Args>()...)  )> & commitment,
                 F && function,
                 Args && ... arguements) noexcept
         {

@@ -19,7 +19,7 @@
 #include "Primitives/General/mapboxvariant.hpp"
 
 
-namespace PDP
+namespace LD
 {
     /**
      @tparam T - The expected value to be streamed through the committed future
@@ -188,16 +188,16 @@ namespace PDP
          */
         inline const PDP::Optional<T> GetItem() const;
 
-        explicit  operator mapbox::util::variant<LD::NullClass,PDP::Optional<T>,PDP::BrokenCommitment> () const
+        explicit  operator mapbox::util::variant<LD::NullClass,PDP::Optional<T>,LD::BrokenCommitment> () const
         {
-            mapbox::util::variant<LD::NullClass,PDP::ElementReference<T>,PDP::BrokenCommitment> currentState;
+            mapbox::util::variant<LD::NullClass,PDP::ElementReference<T>,LD::BrokenCommitment> currentState;
             if(this->HasCompleted())
             {
                 currentState = this->CurrentCommittedFuture->GetItem();
 
             }else if(this->WasBroken())
             {
-                currentState = PDP::BrokenCommitment{};
+                currentState = LD::BrokenCommitment{};
             }
             return currentState;
         }

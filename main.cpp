@@ -47,7 +47,7 @@
 #include "Examples/WebDavExample.h"
 //{"data":"UPID:virtualhome:00004556:065341E5:6020F7FA:vzcreate:110:root@pam:"}
 //UPID:([a-zA-Z0-9]+):([0-9a-fA-F]+):([0-9a-fA-F]+):([0-9a-fA-F]+):(\\w+):(\\d+):(\\w+)@([a-zA-Z0-9:]+)
-
+#include "IO/PublisherSubscriber.h"
 void ParseResponse(LD::StringView view) noexcept
 {
     if (auto [whole, nodeName, hex1, hex2,hex3,creationMethod,index,username,base] = ctre::match<LD::PVE::Detail::CreationRegex>(view); whole)
@@ -179,10 +179,15 @@ int main(int argc, char **argv)
 
 
 
+    /*
     mBackend.Subscribe(LD::StringView{"room.Side.Height"},[](LD::StringView answer) noexcept
     {
         std::cout << "room answer: " << answer << "\n";
     });
+     */
+
+    LD::UInteger value;
+    LD::Subscribe(mBackend,LD::ImmutableString{"room.Side.Height"},value);
     LD::StaticArray<LD::Pyramid,5> usableMemeArray;
 
     LD::Fetch(
@@ -311,6 +316,15 @@ int main(int argc, char **argv)
     /*
     ParseResponse("UPID:virtualhome:00004556:065341E5:6020F7FA:vzcreate:110:root@pam:");
     */
-    sleep(5);
+
+    LD::Timer timer;
+    timer.Start();
+
+    while (timer.GetElapsedTimeInSec() < 5)
+    {
+        std::cout << value << std::endl;
+        sleep(1);
+    }
+    //sleep(5);
     return 0;
 }

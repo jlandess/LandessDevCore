@@ -839,7 +839,7 @@ namespace LD
          @brief The methodology of this function consists of performing a task on another thread and streaming data back to the calling thread.  An example of this would be downloading a file and streaming back the progress indicators of the download
          */
         template<typename T, template<typename> class Functor, typename ... Args>
-        inline PDP::Commitment<T> EnqueueWithCommitment(const  Functor<void(PDP::Commitment<T>, Args...)> & delegate, const LD::Detail::Decay_T<Args> & ... arguements);
+        inline LD::Commitment<T> EnqueueWithCommitment(const  Functor<void(LD::Commitment<T>, Args...)> & delegate, const LD::Detail::Decay_T<Args> & ... arguements);
         
         
         /**
@@ -851,7 +851,7 @@ namespace LD
          @brief The methodology of this function consists of performing a task on another thread and streaming data back to the calling thread.  An example of this would be downloading a file and streaming back the progress indicators of the download
          */
         template<typename T, typename U, typename Object, typename ... Args>
-        inline PDP::Commitment<T> EnqueueWithCommitment(const Object & object, T (Object::*MemberPointer)(PDP::Commitment<U>,Args...) const , const LD::Detail::Decay_T<Args> & ... arguements);
+        inline LD::Commitment<T> EnqueueWithCommitment(const Object & object, T (Object::*MemberPointer)(LD::Commitment<U>,Args...) const , const LD::Detail::Decay_T<Args> & ... arguements);
         
         
         /**
@@ -863,7 +863,7 @@ namespace LD
          @brief The methodology of this function consists of performing a task on another thread and streaming data back to the calling thread.  An example of this would be downloading a file and streaming back the progress indicators of the download
          */
         template<typename T, typename U, typename Object, typename ... Args>
-        inline PDP::Commitment<T> EnqueueWithCommitment( Object & object, T (Object::*MemberPointer)(PDP::Commitment<U>,Args...)  , const LD::Detail::Decay_T<Args> & ... arguements);
+        inline LD::Commitment<T> EnqueueWithCommitment( Object & object, T (Object::*MemberPointer)(LD::Commitment<U>,Args...)  , const LD::Detail::Decay_T<Args> & ... arguements);
         
         
         
@@ -876,7 +876,7 @@ namespace LD
          @brief The methodology of this function consists of performing a task on another thread and streaming data back to the calling thread while also returning back a singular object of interest.  Once more an example can be seen when downloading a file.  Where you might be interested in the data of the file which may be best seen as a string whereas the progress that would be streamed would probably be fully realized as a double
          */
         template<typename T, typename U, template<typename> class Functor, typename ... Args>
-        inline LD::Pair<LD::Promise<T>,PDP::Commitment<U>> EnqueueWithPromiseAndCommitment(const  Functor<T(PDP::Commitment<U>, Args...)> & delegate, const LD::Detail::Decay_T<Args> & ... arguements);
+        inline LD::Pair<LD::Promise<T>,LD::Commitment<U>> EnqueueWithPromiseAndCommitment(const  Functor<T(LD::Commitment<U>, Args...)> & delegate, const LD::Detail::Decay_T<Args> & ... arguements);
         
         
         /**
@@ -889,7 +889,7 @@ namespace LD
          @brief The methodology of this function consists of performing a task on another thread and streaming data back to the calling thread while also returning back a singular object of interest.  Once more an example can be seen when downloading a file.  Where you might be interested in the data of the file which may be best seen as a string whereas the progress that would be streamed would probably be fully realized as a double
          */
         template<typename T, typename U, typename Object, typename ... Args>
-        inline LD::Pair<LD::Promise<T>,PDP::Commitment<U>> EnqueueWithPromiseAndCommitment(const Object & object, T (Object::*MemberPointer)(PDP::Commitment<U>,Args...) const , const LD::Detail::Decay_T<Args> & ... arguements);
+        inline LD::Pair<LD::Promise<T>,LD::Commitment<U>> EnqueueWithPromiseAndCommitment(const Object & object, T (Object::*MemberPointer)(LD::Commitment<U>,Args...) const , const LD::Detail::Decay_T<Args> & ... arguements);
         
         
         /**
@@ -902,7 +902,7 @@ namespace LD
          @brief The methodology of this function consists of performing a task on another thread and streaming data back to the calling thread while also returning back a singular object of interest.  Once more an example can be seen when downloading a file.  Where you might be interested in the data of the file which may be best seen as a string whereas the progress that would be streamed would probably be fully realized as a double
          */
         template<typename T, typename U, typename Object, typename ... Args>
-        inline LD::Pair<LD::Promise<T>,PDP::Commitment<U>> EnqueueWithPromiseAndCommitment( Object & object, T (Object::*MemberPointer)(PDP::Commitment<U>,Args...)  , const LD::Detail::Decay_T<Args> & ... arguements);
+        inline LD::Pair<LD::Promise<T>,LD::Commitment<U>> EnqueueWithPromiseAndCommitment( Object & object, T (Object::*MemberPointer)(LD::Commitment<U>,Args...)  , const LD::Detail::Decay_T<Args> & ... arguements);
         
         
         
