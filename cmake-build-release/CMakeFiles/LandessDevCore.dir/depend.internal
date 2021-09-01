@@ -3222,6 +3222,7 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  ../Algorithms/vdt/vdtcore_common.h
  ../Algorithms/vdt/vdtmath.h
  ../Async/Atomic/Atomic.h
+ ../Async/Channel.hpp
  ../Async/Commitment.h
  ../Async/Future.h
  ../Async/Locks/SpinLock.h

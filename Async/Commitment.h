@@ -125,6 +125,7 @@ namespace LD
     template<typename T>
     void SharedCommittedFuture<T>::AddItem(const T &item)
     {
+        //printf("being called\n");
         DataToStream->enqueue(item);//add the task to the queue which will be executed at some point in the future
     }
     
@@ -143,13 +144,15 @@ namespace LD
     template<typename T>
     inline const PDP::Optional<T> SharedCommittedFuture<T>::GetItem() const
     {
+        //DataToStream->try_dequeue(possibleItem);
+
         T possibleItem;
         
         if(DataToStream->try_dequeue(possibleItem))
         {
             return PDP::Optional<T>(possibleItem);
         }
-        
+
         return PDP::Optional<T>();
     }
     class BrokenCommitment
@@ -164,29 +167,59 @@ namespace LD
     class Commitment
     {
     private:
-        PDP::Memory::AutomaticReferenceCounter<SharedCommittedFuture<T>> CurrentCommittedFuture;
+        //PDP::Memory::AutomaticReferenceCounter<SharedCommittedFuture<T>> CurrentCommittedFuture;
+
+        std::shared_ptr<moodycamel::ConcurrentQueue<T>> CurrentCommittedFuture;
+
+        PDP::Atomic<PDP::UInteger> BrokenStatus;
     public:
         
-        inline Commitment();
+        inline Commitment() noexcept:CurrentCommittedFuture{new moodycamel::ConcurrentQueue<T>{}}
+        {
+
+        }
         
         
-        inline void AddItem(const T & item);
+        inline void AddItem(const T & item)
+        {
+            this->CurrentCommittedFuture->enqueue(item);
+        }
         
         /**
          @brief This provides the thread executing the code a mechanism to indicate that something has gone wrong and communicate it to the calling thread
          */
-        inline void SetExceptionOccured();
+        inline void SetExceptionOccured()
+        {
+
+        }
         
         /**
          @brief This provides the calling thread a mechanism to be informed that something has gone wrong and allows for you to be able to handle it in the calling thread
          */
-        inline const bool WasBroken() const;
+        inline const bool WasBroken() const
+        {
+
+        }
         
         /**
          @return PDP::Optional - The possible value that may return from the function, in the case that nothing is ready to be streaming, you'll simply get an empty PDP::Optional object
          @brief This is necessary because due to the how multi-core IPC works it is not always on time and may take a few extra cycles to execute in order to get the necessary information transferred from one core to the other.
          */
-        inline const PDP::Optional<T> GetItem() const;
+        inline const PDP::Optional<T> GetItem() const
+        {
+            //return this->CurrentCommittedFuture->GetItem();
+            //return {};
+            T possibleItem;
+
+
+            if(this->CurrentCommittedFuture->try_dequeue(possibleItem))
+            {
+                return PDP::Optional<T>(possibleItem);
+            }
+
+
+            return PDP::Optional<T>();
+        }
 
         explicit  operator mapbox::util::variant<LD::NullClass,PDP::Optional<T>,LD::BrokenCommitment> () const
         {
@@ -219,7 +252,7 @@ namespace LD
         }
         
     };
-    
+
     template<>
     class Commitment<void>
     {
@@ -268,13 +301,8 @@ namespace LD
             return this->CurrentCommittedFuture->HasBeenFufilled();
         }
     };
-    
-    template<typename T>
-    Commitment<T>::Commitment()
-    {
-        
-    }
-    
+
+    /*
     template<typename T>
     void Commitment<T>::AddItem(const T & item)
     {
@@ -293,12 +321,9 @@ namespace LD
     {
         return this->CurrentCommittedFuture->WasBroken();
     }
+     */
     
-    template<typename T>
-    const PDP::Optional<T> Commitment<T>::GetItem() const
-    {
-        return this->CurrentCommittedFuture->GetItem();
-    }
+
     
     
     

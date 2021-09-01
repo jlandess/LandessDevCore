@@ -12,6 +12,7 @@
 #include "Network/IPV6Address.hpp"
 #include "Primitives/General/mapboxvariant.hpp"
 #include "Primitives/General/mapboxvariantvisitor.h"
+#include "Primitives/General/Context.h"
 namespace LD
 {
     class OpenDHTBackend
@@ -73,12 +74,17 @@ namespace LD
         template<typename F, typename ... A>
         LD::Enable_If_T<LD::Require<LD::ConvertiblyCallable<F,void(LD::StringView,A && ...)>::Value()>,void>  Subscribe(LD::StringView room, F && function, A && ... args) noexcept
         {
-            auto listenLambda  = [&](const std::vector<std::shared_ptr<dht::Value> > & answers) -> bool
+
+            auto copyableContext = LD::MakeTuple(LD::StringView {},args...);
+            auto listenLambda  = [=](const std::vector<std::shared_ptr<dht::Value> > & answers) -> bool
             {
                 for(const auto & answer: answers)
                 {
+
+                    LD::Get(LD::Get<0>(copyableContext)) = LD::StringView {(const char*)answer->data.data(),answer->data.size()};
+                    LD::Invoke(function,copyableContext);
                     //values[n]->data.size()
-                    function(LD::StringView {(const char*)answer->data.data(),answer->data.size()},LD::Forward<A>(args)...);
+                    //function(LD::StringView {(const char*)answer->data.data(),answer->data.size()},args...);
                     //std::cout << *answer << std::endl;
                 }
                 return true;

@@ -19,7 +19,7 @@
 #include "TypeTraits/Detection.hpp"
 #define SHARED_ASSERT(x)    assert(x)
 
-namespace PDP
+namespace LD
 {
     /**
      * @brief implementation of reference counter for the following minimal smart pointer.
@@ -334,10 +334,10 @@ namespace PDP
         {
             
         }
-        inline WeakPointer(const PDP::SharedPointer<T> & sharedPointer):AtomicCounter(sharedPointer.pn.pn),ObjectPointer(sharedPointer.px)
+        inline WeakPointer(const LD::SharedPointer<T> & sharedPointer):AtomicCounter(sharedPointer.pn.pn),ObjectPointer(sharedPointer.px)
         {
         }
-        inline WeakPointer & operator = (const PDP::SharedPointer<T> & sharedPointer) noexcept
+        inline WeakPointer & operator = (const LD::SharedPointer<T> & sharedPointer) noexcept
         {
             this->ObjectPointer = sharedPointer.px;
             this->AtomicCounter = sharedPointer.pn.pn;
@@ -400,7 +400,7 @@ namespace PDP
     template<typename T, typename ... Pack>
     LD::Enable_If_T<LD::Require<
             LD::IsConstructible<T,LD::Decay<Pack>...>::value
-            >,PDP::SharedPointer<T>> MakeShared(Pack && ... arguements) noexcept
+            >,LD::SharedPointer<T>> MakeShared(Pack && ... arguements) noexcept
     {
                 //new (noexcept(T(LD::Forward<Pack>(arguements)...))) T(LD::Forward<Pack>(arguements)...);
         T * p = new (std::nothrow) T(LD::Forward<Pack>(arguements)...);
@@ -408,17 +408,17 @@ namespace PDP
 
         if(p)
         {
-            return PDP::SharedPointer<T>(p);
+            return LD::SharedPointer<T>(p);
         }
-        return PDP::SharedPointer<T>(nullptr);
+        return LD::SharedPointer<T>(nullptr);
     }
 
     template<typename T, typename Allocator ,typename ... Pack>
     LD::Enable_If_T<LD::Require<
             LD::IsConstructible<T,LD::Decay<Pack>...>::value
-    >,PDP::SharedPointer<T>> MakeShared(Allocator && allocator,Pack && ... arguements) noexcept
+    >,LD::SharedPointer<T>> MakeShared(Allocator && allocator,Pack && ... arguements) noexcept
     {
-        return PDP::SharedPointer<T>(new T(LD::Forward<Pack>(arguements)...));
+        return LD::SharedPointer<T>(new T(LD::Forward<Pack>(arguements)...));
     }
 }
 

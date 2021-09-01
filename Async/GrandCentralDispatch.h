@@ -28,12 +28,12 @@ namespace LD
     class TaskDispatcherMetaData
     {
     private:
-        PDP::SharedPointer<LD::Tuple<LD::Tuple<A...>,void*>> mData;
+        LD::SharedPointer<LD::Tuple<LD::Tuple<A...>,void*>> mData;
     public:
 
         TaskDispatcherMetaData()
         {
-            this->mData = PDP::SharedPointer<LD::Tuple<LD::Tuple<A...>,void*>>(nullptr);
+            this->mData = LD::SharedPointer<LD::Tuple<LD::Tuple<A...>,void*>>(nullptr);
         }
 
 
@@ -43,7 +43,7 @@ namespace LD
             LD::Get<LD::Tuple<A...>>(init) = initialState;
             LD::Get<void*>(init) = threadpool;
 
-           this->mData = PDP::SharedPointer<LD::Tuple<LD::Tuple<A...>,void*>>(new LD::Tuple<LD::Tuple<A...>,void*>{init});
+           this->mData = LD::SharedPointer<LD::Tuple<LD::Tuple<A...>,void*>>(new LD::Tuple<LD::Tuple<A...>,void*>{init});
 
         }
         void operator()()
@@ -58,7 +58,7 @@ namespace LD
         }
 
 
-        PDP::SharedPointer<LD::Tuple<LD::Tuple<A...>,void*>> Data()
+        LD::SharedPointer<LD::Tuple<LD::Tuple<A...>,void*>> Data()
         {
             return this->mData;
         }
@@ -263,7 +263,7 @@ namespace LD
                 //PDP::CUTThread thread = PDP::CutStartThread(&BasicTaskDispatcher::InternalThreadFunction, this);
 
 
-                PDP::SharedPointer<LD::Tuple<LD::Tuple<A...>,void*>> managedPtr = threadMetaData.Data();
+                LD::SharedPointer<LD::Tuple<LD::Tuple<A...>,void*>> managedPtr = threadMetaData.Data();
 
                 //this is only safe because the pointer is being managed by a shared pointer and will only go out of scope when the instance of this class does.
                 LD::CUTThread thread = LD::CutStartThread(&BasicTaskDispatcher::InternalThreadFunction, managedPtr.Get());

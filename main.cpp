@@ -77,6 +77,7 @@ public:
 };
 
 
+
 int main(int argc, char **argv)
 {
     std::cout << LD::CT::Spannable(LD::Type<LD::StaticArray<LD::Variant<LD::IPV4Address,LD::IPV6Address>,30>>{}) << "\n";
@@ -186,8 +187,20 @@ int main(int argc, char **argv)
     });
      */
 
+
     LD::UInteger value;
     LD::Subscribe(mBackend,LD::ImmutableString{"room.Side.Height"},value);
+
+    LD::Channel<LD::UInteger> queue;
+    queue << 7;
+    //moodycamel::ConcurrentQueue<LD::UInteger> * queue = new moodycamel::ConcurrentQueue<LD::UInteger>{};
+     auto commitmentResponse =  LD::Subscribe(
+             mBackend,
+             LD::ImmutableString{"room.Side.Height"},
+             LD::Type<LD::UInteger>{},
+             queue);
+
+
     LD::StaticArray<LD::Pyramid,5> usableMemeArray;
 
     LD::Fetch(
@@ -322,7 +335,22 @@ int main(int argc, char **argv)
 
     while (timer.GetElapsedTimeInSec() < 5)
     {
-        std::cout << value << std::endl;
+
+
+        if (queue.Size() > 0)
+        {
+            LD::UInteger number;
+            queue >> number;
+
+            std::cout << "Number: " << number << "\n";
+        }
+        /*
+        if (queue->try_dequeue(number))
+        {
+            std::cout << number << std::endl;
+        }
+         */
+        //std::cout << value << std::endl;
         sleep(1);
     }
     //sleep(5);

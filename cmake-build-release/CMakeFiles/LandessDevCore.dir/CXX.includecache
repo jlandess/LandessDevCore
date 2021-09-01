@@ -356,6 +356,14 @@ compiler_gcc.h
 intrin.h
 -
 
+../Async/Channel.hpp
+memory
+-
+concurrentqueue.h
+../Async/concurrentqueue.h
+Memory/shared_ptr.hpp
+../Async/Memory/shared_ptr.hpp
+
 ../Async/Commitment.h
 Async/Atomic/Atomic.h
 ../Async/Async/Atomic/Atomic.h
@@ -3229,6 +3237,8 @@ Primitives/General/mapboxvariant.hpp
 /home/phoenixflower/Documents/Development/LandessDevCore/IO/Primitives/General/mapboxvariant.hpp
 Primitives/General/mapboxvariantvisitor.h
 /home/phoenixflower/Documents/Development/LandessDevCore/IO/Primitives/General/mapboxvariantvisitor.h
+Primitives/General/Context.h
+/home/phoenixflower/Documents/Development/LandessDevCore/IO/Primitives/General/Context.h
 
 /home/phoenixflower/Documents/Development/LandessDevCore/IO/Database1.h
 TypeTraits/Detection.hpp
@@ -3301,6 +3311,8 @@ Async/Promise.h
 /home/phoenixflower/Documents/Development/LandessDevCore/IO/Async/Promise.h
 Async/Commitment.h
 /home/phoenixflower/Documents/Development/LandessDevCore/IO/Async/Commitment.h
+Async/Channel.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/IO/Async/Channel.hpp
 
 /home/phoenixflower/Documents/Development/LandessDevCore/IO/TieredDatabase.h
 TypeTraits/TypeList.hpp

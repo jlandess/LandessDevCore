@@ -14,6 +14,7 @@
 #include "Database1.h"
 #include "Async/Promise.h"
 #include "Async/Commitment.h"
+#include "Async/Channel.hpp"
 namespace LD
 {
     template<typename Subscription,typename V, typename KeyType ,typename ... A>
@@ -125,33 +126,41 @@ namespace LD
     template<typename Subscription,typename V, typename KeyType ,typename ... A>
     LD::Enable_If_T<
             LD::Require<LD::CT::IsPrimitive(LD::CT::RemoveQualifiers(LD::Type<V>{}))>,
-            LD::RequestResponse<bool(A...)>>
+            LD::RequestResponse<LD::Channel<V>(A...)>>
     Subscribe(
             Subscription & subscription,
             KeyType && key,
             LD::Type<V>,
+            LD::Channel<V> queue,
             A && ... args) noexcept
     {
-        LD::Promise<V> primitivePromise;
+        //LD::Commitment<V> primitivePromise;
+
         subscription.Subscribe(
-                LD::StringView{key.Data()},[](LD::StringView response, LD::Promise<V> promise) noexcept
+                LD::StringView{key.Data()},[](LD::StringView response, LD::Channel<V> & queue) noexcept
                 {
-                    auto possibleInteger = LD::FromString(LD::Type<V>{},response,promise);
 
-                    auto onPrimitive = [](V primitive, LD::Promise<V> & assignablePrimitive) noexcept
+                    auto possibleInteger = LD::FromString(LD::Type<V>{},response,queue);
+
+                    auto onPrimitive = [](V primitive, LD::Channel<V> & queue) noexcept
                     {
-                        assignablePrimitive = primitive;
+                        //queue->enqueue(primitive);
+                        queue << primitive;
+                        //assignablePrimitive.AddItem(primitive);
+                        //assignablePrimitive = primitive;
                     };
 
 
-                    auto onError = [](LD::TransactionError, V &) noexcept
+                    auto onError = [](LD::TransactionError, LD::Channel<V> & queue) noexcept
                     {
 
                     };
+
 
                     LD::InvokeVisitation(LD::Overload{onPrimitive,onError},possibleInteger);
-                },primitivePromise);
-        return LD::CreateResponse(LD::Type<LD::Promise<V>>{},primitivePromise,LD::Forward<A>(args)...);
+                },queue);
+
+        return LD::CreateResponse(LD::Type<LD::Channel<V>>{},LD::Channel<V>{queue},LD::Forward<A>(args)...);
     }
     /*
     template<typename Subscription,typename V, typename KeyType ,typename ... A>

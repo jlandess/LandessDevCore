@@ -295,6 +295,9 @@
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Async/CallStack.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Async/Channel.hpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Async/Strand.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
