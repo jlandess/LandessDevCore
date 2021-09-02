@@ -464,7 +464,9 @@ namespace LD
         inline Pyramid() noexcept :mBase{},mSide{}
         {
         }
-        inline Pyramid(const LD::Square & width, const LD::Triangle & height) noexcept : mBase{width},mSide{height}
+        inline Pyramid(const LD::Square & width, const LD::Triangle & height) noexcept :
+        mBase{width},
+        mSide{height}
         {
         }
 
@@ -690,7 +692,9 @@ public:
     static constexpr auto ClassName = ctll::fixed_string{"Square"};
 
     using MemberList = LD::CT::TypeList<
-            LD::CT::EncapsulatedMemberDescriptor<LengthName,LD::CT::SelectOverload<LD::Float & (LD::Square::*)(),&LD::Square::GetLength>(),LD::CT::SelectOverload<const LD::Float & (LD::Square::*)() const,&LD::Square::Length>()>
+            LD::CT::EncapsulatedMemberDescriptor<LengthName,
+            LD::CT::SelectOverload<LD::Float & (LD::Square::*)(),&LD::Square::GetLength>(),
+            LD::CT::SelectOverload<const LD::Float & (LD::Square::*)() const,&LD::Square::Length>()>
     >;
 
 

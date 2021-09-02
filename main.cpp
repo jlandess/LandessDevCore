@@ -80,12 +80,15 @@ public:
 
 int main(int argc, char **argv)
 {
-    std::cout << LD::CT::Spannable(LD::Type<LD::StaticArray<LD::Variant<LD::IPV4Address,LD::IPV6Address>,30>>{}) << "\n";
+    //std::cout << LD::CT::Spannable(LD::Type<LD::StaticArray<LD::Variant<LD::IPV4Address,LD::IPV6Address>,30>>{}) << "\n";
     //LD::CT::TypeList
     //LD::MakeVisitor();
-    std::cout << LD::CT::CanBeMadeFromStringView(LD::Type<int>{}) << std::endl;
+    //std::cout << LD::CT::CanBeMadeFromStringView(LD::Type<int>{}) << std::endl;
     nlohmann::json json123;
     LD::JsonBackend jsonBackend123{json123};
+
+
+
 
     LD::Insert(
             jsonBackend123,
