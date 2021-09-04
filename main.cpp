@@ -213,9 +213,8 @@ int main(int argc, char **argv)
     LD::Subscribe(mBackend,LD::ImmutableString{"room.Side.Height"},LD::Type<LD::UInteger>{},
     [&](LD::UInteger response, LD::SharedLock<LD::Mutex> sharedLock)
     {
-
-
         LD::ScopeLock<LD::SharedLock<LD::Mutex>> scopedLock{sharedLock};
+
         abc = response;
         std::cout << "the wheels on the bus go round and round all through the town!" << "\n";
     },sharedLock);

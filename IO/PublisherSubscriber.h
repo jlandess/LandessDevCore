@@ -24,7 +24,8 @@ namespace LD
     LD::Enable_If_T<
             LD::Require<
                     LD::CT::IsPrimitive(LD::CT::RemoveQualifiers(LD::Type<V>{})),
-                    LD::ConvertiblyCallable<F,void(V,LockType,A...)>::Value()>,
+                    LD::ConvertiblyCallable<F,void(V,LockType,A...)>::Value(),
+                    LD::CT::IsSharedLock(LD::Type<LockType>{})>,
             LD::RequestResponse<bool(A...)>>
     Subscribe(
             Subscription & subscription,
@@ -120,7 +121,8 @@ namespace LD
     LD::Enable_If_T<
             LD::Require<
                     LD::CT::IsPrimitive(LD::CT::RemoveQualifiers(LD::Type<V>{})),
-                    LD::ConvertiblyCallable<F,void(V,LockType,A...)>::Value()>,
+                    LD::ConvertiblyCallable<F,void(V,LockType,A...)>::Value(),
+                    LD::CT::IsSharedLock(LD::Type<LockType>{})>,
             LD::RequestResponse<bool(A...)>>
     Subscribe(
             Subscription & subscription,
@@ -160,35 +162,7 @@ namespace LD
 
             LD::InvokeVisitation(LD::Overload{onPrimitive,onError},possibleInteger);
         },ContextType{context},LD::fixed_size_function<void(V,LockType,A...)>{function});
-        //auto copyableContext = LD::MakeTuple(V {},args...);
-        //using ContextType = decltype(copyableContext);
-        /*
-        subscription.Subscribe(
-                LD::StringView{key.Data()},[](
-                        LD::StringView response) noexcept
-        {
-            auto possibleInteger = LD::FromString(
-                    LD::Type<V>{},
-                    response);
-
-            auto onPrimitive = [](
-                    V primitive,
-                    F callback) noexcept
-            {
-                //LD::Get(LD::Get<0>(context)) = primitive;
-                //LD::Invoke(callback,context);
-            };
-
-            auto onError = [](LD::TransactionError,
-                    F callback) noexcept
-            {
-
-            };
-
-            LD::InvokeVisitation(LD::Overload{onPrimitive,onError},possibleInteger);
-        });
-         */
-        return LD::CreateResponse(LD::Type<bool>{},LD::TransactionError{},LD::Forward<A>(args)...);
+        return LD::CreateResponse(LD::Type<bool>{},bool{true},LD::Forward<A>(args)...);
     }
 
     template<typename Subscription,typename V, typename KeyType ,typename ... A>
