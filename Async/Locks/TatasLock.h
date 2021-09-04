@@ -57,7 +57,7 @@ namespace PDP
             //return locked.load(std::memory_order_acquire);
             
             
-            return CurrentLock.load(PDP::Acquire);
+            return CurrentLock.load(LD::Acquire);
             
         }
             
@@ -69,7 +69,7 @@ namespace PDP
             while(!TryLock())
             {
                 
-                PDP::Yield();
+                LD::Yield();
                 
             }
             

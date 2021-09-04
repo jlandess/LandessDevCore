@@ -29,9 +29,9 @@ namespace LD
     class SharedCommittedFuture : public PDP::Memory::AutomaticReferencedCountingObject
     {
     private:
-        PDP::Atomic<PDP::UInteger> BrokenStatus;//indicates weather the indicated commitment has been broken with the calling thread
-        PDP::Atomic<PDP::UInteger> Workload;//due to the fact that a singular commitment can be shared across multiple asyncrhonous functions we need a way to indicate when the commitment has been fufilled
-        PDP::Atomic<PDP::UInteger> ExceptionType;//to dynamically detect, set, and prepare to re-throw exceptions created on spawned threads to the threads which invoked them.  Multi-Core Exception Technology
+        LD::Atomic<PDP::UInteger> BrokenStatus;//indicates weather the indicated commitment has been broken with the calling thread
+        LD::Atomic<PDP::UInteger> Workload;//due to the fact that a singular commitment can be shared across multiple asyncrhonous functions we need a way to indicate when the commitment has been fufilled
+        LD::Atomic<PDP::UInteger> ExceptionType;//to dynamically detect, set, and prepare to re-throw exceptions created on spawned threads to the threads which invoked them.  Multi-Core Exception Technology
         //one pointer will be required for each type exception - std::exception, PDP::Exception, and so on.  Those two will probably be the only supported types
         moodycamel::ConcurrentQueue<T> * DataToStream;
     public:
@@ -57,7 +57,7 @@ namespace LD
         
         const bool HasBeenFufilled() const
         {
-            return this->Workload.load(PDP::AcquireRelease) == 0;
+            return this->Workload.load(LD::AcquireRelease) == 0;
         }
         
         inline const bool WasBroken() const;
@@ -71,9 +71,9 @@ namespace LD
     class SharedCommittedFuture<void> : public PDP::Memory::AutomaticReferencedCountingObject
     {
     private:
-        PDP::Atomic<PDP::UInteger> BrokenStatus;//indicates weather the indicated commitment has been broken with the calling thread
-        PDP::Atomic<PDP::UInteger> Workload;//due to the fact that a singular commitment can be shared across multiple asyncrhonous functions we need a way to indicate when the commitment has been fufilled
-        PDP::Atomic<PDP::UInteger> ExceptionType;//to dynamically detect, set, and prepare to re-throw exceptions created on spawned threads to the threads which invoked them.  Multi-Core Exception Technology
+        LD::Atomic<PDP::UInteger> BrokenStatus;//indicates weather the indicated commitment has been broken with the calling thread
+        LD::Atomic<PDP::UInteger> Workload;//due to the fact that a singular commitment can be shared across multiple asyncrhonous functions we need a way to indicate when the commitment has been fufilled
+        LD::Atomic<PDP::UInteger> ExceptionType;//to dynamically detect, set, and prepare to re-throw exceptions created on spawned threads to the threads which invoked them.  Multi-Core Exception Technology
         //one pointer will be required for each type exception - std::exception, PDP::Exception, and so on.  Those two will probably be the only supported types
         moodycamel::ConcurrentQueue<bool> * DataToStream;
         
@@ -99,7 +99,7 @@ namespace LD
         
         const bool HasBeenFufilled() const
         {
-            return this->Workload.load(PDP::AcquireRelease) == 0;
+            return this->Workload.load(LD::AcquireRelease) == 0;
         }
         
         inline const bool WasBroken() const;
@@ -112,8 +112,8 @@ namespace LD
     SharedCommittedFuture<T>::SharedCommittedFuture()
     {
         this->DataToStream = new moodycamel::ConcurrentQueue<T>();
-        this->BrokenStatus.store(false,PDP::AcquireRelease);
-        this->Workload.store(0,PDP::AcquireRelease);
+        this->BrokenStatus.store(false,LD::AcquireRelease);
+        this->Workload.store(0,LD::AcquireRelease);
     }
     
     template<typename T>
@@ -132,13 +132,13 @@ namespace LD
     template<typename T>
     inline void SharedCommittedFuture<T>::SetExceptionOccured()
     {
-        this->BrokenStatus.store(true,PDP::AcquireRelease);
+        this->BrokenStatus.store(true,LD::AcquireRelease);
     }
     
     template<typename T>
     inline const bool SharedCommittedFuture<T>::WasBroken() const
     {
-        return this->BrokenStatus.load(PDP::AcquireRelease);
+        return this->BrokenStatus.load(LD::AcquireRelease);
     }
     
     template<typename T>
@@ -171,7 +171,7 @@ namespace LD
 
         std::shared_ptr<moodycamel::ConcurrentQueue<T>> CurrentCommittedFuture;
 
-        PDP::Atomic<PDP::UInteger> BrokenStatus;
+        LD::Atomic<PDP::UInteger> BrokenStatus;
     public:
         
         inline Commitment() noexcept:CurrentCommittedFuture{new moodycamel::ConcurrentQueue<T>{}}

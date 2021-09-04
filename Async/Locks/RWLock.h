@@ -9,7 +9,7 @@
 #ifndef DataStructures_RWLock_h
 #define DataStructures_RWLock_h
 
-#include <Primitives/Threads/Atomic/AtomicUnderlyingCore.h>
+#include "Async/Atomic/AtomicUnderlyingCore.h"
 
 // Choose default implementation if not already configured by turf_userconfig.h:
 #if !defined(TURF_IMPL_RWLOCK_PATH)

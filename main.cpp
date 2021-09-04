@@ -1,3 +1,4 @@
+
 #include "Examples/ReflectionDemoTypes.h"
 #include "Examples/IMGUIExample1.h"
 #include "Examples/IMGUIExample2.h"
@@ -48,6 +49,7 @@
 //{"data":"UPID:virtualhome:00004556:065341E5:6020F7FA:vzcreate:110:root@pam:"}
 //UPID:([a-zA-Z0-9]+):([0-9a-fA-F]+):([0-9a-fA-F]+):([0-9a-fA-F]+):(\\w+):(\\d+):(\\w+)@([a-zA-Z0-9:]+)
 #include "IO/PublisherSubscriber.h"
+#include "Async/Thread.h"
 void ParseResponse(LD::StringView view) noexcept
 {
     if (auto [whole, nodeName, hex1, hex2,hex3,creationMethod,index,username,base] = ctre::match<LD::PVE::Detail::CreationRegex>(view); whole)
@@ -191,19 +193,51 @@ int main(int argc, char **argv)
      */
 
 
-    LD::UInteger value;
-    LD::Subscribe(mBackend,LD::ImmutableString{"room.Side.Height"},value);
+    //LD::UInteger value;
+    //LD::Subscribe(mBackend,LD::ImmutableString{"room.Side.Height"},value);
+
+     //queue;
 
     LD::Channel<LD::UInteger> queue;
-    queue << 7;
-    //moodycamel::ConcurrentQueue<LD::UInteger> * queue = new moodycamel::ConcurrentQueue<LD::UInteger>{};
-     auto commitmentResponse =  LD::Subscribe(
+    auto subscriptionResponse = LD::Subscribe(
              mBackend,
              LD::ImmutableString{"room.Side.Height"},
-             LD::Type<LD::UInteger>{},
-             queue);
+             LD::Type<LD::UInteger>{});
 
 
+
+    static_assert(LD::CT::IsLock(LD::Type<LD::Mutex>{}),"not a lock");
+    LD::SharedLock<LD::Mutex> sharedLock;
+    //std::mutex mutex;
+    LD::UInteger abc = 0;
+    LD::Subscribe(mBackend,LD::ImmutableString{"room.Side.Height"},LD::Type<LD::UInteger>{},
+    [&](LD::UInteger response, LD::SharedLock<LD::Mutex> sharedLock)
+    {
+
+
+        LD::ScopeLock<LD::SharedLock<LD::Mutex>> scopedLock{sharedLock};
+        abc = response;
+        std::cout << "the wheels on the bus go round and round all through the town!" << "\n";
+    },sharedLock);
+
+    auto onSuccessfulSubscription = [&](LD::Channel<LD::UInteger> channel) noexcept
+    {
+        queue = channel;
+    };
+
+    auto onSubscriptionFailure = [](LD::TransactionError) noexcept
+    {
+
+    };
+
+    LD::InvokeVisitation(LD::Overload{onSuccessfulSubscription,onSubscriptionFailure},subscriptionResponse);
+    queue << 7;
+
+    queue << 7;
+
+    queue << 7;
+
+    queue << 7;
     LD::StaticArray<LD::Pyramid,5> usableMemeArray;
 
     LD::Fetch(
@@ -336,10 +370,11 @@ int main(int argc, char **argv)
     LD::Timer timer;
     timer.Start();
 
-    while (timer.GetElapsedTimeInSec() < 5)
+    while (timer.GetElapsedTimeInSec() < 15)
     {
 
 
+        std::cout << "ABC: " << abc << std::endl;
         if (queue.Size() > 0)
         {
             LD::UInteger number;

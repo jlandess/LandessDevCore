@@ -30,7 +30,7 @@ namespace PDP
             AutomaticReferencedCountingObject(const AutomaticReferencedCountingObject &) : m_refCount(0) {}
             
             /// Return the current reference count
-            int getRefCount() const { return m_refCount.load(PDP::AcquireRelease); };
+            int getRefCount() const { return m_refCount.load(LD::AcquireRelease); };
             
             /// Increase the object's reference count by one
             void Retain() const { ++m_refCount; }
@@ -50,7 +50,7 @@ namespace PDP
              */
             virtual ~AutomaticReferencedCountingObject();
         private:
-            mutable PDP::Atomic<int> m_refCount { 0 };
+            mutable LD::Atomic<int> m_refCount { 0 };
         };
         
         

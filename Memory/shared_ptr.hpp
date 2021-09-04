@@ -49,7 +49,7 @@ namespace LD
             long count = 0;
             if (nullptr != pn)
             {
-                count = pn->load(PDP::AcquireRelease);
+                count = pn->load(LD::AcquireRelease);
             }
             return count;
         }
@@ -63,7 +63,7 @@ namespace LD
                 {
                     try
                     {
-                        pn = new PDP::Atomic<PDP::Integer>(1); // may throw std::bad_alloc
+                        pn = new LD::Atomic<PDP::Integer>(1); // may throw std::bad_alloc
                     }
                     catch (std::bad_alloc&)
                     {
@@ -84,7 +84,7 @@ namespace LD
             if (nullptr != pn)
             {
                 --(*pn);
-                if (0 == pn->load(PDP::AcquireRelease))
+                if (0 == pn->load(LD::AcquireRelease))
                 {
                     delete p;
                     delete pn;
@@ -94,7 +94,7 @@ namespace LD
         }
         
     public:
-        PDP::Atomic<PDP::Integer> *   pn; //!< Reference counter
+        LD::Atomic<PDP::Integer> *   pn; //!< Reference counter
         
         template<typename U>
         friend class WeakPointer;
@@ -321,7 +321,7 @@ namespace LD
     {
     private:
         T * ObjectPointer;
-        PDP::Atomic<PDP::Integer> * AtomicCounter;
+        LD::Atomic<PDP::Integer> * AtomicCounter;
     public:
 
         template<typename U>
@@ -352,12 +352,12 @@ namespace LD
         
         const bool IsValid() const noexcept
         {
-            return AtomicCounter != nullptr && AtomicCounter->load(PDP::AcquireRelease) >=1;
+            return AtomicCounter != nullptr && AtomicCounter->load(LD::AcquireRelease) >=1;
         }
         
         const bool IsExpired() const noexcept
         {
-            return AtomicCounter == nullptr || AtomicCounter->load(PDP::AcquireRelease) == 0;
+            return AtomicCounter == nullptr || AtomicCounter->load(LD::AcquireRelease) == 0;
         }
         
         SharedPointer<T> Lock() const noexcept

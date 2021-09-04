@@ -914,6 +914,15 @@ namespace LD
     
 }
 
-
+namespace LD
+{
+    namespace CT
+    {
+        constexpr bool IsLock(LD::Type<LD::Mutex> ) noexcept
+        {
+            return true;
+        }
+    }
+}
 
 #endif //MULTITHREADING_H

@@ -87,7 +87,7 @@ public:
         int count = 0;
         while (!TryLockUpgrade())
         {
-            if (++count > 1000) PDP::Yield();
+            if (++count > 1000) LD::Yield();
         }
     }
     

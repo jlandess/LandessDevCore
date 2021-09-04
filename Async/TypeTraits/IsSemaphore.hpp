@@ -1,0 +1,8 @@
+//
+// Created by phoenixflower on 9/4/21.
+//
+
+#ifndef LANDESSDEVCORE_ISSEMAPHORE_HPP
+#define LANDESSDEVCORE_ISSEMAPHORE_HPP
+
+#endif //LANDESSDEVCORE_ISSEMAPHORE_HPP

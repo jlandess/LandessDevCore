@@ -13,7 +13,7 @@
 #include "AtomicPrimitiveImplementation.h"
 #include "AtomicCore.h"
 //#include "Thread.h"
-namespace PDP
+namespace LD
 {
     
     // clang-format off
@@ -264,25 +264,25 @@ namespace PDP
         
         Atomic & operator ++ ()
         {
-            this->fetchAdd(char(1), PDP::AcquireRelease);
+            this->fetchAdd(char(1), LD::AcquireRelease);
             return (*this);
         }
         
         Atomic & operator ++(int)
         {
-            this->fetchAdd(char(1), PDP::AcquireRelease);
+            this->fetchAdd(char(1), LD::AcquireRelease);
             return (*this);
         }
         
         Atomic & operator --()
         {
-            this->fetchSub(char(1), PDP::AcquireRelease);
+            this->fetchSub(char(1), LD::AcquireRelease);
             return (*this);
         }
         
         Atomic & operator --(int)
         {
-            this->fetchSub(char(1), PDP::AcquireRelease);
+            this->fetchSub(char(1), LD::AcquireRelease);
             return (*this);
         }
     };
@@ -367,25 +367,25 @@ namespace PDP
         
         Atomic & operator ++ ()
         {
-            this->fetchAdd(1, PDP::AcquireRelease);
+            this->fetchAdd(1, LD::AcquireRelease);
             return (*this);
         }
         
         Atomic & operator ++(int)
         {
-            this->fetchAdd(1, PDP::AcquireRelease);
+            this->fetchAdd(1, LD::AcquireRelease);
             return (*this);
         }
         
         Atomic & operator --()
         {
-            this->fetchSub(1, PDP::AcquireRelease);
+            this->fetchSub(1, LD::AcquireRelease);
             return (*this);
         }
         
         Atomic & operator --(int)
         {
-            this->fetchSub(1, PDP::AcquireRelease);
+            this->fetchSub(1, LD::AcquireRelease);
             return (*this);
         }
     };
@@ -470,25 +470,25 @@ namespace PDP
         
         Atomic & operator ++ ()
         {
-            this->fetchAdd(1, PDP::AcquireRelease);
+            this->fetchAdd(1, LD::AcquireRelease);
             return (*this);
         }
         
         Atomic & operator ++(int)
         {
-            this->fetchAdd(1, PDP::AcquireRelease);
+            this->fetchAdd(1, LD::AcquireRelease);
             return (*this);
         }
         
         Atomic & operator --()
         {
-            this->fetchSub(1, PDP::AcquireRelease);
+            this->fetchSub(1, LD::AcquireRelease);
             return (*this);
         }
         
         Atomic & operator --(int)
         {
-            this->fetchSub(1, PDP::AcquireRelease);
+            this->fetchSub(1, LD::AcquireRelease);
             return (*this);
         }
     };
@@ -572,25 +572,25 @@ namespace PDP
         
         Atomic & operator ++ ()
         {
-            this->fetchAdd(1, PDP::AcquireRelease);
+            this->fetchAdd(1, LD::AcquireRelease);
             return (*this);
         }
         
         Atomic & operator ++(int)
         {
-            this->fetchAdd(1, PDP::AcquireRelease);
+            this->fetchAdd(1, LD::AcquireRelease);
             return (*this);
         }
         
         Atomic & operator --()
         {
-            this->fetchSub(1, PDP::AcquireRelease);
+            this->fetchSub(1, LD::AcquireRelease);
             return (*this);
         }
         
         Atomic & operator --(int)
         {
-            this->fetchSub(1, PDP::AcquireRelease);
+            this->fetchSub(1, LD::AcquireRelease);
             return (*this);
         }
     };
@@ -675,25 +675,25 @@ namespace PDP
         
         Atomic & operator ++ ()
         {
-            this->fetchAdd(1, PDP::AcquireRelease);
+            this->fetchAdd(1, LD::AcquireRelease);
             return (*this);
         }
         
         Atomic & operator ++(int)
         {
-            this->fetchAdd(1, PDP::AcquireRelease);
+            this->fetchAdd(1, LD::AcquireRelease);
             return (*this);
         }
         
         Atomic & operator --()
         {
-            this->fetchSub(1, PDP::AcquireRelease);
+            this->fetchSub(1, LD::AcquireRelease);
             return (*this);
         }
         
         Atomic & operator --(int)
         {
-            this->fetchSub(1, PDP::AcquireRelease);
+            this->fetchSub(1, LD::AcquireRelease);
             return (*this);
         }
     };
@@ -779,25 +779,25 @@ namespace PDP
         
         Atomic & operator ++ ()
         {
-            this->fetchAdd(1, PDP::AcquireRelease);
+            this->fetchAdd(1, LD::AcquireRelease);
             return (*this);
         }
         
         Atomic & operator ++(int)
         {
-            this->fetchAdd(1, PDP::AcquireRelease);
+            this->fetchAdd(1, LD::AcquireRelease);
             return (*this);
         }
         
         Atomic & operator --()
         {
-            this->fetchSub(1, PDP::AcquireRelease);
+            this->fetchSub(1, LD::AcquireRelease);
             return (*this);
         }
         
         Atomic & operator --(int)
         {
-            this->fetchSub(1, PDP::AcquireRelease);
+            this->fetchSub(1, LD::AcquireRelease);
             return (*this);
         }
     };
@@ -978,25 +978,25 @@ namespace PDP
         
         Atomic & operator ++ ()
         {
-            this->fetchAdd(1, PDP::AcquireRelease);
+            this->fetchAdd(1, LD::AcquireRelease);
             return (*this);
         }
         
         Atomic & operator ++(int)
         {
-            this->fetchAdd(1, PDP::AcquireRelease);
+            this->fetchAdd(1, LD::AcquireRelease);
             return (*this);
         }
         
         Atomic & operator --()
         {
-            this->fetchSub(1, PDP::AcquireRelease);
+            this->fetchSub(1, LD::AcquireRelease);
             return (*this);
         }
         
         Atomic & operator --(int)
         {
-            this->fetchSub(1, PDP::AcquireRelease);
+            this->fetchSub(1, LD::AcquireRelease);
             return (*this);
         }
     };
@@ -1084,25 +1084,25 @@ namespace PDP
         
         Atomic & operator ++ ()
         {
-            this->fetchAdd(1, PDP::AcquireRelease);
+            this->fetchAdd(1, LD::AcquireRelease);
             return (*this);
         }
         
         Atomic & operator ++(int)
         {
-            this->fetchAdd(1, PDP::AcquireRelease);
+            this->fetchAdd(1, LD::AcquireRelease);
             return (*this);
         }
         
         Atomic & operator --()
         {
-            this->fetchSub(1, PDP::AcquireRelease);
+            this->fetchSub(1, LD::AcquireRelease);
             return (*this);
         }
         
         Atomic & operator --(int)
         {
-            this->fetchSub(1, PDP::AcquireRelease);
+            this->fetchSub(1, LD::AcquireRelease);
             return (*this);
         }
     };
@@ -1458,7 +1458,7 @@ namespace PDP
     
     struct RaceDetector
     {
-        PDP::Atomic<bool> entered;
+        LD::Atomic<bool> entered;
         
         RaceDetector() : entered(false)
         {
@@ -1474,12 +1474,12 @@ namespace PDP
     public:
         RaceDetectGuard(RaceDetector& guard) : m_guard(guard)
         {
-            if (m_guard.entered.exchange(true, PDP::Acquire) == true)
+            if (m_guard.entered.exchange(true, LD::Acquire) == true)
                 TURF_DEBUG_BREAK();
         }
         ~RaceDetectGuard()
         {
-            m_guard.entered.store(false, PDP::Release);
+            m_guard.entered.store(false, LD::Release);
         }
     };
     

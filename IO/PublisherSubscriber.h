@@ -15,8 +15,39 @@
 #include "Async/Promise.h"
 #include "Async/Commitment.h"
 #include "Async/Channel.hpp"
+#include <Functor/fixed_size_function.hpp>
+#include "Async/Locks/SharedLock.hpp"
 namespace LD
 {
+
+    template<typename Subscription,typename V, typename F,typename KeyType , typename LockType,typename ... A>
+    LD::Enable_If_T<
+            LD::Require<
+                    LD::CT::IsPrimitive(LD::CT::RemoveQualifiers(LD::Type<V>{})),
+                    LD::ConvertiblyCallable<F,void(V,LockType,A...)>::Value()>,
+            LD::RequestResponse<bool(A...)>>
+    Subscribe(
+            Subscription & subscription,
+            KeyType && key,
+            LD::Type<V>,
+            F && callBack,
+            LockType  lockType,
+            A && ... args) noexcept;
+
+    template<typename Subscription,typename V, typename KeyType ,typename ... A>
+    LD::Enable_If_T<
+            LD::Require<LD::CT::IsPrimitive(LD::CT::RemoveQualifiers(LD::Type<V>{}))>,
+            LD::RequestResponse<LD::Channel<V>(A...)>
+             >
+    Subscribe(
+            Subscription & subscription,
+            KeyType && key,
+            LD::Type<V>,
+            A && ... args) noexcept;
+
+
+
+    /*
     template<typename Subscription,typename V, typename KeyType ,typename ... A>
     LD::Enable_If_T<
             LD::CT::IsReflectable<LD::Detail::Decay_T<V>>(),
@@ -26,7 +57,9 @@ namespace LD
             KeyType && key,
             V & object,
             A && ... args) noexcept;
+            */
 
+    /*
     template<typename Subscription,typename V, typename KeyType ,typename ... A>
     LD::Enable_If_T<
             LD::Require<LD::CT::IsPrimitive(LD::CT::RemoveQualifiers(LD::Type<V>{}))>,
@@ -36,20 +69,10 @@ namespace LD
             KeyType && key,
             V & object,
             A && ... args) noexcept;
+            */
 
-    template<typename Subscription,typename V, typename CallBackFunctor ,typename KeyType ,typename ... A>
-    LD::Enable_If_T<
-            LD::Require<LD::CT::IsPrimitive(LD::CT::RemoveQualifiers(LD::Type<V>{})),
-            LD::ConvertiblyCallable<CallBackFunctor,void(V value, A && ...)>::Value()
-            >,
-            LD::RequestResponse<LD::Promise<V>(A...)>>
-    Subscribe(
-            Subscription & subscription,
-            KeyType && key,
-            LD::Type<V> ,
-            CallBackFunctor && functor,
-            A && ... args) noexcept;
 
+    /*
     template<typename Subscription,typename V, typename KeyType ,typename ... A>
     LD::Enable_If_T<
             LD::Require<LD::CT::IsImmutableString(LD::CT::RemoveQualifiers(LD::Type<V>{}))>,
@@ -91,35 +114,80 @@ namespace LD
             V & object,
             A && ... args) noexcept;
 
+     */
 
-    template<typename Subscription,typename V, typename KeyType ,typename ... A>
+    template<typename Subscription,typename V, typename F,typename KeyType , typename LockType ,typename ... A>
     LD::Enable_If_T<
-            LD::Require<LD::CT::IsPrimitive(LD::CT::RemoveQualifiers(LD::Type<V>{}))>,
+            LD::Require<
+                    LD::CT::IsPrimitive(LD::CT::RemoveQualifiers(LD::Type<V>{})),
+                    LD::ConvertiblyCallable<F,void(V,LockType,A...)>::Value()>,
             LD::RequestResponse<bool(A...)>>
     Subscribe(
             Subscription & subscription,
             KeyType && key,
-            V & object,
+            LD::Type<V>,
+            F && callBack,
+            LockType  lock,
             A && ... args) noexcept
     {
+        auto context = LD::MakeTuple(V{},LockType{lock},LD::Forward<A>(args)...);
+        using ContextType = decltype(context);
+        LD::fixed_size_function<void(V,LockType,A...)> function{LD::Forward<F>(callBack)};
         subscription.Subscribe(
-                LD::StringView{key.Data()},[](LD::StringView response, V & object) noexcept
+                LD::StringView{key.Data()},
+        [](
+                LD::StringView response,
+                ContextType passedInContext,
+                LD::fixed_size_function<void(V,LockType,A...)>  callback)
         {
-            auto possibleInteger = LD::FromString(LD::Type<V>{},response,object);
+            auto possibleInteger = LD::FromString(
+                    LD::Type<V>{},
+                    response,passedInContext,callback);
 
-            auto onPrimitive = [](V primitive, V & assignablePrimitive) noexcept
+            auto onPrimitive = [](
+                    V primitive,
+                    ContextType & context,
+                    LD::fixed_size_function<void(V,LockType,A...)> & callback) noexcept
             {
-                assignablePrimitive = primitive;
+                LD::Get(LD::Get<0>(context)) = primitive;
+                LD::Invoke(callback,context);
             };
 
-
-            auto onError = [](LD::TransactionError, V &) noexcept
+            auto onError = [](LD::TransactionError, ContextType & context, LD::fixed_size_function<void(V,LockType,A...)> &) noexcept
             {
 
             };
 
             LD::InvokeVisitation(LD::Overload{onPrimitive,onError},possibleInteger);
-        },object);
+        },ContextType{context},LD::fixed_size_function<void(V,LockType,A...)>{function});
+        //auto copyableContext = LD::MakeTuple(V {},args...);
+        //using ContextType = decltype(copyableContext);
+        /*
+        subscription.Subscribe(
+                LD::StringView{key.Data()},[](
+                        LD::StringView response) noexcept
+        {
+            auto possibleInteger = LD::FromString(
+                    LD::Type<V>{},
+                    response);
+
+            auto onPrimitive = [](
+                    V primitive,
+                    F callback) noexcept
+            {
+                //LD::Get(LD::Get<0>(context)) = primitive;
+                //LD::Invoke(callback,context);
+            };
+
+            auto onError = [](LD::TransactionError,
+                    F callback) noexcept
+            {
+
+            };
+
+            LD::InvokeVisitation(LD::Overload{onPrimitive,onError},possibleInteger);
+        });
+         */
         return LD::CreateResponse(LD::Type<bool>{},LD::TransactionError{},LD::Forward<A>(args)...);
     }
 
@@ -131,11 +199,9 @@ namespace LD
             Subscription & subscription,
             KeyType && key,
             LD::Type<V>,
-            LD::Channel<V> queue,
             A && ... args) noexcept
     {
-        //LD::Commitment<V> primitivePromise;
-
+        LD::Channel<V> queue;
         subscription.Subscribe(
                 LD::StringView{key.Data()},[](LD::StringView response, LD::Channel<V> & queue) noexcept
                 {
@@ -144,12 +210,8 @@ namespace LD
 
                     auto onPrimitive = [](V primitive, LD::Channel<V> & queue) noexcept
                     {
-                        //queue->enqueue(primitive);
                         queue << primitive;
-                        //assignablePrimitive.AddItem(primitive);
-                        //assignablePrimitive = primitive;
                     };
-
 
                     auto onError = [](LD::TransactionError, LD::Channel<V> & queue) noexcept
                     {
@@ -161,6 +223,7 @@ namespace LD
                 },queue);
 
         return LD::CreateResponse(LD::Type<LD::Channel<V>>{},LD::Channel<V>{queue},LD::Forward<A>(args)...);
+        //return queue;
     }
     /*
     template<typename Subscription,typename V, typename KeyType ,typename ... A>

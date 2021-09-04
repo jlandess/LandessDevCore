@@ -39,9 +39,9 @@ namespace LD
         //one pointer will be required for each type exception - std::exception, PDP::Exception, and so on.  Those two will probably be the only supported types
         
         
-        PDP::Atomic<PDP::UInteger> IsReadyStatus;
+        LD::Atomic<PDP::UInteger> IsReadyStatus;
         
-        mutable PDP::SpinLock CurrentLock;
+        mutable LD::SpinLock CurrentLock;
     public:
         
         
@@ -49,7 +49,7 @@ namespace LD
         {
             
             
-            IsReadyStatus.store(false,PDP::AcquireRelease);
+            IsReadyStatus.store(false,LD::AcquireRelease);
 
             CurrentLock.Lock();
             this->ObjectBuffer = new T();
@@ -85,7 +85,7 @@ namespace LD
 
             {
              //readyIndicator = IsReady;
-             if(IsReadyStatus.load(PDP::AcquireRelease) == true)
+             if(IsReadyStatus.load(LD::AcquireRelease) == true)
              {
                  CurrentLock.Lock();
                  stuffings = Future<T>(*ObjectBuffer);
@@ -122,7 +122,7 @@ namespace LD
              */
             
             
-            IsReadyStatus.store(true,PDP::AcquireRelease);
+            IsReadyStatus.store(true,LD::AcquireRelease);
             this->CurrentLock.Lock();
             *this->ObjectBuffer = value;
             this->CurrentLock.Unlock();
@@ -153,7 +153,7 @@ namespace LD
              CurrentLock.Unlock();
              */
             //std::cout << "IsReadyStatus: " <<  IsReadyStatus.load() << std::endl;
-            return IsReadyStatus.load(PDP::AcquireRelease);
+            return IsReadyStatus.load(LD::AcquireRelease);
         }
         
         
@@ -177,7 +177,7 @@ namespace LD
 
         std::shared_ptr<SharedFuture<T>> CurrentSharedFuture;
 
-        PDP::Atomic<PDP::UInteger> BrokenStatus;
+        LD::Atomic<PDP::UInteger> BrokenStatus;
         //PDP::Atomic<PDP::UInteger > Ready;
     public:
         
@@ -189,7 +189,7 @@ namespace LD
             //this->CurrentSharedFuture = PDP::Memory::AutomaticReferenceCounter<SharedFuture<T>>( new SharedFuture<T>());
 
             //this->CurrentSharedFuture = std::make_shared<SharedFuture<T>>();
-            this->BrokenStatus.store(false,PDP::AcquireRelease);
+            this->BrokenStatus.store(false,LD::AcquireRelease);
         }
         
         
@@ -202,7 +202,7 @@ namespace LD
         
         inline void ExceptionWasThrown()
         {
-            this->BrokenStatus.store(true,PDP::AcquireRelease);
+            this->BrokenStatus.store(true,LD::AcquireRelease);
         }
 
         explicit  operator LD::Variant<LD::NullClass,T,LD::BrokenPromise> () const
@@ -232,7 +232,7 @@ namespace LD
         }
         inline const bool WasBroken() const
         {
-            return this->BrokenStatus.load(PDP::AcquireRelease);
+            return this->BrokenStatus.load(LD::AcquireRelease);
         }
 
 
@@ -260,7 +260,7 @@ namespace LD
     private:
         std::shared_ptr<SharedFuture<PDP::UInteger>> CurrentSharedFuture;
         //PDP::SharedPointer<SharedFuture<PDP::UInteger>> CurrentSharedFuture;
-        PDP::Atomic<PDP::UInteger> BrokenStatus;
+        LD::Atomic<PDP::UInteger> BrokenStatus;
     public:
         inline Promise()
         {
@@ -270,16 +270,16 @@ namespace LD
             //this->CurrentSharedFuture = PDP::Memory::AutomaticReferenceCounter<SharedFuture<T>>( new SharedFuture<T>());
 
             //this->CurrentSharedFuture = std::make_shared<SharedFuture<T>>();
-            this->BrokenStatus.store(false,PDP::AcquireRelease);
+            this->BrokenStatus.store(false,LD::AcquireRelease);
         }
         inline void ExceptionWasThrown()
         {
-            this->BrokenStatus.store(true,PDP::AcquireRelease);
+            this->BrokenStatus.store(true,LD::AcquireRelease);
         }
         
         inline const bool WasBroken() const
         {
-            return this->BrokenStatus.load(PDP::AcquireRelease);
+            return this->BrokenStatus.load(LD::AcquireRelease);
         }
         
         

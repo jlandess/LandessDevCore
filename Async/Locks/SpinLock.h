@@ -9,7 +9,7 @@
 #ifndef CoreData_SpinLock_h
 #define CoreData_SpinLock_h
 #include "Async/Atomic/Atomic.h"
-namespace PDP
+namespace LD
 {
     //namespace MultiThreading
     //{
@@ -27,7 +27,7 @@ namespace PDP
         public:
             void Lock()
             {
-                while(CurrentLock.exchange(true, PDP::Acquire)){}
+                while(CurrentLock.exchange(true, LD::Acquire)){}
                 
                 //while(lck.test_and_set(std::memory_order_acquire)){}
             }
@@ -40,20 +40,20 @@ namespace PDP
                 //CurrentLock.store(, )
                 
                 
-                return CurrentLock.exchange(true, PDP::Acquire);
+                return CurrentLock.exchange(true, LD::Acquire);
             }
             
             void Unlock()
             {
                 //{__c11_atomic_store(&__a_, false, __m);}
                 //memory_order_seq_cst
-                CurrentLock.store(false, PDP::Release);
+                CurrentLock.store(false, LD::Release);
                 //lck.clear(std::memory_order_release);
             }
             
         private:
             //std::atomic_flag lck = ATOMIC_FLAG_INIT;
-            PDP::Atomic<bool> CurrentLock = {false};
+            LD::Atomic<bool> CurrentLock = {false};
         };
     
     

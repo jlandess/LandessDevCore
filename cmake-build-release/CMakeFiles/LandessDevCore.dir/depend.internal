@@ -3225,10 +3225,11 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  ../Async/Channel.hpp
  ../Async/Commitment.h
  ../Async/Future.h
+ ../Async/Locks/SharedLock.hpp
  ../Async/Locks/SpinLock.h
  ../Async/Promise.h
- ../Async/Thread.h
  ../Async/ThreadAffinity.h
+ ../Async/TypeTraits/IsLock.hpp
  ../Chrono/Timer.h
  ../Core/HeteregenousTuple.hpp
  ../Core/NullClass.hpp
@@ -3402,6 +3403,7 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  /home/phoenixflower/Documents/Development/LandessDevCore/Async/Atomic/compiler_gcc.h
  /home/phoenixflower/Documents/Development/LandessDevCore/Async/Atomic/compiler_msvc.h
  /home/phoenixflower/Documents/Development/LandessDevCore/Async/GrandCentralDispatch.h
+ /home/phoenixflower/Documents/Development/LandessDevCore/Async/Thread.h
  /home/phoenixflower/Documents/Development/LandessDevCore/Async/concurrentqueue.h
  /home/phoenixflower/Documents/Development/LandessDevCore/Core/RequestResponse.hpp
  /home/phoenixflower/Documents/Development/LandessDevCore/Examples/IMGUIExample1.h

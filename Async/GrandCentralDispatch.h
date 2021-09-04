@@ -105,9 +105,9 @@ namespace LD
 
         //PDP::DataStructures::Array<LD::Tuple<LD::CUTThread,TaskDispatcherMetaData<A...>>> Threads;
         std::vector<LD::Tuple<LD::CUTThread,TaskDispatcherMetaData<A...>>> Threads;
-        PDP::Atomic<LD::UInteger> WorkingStatus;
-        PDP::Atomic<LD::UInteger> RequestedNumberOfThreads;
-        PDP::SpinLock CurrentSpinLock;
+        LD::Atomic<LD::UInteger> WorkingStatus;
+        LD::Atomic<LD::UInteger> RequestedNumberOfThreads;
+        LD::SpinLock CurrentSpinLock;
 
         static void * InternalThreadFunction(void * data)
         {
@@ -252,7 +252,7 @@ namespace LD
         inline void InitThreads(const LD::Tuple<A...> & init)
         {
 
-            LD::UInteger numberOfInitialThreads = RequestedNumberOfThreads.load(PDP::AcquireRelease);
+            LD::UInteger numberOfInitialThreads = RequestedNumberOfThreads.load(LD::AcquireRelease);
 
 
             for (LD::UInteger n = 0; n<numberOfInitialThreads; ++n )
@@ -292,9 +292,9 @@ namespace LD
          */
         inline BasicTaskDispatcher(const LD::UInteger & numberOfThreads, const LD::Tuple<A...>& init = LD::Tuple<A...>{})
         {
-            this->RequestedNumberOfThreads.store(numberOfThreads,PDP::AcquireRelease);
+            this->RequestedNumberOfThreads.store(numberOfThreads,LD::AcquireRelease);
 
-            this->WorkingStatus.store(true,PDP::AcquireRelease);
+            this->WorkingStatus.store(true,LD::AcquireRelease);
 
             InitThreads(init);
         }
@@ -303,9 +303,9 @@ namespace LD
         inline ~BasicTaskDispatcher()
         {
 
-            this->RequestedNumberOfThreads.store(0,PDP::AcquireRelease);
+            this->RequestedNumberOfThreads.store(0,LD::AcquireRelease);
 
-            this->WorkingStatus.store(false,PDP::AcquireRelease);
+            this->WorkingStatus.store(false,LD::AcquireRelease);
 
             for(LD::UInteger n = 0 ;n<this->Threads.size();++n)
             {
@@ -404,14 +404,14 @@ namespace LD
         {
 
 
-            return RequestedNumberOfThreads.load(PDP::AcquireRelease);;
+            return RequestedNumberOfThreads.load(LD::AcquireRelease);;
         }
 
 
         const bool GetWorkingStatus() const noexcept
         {
 
-            return WorkingStatus.load(PDP::AcquireRelease);
+            return WorkingStatus.load(LD::AcquireRelease);
         }
     };
 

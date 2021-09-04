@@ -3224,10 +3224,11 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Async/Atomic/Atomic.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Async/Channel.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Async/Commitment.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Async/Future.h
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Async/Locks/SharedLock.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Async/Locks/SpinLock.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Async/Promise.h
-CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Async/Thread.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Async/ThreadAffinity.h
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Async/TypeTraits/IsLock.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Chrono/Timer.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Core/HeteregenousTuple.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Core/NullClass.hpp
@@ -3401,6 +3402,7 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Async/Atomic/AtomicUnderlyingCore.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Async/Atomic/compiler_gcc.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Async/Atomic/compiler_msvc.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Async/GrandCentralDispatch.h
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Async/Thread.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Async/concurrentqueue.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Core/RequestResponse.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Examples/IMGUIExample1.h
