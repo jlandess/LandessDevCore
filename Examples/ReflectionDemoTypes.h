@@ -689,7 +689,7 @@ struct LD::CT::TypeDescriptor<LD::Square>
 private:
     static constexpr auto LengthName = ctll::basic_fixed_string("Length");
 public:
-    static constexpr auto ClassName = ctll::fixed_string{"Square"};
+    static constexpr auto ClassName = LD::ImmutableString{"Square"};
 
     using MemberList = LD::CT::TypeList<
             LD::CT::EncapsulatedMemberDescriptor<LengthName,

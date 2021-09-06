@@ -152,10 +152,11 @@ namespace LD
     {
         auto onObject = [&](const auto & object) noexcept
         {
+            auto className = LD::CT::GetClassName(LD::CT::RemoveQualifiers(LD::Type<decltype(object)>{}));
+            LD::Insert(document,key+LD::ImmutableString{".Type"},className);
             return LD::Insert(document,LD::Forward<Key>(key),object,LD::Forward<Args>(args)...);
         };
         return LD::MultiMatch(onObject,LD::Forward<V>(object));
-        //return LD::CreateResponse(LD::Type<bool>{},LD::TransactionError{},LD::Forward<Args>(args)...);
     }
     template<typename T, typename V, typename Key,typename ... Args>
     LD::Enable_If_T<
@@ -269,7 +270,7 @@ namespace LD
         LD::UInteger serializedAmount = 0;
         LD::Insert(
                 document,
-                key + LD::ImmutableString{"."} + LD::ToImmutableString("LandessDevSpanSize"),
+                key + LD::ImmutableString{"."} + LD::ToImmutableString("Length"),
                 spanSize);
         for(LD::UInteger n = 0;n<spanSize;++n)
         {
@@ -670,7 +671,7 @@ namespace LD
 
         auto spannableSizeRequest = LD::Fetch(
                 document,
-                key+ LD::ImmutableString{"."} + LD::ToImmutableString("LandessDevSpanSize"),
+                key+ LD::ImmutableString{"."} + LD::ToImmutableString("Length"),
                 LD::Type<LD::UInteger>{},
                 document,
                 LD::Forward<Key>(key),

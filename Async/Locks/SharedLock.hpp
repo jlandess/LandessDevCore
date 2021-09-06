@@ -6,6 +6,7 @@
 #define LANDESSDEVCORE_SHAREDLOCK_HPP
 #include "Memory/shared_ptr.hpp"
 #include "Async/TypeTraits/IsLock.hpp"
+#include "Async/TypeTraits/IsSharedLock.hpp"
 namespace LD
 {
     template<typename T, class = void>
@@ -27,12 +28,6 @@ namespace LD
 {
     namespace CT
     {
-        template<typename T>
-        constexpr bool IsSharedLock(LD::Type<T> ) noexcept
-        {
-            return false;
-        }
-
         template<typename T>
         constexpr bool IsSharedLock(LD::Type<LD::SharedLock<T>> ) noexcept
         {

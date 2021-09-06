@@ -298,6 +298,12 @@
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Async/Channel.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Async/Locks/DummyLock.hpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Async/Locks/DummySharedLock.hpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Async/Locks/SharedLock.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
@@ -323,6 +329,9 @@
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Async/TypeTraits/IsSemaphore.hpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Async/TypeTraits/IsSharedLock.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Chrono/Timer.cpp">

@@ -181,22 +181,11 @@ int main(int argc, char **argv)
         return 5;
     });
 
-    LD::Insert(mBackend,LD::ImmutableString{"room"},LD::Pyramid{LD::Square{8},LD::Triangle{7,105}});
+    LD::Insert(mBackend,LD::ImmutableString{"room"},
+               LD::Pyramid{LD::Square{8},LD::Triangle{7,105}});
 
 
-
-    /*
-    mBackend.Subscribe(LD::StringView{"room.Side.Height"},[](LD::StringView answer) noexcept
-    {
-        std::cout << "room answer: " << answer << "\n";
-    });
-     */
-
-
-    //LD::UInteger value;
-    //LD::Subscribe(mBackend,LD::ImmutableString{"room.Side.Height"},value);
-
-     //queue;
+    std::cout << "ClassName: " << LD::CT::GetClassName(LD::Type<int>{}).Data() << std::endl;
 
     LD::Channel<LD::UInteger> queue;
     auto subscriptionResponse = LD::Subscribe(
@@ -204,20 +193,6 @@ int main(int argc, char **argv)
              LD::ImmutableString{"room.Side.Height"},
              LD::Type<LD::UInteger>{});
 
-
-
-    static_assert(LD::CT::IsLock(LD::Type<LD::Mutex>{}),"not a lock");
-    LD::SharedLock<LD::Mutex> sharedLock;
-    //std::mutex mutex;
-    LD::UInteger abc = 0;
-    LD::Subscribe(mBackend,LD::ImmutableString{"room.Side.Height"},LD::Type<LD::UInteger>{},
-    [&](LD::UInteger response, LD::SharedLock<LD::Mutex> sharedLock)
-    {
-        LD::ScopeLock<LD::SharedLock<LD::Mutex>> scopedLock{sharedLock};
-
-        abc = response;
-        std::cout << "the wheels on the bus go round and round all through the town!" << "\n";
-    },sharedLock);
 
     auto onSuccessfulSubscription = [&](LD::Channel<LD::UInteger> channel) noexcept
     {
@@ -230,6 +205,42 @@ int main(int argc, char **argv)
     };
 
     LD::InvokeVisitation(LD::Overload{onSuccessfulSubscription,onSubscriptionFailure},subscriptionResponse);
+
+
+    LD::SharedLock<LD::Mutex> sharedLock;
+
+   LD::Subscribe(
+            mBackend,
+            LD::ImmutableString{"memez1"},
+            LD::Type<LD::Variant<LD::UInteger,bool>>{},
+            [](LD::Variant<LD::UInteger,bool> variant, LD::SharedLock<LD::Mutex> sharedLock)
+            {
+                auto onInteger = [](LD::UInteger value) noexcept
+                {
+                    std::cout << "Found UInteger in Variant: " << value << "\n";
+                };
+
+                auto onBool = [](bool value) noexcept
+                {
+
+                };
+
+                LD::MultiMatch(LD::Overload{onInteger,onBool}, variant);
+
+            },sharedLock);
+
+
+    LD::UInteger abc = 0;
+    LD::Subscribe(mBackend,LD::ImmutableString{"room.Side.Height"},LD::Type<LD::UInteger>{},
+    [&](LD::UInteger response, LD::SharedLock<LD::Mutex> sharedLock)
+    {
+        LD::ScopeLock<LD::SharedLock<LD::Mutex>> scopedLock{sharedLock};
+
+        abc = response;
+        std::cout << "the wheels on the bus go round and round all through the town!" << "\n";
+    },sharedLock);
+
+
     queue << 7;
 
     queue << 7;

@@ -3225,11 +3225,14 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  ../Async/Channel.hpp
  ../Async/Commitment.h
  ../Async/Future.h
+ ../Async/Locks/DummyLock.hpp
+ ../Async/Locks/DummySharedLock.hpp
  ../Async/Locks/SharedLock.hpp
  ../Async/Locks/SpinLock.h
  ../Async/Promise.h
  ../Async/ThreadAffinity.h
  ../Async/TypeTraits/IsLock.hpp
+ ../Async/TypeTraits/IsSharedLock.hpp
  ../Chrono/Timer.h
  ../Core/HeteregenousTuple.hpp
  ../Core/NullClass.hpp

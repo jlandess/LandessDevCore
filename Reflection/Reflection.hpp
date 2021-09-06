@@ -446,13 +446,116 @@ namespace LD
         template<typename T>
         constexpr auto GetClassName(T && ) noexcept
         {
-            return LD::CT::TypeDescriptor<LD::Detail::Decay_T<T>>::ClassName;
+
+            if constexpr(LD::CT::IsSame(LD::Type<char>{},LD::Type<T>{}))
+            {
+                return LD::ImmutableString{"char"};
+
+            }else if constexpr(LD::CT::IsSame(LD::Type<bool>{},LD::Type<T>{}))
+            {
+                return LD::ImmutableString{"bool"};
+            }else if constexpr(LD::CT::IsSame(LD::Type<short>{},LD::Type<T>{}))
+            {
+                return LD::ImmutableString{"short"};
+            }else if constexpr(LD::CT::IsSame(LD::Type<int>{},LD::Type<T>{}))
+            {
+                return LD::ImmutableString{"int"};
+            }else if constexpr(LD::CT::IsSame(LD::Type<long>{},LD::Type<T>{}))
+            {
+                return LD::ImmutableString{"long"};
+            }else if constexpr(LD::CT::IsSame(LD::Type<long long int>{},LD::Type<T>{}))
+            {
+                return LD::ImmutableString{"longlongint"};
+            }else if constexpr(LD::CT::IsSame(LD::Type<float>{},LD::Type<T>{}))
+            {
+                return LD::ImmutableString{"float"};
+            }else if constexpr(LD::CT::IsSame(LD::Type<double>{},LD::Type<T>{}))
+            {
+                return LD::ImmutableString{"double"};
+            }else if constexpr(LD::CT::IsSame(LD::Type<long double>{},LD::Type<T>{}))
+            {
+                return LD::ImmutableString{"longdouble"};
+            }else if constexpr(LD::CT::IsSame(LD::Type<unsigned char>{},LD::Type<T>{}))
+            {
+                return LD::ImmutableString{"uchar"};
+            }
+            else if constexpr(LD::CT::IsSame(LD::Type<unsigned short>{},LD::Type<T>{}))
+            {
+                return LD::ImmutableString{"ushort"};
+            }
+            else if constexpr(LD::CT::IsSame(LD::Type<unsigned int>{},LD::Type<T>{}))
+            {
+                return LD::ImmutableString{"uint"};
+            }
+            else if constexpr(LD::CT::IsSame(LD::Type<unsigned long>{},LD::Type<T>{}))
+            {
+                return LD::ImmutableString{"ulong"};
+            }
+            else if constexpr(LD::CT::IsSame(LD::Type<unsigned long long int>{},LD::Type<T>{}))
+            {
+                return LD::ImmutableString{"ulonglongint"};
+            }
+            else
+            {
+                return LD::CT::TypeDescriptor<LD::Detail::Decay_T<T>>::ClassName;
+            }
         }
 
         template<typename T>
         constexpr auto GetClassName(LD::Type<T>) noexcept
         {
-            return LD::CT::TypeDescriptor<LD::Detail::Decay_T<T>>::ClassName;
+            if constexpr(LD::CT::IsSame(LD::Type<char>{},LD::Type<T>{}))
+            {
+                return LD::ImmutableString{"char"};
+
+            }else if constexpr(LD::CT::IsSame(LD::Type<bool>{},LD::Type<T>{}))
+            {
+                return LD::ImmutableString{"bool"};
+            }else if constexpr(LD::CT::IsSame(LD::Type<short>{},LD::Type<T>{}))
+            {
+                return LD::ImmutableString{"short"};
+            }else if constexpr(LD::CT::IsSame(LD::Type<int>{},LD::Type<T>{}))
+            {
+                return LD::ImmutableString{"int"};
+            }else if constexpr(LD::CT::IsSame(LD::Type<long>{},LD::Type<T>{}))
+            {
+                return LD::ImmutableString{"long"};
+            }else if constexpr(LD::CT::IsSame(LD::Type<long long int>{},LD::Type<T>{}))
+            {
+                return LD::ImmutableString{"longlongint"};
+            }else if constexpr(LD::CT::IsSame(LD::Type<float>{},LD::Type<T>{}))
+            {
+                return LD::ImmutableString{"float"};
+            }else if constexpr(LD::CT::IsSame(LD::Type<double>{},LD::Type<T>{}))
+            {
+                return LD::ImmutableString{"double"};
+            }else if constexpr(LD::CT::IsSame(LD::Type<long double>{},LD::Type<T>{}))
+            {
+                return LD::ImmutableString{"longdouble"};
+            }else if constexpr(LD::CT::IsSame(LD::Type<unsigned char>{},LD::Type<T>{}))
+            {
+                return LD::ImmutableString{"uchar"};
+            }
+            else if constexpr(LD::CT::IsSame(LD::Type<unsigned short>{},LD::Type<T>{}))
+            {
+                return LD::ImmutableString{"ushort"};
+            }
+            else if constexpr(LD::CT::IsSame(LD::Type<unsigned int>{},LD::Type<T>{}))
+            {
+                return LD::ImmutableString{"uint"};
+            }
+            else if constexpr(LD::CT::IsSame(LD::Type<unsigned long>{},LD::Type<T>{}))
+            {
+                return LD::ImmutableString{"ulong"};
+            }
+            else if constexpr(LD::CT::IsSame(LD::Type<unsigned long long int>{},LD::Type<T>{}))
+            {
+                return LD::ImmutableString{"ulonglongint"};
+            }
+            else
+            {
+                return LD::CT::TypeDescriptor<LD::Detail::Decay_T<T>>::ClassName;
+            }
         }
 
         template<typename T>

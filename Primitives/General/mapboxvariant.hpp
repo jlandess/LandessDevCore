@@ -12,6 +12,7 @@
 #include <utility>
 #include <functional>
 #include <limits>
+#include "TypeTraits/Type.h"
 
 #include "mapboxrecursive_wrapper.hpp"
 //#include <mapbox/variant_visitor.hpp>
@@ -1114,5 +1115,17 @@ namespace LD
 {
     template<typename ... T>
     using Variant = mapbox::util::variant<T...>;
+}
+
+namespace LD
+{
+    namespace CT
+    {
+        template<typename ... A>
+        constexpr LD::CT::TypeList<A...> GetVariantTypes(LD::Type<LD::Variant<A...> >)  noexcept
+        {
+            return LD::CT::TypeList<A...>{};
+        }
+    }
 }
 #endif // MAPBOX_UTIL_VARIANT_HPP

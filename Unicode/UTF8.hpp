@@ -638,6 +638,18 @@ namespace LD
             return (char*)str.content+str.size();
         }
 
+        template<LD::UInteger N>
+        inline auto Begin(const LD::ImmutableString<N> & str) noexcept
+        {
+            return (char*)str.Begin();
+        }
+
+        template<LD::UInteger N>
+        inline auto End(const LD::ImmutableString<N> & str) noexcept
+        {
+            return (char*)str.Data()+str.GetSize();
+        }
+
 
         template<char ... C>
         inline auto Begin(LD::TypeString<C...> ) noexcept

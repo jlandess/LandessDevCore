@@ -314,11 +314,19 @@ Memory/Optional.h
 Memory/AutomaticReferenceCounting.h
 -
 
+../Async/Locks/DummyLock.hpp
+Async/TypeTraits/IsLock.hpp
+../Async/Locks/Async/TypeTraits/IsLock.hpp
+
+../Async/Locks/DummySharedLock.hpp
+
 ../Async/Locks/SharedLock.hpp
 Memory/shared_ptr.hpp
 ../Async/Locks/Memory/shared_ptr.hpp
 Async/TypeTraits/IsLock.hpp
 ../Async/Locks/Async/TypeTraits/IsLock.hpp
+Async/TypeTraits/IsSharedLock.hpp
+../Async/Locks/Async/TypeTraits/IsSharedLock.hpp
 
 ../Async/Locks/SpinLock.h
 Async/Atomic/Atomic.h
@@ -353,6 +361,8 @@ Definitions/Integer.hpp
 ../Async/TypeTraits/IsLock.hpp
 TypeTraits/Type.h
 ../Async/TypeTraits/TypeTraits/Type.h
+
+../Async/TypeTraits/IsSharedLock.hpp
 
 ../Chrono/Timer.h
 Definitions/Float.hpp
@@ -1071,6 +1081,8 @@ functional
 -
 limits
 -
+TypeTraits/Type.h
+../Primitives/General/TypeTraits/Type.h
 mapboxrecursive_wrapper.hpp
 ../Primitives/General/mapboxrecursive_wrapper.hpp
 
@@ -1967,6 +1979,10 @@ Functor/fixed_size_function.hpp
 -
 Async/Locks/SharedLock.hpp
 /home/phoenixflower/Documents/Development/LandessDevCore/IO/Async/Locks/SharedLock.hpp
+Async/Locks/DummyLock.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/IO/Async/Locks/DummyLock.hpp
+Async/Locks/DummySharedLock.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/IO/Async/Locks/DummySharedLock.hpp
 
 /home/phoenixflower/Documents/Development/LandessDevCore/IO/TieredDatabase.h
 TypeTraits/TypeList.hpp
