@@ -2157,6 +2157,13 @@ inline LD::Milisecond<LD::Float> operator""_ms(long double second) noexcept
 
 }
 
+inline LD::Milisecond<unsigned long long int > operator""_ms(unsigned long long int second) noexcept
+{
+    using CurrentType = unsigned long long int;
+    return LD::Milisecond<unsigned long long int >{CurrentType {static_cast<CurrentType>(second)}};
+
+}
+
 inline LD::GigaByte<LD::UInteger> operator""_GB(unsigned long long int amount) noexcept
 {
     return LD::GigaByte<LD::UInteger>{LD::UInteger{amount}};

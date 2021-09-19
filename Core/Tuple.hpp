@@ -7,6 +7,8 @@
 #include "Algorithms/Forward.hpp"
 #include "Algorithms/Move.hpp"
 #include "TypeTraits/IsVolatile.hpp"
+#include "TypeTraits/TypeList.hpp"
+#include "TypeTraits/Type.h"
 namespace LD
 {
     template<typename ... Args> class Tuple;
@@ -628,5 +630,18 @@ struct Decay
     using type = decltype(impl(LD::Declval<T>()));
 };
  */
+}
+
+namespace LD
+{
+    namespace CT
+    {
+        template<typename ... A>
+        constexpr LD::CT::TypeList<A...> GetTupleTypes(LD::Type<LD::Tuple<A...>> ) noexcept
+        {
+            return LD::CT::TypeList<A...>{};
+        }
+    }
+
 }
 #endif //LANDESSDEVCORE_TUPLE_HPP

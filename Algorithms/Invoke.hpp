@@ -2,6 +2,7 @@
 #define LANDESSDEVCORE_INVOKE_HPP
 #include "Definitions/Integer.hpp"
 #include "TypeTraits/IntegerSequence.hpp"
+#include "TypeTraits/FunctionalReflection.hpp"
 //#include "Definitions/Common.hpp"
 #include "TypeTraits/IsFunction.hpp"
 #include "SumTypes/MPark/variant.hpp"
@@ -19,6 +20,12 @@ namespace LD
         {
             return function(LD::Forward<H>(a),LD::Get<Indices>(tuple)...);
         }
+
+        template<typename F, typename ... Args,LD::UInteger ...Indices >
+        auto VariadicFold(LD::IndexSequence<Indices...> sequence, F && function,const LD::Tuple<Args...> & tuple)
+        {
+            return function(LD::Get<Indices>(tuple)...);
+        }
     }
 
     //return Delegate(PDP::Get<S>(Arguements) ...);
@@ -31,6 +38,18 @@ namespace LD
     auto Invoke1(F && function, H && a,const LD::Tuple<Args...> & tuple)
     {
         return LD::Detail::InvokeFold1(LD::MakeIndexSequence_T<sizeof...(Args)>{}, LD::Forward<F>(function), LD::Forward<H>(a),tuple);
+    }
+
+    template<typename F, typename ... H, typename TupleType, typename =
+            LD::Enable_If_T<
+                    LD::Require<
+                            LD::CT::IsTuple(LD::Type<TupleType>{})
+                            >>>
+    auto VariadicInvoke(F && function, const TupleType & tuple, H && ... a) noexcept
+    {
+        auto combinedTuple = LD::ConcatenateTuple(LD::MakeTuple(LD::Forward<H>(a)...),tuple);
+        constexpr LD::UInteger CombinedTupleSize = LD::CT::TupleSize(LD::Type<decltype(combinedTuple)>{});
+        return LD::Detail::VariadicFold(LD::MakeIndexSequence_T<CombinedTupleSize>{}, LD::Forward<F>(function), combinedTuple);
     }
     template<typename H, typename ... Args>
     auto InvokeVisitation(H && a,const LD::Tuple<Args...> & tuple)

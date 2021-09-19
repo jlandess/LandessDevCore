@@ -19,8 +19,67 @@
 #include "Async/Locks/SharedLock.hpp"
 #include "Async/Locks/DummyLock.hpp"
 #include "Async/Locks/DummySharedLock.hpp"
+#include "Async/Then.hpp"
 namespace LD
 {
+    /*
+     * LD::Enable_If_T<
+            LD::Require<
+                    LD::CT::IsPrimitive(LD::CT::RemoveQualifiers(LD::Type<V>{})),
+                    LD::ConvertiblyCallable<F,void(V,int)>::Value()>,
+            LD::RequestResponse<bool()>>
+     */
+    template<typename Subscription,typename V, typename BackInserterType ,typename KeyType ,typename ContextExecution ,class = LD::Enable_If_T<LD::Require<LD::CT::IsPrimitive(LD::Type<V>{})>>>
+    auto Subscribe1(
+            Subscription & subscription,
+            KeyType && key,
+            BackInserterType backInserter,
+            ContextExecution context,
+            LD::Type<V>) noexcept
+    {
+        return LD::Async::Then(context,[&subscription,key,backInserter]()
+        {
+            auto function = [](LD::StringView response, BackInserterType backInserter)
+            {
+                auto possibleInteger = LD::FromString(
+                        LD::Type<V>{},
+                        response,
+                        BackInserterType{backInserter});
+                auto onInteger = [](V object, BackInserterType backInserter)
+                {
+                    //task(object);
+                    LD::Get(backInserter)  = object;
+                };
+                auto onFailure = [](LD::TransactionError, BackInserterType){};
+                LD::InvokeVisitation(LD::Overload{onInteger,onFailure},possibleInteger);
+            };
+            subscription.Subscribe(LD::StringView{key.Data()},function,BackInserterType{backInserter});
+            return LD::UInteger {true};
+        });
+
+        /*
+        return [&subscription,key,backInserter]()  noexcept
+        {
+            auto function = [](LD::StringView response, BackInserterType backInserter)
+            {
+                auto possibleInteger = LD::FromString(
+                        LD::Type<V>{},
+                        response,
+                        BackInserterType{backInserter});
+                auto onInteger = [](V object, BackInserterType backInserter)
+                {
+                    //task(object);
+                    LD::Get(backInserter)  = object;
+                };
+                auto onFailure = [](LD::TransactionError, BackInserterType){};
+                LD::InvokeVisitation(LD::Overload{onInteger,onFailure},possibleInteger);
+            };
+            subscription.Subscribe(LD::StringView{key.Data()},function,BackInserterType{backInserter});
+            return LD::UInteger {true};
+        };
+         */
+    }
+
 
     template<typename Subscription,typename V, typename F,typename KeyType , typename LockType,typename ... A>
     LD::Enable_If_T<
@@ -103,11 +162,24 @@ namespace LD
             LD::Type<V>,
             A && ... args) noexcept;
 
+    template<typename Subscription,typename V, typename F,typename KeyType , typename LockType,typename ... A>
+    LD::Enable_If_T<
+            LD::Require<
+                    LD::CT::IsTuple(LD::CT::RemoveQualifiers(LD::Type<V>{})),
+                    LD::ConvertiblyCallable<F,void(V,LockType,A...)>::Value(),
+                    LD::CT::IsSharedLock(LD::Type<LockType>{})>,
+            LD::RequestResponse<bool(A...)>>
+    Subscribe(
+            Subscription & subscription,
+            KeyType && key,
+            LD::Type<V>,
+            F && callBack,
+            LockType  lockType,
+            A && ... args) noexcept;
 
-    /*
     template<typename Subscription,typename V, typename KeyType ,typename ... A>
     LD::Enable_If_T<
-            LD::Require<LD::CT::IsVariant(LD::CT::RemoveQualifiers(LD::Type<V>{}))>,
+            LD::Require<LD::CT::IsTuple(LD::CT::RemoveQualifiers(LD::Type<V>{}))>,
             LD::RequestResponse<LD::Channel<V>(A...)>
     >
     Subscribe(
@@ -115,76 +187,7 @@ namespace LD
             KeyType && key,
             LD::Type<V>,
             A && ... args) noexcept;
-            */
 
-    /*
-    template<typename Subscription,typename V, typename KeyType ,typename ... A>
-    LD::Enable_If_T<
-            LD::CT::IsReflectable<LD::Detail::Decay_T<V>>(),
-            LD::RequestResponse<bool(A...)>>
-    Subscribe(
-            Subscription & subscription,
-            KeyType && key,
-            V & object,
-            A && ... args) noexcept;
-            */
-
-    /*
-    template<typename Subscription,typename V, typename KeyType ,typename ... A>
-    LD::Enable_If_T<
-            LD::Require<LD::CT::IsPrimitive(LD::CT::RemoveQualifiers(LD::Type<V>{}))>,
-            LD::RequestResponse<bool(A...)>>
-    Subscribe(
-            Subscription & subscription,
-            KeyType && key,
-            V & object,
-            A && ... args) noexcept;
-            */
-
-
-    /*
-    template<typename Subscription,typename V, typename KeyType ,typename ... A>
-    LD::Enable_If_T<
-            LD::Require<LD::CT::IsImmutableString(LD::CT::RemoveQualifiers(LD::Type<V>{}))>,
-            LD::RequestResponse<bool(A...)>>
-    Subscribe(
-            Subscription & subscription,
-            KeyType && key,
-            V & object,
-            A && ... args) noexcept;
-
-
-    template<typename Subscription,typename V, typename KeyType ,typename ... A>
-    LD::Enable_If_T<
-            LD::Require<LD::CT::IsTuple(LD::CT::RemoveQualifiers(LD::Type<V>{}))>,
-            LD::RequestResponse<bool(A...)>>
-    Subscribe(
-            Subscription & subscription,
-            KeyType && key,
-            V & object,
-            A && ... args) noexcept;
-
-    template<typename Subscription,typename V, typename KeyType ,typename ... A>
-    LD::Enable_If_T<
-            LD::Require<LD::CT::IsVariant(LD::CT::RemoveQualifiers(LD::Type<V>{}))>,
-            LD::RequestResponse<bool(A...)>>
-    Subscribe(
-            Subscription & subscription,
-            KeyType && key,
-            V & object,
-            A && ... args) noexcept;
-
-    template<typename Subscription,typename V, typename KeyType ,typename ... A>
-    LD::Enable_If_T<
-            LD::Require<LD::CT::Spannable(LD::CT::RemoveQualifiers(LD::Type<V>{}))>,
-            LD::RequestResponse<bool(A...)>>
-    Subscribe(
-            Subscription & subscription,
-            KeyType && key,
-            V & object,
-            A && ... args) noexcept;
-
-     */
 
     template<typename Subscription,typename V, typename F,typename KeyType , typename LockType ,typename ... A>
     LD::Enable_If_T<
@@ -460,6 +463,121 @@ namespace LD
 
         },queue,LD::ElementReference<Subscription>{subscription},KeyType{LD::Forward<KeyType>(key)});
         return LD::CreateResponse(LD::Type<LD::Channel<V>>{},LD::Channel<V>{queue},LD::Forward<A>(args)...);
+    }
+
+    template<typename Subscription,typename V, typename F,typename KeyType , typename LockType,typename ... A>
+    LD::Enable_If_T<
+            LD::Require<
+                    LD::CT::IsTuple(LD::CT::RemoveQualifiers(LD::Type<V>{})),
+                    LD::ConvertiblyCallable<F,void(V,LockType,A...)>::Value(),
+                    LD::CT::IsSharedLock(LD::Type<LockType>{})>,
+            LD::RequestResponse<bool(A...)>>
+    Subscribe(
+            Subscription & subscription,
+            KeyType && key,
+            LD::Type<V>,
+            F && callBack,
+            LockType  lock,
+            A && ... args) noexcept
+    {
+        auto context = LD::MakeTuple(V{},LockType{lock},LD::Forward<A>(args)...);
+        using ContextType = decltype(context);
+        LD::fixed_size_function<void(V,LockType,A...)> function{LD::Forward<F>(callBack)};
+        subscription.Subscribe(
+                LD::StringView{(key+LD::ImmutableString{".Length"}).Data()},[](
+                        LD::StringView response,
+                        LD::ElementReference<Subscription> subscription,
+                        KeyType key,
+                        ContextType context,
+                        LD::fixed_size_function<void(V,LockType,A...)> function) noexcept
+        {
+            auto possibleInteger = LD::FromString(
+                    LD::Type<LD::UInteger>{},
+                    response,
+                    LD::ElementReference<Subscription>{subscription},
+                    KeyType{key},
+                    ContextType{context},
+                    LD::fixed_size_function<void(V,LockType,A...)>{function});
+
+            auto onSize = [](
+                    LD::UInteger size,
+                    LD::ElementReference<Subscription> subscription,
+                    KeyType key,
+                    ContextType context,
+                    LD::fixed_size_function<void(V,LockType,A...)> function) noexcept
+            {
+                constexpr auto CurrentTupleSize =  LD::CT::TupleSize(LD::Type<V>{});
+                constexpr auto CurrentTypes = LD::CT::GetTupleTypes(LD::Type<V>{});
+                V tuple;
+                if (CurrentTupleSize == size)
+                {
+                    LD::For<CurrentTupleSize>([](
+                            auto I,
+                            LD::ElementReference<Subscription> subscription,
+                            KeyType key,
+                            ContextType context,
+                            LD::fixed_size_function<void(V,LockType,A...)> function,
+                            V & tuple)
+                    {
+                        using CurrentType =  LD::CT::TypeAtIndex<I, LD::Detail::Decay_T<decltype(CurrentTypes)>>;
+
+                        constexpr auto CurrentTupleSize =  LD::CT::TupleSize(LD::Type<V>{});
+                        LD::StaticArray<LD::UInteger ,CurrentTupleSize> deterministicEnd{false};
+                        auto callBack = [](CurrentType object, LockType lock, LD::fixed_size_function<void(V,LockType,A...)> function, ContextType context, auto Index, V & tuple, LD::StaticArray<LD::UInteger ,CurrentTupleSize> & solution) noexcept
+                        {
+                            printf("found tuple key \n");
+                            constexpr auto CurrentTupleSize =  LD::CT::TupleSize(LD::Type<V>{});
+                            LD::ScopeLock<LockType>{lock};
+                            //map[datestamp][key+LD::ToImmutableString(I)] are all satisfied
+                            LD::Get<Index>(tuple) = object;
+
+                            solution[LD::UInteger(Index)] = true;
+                            bool hasSatisfiedSolution = true;
+                            for(LD::UInteger n = 0;n<CurrentTupleSize;++n)
+                            {
+                                std::cout << "Solution at Index: " << n << " " << solution[n] << "\n";
+                                hasSatisfiedSolution = hasSatisfiedSolution && solution[n];
+                            }
+
+                            if (hasSatisfiedSolution)
+                            {
+                                LD::Get(LD::Get<0>(context)) = tuple;
+                                LD::Invoke(function,context);
+                            }
+                            //LD::Get(LD::Get<0>(context)) = tuple;
+                            //LD::Invoke(function,context);
+                            //LD::Get(LD::Get<0>(context)) = object;
+                            //LD::Invoke(function,context);
+                        };
+                        LD::Subscribe(
+                                LD::Get(subscription),
+                                key+LD::ImmutableString{"."}+LD::ToImmutableString(LD::UInteger(I)),
+                                LD::Type<CurrentType>{},
+                                callBack,
+                                LockType{LD::Get(LD::Get<1>(context))},
+                                LD::fixed_size_function<void(V,LockType,A...)>(function),
+                                ContextType{context},
+                                decltype(I){I},
+                                tuple,
+                                deterministicEnd);
+                        return true;
+                    },LD::ElementReference<Subscription>{subscription},KeyType{key},ContextType{context},LD::fixed_size_function<void(V,LockType,A...)>{function},tuple);
+                }
+            };
+
+            auto onError = [](
+                    LD::TransactionError,
+                    LD::ElementReference<Subscription> subscription,
+                    KeyType key,
+                    ContextType,
+                    LD::fixed_size_function<void(V,LockType,A...)>) noexcept
+            {
+
+            };
+
+            LD::InvokeVisitation(LD::Overload{onSize,onError},possibleInteger);
+        },LD::ElementReference<Subscription>{subscription},KeyType{LD::Forward<KeyType>(key)},ContextType{context},LD::fixed_size_function<void(V,LockType,A...)>{function});
+        return LD::CreateResponse(LD::Type<bool>{},bool{true},LD::Forward<A>(args)...);
     }
 }
 #endif //LANDESSDEVCORE_PUBLISHERSUBSCRIBER_H

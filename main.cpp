@@ -46,6 +46,18 @@
 #include "Algorithms/FromJSON.hpp"
 #include "IaaS/HashiVault/HashiVault.hpp"
 #include "Examples/WebDavExample.h"
+#include "Async/Scheduler.hpp"
+#include "Async/Then.hpp"
+#include "Async/SyncWait.hpp"
+#include "Async/Just.hpp"
+#include "Algorithms/Visitation.hpp"
+#include "Async/WhenAll.hpp"
+#include "Async/WhenAny.hpp"
+#include "Async/Execute.hpp"
+#include "Async/Let.hpp"
+#include "Async/ScheduleAfter.hpp"
+#include "Examples/WebServerExample.hpp"
+#include "Examples/WebServerExample.hpp"
 //{"data":"UPID:virtualhome:00004556:065341E5:6020F7FA:vzcreate:110:root@pam:"}
 //UPID:([a-zA-Z0-9]+):([0-9a-fA-F]+):([0-9a-fA-F]+):([0-9a-fA-F]+):(\\w+):(\\d+):(\\w+)@([a-zA-Z0-9:]+)
 #include "IO/PublisherSubscriber.h"
@@ -78,16 +90,249 @@ public:
 
 };
 
+template<typename T>
+class PublishedEntity
+{
+private:
+    LD::ImmutableString<128> mNodeID;
+    LD::DateTime mTimeStamp;
+    T mData;
+public:
+};
+
+namespace LD
+{
+
+    namespace Async
+    {
+        auto NewThread()
+        {
+            return [](auto p)
+            {
+                std::thread t{
+                        [p = std::move(p)]() mutable
+                        {
+                            p.set_value();
+                        }
+                };
+                t.detach();
+            };
+        }
 
 
+
+
+        /*
+        template<typename Task, typename F>
+        auto async_algo(Task task, F && work)
+        {
+            return LD::Async::Then(task, [=]()
+            {
+                //int answer = 7;
+                return work();
+            });
+
+        }
+         */
+
+
+
+
+        auto NewWorker(LD::Async::Scheduler & scheduler)
+        {
+            return [&](auto p)
+            {
+
+                auto function = [p = std::move(p)]() mutable
+                {
+                    p.set_value();
+                };
+
+                scheduler << function;
+            };
+        }
+
+        auto NewWorker1(LD::Async::Scheduler & scheduler)
+        {
+            auto function =  [&](auto p)
+            {
+
+                auto function = [p = std::move(p)]() mutable
+                {
+                    p.set_value();
+                };
+
+                scheduler << function;
+            };
+
+            return LD::Async::Detail::Runnable<decltype(function),LD::Type<void>>{function};
+        }
+    }
+}
+
+namespace LD
+{
+    template<typename T,
+            typename TL = decltype(GetSignatureArguments(LD::CT::FunctionSignature<decltype(&T::operator())>{}))>
+    class LazyLambda
+    {
+    private:
+        T mFunctor;
+        LD::CT::RebindList<LD::CT::Prepend<LD::Detail::Decay_T<LD::CT::TypeAtIndex<0,TL>>,typename LD::tlist_erase_at_impl<0,TL>::type>,LD::Context> mContext;
+    public:
+        LazyLambda(T && functor) noexcept:mFunctor{LD::Forward<T>(functor)}
+        {
+        }
+
+        LazyLambda & operator = (const LD::CT::TypeAtIndex<0,TL> & value) noexcept
+        {
+            LD::Get(LD::Get<0>(this->mContext)) = value;
+            LD::Invoke(this->mFunctor,this->mContext);
+            return (*this);
+        }
+    };
+
+    template<typename T> LazyLambda(T && functor) -> LazyLambda<T>;
+}
+
+
+
+
+
+#include "Definitions/TimeExtension.hpp"
+#include "Primitives/General/Unit.hpp"
 int main(int argc, char **argv)
 {
-    //std::cout << LD::CT::Spannable(LD::Type<LD::StaticArray<LD::Variant<LD::IPV4Address,LD::IPV6Address>,30>>{}) << "\n";
-    //LD::CT::TypeList
-    //LD::MakeVisitor();
-    //std::cout << LD::CT::CanBeMadeFromStringView(LD::Type<int>{}) << std::endl;
+
+
+
+
+
+    LD::Second<int>{};
+    //LD::WebServerExample();
+    LD::Visit([](auto){ std::cout << "Visitiation:" << "\n";},mpark::variant<int>{7});
+    LD::Visit([](auto){ std::cout << "Visitiation:" << "\n";},mapbox::util::variant<int>{7});
+
+    LD::VisitWithContext(LD::Overload{[](int, std::string){},[](float, std::string){}},LD::MakeTuple(std::string{}),mpark::variant<int,float>{});
+
+
+    LD::Async::Scheduler scheduler{8};
+    //scheduler << [](){std::cout << "thread is executing function" << "\n";};
+    //auto f = LD::Async::async_algo(NewWorker(scheduler),[]()->std::string{return std::string{"abc1"};});
+
+
+    //LD::Async::LetValue(LD::Async::NewWorker1(scheduler),5);
+    //LD::Async::Then(LD::Async::Then(LD::Async::NewWorker1(scheduler),LD::Async::Just(7)),[](int){ return 7;});
+
+    //auto abc = LD::Async::Then(LD::Async::Just1(7),[](int){});
+
+    LD::Async::Then(LD::Async::NewWorker1(scheduler),LD::Async::Just(7));
+    //LD::CT::DebugTemplate<decltype(abc)>{};
+    //auto asyncF1 = LD::Async::Then(LD::Async::NewWorker1(scheduler),[](){ return  7;});
+    //auto asyncF12 = LD::Async::Then(LD::Async::NewWorker1(scheduler),[](){ });
+    //auto asyncF2 = LD::Async::Then(asyncF1,[](int number){ return 7*number;});
+
+
+    auto thenCaller = LD::Async::Then(LD::Async::Just(7),[](int){ return 7;});
+    //LD::Async::Then(LD::Async::LetValue(7,LD::Async::NewWorker1(scheduler)),[](int){ return 7;});
+    auto asyncF1 = LD::Async::Then(LD::Async::NewWorker1(scheduler),[](){ return  7;});
+
+
+
+    LD::Second<int> abc = 79_ms;
+    LD::Async::ScheduleAfter(abc,LD::Async::NewWorker1(scheduler));
+    std::cout << "LetValue Example: " << LD::Async::SyncWait(LD::Async::LetValue(LD::Async::NewWorker1(scheduler),7,[](int){ return 8;})) << "\n";
+    //LD::Async::Then(LD::Async::NewWorker1(scheduler),LD::Async::LetValue(7,[](int){ return 8;}));
+    auto asyncF2 = LD::Async::Then(asyncF1,[](int number){ return 7*number;});
+    //static_assert(LD::Async::Detail::ArgumentCount<decltype(asyncF2)>::Count == 0);
+    auto asyncF12 = LD::Async::Then(LD::Async::NewWorker1(scheduler),[](){ });
+    auto syncWaitJust1 = LD::Async::Then(LD::Async::Then(LD::Async::NewWorker1(scheduler),LD::Async::Just(6)),[](int a){ return std::sin(a);});
+
+    //auto syncWaitJust1Then = LD::Async::Then1(syncWaitJust1,[](int a){ return 7*a;});
+    std::cout << "LawlRawr: " << LD::Async::SyncWait(syncWaitJust1) << "\n";
+    //auto fsauce = LD::Async::Then(LD::Async::Just1(5),[](int ){ return 9;});
+
+    auto testJust1 = LD::Async::Just(7);
+
+    //LD::CT::DebugTemplate<decltype(LD::Async::Just1(7))>{};
+    auto memez12 = LD::Async::Then(LD::Async::NewWorker1(scheduler),LD::Async::Just(7));
+
+    //LD::Async::SyncWait(LD::Async::Then1(LD::Async::NewWorker1(scheduler),memez12));
+    //LD::Async::Then(memez12,[](int){ return 8;});
+    //auto fmeme = LD::Async::Then(fsauce,[](int ){});
+    LD::Async::WhenAll(LD::Async::Then(LD::Async::NewWorker1(scheduler),[](){ return  7;}),
+                        LD::Async::Then(asyncF1,[](int number){ return 7*number;}));
+    auto whenAllAreDone = LD::Async::WhenAll(
+            LD::Async::Then(LD::Async::NewWorker1(scheduler),[](){ return  7;}),
+            LD::Async::Then(asyncF1,[](int number){ return 7*number;})
+            );
+
+
+    auto whenOneIsDone =  LD::Async::WhenAny(
+            LD::Async::Then(LD::Async::NewWorker1(scheduler),[](){ return  7;}),
+            LD::Async::Then(LD::Async::NewWorker1(scheduler),[](){ return  7.0;})
+            );
+
+
+
+
+    //LD::Async::SyncWait(asyncF12);
+    LD::Async::Execute(asyncF12);
+    LD::Tuple<int,int > res = LD::Async::SyncWait(whenAllAreDone);
+
+    std::cout << "Number: " << LD::Async::SyncWait(asyncF2) << "\n";
+
+    std::cout << LD::Get<0>(res) << " , " << LD::Get<1>(res) << "\n";
+    /*
+    auto f = NewWorker(scheduler);
+    auto f2 = LD::Async::Then(f, [](){return "abc";});
+    auto f3 = LD::Async::Then(f2, [](std::string i ){return i+std::to_string(3);});
+    printf("Aysnc Execution lol: %s \n", LD::Async::SyncWait<std::string>(f3).c_str());
+
+
+    auto f5 = LD::Async::Then(LD::Async::NewWorker(scheduler),[](){ return 7;});
+     */
+
+    //std::cout << "Value to be seen: " << LD::Async::SyncWait<LD::UInteger>(f5) << "\n";
+    LD::OpenDHTBackend mBackend{LD::IPV6Address{"fd00:1700:81b8:401e:0:d9:191:4a34"},LD::Port{4225},LD::Port{4222}};
+
+    LD::Channel<LD::UInteger> channel;
+    LD::BackInserter<LD::Channel<LD::UInteger>> inserter{&channel};
+    LD::LazyLambda lambda{[](LD::UInteger index)
+    {
+         std::cout << "Found DHT Value: " << index << "\n";
+    }};
+
+    //LD::Tuple<decltype(lambda)> rawr;
+    using LambdaType = decltype(lambda);
+
+    /*
+    auto f1 = LD::Async::async_algo(
+            LD::Async::NewWorker(scheduler),
+            LD::Subscribe1(mBackend,LD::ImmutableString{"key"},
+                           LD::ElementReference<decltype(lambda)> {lambda},
+                           LD::Type<LD::UInteger>{}));
+   // auto f4 = then(f1, [](LD::Channel<LD::UInteger> i){return  i;});
+    LD::Async::SyncWait<LD::UInteger>(f1);
+     */
+
+
+    sleep(5);
+
+    while (channel.Size() > 0)
+    {
+        LD::UInteger integer;
+        channel >> integer;
+        std::cout << integer << "\n";
+    }
+    //printf("Aysnc Execution lol: %li \n", SyncWait<LD::UInteger>(f1));
+
+    //auto f4 = then(f1, [](LD::UInteger i){return i;});
+    //printf("Aysnc Execution lol: %s \n", SyncWait<LD::UInteger>(f4));
+    /*
     nlohmann::json json123;
     LD::JsonBackend jsonBackend123{json123};
+
 
 
 
@@ -101,7 +346,7 @@ int main(int argc, char **argv)
     LD::Insert(
             jsonBackend123,
             LD::ImmutableString{"keyone"},
-            LD::MakeTuple(1.9,7,'a',LD::Square{49}));
+            LD::MakeTuple(1.9,7,'a'));
 
 
     LD::StaticArray<LD::Pyramid,5> memeArray;
@@ -172,8 +417,14 @@ int main(int argc, char **argv)
     LD::MultiMatch(LD::Overload{onMemeSquare,[](auto){}},mMemeVariant);
 
 
-    LD::OpenDHTBackend mBackend{LD::IPV6Address{"fd00:1700:81b8:401e:0:d9:191:4a34"},LD::Port{4222},LD::Port{4222}};
+    //fd00:1700:81b8:401e:0:d9:191:4a34
+    LD::OpenDHTBackend mBackend{LD::IPV6Address{"fd00:1700:81b8:401e:0:d9:191:4a34"},LD::Port{4225},LD::Port{4222}};
 
+
+    LD::Insert(
+            mBackend,
+            LD::ImmutableString{"dhttuple"},
+            LD::MakeTuple(1.9,7,'a'));
 
     mBackend.Query(LD::StringView{"room.Side.Height"},[](LD::StringView key, LD::StringView value)->int
     {
@@ -183,6 +434,9 @@ int main(int argc, char **argv)
 
     LD::Insert(mBackend,LD::ImmutableString{"room"},
                LD::Pyramid{LD::Square{8},LD::Triangle{7,105}});
+
+
+
 
 
     std::cout << "ClassName: " << LD::CT::GetClassName(LD::Type<int>{}).Data() << std::endl;
@@ -230,6 +484,24 @@ int main(int argc, char **argv)
             },sharedLock);
 
 
+    LD::Subscribe(
+            mBackend,
+            LD::ImmutableString{"keyone"},
+            LD::Type<LD::Tuple<double,int,char>>{},
+            [](LD::Tuple<double,int,char> tuple, LD::SharedLock<LD::Mutex> sharedLock)
+            {
+                LD::For<3>([](
+                        auto I,
+                        LD::Tuple<double,int,char> tuple)
+                {
+                    std::cout << "Found Tuple: " << LD::UInteger(I) << " : " << LD::Get(LD::Get<I>(tuple)) << "\n";
+                    return true;
+                },tuple);
+                printf("found tuple from data set \n");
+
+            },sharedLock);
+
+
     LD::UInteger abc = 0;
     LD::Subscribe(mBackend,LD::ImmutableString{"room.Side.Height"},LD::Type<LD::UInteger>{},
     [&](LD::UInteger response, LD::SharedLock<LD::Mutex> sharedLock)
@@ -241,6 +513,7 @@ int main(int argc, char **argv)
     },sharedLock);
 
 
+    LD::Tuple<int> adsfsadfs;
     queue << 7;
 
     queue << 7;
@@ -380,6 +653,7 @@ int main(int argc, char **argv)
     LD::Timer timer;
     timer.Start();
 
+    /*
     while (timer.GetElapsedTimeInSec() < 15)
     {
 
@@ -392,15 +666,16 @@ int main(int argc, char **argv)
 
             std::cout << "Number: " << number << "\n";
         }
-        /*
+
         if (queue->try_dequeue(number))
         {
             std::cout << number << std::endl;
         }
-         */
+
         //std::cout << value << std::endl;
         sleep(1);
     }
+    */
     //sleep(5);
     return 0;
 }

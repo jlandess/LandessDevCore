@@ -18,6 +18,7 @@
 #include "TypeTraits/IsVariant.hpp"
 #include "TypeTraits/VariantTypes.h"
 #include "Primitives/General/Span.hpp"
+#include <iostream>
 namespace LD
 {
     template<typename T, typename V, typename Key,typename ... Args>
@@ -123,9 +124,12 @@ namespace LD
             LD::RequestResponse<bool(Args...)>> Insert(T & document, Key && key ,V && object, Args && ... args) noexcept
     {
         constexpr LD::UInteger CurrentTupleSize = LD::CT::TupleSize(LD::Type<LD::Detail::Decay_T<V>>{});
+        std::cout << "TupleSize: " << CurrentTupleSize << "\n";
         bool didInsert = true;
+        LD::Insert(document,key+LD::ImmutableString{".Length"},CurrentTupleSize);
         LD::For<CurrentTupleSize>([](auto I, Key && key, V && object, T & document, bool & insertStatus)
         {
+            std::cout << "Tuple insertion : " << (key+LD::ImmutableString{"."}+LD::ToImmutableString(LD::UInteger (I))).Data() << "\n";
             auto response = LD::Insert(
                     document,
                     key+LD::ImmutableString{"."}+LD::ToImmutableString(LD::UInteger (I)),
@@ -133,7 +137,7 @@ namespace LD
             insertStatus = (insertStatus && LD::IsTransactionalResponse(response));
 
 
-            return insertStatus;
+            return true;
         },LD::Forward<Key>(key),LD::Forward<V>(object),document,didInsert);
 
         if (didInsert == true)

@@ -236,7 +236,7 @@ namespace LD
                     possibleTask();
                 }
 
-                usleep(LD::Second<LD::Float>(0.01666666667));
+                LD::Usleep(LD::Second<LD::Float>(0.01666666667));
 
             }
 

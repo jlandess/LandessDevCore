@@ -6,6 +6,7 @@
 #define LANDESSDEVCORE_MEMORYRESOURCE_HPP
 #include <stdlib.h>
 #include "Definitions/Integer.hpp"
+#include "Primitives/General/StaticArray.hpp"
 namespace LD
 {
     namespace Mem
@@ -46,6 +47,49 @@ namespace LD
                 return  this == &other; ;
             }
         public:
+        };
+
+
+        template<LD::UInteger Size>
+        class StaticMemoryResource: public LD::Mem::MemoryResource
+        {
+        private:
+            LD::StaticArray<unsigned char,Size> mStaticBuffer;
+            LD::UInteger mCursor;
+        public:
+            virtual void * do_allocate(LD::UInteger bytes, LD::UInteger alignment) noexcept
+            {
+                return nullptr;
+            }
+            virtual void do_deallocate(void * p, LD::UInteger bytes, LD::UInteger alignment) noexcept
+            {
+                return ;
+            }
+            virtual bool do_is_equal(const LD::Mem::MemoryResource & other) const noexcept
+            {
+                return  this == &other;
+            }
+        };
+
+        template<LD::UInteger Size>
+        class ArenaMemoryResource: public LD::Mem::MemoryResource
+        {
+        private:
+            LD::StaticArray<unsigned char,Size> mStaticBuffer;
+            LD::UInteger mCursor;
+        public:
+            virtual void * do_allocate(LD::UInteger bytes, LD::UInteger alignment) noexcept
+            {
+                return nullptr;
+            }
+            virtual void do_deallocate(void * p, LD::UInteger bytes, LD::UInteger alignment) noexcept
+            {
+                return ;
+            }
+            virtual bool do_is_equal(const LD::Mem::MemoryResource & other) const noexcept
+            {
+                return  this == &other;
+            }
         };
 
         inline NewDeleteResource * GetNewDeleteResource() noexcept

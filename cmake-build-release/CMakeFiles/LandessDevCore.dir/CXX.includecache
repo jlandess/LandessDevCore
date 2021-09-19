@@ -99,6 +99,8 @@ Definitions/Integer.hpp
 ../Algorithms/Definitions/Integer.hpp
 TypeTraits/IntegerSequence.hpp
 ../Algorithms/TypeTraits/IntegerSequence.hpp
+TypeTraits/FunctionalReflection.hpp
+../Algorithms/TypeTraits/FunctionalReflection.hpp
 TypeTraits/IsFunction.hpp
 ../Algorithms/TypeTraits/IsFunction.hpp
 SumTypes/MPark/variant.hpp
@@ -161,6 +163,8 @@ Core/NullClass.hpp
 ../Algorithms/Core/NullClass.hpp
 
 ../Algorithms/Swap.hpp
+
+../Algorithms/VariantOperations.hpp
 
 ../Algorithms/fsm.hpp
 Memory/Optional.h
@@ -287,6 +291,8 @@ concurrentqueue.h
 ../Async/concurrentqueue.h
 Memory/shared_ptr.hpp
 ../Async/Memory/shared_ptr.hpp
+TypeTraits/Iterable.h
+../Async/TypeTraits/Iterable.h
 
 ../Async/Commitment.h
 Async/Atomic/Atomic.h
@@ -395,6 +401,10 @@ Algorithms/Move.hpp
 ../Core/Algorithms/Move.hpp
 TypeTraits/IsVolatile.hpp
 ../Core/TypeTraits/IsVolatile.hpp
+TypeTraits/TypeList.hpp
+../Core/TypeTraits/TypeList.hpp
+TypeTraits/Type.h
+../Core/TypeTraits/Type.h
 
 ../Definitions/Float.hpp
 
@@ -407,18 +417,6 @@ TypeTraits/Detection.hpp
 ../Definitions/TypeTraits/Detection.hpp
 Algorithms/Move.hpp
 ../Definitions/Algorithms/Move.hpp
-
-../Definitions/TimeExtension.hpp
-PDPUnits.hpp
-../Definitions/PDPUnits.hpp
-time.h
--
-Primitives/General/Unit.hpp
-../Definitions/Primitives/General/Unit.hpp
-windows.h
--
-unistd.h
--
 
 ../Definitions/platform_detect.h
 TargetConditionals.h
@@ -1059,6 +1057,8 @@ utility
 -
 
 ../Primitives/General/mapboxvariant.hpp
+Algorithms/VariantOperations.hpp
+../Primitives/General/Algorithms/VariantOperations.hpp
 cassert
 -
 cstddef
@@ -1684,6 +1684,8 @@ simdjson/simdjson.h
 Reflection/Reflection.hpp
 /home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/Reflection/Reflection.hpp
 
+/home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/Overload.hpp
+
 /home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/TDD.hpp
 Primitives/General/Unit.hpp
 /home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/Primitives/General/Unit.hpp
@@ -1707,6 +1709,38 @@ Primitives/General/Span.hpp
 /home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/Primitives/General/Span.hpp
 Reflection/Reflection.hpp
 /home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/Reflection/Reflection.hpp
+
+/home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/VariantOperations.hpp
+
+/home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/Visitation.hpp
+Overload.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/Overload.hpp
+TypeTraits/IsVoid.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/TypeTraits/IsVoid.hpp
+TypeTraits/IntegerSequence.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/TypeTraits/IntegerSequence.hpp
+TypeTraits/RemoveReference.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/TypeTraits/RemoveReference.hpp
+TypeTraits/AddRValueReference.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/TypeTraits/AddRValueReference.hpp
+TypeTraits/RemoveReference.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/TypeTraits/RemoveReference.hpp
+TypeTraits/IsReference.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/TypeTraits/IsReference.hpp
+TypeTraits/Conditional.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/TypeTraits/Conditional.hpp
+TypeTraits/RemoveConst.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/TypeTraits/RemoveConst.hpp
+VariantOperations.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/VariantOperations.hpp
+Primitives/General/Tuple.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/Primitives/General/Tuple.hpp
+TypeTraits/FunctionalReflection.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/TypeTraits/FunctionalReflection.hpp
+TypeTraits/Detection.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/TypeTraits/Detection.hpp
+Algorithms/Forward.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/Algorithms/Forward.hpp
 
 /home/phoenixflower/Documents/Development/LandessDevCore/Async/Atomic/Atomic.h
 AtomicUnderlyingCore.h
@@ -1750,6 +1784,20 @@ compiler_gcc.h
 intrin.h
 -
 
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/Channel.hpp
+memory
+-
+concurrentqueue.h
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/concurrentqueue.h
+Memory/shared_ptr.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/Memory/shared_ptr.hpp
+TypeTraits/Iterable.h
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/TypeTraits/Iterable.h
+
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/Execute.hpp
+SyncWait.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/SyncWait.hpp
+
 /home/phoenixflower/Documents/Development/LandessDevCore/Async/GrandCentralDispatch.h
 Atomic/Atomic.h
 /home/phoenixflower/Documents/Development/LandessDevCore/Async/Atomic/Atomic.h
@@ -1773,6 +1821,62 @@ MVC/Scheduling.hpp
 /home/phoenixflower/Documents/Development/LandessDevCore/Async/MVC/Scheduling.hpp
 Primitives/General/Unit.hpp
 /home/phoenixflower/Documents/Development/LandessDevCore/Async/Primitives/General/Unit.hpp
+
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/Just.hpp
+Then.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/Then.hpp
+
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/Let.hpp
+Then.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/Then.hpp
+
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/ScheduleAfter.hpp
+Primitives/General/Unit.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/Primitives/General/Unit.hpp
+Definitions/TimeExtension.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/Definitions/TimeExtension.hpp
+Let.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/Let.hpp
+
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/Scheduler.hpp
+Definitions/Integer.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/Definitions/Integer.hpp
+vector
+-
+Functor/fixed_size_function.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/Functor/fixed_size_function.hpp
+Atomic/Atomic.h
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/Atomic/Atomic.h
+Channel.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/Channel.hpp
+Thread.h
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/Thread.h
+
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/SyncWait.hpp
+mutex
+-
+condition_variable
+-
+memory
+-
+SumTypes/MPark/variant.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/SumTypes/MPark/variant.hpp
+exception_ptr.hpp
+-
+Then.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/Then.hpp
+WhenAllPredicate.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/WhenAllPredicate.hpp
+WhenOnlyPredicate.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/WhenOnlyPredicate.hpp
+Algorithms/Visitation.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/Algorithms/Visitation.hpp
+
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/Then.hpp
+TypeTraits/FunctionalReflection.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/TypeTraits/FunctionalReflection.hpp
+TypeTraits/Declval.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/TypeTraits/Declval.hpp
 
 /home/phoenixflower/Documents/Development/LandessDevCore/Async/Thread.h
 windows.h
@@ -1820,6 +1924,32 @@ sched.h
 unistd.h
 -
 
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/WhenAll.hpp
+Primitives/General/Tuple.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/Primitives/General/Tuple.hpp
+Algorithms/Forward.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/Algorithms/Forward.hpp
+WhenPredicate.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/WhenPredicate.hpp
+
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/WhenAllPredicate.hpp
+Primitives/General/Tuple.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/Primitives/General/Tuple.hpp
+
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/WhenAny.hpp
+SumTypes/MPark/variant.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/SumTypes/MPark/variant.hpp
+WhenOnlyPredicate.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/WhenOnlyPredicate.hpp
+
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/WhenOnlyPredicate.hpp
+Primitives/General/Tuple.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/Primitives/General/Tuple.hpp
+
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/WhenPredicate.hpp
+WhenPredicate.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/WhenPredicate.hpp
+
 /home/phoenixflower/Documents/Development/LandessDevCore/Async/concurrentqueue.h
 relacy/relacy_std.hpp
 /home/phoenixflower/Documents/Development/LandessDevCore/Async/relacy/relacy_std.hpp
@@ -1860,6 +1990,26 @@ Algorithms/Invoke.hpp
 TypeTraits/TypeList.hpp
 /home/phoenixflower/Documents/Development/LandessDevCore/Core/TypeTraits/TypeList.hpp
 
+/home/phoenixflower/Documents/Development/LandessDevCore/Definitions/PDPUnits.hpp
+TypeTraits/IsKindOf.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Definitions/TypeTraits/IsKindOf.hpp
+TypeTraits/Detection.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Definitions/TypeTraits/Detection.hpp
+Algorithms/Move.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Definitions/Algorithms/Move.hpp
+
+/home/phoenixflower/Documents/Development/LandessDevCore/Definitions/TimeExtension.hpp
+PDPUnits.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Definitions/PDPUnits.hpp
+time.h
+-
+Primitives/General/Unit.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Definitions/Primitives/General/Unit.hpp
+windows.h
+-
+unistd.h
+-
+
 /home/phoenixflower/Documents/Development/LandessDevCore/Examples/IMGUIExample1.h
 
 /home/phoenixflower/Documents/Development/LandessDevCore/Examples/IMGUIExample2.h
@@ -1881,6 +2031,8 @@ Primitives/General/ctre.hpp
 /home/phoenixflower/Documents/Development/LandessDevCore/Examples/Primitives/General/ctre.hpp
 
 /home/phoenixflower/Documents/Development/LandessDevCore/Examples/WebDavExample.h
+
+/home/phoenixflower/Documents/Development/LandessDevCore/Examples/WebServerExample.hpp
 
 /home/phoenixflower/Documents/Development/LandessDevCore/IO/DHTBackend.hpp
 opendht.h
@@ -1931,6 +2083,8 @@ TypeTraits/VariantTypes.h
 /home/phoenixflower/Documents/Development/LandessDevCore/IO/TypeTraits/VariantTypes.h
 Primitives/General/Span.hpp
 /home/phoenixflower/Documents/Development/LandessDevCore/IO/Primitives/General/Span.hpp
+iostream
+-
 
 /home/phoenixflower/Documents/Development/LandessDevCore/IO/JsonDatabaseBackend.h
 json.hpp
@@ -1983,6 +2137,8 @@ Async/Locks/DummyLock.hpp
 /home/phoenixflower/Documents/Development/LandessDevCore/IO/Async/Locks/DummyLock.hpp
 Async/Locks/DummySharedLock.hpp
 /home/phoenixflower/Documents/Development/LandessDevCore/IO/Async/Locks/DummySharedLock.hpp
+Async/Then.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/IO/Async/Then.hpp
 
 /home/phoenixflower/Documents/Development/LandessDevCore/IO/TieredDatabase.h
 TypeTraits/TypeList.hpp
@@ -3133,6 +3289,10 @@ config.hpp
 /home/phoenixflower/Documents/Development/LandessDevCore/SumTypes/MPark/config.hpp
 
 /home/phoenixflower/Documents/Development/LandessDevCore/SumTypes/MPark/variant.hpp
+Algorithms/VariantOperations.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/SumTypes/MPark/Algorithms/VariantOperations.hpp
+TypeTraits/Type.h
+/home/phoenixflower/Documents/Development/LandessDevCore/SumTypes/MPark/TypeTraits/Type.h
 cstddef
 -
 exception
@@ -3251,8 +3411,40 @@ IaaS/HashiVault/HashiVault.hpp
 /home/phoenixflower/Documents/Development/LandessDevCore/IaaS/HashiVault/HashiVault.hpp
 Examples/WebDavExample.h
 /home/phoenixflower/Documents/Development/LandessDevCore/Examples/WebDavExample.h
+Async/Scheduler.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/Scheduler.hpp
+Async/Then.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/Then.hpp
+Async/SyncWait.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/SyncWait.hpp
+Async/Just.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/Just.hpp
+Algorithms/Visitation.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/Visitation.hpp
+Async/WhenAll.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/WhenAll.hpp
+Async/WhenAny.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/WhenAny.hpp
+Async/Execute.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/Execute.hpp
+Async/Let.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/Let.hpp
+Async/ScheduleAfter.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/ScheduleAfter.hpp
+Examples/WebServerExample.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Examples/WebServerExample.hpp
+Examples/WebServerExample.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Examples/WebServerExample.hpp
 IO/PublisherSubscriber.h
 /home/phoenixflower/Documents/Development/LandessDevCore/IO/PublisherSubscriber.h
 Async/Thread.h
 /home/phoenixflower/Documents/Development/LandessDevCore/Async/Thread.h
+Definitions/TimeExtension.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Definitions/TimeExtension.hpp
+Primitives/General/Unit.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Primitives/General/Unit.hpp
+
+/usr/local/include/boost/exception_ptr.hpp
+boost/exception/detail/exception_ptr.hpp
+-
 

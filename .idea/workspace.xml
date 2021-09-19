@@ -57,18 +57,43 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a2ffdfb1-0050-446c-b0af-d02ece8e31b8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Async/Locks/DummyLock.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Async/Locks/DummySharedLock.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Async/TypeTraits/IsSharedLock.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Algorithms/ExecutionContext.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Algorithms/VariantOperations.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/AnyOf.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/Connect.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/Execute.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/Just.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/Let.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/ScheduleAfter.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/Scheduler.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/SyncWait.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/Then.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/WhenAll.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/WhenAllPredicate.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/WhenAny.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/WhenOnlyPredicate.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/WhenPredicate.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IO/TypeTraits/IsSubscriptionToken.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Async/Locks/SharedLock.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Async/Locks/SharedLock.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Algorithms/Invoke.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Algorithms/Invoke.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Algorithms/Visitation.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Algorithms/Visitation.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Async/Channel.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Async/Channel.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Async/GrandCentralDispatch.h" beforeDir="false" afterPath="$PROJECT_DIR$/Async/GrandCentralDispatch.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Examples/ReflectionDemoTypes.h" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/ReflectionDemoTypes.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Tuple.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Tuple.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Definitions/PDPUnits.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Definitions/PDPUnits.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Definitions/TimeExtension.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Definitions/TimeExtension.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IO/DHTBackend.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/IO/DHTBackend.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/IO/Database1.h" beforeDir="false" afterPath="$PROJECT_DIR$/IO/Database1.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/IO/PublisherSubscriber.h" beforeDir="false" afterPath="$PROJECT_DIR$/IO/PublisherSubscriber.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MVC/Scheduling.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/Scheduling.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Memory/ElementReference.h" beforeDir="false" afterPath="$PROJECT_DIR$/Memory/ElementReference.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Memory/MemoryResource.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Memory/MemoryResource.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Primitives/General/Unit.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/Unit.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Primitives/General/mapboxvariant.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/mapboxvariant.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Reflection/Reflection.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Reflection/Reflection.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Unicode/UTF8.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Unicode/UTF8.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/REST/WebServer.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/REST/WebServer.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SumTypes/MPark/variant.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/SumTypes/MPark/variant.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TypeTraits/IsVariant.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/TypeTraits/IsVariant.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/CXX.includecache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/depend.internal" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/depend.make" afterDir="false" />
@@ -146,12 +171,12 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="LandessDevCore" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="LandessDevCore" TARGET_NAME="LandessDevCore" CONFIG_NAME="Release" RUN_TARGET_PROJECT_NAME="LandessDevCore" RUN_TARGET_NAME="LandessDevCore">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+    <configuration name="LandessDevCore" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="LandessDevCore" TARGET_NAME="LandessDevCore" CONFIG_NAME="Release" RUN_TARGET_PROJECT_NAME="LandessDevCore" RUN_TARGET_NAME="LandessDevCore">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -359,7 +384,8 @@
       <workItem from="1626319557559" duration="26365000" />
       <workItem from="1626559289191" duration="12016000" />
       <workItem from="1626601213705" duration="106088000" />
-      <workItem from="1629051768912" duration="254437000" />
+      <workItem from="1629051768912" duration="256684000" />
+      <workItem from="1631091246249" duration="210111000" />
     </task>
     <servers />
   </component>

@@ -94,16 +94,21 @@ inline int nanosleep (const struct timespec *req, struct timespec *rem)
 #else
 #include <unistd.h>
 #endif
-template<typename T>
-LD::Enable_If_T<LD::Detail::IsPrimitiveType<T>::value,void> usleep(const PDP::Second<T> & time)
+
+namespace LD
 {
-    usleep(time.GetValue()*1E6);
+    template<typename T>
+    LD::Enable_If_T<LD::Detail::IsPrimitiveType<T>::value,void> Usleep(const PDP::Second<T> & time)
+    {
+        usleep(time.GetValue()*1E6);
+    }
+    template<typename T>
+    LD::Enable_If_T<LD::Detail::IsPrimitiveType<T>::value,void> Usleep(const LD::Second<T> & time)
+    {
+        usleep(time.NativeRepresentation().Value()*1E6);
+    }
 }
-template<typename T>
-LD::Enable_If_T<LD::Detail::IsPrimitiveType<T>::value,void> usleep(const LD::Second<T> & time)
-{
-    usleep(time.NativeRepresentation().Value()*1E6);
-}
+
 
 
 #endif

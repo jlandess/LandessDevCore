@@ -1113,10 +1113,12 @@ inline PDP::Second<unsigned long long int>  operator "" _cs(unsigned long long i
     return PDP::Second<unsigned long long int>(a*(1E-2));
 }
 
+/*
 inline PDP::Second<unsigned long long int>  operator "" _ms(unsigned long long int a)
 {
     return PDP::Second<unsigned long long int>(a*(1E-6));
 }
+ */
 
 inline PDP::Second <unsigned long long int>  operator "" _us(unsigned long long int a)
 {

@@ -23,14 +23,59 @@ namespace LD
         mutable std::shared_ptr<std::condition_variable> mCondition;
         mutable std::shared_ptr<bool> mReady;
     public:
+
+        class SubscriptionToken
+        {
+        private:
+            dht::InfoHash mHash;
+            std::size_t mToken;
+            LD::ElementReference<OpenDHTBackend> mBackend;
+        public:
+            SubscriptionToken():mBackend{nullptr},mToken{0}{}
+            SubscriptionToken(LD::ElementReference<OpenDHTBackend> backend, dht::InfoHash hash, std::size_t token) noexcept:mBackend{backend},mHash{hash},mToken{token}
+            {
+
+            }
+
+            SubscriptionToken(const SubscriptionToken &) = delete;
+
+
+            SubscriptionToken & operator = (const SubscriptionToken & token) = delete;
+
+            SubscriptionToken(SubscriptionToken && subscriptionToken) noexcept
+            {
+                (*this) = LD::Move(subscriptionToken);
+            }
+
+            SubscriptionToken & operator = (SubscriptionToken && token) noexcept
+            {
+                this->mToken = token.mToken;
+                this->mBackend = token.mBackend;
+                this->mHash = token.mHash;
+
+                token.mBackend = LD::ElementReference<OpenDHTBackend>{nullptr};
+                token.mHash = dht::InfoHash {};
+                token.mToken = std::size_t {};
+
+                return (*this);
+            }
+
+            ~SubscriptionToken()
+            {
+                this->mBackend->mNode.cancelListen(this->mHash,this->mToken);
+            }
+        };
+
         OpenDHTBackend(
                 const LD::Variant<LD::IPV4Address,LD::IPV6Address> & address,
                         LD::Port listeningPort,
                         LD::Port bootstrapPort) noexcept
         {
+
             this->mReady = std::make_shared<bool>(false);
             this->mMutex = std::make_shared<std::mutex>();
             this->mCondition = std::make_shared<std::condition_variable>();
+
             this->mNode.run(listeningPort.Value(), dht::crypto::generateIdentity(), true);
             auto onIPV4 = [](const LD::IPV4Address & address) noexcept -> LD::ImmutableString<64>
             {
@@ -158,5 +203,16 @@ namespace LD
             return LD::CreateResponse(LD::Type<ReturnType>{},LD::TransactionError{},LD::Forward<Args>(arguments)...);
         }
     };
+}
+
+namespace LD
+{
+    namespace CT
+    {
+        constexpr bool IsSubsriptionToken(LD::Type<LD::OpenDHTBackend::SubscriptionToken> ) noexcept
+        {
+            return true;
+        }
+    }
 }
 #endif //LANDESSDEVCORE_DHTBACKEND_HPP

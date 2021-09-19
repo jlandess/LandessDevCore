@@ -1085,7 +1085,7 @@ namespace LD
 
 
             applicationTimer.Start();//start the timer once per frame
-            usleep(sleepingPeriod);//sleep for the designated amount of time
+            LD::Usleep(sleepingPeriod);//sleep for the designated amount of time
 
             PDP::Second<LD::Float> granuilarity(sleepingPeriod*0.0625);//keep multiplying 0.016 until you reach the number, it's just a frame folding constant
             //PDP::Second<LD::Float> zero(0);

@@ -20,6 +20,12 @@ namespace LD
         {
             return true;
         }
+
+        template<typename ... T>
+        constexpr bool IsVariant(LD::Type<mpark::variant<T...>> ) noexcept
+        {
+            return true;
+        }
     }
 }
 #endif //LANDESSDEVCORE_ISVARIANT_HPP

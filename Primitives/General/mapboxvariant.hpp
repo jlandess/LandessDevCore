@@ -1,6 +1,6 @@
 #ifndef MAPBOX_UTIL_VARIANT_HPP
 #define MAPBOX_UTIL_VARIANT_HPP
-
+#include "Algorithms/VariantOperations.hpp"
 #include <cassert>
 #include <cstddef>   // size_t
 #include <new>       // operator new
@@ -1127,5 +1127,54 @@ namespace LD
             return LD::CT::TypeList<A...>{};
         }
     }
+}
+
+namespace LD
+{
+    template<typename ... A>
+    struct VariantOperations<mapbox::util::variant<A...>>
+    {
+        template<LD::UInteger Index>
+        inline static auto GetIf(mapbox::util::variant<A...> * variant) noexcept -> typename LD::TypeAtIndex<Index,LD::CT::TypeList<A...>>::type *
+        {
+            if (variant == nullptr)
+            {
+                return nullptr;
+            }
+            if (variant->which() == Index)
+            {
+                using VariantType = typename LD::TypeAtIndex<Index,LD::CT::TypeList<A...>>::type;
+                return &variant->template get<VariantType>();
+            }
+
+
+            return nullptr;
+            //return mpark::get_if<Index>(variant);
+        }
+
+        template<LD::UInteger Index>
+        inline static auto Get(mapbox::util::variant<A...> & variant) noexcept
+        {
+            return variant.template get<Index>();
+        }
+
+        template<LD::UInteger Index>
+        inline static auto Get(mapbox::util::variant<A...> && variant) noexcept
+        {
+            return variant.template get<Index>();
+        }
+
+        template<LD::UInteger Index>
+        inline static auto Get(const mapbox::util::variant<A...> & variant) noexcept
+        {
+            return variant.template get<Index>();
+        }
+
+        inline static constexpr LD::UInteger Size() noexcept
+        {
+            return sizeof...(A);
+        }
+
+    };
 }
 #endif // MAPBOX_UTIL_VARIANT_HPP
