@@ -22,7 +22,7 @@
 
 namespace LD
 {
-    /*
+
     template<typename T, class = void>
     class BasicTermBoxApplication;
 
@@ -44,7 +44,7 @@ namespace LD
         inline BasicTermBoxApplication(const T & application):CurrentApplication(application){}
         inline ~BasicTermBoxApplication(){}
         
-        const bool operator()(const LD::ApplicaitonStartedEvent<Context...> & applicationStartedEvent)
+        const bool operator()(const LD::ApplicationStartedEvent<Context...> & applicationStartedEvent)
         {
             this->StartStatus = (tb_init() == 0);
 
@@ -69,7 +69,7 @@ namespace LD
             return this->CurrentApplication(applicationFrameStartedEvent);
         }
 
-        PDP::Second<LD::Float> operator()(const LD::ApplicationPeriodEvent<Context...> & sleepingEvent)
+        LD::Second<LD::Float> operator()(const LD::ApplicationPeriodEvent<Context...> & sleepingEvent)
         {
             return this->CurrentApplication(sleepingEvent);
         }
@@ -155,7 +155,7 @@ namespace LD
             }
         }
     };
-     */
+
 }
 namespace PDP
 {

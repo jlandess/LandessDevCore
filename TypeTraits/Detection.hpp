@@ -215,10 +215,16 @@ namespace LD
         using CallableFunction = decltype(LD::Declval<F>()(LD::Declval<Args>()...));
 
 
+        template<typename T, typename U>
+        using AssignableFunction = decltype(LD::Declval<T&>() = LD::Declval<U>());
+
+
 
     }
 
 
+    template<typename T, typename U>
+    constexpr bool IsAssignable1 = LD::Exists<LD::Ops::AssignableFunction,T,U>;
 
     template<typename T, typename U>
     constexpr bool HasLessThan = LD::Exists<LD::Ops::LessThan,T,U>;

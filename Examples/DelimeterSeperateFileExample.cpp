@@ -8,7 +8,7 @@
 #include "TypeTraits/FunctionalReflection.hpp"
 #include "Primitives/General/Span.hpp"
 #include "MVC/TermBoxApplication.hpp"
-#include "MVC/Scheduling.hpp"
+#include "Patterns/Scheduling.hpp"
 #include "MVC/FormattedFloatingPoint.hpp"
 #include "MVC/TermBoxProgressBar.hpp"
 #include "MVC/TUI/TUITextInput.h"
@@ -49,7 +49,7 @@ namespace LD
             using SysLoad = SystemLoad<16>;
             bool shouldContinue = true;
             SysLoad system;
-            auto TUIApplicationStarted = [](const LD::ApplicaitonStartedEvent<LD::TermBoxRenderContext,LD::Cursor<LD::Integer>,float> & applicaitonStartedEvent) noexcept ->bool
+            auto TUIApplicationStarted = [](const LD::ApplicationStartedEvent<LD::TermBoxRenderContext,LD::Cursor<LD::Integer>,float> & applicaitonStartedEvent) noexcept ->bool
             {
                 LD::Get<LD::TermBoxRenderContext>(applicaitonStartedEvent)->EnableMouse();
                 return LD::ApplicationRunningPredicate{};
@@ -58,9 +58,9 @@ namespace LD
             {
                 return LD::ApplicationQuittingPredicate{ shouldContinue == false};
             };
-            auto TUIApplicationPeriod = [](const LD::ApplicationPeriodEvent<LD::TermBoxRenderContext,LD::Cursor<LD::Integer>,float> &) noexcept -> PDP::Second<LD::Float>
+            auto TUIApplicationPeriod = [](const LD::ApplicationPeriodEvent<LD::TermBoxRenderContext,LD::Cursor<LD::Integer>,float> &) noexcept -> LD::Second<LD::Float>
             {
-                return PDP::Second<LD::Float>{1.0/67.0};
+                return LD::Second<LD::Float>{LD::SecondTag<LD::Float>{1.0/67.0}};
             };
             LD::TUI::RadioButton box{{0,-10}};
             LD::ImmutableString<11> defaultString;
@@ -124,7 +124,7 @@ namespace LD
             auto TUIApplicationQuit = [](const LD::ApplicationQuittingEvent<LD::TermBoxRenderContext,LD::Cursor<LD::Integer>,float> &) noexcept
             {
             };
-            auto onSysApplicationStarted =  [](const LD::ApplicaitonStartedEvent<LD::TermBoxRenderContext,LD::Cursor<LD::Integer>,float> & ) noexcept ->bool
+            auto onSysApplicationStarted =  [](const LD::ApplicationStartedEvent<LD::TermBoxRenderContext,LD::Cursor<LD::Integer>,float> & ) noexcept ->bool
             {
                 return LD::ApplicationRunningPredicate{};
             };
@@ -163,7 +163,7 @@ namespace LD
             LD::TermBoxRenderContext cntxt;
 
             LD::Timer timez;
-            LD::MainLoop(schExe,timez,cntxt,LD::Cursor<LD::Integer>{},float{});
+            //LD::MainLoop(schExe,timez,cntxt,LD::Cursor<LD::Integer>{},float{});
         }
     }
 }

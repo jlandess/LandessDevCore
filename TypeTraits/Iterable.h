@@ -6,6 +6,8 @@
 #define LANDESSDEVCORE_ITERABLE_H
 #include "Declval.hpp"
 #include "Conditional.hpp"
+#include "TypeTraits/EnableIf.hpp"
+#include "TypeTraits/Detection.hpp"
 namespace LD
 {
     namespace Detail
@@ -149,6 +151,15 @@ namespace LD
 
     public:
     };
+
+
+    template<typename T>
+    class ExtractionIterator
+    {
+
+    };
+
+    template<typename T> ExtractionIterator(T &) -> ExtractionIterator<T>;
 
     template<typename T>
     class FrontInserter

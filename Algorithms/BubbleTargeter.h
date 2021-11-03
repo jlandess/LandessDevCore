@@ -2,7 +2,7 @@
 // Created by phoenixflower on 6/18/20.
 //
 
-#ifndef LANDESSDEVCORE_BUBBLETARGETER_H
+#ifndef LANDESSDEVCORE_BUBBLETARGETER_HPP
 #define LANDESSDEVCORE_BUBBLETARGETER_H
 #include "Periodic.hpp"
 #include "Exponential.hpp"
@@ -108,4 +108,4 @@ namespace LD
         float mM, mN;           // handy shortcuts for gradient computation
     };
 }
-#endif //LANDESSDEVCORE_BUBBLETARGETER_H
+#endif //LANDESSDEVCORE_BUBBLETARGETER_HPP

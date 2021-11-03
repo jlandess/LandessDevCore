@@ -10,9 +10,9 @@ namespace LD
     namespace Async
     {
         template<typename Context,typename T, typename Task>
-        auto LetValue(Context context,T && value, Task task) noexcept
+        auto LetValue(Context context,T  value, Task task) noexcept
         {
-            return LD::Async::Then(LD::Async::Then(context,LD::Async::Just(LD::Forward<T>(value))),task);
+            return LD::Async::Then(LD::Async::Then(context,LD::Async::Just(value)),task);
         }
     }
 }

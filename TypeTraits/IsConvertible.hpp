@@ -44,5 +44,11 @@ namespace LD
         struct IsConvertible : public decltype(Detail::IsConvertibleImpl::test(LD::Declval<_Type>(), LD::Declval<_OtherType>()))
         {};
     }
+
+    namespace CT
+    {
+        template<typename T, typename U>
+        constexpr bool IsConvertible = LD::Detail::IsConvertible<T,U>::value;
+    }
 }
 #endif //LANDESSDEVCORE_ISCONVERTIBLE_HPP

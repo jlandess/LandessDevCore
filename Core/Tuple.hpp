@@ -89,7 +89,6 @@ namespace LD
         {
             template <typename U> static U impl(U);
             using type = decltype(impl(LD::Declval<T>()));
-
             //using type = typename LD::Detail::decay<T>::type;
         };
          */

@@ -107,6 +107,12 @@ namespace LD
     {
         usleep(time.NativeRepresentation().Value()*1E6);
     }
+
+    template<typename T>
+    LD::Enable_If_T<LD::Detail::IsPrimitiveType<T>::value,void> SleepFor(const LD::Second<T> & time)
+    {
+        usleep(time.NativeRepresentation().Value()*1E6);
+    }
 }
 
 

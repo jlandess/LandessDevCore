@@ -25,7 +25,7 @@ namespace LD
          */
 
         template<typename T>
-        auto Just(T && value) noexcept
+        auto Just(T  value) noexcept
         {
             auto function =  [=]()
             {

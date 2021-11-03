@@ -10,10 +10,12 @@
 #define DataStructures_StaticArray_h
 
 #include "Definitions/Integer.hpp"
+#include "Definitions/Float.hpp"
 #include "Functor/Lambda.h"
 #include "Algorithms/GenericResize.h"
+#include "TypeTraits/CompileTimeControlFlow.hpp"
 //#include "Definitions/Common.hpp"
-#include "Algorithms/CompileTimeControlFlow.hpp"
+#include "TypeTraits/CompileTimeControlFlow.hpp"
 #include "TypeTraits/IsImmutable.h"
 #include "TypeTraits/Iterable.h"
 namespace LD

@@ -17,9 +17,9 @@
 #include "concurrentqueue.h"
 #include "Async/Thread.h"
 #include "Definitions/TimeExtension.hpp"
-#include "Algorithms/CompileTimeControlFlow.hpp"
+#include "TypeTraits/CompileTimeControlFlow.hpp"
 #include "MVC/SchedulingEvent.hpp"
-#include "MVC/Scheduling.hpp"
+#include "Patterns/Scheduling.hpp"
 #include "Primitives/General/Unit.hpp"
 namespace LD
 {
@@ -86,7 +86,7 @@ namespace LD
             LD::Require<
                     LD::Either<
                             LD::Require<
-                                    (LD::ConvertiblyCallable<A, bool(const LD::ApplicaitonStartedEvent<LD::ThreadAffinity> &)>::Value() && ...),
+                                    (LD::ConvertiblyCallable<A, bool(const LD::ApplicationStartedEvent<LD::ThreadAffinity> &)>::Value() && ...),
                                     (LD::ConvertiblyCallable<A, bool(const LD::ApplicationFrameStartedEvent<LD::ThreadAffinity> &)>::Value() && ...),
                                     (LD::ConvertiblyCallable<A, LD::Second<LD::Float >(const LD::ApplicationPeriodEvent<LD::ThreadAffinity> &)>::Value() && ...),
                                     (LD::ConvertiblyCallable<A, void(const LD::ApplicationExecutionEvent<LD::ThreadAffinity> &)>::Value() && ...),

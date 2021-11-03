@@ -1207,6 +1207,175 @@ CMakeFiles/LandessDevCore.dir/Examples/VisitationExample.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/Examples/VisitationExample.cpp.s"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/phoenixflower/Documents/Development/LandessDevCore/Examples/VisitationExample.cpp -o CMakeFiles/LandessDevCore.dir/Examples/VisitationExample.cpp.s
 
+CMakeFiles/LandessDevCore.dir/Algorithms/DynamicProgramming.cpp.o: CMakeFiles/LandessDevCore.dir/flags.make
+CMakeFiles/LandessDevCore.dir/Algorithms/DynamicProgramming.cpp.o: ../Algorithms/DynamicProgramming.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/phoenixflower/Documents/Development/LandessDevCore/cmake-build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_88) "Building CXX object CMakeFiles/LandessDevCore.dir/Algorithms/DynamicProgramming.cpp.o"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/LandessDevCore.dir/Algorithms/DynamicProgramming.cpp.o -c /home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/DynamicProgramming.cpp
+
+CMakeFiles/LandessDevCore.dir/Algorithms/DynamicProgramming.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LandessDevCore.dir/Algorithms/DynamicProgramming.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/DynamicProgramming.cpp > CMakeFiles/LandessDevCore.dir/Algorithms/DynamicProgramming.cpp.i
+
+CMakeFiles/LandessDevCore.dir/Algorithms/DynamicProgramming.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/Algorithms/DynamicProgramming.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/DynamicProgramming.cpp -o CMakeFiles/LandessDevCore.dir/Algorithms/DynamicProgramming.cpp.s
+
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/Property.cpp.o: CMakeFiles/LandessDevCore.dir/flags.make
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/Property.cpp.o: ../RuntimeReflection/Property.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/phoenixflower/Documents/Development/LandessDevCore/cmake-build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_89) "Building CXX object CMakeFiles/LandessDevCore.dir/RuntimeReflection/Property.cpp.o"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/LandessDevCore.dir/RuntimeReflection/Property.cpp.o -c /home/phoenixflower/Documents/Development/LandessDevCore/RuntimeReflection/Property.cpp
+
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/Property.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LandessDevCore.dir/RuntimeReflection/Property.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/phoenixflower/Documents/Development/LandessDevCore/RuntimeReflection/Property.cpp > CMakeFiles/LandessDevCore.dir/RuntimeReflection/Property.cpp.i
+
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/Property.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/RuntimeReflection/Property.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/phoenixflower/Documents/Development/LandessDevCore/RuntimeReflection/Property.cpp -o CMakeFiles/LandessDevCore.dir/RuntimeReflection/Property.cpp.s
+
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/PropertySystem.cpp.o: CMakeFiles/LandessDevCore.dir/flags.make
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/PropertySystem.cpp.o: ../RuntimeReflection/PropertySystem.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/phoenixflower/Documents/Development/LandessDevCore/cmake-build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_90) "Building CXX object CMakeFiles/LandessDevCore.dir/RuntimeReflection/PropertySystem.cpp.o"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/LandessDevCore.dir/RuntimeReflection/PropertySystem.cpp.o -c /home/phoenixflower/Documents/Development/LandessDevCore/RuntimeReflection/PropertySystem.cpp
+
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/PropertySystem.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LandessDevCore.dir/RuntimeReflection/PropertySystem.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/phoenixflower/Documents/Development/LandessDevCore/RuntimeReflection/PropertySystem.cpp > CMakeFiles/LandessDevCore.dir/RuntimeReflection/PropertySystem.cpp.i
+
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/PropertySystem.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/RuntimeReflection/PropertySystem.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/phoenixflower/Documents/Development/LandessDevCore/RuntimeReflection/PropertySystem.cpp -o CMakeFiles/LandessDevCore.dir/RuntimeReflection/PropertySystem.cpp.s
+
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/BaseObject.cpp.o: CMakeFiles/LandessDevCore.dir/flags.make
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/BaseObject.cpp.o: ../RuntimeReflection/BaseObject.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/phoenixflower/Documents/Development/LandessDevCore/cmake-build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_91) "Building CXX object CMakeFiles/LandessDevCore.dir/RuntimeReflection/BaseObject.cpp.o"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/LandessDevCore.dir/RuntimeReflection/BaseObject.cpp.o -c /home/phoenixflower/Documents/Development/LandessDevCore/RuntimeReflection/BaseObject.cpp
+
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/BaseObject.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LandessDevCore.dir/RuntimeReflection/BaseObject.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/phoenixflower/Documents/Development/LandessDevCore/RuntimeReflection/BaseObject.cpp > CMakeFiles/LandessDevCore.dir/RuntimeReflection/BaseObject.cpp.i
+
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/BaseObject.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/RuntimeReflection/BaseObject.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/phoenixflower/Documents/Development/LandessDevCore/RuntimeReflection/BaseObject.cpp -o CMakeFiles/LandessDevCore.dir/RuntimeReflection/BaseObject.cpp.s
+
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/RTTI.cpp.o: CMakeFiles/LandessDevCore.dir/flags.make
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/RTTI.cpp.o: ../RuntimeReflection/RTTI.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/phoenixflower/Documents/Development/LandessDevCore/cmake-build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_92) "Building CXX object CMakeFiles/LandessDevCore.dir/RuntimeReflection/RTTI.cpp.o"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/LandessDevCore.dir/RuntimeReflection/RTTI.cpp.o -c /home/phoenixflower/Documents/Development/LandessDevCore/RuntimeReflection/RTTI.cpp
+
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/RTTI.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LandessDevCore.dir/RuntimeReflection/RTTI.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/phoenixflower/Documents/Development/LandessDevCore/RuntimeReflection/RTTI.cpp > CMakeFiles/LandessDevCore.dir/RuntimeReflection/RTTI.cpp.i
+
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/RTTI.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/RuntimeReflection/RTTI.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/phoenixflower/Documents/Development/LandessDevCore/RuntimeReflection/RTTI.cpp -o CMakeFiles/LandessDevCore.dir/RuntimeReflection/RTTI.cpp.s
+
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/RTTIClass.cpp.o: CMakeFiles/LandessDevCore.dir/flags.make
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/RTTIClass.cpp.o: ../RuntimeReflection/RTTIClass.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/phoenixflower/Documents/Development/LandessDevCore/cmake-build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_93) "Building CXX object CMakeFiles/LandessDevCore.dir/RuntimeReflection/RTTIClass.cpp.o"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/LandessDevCore.dir/RuntimeReflection/RTTIClass.cpp.o -c /home/phoenixflower/Documents/Development/LandessDevCore/RuntimeReflection/RTTIClass.cpp
+
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/RTTIClass.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LandessDevCore.dir/RuntimeReflection/RTTIClass.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/phoenixflower/Documents/Development/LandessDevCore/RuntimeReflection/RTTIClass.cpp > CMakeFiles/LandessDevCore.dir/RuntimeReflection/RTTIClass.cpp.i
+
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/RTTIClass.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/RuntimeReflection/RTTIClass.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/phoenixflower/Documents/Development/LandessDevCore/RuntimeReflection/RTTIClass.cpp -o CMakeFiles/LandessDevCore.dir/RuntimeReflection/RTTIClass.cpp.s
+
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/TypedProperty.cpp.o: CMakeFiles/LandessDevCore.dir/flags.make
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/TypedProperty.cpp.o: ../RuntimeReflection/TypedProperty.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/phoenixflower/Documents/Development/LandessDevCore/cmake-build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_94) "Building CXX object CMakeFiles/LandessDevCore.dir/RuntimeReflection/TypedProperty.cpp.o"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/LandessDevCore.dir/RuntimeReflection/TypedProperty.cpp.o -c /home/phoenixflower/Documents/Development/LandessDevCore/RuntimeReflection/TypedProperty.cpp
+
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/TypedProperty.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LandessDevCore.dir/RuntimeReflection/TypedProperty.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/phoenixflower/Documents/Development/LandessDevCore/RuntimeReflection/TypedProperty.cpp > CMakeFiles/LandessDevCore.dir/RuntimeReflection/TypedProperty.cpp.i
+
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/TypedProperty.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/RuntimeReflection/TypedProperty.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/phoenixflower/Documents/Development/LandessDevCore/RuntimeReflection/TypedProperty.cpp -o CMakeFiles/LandessDevCore.dir/RuntimeReflection/TypedProperty.cpp.s
+
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/AbstractProperty.cpp.o: CMakeFiles/LandessDevCore.dir/flags.make
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/AbstractProperty.cpp.o: ../RuntimeReflection/AbstractProperty.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/phoenixflower/Documents/Development/LandessDevCore/cmake-build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_95) "Building CXX object CMakeFiles/LandessDevCore.dir/RuntimeReflection/AbstractProperty.cpp.o"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/LandessDevCore.dir/RuntimeReflection/AbstractProperty.cpp.o -c /home/phoenixflower/Documents/Development/LandessDevCore/RuntimeReflection/AbstractProperty.cpp
+
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/AbstractProperty.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LandessDevCore.dir/RuntimeReflection/AbstractProperty.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/phoenixflower/Documents/Development/LandessDevCore/RuntimeReflection/AbstractProperty.cpp > CMakeFiles/LandessDevCore.dir/RuntimeReflection/AbstractProperty.cpp.i
+
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/AbstractProperty.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/RuntimeReflection/AbstractProperty.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/phoenixflower/Documents/Development/LandessDevCore/RuntimeReflection/AbstractProperty.cpp -o CMakeFiles/LandessDevCore.dir/RuntimeReflection/AbstractProperty.cpp.s
+
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: CMakeFiles/LandessDevCore.dir/flags.make
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../RuntimeReflection/ExampleRuntimeReflection.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/phoenixflower/Documents/Development/LandessDevCore/cmake-build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_96) "Building CXX object CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o -c /home/phoenixflower/Documents/Development/LandessDevCore/RuntimeReflection/ExampleRuntimeReflection.cpp
+
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/phoenixflower/Documents/Development/LandessDevCore/RuntimeReflection/ExampleRuntimeReflection.cpp > CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.i
+
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/phoenixflower/Documents/Development/LandessDevCore/RuntimeReflection/ExampleRuntimeReflection.cpp -o CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.s
+
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: CMakeFiles/LandessDevCore.dir/flags.make
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../Examples/RunTimeReflectionExample.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/phoenixflower/Documents/Development/LandessDevCore/cmake-build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_97) "Building CXX object CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o -c /home/phoenixflower/Documents/Development/LandessDevCore/Examples/RunTimeReflectionExample.cpp
+
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/phoenixflower/Documents/Development/LandessDevCore/Examples/RunTimeReflectionExample.cpp > CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.i
+
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/phoenixflower/Documents/Development/LandessDevCore/Examples/RunTimeReflectionExample.cpp -o CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.s
+
+CMakeFiles/LandessDevCore.dir/Examples/ApplicationLoopExample.cpp.o: CMakeFiles/LandessDevCore.dir/flags.make
+CMakeFiles/LandessDevCore.dir/Examples/ApplicationLoopExample.cpp.o: ../Examples/ApplicationLoopExample.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/phoenixflower/Documents/Development/LandessDevCore/cmake-build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_98) "Building CXX object CMakeFiles/LandessDevCore.dir/Examples/ApplicationLoopExample.cpp.o"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/LandessDevCore.dir/Examples/ApplicationLoopExample.cpp.o -c /home/phoenixflower/Documents/Development/LandessDevCore/Examples/ApplicationLoopExample.cpp
+
+CMakeFiles/LandessDevCore.dir/Examples/ApplicationLoopExample.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LandessDevCore.dir/Examples/ApplicationLoopExample.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/phoenixflower/Documents/Development/LandessDevCore/Examples/ApplicationLoopExample.cpp > CMakeFiles/LandessDevCore.dir/Examples/ApplicationLoopExample.cpp.i
+
+CMakeFiles/LandessDevCore.dir/Examples/ApplicationLoopExample.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/Examples/ApplicationLoopExample.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/phoenixflower/Documents/Development/LandessDevCore/Examples/ApplicationLoopExample.cpp -o CMakeFiles/LandessDevCore.dir/Examples/ApplicationLoopExample.cpp.s
+
+CMakeFiles/LandessDevCore.dir/Examples/UnitsExample.cpp.o: CMakeFiles/LandessDevCore.dir/flags.make
+CMakeFiles/LandessDevCore.dir/Examples/UnitsExample.cpp.o: ../Examples/UnitsExample.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/phoenixflower/Documents/Development/LandessDevCore/cmake-build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_99) "Building CXX object CMakeFiles/LandessDevCore.dir/Examples/UnitsExample.cpp.o"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/LandessDevCore.dir/Examples/UnitsExample.cpp.o -c /home/phoenixflower/Documents/Development/LandessDevCore/Examples/UnitsExample.cpp
+
+CMakeFiles/LandessDevCore.dir/Examples/UnitsExample.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LandessDevCore.dir/Examples/UnitsExample.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/phoenixflower/Documents/Development/LandessDevCore/Examples/UnitsExample.cpp > CMakeFiles/LandessDevCore.dir/Examples/UnitsExample.cpp.i
+
+CMakeFiles/LandessDevCore.dir/Examples/UnitsExample.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/Examples/UnitsExample.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/phoenixflower/Documents/Development/LandessDevCore/Examples/UnitsExample.cpp -o CMakeFiles/LandessDevCore.dir/Examples/UnitsExample.cpp.s
+
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: CMakeFiles/LandessDevCore.dir/flags.make
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Examples/DependencyInjectionExample.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/phoenixflower/Documents/Development/LandessDevCore/cmake-build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_100) "Building CXX object CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o -c /home/phoenixflower/Documents/Development/LandessDevCore/Examples/DependencyInjectionExample.cpp
+
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/phoenixflower/Documents/Development/LandessDevCore/Examples/DependencyInjectionExample.cpp > CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.i
+
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/phoenixflower/Documents/Development/LandessDevCore/Examples/DependencyInjectionExample.cpp -o CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.s
+
 # Object files for target LandessDevCore
 LandessDevCore_OBJECTS = \
 "CMakeFiles/LandessDevCore.dir/main.cpp.o" \
@@ -1295,7 +1464,20 @@ LandessDevCore_OBJECTS = \
 "CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_impl_datepicker.cpp.o" \
 "CMakeFiles/LandessDevCore.dir/Examples/AlgorithmicJSONTest.cpp.o" \
 "CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o" \
-"CMakeFiles/LandessDevCore.dir/Examples/VisitationExample.cpp.o"
+"CMakeFiles/LandessDevCore.dir/Examples/VisitationExample.cpp.o" \
+"CMakeFiles/LandessDevCore.dir/Algorithms/DynamicProgramming.cpp.o" \
+"CMakeFiles/LandessDevCore.dir/RuntimeReflection/Property.cpp.o" \
+"CMakeFiles/LandessDevCore.dir/RuntimeReflection/PropertySystem.cpp.o" \
+"CMakeFiles/LandessDevCore.dir/RuntimeReflection/BaseObject.cpp.o" \
+"CMakeFiles/LandessDevCore.dir/RuntimeReflection/RTTI.cpp.o" \
+"CMakeFiles/LandessDevCore.dir/RuntimeReflection/RTTIClass.cpp.o" \
+"CMakeFiles/LandessDevCore.dir/RuntimeReflection/TypedProperty.cpp.o" \
+"CMakeFiles/LandessDevCore.dir/RuntimeReflection/AbstractProperty.cpp.o" \
+"CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o" \
+"CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o" \
+"CMakeFiles/LandessDevCore.dir/Examples/ApplicationLoopExample.cpp.o" \
+"CMakeFiles/LandessDevCore.dir/Examples/UnitsExample.cpp.o" \
+"CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o"
 
 # External object files for target LandessDevCore
 LandessDevCore_EXTERNAL_OBJECTS =
@@ -1387,9 +1569,22 @@ LandessDevCore: CMakeFiles/LandessDevCore.dir/Graphics/DearImGUI/imgui_impl_date
 LandessDevCore: CMakeFiles/LandessDevCore.dir/Examples/AlgorithmicJSONTest.cpp.o
 LandessDevCore: CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o
 LandessDevCore: CMakeFiles/LandessDevCore.dir/Examples/VisitationExample.cpp.o
+LandessDevCore: CMakeFiles/LandessDevCore.dir/Algorithms/DynamicProgramming.cpp.o
+LandessDevCore: CMakeFiles/LandessDevCore.dir/RuntimeReflection/Property.cpp.o
+LandessDevCore: CMakeFiles/LandessDevCore.dir/RuntimeReflection/PropertySystem.cpp.o
+LandessDevCore: CMakeFiles/LandessDevCore.dir/RuntimeReflection/BaseObject.cpp.o
+LandessDevCore: CMakeFiles/LandessDevCore.dir/RuntimeReflection/RTTI.cpp.o
+LandessDevCore: CMakeFiles/LandessDevCore.dir/RuntimeReflection/RTTIClass.cpp.o
+LandessDevCore: CMakeFiles/LandessDevCore.dir/RuntimeReflection/TypedProperty.cpp.o
+LandessDevCore: CMakeFiles/LandessDevCore.dir/RuntimeReflection/AbstractProperty.cpp.o
+LandessDevCore: CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o
+LandessDevCore: CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o
+LandessDevCore: CMakeFiles/LandessDevCore.dir/Examples/ApplicationLoopExample.cpp.o
+LandessDevCore: CMakeFiles/LandessDevCore.dir/Examples/UnitsExample.cpp.o
+LandessDevCore: CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o
 LandessDevCore: CMakeFiles/LandessDevCore.dir/build.make
 LandessDevCore: CMakeFiles/LandessDevCore.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/phoenixflower/Documents/Development/LandessDevCore/cmake-build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_88) "Linking CXX executable LandessDevCore"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/phoenixflower/Documents/Development/LandessDevCore/cmake-build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_101) "Linking CXX executable LandessDevCore"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/LandessDevCore.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

@@ -47,6 +47,7 @@ namespace LD
                 return  this == &other; ;
             }
         public:
+            NewDeleteResource(): LD::Mem::MemoryResource(nullptr){}
         };
 
 
@@ -97,6 +98,7 @@ namespace LD
             static NewDeleteResource resource;
             return &resource;
         }
+
 
 
         MemoryResource::MemoryResource() noexcept :mUpstream{LD::Mem::GetNewDeleteResource()}

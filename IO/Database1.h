@@ -438,9 +438,12 @@ namespace LD
     {
         LD::RequestResponse<LD::Optional<V>()> parsingResponse =  document.Query(LD::StringView{LD::ToImmutableString(LD::Forward<Key>(key)).Data()},[](auto a, auto b)
         {
+
+            std::cout << b << "\n";
             auto response1 = LD::FromString(LD::Type<V>{},b);
             auto onValue = [](V value) noexcept
             {
+
                 return LD::Optional<V>{value};
             };
             auto onError1 = [](LD::TransactionError ) noexcept

@@ -8,7 +8,7 @@
 #include "Primitives/General/Immutable.hpp"
 #include "Primitives/General/ctre.hpp"
 #include "MVC/TermBoxApplication.hpp"
-#include "MVC/Scheduling.hpp"
+#include "Patterns/Scheduling.hpp"
 #include "MVC/TermBoxMenu.hpp"
 #include "MVC/TermBoxCursorNavigator.hpp"
 #include "Primitives/General/Observer.hpp"

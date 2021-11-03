@@ -2,7 +2,7 @@
 // Created by phoenixflower on 9/9/21.
 //
 
-#ifndef LANDESSDEVCORE_ISSUBSCRIPTIONTOKEN_H
+#ifndef LANDESSDEVCORE_ISSUBSCRIPTIONTOKEN_HPP
 #define LANDESSDEVCORE_ISSUBSCRIPTIONTOKEN_H
 #include "TypeTraits/Type.h"
 namespace LD
@@ -16,4 +16,4 @@ namespace LD
         }
     }
 }
-#endif //LANDESSDEVCORE_ISSUBSCRIPTIONTOKEN_H
+#endif //LANDESSDEVCORE_ISSUBSCRIPTIONTOKEN_HPP

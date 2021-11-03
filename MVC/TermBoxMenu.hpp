@@ -80,7 +80,7 @@ namespace LD
             }
 
 
-            const bool operator()(const LD::ApplicaitonStartedEvent<Context...> & applicationStartedEvent)
+            const bool operator()(const LD::ApplicationStartedEvent<Context...> & applicationStartedEvent)
             {
                 return true;
             }

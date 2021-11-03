@@ -9,7 +9,10 @@
 #ifndef DataStructures_UniquePointer_h
 #define DataStructures_UniquePointer_h
 
-#include "Definitions/Common.hpp"
+
+#include "MemoryResource.hpp"
+#include "PolyMorphicAllocator.hpp"
+//#include "Definitions/Common.hpp"
 //#include <Types/MemoryBarriers.h>
 #include <cstddef>      // NULL
 #include <algorithm>    // std::swap
@@ -38,7 +41,20 @@ namespace LD
             
         }
     };
-    
+
+    struct MemoryResourceDeleter
+    {
+        LD::Mem::MemoryResource * mResource;
+        template<typename T>
+        void operator()(T * __ptr) const
+        {
+            //LD::Mem::PolymorphicAllocator<T> resourceAllocatr[mResource};
+
+            LD::Mem::PolymorphicAllocator<T> poly{mResource};
+            poly.destroy(__ptr);
+            poly.deallocate(__ptr,1);
+        }
+    };
     
     template<typename _Tp>
     struct DefaultDelete<_Tp[]>
@@ -65,12 +81,12 @@ namespace LD
         /// @brief Default constructor
         
         
-        UniquePointer(void) throw() : // never throws
-        px(NULL)
+        UniquePointer(void) noexcept: // never throws
+        px(nullptr)
         {
         }
         /// @brief Constructor with the provided pointer to manage
-        explicit UniquePointer(T* p, const DeleterType & deleterType = DeleterType()) throw() : // never throws
+        explicit UniquePointer(T* p, const DeleterType & deleterType = DeleterType()) noexcept : // never throws
         px(p),CurrentDeleter(deleterType)
         {
         }
@@ -84,29 +100,29 @@ namespace LD
          }
          */
         /// @brief Copy constructor (used by the copy-and-swap idiom)
-        UniquePointer(const UniquePointer& ptr) throw() : // never throws
+        UniquePointer(const UniquePointer& ptr) noexcept : // never throws
         px(ptr.px)
         {
             const_cast<UniquePointer&>(ptr).px = NULL; // const-cast to force ownership transfer!
         }
         /// @brief Assignment operator using the copy-and-swap idiom (copy constructor and swap method)
-        UniquePointer& operator=(UniquePointer ptr) throw() // never throws
+        UniquePointer& operator=(UniquePointer ptr) noexcept// never throws
         {
             swap(ptr);
             return *this;
         }
         /// @brief the destructor releases its ownership and destroy the object
-        inline ~UniquePointer(void) throw() // never throws
+        inline ~UniquePointer(void) noexcept // never throws
         {
             destroy();
         }
         /// @brief this reset releases its ownership and destroy the object
-        inline void reset(void) throw() // never throws
+        inline void reset(void) noexcept // never throws
         {
             destroy();
         }
         /// @brief this reset release its ownership and re-acquire another one
-        void reset(T* p) throw() // never throws
+        void reset(T* p) noexcept // never throws
         {
             SHARED_ASSERT((NULL == p) || (px != p)); // auto-reset not allowed
             destroy();
@@ -114,35 +130,35 @@ namespace LD
         }
         
         /// @brief Swap method for the copy-and-swap idiom (copy constructor and swap method)
-        void swap(UniquePointer& lhs) throw() // never throws
+        void swap(UniquePointer& lhs) noexcept // never throws
         {
             std::swap(px, lhs.px);
         }
         
         /// @brief release the ownership of the px pointer without destroying the object!
-        inline void release(void) throw() // never throws
+        inline void release(void) noexcept // never throws
         {
             px = NULL;
         }
         
         // reference counter operations :
-        inline operator bool() const throw() // never throws
+        inline operator bool() const noexcept // never throws
         {
-            return (NULL != px); // TODO nullptr
+            return (nullptr != px); // TODO nullptr
         }
         
         // underlying pointer operations :
-        inline T& operator*()  const throw() // never throws
+        inline T& operator*()  const noexcept// never throws
         {
             SHARED_ASSERT(NULL != px);
             return *px;
         }
-        inline T* operator->() const throw() // never throws
+        inline T* operator->() const noexcept// never throws
         {
             SHARED_ASSERT(NULL != px);
             return px;
         }
-        inline T* get(void)  const throw() // never throws
+        inline T* get(void)  const noexcept // never throws
         {
             // no assert, can return NULL
             return px;
@@ -150,7 +166,7 @@ namespace LD
         
     private:
         /// @brief release the ownership of the px pointer and destroy the object
-        inline void destroy(void) throw() // never throws
+        inline void destroy(void) noexcept// never throws
         {
             CurrentDeleter(px);
             //delete px;
@@ -158,7 +174,7 @@ namespace LD
         }
         
         /// @brief hack: const-cast release the ownership of the px pointer without destroying the object!
-        inline void release(void) const throw() // never throws
+        inline void release(void) const noexcept // never throws
         {
             px = NULL;
         }
@@ -202,6 +218,36 @@ namespace LD
     {
         
         return UniquePointer<T>(new T(LD::Forward<Args>(args)...));
+    }
+
+    template<typename T>
+   LD::Enable_If_T<LD::Require<LD::IsDefaultConstructible<T>>,LD::UniquePointer<T,LD::MemoryResourceDeleter>> AllocateUnique(LD::Mem::MemoryResource * resource = LD::Mem::GetNewDeleteResource()) noexcept
+    {
+        LD::Mem::PolymorphicAllocator<T> allocator{resource};
+        T * buffer = allocator.allocate(1);
+        allocator.construct(buffer);
+
+        return LD::UniquePointer<T, MemoryResourceDeleter>{buffer,MemoryResourceDeleter{resource}};
+    }
+
+    template<typename T, typename ... A>
+    LD::Enable_If_T<LD::Require<LD::IsConstructible<T,A...>::value>,LD::UniquePointer<T,LD::MemoryResourceDeleter>> AllocateUnique(LD::Mem::MemoryResource * resource, A && ... args) noexcept
+    {
+        LD::Mem::PolymorphicAllocator<T> allocator{resource};
+        T * buffer = allocator.allocate(1);
+        allocator.construct(buffer,LD::Forward<A>(args)...);
+
+        return LD::UniquePointer<T, MemoryResourceDeleter>{buffer,MemoryResourceDeleter{resource}};
+    }
+
+    template<typename T, typename ... A>
+    LD::UniquePointer<T,LD::MemoryResourceDeleter> AllocateUnique(T && object,LD::Mem::MemoryResource * resource = LD::Mem::GetNewDeleteResource()) noexcept
+    {
+        LD::Mem::PolymorphicAllocator<T> allocator{resource};
+        T * buffer = allocator.allocate(1);
+        allocator.construct(buffer,LD::Forward<T>(object));
+
+        return LD::UniquePointer<T, MemoryResourceDeleter>{buffer,MemoryResourceDeleter{resource}};
     }
     
     

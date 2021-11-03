@@ -5,13 +5,14 @@
 #ifndef LANDESSDEVCORE_UNIT_H
 #define LANDESSDEVCORE_UNIT_H
 
-//#include "Definitions/Common.hpp"
 #include "Ratio.hpp"
 #include "TypeTraits/ExclusiveOr.hpp"
 #include "Primitives/General/Immutable.hpp"
 #include "Core/RequestResponse.hpp"
 #include "Primitives/General/StringView.hpp"
 #include "Algorithms/FromString.hpp"
+#include "Algorithms/Exponential.hpp"
+#include "Algorithms/Periodic.hpp"
 namespace LD
 {
     template<typename Exponent>
@@ -33,6 +34,21 @@ namespace LD
      */
     template<typename Precison,template<typename> class  BaseTag, template<typename> class  CurrentTag, class PrefixRatio , class UnitExponent ,class sfinae = void>
     class Unit;
+
+    namespace CT
+    {
+        template<typename T>
+        constexpr bool IsUnit(LD::Type<T> ) noexcept
+        {
+            return false;
+        }
+
+        template<typename Precison,template<typename> class  BaseTag, template<typename> class  CurrentTag, class PrefixRatio , class UnitExponent>
+        constexpr bool IsUnit(LD::Type<Unit<Precison,BaseTag,CurrentTag,PrefixRatio,UnitExponent>> )
+        {
+            return true;
+        }
+    }
     /**
      *
      * @tparam Precision
@@ -69,33 +85,7 @@ namespace LD
         inline constexpr explicit Unit(const CurrentTag<T> & tag) noexcept :mUnit{tag}{}
         template<typename U, typename V = T ,class = LD::Enable_If_T<LD::Require<LD::Detail::IsConvertible<V,U>::value,LD::Concept::Arithmetical<U>>>>
         inline constexpr explicit Unit(const U & object) noexcept : mUnit{CurrentTag{object}}{}
-        /**
-         *
-         * @tparam U
-         * @tparam Tag
-         * @tparam CurrentPrefixRatioNumerator
-         * @tparam CurrentPrefixRatioDenom
-         * @tparam UnitBaseTag
-         * @tparam CurrentBaseTag
-         * @tparam V
-         * @param unit
-         */
-        /*
-       template<typename U,template<typename> class Tag,
-               LD::UInteger CurrentPrefixRatioNumerator, LD::UInteger CurrentPrefixRatioDenom,
-               template<typename> class UnitBaseTag,
-               template<typename> class CurrentBaseTag,
-               typename V = T,
-               class = LD::Enable_If_T<
-                       LD::Require<
-                               LD::Detail::IsConvertible<V,U>::value
-                       >>
-       >
-       inline constexpr  Unit(const Unit<U,UnitBaseTag,Tag,LD::CT::Ratio<CurrentPrefixRatioNumerator,CurrentPrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> & unit) noexcept
-       {
-           (*this) = unit;
-       }
-         */
+
         template<typename U,template<typename> class Tag,
                 LD::UInteger CurrentPrefixRatioNumerator, LD::UInteger CurrentPrefixRatioDenom,
                 template<typename> class UnitBaseTag,
@@ -117,87 +107,75 @@ namespace LD
 
         template<typename U,template<typename> class Tag,
                 LD::UInteger CurrentPrefixRatioNumerator, LD::UInteger CurrentPrefixRatioDenom,
-                template<typename> class UnitBaseTag,
                 template<typename> class CurrentBaseTag = BaseTag,
                 template<typename> class CurrentTagType = CurrentTag,
                 typename V = T>
-        bool operator == (const Unit<U,UnitBaseTag,Tag,LD::CT::Ratio<CurrentPrefixRatioNumerator,CurrentPrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> & unit) const noexcept
+        bool operator == (const Unit<U,CurrentBaseTag,Tag,LD::CT::Ratio<CurrentPrefixRatioNumerator,CurrentPrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> & instance) const noexcept
         {
-            if constexpr (LD::CT::IsSame(LD::Type<Tag<U>>{},LD::Type<CurrentTagType<U>>{}))
-            {
-                return this->mUnit.Value() == unit.mUnit.Value();
-            }
-            return false;
+            auto basePrefixRepresentation = (instance.mUnit.Value()*CurrentPrefixRatioNumerator)/CurrentPrefixRatioDenom;
+            auto currentPrefixRepresentation = (basePrefixRepresentation*PrefixRatioDenom)/PrefixRatioNumerator;
+
+            return this->mUnit.Value() > currentPrefixRepresentation;
         }
         template<typename U,template<typename> class Tag,
                 LD::UInteger CurrentPrefixRatioNumerator, LD::UInteger CurrentPrefixRatioDenom,
-                template<typename> class UnitBaseTag,
                 template<typename> class CurrentBaseTag = BaseTag,
                 template<typename> class CurrentTagType = CurrentTag,
                 typename V = T>
-        bool operator != (const Unit<U,UnitBaseTag,Tag,LD::CT::Ratio<CurrentPrefixRatioNumerator,CurrentPrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> & unit) const noexcept
+        bool operator != (const Unit<U,CurrentBaseTag,Tag,LD::CT::Ratio<CurrentPrefixRatioNumerator,CurrentPrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> & instance) const noexcept
         {
-            if constexpr (LD::CT::IsSame(LD::Type<Tag<U>>{},LD::Type<CurrentTagType<U>>{}))
-            {
-                return this->mUnit.Value() != unit.mUnit.Value();
-            }
-            return false;
+            auto basePrefixRepresentation = (instance.mUnit.Value()*CurrentPrefixRatioNumerator)/CurrentPrefixRatioDenom;
+            auto currentPrefixRepresentation = (basePrefixRepresentation*PrefixRatioDenom)/PrefixRatioNumerator;
+
+            return this->mUnit.Value() > currentPrefixRepresentation;
         }
         template<typename U,template<typename> class Tag,
                 LD::UInteger CurrentPrefixRatioNumerator, LD::UInteger CurrentPrefixRatioDenom,
-                template<typename> class UnitBaseTag,
                 template<typename> class CurrentBaseTag = BaseTag,
                 template<typename> class CurrentTagType = CurrentTag,
                 typename V = T>
-        bool operator < (const Unit<U,UnitBaseTag,Tag,LD::CT::Ratio<CurrentPrefixRatioNumerator,CurrentPrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> & unit) const noexcept
+        bool operator < (const Unit<U,CurrentBaseTag,Tag,LD::CT::Ratio<CurrentPrefixRatioNumerator,CurrentPrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> & instance) const noexcept
         {
-            if constexpr (LD::CT::IsSame(LD::Type<Tag<U>>{},LD::Type<CurrentTagType<U>>{}))
-            {
-                return this->mUnit.Value() < unit.mUnit.Value();
-            }
-            return false;
+            auto basePrefixRepresentation = (instance.mUnit.Value()*CurrentPrefixRatioNumerator)/CurrentPrefixRatioDenom;
+            auto currentPrefixRepresentation = (basePrefixRepresentation*PrefixRatioDenom)/PrefixRatioNumerator;
+
+            return this->mUnit.Value() < currentPrefixRepresentation;
         }
         template<typename U,template<typename> class Tag,
                 LD::UInteger CurrentPrefixRatioNumerator, LD::UInteger CurrentPrefixRatioDenom,
-                template<typename> class UnitBaseTag,
                 template<typename> class CurrentBaseTag = BaseTag,
                 template<typename> class CurrentTagType = CurrentTag,
                 typename V = T>
-        bool operator > (const Unit<U,UnitBaseTag,Tag,LD::CT::Ratio<CurrentPrefixRatioNumerator,CurrentPrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> & unit) const noexcept
+        bool operator > (const Unit<U,CurrentBaseTag,Tag,LD::CT::Ratio<CurrentPrefixRatioNumerator,CurrentPrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> & instance) const noexcept
         {
-            if constexpr (LD::CT::IsSame(LD::Type<Tag<U>>{},LD::Type<CurrentTagType<U>>{}))
-            {
-                return this->mUnit.Value() > unit.mUnit.Value();
-            }
-            return false;
+            auto basePrefixRepresentation = (instance.mUnit.Value()*CurrentPrefixRatioNumerator)/CurrentPrefixRatioDenom;
+            auto currentPrefixRepresentation = (basePrefixRepresentation*PrefixRatioDenom)/PrefixRatioNumerator;
+
+            return this->mUnit.Value() > currentPrefixRepresentation;
         }
         template<typename U,template<typename> class Tag,
                 LD::UInteger CurrentPrefixRatioNumerator, LD::UInteger CurrentPrefixRatioDenom,
-                template<typename> class UnitBaseTag,
                 template<typename> class CurrentBaseTag = BaseTag,
                 template<typename> class CurrentTagType = CurrentTag,
                 typename V = T>
-        bool operator >= (const Unit<U,UnitBaseTag,Tag,LD::CT::Ratio<CurrentPrefixRatioNumerator,CurrentPrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> & unit) const noexcept
+        bool operator >= (const Unit<U,CurrentBaseTag,Tag,LD::CT::Ratio<CurrentPrefixRatioNumerator,CurrentPrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> & instance) const noexcept
         {
-            if constexpr (LD::CT::IsSame(LD::Type<Tag<U>>{},LD::Type<CurrentTagType<U>>{}))
-            {
-                return this->mUnit.Value() >= unit.mUnit.Value();
-            }
-            return false;
+            auto basePrefixRepresentation = (instance.mUnit.Value()*CurrentPrefixRatioNumerator)/CurrentPrefixRatioDenom;
+            auto currentPrefixRepresentation = (basePrefixRepresentation*PrefixRatioDenom)/PrefixRatioNumerator;
+
+            return this->mUnit.Value() >= currentPrefixRepresentation;
         }
         template<typename U,template<typename> class Tag,
                 LD::UInteger CurrentPrefixRatioNumerator, LD::UInteger CurrentPrefixRatioDenom,
-                template<typename> class UnitBaseTag,
                 template<typename> class CurrentBaseTag = BaseTag,
                 template<typename> class CurrentTagType = CurrentTag,
                 typename V = T>
-        bool operator <= (const Unit<U,UnitBaseTag,Tag,LD::CT::Ratio<CurrentPrefixRatioNumerator,CurrentPrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> & unit) const noexcept
+        bool operator <= (const Unit<U,CurrentBaseTag,Tag,LD::CT::Ratio<CurrentPrefixRatioNumerator,CurrentPrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> & instance) const noexcept
         {
-            if constexpr (LD::CT::IsSame(LD::Type<Tag<U>>{},LD::Type<CurrentTagType<U>>{}))
-            {
-                return this->mUnit.Value() <= unit.mUnit.Value();
-            }
-            return false;
+            auto basePrefixRepresentation = (instance.mUnit.Value()*CurrentPrefixRatioNumerator)/CurrentPrefixRatioDenom;
+            auto currentPrefixRepresentation = (basePrefixRepresentation*PrefixRatioDenom)/PrefixRatioNumerator;
+
+            return this->mUnit.Value() <= currentPrefixRepresentation;
         }
         template<typename U,template<typename> class Tag,
                 LD::UInteger CurrentPrefixRatioNumerator, LD::UInteger CurrentPrefixRatioDenom,
@@ -272,22 +250,23 @@ namespace LD
         {
             return LD::ToImmutableString(this->mUnit.Value());
         }
-        /*
-        template<typename U, typename V = T ,typename R = decltype(LD::Declval<U>() * LD::Declval<V>())>
+
+        template<typename U, typename V = T,typename R = decltype(LD::Declval<U>() * LD::Declval<V>())>
         constexpr LD::Enable_If_T<LD::Require<
-        LD::Concept::Multipliable<U,V>
+                LD::Concept::Multipliable<U,V>,
+                LD::CT::Negate(LD::CT::IsUnit(LD::Type<U>{}))
         >,
-        Unit<R,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>>
-        operator * (const U & constant) const noexcept(noexcept(LD::Declval<V>() * LD::Declval<U>()))
+                Unit<R,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>>
+        operator * (const U & constant) noexcept(noexcept(LD::Declval<V>() * LD::Declval<U>()))
         {
-            return Unit<R,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>{mUnit.Value()*constant};
+            mUnit.Value()*=constant;
+            return (*this);
         }
-         */
-
 
         template<typename U, typename V = T ,typename R = decltype(LD::Declval<U>() * LD::Declval<V>())>
         constexpr LD::Enable_If_T<LD::Require<
-                LD::Concept::Multipliable<U,V>
+                LD::Concept::Multipliable<U,V>,
+                LD::CT::Negate(LD::CT::IsUnit(LD::Type<U>{}))
         >,
                 Unit<R,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>&>
         operator *= (const U & constant) noexcept(noexcept(LD::Declval<V&>() *= LD::Declval<U>()))
@@ -295,7 +274,6 @@ namespace LD
             mUnit.Value()*=constant;
             return (*this);
         }
-
 
         template<typename U, typename V = T ,typename R = decltype(LD::Declval<U>() * LD::Declval<V>())>
         constexpr LD::Enable_If_T<LD::Require<
@@ -306,7 +284,6 @@ namespace LD
         {
             return Unit<R,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>{mUnit.Value()/constant};
         }
-
 
         template<typename U, typename V = T ,typename R = decltype(LD::Declval<U>() * LD::Declval<V>())>
         constexpr LD::Enable_If_T<LD::Require<
@@ -319,15 +296,12 @@ namespace LD
             return (*this);
         }
 
-
-
         Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> &
         operator++() noexcept
         {
             mUnit.Value()++;
             return (*this);
         };
-
 
         Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> &
         operator++(int) noexcept
@@ -342,13 +316,13 @@ namespace LD
             mUnit.Value()--;
             return (*this);
         };
+
         Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> &
         operator--(int) noexcept
         {
             mUnit.Value()--;
             return (*this);
         };
-
 
         template<typename U,
                 template<typename> class Tag,
@@ -368,7 +342,9 @@ namespace LD
                 Unit<R,BaseTag,CurrentTag,ERatio1,LD::UnitExponent<U1>>> operator +
                 (const Unit<U,BaseTag,Tag,LD::CT::Ratio<ParamPrefixRatioNumerator,ParamPrefixRatioDenominator>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> & instance)const noexcept(noexcept(LD::Declval<V>() + LD::Declval<U>()))
         {
-            return Unit<R,BaseTag,Tag,ERatio1,LD::UnitExponent<U1>>{mUnit.Value() + instance.mUnit.Value()};
+            auto basePrefixRepresentation = (instance.mUnit.Value()*ParamPrefixRatioNumerator)/ParamPrefixRatioDenominator;
+            auto currentPrefixRepresentation = (basePrefixRepresentation*PrefixRatioDenom)/PrefixRatioNumerator;
+            return Unit<R,BaseTag,Tag,ERatio1,LD::UnitExponent<U1>>{mUnit.Value() + currentPrefixRepresentation};
         }
 
         template<typename U,
@@ -385,13 +361,11 @@ namespace LD
         >
         operator += (const Unit<U,BaseTag,Tag,LD::CT::Ratio<ParamPrefixRatioNumerator,ParamPrefixRatioDenominator>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> & unit) noexcept(noexcept(LD::Declval<T>() + LD::Declval<U>()))
         {
-            mUnit.Value() = mUnit.Value()+unit.mUnit.Value();
+            auto basePrefixRepresentation = (unit.mUnit.Value()*ParamPrefixRatioNumerator)/ParamPrefixRatioDenominator;
+            auto currentPrefixRepresentation = (basePrefixRepresentation*PrefixRatioDenom)/PrefixRatioNumerator;
+            mUnit.Value() = mUnit.Value()+currentPrefixRepresentation;
             return (*this);
         }
-
-
-
-
 
         template<typename U,
                 template<typename> class Tag,
@@ -467,6 +441,7 @@ namespace LD
             mUnit.Value() = resultantWithCurrentRatio;
             return (*this);
         }
+
         template<typename U,
                 template<typename> class Tag,
                 LD::UInteger ParamPrefixRatioNumerator,
@@ -524,6 +499,7 @@ namespace LD
             mUnit.Value() = additionResult;
             return (*this);
         }
+
         template<typename U,
                 template<typename> class Tag,
                 LD::UInteger ParamPrefixRatioNumerator,
@@ -614,6 +590,7 @@ namespace LD
             mUnit.Value() = resultantWithCurrentRatioAsBaseTag;
             return (*this);
         }
+
         template<typename U,
                 template<typename> class Tag,
                 LD::UInteger ParamPrefixRatioNumerator,
@@ -666,6 +643,7 @@ namespace LD
 
             return Unit<R,BaseTag,Tag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>{resultantWithCurrentRatio};
         }
+
         template<typename U,
                 template<typename> class Tag,
                 LD::UInteger ParamPrefixRatioNumerator,
@@ -695,6 +673,7 @@ namespace LD
 
             return Unit<R,BaseTag,Tag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>{resultantTag.Value()};
         }
+
         template<typename U,
                 template<typename> class Tag,
                 LD::UInteger ParamPrefixRatioNumerator,
@@ -742,8 +721,6 @@ namespace LD
             return Unit<R,BaseTag,Tag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>{resultantTag.Value()};
         }
 
-
-
         template<typename U,LD::UInteger ParamRatioNumerator, LD::UInteger ParamRatioDenominator,LD::UInteger ParamUnitNumerator, LD::UInteger ParamUnitDenominator,template<typename> class Tag ,typename V = T, typename R = decltype(LD::Declval<V>() * LD::Declval<T>())>
         constexpr LD::Enable_If_T<LD::Require<
                 LD::CT::IsRatioIdentity<LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>>,
@@ -754,7 +731,7 @@ namespace LD
                 Unit<R,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<2,1>>>>
         operator * (const Unit<U,BaseTag,Tag,LD::CT::Ratio<ParamRatioNumerator,ParamRatioDenominator>,LD::UnitExponent<LD::CT::Ratio<ParamUnitNumerator,ParamUnitDenominator>>> & unit) const noexcept(noexcept(LD::Declval<V>()*LD::Declval<U>()))
         {
-            return Unit<R,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>{mUnit.Value()*unit.mUnit.Value()};
+            return Unit<R,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<2,1>>>{mUnit.Value()*unit.mUnit.Value()};
         };
 
         template<typename U,LD::UInteger ParamRatioNumerator,
@@ -816,7 +793,6 @@ namespace LD
             return Unit<R,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>{resultantTag};
         };
 
-
         template<typename U,LD::UInteger ParamRatioNumerator,
                 LD::UInteger ParamRatioDenominator,
                 LD::UInteger ParamUnitNumerator,
@@ -877,7 +853,6 @@ namespace LD
             return R{mUnit.Value() * unit.mUnit.Value()};
         };
 
-
         template<typename U,LD::UInteger ParamRatioNumerator,
                 LD::UInteger ParamRatioDenominator,
                 LD::UInteger ParamUnitNumerator,
@@ -912,7 +887,6 @@ namespace LD
             R resultantValue = resultantmultiplicand/PrefixRatioDenom;
             return resultantValue;
         };
-
 
         template<typename U,LD::UInteger ParamRatioNumerator,
                 LD::UInteger ParamRatioDenominator,
@@ -993,7 +967,6 @@ namespace LD
 
             return resultantTag.Value();
         };
-
 
         template<typename U,LD::UInteger ParamRatioNumerator,
                 LD::UInteger ParamRatioDenominator,
@@ -1151,7 +1124,6 @@ namespace LD
             return Unit<R,BaseTag,CurrentTag,ERatio1,LD::UnitExponent<LD::CT::AddRatio<U1,U2>>>{resultantTag.Value()};
         };
 
-
         template<typename U,LD::UInteger ParamRatioNumerator,
                 LD::UInteger ParamRatioDenominator,
                 LD::UInteger ParamUnitNumerator,
@@ -1213,7 +1185,6 @@ namespace LD
             return resultantValue;
         }
 
-
         template<typename U,LD::UInteger ParamRatioNumerator,
                 LD::UInteger ParamRatioDenominator,
                 LD::UInteger ParamUnitNumerator,
@@ -1262,14 +1233,8 @@ namespace LD
         }
     }
 
-   // template<typename T> Unit(T && value) -> Unit
-
-
-
     template<typename T, class sfinae = void>
     class UnitSkills;
-
-
 
     template<typename T>
     class UnitSkills<T,LD::Enable_If_T<LD::Require<LD::Concept::Arithmetical<T>>>>
@@ -1313,7 +1278,6 @@ namespace LD
 
 
     };
-
 
     template<typename T>
     class MinuteTag: public UnitSkills<T>
@@ -1432,14 +1396,10 @@ namespace LD
 
         constexpr YearTag<T> operator()(const SecondTag<T> & tag) const noexcept
         {
-            printf("being called \n");
+            //printf("being called \n");
             return YearTag<T>{tag.Value()/31557600};
         }
     };
-
-
-
-
 
     template<typename T>
     class MeterTag: public UnitSkills<T>
@@ -1458,7 +1418,6 @@ namespace LD
         constexpr explicit  FootTag() noexcept : UnitSkills<T>(0) {}
         constexpr explicit FootTag(const T & value) noexcept : UnitSkills<T>(value) {}
     };
-
 
     template<typename T, template<typename> class BaseTag>
     class UnitRelationship<BaseTag<T>,BaseTag<T>>
@@ -1486,6 +1445,7 @@ namespace LD
             return MinuteTag<T>{minute.Value()/T(60)};
         }
     };
+
     template<typename T>
     class UnitRelationship<LD::SecondTag<T>,LD::HourTag<T>>
     {
@@ -1503,6 +1463,7 @@ namespace LD
             return LD::HourTag<T>{minute.Value()/T(3600)};
         }
     };
+
     template<typename T>
     class UnitRelationship<LD::SecondTag<T>,LD::DayTag<T>>
     {
@@ -1520,6 +1481,7 @@ namespace LD
             return DayTag<T>{minute.Value()/T(2629800)};
         }
     };
+
     template<typename T>
     class UnitRelationship<LD::SecondTag<T>,LD::MonthTag<T>>
     {
@@ -1537,6 +1499,7 @@ namespace LD
             return MonthTag<T>{minute.Value()/T(2629800)};
         }
     };
+
     template<typename T>
     class UnitRelationship<LD::SecondTag<T>,LD::YearTag<T>>
     {
@@ -1555,8 +1518,6 @@ namespace LD
         }
     };
 
-
-
     template<typename T>
     class UnitRelationship<LD::MeterTag<T>,LD::FootTag<T>>
     {
@@ -1568,8 +1529,6 @@ namespace LD
         }
     };
 
-
-
     template<typename T>
     class UnitRelationship<LD::FootTag<T>,LD::MeterTag<T>>
     {
@@ -1580,9 +1539,6 @@ namespace LD
             return FootTag<T>{meter.Value()*3.28084};
         }
     };
-
-
-
     //-----------------------------------------------------Beginning of Byte Declaration-----------------------------------------------------------------------------
     template<typename T>
     using YoctoByte = LD::Unit<T,LD::ByteTag,LD::ByteTag,LD::Yocto ,LD::UnitExponent<LD::CT::Ratio<1,1>>>;
@@ -2138,18 +2094,97 @@ namespace LD
     template<typename T>
     using Foot = LD::Unit<T,LD::FootTag,LD::FootTag,LD::CT::Ratio<1,1>,LD::UnitExponent<LD::CT::Ratio<1,1>>>;
 }
+//-------------------------------------- Beginning of Time Suffixes -----------------------------------------------------------
 
-inline LD::Second<LD::Float> operator""_s(long double second) noexcept
+inline LD::YoctoSecond<LD::Float> operator""_ys(long double second) noexcept
 {
-    return LD::Second<LD::Float>{LD::Float {static_cast<LD::Float>(second)}};
+    return LD::YoctoSecond<LD::Float>{LD::Float {static_cast<LD::Float>(second)}};
 
 }
 
+inline LD::YoctoSecond<unsigned long long int > operator""_ys(unsigned long long int second) noexcept
+{
+    using CurrentType = unsigned long long int;
+    return LD::YoctoSecond<unsigned long long int >{CurrentType {static_cast<CurrentType>(second)}};
+
+}
+
+inline LD::ZeptoSecond<LD::Float> operator""_zs(long double second) noexcept
+{
+    return LD::ZeptoSecond<LD::Float>{LD::Float {static_cast<LD::Float>(second)}};
+
+}
+
+inline LD::ZeptoSecond<unsigned long long int > operator""_zs(unsigned long long int second) noexcept
+{
+    using CurrentType = unsigned long long int;
+    return LD::ZeptoSecond<unsigned long long int >{CurrentType {static_cast<CurrentType>(second)}};
+
+}
+
+inline LD::AttoSecond<LD::Float> operator""_as(long double second) noexcept
+{
+    return LD::AttoSecond<LD::Float>{LD::Float {static_cast<LD::Float>(second)}};
+
+}
+
+inline LD::AttoSecond<unsigned long long int > operator""_as(unsigned long long int second) noexcept
+{
+    using CurrentType = unsigned long long int;
+    return LD::AttoSecond<unsigned long long int >{CurrentType {static_cast<CurrentType>(second)}};
+
+}
+
+inline LD::FemtoSecond<LD::Float> operator""_fs(long double second) noexcept
+{
+    return LD::FemtoSecond<LD::Float>{LD::Float {static_cast<LD::Float>(second)}};
+
+}
+
+inline LD::FemtoSecond<unsigned long long int > operator""_fs(unsigned long long int second) noexcept
+{
+    using CurrentType = unsigned long long int;
+    return LD::FemtoSecond<unsigned long long int >{CurrentType {static_cast<CurrentType>(second)}};
+
+}
+
+inline LD::PicoSecond<LD::Float> operator""_ps(long double second) noexcept
+{
+    return LD::PicoSecond<LD::Float>{LD::Float {static_cast<LD::Float>(second)}};
+
+}
+
+inline LD::PicoSecond<unsigned long long int > operator""_ps(unsigned long long int second) noexcept
+{
+    using CurrentType = unsigned long long int;
+    return LD::PicoSecond<unsigned long long int >{CurrentType {static_cast<CurrentType>(second)}};
+
+}
+
+inline LD::NanoSecond<LD::Float> operator""_ns(long double second) noexcept
+{
+    return LD::NanoSecond<LD::Float>{LD::Float {static_cast<LD::Float>(second)}};
+
+}
+
+inline LD::NanoSecond<unsigned long long int > operator""_ns(unsigned long long int second) noexcept
+{
+    using CurrentType = unsigned long long int;
+    return LD::NanoSecond<unsigned long long int >{CurrentType {static_cast<CurrentType>(second)}};
+
+}
 inline LD::MicroSecond<LD::Float> operator""_us(long double second) noexcept
 {
     return LD::MicroSecond<LD::Float>{LD::Float {static_cast<LD::Float>(second)}};
 
 }
+inline LD::MicroSecond<unsigned long long int > operator""_us(unsigned long long int second) noexcept
+{
+    using CurrentType = unsigned long long int;
+    return LD::MicroSecond<unsigned long long int >{CurrentType {static_cast<CurrentType>(second)}};
+
+}
+
 
 inline LD::Milisecond<LD::Float> operator""_ms(long double second) noexcept
 {
@@ -2164,6 +2199,150 @@ inline LD::Milisecond<unsigned long long int > operator""_ms(unsigned long long 
 
 }
 
+inline LD::CentiSecond<LD::Float> operator""_cs(long double second) noexcept
+{
+    return LD::CentiSecond<LD::Float>{LD::Float {static_cast<LD::Float>(second)}};
+
+}
+inline LD::CentiSecond<unsigned long long int > operator""_cs(unsigned long long int second) noexcept
+{
+    using CurrentType = unsigned long long int;
+    return LD::CentiSecond<unsigned long long int >{CurrentType {static_cast<CurrentType>(second)}};
+
+}
+inline LD::DeciSecond<LD::Float> operator""_ds(long double second) noexcept
+{
+    return LD::DeciSecond<LD::Float>{LD::Float {static_cast<LD::Float>(second)}};
+
+}
+inline LD::DeciSecond<unsigned long long int > operator""_ds(unsigned long long int second) noexcept
+{
+    using CurrentType = unsigned long long int;
+    return LD::DeciSecond<unsigned long long int >{CurrentType {static_cast<CurrentType>(second)}};
+
+}
+inline LD::Second<unsigned long long int> operator "" _s(unsigned long long int a)
+{
+    return LD::Second<unsigned long long int>(LD::SecondTag<unsigned long long int>{a});
+}
+inline LD::Second<LD::Float> operator""_s(long double second) noexcept
+{
+    return LD::Second<LD::Float>{LD::Float {static_cast<LD::Float>(second)}};
+
+}
+
+inline LD::DecaSecond<unsigned long long int> operator "" _das(unsigned long long int a)
+{
+    return LD::DecaSecond<unsigned long long int>(LD::SecondTag<unsigned long long int>{a});
+}
+
+inline LD::DecaSecond<LD::Float> operator""_das(long double second) noexcept
+{
+    return LD::DecaSecond<LD::Float>{LD::Float {static_cast<LD::Float>(second)}};
+
+}
+
+inline LD::HectoSecond<unsigned long long int> operator "" _hs(unsigned long long int a)
+{
+    return LD::HectoSecond<unsigned long long int>(LD::SecondTag<unsigned long long int>{a});
+}
+
+inline LD::HectoSecond<LD::Float> operator""_hs(long double second) noexcept
+{
+    return LD::HectoSecond<LD::Float>{LD::Float {static_cast<LD::Float>(second)}};
+
+}
+
+inline LD::KiloSecond<unsigned long long int> operator "" _ks(unsigned long long int a)
+{
+    return LD::KiloSecond<unsigned long long int>(LD::SecondTag<unsigned long long int>{a});
+}
+
+inline LD::KiloSecond<LD::Float> operator""_ks(long double second) noexcept
+{
+    return LD::KiloSecond<LD::Float>{LD::Float {static_cast<LD::Float>(second)}};
+
+}
+
+inline LD::MegaSecond<unsigned long long int> operator "" _Ms(unsigned long long int a)
+{
+    return LD::MegaSecond<unsigned long long int>(LD::SecondTag<unsigned long long int>{a});
+}
+
+inline LD::MegaSecond<LD::Float> operator""_Ms(long double second) noexcept
+{
+    return LD::MegaSecond<LD::Float>{LD::Float {static_cast<LD::Float>(second)}};
+
+}
+
+inline LD::GigaSecond<unsigned long long int> operator "" _Gs(unsigned long long int a)
+{
+    return LD::GigaSecond<unsigned long long int>(LD::SecondTag<unsigned long long int>{a});
+}
+
+inline LD::GigaSecond<LD::Float> operator""_Gs(long double second) noexcept
+{
+    return LD::GigaSecond<LD::Float>{LD::Float {static_cast<LD::Float>(second)}};
+
+}
+
+inline LD::TeraSecond<unsigned long long int> operator "" _Ts(unsigned long long int a)
+{
+    return LD::TeraSecond<unsigned long long int>(LD::SecondTag<unsigned long long int>{a});
+}
+inline LD::TeraSecond<LD::Float> operator""_Ts(long double second) noexcept
+{
+    return LD::TeraSecond<LD::Float>{LD::Float {static_cast<LD::Float>(second)}};
+
+}
+
+inline LD::PetaSecond<unsigned long long int> operator "" _Ps(unsigned long long int a)
+{
+    return LD::PetaSecond<unsigned long long int>(LD::SecondTag<unsigned long long int>{a});
+}
+
+inline LD::PetaSecond<LD::Float> operator""_Ps(long double second) noexcept
+{
+    return LD::PetaSecond<LD::Float>{LD::Float {static_cast<LD::Float>(second)}};
+
+}
+
+inline LD::ExaSecond<unsigned long long int> operator "" _Es(unsigned long long int a)
+{
+    return LD::ExaSecond<unsigned long long int>(LD::SecondTag<unsigned long long int>{a});
+}
+
+inline LD::ExaSecond<LD::Float> operator""_Es(long double second) noexcept
+{
+    return LD::ExaSecond<LD::Float>{LD::Float {static_cast<LD::Float>(second)}};
+
+}
+
+inline LD::ZettaSecond<unsigned long long int> operator "" _Zs(unsigned long long int a)
+{
+    return LD::ZettaSecond<unsigned long long int>(LD::SecondTag<unsigned long long int>{a});
+}
+
+inline LD::ZettaSecond<LD::Float> operator""_Zs(long double second) noexcept
+{
+    return LD::ZettaSecond<LD::Float>{LD::Float {static_cast<LD::Float>(second)}};
+
+}
+
+inline LD::YottaSecond<unsigned long long int> operator "" _Ys(unsigned long long int a)
+{
+    return LD::YottaSecond<unsigned long long int>(LD::SecondTag<unsigned long long int>{a});
+}
+inline LD::YottaSecond<LD::Float> operator""_Ys(long double second) noexcept
+{
+    return LD::YottaSecond<LD::Float>{LD::Float {static_cast<LD::Float>(second)}};
+
+}
+//-------------------------------------- End of Time Suffixes -----------------------------------------------------------
+
+
+
+
 inline LD::GigaByte<LD::UInteger> operator""_GB(unsigned long long int amount) noexcept
 {
     return LD::GigaByte<LD::UInteger>{LD::UInteger{amount}};
@@ -2174,24 +2353,6 @@ inline LD::MegaByte<LD::UInteger> operator""_MB(unsigned long long int amount) n
     return LD::MegaByte<LD::UInteger>{LD::UInteger{amount}};
 }
 
-
-
-/*
-template<typename T,
-        typename U,
-        typename DistanceTag,
-        typename TimeTag,
-        typename DistancePrefixRatio,
-        typename TimePrefixRatio,
-        typename DistanceFractionRatio,
-        typename TimeFractionRatio
-        >
-constexpr LD::Ratio<int,int> operator / (const LD::Unit<T,LD::MeterTag<T>,DistanceTag,DistancePrefixRatio,DistanceFractionRatio,LD::CT::Ratio<1,1>> & distance,
-                               const LD::Unit<T,LD::SecondTag<U>,TimeTag,TimePrefixRatio,TimeFractionRatio,LD::CT::Ratio<1,1>> & time) noexcept (noexcept(LD::Declval<T>()/LD::Declval<U>()))
-{
-    return LD::Ratio<int,int>{};
-}
- */
 namespace LD
 {
     template<typename T, template<typename> class BaseTag, template<typename> class CurrentTag,
@@ -2229,6 +2390,267 @@ namespace LD
 
         return LD::FromString(LD::Type<double>{},view);
         //return LD::CreateResponse(LD::Type<bool>{},LD::TransactionError{},LD::Forward<A>(args)...);
+    }
+}
+namespace LD
+{
+    template<typename T,
+            template<typename> class BaseTag,
+            template<typename> class CurrentTag,
+            LD::UInteger PrefixRatioNumerator, LD::UInteger PrefixRatioDenom,
+            LD::UInteger UnitExponentNumerator, LD::UInteger UnitExponentDenominator
+    >
+    inline Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> Exp(Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> unit)
+    {
+        return Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>{CurrentTag<T>{LD::Exp(unit.NativeRepresentation().Value())}};
+    }
+    template<typename T,
+            template<typename> class BaseTag,
+            template<typename> class CurrentTag,
+            LD::UInteger PrefixRatioNumerator, LD::UInteger PrefixRatioDenom,
+            LD::UInteger UnitExponentNumerator, LD::UInteger UnitExponentDenominator
+    >
+    inline Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>  Ln(Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> unit)
+    {
+        return Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>{CurrentTag<T>{LD::Ln(unit.NativeRepresentation().Value())}};
+    }
+
+    template<typename T,
+            template<typename> class BaseTag,
+            template<typename> class CurrentTag,
+            LD::UInteger PrefixRatioNumerator, LD::UInteger PrefixRatioDenom,
+            LD::UInteger UnitExponentNumerator, LD::UInteger UnitExponentDenominator
+    >
+    inline Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>  Log(Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> unit, T base = 10)
+    {
+        return Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>{CurrentTag<T>{LD::Log(unit.NativeRepresentation().Value(),base)}};
+    }
+    template<typename T,
+            template<typename> class BaseTag,
+            template<typename> class CurrentTag,
+            LD::UInteger PrefixRatioNumerator, LD::UInteger PrefixRatioDenom,
+            LD::UInteger UnitExponentNumerator, LD::UInteger UnitExponentDenominator
+    >
+    inline Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>  Log10(Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> unit)
+    {
+        return Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>{CurrentTag<T>{LD::Log10(unit.NativeRepresentation().Value())}};
+    }
+
+    template<typename T,
+            template<typename> class BaseTag,
+            template<typename> class CurrentTag,
+            LD::UInteger PrefixRatioNumerator, LD::UInteger PrefixRatioDenom,
+            LD::UInteger UnitExponentNumerator, LD::UInteger UnitExponentDenominator
+    >
+    inline Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>  Log2(Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> unit)
+    {
+        return Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>{CurrentTag<T>{LD::Log2(unit.NativeRepresentation().Value())}};
+    }
+
+    template<typename T,
+            template<typename> class BaseTag,
+            template<typename> class CurrentTag,
+            LD::UInteger PrefixRatioNumerator, LD::UInteger PrefixRatioDenom,
+            LD::UInteger UnitExponentNumerator, LD::UInteger UnitExponentDenominator
+    >
+    inline Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>  GCD(
+            Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> a,
+            Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> b)
+    {
+        return Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>{CurrentTag<T>{LD::GCD(a.NativeRepresentation().Value(),b.NativeRepresentation().Value())}};
+    }
+
+    template<typename T,
+            template<typename> class BaseTag,
+            template<typename> class CurrentTag,
+            LD::UInteger PrefixRatioNumerator, LD::UInteger PrefixRatioDenom,
+            LD::UInteger UnitExponentNumerator, LD::UInteger UnitExponentDenominator
+    >
+    inline Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>  LCM(
+            Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> a,
+            Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> b)
+    {
+        return Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>{CurrentTag<T>{LD::LCM(a.NativeRepresentation().Value(),b.NativeRepresentation().Value())}};
+    }
+
+    template<typename T,
+            template<typename> class BaseTag,
+            template<typename> class CurrentTag,
+            LD::UInteger PrefixRatioNumerator, LD::UInteger PrefixRatioDenom,
+            LD::UInteger UnitExponentNumerator, LD::UInteger UnitExponentDenominator
+    >
+    inline Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>  Ceil(Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> unit)
+    {
+        return Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>{CurrentTag<T>{LD::Ceil(unit.NativeRepresentation().Value())}};
+    }
+
+    template<typename T,
+            template<typename> class BaseTag,
+            template<typename> class CurrentTag,
+            LD::UInteger PrefixRatioNumerator, LD::UInteger PrefixRatioDenom,
+            LD::UInteger UnitExponentNumerator, LD::UInteger UnitExponentDenominator
+    >
+    inline Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>  Fmod(
+            Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> a,
+            Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> b)
+    {
+        return Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>{CurrentTag<T>{LD::Fmod(a.NativeRepresentation().Value(),b.NativeRepresentation().Value())}};
+    }
+
+    template<typename T,
+            template<typename> class BaseTag,
+            template<typename> class CurrentTag,
+            LD::UInteger PrefixRatioNumerator, LD::UInteger PrefixRatioDenom,
+            LD::UInteger UnitExponentNumerator, LD::UInteger UnitExponentDenominator
+    >
+    inline Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>  Fraction(Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> unit)
+    {
+        return Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>{CurrentTag<T>{LD::Fraction(unit.NativeRepresentation().Value())}};
+    }
+
+    template<typename T,
+            template<typename> class BaseTag,
+            template<typename> class CurrentTag,
+            LD::UInteger PrefixRatioNumerator, LD::UInteger PrefixRatioDenom,
+            LD::UInteger UnitExponentNumerator, LD::UInteger UnitExponentDenominator
+    >
+    inline Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>  Max(
+            Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> a,
+            Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> b)
+    {
+        return Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>{CurrentTag<T>{LD::Max(a.NativeRepresentation().Value(),b.NativeRepresentation().Value())}};
+    }
+
+    template<typename T,
+            template<typename> class BaseTag,
+            template<typename> class CurrentTag,
+            LD::UInteger PrefixRatioNumerator, LD::UInteger PrefixRatioDenom,
+            LD::UInteger UnitExponentNumerator, LD::UInteger UnitExponentDenominator
+    >
+    inline Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>  Min(
+            Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> a,
+            Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> b)
+    {
+        return Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>{CurrentTag<T>{LD::Min(a.NativeRepresentation().Value(),b.NativeRepresentation().Value())}};
+    }
+
+    template<typename T,
+            template<typename> class BaseTag,
+            template<typename> class CurrentTag,
+            LD::UInteger PrefixRatioNumerator, LD::UInteger PrefixRatioDenom,
+            LD::UInteger UnitExponentNumerator, LD::UInteger UnitExponentDenominator
+    >
+    inline Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>  Clamp(
+            Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> a,
+            Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> b,
+            Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> c)
+    {
+        return Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>{CurrentTag<T>{LD::Clamp(a.NativeRepresentation().Value(),b.NativeRepresentation().Value(),c.NativeRepresentation().Value())}};
+    }
+
+    template<typename T,
+            template<typename> class BaseTag,
+            template<typename> class CurrentTag,
+            LD::UInteger PrefixRatioNumerator, LD::UInteger PrefixRatioDenom,
+            LD::UInteger UnitExponentNumerator, LD::UInteger UnitExponentDenominator
+    >
+    inline Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>  Round(Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> unit)
+    {
+        return Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>{CurrentTag<T>{LD::Round(unit.NativeRepresentation().Value())}};
+    }
+
+    template<typename T,
+            template<typename> class BaseTag,
+            template<typename> class CurrentTag,
+            LD::UInteger PrefixRatioNumerator, LD::UInteger PrefixRatioDenom,
+            LD::UInteger UnitExponentNumerator, LD::UInteger UnitExponentDenominator
+    >
+    inline bool  IsNegative(Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> unit)
+    {
+        return LD::IsNegative(unit.NativeRepresentation().Value());
+    }
+
+    template<typename T,
+            template<typename> class BaseTag,
+            template<typename> class CurrentTag,
+            LD::UInteger PrefixRatioNumerator, LD::UInteger PrefixRatioDenom,
+            LD::UInteger UnitExponentNumerator, LD::UInteger UnitExponentDenominator
+    >
+    inline Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>  Sin(Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> unit)
+    {
+        return Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>{CurrentTag<T>{LD::Sin(unit.NativeRepresentation().Value())}};
+    }
+
+    template<typename T,
+            template<typename> class BaseTag,
+            template<typename> class CurrentTag,
+            LD::UInteger PrefixRatioNumerator, LD::UInteger PrefixRatioDenom,
+            LD::UInteger UnitExponentNumerator, LD::UInteger UnitExponentDenominator
+    >
+    inline Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>  Cos(Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> unit)
+    {
+        return Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>{CurrentTag<T>{LD::Cos(unit.NativeRepresentation().Value())}};
+    }
+
+    template<typename T,
+            template<typename> class BaseTag,
+            template<typename> class CurrentTag,
+            LD::UInteger PrefixRatioNumerator, LD::UInteger PrefixRatioDenom,
+            LD::UInteger UnitExponentNumerator, LD::UInteger UnitExponentDenominator
+    >
+    inline Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>  Tan(Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> unit)
+    {
+        return Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>{CurrentTag<T>{LD::Tan(unit.NativeRepresentation().Value())}};
+    }
+    template<typename T,
+            template<typename> class BaseTag,
+            template<typename> class CurrentTag,
+            LD::UInteger PrefixRatioNumerator, LD::UInteger PrefixRatioDenom,
+            LD::UInteger UnitExponentNumerator, LD::UInteger UnitExponentDenominator
+    >
+    inline Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>  Csc(Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> unit)
+    {
+        return Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>{CurrentTag<T>{LD::Csc(unit.NativeRepresentation().Value())}};
+    }
+    template<typename T,
+            template<typename> class BaseTag,
+            template<typename> class CurrentTag,
+            LD::UInteger PrefixRatioNumerator, LD::UInteger PrefixRatioDenom,
+            LD::UInteger UnitExponentNumerator, LD::UInteger UnitExponentDenominator
+    >
+    inline Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>  Sec(Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> unit)
+    {
+        return Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>{CurrentTag<T>{LD::Sec(unit.NativeRepresentation().Value())}};
+    }
+    template<typename T,
+            template<typename> class BaseTag,
+            template<typename> class CurrentTag,
+            LD::UInteger PrefixRatioNumerator, LD::UInteger PrefixRatioDenom,
+            LD::UInteger UnitExponentNumerator, LD::UInteger UnitExponentDenominator
+    >
+    inline Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>  CoTan(Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> unit)
+    {
+        return Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>{CurrentTag<T>{LD::CoTan(unit.NativeRepresentation().Value())}};
+    }
+    template<typename T,
+            template<typename> class BaseTag,
+            template<typename> class CurrentTag,
+            LD::UInteger PrefixRatioNumerator, LD::UInteger PrefixRatioDenom,
+            LD::UInteger UnitExponentNumerator, LD::UInteger UnitExponentDenominator
+    >
+    inline Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>  Sinh(Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> unit)
+    {
+        return Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>{CurrentTag<T>{LD::Sinh(unit.NativeRepresentation().Value())}};
+    }
+    template<typename T,
+            template<typename> class BaseTag,
+            template<typename> class CurrentTag,
+            LD::UInteger PrefixRatioNumerator, LD::UInteger PrefixRatioDenom,
+            LD::UInteger UnitExponentNumerator, LD::UInteger UnitExponentDenominator
+    >
+    inline Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>  Cosh(Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>> unit)
+    {
+        return Unit<T,BaseTag,CurrentTag,LD::CT::Ratio<PrefixRatioNumerator,PrefixRatioDenom>,LD::UnitExponent<LD::CT::Ratio<UnitExponentNumerator,UnitExponentDenominator>>>{CurrentTag<T>{LD::Cosh(unit.NativeRepresentation().Value())}};
     }
 }
 #endif //LANDESSDEVCORE_UNIT_H

@@ -4,7 +4,7 @@
 
 #ifndef LANDESSDEVCORE_ARTIFACTREPOSITORY_HPP
 #define LANDESSDEVCORE_ARTIFACTREPOSITORY_HPP
-#include "Algorithms/CompileTimeControlFlow.hpp"
+#include "TypeTraits/CompileTimeControlFlow.hpp"
 #include "Memory/ElementReference.h"
 #include "IO/Database1.h"
 #include "Primitives/General/Immutable.hpp"

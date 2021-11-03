@@ -17,6 +17,8 @@
 #include "Memory/Optional.h"
 #include "Async/Atomic/Atomic.h"
 #include "TypeTraits/Detection.hpp"
+#include "Memory/MemoryResource.hpp"
+#include "Memory/PolyMorphicAllocator.hpp"
 #define SHARED_ASSERT(x)    assert(x)
 
 namespace LD
@@ -28,23 +30,29 @@ namespace LD
      */
     class shared_ptr_count
     {
+    private:
+        LD::Mem::MemoryResource * mResource;
+        LD::Mem::PolymorphicAllocator<LD::Atomic<PDP::Integer>> mAllocator;
     public:
-        shared_ptr_count() :
-        pn(NULL)
+        shared_ptr_count(LD::Mem::MemoryResource * resource) :
+        pn(NULL),
+        mResource{resource},
+        mAllocator(this->mResource)
         {
         }
         shared_ptr_count(const shared_ptr_count& count) :
-        pn(count.pn)
+        pn(count.pn),mResource{count.mResource}, mAllocator{this->mResource}
         {
 
         }
         /// @brief Swap method for the copy-and-swap idiom (copy constructor and swap method)
-        void swap(shared_ptr_count& lhs) throw() // never throws
+        void swap(shared_ptr_count& lhs) noexcept // never throws
         {
             std::swap(pn, lhs.pn);
+            std::swap(mResource,lhs.mResource);
         }
         /// @brief getter of the underlying reference counter
-        PDP::Integer use_count(void) const throw() // never throws
+        PDP::Integer use_count(void) const noexcept // never throws
         {
             long count = 0;
             if (nullptr != pn)
@@ -63,7 +71,12 @@ namespace LD
                 {
                     try
                     {
-                        pn = new LD::Atomic<PDP::Integer>(1); // may throw std::bad_alloc
+                        pn = this->mAllocator.allocate(1);
+                        this->mAllocator.construct(pn,LD::Atomic<LD::Integer>{1});
+                        //pn1 = this->mAllocator.allocate(1);
+                        //this->mResource->allocate(32,8);
+                        //LD::Mem::GetNewDeleteResource()->allocate(16,8);
+                        //pn = new LD::Atomic<PDP::Integer>(1); // may throw std::bad_alloc
                     }
                     catch (std::bad_alloc&)
                     {
@@ -87,15 +100,19 @@ namespace LD
                 if (0 == pn->load(LD::AcquireRelease))
                 {
                     delete p;
-                    delete pn;
+                    this->mAllocator.destroy(pn);
+                    this->mAllocator.deallocate(pn,1);
+                    //delete pn;
+                    pn = nullptr;
                 }
-                pn = nullptr;
+                //pn = nullptr;
             }
         }
         
     public:
         LD::Atomic<PDP::Integer> *   pn; //!< Reference counter
-        
+
+        //LD::Atomic<PDP::Integer> *   pn1;
         template<typename U>
         friend class WeakPointer;
         
@@ -123,16 +140,24 @@ namespace LD
         /// @brief Default constructor
         SharedPointer(void) throw() : // never throws
         px(nullptr),
-        pn()
+        mResource(LD::Mem::GetNewDeleteResource()),
+        pn(LD::Mem::GetNewDeleteResource())
         {
         }
         /// @brief Constructor with the provided pointer to manage
-        explicit SharedPointer(T* p) : // may throw std::bad_alloc
-        //px(p), would be unsafe as acquire() may throw, which would call release() in destructor
-        pn()
+        explicit SharedPointer(T* p) noexcept: px(p), mResource{LD::Mem::GetNewDeleteResource()},pn{LD::Mem::GetNewDeleteResource()} //SharedPointer() // may throw std::bad_alloc
+        //px(p)//, would be unsafe as acquire() may throw, which would call release() in destructor
         {
             acquire(p);   // may throw std::bad_alloc
         }
+
+        explicit SharedPointer(T* p, LD::Mem::MemoryResource * resource) noexcept: px(p), mResource{resource},pn{resource} //SharedPointer() // may throw std::bad_alloc
+        //px(p)//, would be unsafe as acquire() may throw, which would call release() in destructor
+        {
+            acquire(p);   // may throw std::bad_alloc
+        }
+
+
         /// @brief Constructor to share ownership. Warning : to be used for pointer_cast only ! (does not manage two separate <T> and <U> pointers)
         template <class U>
         SharedPointer(const SharedPointer<U>& ptr, T* p) :
@@ -248,7 +273,7 @@ namespace LD
         inline void release(void) throw() // never throws
         {
             pn.release(px);
-            px = NULL;
+            //px = NULL;
         }
         
     private:
@@ -263,6 +288,7 @@ namespace LD
     private:
         T*                  px; //!< Native pointer
         shared_ptr_count    pn; //!< Reference counter
+        LD::Mem::MemoryResource * mResource;
     };
     
     
@@ -418,7 +444,44 @@ namespace LD
             LD::IsConstructible<T,LD::Decay<Pack>...>::value
     >,LD::SharedPointer<T>> MakeShared(Allocator && allocator,Pack && ... arguements) noexcept
     {
-        return LD::SharedPointer<T>(new T(LD::Forward<Pack>(arguements)...));
+        return LD::SharedPointer<T>(new T{LD::Forward<Pack>(arguements)...});
+    }
+
+    template<typename T, typename Allocator>
+    LD::Enable_If_T<LD::Require<LD::Detail::IsBaseOf<Allocator,LD::Mem::MemoryResource>::value>,LD::SharedPointer<T>> AllocateShared(Allocator & memoryResource, T && object) noexcept
+    {
+        LD::Mem::PolymorphicAllocator<T> allocator(&memoryResource);
+        T * allocation = allocator.allocate(1);
+        allocator.construct(allocation,LD::Forward<T>(object));
+        if (allocation == nullptr)
+        {
+            return LD::SharedPointer<T>{allocation,allocator.Resource()};
+        }
+        return LD::SharedPointer<T>{nullptr};
+    }
+
+    template<typename T, typename Allocator>
+    LD::Enable_If_T<LD::Require<LD::Detail::IsBaseOf<Allocator,LD::Mem::MemoryResource>::value>,LD::SharedPointer<T>> AllocateShared(Allocator * memoryResource, T && object) noexcept
+    {
+        LD::Mem::PolymorphicAllocator<T> allocator(memoryResource);
+        T * allocation = allocator.allocate(1);
+        allocator.construct(allocation,LD::Forward<T>(object));
+        if (allocation == nullptr)
+        {
+            return LD::SharedPointer<T>{allocation,allocator.Resource()};
+        }
+        return LD::SharedPointer<T>{nullptr};
+    }
+    template<typename T, typename Allocator>
+    LD::Enable_If_T<LD::Require<LD::Detail::IsBaseOf<Allocator,LD::Mem::MemoryResource>::value>,LD::SharedPointer<T>> AllocateShared(Allocator * memoryResource) noexcept
+    {
+        LD::Mem::PolymorphicAllocator<T> allocator(memoryResource);
+        T * allocation = allocator.allocate(1);
+        if (allocation == nullptr)
+        {
+            return LD::SharedPointer<T>{allocation,allocator.Resource()};
+        }
+        return LD::SharedPointer<T>{nullptr};
     }
 }
 

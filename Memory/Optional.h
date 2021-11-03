@@ -18,6 +18,7 @@
 #ifndef NONSTD_OPTIONAL_LITE_HPP
 #define NONSTD_OPTIONAL_LITE_HPP
 
+#include "Algorithms/Move.hpp"
 #include <cassert>
 #include <stdexcept>
 #include <utility>

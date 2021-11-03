@@ -57,7 +57,7 @@ namespace LD
         }
 
         template<typename F, typename ... Context>
-        static auto Apply(F && object, const LD::ApplicaitonStartedEvent<Context...> & event) noexcept -> LD::TypedRequires<bool,LD::ConvertiblyCallable<F,bool(LD::ApplicaitonStartedEvent<Context...>)>::Value()>
+        static auto Apply(F && object, const LD::ApplicationStartedEvent<Context...> & event) noexcept -> LD::TypedRequires<bool,LD::ConvertiblyCallable<F,bool(LD::ApplicationStartedEvent<Context...>)>::Value()>
         {
 
             return object(event);
@@ -65,7 +65,7 @@ namespace LD
 
 
         template<typename F, typename ... Context>
-        static auto Apply(F && object, const LD::ApplicaitonStartedEvent<Context...> & event) noexcept -> LD::TypedRequires<bool,LD::CT::Negate(LD::ConvertiblyCallable<F,bool(LD::ApplicaitonStartedEvent<Context...>)>::Value())>
+        static auto Apply(F && object, const LD::ApplicationStartedEvent<Context...> & event) noexcept -> LD::TypedRequires<bool,LD::CT::Negate(LD::ConvertiblyCallable<F,bool(LD::ApplicationStartedEvent<Context...>)>::Value())>
         {
             return LD::ApplicationQuittingPredicate{};
         }
@@ -76,7 +76,7 @@ namespace LD
          * @brief Returns the value from the functor if the functor supports the LD::ApplicationStartedEvent<A..>, otherwise the application
          * simply stops running if the functor does not support LD::ApplicationStartedEvent<A...>
          */
-        bool operator()(const LD::ApplicaitonStartedEvent<A...> & applicationStartedEvent) noexcept
+        bool operator()(const LD::ApplicationStartedEvent<A...> & applicationStartedEvent) noexcept
         {
             this->StartStatus = (tb_init() == 0);
 

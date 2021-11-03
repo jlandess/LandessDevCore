@@ -12,7 +12,7 @@
 #include "Definitions/Integer.hpp"
 #include "Definitions/PDPUnits.hpp"
 #include "Memory/ElementReference.h"
-#include "SchedulingEvent.hpp"
+#include "MVC/SchedulingEvent.hpp"
 #include "Primitives/General/mapboxvariantvisitor.h"
 #include "Primitives/General/mapboxvariant.hpp"
 #include "Core/HeteregenousTuple.hpp"
@@ -23,7 +23,8 @@
 
 #include "MVC/TermBoxConsoleApplication.hpp"
 #include "Definitions/TimeExtension.hpp"
-#include "SchedulingQuittingPredicate.hpp"
+#include "MVC/SchedulingQuittingPredicate.hpp"
+#include "Primitives/General/Unit.hpp"
 namespace LD
 {
     
@@ -107,7 +108,7 @@ namespace LD
     class ApplicationExecutionState
     {
     private:
-        PDP::Second<LD::Float> Dt;
+        LD::Second<LD::Float> Dt;
     public:
         
     };
@@ -121,16 +122,16 @@ namespace LD
     class ApplicationPeriodState
     {
     private:
-        PDP::Second<LD::Float> Period;
+        LD::Second<LD::Float> Period;
     public:
         
-        ApplicationPeriodState(const PDP::Second<LD::Float> & period):Period(period)
+        ApplicationPeriodState(const LD::Second<LD::Float> & period):Period(period)
         {
             
         }
         
         
-        operator PDP::Second<LD::Float>() const
+        operator LD::Second<LD::Float>() const
         {
             return this->Period;
         }
@@ -171,12 +172,7 @@ namespace LD
         
     };
     
-    
-    template<typename T>
-    class Observer
-    {
-        
-    };
+
     template<typename T, class = void>
     class BasicApplication;
     
@@ -186,10 +182,10 @@ namespace LD
     //event[0]();
     
     template<typename ... Executors, typename ... Context>
-    class BasicApplication<LD::VariadicPack<Executors...>(Context...),LD::Enable_If_T<
+    class BasicApplication<LD::CT::TypeList<Executors...>(Context...),LD::Enable_If_T<
     LD::Require<
     true
-    >>>: public mp::fsm<BasicApplication<LD::VariadicPack<Executors...>(Context...)>,LD::ApplicationState>
+>>>: public mp::fsm<BasicApplication<LD::CT::TypeList<Executors...>(Context...)>,LD::ApplicationState>
     {
     private:
         
@@ -197,8 +193,8 @@ namespace LD
         {
 
             mapbox::util::variant<Executors...> Obj;
-            PDP::Second<LD::Float> AccumulatedPeriod;
-            PDP::Second<LD::Float> CachedPeriod;
+            LD::Second<LD::Float> AccumulatedPeriod;
+            LD::Second<LD::Float> CachedPeriod;
         };
 
         LD::StaticArray<Bucket,sizeof...(Executors)> Events;
@@ -245,22 +241,22 @@ namespace LD
         static void PeriodEventDispatcherBase(T && bucketArray, const E && event, LD::Float & gcd)
         {
             auto & currentBucket = bucketArray[Index];
-            PDP::Second<LD::Float> calculatedPeriod = currentBucket.Obj(event);
+            LD::Second<LD::Float> calculatedPeriod = currentBucket.Obj(event);
             currentBucket.CachedPeriod = calculatedPeriod;
             
-            gcd  =  LD::GCD(calculatedPeriod.GetValue(),gcd);
+            gcd  =  LD::GCD(calculatedPeriod.NativeRepresentation().Value(),gcd);
         }
         template<LD::UInteger ... Indices,typename T, typename E>
-        static const PDP::Second<LD::Float> PeriodEventDispatcherFold(LD::IndexSequence<Indices...>,T && bucketArray, const E & event)
+        static const LD::Second<LD::Float> PeriodEventDispatcherFold(LD::IndexSequence<Indices...>,T && bucketArray, const E & event)
         {
             LD::Float gcd = 0;
             (...,PeriodEventDispatcherBase<Indices>(LD::Forward<T>(bucketArray),LD::Forward<E>(event),gcd));
-            return PDP::Second<LD::Float>(gcd);
+            return LD::Second<LD::Float>(gcd);
         }
         
         
         template<typename T, typename E>
-        static const PDP::Second<LD::Float> PeriodEventDispatcher(T && object, const E && event)
+        static const LD::Second<LD::Float> PeriodEventDispatcher(T && object, const E && event)
         {
             return PeriodEventDispatcherFold(LD::MakeIndexSequence_T<sizeof...(Executors)>{},LD::Forward<T>(object),LD::Forward<E>(event));
         }
@@ -285,7 +281,8 @@ namespace LD
         
         template<typename ... A, typename = typename LD::Enable_If_T<
         LD::Require<
-        LD::is_permutation_v<LD::VariadicPack<Context...>,LD::VariadicPack<A...>>
+                true
+        //LD::is_permutation_v<LD::VariadicPack<Context...>,LD::VariadicPack<A...>>
         >>>
         inline BasicApplication(A && ... objects)
         {
@@ -303,7 +300,7 @@ namespace LD
         }
         
         
-        LD::ApplicationState OnEvent(const LD::InitialApplicationState & initialApplicationState, const ApplicaitonStartedEvent<Context...> & applicationStartedEvent)
+        LD::ApplicationState OnEvent(const LD::InitialApplicationState & initialApplicationState, const ApplicationStartedEvent<Context...> & applicationStartedEvent)
         {
 
             const bool shouldRun = BooleanEventDispatcher(this->Events, applicationStartedEvent);
@@ -332,7 +329,7 @@ namespace LD
         LD::ApplicationState OnEvent(const LD::ApplicationFrameStartedState & frameStartedState, const LD::ApplicationPeriodEvent<Context...> & sleepingEvent)
         {
             
-            PDP::Second<LD::Float> period =  PeriodEventDispatcher(this->Events,sleepingEvent);
+            LD::Second<LD::Float> period =  PeriodEventDispatcher(this->Events,sleepingEvent);
             
             return LD::ApplicationPeriodState{period};
         }
@@ -427,14 +424,14 @@ namespace LD
          @param applicationStartedEvent - This event is called when the application has been initialized, this even is called once per application
          @brief - This event transition occurs from the point in which the application is initiated to the application beginning the process of executing events
          */
-        LD::ApplicationState OnEvent(const LD::InitialApplicationState & initialApplicationState, const ApplicaitonStartedEvent<Context...> & applicationStartedEvent) noexcept
+        LD::ApplicationState OnEvent(const LD::InitialApplicationState & initialApplicationState, const ApplicationStartedEvent<Context...> & applicationStartedEvent) noexcept
         {
             //const bool shouldRun = this->CurrentExecutor(applicationStartedEvent);
             bool shouldRun = true;
             LD::For<sizeof...(Executor)>([](
                     auto I,
                     LD::StaticArray<LD::Variant<Executor...>,sizeof...(Executor)> & executors,
-                    const ApplicaitonStartedEvent<Context...> & applicaitonStartedEvent,
+                    const ApplicationStartedEvent<Context...> & applicaitonStartedEvent,
                     bool & shouldRun) noexcept
             {
                 shouldRun = shouldRun && executors[I](applicaitonStartedEvent);
@@ -503,14 +500,14 @@ namespace LD
         {
             //PDP::Second<LD::Float> period =  this->CurrentExecutor(sleepingEvent);
 
-            PDP::Second<LD::Float> period = PDP::Second<LD::Float>{0};
+            LD::Second<LD::Float> period = LD::Second<LD::Float>{LD::SecondTag<LD::Float>{0}};
             LD::For<sizeof...(Executor)>([](
                     auto I,
                     LD::StaticArray<LD::Variant<Executor...>,sizeof...(Executor)> & executors,
                     const LD::ApplicationPeriodEvent<Context...> & sleepingEvent,
-                    PDP::Second<LD::Float> & period) noexcept
+                    LD::Second<LD::Float> & period) noexcept
             {
-                period = PDP::Second<LD::Float>{LD::GCD(executors[I](sleepingEvent).GetValue(),period.GetValue())};
+                period = LD::Second<LD::Float>{LD::GCD(executors[I](sleepingEvent).GetValue(),period.NativeRepresentation().Value())};
                 return true;
             },this->mExecutors,sleepingEvent,period);
             return LD::ApplicationPeriodState{period};
@@ -610,6 +607,11 @@ namespace LD
             //this->get_state() = LD::InitialApplicationState{};
             
         }
+        BasicApplication(Executor & currentExecutor):CurrentExecutor{currentExecutor}
+        {
+            //this->get_state() = LD::InitialApplicationState{};
+
+        }
         
         //always return no opt and clear the state
         
@@ -629,7 +631,7 @@ namespace LD
          @param applicationStartedEvent - This event is called when the application has been initialized, this even is called once per application
          @brief - This event transition occurs from the point in which the application is initiated to the application beginning the process of executing events
          */
-        LD::ApplicationState OnEvent(const LD::InitialApplicationState & initialApplicationState, const ApplicaitonStartedEvent<Context...> & applicationStartedEvent) noexcept
+        LD::ApplicationState OnEvent(const LD::InitialApplicationState & initialApplicationState, const ApplicationStartedEvent<Context...> & applicationStartedEvent) noexcept
         {
             const bool shouldRun = LD::Get(this->CurrentExecutor)(applicationStartedEvent);
             
@@ -658,7 +660,7 @@ namespace LD
         LD::ApplicationState OnEvent(const LD::ApplicationHasStartedState & applicationHasStartedState, const LD::ApplicationPeriodEvent<Context...> & sleepingEvent) noexcept
         {
         //resolve any initial conditions that have to met for the application to run, if not then just quit
-            PDP::Second<LD::Float> period =  LD::Get(this->CurrentExecutor)(sleepingEvent);
+            LD::Second<LD::Float> period =  LD::Get(this->CurrentExecutor)(sleepingEvent);
 
             return LD::ApplicationPeriodState{period};
         }
@@ -678,7 +680,7 @@ namespace LD
         LD::ApplicationState OnEvent(const LD::ApplicationFrameEndedState & applicationFrameEndedState, const LD::ApplicationPeriodEvent<Context...> & sleepingEvent) noexcept
         {
             //decide betweent the end of the last frame, and the beginning of the new frame if the application should continue to run
-            PDP::Second<LD::Float> period =  LD::Get(this->CurrentExecutor)(sleepingEvent);
+            LD::Second<LD::Float> period =  LD::Get(this->CurrentExecutor)(sleepingEvent);
             return LD::ApplicationPeriodState{period};
         }
         
@@ -1015,9 +1017,9 @@ namespace LD
     template<typename Executor,typename ... Context , typename ... A,typename TimerType>
     LD::Enable_If_T<
     LD::Require<
-    LD::ConvertiblyCallable<Executor, bool(const LD::ApplicaitonStartedEvent<typename LD::Decay<Context>::type...> &)>::Value(),
+    LD::ConvertiblyCallable<Executor, bool(const LD::ApplicationStartedEvent<typename LD::Decay<Context>::type...> &)>::Value(),
     LD::ConvertiblyCallable<Executor, bool(const LD::ApplicationFrameStartedEvent<typename LD::Decay<Context>::type...> &)>::Value(),
-    LD::ConvertiblyCallable<Executor, PDP::Second<LD::Float>(const LD::ApplicationPeriodEvent<typename LD::Decay<Context>::type...> &)>::Value(),
+    LD::ConvertiblyCallable<Executor, LD::Second<LD::Float>(const LD::ApplicationPeriodEvent<typename LD::Decay<Context>::type...> &)>::Value(),
     LD::ConvertiblyCallable<Executor, void(const LD::ApplicationExecutionEvent<typename LD::Decay<Context>::type...> &)>::Value(),
     LD::ConvertiblyCallable<Executor, void(const LD::ApplicationFrameEndedEvent<typename LD::Decay<Context>::type...> &)>::Value(),
     LD::ConvertiblyCallable<Executor, void(const LD::ApplicationQuittingEvent<typename LD::Decay<Context>::type...> &)>::Value(),
@@ -1030,17 +1032,21 @@ namespace LD
         typedef LD::Tuple<LD::Detail::Conditional_T<(LD::Detail::IsLValueReference<A>::value),LD::ElementReference <LD::Detail::Decay_T<A>>,LD::Detail::Decay_T<A>>...> PackedArguementType;
         PackedArguementType packedArguements = LD::MakeReferenceableTuple(LD::Forward<A>(contextArguements)...);
         LD::HeteregenousTuple< LD::ElementReference<typename LD::Decay<A>::type>...> context;
-        LD::For<sizeof...(A)>([](auto Index, PackedArguementType & refereneableTuple, LD::HeteregenousTuple< LD::ElementReference<typename LD::Decay<A>::type>...> & context)
+        if constexpr(sizeof...(A) > 0)
         {
+            LD::For<sizeof...(A)>([](auto Index, PackedArguementType & refereneableTuple, LD::HeteregenousTuple< LD::ElementReference<typename LD::Decay<A>::type>...> & context)
+            {
 
-            LD::Get<Index>(context) = LD::ElementReference<typename LD::TypeAtIndex<Index,ContextTypeList>::type>{LD::Get(LD::Get<Index>(refereneableTuple))};
-            return true;
-        },packedArguements,context);
+                 LD::Get<Index>(context) = LD::ElementReference<typename LD::TypeAtIndex<Index,ContextTypeList>::type>{LD::Get(LD::Get<Index>(refereneableTuple))};
+                 return true;
+            },packedArguements,context);
+        }
+
         applicationTimer.Start();//start the timer to clock the amount of time it takes the applicaiton to startup
         
         //dispatch the beginning of the application and determine if the application should keep running.
 
-        fsm.Dispatch(LD::ApplicaitonStartedEvent<typename LD::Decay<Context>::type...>{context,applicationTimer});
+        fsm.Dispatch(LD::ApplicationStartedEvent<typename LD::Decay<Context>::type...>{context,applicationTimer});
 
         bool applicationShouldRun = LD::Match(fsm.get_state(),[](auto && abc)
         {
@@ -1063,16 +1069,16 @@ namespace LD
         }
         applicationTimer.Stop();
         //LD::Second<LD::Float> startupTime = LD::Second<LD::Float>(applicationTimer.GetElapsedTimeInSec());
-        auto frameFunctor = [](bool & applicationShouldrun,LD::BasicApplication<Executor(Context...)> & fsm,TimerType & applicationTimer,LD::HeteregenousTuple< LD::ElementReference<typename LD::Decay<A>::type>...> & context, PDP::Second<LD::Float> & dynamicTick)->const bool
+        auto frameFunctor = [](bool & applicationShouldrun,LD::BasicApplication<Executor(Context...)> & fsm,TimerType & applicationTimer,LD::HeteregenousTuple< LD::ElementReference<typename LD::Decay<A>::type>...> & context, LD::Second<LD::Float> & dynamicTick)->const bool
         {
             fsm.Dispatch(LD::ApplicationPeriodEvent<typename LD::Decay<Context>::type...>{context,applicationTimer});
 
 
-            PDP::Second<LD::Float> sleepingPeriod = LD::Match(fsm.get_state(),
+            LD::Second<LD::Float> sleepingPeriod = LD::Match(fsm.get_state(),
             [](auto &&)
             {
 
-                return PDP::Second<LD::Float >(0);
+                return LD::Second<LD::Float >(LD::SecondTag<LD::Float>{0});
 
             },
 
@@ -1080,21 +1086,23 @@ namespace LD
 
             {
                 //sleepingPeriod = sleepingState;
-                return PDP::Second<LD::Float>(sleepingState);
+                return LD::Second<LD::Float>(sleepingState);
             });
 
 
             applicationTimer.Start();//start the timer once per frame
             LD::Usleep(sleepingPeriod);//sleep for the designated amount of time
 
-            PDP::Second<LD::Float> granuilarity(sleepingPeriod*0.0625);//keep multiplying 0.016 until you reach the number, it's just a frame folding constant
+            LD::Second<LD::Float> granuilarity(LD::SecondTag<LD::Float>{sleepingPeriod.NativeRepresentation().Value()*0.0625});//keep multiplying 0.016 until you reach the number, it's just a frame folding constant
             //PDP::Second<LD::Float> zero(0);
             //soft-real time operating systems don't return an exact amount for the requested frame time, constantly adjust through the lifetime of the application
-            const bool increaseTick = (sleepingPeriod.GetValue() < applicationTimer.GetElapsedTime());
-            const bool decreaseTick = (sleepingPeriod.GetValue() > applicationTimer.GetElapsedTime());
+            //const bool increaseTick = (sleepingPeriod.NativeRepresentation().Value() < applicationTimer.NativeRepresentation().Value() );
+            //const bool decreaseTick =(sleepingPeriod.NativeRepresentation().Value()  > applicationTimer.NativeRepresentation().Value() );
 
-            dynamicTick += (decreaseTick*granuilarity);
-            dynamicTick -= (increaseTick*granuilarity);
+
+
+            //dynamicTick += LD::Second<LD::Float>{LD::SecondTag<LD::Float>{LD::Float(increaseTick* granuilarity.NativeRepresentation().Value())}};
+            //dynamicTick += LD::Second<LD::Float>{LD::SecondTag<LD::Float>{-1*LD::Float(decreaseTick* granuilarity.NativeRepresentation().Value())}};
 
 
 
@@ -1115,7 +1123,7 @@ namespace LD
 
             return applicationShouldrun;
         };
-        PDP::Second<LD::Float> dynamicTick = PDP::Second<LD::Float>(0);
+        LD::Second<LD::Float> dynamicTick = LD::Second<LD::Float>(LD::SecondTag<LD::Float>{0});
         //check to see when the condition for running is no longer true
         while (frameFunctor(applicationShouldRun,fsm,applicationTimer,context,dynamicTick))
         {
@@ -1123,15 +1131,15 @@ namespace LD
             fsm.Dispatch(LD::ApplicationPeriodEvent<typename LD::Decay<Context>::type...>{context,applicationTimer});
 
             //PDP::Second<LD::Float> sleepingPeriod;
-            PDP::Second<LD::Float> sleepingPeriod = LD::Match(fsm.get_state(),
+            LD::Second<LD::Float> sleepingPeriod = LD::Match(fsm.get_state(),
                     [](auto &&)
                     {
-                        return PDP::Second<LD::Float >(0);
+                        return LD::Second<LD::Float >(LD::SecondTag<LD::Float>{0});
                     },
                     [](const LD::ApplicationPeriodState & sleepingState)
                     {
                         //sleepingPeriod = sleepingState;
-                        return PDP::Second<LD::Float>(sleepingState);
+                        return LD::Second<LD::Float>(sleepingState);
                     });
             
             //usleep(sleepingPeriod + dynamicTick);//sleep for the designated amount of time
@@ -1174,9 +1182,9 @@ namespace LD
     template<typename Executor , typename ... A,typename TimerType>
     LD::Enable_If_T<
     LD::Require<
-    LD::ConvertiblyCallable<Executor, bool(const LD::ApplicaitonStartedEvent<typename LD::Decay<A>::type...> &)>::Value(),
+    LD::ConvertiblyCallable<Executor, bool(const LD::ApplicationStartedEvent<typename LD::Decay<A>::type...> &)>::Value(),
     LD::ConvertiblyCallable<Executor, bool(const LD::ApplicationFrameStartedEvent<typename LD::Decay<A>::type...> &)>::Value(),
-    LD::ConvertiblyCallable<Executor, PDP::Second<LD::Float>(const LD::ApplicationPeriodEvent<typename LD::Decay<A>::type...> &)>::Value(),
+    LD::ConvertiblyCallable<Executor, LD::Second<LD::Float>(const LD::ApplicationPeriodEvent<typename LD::Decay<A>::type...> &)>::Value(),
     LD::ConvertiblyCallable<Executor, void(const LD::ApplicationExecutionEvent<typename LD::Decay<A>::type...> &)>::Value(),
     LD::ConvertiblyCallable<Executor, void(const LD::ApplicationFrameEndedEvent<typename LD::Decay<A>::type...> &)>::Value(),
     LD::ConvertiblyCallable<Executor, void(const LD::ApplicationQuittingEvent<typename LD::Decay<A>::type...> &)>::Value(),
@@ -1247,9 +1255,9 @@ namespace LD
     LD::Enable_If_T<
             LD::Require<
                     (sizeof...(Executors) > 1),
-                    LD::ConvertiblyCallable<LD::VariadicPack<Executors...>, const bool(const LD::ApplicaitonStartedEvent<typename LD::Decay<A>::type...> &)>::Value(),
+                    LD::ConvertiblyCallable<LD::VariadicPack<Executors...>, const bool(const LD::ApplicationStartedEvent<typename LD::Decay<A>::type...> &)>::Value(),
                     LD::ConvertiblyCallable<LD::VariadicPack<Executors...>, const bool(const LD::ApplicationFrameStartedEvent<typename LD::Decay<A>::type...> &)>::Value(),
-                    LD::ConvertiblyCallable<LD::VariadicPack<Executors...>, PDP::Second<LD::Float>(const LD::ApplicationPeriodEvent<typename LD::Decay<A>::type...> &)>::Value(),
+                    LD::ConvertiblyCallable<LD::VariadicPack<Executors...>, LD::Second<LD::Float>(const LD::ApplicationPeriodEvent<typename LD::Decay<A>::type...> &)>::Value(),
                     LD::ConvertiblyCallable<LD::VariadicPack<Executors...>, void(const LD::ApplicationExecutionEvent<typename LD::Decay<A>::type...> &)>::Value(),
                     LD::ConvertiblyCallable<LD::VariadicPack<Executors...>, void(const LD::ApplicationFrameEndedEvent<typename LD::Decay<A>::type...> &)>::Value(),
                     LD::ConvertiblyCallable<LD::VariadicPack<Executors...>, void(const LD::ApplicationQuittingEvent<typename LD::Decay<A>::type...> &)>::Value(),

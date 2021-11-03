@@ -7,16 +7,21 @@
 #include "MemoryResource.hpp"
 #include "TypeTraits/Limit.hpp"
 #include "TypeTraits/UsesAlloc.h"
+#include "TypeTraits/IsBaseOf.hpp"
 namespace LD
 {
     namespace Mem
     {
+        class AllocatorArg
+        {
+
+        };
         template<typename T>
         class PolymorphicAllocator
         {
         private:
             LD::Mem::MemoryResource * mResource;
-            using __uses_alloc1_ = __uses_alloc1<LD::PolymorphicAllocator>;
+            using __uses_alloc1_ = __uses_alloc1<LD::Mem::PolymorphicAllocator<T>>;
         public:
             PolymorphicAllocator(LD::Mem::MemoryResource * resource) noexcept:mResource{resource}
             {
@@ -28,14 +33,14 @@ namespace LD
                 return this->mResource;
             }
             template<typename _Up>
-            PolymorphicAllocator(const LD::PolymorphicAllocator<_Up>& __x) noexcept
+            PolymorphicAllocator(const LD::Mem::PolymorphicAllocator<_Up>& __x) noexcept
                     : mResource(__x.Resource())
             { }
 
-            PolymorphicAllocator& operator=(const polymorphic_allocator&) = delete;
+            PolymorphicAllocator& operator=(const PolymorphicAllocator&) = delete;
             T * allocate(LD::UInteger amount) noexcept
             {
-                if (amount > (LD::Limit<size_t>::GetMax() / sizeof(_Tp)))
+                if (amount > (LD::Limit<size_t>::GetMax() / sizeof(T)))
                 {
                     return nullptr;
                 }
@@ -43,28 +48,28 @@ namespace LD
             }
             void deallocate(T * p, LD::UInteger n) noexcept
             {
-                this->mResource->deallocate(__p, __n * sizeof(_Tp), alignof(_Tp));
+                this->mResource->deallocate(p, n * sizeof(T), alignof(T));
             }
             template<typename _Tp1, typename ... Args>
             void construct(_Tp1 * pointer, Args && ... args) noexcept
             {
-                using __use_tag = LD::__uses_alloc_t<_Tp1, LD::PolymorphicAllocator, _Args...>;
-                if constexpr (std::is_base_of_v<__uses_alloc0, __use_tag>)
+                using __use_tag = LD::__uses_alloc_t<_Tp1, LD::Mem::PolymorphicAllocator<T>, Args...>;
+                if constexpr (LD::Detail::IsBaseOf_V<__uses_alloc0, __use_tag>)
                 {
-                    ::new(__p) _Tp1(std::forward<_Args>(__args)...);
+                    ::new(pointer) _Tp1(LD::Forward<Args>(args)...);
                 }
-                else if constexpr (std::is_base_of_v<__uses_alloc1_, __use_tag>)
+                else if constexpr (LD::Detail::IsBaseOf_V<__uses_alloc1_, __use_tag>)
                 {
-                    ::new(__p) _Tp1(allocator_arg, *this,std::forward<_Args>(__args)...);
+                    ::new(pointer) _Tp1(AllocatorArg{}, *this,LD::Forward<Args>(args)...);
                 }
                 else
                 {
-                    ::new(__p) _Tp1(std::forward<_Args>(__args)..., *this);
+                    ::new(pointer) _Tp1(LD::Forward<Args>(args)..., *this);
                 }
             }
             template<typename U>
-            void destroy(_Up* __p)
-            { __p->~_Up(); }
+            void destroy(U* __p) noexcept
+            { __p->~U(); }
         };
     }
 }

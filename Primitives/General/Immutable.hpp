@@ -11,7 +11,7 @@
 
 //#include <Definitions/Common.hpp>
 #include "Primitives/General/typestring.hpp"
-#include "Algorithms/CompileTimeControlFlow.hpp"
+#include "TypeTraits//CompileTimeControlFlow.hpp"
 #include "Primitives/General/Hash.hpp"
 #include "TypeTraits/IsImmutable.h"
 #include "TypeTraits/StaticallySized.h"
@@ -24,6 +24,8 @@
 #include "Algorithms/FastLog10.hpp"
 #include "TypeTraits/IsPackConvertible.hpp"
 #include "TypeTraits/Limit.hpp"
+#include "Primitives/General/StringView.hpp"
+#include "Algorithms/Exponential.hpp"
 namespace LD
 {
     class ImmutableStringWarrant
@@ -147,6 +149,11 @@ namespace LD
             (*this) = lit;
         }
 
+        ImmutableString(LD::StringView view) noexcept
+        {
+            (*this) = view;
+        }
+
 
         constexpr ImmutableString(const char * data, const LD::UInteger & size) noexcept:ImmutableString()
         {
@@ -163,6 +170,18 @@ namespace LD
         }
 
 
+        ImmutableString & operator = (const LD::StringView view) noexcept
+        {
+            LD::UInteger size = (view.size() < N)*view.size() + (N < view.size())*N;
+
+
+            for(LD::UInteger characterIndex = 0;characterIndex < size;++characterIndex)
+            {
+                this->string[characterIndex] = view[characterIndex];
+            }
+            this->string[size] = '\0';
+            return (*this);
+        }
 
         template<char ... Characters,typename = typename LD::Enable_If_T<(sizeof...(Characters) <= N)>>
         constexpr ImmutableString & operator = (const LD::TypeString<Characters...> & typeString)
@@ -679,7 +698,7 @@ namespace LD
         char integerPart[20] = {0};
         bool isInf = false;
         bool isNan = false;
-        const LD::UInteger amountOfDigits = LD::Floor(LD::FastLog10(num))+1;
+        const LD::UInteger amountOfDigits = LD::Floor(LD::Log10(num) + 1);
         const LD::UInteger amountToAllocate = (amountOfDigits   + 1);
         LD::For<19>([](auto Index,
                        LD::UInteger & num,
@@ -764,19 +783,37 @@ namespace LD
     }
 
     template<typename T>
+    constexpr LD::Enable_If_T<LD::Require<
+            LD::IsUnsignedInteger<T>,
+            LD::IsPrimitive<T>
+    >,
+            LD::ImmutableString<19>>  ToImmutableString(const T & number, const LD::UInteger & base = 10) noexcept;
+    template<typename T>
      LD::Enable_If_T<LD::Require<
             LD::Detail::IsSame<T,double>::value
     >,
-            LD::ImmutableString<19+15+2>> ToImmutableString(const T & number,const LD::Variant<LD::TransactionError,LD::UInteger>  & precision = {},const LD::UInteger & base = 10) noexcept
+            LD::ImmutableString<19+15+2>> ToImmutableString(const T  number,const LD::Variant<LD::TransactionError,LD::UInteger>  & precision = {},const LD::UInteger & base = 10) noexcept
     {
 
+        const LD::UInteger amountOfDigits = LD::Floor(LD::Log10(number) + 1);
+        LD::ImmutableString<2> formatPrefix;
+        formatPrefix[0] = '%';
+        formatPrefix[1] = '.';
+        LD::ImmutableString<1> formatSuffix;
+        formatSuffix[0] = 'g';
+        auto prefixWithDecimalSize = formatPrefix+LD::ToImmutableString(amountOfDigits+15) + formatSuffix;
+        //std::cout << prefixWithDecimalSize.Data() << "\n";
+        //printf("%s \n",prefixWithDecimalSize.Data());
         LD::ImmutableString<19+15+2> ret = {0};
+        //sprintf((char*)ret.Data(),"%.20g",number);
+        sprintf((char*)ret.Data(),prefixWithDecimalSize.Data(),number);
+        /*
         LD::UInteger num = LD::UInteger(LD::Abs(number));
         bool isFloatingPoint = ((LD::Abs(number) - num) > 0);
         char integerPart[20] = {0};
         bool isInf = false;
         bool isNan = false;
-        const LD::UInteger amountOfDigits = LD::Floor(LD::FastLog10(num))+1;
+        const LD::UInteger amountOfDigits = LD::Floor(LD::Log10(num) + 1);
         const LD::UInteger amountToAllocate = (amountOfDigits   + 1);
         LD::For<19>([](auto Index,
                        LD::UInteger & num,
@@ -857,6 +894,7 @@ namespace LD
         };
 
         LD::Match(cullingPredicate[request.GetFirst()],onCull,onDefaultBehavior);
+         */
         return ret;
     }
     template<typename T>
@@ -864,13 +902,13 @@ namespace LD
             LD::IsUnsignedInteger<T>,
             LD::IsPrimitive<T>
     >,
-            LD::ImmutableString<19>>  ToImmutableString(const T & number, const LD::UInteger & base = 10) noexcept
+            LD::ImmutableString<19>>  ToImmutableString(const T & number, const LD::UInteger & base) noexcept
     {
         const LD::UInteger isNan = (number != number);
         const LD::UInteger isInf = (number > LD::Limit<T>::GetMax());
         char returnValue[20] = {0};
         LD::UInteger num = number;
-        const LD::UInteger amountOfDigits = LD::Floor(LD::FastLog10(num))+1;
+        const LD::UInteger amountOfDigits = LD::Floor(LD::Log10(num) + 1);
         returnValue[0] = 'n'*(isNan * !isInf);
         returnValue[1] = 'a'*(isNan * !isInf);
         returnValue[2] = 'n'*(isNan * !isInf);
@@ -909,7 +947,7 @@ namespace LD
         const LD::UInteger isInf = (number > LD::Limit<T>::GetMax());
         char returnValue[21] = {0};
         LD::UInteger num = LD::Abs(number);
-        const LD::UInteger amountOfDigits = LD::Floor(LD::FastLog10(num))+1;
+        const LD::UInteger amountOfDigits = LD::Floor(LD::Log10(num) + 1);
         returnValue[0] = 'n'*(isNan * !isInf);
         returnValue[1] = 'a'*(isNan * !isInf);
         returnValue[2] = 'n'*(isNan * !isInf);

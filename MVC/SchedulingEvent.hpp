@@ -27,7 +27,7 @@ namespace LD
     template<typename ... A>
     class HeteregenousTuple;
     template<typename ... Context>
-    class ApplicaitonStartedEvent
+    class ApplicationStartedEvent
     {
     private:
         LD::HeteregenousTuple<ElementReference<Context>...> CurrentContext;
@@ -36,7 +36,7 @@ namespace LD
     public:
 
         template<typename ... A, typename = typename LD::Enable_If_T<LD::IsUniquelyContained<LD::VariadicPack<Context...>,LD::VariadicPack<A...>>::value>>
-        ApplicaitonStartedEvent(const LD::HeteregenousTuple<ElementReference<A>...> & context,
+        ApplicationStartedEvent(const LD::HeteregenousTuple<ElementReference<A>...> & context,
                                 LD::Timer & timer) noexcept :CurrentContext(context),TimerReference(timer)
         {
             
@@ -46,14 +46,14 @@ namespace LD
         LD::Require<
         LD::is_permutation_v<LD::VariadicPack<Context...>,LD::VariadicPack<A...>>
         >>>
-        ApplicaitonStartedEvent(const LD::ApplicaitonStartedEvent<A...> & event) noexcept :CurrentContext(event.CurrentContext),TimerReference(event.TimerReference),mElapsedTime{event.mElapsedTime}
+        ApplicationStartedEvent(const LD::ApplicationStartedEvent<A...> & event) noexcept :CurrentContext(event.CurrentContext),TimerReference(event.TimerReference),mElapsedTime{event.mElapsedTime}
         {}
 
         template<typename ... A, typename = typename LD::Enable_If_T<
                 LD::Require<
                         LD::is_permutation_v<LD::VariadicPack<Context...>,LD::VariadicPack<A...>>
                 >>>
-        ApplicaitonStartedEvent(const LD::ApplicaitonStartedEvent<A...> & event, const PDP::Second<LD::Float> & dt) noexcept :CurrentContext(event.CurrentContext),TimerReference(event.TimerReference),mElapsedTime{dt}
+        ApplicationStartedEvent(const LD::ApplicationStartedEvent<A...> & event, const PDP::Second<LD::Float> & dt) noexcept :CurrentContext(event.CurrentContext),TimerReference(event.TimerReference),mElapsedTime{dt}
         {}
         
         PDP::Second<LD::Float> GetElapsedTime() const noexcept
@@ -70,6 +70,11 @@ namespace LD
             //return PDP::Second<LD::Float>(this->TimerReference->GetElapsedTimeInSec());
             return LD::Match(this->mElapsedTime,onTimerOnly,onDT);
         }
+
+        LD::MicroSecond<LD::Float> TimeElapsed() const noexcept
+        {
+            return this->TimerReference->Time();
+        }
         
         
         const LD::HeteregenousTuple<ElementReference<Context>...> & GetContext() const noexcept
@@ -78,11 +83,11 @@ namespace LD
         }
         
         template<typename ... A>
-        friend class ApplicaitonStartedEvent;
+        friend class ApplicationStartedEvent;
     };
     
     template<typename T, typename ... Context>
-    auto Get(const ApplicaitonStartedEvent<Context...> & applicationStartEvent) noexcept
+    auto Get(const ApplicationStartedEvent<Context...> & applicationStartEvent) noexcept
     {
         return LD::Get<ElementReference<T>>(applicationStartEvent.GetContext());
     }
@@ -110,13 +115,19 @@ namespace LD
         ApplicationFrameStartedEvent(const LD::ApplicationFrameStartedEvent<A...> & event) noexcept :CurrentContext(event.CurrentContext),TimerReference(event.TimerReference),mElapsedTime{event.mElapsedTime}
         {}
 
+        /*
         template<typename ... A, typename = typename LD::Enable_If_T<
                 LD::Require<
                         LD::is_permutation_v<LD::VariadicPack<Context...>, LD::VariadicPack<A...>>
                 >>>
         ApplicationFrameStartedEvent(const LD::ApplicationFrameStartedEvent<A...> & event, const PDP::Second<LD::Float> & dt) noexcept :CurrentContext(event.CurrentContext),TimerReference(event.TimerReference),mElapsedTime{dt}
         {}
-        
+         */
+
+        LD::MicroSecond<LD::Float> TimeElapsed() const noexcept
+        {
+            return this->TimerReference->Time();
+        }
         PDP::Second<LD::Float> GetElapsedTime() const noexcept
         {
             auto onTimerOnly = [](const LD::ElementReference<LD::Timer> & timer) noexcept
@@ -198,6 +209,11 @@ namespace LD
             //return PDP::Second<LD::Float>(this->TimerReference->GetElapsedTimeInSec());
             return LD::Match(this->mElapsedTime,onTimerOnly,onDT);
         }
+
+        LD::MicroSecond<LD::Float> TimeElapsed() const noexcept
+        {
+            return this->TimerReference->Time();
+        }
         
         
         const LD::HeteregenousTuple<ElementReference<Context>...> & GetContext() const noexcept
@@ -254,6 +270,11 @@ namespace LD
                 return elapsedtime;
             };
             return LD::Match(this->mElapsedTime,onTimerOnly,onDT);
+        }
+
+        LD::MicroSecond<LD::Float> TimeElapsed() const noexcept
+        {
+            return this->TimerReference->Time();
         }
         
         
@@ -316,6 +337,11 @@ namespace LD
             };
             return LD::Match(this->mElapsedTime,onTimerOnly,onDT);
         }
+
+        LD::MicroSecond<LD::Float> TimeElapsed() const noexcept
+        {
+            return this->TimerReference->Time();
+        }
         
         
         const LD::HeteregenousTuple<ElementReference<Context>...> & GetContext() const noexcept
@@ -373,6 +399,11 @@ namespace LD
                 return elapsedtime;
             };
             return LD::Match(this->mElapsedTime,onTimerOnly,onDT);
+        }
+
+        LD::MicroSecond<LD::Float> TimeElapsed() const noexcept
+        {
+            return this->TimerReference->Time();
         }
         
         
@@ -552,7 +583,7 @@ namespace LD
     >>>
     {
     private:
-        Functor<const bool(const LD::ApplicaitonStartedEvent<A...> &)> ApplicationStarted;
+        Functor<const bool(const LD::ApplicationStartedEvent<A...> &)> ApplicationStarted;
         Functor<const bool(const LD::ApplicationFrameStartedEvent<A...> &)> FrameStarted;
         Functor<PDP::Second<LD::Float>(const LD::ApplicationPeriodEvent<A...> &)> SleepingEvent;
         Functor<void(const LD::ApplicationFrameEndedEvent<A...> &)> FrameEnded;
@@ -563,7 +594,7 @@ namespace LD
         
         ApplicationImpl()
         {
-            this->ApplicationStarted = Functor<const bool(const LD::ApplicaitonStartedEvent<A...> &)>([](const LD::ApplicaitonStartedEvent<A...> &)
+            this->ApplicationStarted = Functor<const bool(const LD::ApplicationStartedEvent<A...> &)>([](const LD::ApplicationStartedEvent<A...> &)
                                                                                                       {
                                                                                                           return true;
                                                                                                       });
@@ -580,12 +611,12 @@ namespace LD
         template<typename F>
         LD::Enable_If_T<
         LD::Require<
-        LD::ConvertiblyCallable<F, bool(const LD::ApplicaitonStartedEvent<A...> &)>::Value()
+        LD::ConvertiblyCallable<F, bool(const LD::ApplicationStartedEvent<A...> &)>::Value()
         >,ApplicationImpl &> OnApplicationStart(F && functor)
         {
             //&F::operator();
             //PDP::Delegate<const bool(const LD::ApplicaitonStartedEvent<A...> &)>(LD::Forward<F>(functor));
-            this->ApplicationStarted = Functor<const bool(const LD::ApplicaitonStartedEvent<A...> &)>(LD::Forward<F>(functor));
+            this->ApplicationStarted = Functor<const bool(const LD::ApplicationStartedEvent<A...> &)>(LD::Forward<F>(functor));
             
             return (*this);
         }
@@ -593,12 +624,12 @@ namespace LD
         template<typename F>
         LD::Enable_If_T<
                 LD::Require<
-                        LD::ConvertiblyCallable<F, bool(const LD::ApplicaitonStartedEvent<A...> &)>::Value()
+                        LD::ConvertiblyCallable<F, bool(const LD::ApplicationStartedEvent<A...> &)>::Value()
                 >,ApplicationImpl &> operator()(F && functor)
         {
             //&F::operator();
             //PDP::Delegate<const bool(const LD::ApplicaitonStartedEvent<A...> &)>(LD::Forward<F>(functor));
-            this->ApplicationStarted = Functor<const bool(const LD::ApplicaitonStartedEvent<A...> &)>(LD::Forward<F>(functor));
+            this->ApplicationStarted = Functor<const bool(const LD::ApplicationStartedEvent<A...> &)>(LD::Forward<F>(functor));
 
             return (*this);
         }
@@ -706,7 +737,7 @@ namespace LD
         }
         
         
-        const bool operator()(const LD::ApplicaitonStartedEvent<A...> & applicationStartedEvent)
+        const bool operator()(const LD::ApplicationStartedEvent<A...> & applicationStartedEvent)
         {
             return this->ApplicationStarted(applicationStartedEvent);
         }
@@ -763,7 +794,7 @@ namespace LD
         }
         
         template<typename ... Context>
-        const bool operator()(const LD::ApplicaitonStartedEvent<Context...> & applicationStartedEvent)
+        const bool operator()(const LD::ApplicationStartedEvent<Context...> & applicationStartedEvent)
         {
             return true;
         }
@@ -952,7 +983,7 @@ namespace LD
     class ApplicationEvent<T(Args...),Huerestic,F>
     {
     private:
-        F<const bool(const ApplicaitonStartedEvent<Args...> &)> ApplicationStart;
+        F<const bool(const ApplicationStartedEvent<Args...> &)> ApplicationStart;
         
         F<const bool(const LD::ApplicationFrameStartedEvent<Args...> &)> FrameStart;
         
@@ -993,7 +1024,7 @@ namespace LD
         }
          */
         
-        const bool operator()(const ApplicaitonStartedEvent<Args...> & applicationStartedEvent)
+        const bool operator()(const ApplicationStartedEvent<Args...> & applicationStartedEvent)
         {
             return this->ApplicationStart(applicationStartedEvent);
         }

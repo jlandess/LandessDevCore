@@ -9,7 +9,7 @@
 #include "Primitives/General/mapboxvariant.hpp"
 #include "Primitives/General/mapboxvariantvisitor.h"
 #include "unqlite.h"
-#include "Algorithms/CompileTimeControlFlow.hpp"
+#include "TypeTraits/CompileTimeControlFlow.hpp"
 #include "Primitives/General/ContextualVariant.h"
 #include "DatabaseOperationResult.h"
 #include "Functor/fixed_size_function.hpp"

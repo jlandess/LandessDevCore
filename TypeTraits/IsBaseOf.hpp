@@ -29,7 +29,7 @@ namespace LD
         };
 
 
-        template<typename B, typename D>  using IsBaseOf_V = typename IsBaseOf<B,D>::value;
+        template<typename B, typename D>  constexpr bool IsBaseOf_V =  IsBaseOf<B,D>::value;
     }
 }
 #endif //LANDESSDEVCORE_ISBASEOF_HPP

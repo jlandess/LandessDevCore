@@ -27,14 +27,15 @@ namespace LD
                 mpark::variant<LD::NullClass,std::exception_ptr, T> data;
             };
 
-
             template<>
             struct _state<void>
             {
                 std::mutex mtx;
                 std::condition_variable cv;
-                //mpark::variant<LD::NullClass,std::exception_ptr, T> data;
+                mpark::variant<LD::NullClass,std::exception_ptr,LD::UInteger> data;
             };
+
+
 
 
 
@@ -42,18 +43,19 @@ namespace LD
             struct _promise
             {
 
+                static constexpr LD::UInteger Number = 0;
                 _state<T> * pst;
 
                 _promise(_state<T> * state) noexcept: pst{state}{}
                 template<int I, typename ... A> void _set(A ... xs) noexcept
                 {
                     auto lk = std::unique_lock{pst->mtx};
-                    pst->data.template emplace<I>(xs...);
+                    pst->data.template emplace<I>(LD::Move(xs)...);
                     pst->cv.notify_one();
                 }
 
                 template<typename ... A>
-                void set_value(A ... vs) noexcept{_set<2>(vs...);}
+                void set_value(A ... vs) noexcept{_set<2>(LD::Move(vs)...);}
 
                 template<typename  A>
                 void set_exception(A e) noexcept
@@ -66,19 +68,25 @@ namespace LD
             template<>
             struct _promise<void>
             {
-
+                static constexpr LD::UInteger Number = 1;
                 _state<void> * pst;
 
                 _promise(_state<void> * state) noexcept: pst{state}{}
-                template<int I, typename ... A> void _set(A ... xs) noexcept
+
+
+                template<int I, typename ... A>
+                void _set(A ... xs) noexcept
                 {
                     auto lk = std::unique_lock{pst->mtx};
-                    //pst->data.template emplace<I>(xs...);
+                    pst->data.template emplace<I>(xs...);
+                    pst->data = LD::UInteger {1};
                     pst->cv.notify_one();
                 }
 
-                template<typename ... A>
-                void set_value(A ... vs) noexcept{_set<2>(vs...);}
+                //template<typename ... A>
+                void set_value() noexcept{
+                    _set<2>(LD::UInteger{1});
+                }
 
                 template<typename  A>
                 void set_exception(A e) noexcept
@@ -147,7 +155,7 @@ namespace LD
         }
 
         template<typename Task, typename  T = LD::GetType<decltype(LD::Async::CT::RunnableType(LD::Type<Task>{}))>>
-        T SyncWait(Task task) noexcept
+        LD::Enable_If_T<LD::Negate<LD::Require<LD::CT::IsSame(LD::Type<void>{},LD::Type<T>{})>>,T> SyncWait(Task task) noexcept
         {
             LD::Async::Detail::_state<T> state;
 
@@ -174,9 +182,32 @@ namespace LD
                 return;
             }else
             {
-                return mpark::get<2>(state.data);;
+                return LD::Move(mpark::get<2>(state.data));;
             }
 
+        }
+
+        template<typename Task, typename  T = LD::GetType<decltype(LD::Async::CT::RunnableType(LD::Type<Task>{}))>>
+        LD::Enable_If_T<LD::Require<LD::CT::IsSame(LD::Type<void>{},LD::Type<T>{})>,T> SyncWait(Task task) noexcept
+        {
+            LD::Async::Detail::_state<void> state;
+
+            task.mRunnable(LD::Async::Detail::_promise<void>(&state));
+            {
+                auto lk = std::unique_lock{state.mtx};
+
+                state.cv.wait(lk,[&state]
+                {
+                    return state.data.index() != 0;
+                });
+            }
+
+
+
+            if (state.data.index() == 1)
+            {
+                std::rethrow_exception(mpark::get<1>(state.data));
+            }
         }
 
         template<typename ... A, typename T = LD::Tuple<LD::GetType<decltype(LD::Async::CT::RunnableType(LD::Type<A>{}))> ...>>

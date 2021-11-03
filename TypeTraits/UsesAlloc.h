@@ -46,6 +46,7 @@ namespace LD
     struct __uses_alloc;
 
 
+    template<typename _Tp, typename _Alloc, typename... _Args>
     struct __uses_alloc<true, _Tp, _Alloc, _Args...>
             : LD::Conditonal<
                     LD::IsConstructible<_Tp, allocator_arg_t, const _Alloc&, _Args...>::value,

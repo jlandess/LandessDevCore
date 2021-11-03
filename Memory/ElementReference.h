@@ -51,7 +51,7 @@ namespace PDP
 
 
         //todo add operator forwarding
-       // template <class U>
+        // template <class U>
         //operator U&() { return static_cast<U&>(*value); }
         template <class U>
         //operator const U&() const { return static_cast<const U&>(*value); }

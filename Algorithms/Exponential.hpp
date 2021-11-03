@@ -10,7 +10,6 @@
 #define __DataStructures__Exp__
 
 #include <stdio.h>
-
 #include "Definitions/Float.hpp"
 //#include "Definitions/Common.hpp"
 #include "vdt/vdtmath.h"
@@ -20,32 +19,33 @@
 
 namespace LD
 {
-    inline LD::Float Exp(const LD::Float & a)
+    inline LD::Float Exp( LD::Float  a)
     {
         return vdt::fast_exp(a);
     }
-    inline LD::Float Ln(const LD::Float & a)
+
+    inline LD::Float Ln(LD::Float  a)
     {
         return vdt::fast_log(a);
     }
-    inline LD::Float Pow(const LD::Float & a, const LD::Float & b)
+    inline LD::Float Pow(LD::Float  a,  LD::Float  b)
     {
         return vdt::fast_exp(vdt::fast_log(a)*b);
     }
 
-    inline LD::Float Log(const LD::Float & a, const LD::Float & base = 10)
+    inline LD::Float Log( LD::Float  a,  LD::Float  base = 10)
     {
         return vdt::fast_log(a)/vdt::fast_log(base);
     }
-    inline LD::Float Log10(const LD::Float & a)
+    inline LD::Float Log10( LD::Float  a)
     {
         return vdt::fast_log(a)/vdt::fast_log(10);
     }
-    inline LD::Float Log2(const LD::Float & a)
+    inline LD::Float Log2( LD::Float  a)
     {
         return vdt::fast_log(a)/vdt::fast_log(2);
     }
-    inline LD::Float NRoot(const LD::Float & a, const LD::Float & degree)
+    inline LD::Float NRoot( LD::Float  a,  LD::Float  degree)
     {
         LD::Float usablePower = (LD::Float(1.0)/degree);
 
@@ -264,35 +264,35 @@ namespace LD
             return(Y.f);
         }
     }
-    inline LD::Float Sqrt(const LD::Float & a)
+    inline LD::Float Sqrt(LD::Float  a)
     {
         return Detail::sqrt_fast(a);
     }
-    inline LD::Float CubicRoot(const PDP::Float & a)
+    inline LD::Float CubicRoot( PDP::Float  a)
     {
         LD::Float usablePower = PDP::Float(1.0)/LD::Float(3.0);
 
         return vdt::fast_exp(vdt::fast_log(a)*usablePower);
     }
-    inline LD::UInteger Ceil(const LD::Float & x)
+    inline LD::UInteger Ceil( LD::Float  x)
     {
         if(x<0)return (PDP::UInteger)x;
         return ((int)x)+1;
     }
     //extern PDP::Float Floor(const PDP::Float & a,const PDP::Precision & precision = PDP::eHIgh);
-    inline LD::Float Radians(const LD::Float & degrees)
+    inline LD::Float Radians( LD::Float  degrees)
     {
         return degrees*57.2958;
     }
-    inline LD::Float Degrees(const LD::Float & radians)
+    inline LD::Float Degrees( LD::Float  radians)
     {
         return radians/57.2958;
     }
-    inline LD::Float Fmod(const LD::Float & a, const LD::Float & b)
+    inline LD::Float Fmod( LD::Float  a,  LD::Float  b)
     {
         return (LD::Integer)((((a/b)-((LD::Integer)(a/b)))*b)+LD::Float(0.5));
     }
-    inline LD::Float Fraction(const PDP::Float & a)
+    inline LD::Float Fraction( PDP::Float  a)
     {
         return a -  (PDP::UInteger)a;
     }

@@ -1155,19 +1155,30 @@ namespace LD
         template<LD::UInteger Index>
         inline static auto Get(mapbox::util::variant<A...> & variant) noexcept
         {
-            return variant.template get<Index>();
+            using TL = LD::CT::TypeList<A...>;
+
+            return variant.template get<typename LD::TypeAtIndex<Index,TL>::type>();
         }
 
-        template<LD::UInteger Index>
+        template<std::size_t Index>
         inline static auto Get(mapbox::util::variant<A...> && variant) noexcept
         {
-            return variant.template get<Index>();
+            using TL = LD::CT::TypeList<A...>;
+
+            return variant.template get<typename LD::TypeAtIndex<Index,TL>::type>();
         }
 
         template<LD::UInteger Index>
         inline static auto Get(const mapbox::util::variant<A...> & variant) noexcept
         {
-            return variant.template get<Index>();
+            using TL = LD::CT::TypeList<A...>;
+
+            return variant.template get<typename LD::TypeAtIndex<Index,TL>::type>();
+        }
+
+        inline static auto Index(const mapbox::util::variant<A...> & variant) noexcept
+        {
+            return variant.which();
         }
 
         inline static constexpr LD::UInteger Size() noexcept

@@ -19,7 +19,7 @@
 #include "Primitives/General/mapboxvariantvisitor.h"
 #include "Primitives/General/StaticArray.hpp"
 #include "Primitives/General/Immutable.hpp"
-#include "Algorithms/CompileTimeControlFlow.hpp"
+#include "TypeTraits/CompileTimeControlFlow.hpp"
 #include "RenderingContext.hpp"
 #include "MVC/SchedulingEvent.hpp"
 #include "TermBoxEnumerations.hpp"

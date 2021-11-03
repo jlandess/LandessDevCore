@@ -1048,6 +1048,37 @@ namespace LD
         LD::ToImmutableString(dateTime.Time());
     }
 
+    inline static LD::Float  DateTimeToJulianDate(LD::DateTime datetime) noexcept
+    {
+        auto D = datetime.Date().Day().NativeRepresentation().Value();
+        auto M = datetime.Date().Month().NativeRepresentation().Value();
+        auto Y = datetime.Date().Year().NativeRepresentation().Value();
+        auto hour = datetime.Time().Hour().NativeRepresentation().Value();
+        auto minute = datetime.Time().Minute().NativeRepresentation().Value();
+        auto second = datetime.Time().Second().NativeRepresentation().Value();
+
+        //std::cout << "Muffins: " << LD::Float((hour-12.0)/24.0) + LD::Float((minute)/1440.0) + LD::Float (second/(86400.0)) << "\n";
+        return (1461 * (Y + 4800 + (M - 14)/12))/4 +(367 * (M - 2 - 12 * ((M - 14)/12)))/12 - (3 * ((Y + 4900 + (M - 14)/12)/100))/4 + D - 32075 + LD::Float((hour)/24.0) + LD::Float((minute)/1440.0) + LD::Float (second/(86400.0));
+    }
+
+    inline static LD::Float  DateTimeToJulianNumber(LD::DateTime datetime) noexcept
+    {
+        auto D = datetime.Date().Day().NativeRepresentation().Value();
+        auto M = datetime.Date().Month().NativeRepresentation().Value();
+        auto Y = datetime.Date().Year().NativeRepresentation().Value();
+        auto hour = datetime.Time().Hour().NativeRepresentation().Value();
+        auto minute = datetime.Time().Minute().NativeRepresentation().Value();
+        auto second = datetime.Time().Second().NativeRepresentation().Value();
+
+        //std::cout << "Hour: " << hour << "\n";
+        const LD::Integer a = (14-M)/12;
+        const LD::Integer y = Y + 4800 -a;
+        const LD::Integer m = M+12*a -3;
+
+        LD::Integer result = D + LD::Floor(((153*m)+2)/5) +365*y + LD::Floor(y/4) - 32083;
+        return (LD::Float)result + ((hour*3600.0) + (minute*60.0) + second)/86400.0;//+ (((LD::Float)hour-12.0f)/24.0f)+((LD::Float)minute/1440.0f)+((LD::Float)second/86400.0f);
+        //return (1461 * (Y + 4800 + (M - 14)/12))/4 +(367 * (M - 2 - 12 * ((M - 14)/12)))/12 - (3 * ((Y + 4900 + (M - 14)/12)/100))/4 + D - 32075;
+    }
 
     class GregorianDate
     {
@@ -1055,15 +1086,17 @@ namespace LD
         unsigned long        lJulianDay;
 
 
-        static const LD::Float YmdToJd( const LD::Integer & iYear, const LD::Integer & iMonth, const LD::Integer & iDay, const LD::Float &  hour, const LD::Float & minute, const LD::Float & second ) noexcept
+        static const LD::Float YmdToJd( const LD::Integer & Y, const LD::Integer & M, const LD::Integer & D, const LD::Float &  hour, const LD::Float & minute, const LD::Float & second ) noexcept
         {
+            /*
             const LD::Integer a = (14-iMonth)/12;
             const LD::Integer y = iYear + 4800 -a;
             const LD::Integer m = iMonth+12*a -3;
 
             LD::Integer result = iDay + LD::Floor(((153*m)+2)/5) +365*y + LD::Floor(y/4) - 32083;
             const LD::Float  date = (LD::Float)result + (((LD::Float)hour-12.0f)/24.0f)+((LD::Float)minute/1440.0f)+((LD::Float)second/86400.0f);
-            return date;
+             */
+            return (1461 * (Y + 4800 + (M - 14)/12))/4 +(367 * (M - 2 - 12 * ((M - 14)/12)))/12 - (3 * ((Y + 4900 + (M - 14)/12)/100))/4 + D - 32075 + (hour-12)/24.0f + (minute)/1440.0f + second/(86400.0f);
         }
 
 

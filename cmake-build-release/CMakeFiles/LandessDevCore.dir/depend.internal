@@ -155,6 +155,8 @@ CMakeFiles/LandessDevCore.dir/TermBox/termbox.c.o
 CMakeFiles/LandessDevCore.dir/TermBox/utf8.c.o
  /home/phoenixflower/Documents/Development/LandessDevCore/TermBox/termbox.h
  /home/phoenixflower/Documents/Development/LandessDevCore/TermBox/utf8.c
+CMakeFiles/LandessDevCore.dir/Algorithms/DynamicProgramming.cpp.o
+ /home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/DynamicProgramming.cpp
 CMakeFiles/LandessDevCore.dir/Algorithms/vdt/vdtmath.cpp.o
  /home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/vdt/asin.h
  /home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/vdt/atan.h
@@ -174,6 +176,7 @@ CMakeFiles/LandessDevCore.dir/Algorithms/vdt/vdtmath.cpp.o
  /home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/vdt/vdtmath.h
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o
  ../Algorithms/Forward.hpp
+ ../Algorithms/GenericResize.h
  ../Algorithms/Invoke.hpp
  ../Algorithms/Move.hpp
  ../Algorithms/Swap.hpp
@@ -192,6 +195,7 @@ CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o
  ../Async/concurrentqueue.h
  ../Core/NullClass.hpp
  ../Core/Tuple.hpp
+ ../Definitions/Float.hpp
  ../Definitions/Integer.hpp
  ../Definitions/platform_detect.h
  ../Exceptions/Exception.h
@@ -199,14 +203,19 @@ CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o
  ../Exceptions/OverFlowException.h
  ../Functor/Delegate.h
  ../Functor/FastDelegate.h
+ ../Functor/Lambda.h
  ../Functor/LightWeightDelegate.h
  ../Functor/LightWeightDelegateBase.h
  ../Memory/AutomaticReferenceCounting.h
  ../Memory/ElementReference.h
+ ../Memory/MemoryResource.hpp
  ../Memory/Optional.h
+ ../Memory/PolyMorphicAllocator.hpp
  ../Memory/shared_ptr.hpp
  ../Primitives/General/PackagedTask.h
  ../Primitives/General/Pair.h
+ ../Primitives/General/Range.h
+ ../Primitives/General/StaticArray.hpp
  ../Primitives/General/mapboxoptional.hpp
  ../Primitives/General/mapboxrecursive_wrapper.hpp
  ../Primitives/General/mapboxvariant.hpp
@@ -217,6 +226,7 @@ CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o
  ../TypeTraits/AddLValueReference.hpp
  ../TypeTraits/AddPointer.hpp
  ../TypeTraits/AddRValueReference.hpp
+ ../TypeTraits/CompileTimeControlFlow.hpp
  ../TypeTraits/Conditional.hpp
  ../TypeTraits/Decay.hpp
  ../TypeTraits/Declval.hpp
@@ -233,7 +243,9 @@ CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o
  ../TypeTraits/IsConstructible.hpp
  ../TypeTraits/IsConvertible.hpp
  ../TypeTraits/IsDestructible.hpp
+ ../TypeTraits/IsErasedOrConvertible.hpp
  ../TypeTraits/IsFunction.hpp
+ ../TypeTraits/IsImmutable.h
  ../TypeTraits/IsIntegralType.hpp
  ../TypeTraits/IsKindOf.hpp
  ../TypeTraits/IsNullPtr.hpp
@@ -244,6 +256,8 @@ CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o
  ../TypeTraits/IsUnion.hpp
  ../TypeTraits/IsVoid.hpp
  ../TypeTraits/IsVolatile.hpp
+ ../TypeTraits/Iterable.h
+ ../TypeTraits/Limit.hpp
  ../TypeTraits/RemoveAllExtents.hpp
  ../TypeTraits/RemoveCV.hpp
  ../TypeTraits/RemoveConst.hpp
@@ -251,14 +265,14 @@ CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o
  ../TypeTraits/RemoveReference.hpp
  ../TypeTraits/Type.h
  ../TypeTraits/TypeList.hpp
+ ../TypeTraits/UsesAlloc.h
  ../TypeTraits/VariadicPack.hpp
+ ../TypeTraits/__or.hpp
  ../TypeTraits/__two.hpp
  /home/phoenixflower/Documents/Development/LandessDevCore/Async/Thread.cpp
  /home/phoenixflower/Documents/Development/LandessDevCore/Async/Thread.h
 CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o
  ../Algorithms/Abs.hpp
- ../Algorithms/CompileTimeControlFlow.hpp
- ../Algorithms/CompileTimeOperations.hpp
  ../Algorithms/Exponential.hpp
  ../Algorithms/FastLog10.hpp
  ../Algorithms/Floor.hpp
@@ -268,6 +282,7 @@ CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o
  ../Algorithms/Invoke.hpp
  ../Algorithms/Move.hpp
  ../Algorithms/Overload.hpp
+ ../Algorithms/Periodic.hpp
  ../Algorithms/Power.hpp
  ../Algorithms/StringAsNumber.h
  ../Algorithms/Swap.hpp
@@ -320,6 +335,8 @@ CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o
  ../TypeTraits/AddLValueReference.hpp
  ../TypeTraits/AddPointer.hpp
  ../TypeTraits/AddRValueReference.hpp
+ ../TypeTraits/CompileTimeControlFlow.hpp
+ ../TypeTraits/CompileTimeOperations.hpp
  ../TypeTraits/Conditional.hpp
  ../TypeTraits/Decay.hpp
  ../TypeTraits/Declval.hpp
@@ -367,10 +384,12 @@ CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o
 CMakeFiles/LandessDevCore.dir/Examples/AlgorithmicJSONTest.cpp.o
  /home/phoenixflower/Documents/Development/LandessDevCore/Examples/AlgorithmicJSONTest.cpp
  /home/phoenixflower/Documents/Development/LandessDevCore/Examples/AlgorithmicJSONTest.h
+CMakeFiles/LandessDevCore.dir/Examples/ApplicationLoopExample.cpp.o
+ /home/phoenixflower/Documents/Development/LandessDevCore/Examples/ApplicationLoopExample.cpp
+ /home/phoenixflower/Documents/Development/LandessDevCore/Examples/ApplicationLoopExample.h
 CMakeFiles/LandessDevCore.dir/Examples/CalculusExample.cpp.o
  ../Algorithms/Abs.hpp
  ../Algorithms/Calculus.h
- ../Algorithms/CompileTimeControlFlow.hpp
  ../Algorithms/Exponential.hpp
  ../Algorithms/Floor.hpp
  ../Algorithms/Forward.hpp
@@ -413,6 +432,7 @@ CMakeFiles/LandessDevCore.dir/Examples/CalculusExample.cpp.o
  ../TypeTraits/AddLValueReference.hpp
  ../TypeTraits/AddPointer.hpp
  ../TypeTraits/AddRValueReference.hpp
+ ../TypeTraits/CompileTimeControlFlow.hpp
  ../TypeTraits/Conditional.hpp
  ../TypeTraits/Decay.hpp
  ../TypeTraits/Declval.hpp
@@ -454,8 +474,6 @@ CMakeFiles/LandessDevCore.dir/Examples/CalculusExample.cpp.o
  /home/phoenixflower/Documents/Development/LandessDevCore/Examples/CalculusExample.cpp
 CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o
  ../Algorithms/Abs.hpp
- ../Algorithms/CompileTimeControlFlow.hpp
- ../Algorithms/CompileTimeOperations.hpp
  ../Algorithms/Exponential.hpp
  ../Algorithms/FastLog10.hpp
  ../Algorithms/Floor.hpp
@@ -465,6 +483,7 @@ CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o
  ../Algorithms/Invoke.hpp
  ../Algorithms/Move.hpp
  ../Algorithms/Overload.hpp
+ ../Algorithms/Periodic.hpp
  ../Algorithms/Power.hpp
  ../Algorithms/Sampler.hpp
  ../Algorithms/StringAsNumber.h
@@ -532,7 +551,6 @@ CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o
  ../MVC/Renderable.hpp
  ../MVC/RenderableConcept.hpp
  ../MVC/RenderingContext.hpp
- ../MVC/Scheduling.hpp
  ../MVC/SchedulingEvent.hpp
  ../MVC/SchedulingQuittingPredicate.hpp
  ../MVC/ScopedRenderContextState.hpp
@@ -549,8 +567,11 @@ CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o
  ../MVC/TermboxTextLabel.hpp
  ../Memory/AutomaticReferenceCounting.h
  ../Memory/ElementReference.h
+ ../Memory/MemoryResource.hpp
  ../Memory/Optional.h
+ ../Memory/PolyMorphicAllocator.hpp
  ../Memory/shared_ptr.hpp
+ ../Patterns/Scheduling.hpp
  ../Primitives/General/Context.h
  ../Primitives/General/ContextualVariant.h
  ../Primitives/General/Hash.hpp
@@ -584,6 +605,8 @@ CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o
  ../TypeTraits/AddLValueReference.hpp
  ../TypeTraits/AddPointer.hpp
  ../TypeTraits/AddRValueReference.hpp
+ ../TypeTraits/CompileTimeControlFlow.hpp
+ ../TypeTraits/CompileTimeOperations.hpp
  ../TypeTraits/Conditional.hpp
  ../TypeTraits/Decay.hpp
  ../TypeTraits/Declval.hpp
@@ -601,6 +624,7 @@ CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o
  ../TypeTraits/IsConstructible.hpp
  ../TypeTraits/IsConvertible.hpp
  ../TypeTraits/IsDestructible.hpp
+ ../TypeTraits/IsErasedOrConvertible.hpp
  ../TypeTraits/IsFunction.hpp
  ../TypeTraits/IsImmutable.h
  ../TypeTraits/IsIntegralType.hpp
@@ -628,7 +652,9 @@ CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o
  ../TypeTraits/StaticallySized.h
  ../TypeTraits/Type.h
  ../TypeTraits/TypeList.hpp
+ ../TypeTraits/UsesAlloc.h
  ../TypeTraits/VariadicPack.hpp
+ ../TypeTraits/__or.hpp
  ../TypeTraits/__two.hpp
  ../Unicode/utf8.h
  ../Unicode/utf8/checked.h
@@ -637,11 +663,138 @@ CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o
  /home/phoenixflower/Documents/Development/LandessDevCore/Examples/DelimeterSeperateFileExample.cpp
  /home/phoenixflower/Documents/Development/LandessDevCore/Examples/DelimeterSeperatedFileExample.h
  /home/phoenixflower/Documents/Development/LandessDevCore/Examples/ReflectionDemoTypes.h
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o
+ ../Algorithms/Abs.hpp
+ ../Algorithms/Exponential.hpp
+ ../Algorithms/FastLog10.hpp
+ ../Algorithms/Floor.hpp
+ ../Algorithms/Forward.hpp
+ ../Algorithms/FromString.hpp
+ ../Algorithms/GenericResize.h
+ ../Algorithms/Invoke.hpp
+ ../Algorithms/Move.hpp
+ ../Algorithms/Overload.hpp
+ ../Algorithms/Periodic.hpp
+ ../Algorithms/Power.hpp
+ ../Algorithms/StringAsNumber.h
+ ../Algorithms/Swap.hpp
+ ../Algorithms/VariantOperations.hpp
+ ../Algorithms/Visitation.hpp
+ ../Algorithms/vdt/asin.h
+ ../Algorithms/vdt/atan.h
+ ../Algorithms/vdt/atan2.h
+ ../Algorithms/vdt/cos.h
+ ../Algorithms/vdt/exp.h
+ ../Algorithms/vdt/identity.h
+ ../Algorithms/vdt/inv.h
+ ../Algorithms/vdt/log.h
+ ../Algorithms/vdt/sin.h
+ ../Algorithms/vdt/sincos.h
+ ../Algorithms/vdt/sqrt.h
+ ../Algorithms/vdt/tan.h
+ ../Algorithms/vdt/vdtcore_common.h
+ ../Algorithms/vdt/vdtmath.h
+ ../Async/Atomic/Atomic.h
+ ../Async/Atomic/AtomicCore.h
+ ../Async/Atomic/AtomicPrimitiveImplementation.h
+ ../Async/Atomic/AtomicUnderlyingCore.h
+ ../Async/Atomic/compiler_gcc.h
+ ../Async/Atomic/compiler_msvc.h
+ ../Core/RequestResponse.hpp
+ ../Core/Tuple.hpp
+ ../Definitions/Float.hpp
+ ../Definitions/Integer.hpp
+ ../Definitions/platform_detect.h
+ ../Functor/Lambda.h
+ ../Functor/LightWeightDelegate.h
+ ../Functor/LightWeightDelegateBase.h
+ ../IO/DatabaseOperationResult.h
+ ../IO/FetchRequest.h
+ ../Memory/ElementReference.h
+ ../Memory/MemoryResource.hpp
+ ../Memory/Optional.h
+ ../Memory/PolyMorphicAllocator.hpp
+ ../Memory/UniquePointer.h
+ ../Memory/shared_ptr.hpp
+ ../Patterns/DependencyInjection.hpp
+ ../Patterns/ServiceLocator.hpp
+ ../Primitives/General/Context.h
+ ../Primitives/General/ContextualVariant.h
+ ../Primitives/General/Hash.hpp
+ ../Primitives/General/Immutable.hpp
+ ../Primitives/General/ImproperFraction.hpp
+ ../Primitives/General/Pair.h
+ ../Primitives/General/Range.h
+ ../Primitives/General/Ratio.hpp
+ ../Primitives/General/StaticArray.hpp
+ ../Primitives/General/StringView.hpp
+ ../Primitives/General/Tuple.hpp
+ ../Primitives/General/Unit.hpp
+ ../Primitives/General/ctre.hpp
+ ../Primitives/General/mapboxrecursive_wrapper.hpp
+ ../Primitives/General/mapboxvariant.hpp
+ ../Primitives/General/mapboxvariantvisitor.h
+ ../Primitives/General/typestring.hpp
+ ../Services/Logging.hpp
+ ../SumTypes/MPark/config.hpp
+ ../SumTypes/MPark/in_place.hpp
+ ../SumTypes/MPark/lib.hpp
+ ../SumTypes/MPark/variant.hpp
+ ../TypeTraits/AddLValueReference.hpp
+ ../TypeTraits/AddPointer.hpp
+ ../TypeTraits/AddRValueReference.hpp
+ ../TypeTraits/CanBeAnImmutableString.hpp
+ ../TypeTraits/CompileTimeControlFlow.hpp
+ ../TypeTraits/CompileTimeOperations.hpp
+ ../TypeTraits/Conditional.hpp
+ ../TypeTraits/Decay.hpp
+ ../TypeTraits/Declval.hpp
+ ../TypeTraits/Detection.hpp
+ ../TypeTraits/EnableIf.hpp
+ ../TypeTraits/ExclusiveOr.hpp
+ ../TypeTraits/FunctionalReflection.hpp
+ ../TypeTraits/IntegerSequence.hpp
+ ../TypeTraits/IntegralConstant.hpp
+ ../TypeTraits/IsArray.hpp
+ ../TypeTraits/IsAssignable.hpp
+ ../TypeTraits/IsBaseOf.hpp
+ ../TypeTraits/IsClassType.hpp
+ ../TypeTraits/IsConst.hpp
+ ../TypeTraits/IsConstructible.hpp
+ ../TypeTraits/IsConvertible.hpp
+ ../TypeTraits/IsDestructible.hpp
+ ../TypeTraits/IsErasedOrConvertible.hpp
+ ../TypeTraits/IsFunction.hpp
+ ../TypeTraits/IsImmutable.h
+ ../TypeTraits/IsIntegralType.hpp
+ ../TypeTraits/IsNullPtr.hpp
+ ../TypeTraits/IsPackConvertible.hpp
+ ../TypeTraits/IsPointer.hpp
+ ../TypeTraits/IsReference.hpp
+ ../TypeTraits/IsSame.hpp
+ ../TypeTraits/IsString.hpp
+ ../TypeTraits/IsSwappable.hpp
+ ../TypeTraits/IsUnion.hpp
+ ../TypeTraits/IsVoid.hpp
+ ../TypeTraits/IsVolatile.hpp
+ ../TypeTraits/Iterable.h
+ ../TypeTraits/Limit.hpp
+ ../TypeTraits/RemoveAllExtents.hpp
+ ../TypeTraits/RemoveCV.hpp
+ ../TypeTraits/RemoveConst.hpp
+ ../TypeTraits/RemoveExtent.hpp
+ ../TypeTraits/RemoveReference.hpp
+ ../TypeTraits/StaticallySized.h
+ ../TypeTraits/Type.h
+ ../TypeTraits/TypeList.hpp
+ ../TypeTraits/UsesAlloc.h
+ ../TypeTraits/VariadicPack.hpp
+ ../TypeTraits/__or.hpp
+ ../TypeTraits/__two.hpp
+ /home/phoenixflower/Documents/Development/LandessDevCore/Examples/DependencyInjectionExample.cpp
 CMakeFiles/LandessDevCore.dir/Examples/DeploymentExample.cpp.o
  ../Algorithms/Abs.hpp
  ../Algorithms/AddAll.hpp
- ../Algorithms/CompileTimeControlFlow.hpp
- ../Algorithms/CompileTimeOperations.hpp
  ../Algorithms/DecimalToBinary.h
  ../Algorithms/Exponential.hpp
  ../Algorithms/FastLog10.hpp
@@ -653,6 +806,7 @@ CMakeFiles/LandessDevCore.dir/Examples/DeploymentExample.cpp.o
  ../Algorithms/Invoke.hpp
  ../Algorithms/Move.hpp
  ../Algorithms/Overload.hpp
+ ../Algorithms/Periodic.hpp
  ../Algorithms/Power.hpp
  ../Algorithms/StringAsNumber.h
  ../Algorithms/Swap.hpp
@@ -811,6 +965,8 @@ CMakeFiles/LandessDevCore.dir/Examples/DeploymentExample.cpp.o
  ../TypeTraits/AddPointer.hpp
  ../TypeTraits/AddRValueReference.hpp
  ../TypeTraits/CanBeAnImmutableString.hpp
+ ../TypeTraits/CompileTimeControlFlow.hpp
+ ../TypeTraits/CompileTimeOperations.hpp
  ../TypeTraits/Conditional.hpp
  ../TypeTraits/Decay.hpp
  ../TypeTraits/Declval.hpp
@@ -860,7 +1016,6 @@ CMakeFiles/LandessDevCore.dir/Examples/DeploymentExample.cpp.o
  /home/phoenixflower/Documents/Development/LandessDevCore/Examples/DeploymentExample.cpp
 CMakeFiles/LandessDevCore.dir/Examples/FibonnaciExample.cpp.o
  ../Algorithms/Abs.hpp
- ../Algorithms/CompileTimeControlFlow.hpp
  ../Algorithms/Exponential.hpp
  ../Algorithms/FastLog10.hpp
  ../Algorithms/Floor.hpp
@@ -929,6 +1084,7 @@ CMakeFiles/LandessDevCore.dir/Examples/FibonnaciExample.cpp.o
  ../TypeTraits/AddRValueReference.hpp
  ../TypeTraits/CanBeAnImmutableString.hpp
  ../TypeTraits/CanBeMadeFromStringView.hpp
+ ../TypeTraits/CompileTimeControlFlow.hpp
  ../TypeTraits/Conditional.hpp
  ../TypeTraits/Decay.hpp
  ../TypeTraits/Declval.hpp
@@ -975,8 +1131,7 @@ CMakeFiles/LandessDevCore.dir/Examples/FibonnaciExample.cpp.o
  /home/phoenixflower/Documents/Development/LandessDevCore/Examples/FibonnaciExample.cpp
 CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o
  ../Algorithms/Abs.hpp
- ../Algorithms/CompileTimeControlFlow.hpp
- ../Algorithms/CompileTimeOperations.hpp
+ ../Algorithms/Exponential.hpp
  ../Algorithms/FastLog10.hpp
  ../Algorithms/Floor.hpp
  ../Algorithms/Forward.hpp
@@ -986,6 +1141,20 @@ CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o
  ../Algorithms/Overload.hpp
  ../Algorithms/Swap.hpp
  ../Algorithms/VariantOperations.hpp
+ ../Algorithms/vdt/asin.h
+ ../Algorithms/vdt/atan.h
+ ../Algorithms/vdt/atan2.h
+ ../Algorithms/vdt/cos.h
+ ../Algorithms/vdt/exp.h
+ ../Algorithms/vdt/identity.h
+ ../Algorithms/vdt/inv.h
+ ../Algorithms/vdt/log.h
+ ../Algorithms/vdt/sin.h
+ ../Algorithms/vdt/sincos.h
+ ../Algorithms/vdt/sqrt.h
+ ../Algorithms/vdt/tan.h
+ ../Algorithms/vdt/vdtcore_common.h
+ ../Algorithms/vdt/vdtmath.h
  ../Core/Tuple.hpp
  ../Definitions/Float.hpp
  ../Definitions/Integer.hpp
@@ -1001,6 +1170,7 @@ CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o
  ../Primitives/General/Hash.hpp
  ../Primitives/General/Hexademical.hpp
  ../Primitives/General/Immutable.hpp
+ ../Primitives/General/ImproperFraction.hpp
  ../Primitives/General/Pair.h
  ../Primitives/General/Range.h
  ../Primitives/General/StaticArray.hpp
@@ -1012,6 +1182,8 @@ CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o
  ../TypeTraits/AddLValueReference.hpp
  ../TypeTraits/AddPointer.hpp
  ../TypeTraits/AddRValueReference.hpp
+ ../TypeTraits/CompileTimeControlFlow.hpp
+ ../TypeTraits/CompileTimeOperations.hpp
  ../TypeTraits/Conditional.hpp
  ../TypeTraits/Decay.hpp
  ../TypeTraits/Declval.hpp
@@ -1057,8 +1229,6 @@ CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o
 CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o
  ../Algorithms/Abs.hpp
  ../Algorithms/AddAll.hpp
- ../Algorithms/CompileTimeControlFlow.hpp
- ../Algorithms/CompileTimeOperations.hpp
  ../Algorithms/Exponential.hpp
  ../Algorithms/FastLog10.hpp
  ../Algorithms/Floor.hpp
@@ -1155,7 +1325,6 @@ CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o
  ../MVC/Mouse.hpp
  ../MVC/Renderable.hpp
  ../MVC/RenderableConcept.hpp
- ../MVC/Scheduling.hpp
  ../MVC/SchedulingEvent.hpp
  ../MVC/SchedulingQuittingPredicate.hpp
  ../MVC/TermBoxConsoleApplication.hpp
@@ -1164,10 +1333,13 @@ CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o
  ../MVC/TermBoxRenderingContext.hpp
  ../Memory/AutomaticReferenceCounting.h
  ../Memory/ElementReference.h
+ ../Memory/MemoryResource.hpp
  ../Memory/Optional.h
+ ../Memory/PolyMorphicAllocator.hpp
  ../Memory/shared_ptr.hpp
  ../PBX/Mirta/Date.hpp
  ../PBX/Mirta/Mirta.hpp
+ ../Patterns/Scheduling.hpp
  ../Primitives/General/Context.h
  ../Primitives/General/ContextualVariant.h
  ../Primitives/General/DateTime.h
@@ -1237,6 +1409,8 @@ CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o
  ../TypeTraits/AddRValueReference.hpp
  ../TypeTraits/CanBeAnImmutableString.hpp
  ../TypeTraits/CanBeMadeFromStringView.hpp
+ ../TypeTraits/CompileTimeControlFlow.hpp
+ ../TypeTraits/CompileTimeOperations.hpp
  ../TypeTraits/Conditional.hpp
  ../TypeTraits/Decay.hpp
  ../TypeTraits/Declval.hpp
@@ -1254,6 +1428,7 @@ CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o
  ../TypeTraits/IsConstructible.hpp
  ../TypeTraits/IsConvertible.hpp
  ../TypeTraits/IsDestructible.hpp
+ ../TypeTraits/IsErasedOrConvertible.hpp
  ../TypeTraits/IsFunction.hpp
  ../TypeTraits/IsImmutable.h
  ../TypeTraits/IsIntegralType.hpp
@@ -1280,7 +1455,9 @@ CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o
  ../TypeTraits/StaticallySized.h
  ../TypeTraits/Type.h
  ../TypeTraits/TypeList.hpp
+ ../TypeTraits/UsesAlloc.h
  ../TypeTraits/VariadicPack.hpp
+ ../TypeTraits/__or.hpp
  ../TypeTraits/__two.hpp
  ../Unicode/UTF8.hpp
  ../Unicode/utf8/core.h
@@ -1299,8 +1476,6 @@ CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample2.cpp.o
 CMakeFiles/LandessDevCore.dir/Examples/IOExample.cpp.o
  ../Algorithms/Abs.hpp
  ../Algorithms/Benchmark.hpp
- ../Algorithms/CompileTimeControlFlow.hpp
- ../Algorithms/CompileTimeOperations.hpp
  ../Algorithms/Exponential.hpp
  ../Algorithms/FastLog10.hpp
  ../Algorithms/Floor.hpp
@@ -1310,6 +1485,7 @@ CMakeFiles/LandessDevCore.dir/Examples/IOExample.cpp.o
  ../Algorithms/Invoke.hpp
  ../Algorithms/Move.hpp
  ../Algorithms/Overload.hpp
+ ../Algorithms/Periodic.hpp
  ../Algorithms/Power.hpp
  ../Algorithms/StringAsNumber.h
  ../Algorithms/StringToPrimitive.hpp
@@ -1432,6 +1608,8 @@ CMakeFiles/LandessDevCore.dir/Examples/IOExample.cpp.o
  ../TypeTraits/AddLValueReference.hpp
  ../TypeTraits/AddPointer.hpp
  ../TypeTraits/AddRValueReference.hpp
+ ../TypeTraits/CompileTimeControlFlow.hpp
+ ../TypeTraits/CompileTimeOperations.hpp
  ../TypeTraits/Conditional.hpp
  ../TypeTraits/Decay.hpp
  ../TypeTraits/Declval.hpp
@@ -1485,7 +1663,7 @@ CMakeFiles/LandessDevCore.dir/Examples/MultithreadingExample.cpp.o
  /home/phoenixflower/Documents/Development/LandessDevCore/Examples/MultithreadingExample.cpp
 CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o
  ../Algorithms/Abs.hpp
- ../Algorithms/CompileTimeControlFlow.hpp
+ ../Algorithms/Exponential.hpp
  ../Algorithms/FastLog10.hpp
  ../Algorithms/Floor.hpp
  ../Algorithms/Forward.hpp
@@ -1494,6 +1672,20 @@ CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o
  ../Algorithms/Overload.hpp
  ../Algorithms/Swap.hpp
  ../Algorithms/VariantOperations.hpp
+ ../Algorithms/vdt/asin.h
+ ../Algorithms/vdt/atan.h
+ ../Algorithms/vdt/atan2.h
+ ../Algorithms/vdt/cos.h
+ ../Algorithms/vdt/exp.h
+ ../Algorithms/vdt/identity.h
+ ../Algorithms/vdt/inv.h
+ ../Algorithms/vdt/log.h
+ ../Algorithms/vdt/sin.h
+ ../Algorithms/vdt/sincos.h
+ ../Algorithms/vdt/sqrt.h
+ ../Algorithms/vdt/tan.h
+ ../Algorithms/vdt/vdtcore_common.h
+ ../Algorithms/vdt/vdtmath.h
  ../Core/Tuple.hpp
  ../Definitions/Float.hpp
  ../Definitions/Integer.hpp
@@ -1509,9 +1701,11 @@ CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o
  ../Primitives/General/ContextualVariant.h
  ../Primitives/General/Hash.hpp
  ../Primitives/General/Immutable.hpp
+ ../Primitives/General/ImproperFraction.hpp
  ../Primitives/General/Pair.h
  ../Primitives/General/Range.h
  ../Primitives/General/StaticArray.hpp
+ ../Primitives/General/StringView.hpp
  ../Primitives/General/ctre.hpp
  ../Primitives/General/mapboxrecursive_wrapper.hpp
  ../Primitives/General/mapboxvariant.hpp
@@ -1530,6 +1724,7 @@ CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o
  ../TypeTraits/AddLValueReference.hpp
  ../TypeTraits/AddPointer.hpp
  ../TypeTraits/AddRValueReference.hpp
+ ../TypeTraits/CompileTimeControlFlow.hpp
  ../TypeTraits/Conditional.hpp
  ../TypeTraits/Decay.hpp
  ../TypeTraits/Declval.hpp
@@ -1575,8 +1770,6 @@ CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o
 CMakeFiles/LandessDevCore.dir/Examples/PVEGUIDeploymentExample.cpp.o
  ../Algorithms/Abs.hpp
  ../Algorithms/AddAll.hpp
- ../Algorithms/CompileTimeControlFlow.hpp
- ../Algorithms/CompileTimeOperations.hpp
  ../Algorithms/Exponential.hpp
  ../Algorithms/FastLog10.hpp
  ../Algorithms/Floor.hpp
@@ -1705,6 +1898,8 @@ CMakeFiles/LandessDevCore.dir/Examples/PVEGUIDeploymentExample.cpp.o
  ../TypeTraits/AddRValueReference.hpp
  ../TypeTraits/CanBeAnImmutableString.hpp
  ../TypeTraits/CanBeMadeFromStringView.hpp
+ ../TypeTraits/CompileTimeControlFlow.hpp
+ ../TypeTraits/CompileTimeOperations.hpp
  ../TypeTraits/Conditional.hpp
  ../TypeTraits/Decay.hpp
  ../TypeTraits/Declval.hpp
@@ -1757,8 +1952,6 @@ CMakeFiles/LandessDevCore.dir/Examples/PVEGUIDeploymentExample.cpp.o
  /home/phoenixflower/Documents/Development/LandessDevCore/Examples/PVEGUIDeploymentExample.cpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o
  ../Algorithms/Abs.hpp
- ../Algorithms/CompileTimeControlFlow.hpp
- ../Algorithms/CompileTimeOperations.hpp
  ../Algorithms/Exponential.hpp
  ../Algorithms/FastLog10.hpp
  ../Algorithms/Floor.hpp
@@ -1768,6 +1961,7 @@ CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o
  ../Algorithms/Invoke.hpp
  ../Algorithms/Move.hpp
  ../Algorithms/Overload.hpp
+ ../Algorithms/Periodic.hpp
  ../Algorithms/Power.hpp
  ../Algorithms/StringAsNumber.h
  ../Algorithms/StringToPrimitive.hpp
@@ -1838,6 +2032,8 @@ CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o
  ../TypeTraits/AddLValueReference.hpp
  ../TypeTraits/AddPointer.hpp
  ../TypeTraits/AddRValueReference.hpp
+ ../TypeTraits/CompileTimeControlFlow.hpp
+ ../TypeTraits/CompileTimeOperations.hpp
  ../TypeTraits/Conditional.hpp
  ../TypeTraits/Decay.hpp
  ../TypeTraits/Declval.hpp
@@ -1888,9 +2084,88 @@ CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o
  /home/phoenixflower/Documents/Development/LandessDevCore/Examples/ReflectionDemoTypes.h
  /home/phoenixflower/Documents/Development/LandessDevCore/Examples/ReflectionExample.cpp
  /home/phoenixflower/Documents/Development/LandessDevCore/Examples/ReflectionExample.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o
+ ../Algorithms/Forward.hpp
+ ../Algorithms/GenericResize.h
+ ../Algorithms/Move.hpp
+ ../Algorithms/Swap.hpp
+ ../Async/Atomic/Atomic.h
+ ../Async/Atomic/AtomicCore.h
+ ../Async/Atomic/AtomicPrimitiveImplementation.h
+ ../Async/Atomic/AtomicUnderlyingCore.h
+ ../Async/Atomic/compiler_gcc.h
+ ../Async/Atomic/compiler_msvc.h
+ ../Core/Tuple.hpp
+ ../Definitions/Float.hpp
+ ../Definitions/Integer.hpp
+ ../Definitions/platform_detect.h
+ ../Functor/Lambda.h
+ ../Functor/LightWeightDelegate.h
+ ../Functor/LightWeightDelegateBase.h
+ ../Memory/ElementReference.h
+ ../Memory/MemoryResource.hpp
+ ../Memory/Optional.h
+ ../Memory/PolyMorphicAllocator.hpp
+ ../Memory/shared_ptr.hpp
+ ../Primitives/General/Range.h
+ ../Primitives/General/StaticArray.hpp
+ ../RuntimeReflection/AbstractProperty.hpp
+ ../RuntimeReflection/BaseObject.hpp
+ ../RuntimeReflection/ExampleRuntimeReflection.hpp
+ ../RuntimeReflection/Property.hpp
+ ../RuntimeReflection/PropertySystem.hpp
+ ../RuntimeReflection/PropertyTypes.hpp
+ ../RuntimeReflection/RTTI.hpp
+ ../RuntimeReflection/RTTIClass.hpp
+ ../RuntimeReflection/TypedProperty.hpp
+ ../TypeTraits/AddLValueReference.hpp
+ ../TypeTraits/AddPointer.hpp
+ ../TypeTraits/AddRValueReference.hpp
+ ../TypeTraits/CompileTimeControlFlow.hpp
+ ../TypeTraits/Conditional.hpp
+ ../TypeTraits/Decay.hpp
+ ../TypeTraits/Declval.hpp
+ ../TypeTraits/Detection.hpp
+ ../TypeTraits/EnableIf.hpp
+ ../TypeTraits/IntegerSequence.hpp
+ ../TypeTraits/IntegralConstant.hpp
+ ../TypeTraits/IsArray.hpp
+ ../TypeTraits/IsAssignable.hpp
+ ../TypeTraits/IsBaseOf.hpp
+ ../TypeTraits/IsClassType.hpp
+ ../TypeTraits/IsConst.hpp
+ ../TypeTraits/IsConstructible.hpp
+ ../TypeTraits/IsConvertible.hpp
+ ../TypeTraits/IsDestructible.hpp
+ ../TypeTraits/IsErasedOrConvertible.hpp
+ ../TypeTraits/IsFunction.hpp
+ ../TypeTraits/IsImmutable.h
+ ../TypeTraits/IsIntegralType.hpp
+ ../TypeTraits/IsNullPtr.hpp
+ ../TypeTraits/IsPointer.hpp
+ ../TypeTraits/IsReference.hpp
+ ../TypeTraits/IsSame.hpp
+ ../TypeTraits/IsSwappable.hpp
+ ../TypeTraits/IsUnion.hpp
+ ../TypeTraits/IsVoid.hpp
+ ../TypeTraits/IsVolatile.hpp
+ ../TypeTraits/Iterable.h
+ ../TypeTraits/Limit.hpp
+ ../TypeTraits/RemoveAllExtents.hpp
+ ../TypeTraits/RemoveCV.hpp
+ ../TypeTraits/RemoveConst.hpp
+ ../TypeTraits/RemoveExtent.hpp
+ ../TypeTraits/RemoveReference.hpp
+ ../TypeTraits/Type.h
+ ../TypeTraits/TypeList.hpp
+ ../TypeTraits/UsesAlloc.h
+ ../TypeTraits/VariadicPack.hpp
+ ../TypeTraits/__or.hpp
+ ../TypeTraits/__two.hpp
+ /home/phoenixflower/Documents/Development/LandessDevCore/Examples/RunTimeReflectionExample.cpp
+ /home/phoenixflower/Documents/Development/LandessDevCore/Examples/RunTimeReflectionExample.hpp
 CMakeFiles/LandessDevCore.dir/Examples/StringToNumberExample.cpp.o
  ../Algorithms/Abs.hpp
- ../Algorithms/CompileTimeControlFlow.hpp
  ../Algorithms/Exponential.hpp
  ../Algorithms/FastLog10.hpp
  ../Algorithms/Floor.hpp
@@ -1950,6 +2225,7 @@ CMakeFiles/LandessDevCore.dir/Examples/StringToNumberExample.cpp.o
  ../TypeTraits/AddLValueReference.hpp
  ../TypeTraits/AddPointer.hpp
  ../TypeTraits/AddRValueReference.hpp
+ ../TypeTraits/CompileTimeControlFlow.hpp
  ../TypeTraits/Conditional.hpp
  ../TypeTraits/Decay.hpp
  ../TypeTraits/Declval.hpp
@@ -1996,8 +2272,6 @@ CMakeFiles/LandessDevCore.dir/Examples/TermBoxInputExample.cpp.o
  /home/phoenixflower/Documents/Development/LandessDevCore/Examples/TermBoxInputExample.cpp
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o
  ../Algorithms/Abs.hpp
- ../Algorithms/CompileTimeControlFlow.hpp
- ../Algorithms/CompileTimeOperations.hpp
  ../Algorithms/Exponential.hpp
  ../Algorithms/FastLog10.hpp
  ../Algorithms/Floor.hpp
@@ -2007,6 +2281,7 @@ CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o
  ../Algorithms/Invoke.hpp
  ../Algorithms/Move.hpp
  ../Algorithms/Overload.hpp
+ ../Algorithms/Periodic.hpp
  ../Algorithms/Power.hpp
  ../Algorithms/Sampler.hpp
  ../Algorithms/StringAsNumber.h
@@ -2055,7 +2330,6 @@ CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o
  ../MVC/Renderable.hpp
  ../MVC/RenderableConcept.hpp
  ../MVC/RenderingContext.hpp
- ../MVC/Scheduling.hpp
  ../MVC/SchedulingEvent.hpp
  ../MVC/SchedulingQuittingPredicate.hpp
  ../MVC/TUI/TUIEvent.h
@@ -2068,6 +2342,7 @@ CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o
  ../MVC/TermBoxRenderingContext.hpp
  ../Memory/ElementReference.h
  ../Memory/Optional.h
+ ../Patterns/Scheduling.hpp
  ../Primitives/General/Context.h
  ../Primitives/General/ContextualVariant.h
  ../Primitives/General/Hash.hpp
@@ -2100,6 +2375,8 @@ CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o
  ../TypeTraits/AddLValueReference.hpp
  ../TypeTraits/AddPointer.hpp
  ../TypeTraits/AddRValueReference.hpp
+ ../TypeTraits/CompileTimeControlFlow.hpp
+ ../TypeTraits/CompileTimeOperations.hpp
  ../TypeTraits/Conditional.hpp
  ../TypeTraits/Decay.hpp
  ../TypeTraits/Declval.hpp
@@ -2152,6 +2429,9 @@ CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o
  /home/phoenixflower/Documents/Development/LandessDevCore/Examples/ReflectionDemoTypes.h
  /home/phoenixflower/Documents/Development/LandessDevCore/Examples/TermBoxMenuExample.cpp
  /home/phoenixflower/Documents/Development/LandessDevCore/Examples/TermBoxMenuExample.hpp
+CMakeFiles/LandessDevCore.dir/Examples/UnitsExample.cpp.o
+ /home/phoenixflower/Documents/Development/LandessDevCore/Examples/UnitsExample.cpp
+ /home/phoenixflower/Documents/Development/LandessDevCore/Examples/UnitsExample.hpp
 CMakeFiles/LandessDevCore.dir/Examples/VisitationExample.cpp.o
  ../Algorithms/Forward.hpp
  ../Algorithms/Move.hpp
@@ -2204,8 +2484,6 @@ CMakeFiles/LandessDevCore.dir/Examples/VisitationExample.cpp.o
  /home/phoenixflower/Documents/Development/LandessDevCore/Examples/VisitationExample.cpp
 CMakeFiles/LandessDevCore.dir/Examples/WebDavExample.cpp.o
  ../Algorithms/Abs.hpp
- ../Algorithms/CompileTimeControlFlow.hpp
- ../Algorithms/CompileTimeOperations.hpp
  ../Algorithms/Exponential.hpp
  ../Algorithms/FastLog10.hpp
  ../Algorithms/Floor.hpp
@@ -2216,6 +2494,7 @@ CMakeFiles/LandessDevCore.dir/Examples/WebDavExample.cpp.o
  ../Algorithms/Invoke.hpp
  ../Algorithms/Move.hpp
  ../Algorithms/Overload.hpp
+ ../Algorithms/Periodic.hpp
  ../Algorithms/Power.hpp
  ../Algorithms/StringAsNumber.h
  ../Algorithms/Swap.hpp
@@ -2307,6 +2586,8 @@ CMakeFiles/LandessDevCore.dir/Examples/WebDavExample.cpp.o
  ../TypeTraits/AddPointer.hpp
  ../TypeTraits/AddRValueReference.hpp
  ../TypeTraits/CanBeAnImmutableString.hpp
+ ../TypeTraits/CompileTimeControlFlow.hpp
+ ../TypeTraits/CompileTimeOperations.hpp
  ../TypeTraits/Conditional.hpp
  ../TypeTraits/Decay.hpp
  ../TypeTraits/Declval.hpp
@@ -2355,7 +2636,6 @@ CMakeFiles/LandessDevCore.dir/Examples/WebDavExample.cpp.o
  /home/phoenixflower/Documents/Development/LandessDevCore/Examples/WebDavExample.cpp
 CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.o
  ../Algorithms/Abs.hpp
- ../Algorithms/CompileTimeControlFlow.hpp
  ../Algorithms/Exponential.hpp
  ../Algorithms/FastLog10.hpp
  ../Algorithms/Floor.hpp
@@ -2450,6 +2730,7 @@ CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.o
  ../TypeTraits/AddLValueReference.hpp
  ../TypeTraits/AddPointer.hpp
  ../TypeTraits/AddRValueReference.hpp
+ ../TypeTraits/CompileTimeControlFlow.hpp
  ../TypeTraits/Conditional.hpp
  ../TypeTraits/Decay.hpp
  ../TypeTraits/Declval.hpp
@@ -2596,7 +2877,7 @@ CMakeFiles/LandessDevCore.dir/IO/XML/tinyxml2.cpp.o
  /home/phoenixflower/Documents/Development/LandessDevCore/IO/XML/tinyxml2.h
 CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o
  ../Algorithms/Abs.hpp
- ../Algorithms/CompileTimeControlFlow.hpp
+ ../Algorithms/Exponential.hpp
  ../Algorithms/FastLog10.hpp
  ../Algorithms/Floor.hpp
  ../Algorithms/Forward.hpp
@@ -2607,6 +2888,20 @@ CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o
  ../Algorithms/StringToPrimitive.hpp
  ../Algorithms/Swap.hpp
  ../Algorithms/VariantOperations.hpp
+ ../Algorithms/vdt/asin.h
+ ../Algorithms/vdt/atan.h
+ ../Algorithms/vdt/atan2.h
+ ../Algorithms/vdt/cos.h
+ ../Algorithms/vdt/exp.h
+ ../Algorithms/vdt/identity.h
+ ../Algorithms/vdt/inv.h
+ ../Algorithms/vdt/log.h
+ ../Algorithms/vdt/sin.h
+ ../Algorithms/vdt/sincos.h
+ ../Algorithms/vdt/sqrt.h
+ ../Algorithms/vdt/tan.h
+ ../Algorithms/vdt/vdtcore_common.h
+ ../Algorithms/vdt/vdtmath.h
  ../Core/NullClass.hpp
  ../Core/RequestResponse.hpp
  ../Core/Tuple.hpp
@@ -2643,6 +2938,7 @@ CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o
  ../Primitives/General/ContextualVariant.h
  ../Primitives/General/Hash.hpp
  ../Primitives/General/Immutable.hpp
+ ../Primitives/General/ImproperFraction.hpp
  ../Primitives/General/Pair.h
  ../Primitives/General/Range.h
  ../Primitives/General/StaticArray.hpp
@@ -2659,6 +2955,7 @@ CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o
  ../TypeTraits/AddLValueReference.hpp
  ../TypeTraits/AddPointer.hpp
  ../TypeTraits/AddRValueReference.hpp
+ ../TypeTraits/CompileTimeControlFlow.hpp
  ../TypeTraits/Conditional.hpp
  ../TypeTraits/Decay.hpp
  ../TypeTraits/Declval.hpp
@@ -2706,8 +3003,6 @@ CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o
  /home/phoenixflower/Documents/Development/LandessDevCore/IO/etcd/etcdcpp.h
 CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o
  ../Algorithms/Abs.hpp
- ../Algorithms/CompileTimeControlFlow.hpp
- ../Algorithms/CompileTimeOperations.hpp
  ../Algorithms/Exponential.hpp
  ../Algorithms/FastLog10.hpp
  ../Algorithms/Floor.hpp
@@ -2717,6 +3012,7 @@ CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o
  ../Algorithms/Invoke.hpp
  ../Algorithms/Move.hpp
  ../Algorithms/Overload.hpp
+ ../Algorithms/Periodic.hpp
  ../Algorithms/Power.hpp
  ../Algorithms/Sampler.hpp
  ../Algorithms/StringAsNumber.h
@@ -2782,6 +3078,8 @@ CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o
  ../TypeTraits/AddLValueReference.hpp
  ../TypeTraits/AddPointer.hpp
  ../TypeTraits/AddRValueReference.hpp
+ ../TypeTraits/CompileTimeControlFlow.hpp
+ ../TypeTraits/CompileTimeOperations.hpp
  ../TypeTraits/Conditional.hpp
  ../TypeTraits/Decay.hpp
  ../TypeTraits/Declval.hpp
@@ -2893,7 +3191,6 @@ CMakeFiles/LandessDevCore.dir/Memory/FreeListAllocator.cpp.o
  /home/phoenixflower/Documents/Development/LandessDevCore/Memory/FreeListAllocator.cpp
 CMakeFiles/LandessDevCore.dir/Memory/LinearAllocator.cpp.o
  ../Algorithms/Abs.hpp
- ../Algorithms/CompileTimeControlFlow.hpp
  ../Algorithms/Exponential.hpp
  ../Algorithms/Floor.hpp
  ../Algorithms/Forward.hpp
@@ -2927,6 +3224,7 @@ CMakeFiles/LandessDevCore.dir/Memory/LinearAllocator.cpp.o
  ../TypeTraits/AddLValueReference.hpp
  ../TypeTraits/AddPointer.hpp
  ../TypeTraits/AddRValueReference.hpp
+ ../TypeTraits/CompileTimeControlFlow.hpp
  ../TypeTraits/Conditional.hpp
  ../TypeTraits/Decay.hpp
  ../TypeTraits/Declval.hpp
@@ -2968,7 +3266,6 @@ CMakeFiles/LandessDevCore.dir/Memory/LinearAllocator.cpp.o
  /home/phoenixflower/Documents/Development/LandessDevCore/Memory/LinearAllocator.h
  /home/phoenixflower/Documents/Development/LandessDevCore/Memory/MemoryResource.hpp
 CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o
- ../Algorithms/CompileTimeControlFlow.hpp
  ../Algorithms/Forward.hpp
  ../Algorithms/GenericResize.h
  ../Algorithms/Move.hpp
@@ -2985,6 +3282,7 @@ CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o
  ../TypeTraits/AddLValueReference.hpp
  ../TypeTraits/AddPointer.hpp
  ../TypeTraits/AddRValueReference.hpp
+ ../TypeTraits/CompileTimeControlFlow.hpp
  ../TypeTraits/Conditional.hpp
  ../TypeTraits/Decay.hpp
  ../TypeTraits/Declval.hpp
@@ -3027,7 +3325,6 @@ CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o
  /home/phoenixflower/Documents/Development/LandessDevCore/Memory/PoolAllocator.h
 CMakeFiles/LandessDevCore.dir/Memory/StackAllocator.cpp.o
  ../Algorithms/Abs.hpp
- ../Algorithms/CompileTimeControlFlow.hpp
  ../Algorithms/Exponential.hpp
  ../Algorithms/Floor.hpp
  ../Algorithms/Forward.hpp
@@ -3061,6 +3358,7 @@ CMakeFiles/LandessDevCore.dir/Memory/StackAllocator.cpp.o
  ../TypeTraits/AddLValueReference.hpp
  ../TypeTraits/AddPointer.hpp
  ../TypeTraits/AddRValueReference.hpp
+ ../TypeTraits/CompileTimeControlFlow.hpp
  ../TypeTraits/Conditional.hpp
  ../TypeTraits/Decay.hpp
  ../TypeTraits/Declval.hpp
@@ -3204,6 +3502,105 @@ CMakeFiles/LandessDevCore.dir/REST/CPR/util.cpp.o
  /home/phoenixflower/Documents/Development/LandessDevCore/REST/CPR/curlholder.h
  /home/phoenixflower/Documents/Development/LandessDevCore/REST/CPR/util.cpp
  /home/phoenixflower/Documents/Development/LandessDevCore/REST/CPR/util.h
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/AbstractProperty.cpp.o
+ /home/phoenixflower/Documents/Development/LandessDevCore/RuntimeReflection/AbstractProperty.cpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/BaseObject.cpp.o
+ /home/phoenixflower/Documents/Development/LandessDevCore/RuntimeReflection/BaseObject.cpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o
+ ../Algorithms/Forward.hpp
+ ../Algorithms/GenericResize.h
+ ../Algorithms/Move.hpp
+ ../Algorithms/Swap.hpp
+ ../Async/Atomic/Atomic.h
+ ../Async/Atomic/AtomicCore.h
+ ../Async/Atomic/AtomicPrimitiveImplementation.h
+ ../Async/Atomic/AtomicUnderlyingCore.h
+ ../Async/Atomic/compiler_gcc.h
+ ../Async/Atomic/compiler_msvc.h
+ ../Core/Tuple.hpp
+ ../Definitions/Float.hpp
+ ../Definitions/Integer.hpp
+ ../Definitions/platform_detect.h
+ ../Functor/Lambda.h
+ ../Functor/LightWeightDelegate.h
+ ../Functor/LightWeightDelegateBase.h
+ ../Memory/ElementReference.h
+ ../Memory/MemoryResource.hpp
+ ../Memory/Optional.h
+ ../Memory/PolyMorphicAllocator.hpp
+ ../Memory/shared_ptr.hpp
+ ../Primitives/General/Range.h
+ ../Primitives/General/StaticArray.hpp
+ ../TypeTraits/AddLValueReference.hpp
+ ../TypeTraits/AddPointer.hpp
+ ../TypeTraits/AddRValueReference.hpp
+ ../TypeTraits/CompileTimeControlFlow.hpp
+ ../TypeTraits/Conditional.hpp
+ ../TypeTraits/Decay.hpp
+ ../TypeTraits/Declval.hpp
+ ../TypeTraits/Detection.hpp
+ ../TypeTraits/EnableIf.hpp
+ ../TypeTraits/IntegerSequence.hpp
+ ../TypeTraits/IntegralConstant.hpp
+ ../TypeTraits/IsArray.hpp
+ ../TypeTraits/IsAssignable.hpp
+ ../TypeTraits/IsBaseOf.hpp
+ ../TypeTraits/IsClassType.hpp
+ ../TypeTraits/IsConst.hpp
+ ../TypeTraits/IsConstructible.hpp
+ ../TypeTraits/IsConvertible.hpp
+ ../TypeTraits/IsDestructible.hpp
+ ../TypeTraits/IsErasedOrConvertible.hpp
+ ../TypeTraits/IsFunction.hpp
+ ../TypeTraits/IsImmutable.h
+ ../TypeTraits/IsIntegralType.hpp
+ ../TypeTraits/IsNullPtr.hpp
+ ../TypeTraits/IsPointer.hpp
+ ../TypeTraits/IsReference.hpp
+ ../TypeTraits/IsSame.hpp
+ ../TypeTraits/IsSwappable.hpp
+ ../TypeTraits/IsUnion.hpp
+ ../TypeTraits/IsVoid.hpp
+ ../TypeTraits/IsVolatile.hpp
+ ../TypeTraits/Iterable.h
+ ../TypeTraits/Limit.hpp
+ ../TypeTraits/RemoveAllExtents.hpp
+ ../TypeTraits/RemoveCV.hpp
+ ../TypeTraits/RemoveConst.hpp
+ ../TypeTraits/RemoveExtent.hpp
+ ../TypeTraits/RemoveReference.hpp
+ ../TypeTraits/Type.h
+ ../TypeTraits/TypeList.hpp
+ ../TypeTraits/UsesAlloc.h
+ ../TypeTraits/VariadicPack.hpp
+ ../TypeTraits/__or.hpp
+ ../TypeTraits/__two.hpp
+ /home/phoenixflower/Documents/Development/LandessDevCore/RuntimeReflection/AbstractProperty.hpp
+ /home/phoenixflower/Documents/Development/LandessDevCore/RuntimeReflection/BaseObject.hpp
+ /home/phoenixflower/Documents/Development/LandessDevCore/RuntimeReflection/ExampleRuntimeReflection.cpp
+ /home/phoenixflower/Documents/Development/LandessDevCore/RuntimeReflection/ExampleRuntimeReflection.hpp
+ /home/phoenixflower/Documents/Development/LandessDevCore/RuntimeReflection/Property.hpp
+ /home/phoenixflower/Documents/Development/LandessDevCore/RuntimeReflection/PropertySystem.hpp
+ /home/phoenixflower/Documents/Development/LandessDevCore/RuntimeReflection/PropertyTypes.hpp
+ /home/phoenixflower/Documents/Development/LandessDevCore/RuntimeReflection/RTTI.hpp
+ /home/phoenixflower/Documents/Development/LandessDevCore/RuntimeReflection/RTTIClass.hpp
+ /home/phoenixflower/Documents/Development/LandessDevCore/RuntimeReflection/TypedProperty.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/Property.cpp.o
+ /home/phoenixflower/Documents/Development/LandessDevCore/RuntimeReflection/Property.cpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/PropertySystem.cpp.o
+ /home/phoenixflower/Documents/Development/LandessDevCore/RuntimeReflection/AbstractProperty.hpp
+ /home/phoenixflower/Documents/Development/LandessDevCore/RuntimeReflection/PropertySystem.cpp
+ /home/phoenixflower/Documents/Development/LandessDevCore/RuntimeReflection/PropertySystem.hpp
+ /home/phoenixflower/Documents/Development/LandessDevCore/RuntimeReflection/PropertyTypes.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/RTTI.cpp.o
+ /home/phoenixflower/Documents/Development/LandessDevCore/RuntimeReflection/AbstractProperty.hpp
+ /home/phoenixflower/Documents/Development/LandessDevCore/RuntimeReflection/PropertyTypes.hpp
+ /home/phoenixflower/Documents/Development/LandessDevCore/RuntimeReflection/RTTI.cpp
+ /home/phoenixflower/Documents/Development/LandessDevCore/RuntimeReflection/RTTI.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/RTTIClass.cpp.o
+ /home/phoenixflower/Documents/Development/LandessDevCore/RuntimeReflection/RTTIClass.cpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/TypedProperty.cpp.o
+ /home/phoenixflower/Documents/Development/LandessDevCore/RuntimeReflection/TypedProperty.cpp
 CMakeFiles/LandessDevCore.dir/TUI/ascii_art.cpp.o
  /home/phoenixflower/Documents/Development/LandessDevCore/TUI/ascii_art.cpp
  /home/phoenixflower/Documents/Development/LandessDevCore/TUI/ascii_art.h
@@ -3213,8 +3610,6 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  ../Algorithms/Abs.hpp
  ../Algorithms/AddAll.hpp
  ../Algorithms/Benchmark.hpp
- ../Algorithms/CompileTimeControlFlow.hpp
- ../Algorithms/CompileTimeOperations.hpp
  ../Algorithms/DecimalToBinary.h
  ../Algorithms/Exponential.hpp
  ../Algorithms/FastLog10.hpp
@@ -3225,6 +3620,7 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  ../Algorithms/Invoke.hpp
  ../Algorithms/Move.hpp
  ../Algorithms/Overload.hpp
+ ../Algorithms/Periodic.hpp
  ../Algorithms/Power.hpp
  ../Algorithms/Sampler.hpp
  ../Algorithms/StringAsNumber.h
@@ -3265,6 +3661,7 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  ../Definitions/Float.hpp
  ../Definitions/Integer.hpp
  ../Definitions/PDPUnits.hpp
+ ../Definitions/TimeExtension.hpp
  ../Definitions/platform_detect.h
  ../Exceptions/Exception.h
  ../Exceptions/OutOfThreadsException.h
@@ -3287,19 +3684,22 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  ../IO/RedisBackend.h
  ../IO/UnqliteDatabaseBackend.h
  ../IO/unqlite.h
+ ../MVC/Cusor.h
  ../MVC/Mouse.hpp
  ../MVC/Renderable.hpp
  ../MVC/RenderableConcept.hpp
  ../MVC/RenderingContext.hpp
- ../MVC/Scheduling.hpp
  ../MVC/SchedulingEvent.hpp
  ../MVC/SchedulingQuittingPredicate.hpp
- ../MVC/TermBoxConsoleApplication.hpp
- ../MVC/TermBoxCursorNavigator.hpp
+ ../MVC/ScopedRenderContextState.hpp
  ../MVC/TermBoxEnumerations.hpp
  ../MVC/TermBoxRenderingContext.hpp
+ ../MVC/TermboxTextLabel.hpp
  ../Memory/AutomaticReferenceCounting.h
  ../Memory/ElementReference.h
+ ../Memory/MemoryResource.hpp
+ ../Memory/PolyMorphicAllocator.hpp
+ ../Memory/UniquePointer.h
  ../Memory/shared_ptr.hpp
  ../Network/Gateway.hpp
  ../Network/Gateway6.hpp
@@ -3368,6 +3768,8 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  ../TypeTraits/AddRValueReference.hpp
  ../TypeTraits/CanBeAnImmutableString.hpp
  ../TypeTraits/CanBeMadeFromStringView.hpp
+ ../TypeTraits/CompileTimeControlFlow.hpp
+ ../TypeTraits/CompileTimeOperations.hpp
  ../TypeTraits/Conditional.hpp
  ../TypeTraits/Decay.hpp
  ../TypeTraits/Declval.hpp
@@ -3385,6 +3787,7 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  ../TypeTraits/IsConstructible.hpp
  ../TypeTraits/IsConvertible.hpp
  ../TypeTraits/IsDestructible.hpp
+ ../TypeTraits/IsErasedOrConvertible.hpp
  ../TypeTraits/IsFunction.hpp
  ../TypeTraits/IsImmutable.h
  ../TypeTraits/IsIntegralType.hpp
@@ -3413,19 +3816,25 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  ../TypeTraits/StaticallySized.h
  ../TypeTraits/Type.h
  ../TypeTraits/TypeList.hpp
+ ../TypeTraits/UsesAlloc.h
  ../TypeTraits/VariadicPack.hpp
  ../TypeTraits/VariantTypes.h
+ ../TypeTraits/__or.hpp
  ../TypeTraits/__two.hpp
  ../Unicode/IsUTF8Compliant.hpp
  ../Unicode/UTF8.hpp
  ../Unicode/utf8/core.h
+ /home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/Base64Encoding.h
  /home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/CTREImmutableExtension.hpp
+ /home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/Floor.hpp
  /home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/FromJSON.hpp
+ /home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/GetDecimalPlaces.hpp
  /home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/Overload.hpp
  /home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/TDD.hpp
  /home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/ToJSON.hpp
  /home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/VariantOperations.hpp
  /home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/Visitation.hpp
+ /home/phoenixflower/Documents/Development/LandessDevCore/Async/AsyncRingBuffer.hpp
  /home/phoenixflower/Documents/Development/LandessDevCore/Async/Atomic/Atomic.h
  /home/phoenixflower/Documents/Development/LandessDevCore/Async/Atomic/AtomicCore.h
  /home/phoenixflower/Documents/Development/LandessDevCore/Async/Atomic/AtomicPrimitiveImplementation.h
@@ -3437,8 +3846,10 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  /home/phoenixflower/Documents/Development/LandessDevCore/Async/GrandCentralDispatch.h
  /home/phoenixflower/Documents/Development/LandessDevCore/Async/Just.hpp
  /home/phoenixflower/Documents/Development/LandessDevCore/Async/Let.hpp
+ /home/phoenixflower/Documents/Development/LandessDevCore/Async/RingBuffer.h
  /home/phoenixflower/Documents/Development/LandessDevCore/Async/ScheduleAfter.hpp
  /home/phoenixflower/Documents/Development/LandessDevCore/Async/Scheduler.hpp
+ /home/phoenixflower/Documents/Development/LandessDevCore/Async/SharedState.hpp
  /home/phoenixflower/Documents/Development/LandessDevCore/Async/SyncWait.hpp
  /home/phoenixflower/Documents/Development/LandessDevCore/Async/Then.hpp
  /home/phoenixflower/Documents/Development/LandessDevCore/Async/Thread.h
@@ -3448,9 +3859,9 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  /home/phoenixflower/Documents/Development/LandessDevCore/Async/WhenOnlyPredicate.hpp
  /home/phoenixflower/Documents/Development/LandessDevCore/Async/WhenPredicate.hpp
  /home/phoenixflower/Documents/Development/LandessDevCore/Async/concurrentqueue.h
+ /home/phoenixflower/Documents/Development/LandessDevCore/Core/CompileTimeMap.hpp
  /home/phoenixflower/Documents/Development/LandessDevCore/Core/RequestResponse.hpp
- /home/phoenixflower/Documents/Development/LandessDevCore/Definitions/PDPUnits.hpp
- /home/phoenixflower/Documents/Development/LandessDevCore/Definitions/TimeExtension.hpp
+ /home/phoenixflower/Documents/Development/LandessDevCore/Examples/DependencyInjectionExample.hpp
  /home/phoenixflower/Documents/Development/LandessDevCore/Examples/IMGUIExample1.h
  /home/phoenixflower/Documents/Development/LandessDevCore/Examples/IMGUIExample2.h
  /home/phoenixflower/Documents/Development/LandessDevCore/Examples/ReflectionDemoTypes.h
@@ -3466,6 +3877,9 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  /home/phoenixflower/Documents/Development/LandessDevCore/IaaS/ClusteringMetaData.hpp
  /home/phoenixflower/Documents/Development/LandessDevCore/IaaS/DockerManifest.hpp
  /home/phoenixflower/Documents/Development/LandessDevCore/IaaS/HashiVault/HashiVault.hpp
+ /home/phoenixflower/Documents/Development/LandessDevCore/MVC/SchedulingEvent.hpp
+ /home/phoenixflower/Documents/Development/LandessDevCore/MVC/TermBoxConsoleApplication.hpp
+ /home/phoenixflower/Documents/Development/LandessDevCore/MVC/TermBoxCursorNavigator.hpp
  /home/phoenixflower/Documents/Development/LandessDevCore/Memory/Optional.h
  /home/phoenixflower/Documents/Development/LandessDevCore/Network/IPV4Address.hpp
  /home/phoenixflower/Documents/Development/LandessDevCore/Network/MacAddress.hpp
@@ -3481,6 +3895,12 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  /home/phoenixflower/Documents/Development/LandessDevCore/Network/SSH/SSHUserName.hpp
  /home/phoenixflower/Documents/Development/LandessDevCore/Network/Subnet.hpp
  /home/phoenixflower/Documents/Development/LandessDevCore/Network/ipv6.h
+ /home/phoenixflower/Documents/Development/LandessDevCore/Patterns/DependencyInjection.hpp
+ /home/phoenixflower/Documents/Development/LandessDevCore/Patterns/LazyLambda.hpp
+ /home/phoenixflower/Documents/Development/LandessDevCore/Patterns/Observer.hpp
+ /home/phoenixflower/Documents/Development/LandessDevCore/Patterns/Scheduling.hpp
+ /home/phoenixflower/Documents/Development/LandessDevCore/Patterns/ServiceLocator.hpp
+ /home/phoenixflower/Documents/Development/LandessDevCore/Primitives/General/CircularQueue.hpp
  /home/phoenixflower/Documents/Development/LandessDevCore/Primitives/General/Ratio.hpp
  /home/phoenixflower/Documents/Development/LandessDevCore/Primitives/General/StringView.hpp
  /home/phoenixflower/Documents/Development/LandessDevCore/Primitives/General/Unit.hpp
@@ -3542,6 +3962,7 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  /home/phoenixflower/Documents/Development/LandessDevCore/REST/Proxmox/VirtualMachine.hpp
  /home/phoenixflower/Documents/Development/LandessDevCore/Reflection/NamedTuple.h
  /home/phoenixflower/Documents/Development/LandessDevCore/Reflection/Reflection.hpp
+ /home/phoenixflower/Documents/Development/LandessDevCore/Services/Logging.hpp
  /home/phoenixflower/Documents/Development/LandessDevCore/SumTypes/MPark/config.hpp
  /home/phoenixflower/Documents/Development/LandessDevCore/SumTypes/MPark/in_place.hpp
  /home/phoenixflower/Documents/Development/LandessDevCore/SumTypes/MPark/lib.hpp

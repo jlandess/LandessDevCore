@@ -8,8 +8,94 @@
 #include "concurrentqueue.h"
 #include "Memory/shared_ptr.hpp"
 #include "TypeTraits/Iterable.h"
+#include "TypeTraits/IsReference.hpp"
+#include "Memory/ElementReference.h"
 namespace LD
 {
+    namespace Detail
+    {
+        template<typename X, typename Y>
+        using DefferedExtraction = decltype(LD::Declval<X&>() =  LD::Declval<decltype(LD::Declval<decltype(LD::ExtractionIterator{LD::Declval<Y&>()})>())>());
+    }
+    template<typename QueueType, class = void>
+    class BasicChannel;
+    template<typename QueueType>
+    class BasicChannel<QueueType,LD::Enable_If_T<LD::Require<
+            LD::CT::IsReference(LD::Type<QueueType>{})
+            >>>
+    {
+    private:
+        LD::ElementReference<LD::Detail::Decay_T<QueueType>> mQueue;
+    public:
+        BasicChannel(LD::Detail::Decay_T<QueueType> * queue) noexcept:mQueue{queue} {}
+
+        BasicChannel(LD::Detail::Decay_T<QueueType> & queue) noexcept:mQueue{queue}{}
+
+
+
+        template<typename U, typename QType = QueueType>
+        LD::Enable_If_T<LD::Require<true>,BasicChannel &>  operator << (U && object) noexcept
+        {
+            LD::BackInserter backInserter{*mQueue};
+            backInserter = LD::Forward<U>(object);
+            return (*this);
+        }
+
+
+
+        template<typename U, typename QType = QueueType>
+        LD::Enable_If_T<LD::Require<LD::Exists<LD::Detail::DefferedExtraction,U,QType>>,BasicChannel &> operator >> (U & object) noexcept
+        {
+            LD::ExtractionIterator extractionIterator{*mQueue};
+            object = extractionIterator;
+            return (*this);
+        }
+        template<typename U, typename QType = QueueType>
+        LD::Enable_If_T<LD::Require<LD::Exists<LD::Detail::DefferedExtraction,U,QType>>,BasicChannel &> operator >> (LD::Optional<U> & object) noexcept
+        {
+            LD::ExtractionIterator extractionIterator{*mQueue};
+            object = extractionIterator;
+            return (*this);
+        }
+    };
+
+
+    template<typename QueueType>
+    class BasicChannel<QueueType,LD::Enable_If_T<LD::Require<
+            LD::Negate<LD::CT::IsReference(LD::Type<QueueType>{})>
+    >>>
+    {
+    private:
+        LD::SharedPointer<QueueType> mQueue;
+    public:
+        BasicChannel() noexcept:mQueue{LD::MakeShared<QueueType>()}
+        {
+
+        }
+        BasicChannel(LD::Detail::Decay_T<QueueType>  queue, LD::Mem::MemoryResource * resource = LD::Mem::GetNewDeleteResource()) noexcept:mQueue{LD::AllocateShared(resource,queue)}
+        {
+
+        }
+
+
+    };
+
+    template<typename T> BasicChannel(T &) -> BasicChannel<T&>;
+    template<typename T> BasicChannel(T *) -> BasicChannel<T&>;
+
+
+    /*
+    template<typename QueueType>
+    class BasicChannel<QueueType,LD::Enable_If_T<LD::Require<
+            !LD::CT::IsReference(LD::Type<QueueType>{})
+    >>>
+    {
+
+    private:
+        LD::SharedPointer<QueueType> mQueue;
+    public:
+    };
+     */
     template<typename T>
     class Channel
     {
@@ -80,11 +166,16 @@ namespace LD
     class BackInserter<LD::Channel<T>>
     {
     private:
-        LD::Channel<T> * mChannel;
+        LD::ElementReference<LD::Channel<T>>  mChannel;
     public:
 
         BackInserter() noexcept:mChannel{nullptr}{}
         BackInserter(LD::Channel<T> * channel) noexcept:mChannel{channel}
+        {
+
+        }
+
+        BackInserter(LD::Channel<T> & channel) noexcept:mChannel{LD::ElementReference<LD::Channel<T>>{channel}}
         {
 
         }
@@ -98,9 +189,10 @@ namespace LD
         }
 
 
-        BackInserter & operator = (const T & object)  noexcept
+        template<typename U, typename V = T, typename = LD::Enable_If_T<LD::Require<LD::IsConstructible<V,U>::value>>>
+        BackInserter & operator = (const U & object)  noexcept
         {
-            (*this->mChannel) << object;
+            (*this->mChannel) << T{object};
             return (*this);
         }
     };

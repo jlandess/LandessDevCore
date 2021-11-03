@@ -7,7 +7,7 @@
 #include "TypeTraits/Detection.hpp"
 #include "Primitives/General/Context.h"
 #include "Graphics/DearImGUI/imgui.h"
-#include "Algorithms/CompileTimeControlFlow.hpp"
+#include "TypeTraits/CompileTimeControlFlow.hpp"
 #include "RenderingContext.hpp"
 #include "Primitives/General/Vec2.hpp"
 namespace LD

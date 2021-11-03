@@ -30,7 +30,7 @@
 
 
 #pragma once
-
+#include "TypeTraits/Iterable.h"
 #if defined(__GNUC__)
 // Disable -Wconversion warnings (spuriously triggered when Traits::size_t and
 // Traits::index_t are set to < 32 bits, causing integer promotion, causing warnings
@@ -3622,4 +3622,33 @@ inline void swap(typename ConcurrentQueue<T, Traits>::ImplicitProducerKVP& a, ty
 
 #if defined(__GNUC__)
 #pragma GCC diagnostic pop
+
+
+
+namespace LD
+{
+	    template<typename T, typename Traits>
+	    class BackInserter<moodycamel::ConcurrentQueue<T,Traits>>
+        {
+        private:
+            LD::ElementReference<moodycamel::ConcurrentQueue<T,Traits>> mQueue;
+        public:
+
+
+            BackInserter() noexcept:mQueue{nullptr} {}
+
+            BackInserter(LD::ElementReference<moodycamel::ConcurrentQueue<T,Traits>> buffer) noexcept:mQueue{buffer}
+            {
+
+            }
+            template<typename U, typename V = T>
+            LD::Enable_If_T<LD::Require<LD::IsConstructible<V,U>::value>,BackInserter> & operator = (const U && value) noexcept
+            {
+                //while(this->mBuffer->TryPushBack(T{LD::Forward<U>(value)}) == false){};
+                //while(this->mBuffer->TryPushBack(T{value}) == true);
+                this->mQueue->enqueue(T{value});
+                return (*this);
+            }
+        };
+}
 #endif

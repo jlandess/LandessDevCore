@@ -155,6 +155,8 @@ CMakeFiles/LandessDevCore.dir/TermBox/termbox.c.o: ../TermBox/termbox.h
 CMakeFiles/LandessDevCore.dir/TermBox/utf8.c.o: ../TermBox/termbox.h
 CMakeFiles/LandessDevCore.dir/TermBox/utf8.c.o: ../TermBox/utf8.c
 
+CMakeFiles/LandessDevCore.dir/Algorithms/DynamicProgramming.cpp.o: ../Algorithms/DynamicProgramming.cpp
+
 CMakeFiles/LandessDevCore.dir/Algorithms/vdt/vdtmath.cpp.o: ../Algorithms/vdt/asin.h
 CMakeFiles/LandessDevCore.dir/Algorithms/vdt/vdtmath.cpp.o: ../Algorithms/vdt/atan.h
 CMakeFiles/LandessDevCore.dir/Algorithms/vdt/vdtmath.cpp.o: ../Algorithms/vdt/atan2.h
@@ -173,6 +175,7 @@ CMakeFiles/LandessDevCore.dir/Algorithms/vdt/vdtmath.cpp.o: ../Algorithms/vdt/vd
 CMakeFiles/LandessDevCore.dir/Algorithms/vdt/vdtmath.cpp.o: ../Algorithms/vdt/vdtmath.h
 
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../Algorithms/Forward.hpp
+CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../Algorithms/GenericResize.h
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../Algorithms/Invoke.hpp
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../Algorithms/Move.hpp
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../Algorithms/Swap.hpp
@@ -191,6 +194,7 @@ CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../Async/ThreadAffinity.h
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../Async/concurrentqueue.h
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../Core/NullClass.hpp
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../Core/Tuple.hpp
+CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../Definitions/Float.hpp
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../Definitions/Integer.hpp
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../Definitions/platform_detect.h
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../Exceptions/Exception.h
@@ -198,14 +202,19 @@ CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../Exceptions/OutOfThreadsExce
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../Exceptions/OverFlowException.h
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../Functor/Delegate.h
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../Functor/FastDelegate.h
+CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../Functor/Lambda.h
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../Functor/LightWeightDelegate.h
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../Functor/LightWeightDelegateBase.h
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../Memory/AutomaticReferenceCounting.h
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../Memory/ElementReference.h
+CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../Memory/MemoryResource.hpp
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../Memory/Optional.h
+CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../Memory/PolyMorphicAllocator.hpp
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../Memory/shared_ptr.hpp
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../Primitives/General/PackagedTask.h
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../Primitives/General/Pair.h
+CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../Primitives/General/Range.h
+CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../Primitives/General/StaticArray.hpp
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../Primitives/General/mapboxoptional.hpp
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../Primitives/General/mapboxrecursive_wrapper.hpp
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../Primitives/General/mapboxvariant.hpp
@@ -216,6 +225,7 @@ CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../SumTypes/MPark/variant.hpp
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/AddLValueReference.hpp
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/AddPointer.hpp
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/AddRValueReference.hpp
+CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/CompileTimeControlFlow.hpp
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/Conditional.hpp
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/Decay.hpp
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/Declval.hpp
@@ -232,7 +242,9 @@ CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/IsConst.hpp
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/IsConstructible.hpp
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/IsConvertible.hpp
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/IsDestructible.hpp
+CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/IsErasedOrConvertible.hpp
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/IsFunction.hpp
+CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/IsImmutable.h
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/IsIntegralType.hpp
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/IsKindOf.hpp
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/IsNullPtr.hpp
@@ -243,6 +255,8 @@ CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/IsSwappable.hpp
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/IsUnion.hpp
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/IsVoid.hpp
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/IsVolatile.hpp
+CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/Iterable.h
+CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/Limit.hpp
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/RemoveAllExtents.hpp
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/RemoveCV.hpp
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/RemoveConst.hpp
@@ -250,14 +264,14 @@ CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/RemoveExtent.hpp
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/RemoveReference.hpp
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/Type.h
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/TypeList.hpp
+CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/UsesAlloc.h
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/VariadicPack.hpp
+CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/__or.hpp
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../TypeTraits/__two.hpp
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../Async/Thread.cpp
 CMakeFiles/LandessDevCore.dir/Async/Thread.cpp.o: ../Async/Thread.h
 
 CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../Algorithms/Abs.hpp
-CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../Algorithms/CompileTimeControlFlow.hpp
-CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../Algorithms/CompileTimeOperations.hpp
 CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../Algorithms/Exponential.hpp
 CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../Algorithms/FastLog10.hpp
 CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../Algorithms/Floor.hpp
@@ -267,6 +281,7 @@ CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../Algorithms/GenericResize.h
 CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../Algorithms/Invoke.hpp
 CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../Algorithms/Move.hpp
 CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../Algorithms/Overload.hpp
+CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../Algorithms/Periodic.hpp
 CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../Algorithms/Power.hpp
 CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../Algorithms/StringAsNumber.h
 CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../Algorithms/Swap.hpp
@@ -319,6 +334,8 @@ CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../SumTypes/MPark/variant.hpp
 CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../TypeTraits/AddLValueReference.hpp
 CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../TypeTraits/AddPointer.hpp
 CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../TypeTraits/AddRValueReference.hpp
+CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../TypeTraits/CompileTimeControlFlow.hpp
+CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../TypeTraits/CompileTimeOperations.hpp
 CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../TypeTraits/Conditional.hpp
 CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../TypeTraits/Decay.hpp
 CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../TypeTraits/Declval.hpp
@@ -367,9 +384,11 @@ CMakeFiles/LandessDevCore.dir/Chrono/Timer.cpp.o: ../Chrono/Timer.h
 CMakeFiles/LandessDevCore.dir/Examples/AlgorithmicJSONTest.cpp.o: ../Examples/AlgorithmicJSONTest.cpp
 CMakeFiles/LandessDevCore.dir/Examples/AlgorithmicJSONTest.cpp.o: ../Examples/AlgorithmicJSONTest.h
 
+CMakeFiles/LandessDevCore.dir/Examples/ApplicationLoopExample.cpp.o: ../Examples/ApplicationLoopExample.cpp
+CMakeFiles/LandessDevCore.dir/Examples/ApplicationLoopExample.cpp.o: ../Examples/ApplicationLoopExample.h
+
 CMakeFiles/LandessDevCore.dir/Examples/CalculusExample.cpp.o: ../Algorithms/Abs.hpp
 CMakeFiles/LandessDevCore.dir/Examples/CalculusExample.cpp.o: ../Algorithms/Calculus.h
-CMakeFiles/LandessDevCore.dir/Examples/CalculusExample.cpp.o: ../Algorithms/CompileTimeControlFlow.hpp
 CMakeFiles/LandessDevCore.dir/Examples/CalculusExample.cpp.o: ../Algorithms/Exponential.hpp
 CMakeFiles/LandessDevCore.dir/Examples/CalculusExample.cpp.o: ../Algorithms/Floor.hpp
 CMakeFiles/LandessDevCore.dir/Examples/CalculusExample.cpp.o: ../Algorithms/Forward.hpp
@@ -412,6 +431,7 @@ CMakeFiles/LandessDevCore.dir/Examples/CalculusExample.cpp.o: ../Primitives/Gene
 CMakeFiles/LandessDevCore.dir/Examples/CalculusExample.cpp.o: ../TypeTraits/AddLValueReference.hpp
 CMakeFiles/LandessDevCore.dir/Examples/CalculusExample.cpp.o: ../TypeTraits/AddPointer.hpp
 CMakeFiles/LandessDevCore.dir/Examples/CalculusExample.cpp.o: ../TypeTraits/AddRValueReference.hpp
+CMakeFiles/LandessDevCore.dir/Examples/CalculusExample.cpp.o: ../TypeTraits/CompileTimeControlFlow.hpp
 CMakeFiles/LandessDevCore.dir/Examples/CalculusExample.cpp.o: ../TypeTraits/Conditional.hpp
 CMakeFiles/LandessDevCore.dir/Examples/CalculusExample.cpp.o: ../TypeTraits/Decay.hpp
 CMakeFiles/LandessDevCore.dir/Examples/CalculusExample.cpp.o: ../TypeTraits/Declval.hpp
@@ -453,8 +473,6 @@ CMakeFiles/LandessDevCore.dir/Examples/CalculusExample.cpp.o: ../TypeTraits/__tw
 CMakeFiles/LandessDevCore.dir/Examples/CalculusExample.cpp.o: ../Examples/CalculusExample.cpp
 
 CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../Algorithms/Abs.hpp
-CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../Algorithms/CompileTimeControlFlow.hpp
-CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../Algorithms/CompileTimeOperations.hpp
 CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../Algorithms/Exponential.hpp
 CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../Algorithms/FastLog10.hpp
 CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../Algorithms/Floor.hpp
@@ -464,6 +482,7 @@ CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../Al
 CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../Algorithms/Invoke.hpp
 CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../Algorithms/Move.hpp
 CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../Algorithms/Overload.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../Algorithms/Periodic.hpp
 CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../Algorithms/Power.hpp
 CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../Algorithms/Sampler.hpp
 CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../Algorithms/StringAsNumber.h
@@ -531,7 +550,6 @@ CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../MV
 CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../MVC/Renderable.hpp
 CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../MVC/RenderableConcept.hpp
 CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../MVC/RenderingContext.hpp
-CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../MVC/Scheduling.hpp
 CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../MVC/SchedulingEvent.hpp
 CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../MVC/SchedulingQuittingPredicate.hpp
 CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../MVC/ScopedRenderContextState.hpp
@@ -548,8 +566,11 @@ CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../MV
 CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../MVC/TermboxTextLabel.hpp
 CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../Memory/AutomaticReferenceCounting.h
 CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../Memory/ElementReference.h
+CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../Memory/MemoryResource.hpp
 CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../Memory/Optional.h
+CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../Memory/PolyMorphicAllocator.hpp
 CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../Memory/shared_ptr.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../Patterns/Scheduling.hpp
 CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../Primitives/General/Context.h
 CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../Primitives/General/ContextualVariant.h
 CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../Primitives/General/Hash.hpp
@@ -583,6 +604,8 @@ CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../Te
 CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../TypeTraits/AddLValueReference.hpp
 CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../TypeTraits/AddPointer.hpp
 CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../TypeTraits/AddRValueReference.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../TypeTraits/CompileTimeControlFlow.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../TypeTraits/CompileTimeOperations.hpp
 CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../TypeTraits/Conditional.hpp
 CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../TypeTraits/Decay.hpp
 CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../TypeTraits/Declval.hpp
@@ -600,6 +623,7 @@ CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../Ty
 CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../TypeTraits/IsConstructible.hpp
 CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../TypeTraits/IsConvertible.hpp
 CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../TypeTraits/IsDestructible.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../TypeTraits/IsErasedOrConvertible.hpp
 CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../TypeTraits/IsFunction.hpp
 CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../TypeTraits/IsImmutable.h
 CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../TypeTraits/IsIntegralType.hpp
@@ -627,7 +651,9 @@ CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../Ty
 CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../TypeTraits/StaticallySized.h
 CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../TypeTraits/Type.h
 CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../TypeTraits/TypeList.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../TypeTraits/UsesAlloc.h
 CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../TypeTraits/VariadicPack.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../TypeTraits/__or.hpp
 CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../TypeTraits/__two.hpp
 CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../Unicode/utf8.h
 CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../Unicode/utf8/checked.h
@@ -637,10 +663,137 @@ CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../Ex
 CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../Examples/DelimeterSeperatedFileExample.h
 CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.o: ../Examples/ReflectionDemoTypes.h
 
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Algorithms/Abs.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Algorithms/Exponential.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Algorithms/FastLog10.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Algorithms/Floor.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Algorithms/Forward.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Algorithms/FromString.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Algorithms/GenericResize.h
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Algorithms/Invoke.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Algorithms/Move.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Algorithms/Overload.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Algorithms/Periodic.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Algorithms/Power.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Algorithms/StringAsNumber.h
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Algorithms/Swap.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Algorithms/VariantOperations.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Algorithms/Visitation.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Algorithms/vdt/asin.h
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Algorithms/vdt/atan.h
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Algorithms/vdt/atan2.h
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Algorithms/vdt/cos.h
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Algorithms/vdt/exp.h
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Algorithms/vdt/identity.h
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Algorithms/vdt/inv.h
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Algorithms/vdt/log.h
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Algorithms/vdt/sin.h
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Algorithms/vdt/sincos.h
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Algorithms/vdt/sqrt.h
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Algorithms/vdt/tan.h
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Algorithms/vdt/vdtcore_common.h
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Algorithms/vdt/vdtmath.h
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Async/Atomic/Atomic.h
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Async/Atomic/AtomicCore.h
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Async/Atomic/AtomicPrimitiveImplementation.h
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Async/Atomic/AtomicUnderlyingCore.h
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Async/Atomic/compiler_gcc.h
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Async/Atomic/compiler_msvc.h
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Core/RequestResponse.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Core/Tuple.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Definitions/Float.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Definitions/Integer.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Definitions/platform_detect.h
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Functor/Lambda.h
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Functor/LightWeightDelegate.h
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Functor/LightWeightDelegateBase.h
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../IO/DatabaseOperationResult.h
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../IO/FetchRequest.h
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Memory/ElementReference.h
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Memory/MemoryResource.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Memory/Optional.h
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Memory/PolyMorphicAllocator.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Memory/UniquePointer.h
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Memory/shared_ptr.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Patterns/DependencyInjection.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Patterns/ServiceLocator.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Primitives/General/Context.h
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Primitives/General/ContextualVariant.h
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Primitives/General/Hash.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Primitives/General/Immutable.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Primitives/General/ImproperFraction.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Primitives/General/Pair.h
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Primitives/General/Range.h
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Primitives/General/Ratio.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Primitives/General/StaticArray.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Primitives/General/StringView.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Primitives/General/Tuple.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Primitives/General/Unit.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Primitives/General/ctre.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Primitives/General/mapboxrecursive_wrapper.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Primitives/General/mapboxvariant.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Primitives/General/mapboxvariantvisitor.h
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Primitives/General/typestring.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Services/Logging.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../SumTypes/MPark/config.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../SumTypes/MPark/in_place.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../SumTypes/MPark/lib.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../SumTypes/MPark/variant.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../TypeTraits/AddLValueReference.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../TypeTraits/AddPointer.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../TypeTraits/AddRValueReference.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../TypeTraits/CanBeAnImmutableString.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../TypeTraits/CompileTimeControlFlow.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../TypeTraits/CompileTimeOperations.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../TypeTraits/Conditional.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../TypeTraits/Decay.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../TypeTraits/Declval.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../TypeTraits/Detection.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../TypeTraits/EnableIf.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../TypeTraits/ExclusiveOr.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../TypeTraits/FunctionalReflection.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../TypeTraits/IntegerSequence.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../TypeTraits/IntegralConstant.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../TypeTraits/IsArray.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../TypeTraits/IsAssignable.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../TypeTraits/IsBaseOf.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../TypeTraits/IsClassType.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../TypeTraits/IsConst.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../TypeTraits/IsConstructible.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../TypeTraits/IsConvertible.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../TypeTraits/IsDestructible.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../TypeTraits/IsErasedOrConvertible.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../TypeTraits/IsFunction.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../TypeTraits/IsImmutable.h
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../TypeTraits/IsIntegralType.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../TypeTraits/IsNullPtr.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../TypeTraits/IsPackConvertible.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../TypeTraits/IsPointer.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../TypeTraits/IsReference.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../TypeTraits/IsSame.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../TypeTraits/IsString.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../TypeTraits/IsSwappable.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../TypeTraits/IsUnion.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../TypeTraits/IsVoid.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../TypeTraits/IsVolatile.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../TypeTraits/Iterable.h
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../TypeTraits/Limit.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../TypeTraits/RemoveAllExtents.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../TypeTraits/RemoveCV.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../TypeTraits/RemoveConst.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../TypeTraits/RemoveExtent.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../TypeTraits/RemoveReference.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../TypeTraits/StaticallySized.h
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../TypeTraits/Type.h
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../TypeTraits/TypeList.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../TypeTraits/UsesAlloc.h
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../TypeTraits/VariadicPack.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../TypeTraits/__or.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../TypeTraits/__two.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o: ../Examples/DependencyInjectionExample.cpp
+
 CMakeFiles/LandessDevCore.dir/Examples/DeploymentExample.cpp.o: ../Algorithms/Abs.hpp
 CMakeFiles/LandessDevCore.dir/Examples/DeploymentExample.cpp.o: ../Algorithms/AddAll.hpp
-CMakeFiles/LandessDevCore.dir/Examples/DeploymentExample.cpp.o: ../Algorithms/CompileTimeControlFlow.hpp
-CMakeFiles/LandessDevCore.dir/Examples/DeploymentExample.cpp.o: ../Algorithms/CompileTimeOperations.hpp
 CMakeFiles/LandessDevCore.dir/Examples/DeploymentExample.cpp.o: ../Algorithms/DecimalToBinary.h
 CMakeFiles/LandessDevCore.dir/Examples/DeploymentExample.cpp.o: ../Algorithms/Exponential.hpp
 CMakeFiles/LandessDevCore.dir/Examples/DeploymentExample.cpp.o: ../Algorithms/FastLog10.hpp
@@ -652,6 +805,7 @@ CMakeFiles/LandessDevCore.dir/Examples/DeploymentExample.cpp.o: ../Algorithms/Ge
 CMakeFiles/LandessDevCore.dir/Examples/DeploymentExample.cpp.o: ../Algorithms/Invoke.hpp
 CMakeFiles/LandessDevCore.dir/Examples/DeploymentExample.cpp.o: ../Algorithms/Move.hpp
 CMakeFiles/LandessDevCore.dir/Examples/DeploymentExample.cpp.o: ../Algorithms/Overload.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DeploymentExample.cpp.o: ../Algorithms/Periodic.hpp
 CMakeFiles/LandessDevCore.dir/Examples/DeploymentExample.cpp.o: ../Algorithms/Power.hpp
 CMakeFiles/LandessDevCore.dir/Examples/DeploymentExample.cpp.o: ../Algorithms/StringAsNumber.h
 CMakeFiles/LandessDevCore.dir/Examples/DeploymentExample.cpp.o: ../Algorithms/Swap.hpp
@@ -810,6 +964,8 @@ CMakeFiles/LandessDevCore.dir/Examples/DeploymentExample.cpp.o: ../TypeTraits/Ad
 CMakeFiles/LandessDevCore.dir/Examples/DeploymentExample.cpp.o: ../TypeTraits/AddPointer.hpp
 CMakeFiles/LandessDevCore.dir/Examples/DeploymentExample.cpp.o: ../TypeTraits/AddRValueReference.hpp
 CMakeFiles/LandessDevCore.dir/Examples/DeploymentExample.cpp.o: ../TypeTraits/CanBeAnImmutableString.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DeploymentExample.cpp.o: ../TypeTraits/CompileTimeControlFlow.hpp
+CMakeFiles/LandessDevCore.dir/Examples/DeploymentExample.cpp.o: ../TypeTraits/CompileTimeOperations.hpp
 CMakeFiles/LandessDevCore.dir/Examples/DeploymentExample.cpp.o: ../TypeTraits/Conditional.hpp
 CMakeFiles/LandessDevCore.dir/Examples/DeploymentExample.cpp.o: ../TypeTraits/Decay.hpp
 CMakeFiles/LandessDevCore.dir/Examples/DeploymentExample.cpp.o: ../TypeTraits/Declval.hpp
@@ -859,7 +1015,6 @@ CMakeFiles/LandessDevCore.dir/Examples/DeploymentExample.cpp.o: ../Unicode/utf8/
 CMakeFiles/LandessDevCore.dir/Examples/DeploymentExample.cpp.o: ../Examples/DeploymentExample.cpp
 
 CMakeFiles/LandessDevCore.dir/Examples/FibonnaciExample.cpp.o: ../Algorithms/Abs.hpp
-CMakeFiles/LandessDevCore.dir/Examples/FibonnaciExample.cpp.o: ../Algorithms/CompileTimeControlFlow.hpp
 CMakeFiles/LandessDevCore.dir/Examples/FibonnaciExample.cpp.o: ../Algorithms/Exponential.hpp
 CMakeFiles/LandessDevCore.dir/Examples/FibonnaciExample.cpp.o: ../Algorithms/FastLog10.hpp
 CMakeFiles/LandessDevCore.dir/Examples/FibonnaciExample.cpp.o: ../Algorithms/Floor.hpp
@@ -928,6 +1083,7 @@ CMakeFiles/LandessDevCore.dir/Examples/FibonnaciExample.cpp.o: ../TypeTraits/Add
 CMakeFiles/LandessDevCore.dir/Examples/FibonnaciExample.cpp.o: ../TypeTraits/AddRValueReference.hpp
 CMakeFiles/LandessDevCore.dir/Examples/FibonnaciExample.cpp.o: ../TypeTraits/CanBeAnImmutableString.hpp
 CMakeFiles/LandessDevCore.dir/Examples/FibonnaciExample.cpp.o: ../TypeTraits/CanBeMadeFromStringView.hpp
+CMakeFiles/LandessDevCore.dir/Examples/FibonnaciExample.cpp.o: ../TypeTraits/CompileTimeControlFlow.hpp
 CMakeFiles/LandessDevCore.dir/Examples/FibonnaciExample.cpp.o: ../TypeTraits/Conditional.hpp
 CMakeFiles/LandessDevCore.dir/Examples/FibonnaciExample.cpp.o: ../TypeTraits/Decay.hpp
 CMakeFiles/LandessDevCore.dir/Examples/FibonnaciExample.cpp.o: ../TypeTraits/Declval.hpp
@@ -974,8 +1130,7 @@ CMakeFiles/LandessDevCore.dir/Examples/FibonnaciExample.cpp.o: ../TypeTraits/__t
 CMakeFiles/LandessDevCore.dir/Examples/FibonnaciExample.cpp.o: ../Examples/FibonnaciExample.cpp
 
 CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../Algorithms/Abs.hpp
-CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../Algorithms/CompileTimeControlFlow.hpp
-CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../Algorithms/CompileTimeOperations.hpp
+CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../Algorithms/Exponential.hpp
 CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../Algorithms/FastLog10.hpp
 CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../Algorithms/Floor.hpp
 CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../Algorithms/Forward.hpp
@@ -985,6 +1140,20 @@ CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../Algorithms/Mov
 CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../Algorithms/Overload.hpp
 CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../Algorithms/Swap.hpp
 CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../Algorithms/VariantOperations.hpp
+CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../Algorithms/vdt/asin.h
+CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../Algorithms/vdt/atan.h
+CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../Algorithms/vdt/atan2.h
+CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../Algorithms/vdt/cos.h
+CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../Algorithms/vdt/exp.h
+CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../Algorithms/vdt/identity.h
+CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../Algorithms/vdt/inv.h
+CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../Algorithms/vdt/log.h
+CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../Algorithms/vdt/sin.h
+CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../Algorithms/vdt/sincos.h
+CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../Algorithms/vdt/sqrt.h
+CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../Algorithms/vdt/tan.h
+CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../Algorithms/vdt/vdtcore_common.h
+CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../Algorithms/vdt/vdtmath.h
 CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../Core/Tuple.hpp
 CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../Definitions/Float.hpp
 CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../Definitions/Integer.hpp
@@ -1000,6 +1169,7 @@ CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../Primitives/Gen
 CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../Primitives/General/Hash.hpp
 CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../Primitives/General/Hexademical.hpp
 CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../Primitives/General/Immutable.hpp
+CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../Primitives/General/ImproperFraction.hpp
 CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../Primitives/General/Pair.h
 CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../Primitives/General/Range.h
 CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../Primitives/General/StaticArray.hpp
@@ -1011,6 +1181,8 @@ CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../Primitives/Gen
 CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../TypeTraits/AddLValueReference.hpp
 CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../TypeTraits/AddPointer.hpp
 CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../TypeTraits/AddRValueReference.hpp
+CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../TypeTraits/CompileTimeControlFlow.hpp
+CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../TypeTraits/CompileTimeOperations.hpp
 CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../TypeTraits/Conditional.hpp
 CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../TypeTraits/Decay.hpp
 CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../TypeTraits/Declval.hpp
@@ -1056,8 +1228,6 @@ CMakeFiles/LandessDevCore.dir/Examples/FullAdderExample.cpp.o: ../Examples/FullA
 
 CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../Algorithms/Abs.hpp
 CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../Algorithms/AddAll.hpp
-CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../Algorithms/CompileTimeControlFlow.hpp
-CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../Algorithms/CompileTimeOperations.hpp
 CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../Algorithms/Exponential.hpp
 CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../Algorithms/FastLog10.hpp
 CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../Algorithms/Floor.hpp
@@ -1154,7 +1324,6 @@ CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../IaaS/HashiVault/H
 CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../MVC/Mouse.hpp
 CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../MVC/Renderable.hpp
 CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../MVC/RenderableConcept.hpp
-CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../MVC/Scheduling.hpp
 CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../MVC/SchedulingEvent.hpp
 CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../MVC/SchedulingQuittingPredicate.hpp
 CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../MVC/TermBoxConsoleApplication.hpp
@@ -1163,10 +1332,13 @@ CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../MVC/TermBoxEnumer
 CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../MVC/TermBoxRenderingContext.hpp
 CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../Memory/AutomaticReferenceCounting.h
 CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../Memory/ElementReference.h
+CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../Memory/MemoryResource.hpp
 CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../Memory/Optional.h
+CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../Memory/PolyMorphicAllocator.hpp
 CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../Memory/shared_ptr.hpp
 CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../PBX/Mirta/Date.hpp
 CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../PBX/Mirta/Mirta.hpp
+CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../Patterns/Scheduling.hpp
 CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../Primitives/General/Context.h
 CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../Primitives/General/ContextualVariant.h
 CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../Primitives/General/DateTime.h
@@ -1236,6 +1408,8 @@ CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../TypeTraits/AddPoi
 CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../TypeTraits/AddRValueReference.hpp
 CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../TypeTraits/CanBeAnImmutableString.hpp
 CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../TypeTraits/CanBeMadeFromStringView.hpp
+CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../TypeTraits/CompileTimeControlFlow.hpp
+CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../TypeTraits/CompileTimeOperations.hpp
 CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../TypeTraits/Conditional.hpp
 CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../TypeTraits/Decay.hpp
 CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../TypeTraits/Declval.hpp
@@ -1253,6 +1427,7 @@ CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../TypeTraits/IsCons
 CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../TypeTraits/IsConstructible.hpp
 CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../TypeTraits/IsConvertible.hpp
 CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../TypeTraits/IsDestructible.hpp
+CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../TypeTraits/IsErasedOrConvertible.hpp
 CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../TypeTraits/IsFunction.hpp
 CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../TypeTraits/IsImmutable.h
 CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../TypeTraits/IsIntegralType.hpp
@@ -1279,7 +1454,9 @@ CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../TypeTraits/Remove
 CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../TypeTraits/StaticallySized.h
 CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../TypeTraits/Type.h
 CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../TypeTraits/TypeList.hpp
+CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../TypeTraits/UsesAlloc.h
 CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../TypeTraits/VariadicPack.hpp
+CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../TypeTraits/__or.hpp
 CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../TypeTraits/__two.hpp
 CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../Unicode/UTF8.hpp
 CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o: ../Unicode/utf8/core.h
@@ -1298,8 +1475,6 @@ CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample2.cpp.o: ../Examples/IMGUIExa
 
 CMakeFiles/LandessDevCore.dir/Examples/IOExample.cpp.o: ../Algorithms/Abs.hpp
 CMakeFiles/LandessDevCore.dir/Examples/IOExample.cpp.o: ../Algorithms/Benchmark.hpp
-CMakeFiles/LandessDevCore.dir/Examples/IOExample.cpp.o: ../Algorithms/CompileTimeControlFlow.hpp
-CMakeFiles/LandessDevCore.dir/Examples/IOExample.cpp.o: ../Algorithms/CompileTimeOperations.hpp
 CMakeFiles/LandessDevCore.dir/Examples/IOExample.cpp.o: ../Algorithms/Exponential.hpp
 CMakeFiles/LandessDevCore.dir/Examples/IOExample.cpp.o: ../Algorithms/FastLog10.hpp
 CMakeFiles/LandessDevCore.dir/Examples/IOExample.cpp.o: ../Algorithms/Floor.hpp
@@ -1309,6 +1484,7 @@ CMakeFiles/LandessDevCore.dir/Examples/IOExample.cpp.o: ../Algorithms/GenericRes
 CMakeFiles/LandessDevCore.dir/Examples/IOExample.cpp.o: ../Algorithms/Invoke.hpp
 CMakeFiles/LandessDevCore.dir/Examples/IOExample.cpp.o: ../Algorithms/Move.hpp
 CMakeFiles/LandessDevCore.dir/Examples/IOExample.cpp.o: ../Algorithms/Overload.hpp
+CMakeFiles/LandessDevCore.dir/Examples/IOExample.cpp.o: ../Algorithms/Periodic.hpp
 CMakeFiles/LandessDevCore.dir/Examples/IOExample.cpp.o: ../Algorithms/Power.hpp
 CMakeFiles/LandessDevCore.dir/Examples/IOExample.cpp.o: ../Algorithms/StringAsNumber.h
 CMakeFiles/LandessDevCore.dir/Examples/IOExample.cpp.o: ../Algorithms/StringToPrimitive.hpp
@@ -1431,6 +1607,8 @@ CMakeFiles/LandessDevCore.dir/Examples/IOExample.cpp.o: ../SumTypes/MPark/varian
 CMakeFiles/LandessDevCore.dir/Examples/IOExample.cpp.o: ../TypeTraits/AddLValueReference.hpp
 CMakeFiles/LandessDevCore.dir/Examples/IOExample.cpp.o: ../TypeTraits/AddPointer.hpp
 CMakeFiles/LandessDevCore.dir/Examples/IOExample.cpp.o: ../TypeTraits/AddRValueReference.hpp
+CMakeFiles/LandessDevCore.dir/Examples/IOExample.cpp.o: ../TypeTraits/CompileTimeControlFlow.hpp
+CMakeFiles/LandessDevCore.dir/Examples/IOExample.cpp.o: ../TypeTraits/CompileTimeOperations.hpp
 CMakeFiles/LandessDevCore.dir/Examples/IOExample.cpp.o: ../TypeTraits/Conditional.hpp
 CMakeFiles/LandessDevCore.dir/Examples/IOExample.cpp.o: ../TypeTraits/Decay.hpp
 CMakeFiles/LandessDevCore.dir/Examples/IOExample.cpp.o: ../TypeTraits/Declval.hpp
@@ -1484,7 +1662,7 @@ CMakeFiles/LandessDevCore.dir/Examples/IOExample.cpp.o: ../Examples/ReflectionDe
 CMakeFiles/LandessDevCore.dir/Examples/MultithreadingExample.cpp.o: ../Examples/MultithreadingExample.cpp
 
 CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o: ../Algorithms/Abs.hpp
-CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o: ../Algorithms/CompileTimeControlFlow.hpp
+CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o: ../Algorithms/Exponential.hpp
 CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o: ../Algorithms/FastLog10.hpp
 CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o: ../Algorithms/Floor.hpp
 CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o: ../Algorithms/Forward.hpp
@@ -1493,6 +1671,20 @@ CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o: ../Algorithms/Move.hpp
 CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o: ../Algorithms/Overload.hpp
 CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o: ../Algorithms/Swap.hpp
 CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o: ../Algorithms/VariantOperations.hpp
+CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o: ../Algorithms/vdt/asin.h
+CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o: ../Algorithms/vdt/atan.h
+CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o: ../Algorithms/vdt/atan2.h
+CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o: ../Algorithms/vdt/cos.h
+CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o: ../Algorithms/vdt/exp.h
+CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o: ../Algorithms/vdt/identity.h
+CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o: ../Algorithms/vdt/inv.h
+CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o: ../Algorithms/vdt/log.h
+CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o: ../Algorithms/vdt/sin.h
+CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o: ../Algorithms/vdt/sincos.h
+CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o: ../Algorithms/vdt/sqrt.h
+CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o: ../Algorithms/vdt/tan.h
+CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o: ../Algorithms/vdt/vdtcore_common.h
+CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o: ../Algorithms/vdt/vdtmath.h
 CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o: ../Core/Tuple.hpp
 CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o: ../Definitions/Float.hpp
 CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o: ../Definitions/Integer.hpp
@@ -1508,9 +1700,11 @@ CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o: ../Primitives/General/C
 CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o: ../Primitives/General/ContextualVariant.h
 CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o: ../Primitives/General/Hash.hpp
 CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o: ../Primitives/General/Immutable.hpp
+CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o: ../Primitives/General/ImproperFraction.hpp
 CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o: ../Primitives/General/Pair.h
 CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o: ../Primitives/General/Range.h
 CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o: ../Primitives/General/StaticArray.hpp
+CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o: ../Primitives/General/StringView.hpp
 CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o: ../Primitives/General/ctre.hpp
 CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o: ../Primitives/General/mapboxrecursive_wrapper.hpp
 CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o: ../Primitives/General/mapboxvariant.hpp
@@ -1529,6 +1723,7 @@ CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o: ../Process/reproc.hpp
 CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o: ../TypeTraits/AddLValueReference.hpp
 CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o: ../TypeTraits/AddPointer.hpp
 CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o: ../TypeTraits/AddRValueReference.hpp
+CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o: ../TypeTraits/CompileTimeControlFlow.hpp
 CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o: ../TypeTraits/Conditional.hpp
 CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o: ../TypeTraits/Decay.hpp
 CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o: ../TypeTraits/Declval.hpp
@@ -1574,8 +1769,6 @@ CMakeFiles/LandessDevCore.dir/Examples/NDPExample.cpp.o: ../Examples/NDPExample.
 
 CMakeFiles/LandessDevCore.dir/Examples/PVEGUIDeploymentExample.cpp.o: ../Algorithms/Abs.hpp
 CMakeFiles/LandessDevCore.dir/Examples/PVEGUIDeploymentExample.cpp.o: ../Algorithms/AddAll.hpp
-CMakeFiles/LandessDevCore.dir/Examples/PVEGUIDeploymentExample.cpp.o: ../Algorithms/CompileTimeControlFlow.hpp
-CMakeFiles/LandessDevCore.dir/Examples/PVEGUIDeploymentExample.cpp.o: ../Algorithms/CompileTimeOperations.hpp
 CMakeFiles/LandessDevCore.dir/Examples/PVEGUIDeploymentExample.cpp.o: ../Algorithms/Exponential.hpp
 CMakeFiles/LandessDevCore.dir/Examples/PVEGUIDeploymentExample.cpp.o: ../Algorithms/FastLog10.hpp
 CMakeFiles/LandessDevCore.dir/Examples/PVEGUIDeploymentExample.cpp.o: ../Algorithms/Floor.hpp
@@ -1704,6 +1897,8 @@ CMakeFiles/LandessDevCore.dir/Examples/PVEGUIDeploymentExample.cpp.o: ../TypeTra
 CMakeFiles/LandessDevCore.dir/Examples/PVEGUIDeploymentExample.cpp.o: ../TypeTraits/AddRValueReference.hpp
 CMakeFiles/LandessDevCore.dir/Examples/PVEGUIDeploymentExample.cpp.o: ../TypeTraits/CanBeAnImmutableString.hpp
 CMakeFiles/LandessDevCore.dir/Examples/PVEGUIDeploymentExample.cpp.o: ../TypeTraits/CanBeMadeFromStringView.hpp
+CMakeFiles/LandessDevCore.dir/Examples/PVEGUIDeploymentExample.cpp.o: ../TypeTraits/CompileTimeControlFlow.hpp
+CMakeFiles/LandessDevCore.dir/Examples/PVEGUIDeploymentExample.cpp.o: ../TypeTraits/CompileTimeOperations.hpp
 CMakeFiles/LandessDevCore.dir/Examples/PVEGUIDeploymentExample.cpp.o: ../TypeTraits/Conditional.hpp
 CMakeFiles/LandessDevCore.dir/Examples/PVEGUIDeploymentExample.cpp.o: ../TypeTraits/Decay.hpp
 CMakeFiles/LandessDevCore.dir/Examples/PVEGUIDeploymentExample.cpp.o: ../TypeTraits/Declval.hpp
@@ -1756,8 +1951,6 @@ CMakeFiles/LandessDevCore.dir/Examples/PVEGUIDeploymentExample.cpp.o: ../VirtuWo
 CMakeFiles/LandessDevCore.dir/Examples/PVEGUIDeploymentExample.cpp.o: ../Examples/PVEGUIDeploymentExample.cpp
 
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Algorithms/Abs.hpp
-CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Algorithms/CompileTimeControlFlow.hpp
-CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Algorithms/CompileTimeOperations.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Algorithms/Exponential.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Algorithms/FastLog10.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Algorithms/Floor.hpp
@@ -1767,6 +1960,7 @@ CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Algorithms/Ge
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Algorithms/Invoke.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Algorithms/Move.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Algorithms/Overload.hpp
+CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Algorithms/Periodic.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Algorithms/Power.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Algorithms/StringAsNumber.h
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Algorithms/StringToPrimitive.hpp
@@ -1837,6 +2031,8 @@ CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../SumTypes/MPar
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/AddLValueReference.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/AddPointer.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/AddRValueReference.hpp
+CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/CompileTimeControlFlow.hpp
+CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/CompileTimeOperations.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/Conditional.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/Decay.hpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../TypeTraits/Declval.hpp
@@ -1888,8 +2084,87 @@ CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Examples/Refl
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Examples/ReflectionExample.cpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o: ../Examples/ReflectionExample.hpp
 
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../Algorithms/Forward.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../Algorithms/GenericResize.h
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../Algorithms/Move.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../Algorithms/Swap.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../Async/Atomic/Atomic.h
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../Async/Atomic/AtomicCore.h
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../Async/Atomic/AtomicPrimitiveImplementation.h
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../Async/Atomic/AtomicUnderlyingCore.h
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../Async/Atomic/compiler_gcc.h
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../Async/Atomic/compiler_msvc.h
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../Core/Tuple.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../Definitions/Float.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../Definitions/Integer.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../Definitions/platform_detect.h
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../Functor/Lambda.h
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../Functor/LightWeightDelegate.h
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../Functor/LightWeightDelegateBase.h
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../Memory/ElementReference.h
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../Memory/MemoryResource.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../Memory/Optional.h
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../Memory/PolyMorphicAllocator.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../Memory/shared_ptr.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../Primitives/General/Range.h
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../Primitives/General/StaticArray.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../RuntimeReflection/AbstractProperty.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../RuntimeReflection/BaseObject.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../RuntimeReflection/ExampleRuntimeReflection.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../RuntimeReflection/Property.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../RuntimeReflection/PropertySystem.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../RuntimeReflection/PropertyTypes.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../RuntimeReflection/RTTI.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../RuntimeReflection/RTTIClass.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../RuntimeReflection/TypedProperty.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../TypeTraits/AddLValueReference.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../TypeTraits/AddPointer.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../TypeTraits/AddRValueReference.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../TypeTraits/CompileTimeControlFlow.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../TypeTraits/Conditional.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../TypeTraits/Decay.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../TypeTraits/Declval.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../TypeTraits/Detection.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../TypeTraits/EnableIf.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../TypeTraits/IntegerSequence.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../TypeTraits/IntegralConstant.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../TypeTraits/IsArray.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../TypeTraits/IsAssignable.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../TypeTraits/IsBaseOf.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../TypeTraits/IsClassType.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../TypeTraits/IsConst.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../TypeTraits/IsConstructible.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../TypeTraits/IsConvertible.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../TypeTraits/IsDestructible.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../TypeTraits/IsErasedOrConvertible.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../TypeTraits/IsFunction.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../TypeTraits/IsImmutable.h
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../TypeTraits/IsIntegralType.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../TypeTraits/IsNullPtr.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../TypeTraits/IsPointer.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../TypeTraits/IsReference.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../TypeTraits/IsSame.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../TypeTraits/IsSwappable.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../TypeTraits/IsUnion.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../TypeTraits/IsVoid.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../TypeTraits/IsVolatile.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../TypeTraits/Iterable.h
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../TypeTraits/Limit.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../TypeTraits/RemoveAllExtents.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../TypeTraits/RemoveCV.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../TypeTraits/RemoveConst.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../TypeTraits/RemoveExtent.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../TypeTraits/RemoveReference.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../TypeTraits/Type.h
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../TypeTraits/TypeList.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../TypeTraits/UsesAlloc.h
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../TypeTraits/VariadicPack.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../TypeTraits/__or.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../TypeTraits/__two.hpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../Examples/RunTimeReflectionExample.cpp
+CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o: ../Examples/RunTimeReflectionExample.hpp
+
 CMakeFiles/LandessDevCore.dir/Examples/StringToNumberExample.cpp.o: ../Algorithms/Abs.hpp
-CMakeFiles/LandessDevCore.dir/Examples/StringToNumberExample.cpp.o: ../Algorithms/CompileTimeControlFlow.hpp
 CMakeFiles/LandessDevCore.dir/Examples/StringToNumberExample.cpp.o: ../Algorithms/Exponential.hpp
 CMakeFiles/LandessDevCore.dir/Examples/StringToNumberExample.cpp.o: ../Algorithms/FastLog10.hpp
 CMakeFiles/LandessDevCore.dir/Examples/StringToNumberExample.cpp.o: ../Algorithms/Floor.hpp
@@ -1949,6 +2224,7 @@ CMakeFiles/LandessDevCore.dir/Examples/StringToNumberExample.cpp.o: ../SumTypes/
 CMakeFiles/LandessDevCore.dir/Examples/StringToNumberExample.cpp.o: ../TypeTraits/AddLValueReference.hpp
 CMakeFiles/LandessDevCore.dir/Examples/StringToNumberExample.cpp.o: ../TypeTraits/AddPointer.hpp
 CMakeFiles/LandessDevCore.dir/Examples/StringToNumberExample.cpp.o: ../TypeTraits/AddRValueReference.hpp
+CMakeFiles/LandessDevCore.dir/Examples/StringToNumberExample.cpp.o: ../TypeTraits/CompileTimeControlFlow.hpp
 CMakeFiles/LandessDevCore.dir/Examples/StringToNumberExample.cpp.o: ../TypeTraits/Conditional.hpp
 CMakeFiles/LandessDevCore.dir/Examples/StringToNumberExample.cpp.o: ../TypeTraits/Decay.hpp
 CMakeFiles/LandessDevCore.dir/Examples/StringToNumberExample.cpp.o: ../TypeTraits/Declval.hpp
@@ -1995,8 +2271,6 @@ CMakeFiles/LandessDevCore.dir/Examples/StringToNumberExample.cpp.o: ../Examples/
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxInputExample.cpp.o: ../Examples/TermBoxInputExample.cpp
 
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../Algorithms/Abs.hpp
-CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../Algorithms/CompileTimeControlFlow.hpp
-CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../Algorithms/CompileTimeOperations.hpp
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../Algorithms/Exponential.hpp
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../Algorithms/FastLog10.hpp
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../Algorithms/Floor.hpp
@@ -2006,6 +2280,7 @@ CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../Algorithms/G
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../Algorithms/Invoke.hpp
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../Algorithms/Move.hpp
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../Algorithms/Overload.hpp
+CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../Algorithms/Periodic.hpp
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../Algorithms/Power.hpp
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../Algorithms/Sampler.hpp
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../Algorithms/StringAsNumber.h
@@ -2054,7 +2329,6 @@ CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../MVC/Mouse.hp
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../MVC/Renderable.hpp
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../MVC/RenderableConcept.hpp
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../MVC/RenderingContext.hpp
-CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../MVC/Scheduling.hpp
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../MVC/SchedulingEvent.hpp
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../MVC/SchedulingQuittingPredicate.hpp
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../MVC/TUI/TUIEvent.h
@@ -2067,6 +2341,7 @@ CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../MVC/TermBoxM
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../MVC/TermBoxRenderingContext.hpp
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../Memory/ElementReference.h
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../Memory/Optional.h
+CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../Patterns/Scheduling.hpp
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../Primitives/General/Context.h
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../Primitives/General/ContextualVariant.h
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../Primitives/General/Hash.hpp
@@ -2099,6 +2374,8 @@ CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../TermBox/term
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../TypeTraits/AddLValueReference.hpp
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../TypeTraits/AddPointer.hpp
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../TypeTraits/AddRValueReference.hpp
+CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../TypeTraits/CompileTimeControlFlow.hpp
+CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../TypeTraits/CompileTimeOperations.hpp
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../TypeTraits/Conditional.hpp
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../TypeTraits/Decay.hpp
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../TypeTraits/Declval.hpp
@@ -2152,6 +2429,9 @@ CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../Examples/Ref
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../Examples/TermBoxMenuExample.cpp
 CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.o: ../Examples/TermBoxMenuExample.hpp
 
+CMakeFiles/LandessDevCore.dir/Examples/UnitsExample.cpp.o: ../Examples/UnitsExample.cpp
+CMakeFiles/LandessDevCore.dir/Examples/UnitsExample.cpp.o: ../Examples/UnitsExample.hpp
+
 CMakeFiles/LandessDevCore.dir/Examples/VisitationExample.cpp.o: ../Algorithms/Forward.hpp
 CMakeFiles/LandessDevCore.dir/Examples/VisitationExample.cpp.o: ../Algorithms/Move.hpp
 CMakeFiles/LandessDevCore.dir/Examples/VisitationExample.cpp.o: ../Algorithms/Overload.hpp
@@ -2203,8 +2483,6 @@ CMakeFiles/LandessDevCore.dir/Examples/VisitationExample.cpp.o: ../TypeTraits/__
 CMakeFiles/LandessDevCore.dir/Examples/VisitationExample.cpp.o: ../Examples/VisitationExample.cpp
 
 CMakeFiles/LandessDevCore.dir/Examples/WebDavExample.cpp.o: ../Algorithms/Abs.hpp
-CMakeFiles/LandessDevCore.dir/Examples/WebDavExample.cpp.o: ../Algorithms/CompileTimeControlFlow.hpp
-CMakeFiles/LandessDevCore.dir/Examples/WebDavExample.cpp.o: ../Algorithms/CompileTimeOperations.hpp
 CMakeFiles/LandessDevCore.dir/Examples/WebDavExample.cpp.o: ../Algorithms/Exponential.hpp
 CMakeFiles/LandessDevCore.dir/Examples/WebDavExample.cpp.o: ../Algorithms/FastLog10.hpp
 CMakeFiles/LandessDevCore.dir/Examples/WebDavExample.cpp.o: ../Algorithms/Floor.hpp
@@ -2215,6 +2493,7 @@ CMakeFiles/LandessDevCore.dir/Examples/WebDavExample.cpp.o: ../Algorithms/Generi
 CMakeFiles/LandessDevCore.dir/Examples/WebDavExample.cpp.o: ../Algorithms/Invoke.hpp
 CMakeFiles/LandessDevCore.dir/Examples/WebDavExample.cpp.o: ../Algorithms/Move.hpp
 CMakeFiles/LandessDevCore.dir/Examples/WebDavExample.cpp.o: ../Algorithms/Overload.hpp
+CMakeFiles/LandessDevCore.dir/Examples/WebDavExample.cpp.o: ../Algorithms/Periodic.hpp
 CMakeFiles/LandessDevCore.dir/Examples/WebDavExample.cpp.o: ../Algorithms/Power.hpp
 CMakeFiles/LandessDevCore.dir/Examples/WebDavExample.cpp.o: ../Algorithms/StringAsNumber.h
 CMakeFiles/LandessDevCore.dir/Examples/WebDavExample.cpp.o: ../Algorithms/Swap.hpp
@@ -2306,6 +2585,8 @@ CMakeFiles/LandessDevCore.dir/Examples/WebDavExample.cpp.o: ../TypeTraits/AddLVa
 CMakeFiles/LandessDevCore.dir/Examples/WebDavExample.cpp.o: ../TypeTraits/AddPointer.hpp
 CMakeFiles/LandessDevCore.dir/Examples/WebDavExample.cpp.o: ../TypeTraits/AddRValueReference.hpp
 CMakeFiles/LandessDevCore.dir/Examples/WebDavExample.cpp.o: ../TypeTraits/CanBeAnImmutableString.hpp
+CMakeFiles/LandessDevCore.dir/Examples/WebDavExample.cpp.o: ../TypeTraits/CompileTimeControlFlow.hpp
+CMakeFiles/LandessDevCore.dir/Examples/WebDavExample.cpp.o: ../TypeTraits/CompileTimeOperations.hpp
 CMakeFiles/LandessDevCore.dir/Examples/WebDavExample.cpp.o: ../TypeTraits/Conditional.hpp
 CMakeFiles/LandessDevCore.dir/Examples/WebDavExample.cpp.o: ../TypeTraits/Decay.hpp
 CMakeFiles/LandessDevCore.dir/Examples/WebDavExample.cpp.o: ../TypeTraits/Declval.hpp
@@ -2354,7 +2635,6 @@ CMakeFiles/LandessDevCore.dir/Examples/WebDavExample.cpp.o: ../Unicode/utf8/core
 CMakeFiles/LandessDevCore.dir/Examples/WebDavExample.cpp.o: ../Examples/WebDavExample.cpp
 
 CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.o: ../Algorithms/Abs.hpp
-CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.o: ../Algorithms/CompileTimeControlFlow.hpp
 CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.o: ../Algorithms/Exponential.hpp
 CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.o: ../Algorithms/FastLog10.hpp
 CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.o: ../Algorithms/Floor.hpp
@@ -2449,6 +2729,7 @@ CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.o: ../SumTypes/MPark
 CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.o: ../TypeTraits/AddLValueReference.hpp
 CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.o: ../TypeTraits/AddPointer.hpp
 CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.o: ../TypeTraits/AddRValueReference.hpp
+CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.o: ../TypeTraits/CompileTimeControlFlow.hpp
 CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.o: ../TypeTraits/Conditional.hpp
 CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.o: ../TypeTraits/Decay.hpp
 CMakeFiles/LandessDevCore.dir/Examples/WebServerExample.cpp.o: ../TypeTraits/Declval.hpp
@@ -2595,7 +2876,7 @@ CMakeFiles/LandessDevCore.dir/IO/XML/tinyxml2.cpp.o: ../IO/XML/tinyxml2.cpp
 CMakeFiles/LandessDevCore.dir/IO/XML/tinyxml2.cpp.o: ../IO/XML/tinyxml2.h
 
 CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o: ../Algorithms/Abs.hpp
-CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o: ../Algorithms/CompileTimeControlFlow.hpp
+CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o: ../Algorithms/Exponential.hpp
 CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o: ../Algorithms/FastLog10.hpp
 CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o: ../Algorithms/Floor.hpp
 CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o: ../Algorithms/Forward.hpp
@@ -2606,6 +2887,20 @@ CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o: ../Algorithms/Overload.hpp
 CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o: ../Algorithms/StringToPrimitive.hpp
 CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o: ../Algorithms/Swap.hpp
 CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o: ../Algorithms/VariantOperations.hpp
+CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o: ../Algorithms/vdt/asin.h
+CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o: ../Algorithms/vdt/atan.h
+CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o: ../Algorithms/vdt/atan2.h
+CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o: ../Algorithms/vdt/cos.h
+CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o: ../Algorithms/vdt/exp.h
+CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o: ../Algorithms/vdt/identity.h
+CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o: ../Algorithms/vdt/inv.h
+CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o: ../Algorithms/vdt/log.h
+CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o: ../Algorithms/vdt/sin.h
+CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o: ../Algorithms/vdt/sincos.h
+CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o: ../Algorithms/vdt/sqrt.h
+CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o: ../Algorithms/vdt/tan.h
+CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o: ../Algorithms/vdt/vdtcore_common.h
+CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o: ../Algorithms/vdt/vdtmath.h
 CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o: ../Core/NullClass.hpp
 CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o: ../Core/RequestResponse.hpp
 CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o: ../Core/Tuple.hpp
@@ -2642,6 +2937,7 @@ CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o: ../Primitives/General/Conte
 CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o: ../Primitives/General/ContextualVariant.h
 CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o: ../Primitives/General/Hash.hpp
 CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o: ../Primitives/General/Immutable.hpp
+CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o: ../Primitives/General/ImproperFraction.hpp
 CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o: ../Primitives/General/Pair.h
 CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o: ../Primitives/General/Range.h
 CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o: ../Primitives/General/StaticArray.hpp
@@ -2658,6 +2954,7 @@ CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o: ../SumTypes/MPark/variant.h
 CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o: ../TypeTraits/AddLValueReference.hpp
 CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o: ../TypeTraits/AddPointer.hpp
 CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o: ../TypeTraits/AddRValueReference.hpp
+CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o: ../TypeTraits/CompileTimeControlFlow.hpp
 CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o: ../TypeTraits/Conditional.hpp
 CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o: ../TypeTraits/Decay.hpp
 CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o: ../TypeTraits/Declval.hpp
@@ -2705,8 +3002,6 @@ CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o: ../IO/etcd/etcdcpp.cpp
 CMakeFiles/LandessDevCore.dir/IO/etcd/etcdcpp.cpp.o: ../IO/etcd/etcdcpp.h
 
 CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../Algorithms/Abs.hpp
-CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../Algorithms/CompileTimeControlFlow.hpp
-CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../Algorithms/CompileTimeOperations.hpp
 CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../Algorithms/Exponential.hpp
 CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../Algorithms/FastLog10.hpp
 CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../Algorithms/Floor.hpp
@@ -2716,6 +3011,7 @@ CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../Algorithms/Generi
 CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../Algorithms/Invoke.hpp
 CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../Algorithms/Move.hpp
 CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../Algorithms/Overload.hpp
+CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../Algorithms/Periodic.hpp
 CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../Algorithms/Power.hpp
 CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../Algorithms/Sampler.hpp
 CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../Algorithms/StringAsNumber.h
@@ -2781,6 +3077,8 @@ CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../TermBox/termbox.h
 CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../TypeTraits/AddLValueReference.hpp
 CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../TypeTraits/AddPointer.hpp
 CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../TypeTraits/AddRValueReference.hpp
+CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../TypeTraits/CompileTimeControlFlow.hpp
+CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../TypeTraits/CompileTimeOperations.hpp
 CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../TypeTraits/Conditional.hpp
 CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../TypeTraits/Decay.hpp
 CMakeFiles/LandessDevCore.dir/MVC/TermBoxApplication.cpp.o: ../TypeTraits/Declval.hpp
@@ -2892,7 +3190,6 @@ CMakeFiles/LandessDevCore.dir/Memory/AutomaticReferenceCounting.cpp.o: ../Memory
 CMakeFiles/LandessDevCore.dir/Memory/FreeListAllocator.cpp.o: ../Memory/FreeListAllocator.cpp
 
 CMakeFiles/LandessDevCore.dir/Memory/LinearAllocator.cpp.o: ../Algorithms/Abs.hpp
-CMakeFiles/LandessDevCore.dir/Memory/LinearAllocator.cpp.o: ../Algorithms/CompileTimeControlFlow.hpp
 CMakeFiles/LandessDevCore.dir/Memory/LinearAllocator.cpp.o: ../Algorithms/Exponential.hpp
 CMakeFiles/LandessDevCore.dir/Memory/LinearAllocator.cpp.o: ../Algorithms/Floor.hpp
 CMakeFiles/LandessDevCore.dir/Memory/LinearAllocator.cpp.o: ../Algorithms/Forward.hpp
@@ -2926,6 +3223,7 @@ CMakeFiles/LandessDevCore.dir/Memory/LinearAllocator.cpp.o: ../Primitives/Genera
 CMakeFiles/LandessDevCore.dir/Memory/LinearAllocator.cpp.o: ../TypeTraits/AddLValueReference.hpp
 CMakeFiles/LandessDevCore.dir/Memory/LinearAllocator.cpp.o: ../TypeTraits/AddPointer.hpp
 CMakeFiles/LandessDevCore.dir/Memory/LinearAllocator.cpp.o: ../TypeTraits/AddRValueReference.hpp
+CMakeFiles/LandessDevCore.dir/Memory/LinearAllocator.cpp.o: ../TypeTraits/CompileTimeControlFlow.hpp
 CMakeFiles/LandessDevCore.dir/Memory/LinearAllocator.cpp.o: ../TypeTraits/Conditional.hpp
 CMakeFiles/LandessDevCore.dir/Memory/LinearAllocator.cpp.o: ../TypeTraits/Decay.hpp
 CMakeFiles/LandessDevCore.dir/Memory/LinearAllocator.cpp.o: ../TypeTraits/Declval.hpp
@@ -2967,7 +3265,6 @@ CMakeFiles/LandessDevCore.dir/Memory/LinearAllocator.cpp.o: ../Memory/LinearAllo
 CMakeFiles/LandessDevCore.dir/Memory/LinearAllocator.cpp.o: ../Memory/LinearAllocator.h
 CMakeFiles/LandessDevCore.dir/Memory/LinearAllocator.cpp.o: ../Memory/MemoryResource.hpp
 
-CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../Algorithms/CompileTimeControlFlow.hpp
 CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../Algorithms/Forward.hpp
 CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../Algorithms/GenericResize.h
 CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../Algorithms/Move.hpp
@@ -2984,6 +3281,7 @@ CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../Primitives/General/
 CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../TypeTraits/AddLValueReference.hpp
 CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../TypeTraits/AddPointer.hpp
 CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../TypeTraits/AddRValueReference.hpp
+CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../TypeTraits/CompileTimeControlFlow.hpp
 CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../TypeTraits/Conditional.hpp
 CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../TypeTraits/Decay.hpp
 CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../TypeTraits/Declval.hpp
@@ -3026,7 +3324,6 @@ CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../Memory/PoolAllocato
 CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o: ../Memory/PoolAllocator.h
 
 CMakeFiles/LandessDevCore.dir/Memory/StackAllocator.cpp.o: ../Algorithms/Abs.hpp
-CMakeFiles/LandessDevCore.dir/Memory/StackAllocator.cpp.o: ../Algorithms/CompileTimeControlFlow.hpp
 CMakeFiles/LandessDevCore.dir/Memory/StackAllocator.cpp.o: ../Algorithms/Exponential.hpp
 CMakeFiles/LandessDevCore.dir/Memory/StackAllocator.cpp.o: ../Algorithms/Floor.hpp
 CMakeFiles/LandessDevCore.dir/Memory/StackAllocator.cpp.o: ../Algorithms/Forward.hpp
@@ -3060,6 +3357,7 @@ CMakeFiles/LandessDevCore.dir/Memory/StackAllocator.cpp.o: ../Primitives/General
 CMakeFiles/LandessDevCore.dir/Memory/StackAllocator.cpp.o: ../TypeTraits/AddLValueReference.hpp
 CMakeFiles/LandessDevCore.dir/Memory/StackAllocator.cpp.o: ../TypeTraits/AddPointer.hpp
 CMakeFiles/LandessDevCore.dir/Memory/StackAllocator.cpp.o: ../TypeTraits/AddRValueReference.hpp
+CMakeFiles/LandessDevCore.dir/Memory/StackAllocator.cpp.o: ../TypeTraits/CompileTimeControlFlow.hpp
 CMakeFiles/LandessDevCore.dir/Memory/StackAllocator.cpp.o: ../TypeTraits/Conditional.hpp
 CMakeFiles/LandessDevCore.dir/Memory/StackAllocator.cpp.o: ../TypeTraits/Decay.hpp
 CMakeFiles/LandessDevCore.dir/Memory/StackAllocator.cpp.o: ../TypeTraits/Declval.hpp
@@ -3204,6 +3502,105 @@ CMakeFiles/LandessDevCore.dir/REST/CPR/util.cpp.o: ../REST/CPR/curlholder.h
 CMakeFiles/LandessDevCore.dir/REST/CPR/util.cpp.o: ../REST/CPR/util.cpp
 CMakeFiles/LandessDevCore.dir/REST/CPR/util.cpp.o: ../REST/CPR/util.h
 
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/AbstractProperty.cpp.o: ../RuntimeReflection/AbstractProperty.cpp
+
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/BaseObject.cpp.o: ../RuntimeReflection/BaseObject.cpp
+
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../Algorithms/Forward.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../Algorithms/GenericResize.h
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../Algorithms/Move.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../Algorithms/Swap.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../Async/Atomic/Atomic.h
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../Async/Atomic/AtomicCore.h
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../Async/Atomic/AtomicPrimitiveImplementation.h
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../Async/Atomic/AtomicUnderlyingCore.h
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../Async/Atomic/compiler_gcc.h
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../Async/Atomic/compiler_msvc.h
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../Core/Tuple.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../Definitions/Float.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../Definitions/Integer.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../Definitions/platform_detect.h
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../Functor/Lambda.h
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../Functor/LightWeightDelegate.h
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../Functor/LightWeightDelegateBase.h
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../Memory/ElementReference.h
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../Memory/MemoryResource.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../Memory/Optional.h
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../Memory/PolyMorphicAllocator.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../Memory/shared_ptr.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../Primitives/General/Range.h
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../Primitives/General/StaticArray.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../TypeTraits/AddLValueReference.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../TypeTraits/AddPointer.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../TypeTraits/AddRValueReference.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../TypeTraits/CompileTimeControlFlow.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../TypeTraits/Conditional.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../TypeTraits/Decay.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../TypeTraits/Declval.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../TypeTraits/Detection.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../TypeTraits/EnableIf.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../TypeTraits/IntegerSequence.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../TypeTraits/IntegralConstant.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../TypeTraits/IsArray.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../TypeTraits/IsAssignable.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../TypeTraits/IsBaseOf.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../TypeTraits/IsClassType.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../TypeTraits/IsConst.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../TypeTraits/IsConstructible.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../TypeTraits/IsConvertible.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../TypeTraits/IsDestructible.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../TypeTraits/IsErasedOrConvertible.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../TypeTraits/IsFunction.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../TypeTraits/IsImmutable.h
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../TypeTraits/IsIntegralType.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../TypeTraits/IsNullPtr.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../TypeTraits/IsPointer.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../TypeTraits/IsReference.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../TypeTraits/IsSame.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../TypeTraits/IsSwappable.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../TypeTraits/IsUnion.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../TypeTraits/IsVoid.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../TypeTraits/IsVolatile.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../TypeTraits/Iterable.h
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../TypeTraits/Limit.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../TypeTraits/RemoveAllExtents.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../TypeTraits/RemoveCV.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../TypeTraits/RemoveConst.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../TypeTraits/RemoveExtent.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../TypeTraits/RemoveReference.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../TypeTraits/Type.h
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../TypeTraits/TypeList.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../TypeTraits/UsesAlloc.h
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../TypeTraits/VariadicPack.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../TypeTraits/__or.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../TypeTraits/__two.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../RuntimeReflection/AbstractProperty.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../RuntimeReflection/BaseObject.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../RuntimeReflection/ExampleRuntimeReflection.cpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../RuntimeReflection/ExampleRuntimeReflection.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../RuntimeReflection/Property.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../RuntimeReflection/PropertySystem.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../RuntimeReflection/PropertyTypes.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../RuntimeReflection/RTTI.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../RuntimeReflection/RTTIClass.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o: ../RuntimeReflection/TypedProperty.hpp
+
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/Property.cpp.o: ../RuntimeReflection/Property.cpp
+
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/PropertySystem.cpp.o: ../RuntimeReflection/AbstractProperty.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/PropertySystem.cpp.o: ../RuntimeReflection/PropertySystem.cpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/PropertySystem.cpp.o: ../RuntimeReflection/PropertySystem.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/PropertySystem.cpp.o: ../RuntimeReflection/PropertyTypes.hpp
+
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/RTTI.cpp.o: ../RuntimeReflection/AbstractProperty.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/RTTI.cpp.o: ../RuntimeReflection/PropertyTypes.hpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/RTTI.cpp.o: ../RuntimeReflection/RTTI.cpp
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/RTTI.cpp.o: ../RuntimeReflection/RTTI.hpp
+
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/RTTIClass.cpp.o: ../RuntimeReflection/RTTIClass.cpp
+
+CMakeFiles/LandessDevCore.dir/RuntimeReflection/TypedProperty.cpp.o: ../RuntimeReflection/TypedProperty.cpp
+
 CMakeFiles/LandessDevCore.dir/TUI/ascii_art.cpp.o: ../TUI/ascii_art.cpp
 CMakeFiles/LandessDevCore.dir/TUI/ascii_art.cpp.o: ../TUI/ascii_art.h
 CMakeFiles/LandessDevCore.dir/TUI/ascii_art.cpp.o: ../TUI/ascii_art.hex
@@ -3212,8 +3609,6 @@ CMakeFiles/LandessDevCore.dir/TUI/ascii_art.cpp.o: ../TUI/stb_image.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Algorithms/Abs.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Algorithms/AddAll.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Algorithms/Benchmark.hpp
-CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Algorithms/CompileTimeControlFlow.hpp
-CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Algorithms/CompileTimeOperations.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Algorithms/DecimalToBinary.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Algorithms/Exponential.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Algorithms/FastLog10.hpp
@@ -3224,6 +3619,7 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Algorithms/GenericResize.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Algorithms/Invoke.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Algorithms/Move.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Algorithms/Overload.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Algorithms/Periodic.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Algorithms/Power.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Algorithms/Sampler.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Algorithms/StringAsNumber.h
@@ -3264,6 +3660,7 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Core/Tuple.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Definitions/Float.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Definitions/Integer.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Definitions/PDPUnits.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Definitions/TimeExtension.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Definitions/platform_detect.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Exceptions/Exception.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Exceptions/OutOfThreadsException.h
@@ -3286,19 +3683,22 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/Redis/sds.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/RedisBackend.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/UnqliteDatabaseBackend.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IO/unqlite.h
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../MVC/Cusor.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../MVC/Mouse.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../MVC/Renderable.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../MVC/RenderableConcept.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../MVC/RenderingContext.hpp
-CMakeFiles/LandessDevCore.dir/main.cpp.o: ../MVC/Scheduling.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../MVC/SchedulingEvent.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../MVC/SchedulingQuittingPredicate.hpp
-CMakeFiles/LandessDevCore.dir/main.cpp.o: ../MVC/TermBoxConsoleApplication.hpp
-CMakeFiles/LandessDevCore.dir/main.cpp.o: ../MVC/TermBoxCursorNavigator.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../MVC/ScopedRenderContextState.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../MVC/TermBoxEnumerations.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../MVC/TermBoxRenderingContext.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../MVC/TermboxTextLabel.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Memory/AutomaticReferenceCounting.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Memory/ElementReference.h
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Memory/MemoryResource.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Memory/PolyMorphicAllocator.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Memory/UniquePointer.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Memory/shared_ptr.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Network/Gateway.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Network/Gateway6.hpp
@@ -3367,6 +3767,8 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/AddPointer.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/AddRValueReference.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/CanBeAnImmutableString.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/CanBeMadeFromStringView.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/CompileTimeControlFlow.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/CompileTimeOperations.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/Conditional.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/Decay.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/Declval.hpp
@@ -3384,6 +3786,7 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsConst.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsConstructible.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsConvertible.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsDestructible.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsErasedOrConvertible.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsFunction.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsImmutable.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/IsIntegralType.hpp
@@ -3412,19 +3815,25 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/SearchableVariadicPack.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/StaticallySized.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/Type.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/TypeList.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/UsesAlloc.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/VariadicPack.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/VariantTypes.h
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/__or.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../TypeTraits/__two.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Unicode/IsUTF8Compliant.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Unicode/UTF8.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Unicode/utf8/core.h
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Algorithms/Base64Encoding.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Algorithms/CTREImmutableExtension.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Algorithms/Floor.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Algorithms/FromJSON.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Algorithms/GetDecimalPlaces.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Algorithms/Overload.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Algorithms/TDD.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Algorithms/ToJSON.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Algorithms/VariantOperations.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Algorithms/Visitation.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Async/AsyncRingBuffer.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Async/Atomic/Atomic.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Async/Atomic/AtomicCore.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Async/Atomic/AtomicPrimitiveImplementation.h
@@ -3436,8 +3845,10 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Async/Execute.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Async/GrandCentralDispatch.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Async/Just.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Async/Let.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Async/RingBuffer.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Async/ScheduleAfter.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Async/Scheduler.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Async/SharedState.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Async/SyncWait.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Async/Then.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Async/Thread.h
@@ -3447,9 +3858,9 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Async/WhenAny.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Async/WhenOnlyPredicate.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Async/WhenPredicate.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Async/concurrentqueue.h
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Core/CompileTimeMap.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Core/RequestResponse.hpp
-CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Definitions/PDPUnits.hpp
-CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Definitions/TimeExtension.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Examples/DependencyInjectionExample.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Examples/IMGUIExample1.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Examples/IMGUIExample2.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Examples/ReflectionDemoTypes.h
@@ -3465,6 +3876,9 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IaaS/ArtifactRepository.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IaaS/ClusteringMetaData.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IaaS/DockerManifest.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../IaaS/HashiVault/HashiVault.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../MVC/SchedulingEvent.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../MVC/TermBoxConsoleApplication.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../MVC/TermBoxCursorNavigator.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Memory/Optional.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Network/IPV4Address.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Network/MacAddress.hpp
@@ -3480,6 +3894,12 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Network/SSH/SSHPublicAuthentication
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Network/SSH/SSHUserName.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Network/Subnet.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Network/ipv6.h
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Patterns/DependencyInjection.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Patterns/LazyLambda.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Patterns/Observer.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Patterns/Scheduling.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Patterns/ServiceLocator.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Primitives/General/CircularQueue.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Primitives/General/Ratio.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Primitives/General/StringView.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Primitives/General/Unit.hpp
@@ -3541,6 +3961,7 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o: ../REST/Proxmox/ProxyAPI.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../REST/Proxmox/VirtualMachine.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Reflection/NamedTuple.h
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Reflection/Reflection.hpp
+CMakeFiles/LandessDevCore.dir/main.cpp.o: ../Services/Logging.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../SumTypes/MPark/config.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../SumTypes/MPark/in_place.hpp
 CMakeFiles/LandessDevCore.dir/main.cpp.o: ../SumTypes/MPark/lib.hpp

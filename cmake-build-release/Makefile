@@ -142,6 +142,33 @@ LandessDevCore/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/build
 .PHONY : LandessDevCore/fast
 
+Algorithms/DynamicProgramming.o: Algorithms/DynamicProgramming.cpp.o
+
+.PHONY : Algorithms/DynamicProgramming.o
+
+# target to build an object file
+Algorithms/DynamicProgramming.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Algorithms/DynamicProgramming.cpp.o
+.PHONY : Algorithms/DynamicProgramming.cpp.o
+
+Algorithms/DynamicProgramming.i: Algorithms/DynamicProgramming.cpp.i
+
+.PHONY : Algorithms/DynamicProgramming.i
+
+# target to preprocess a source file
+Algorithms/DynamicProgramming.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Algorithms/DynamicProgramming.cpp.i
+.PHONY : Algorithms/DynamicProgramming.cpp.i
+
+Algorithms/DynamicProgramming.s: Algorithms/DynamicProgramming.cpp.s
+
+.PHONY : Algorithms/DynamicProgramming.s
+
+# target to generate assembly for a file
+Algorithms/DynamicProgramming.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Algorithms/DynamicProgramming.cpp.s
+.PHONY : Algorithms/DynamicProgramming.cpp.s
+
 Algorithms/vdt/vdtmath.o: Algorithms/vdt/vdtmath.cpp.o
 
 .PHONY : Algorithms/vdt/vdtmath.o
@@ -250,6 +277,33 @@ Examples/AlgorithmicJSONTest.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/AlgorithmicJSONTest.cpp.s
 .PHONY : Examples/AlgorithmicJSONTest.cpp.s
 
+Examples/ApplicationLoopExample.o: Examples/ApplicationLoopExample.cpp.o
+
+.PHONY : Examples/ApplicationLoopExample.o
+
+# target to build an object file
+Examples/ApplicationLoopExample.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/ApplicationLoopExample.cpp.o
+.PHONY : Examples/ApplicationLoopExample.cpp.o
+
+Examples/ApplicationLoopExample.i: Examples/ApplicationLoopExample.cpp.i
+
+.PHONY : Examples/ApplicationLoopExample.i
+
+# target to preprocess a source file
+Examples/ApplicationLoopExample.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/ApplicationLoopExample.cpp.i
+.PHONY : Examples/ApplicationLoopExample.cpp.i
+
+Examples/ApplicationLoopExample.s: Examples/ApplicationLoopExample.cpp.s
+
+.PHONY : Examples/ApplicationLoopExample.s
+
+# target to generate assembly for a file
+Examples/ApplicationLoopExample.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/ApplicationLoopExample.cpp.s
+.PHONY : Examples/ApplicationLoopExample.cpp.s
+
 Examples/CalculusExample.o: Examples/CalculusExample.cpp.o
 
 .PHONY : Examples/CalculusExample.o
@@ -303,6 +357,33 @@ Examples/DelimeterSeperateFileExample.s: Examples/DelimeterSeperateFileExample.c
 Examples/DelimeterSeperateFileExample.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/DelimeterSeperateFileExample.cpp.s
 .PHONY : Examples/DelimeterSeperateFileExample.cpp.s
+
+Examples/DependencyInjectionExample.o: Examples/DependencyInjectionExample.cpp.o
+
+.PHONY : Examples/DependencyInjectionExample.o
+
+# target to build an object file
+Examples/DependencyInjectionExample.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o
+.PHONY : Examples/DependencyInjectionExample.cpp.o
+
+Examples/DependencyInjectionExample.i: Examples/DependencyInjectionExample.cpp.i
+
+.PHONY : Examples/DependencyInjectionExample.i
+
+# target to preprocess a source file
+Examples/DependencyInjectionExample.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.i
+.PHONY : Examples/DependencyInjectionExample.cpp.i
+
+Examples/DependencyInjectionExample.s: Examples/DependencyInjectionExample.cpp.s
+
+.PHONY : Examples/DependencyInjectionExample.s
+
+# target to generate assembly for a file
+Examples/DependencyInjectionExample.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.s
+.PHONY : Examples/DependencyInjectionExample.cpp.s
 
 Examples/DeploymentExample.o: Examples/DeploymentExample.cpp.o
 
@@ -574,6 +655,33 @@ Examples/ReflectionExample.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.s
 .PHONY : Examples/ReflectionExample.cpp.s
 
+Examples/RunTimeReflectionExample.o: Examples/RunTimeReflectionExample.cpp.o
+
+.PHONY : Examples/RunTimeReflectionExample.o
+
+# target to build an object file
+Examples/RunTimeReflectionExample.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o
+.PHONY : Examples/RunTimeReflectionExample.cpp.o
+
+Examples/RunTimeReflectionExample.i: Examples/RunTimeReflectionExample.cpp.i
+
+.PHONY : Examples/RunTimeReflectionExample.i
+
+# target to preprocess a source file
+Examples/RunTimeReflectionExample.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.i
+.PHONY : Examples/RunTimeReflectionExample.cpp.i
+
+Examples/RunTimeReflectionExample.s: Examples/RunTimeReflectionExample.cpp.s
+
+.PHONY : Examples/RunTimeReflectionExample.s
+
+# target to generate assembly for a file
+Examples/RunTimeReflectionExample.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.s
+.PHONY : Examples/RunTimeReflectionExample.cpp.s
+
 Examples/StringToNumberExample.o: Examples/StringToNumberExample.cpp.o
 
 .PHONY : Examples/StringToNumberExample.o
@@ -654,6 +762,33 @@ Examples/TermBoxMenuExample.s: Examples/TermBoxMenuExample.cpp.s
 Examples/TermBoxMenuExample.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/TermBoxMenuExample.cpp.s
 .PHONY : Examples/TermBoxMenuExample.cpp.s
+
+Examples/UnitsExample.o: Examples/UnitsExample.cpp.o
+
+.PHONY : Examples/UnitsExample.o
+
+# target to build an object file
+Examples/UnitsExample.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/UnitsExample.cpp.o
+.PHONY : Examples/UnitsExample.cpp.o
+
+Examples/UnitsExample.i: Examples/UnitsExample.cpp.i
+
+.PHONY : Examples/UnitsExample.i
+
+# target to preprocess a source file
+Examples/UnitsExample.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/UnitsExample.cpp.i
+.PHONY : Examples/UnitsExample.cpp.i
+
+Examples/UnitsExample.s: Examples/UnitsExample.cpp.s
+
+.PHONY : Examples/UnitsExample.s
+
+# target to generate assembly for a file
+Examples/UnitsExample.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/UnitsExample.cpp.s
+.PHONY : Examples/UnitsExample.cpp.s
 
 Examples/VisitationExample.o: Examples/VisitationExample.cpp.o
 
@@ -2383,6 +2518,222 @@ REST/CPR/util.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/REST/CPR/util.cpp.s
 .PHONY : REST/CPR/util.cpp.s
 
+RuntimeReflection/AbstractProperty.o: RuntimeReflection/AbstractProperty.cpp.o
+
+.PHONY : RuntimeReflection/AbstractProperty.o
+
+# target to build an object file
+RuntimeReflection/AbstractProperty.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/RuntimeReflection/AbstractProperty.cpp.o
+.PHONY : RuntimeReflection/AbstractProperty.cpp.o
+
+RuntimeReflection/AbstractProperty.i: RuntimeReflection/AbstractProperty.cpp.i
+
+.PHONY : RuntimeReflection/AbstractProperty.i
+
+# target to preprocess a source file
+RuntimeReflection/AbstractProperty.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/RuntimeReflection/AbstractProperty.cpp.i
+.PHONY : RuntimeReflection/AbstractProperty.cpp.i
+
+RuntimeReflection/AbstractProperty.s: RuntimeReflection/AbstractProperty.cpp.s
+
+.PHONY : RuntimeReflection/AbstractProperty.s
+
+# target to generate assembly for a file
+RuntimeReflection/AbstractProperty.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/RuntimeReflection/AbstractProperty.cpp.s
+.PHONY : RuntimeReflection/AbstractProperty.cpp.s
+
+RuntimeReflection/BaseObject.o: RuntimeReflection/BaseObject.cpp.o
+
+.PHONY : RuntimeReflection/BaseObject.o
+
+# target to build an object file
+RuntimeReflection/BaseObject.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/RuntimeReflection/BaseObject.cpp.o
+.PHONY : RuntimeReflection/BaseObject.cpp.o
+
+RuntimeReflection/BaseObject.i: RuntimeReflection/BaseObject.cpp.i
+
+.PHONY : RuntimeReflection/BaseObject.i
+
+# target to preprocess a source file
+RuntimeReflection/BaseObject.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/RuntimeReflection/BaseObject.cpp.i
+.PHONY : RuntimeReflection/BaseObject.cpp.i
+
+RuntimeReflection/BaseObject.s: RuntimeReflection/BaseObject.cpp.s
+
+.PHONY : RuntimeReflection/BaseObject.s
+
+# target to generate assembly for a file
+RuntimeReflection/BaseObject.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/RuntimeReflection/BaseObject.cpp.s
+.PHONY : RuntimeReflection/BaseObject.cpp.s
+
+RuntimeReflection/ExampleRuntimeReflection.o: RuntimeReflection/ExampleRuntimeReflection.cpp.o
+
+.PHONY : RuntimeReflection/ExampleRuntimeReflection.o
+
+# target to build an object file
+RuntimeReflection/ExampleRuntimeReflection.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o
+.PHONY : RuntimeReflection/ExampleRuntimeReflection.cpp.o
+
+RuntimeReflection/ExampleRuntimeReflection.i: RuntimeReflection/ExampleRuntimeReflection.cpp.i
+
+.PHONY : RuntimeReflection/ExampleRuntimeReflection.i
+
+# target to preprocess a source file
+RuntimeReflection/ExampleRuntimeReflection.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.i
+.PHONY : RuntimeReflection/ExampleRuntimeReflection.cpp.i
+
+RuntimeReflection/ExampleRuntimeReflection.s: RuntimeReflection/ExampleRuntimeReflection.cpp.s
+
+.PHONY : RuntimeReflection/ExampleRuntimeReflection.s
+
+# target to generate assembly for a file
+RuntimeReflection/ExampleRuntimeReflection.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.s
+.PHONY : RuntimeReflection/ExampleRuntimeReflection.cpp.s
+
+RuntimeReflection/Property.o: RuntimeReflection/Property.cpp.o
+
+.PHONY : RuntimeReflection/Property.o
+
+# target to build an object file
+RuntimeReflection/Property.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/RuntimeReflection/Property.cpp.o
+.PHONY : RuntimeReflection/Property.cpp.o
+
+RuntimeReflection/Property.i: RuntimeReflection/Property.cpp.i
+
+.PHONY : RuntimeReflection/Property.i
+
+# target to preprocess a source file
+RuntimeReflection/Property.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/RuntimeReflection/Property.cpp.i
+.PHONY : RuntimeReflection/Property.cpp.i
+
+RuntimeReflection/Property.s: RuntimeReflection/Property.cpp.s
+
+.PHONY : RuntimeReflection/Property.s
+
+# target to generate assembly for a file
+RuntimeReflection/Property.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/RuntimeReflection/Property.cpp.s
+.PHONY : RuntimeReflection/Property.cpp.s
+
+RuntimeReflection/PropertySystem.o: RuntimeReflection/PropertySystem.cpp.o
+
+.PHONY : RuntimeReflection/PropertySystem.o
+
+# target to build an object file
+RuntimeReflection/PropertySystem.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/RuntimeReflection/PropertySystem.cpp.o
+.PHONY : RuntimeReflection/PropertySystem.cpp.o
+
+RuntimeReflection/PropertySystem.i: RuntimeReflection/PropertySystem.cpp.i
+
+.PHONY : RuntimeReflection/PropertySystem.i
+
+# target to preprocess a source file
+RuntimeReflection/PropertySystem.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/RuntimeReflection/PropertySystem.cpp.i
+.PHONY : RuntimeReflection/PropertySystem.cpp.i
+
+RuntimeReflection/PropertySystem.s: RuntimeReflection/PropertySystem.cpp.s
+
+.PHONY : RuntimeReflection/PropertySystem.s
+
+# target to generate assembly for a file
+RuntimeReflection/PropertySystem.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/RuntimeReflection/PropertySystem.cpp.s
+.PHONY : RuntimeReflection/PropertySystem.cpp.s
+
+RuntimeReflection/RTTI.o: RuntimeReflection/RTTI.cpp.o
+
+.PHONY : RuntimeReflection/RTTI.o
+
+# target to build an object file
+RuntimeReflection/RTTI.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/RuntimeReflection/RTTI.cpp.o
+.PHONY : RuntimeReflection/RTTI.cpp.o
+
+RuntimeReflection/RTTI.i: RuntimeReflection/RTTI.cpp.i
+
+.PHONY : RuntimeReflection/RTTI.i
+
+# target to preprocess a source file
+RuntimeReflection/RTTI.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/RuntimeReflection/RTTI.cpp.i
+.PHONY : RuntimeReflection/RTTI.cpp.i
+
+RuntimeReflection/RTTI.s: RuntimeReflection/RTTI.cpp.s
+
+.PHONY : RuntimeReflection/RTTI.s
+
+# target to generate assembly for a file
+RuntimeReflection/RTTI.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/RuntimeReflection/RTTI.cpp.s
+.PHONY : RuntimeReflection/RTTI.cpp.s
+
+RuntimeReflection/RTTIClass.o: RuntimeReflection/RTTIClass.cpp.o
+
+.PHONY : RuntimeReflection/RTTIClass.o
+
+# target to build an object file
+RuntimeReflection/RTTIClass.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/RuntimeReflection/RTTIClass.cpp.o
+.PHONY : RuntimeReflection/RTTIClass.cpp.o
+
+RuntimeReflection/RTTIClass.i: RuntimeReflection/RTTIClass.cpp.i
+
+.PHONY : RuntimeReflection/RTTIClass.i
+
+# target to preprocess a source file
+RuntimeReflection/RTTIClass.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/RuntimeReflection/RTTIClass.cpp.i
+.PHONY : RuntimeReflection/RTTIClass.cpp.i
+
+RuntimeReflection/RTTIClass.s: RuntimeReflection/RTTIClass.cpp.s
+
+.PHONY : RuntimeReflection/RTTIClass.s
+
+# target to generate assembly for a file
+RuntimeReflection/RTTIClass.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/RuntimeReflection/RTTIClass.cpp.s
+.PHONY : RuntimeReflection/RTTIClass.cpp.s
+
+RuntimeReflection/TypedProperty.o: RuntimeReflection/TypedProperty.cpp.o
+
+.PHONY : RuntimeReflection/TypedProperty.o
+
+# target to build an object file
+RuntimeReflection/TypedProperty.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/RuntimeReflection/TypedProperty.cpp.o
+.PHONY : RuntimeReflection/TypedProperty.cpp.o
+
+RuntimeReflection/TypedProperty.i: RuntimeReflection/TypedProperty.cpp.i
+
+.PHONY : RuntimeReflection/TypedProperty.i
+
+# target to preprocess a source file
+RuntimeReflection/TypedProperty.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/RuntimeReflection/TypedProperty.cpp.i
+.PHONY : RuntimeReflection/TypedProperty.cpp.i
+
+RuntimeReflection/TypedProperty.s: RuntimeReflection/TypedProperty.cpp.s
+
+.PHONY : RuntimeReflection/TypedProperty.s
+
+# target to generate assembly for a file
+RuntimeReflection/TypedProperty.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/RuntimeReflection/TypedProperty.cpp.s
+.PHONY : RuntimeReflection/TypedProperty.cpp.s
+
 TUI/ascii_art.o: TUI/ascii_art.cpp.o
 
 .PHONY : TUI/ascii_art.o
@@ -2500,6 +2851,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... LandessDevCore"
+	@echo "... Algorithms/DynamicProgramming.o"
+	@echo "... Algorithms/DynamicProgramming.i"
+	@echo "... Algorithms/DynamicProgramming.s"
 	@echo "... Algorithms/vdt/vdtmath.o"
 	@echo "... Algorithms/vdt/vdtmath.i"
 	@echo "... Algorithms/vdt/vdtmath.s"
@@ -2512,12 +2866,18 @@ help:
 	@echo "... Examples/AlgorithmicJSONTest.o"
 	@echo "... Examples/AlgorithmicJSONTest.i"
 	@echo "... Examples/AlgorithmicJSONTest.s"
+	@echo "... Examples/ApplicationLoopExample.o"
+	@echo "... Examples/ApplicationLoopExample.i"
+	@echo "... Examples/ApplicationLoopExample.s"
 	@echo "... Examples/CalculusExample.o"
 	@echo "... Examples/CalculusExample.i"
 	@echo "... Examples/CalculusExample.s"
 	@echo "... Examples/DelimeterSeperateFileExample.o"
 	@echo "... Examples/DelimeterSeperateFileExample.i"
 	@echo "... Examples/DelimeterSeperateFileExample.s"
+	@echo "... Examples/DependencyInjectionExample.o"
+	@echo "... Examples/DependencyInjectionExample.i"
+	@echo "... Examples/DependencyInjectionExample.s"
 	@echo "... Examples/DeploymentExample.o"
 	@echo "... Examples/DeploymentExample.i"
 	@echo "... Examples/DeploymentExample.s"
@@ -2548,6 +2908,9 @@ help:
 	@echo "... Examples/ReflectionExample.o"
 	@echo "... Examples/ReflectionExample.i"
 	@echo "... Examples/ReflectionExample.s"
+	@echo "... Examples/RunTimeReflectionExample.o"
+	@echo "... Examples/RunTimeReflectionExample.i"
+	@echo "... Examples/RunTimeReflectionExample.s"
 	@echo "... Examples/StringToNumberExample.o"
 	@echo "... Examples/StringToNumberExample.i"
 	@echo "... Examples/StringToNumberExample.s"
@@ -2557,6 +2920,9 @@ help:
 	@echo "... Examples/TermBoxMenuExample.o"
 	@echo "... Examples/TermBoxMenuExample.i"
 	@echo "... Examples/TermBoxMenuExample.s"
+	@echo "... Examples/UnitsExample.o"
+	@echo "... Examples/UnitsExample.i"
+	@echo "... Examples/UnitsExample.s"
 	@echo "... Examples/VisitationExample.o"
 	@echo "... Examples/VisitationExample.i"
 	@echo "... Examples/VisitationExample.s"
@@ -2749,6 +3115,30 @@ help:
 	@echo "... REST/CPR/util.o"
 	@echo "... REST/CPR/util.i"
 	@echo "... REST/CPR/util.s"
+	@echo "... RuntimeReflection/AbstractProperty.o"
+	@echo "... RuntimeReflection/AbstractProperty.i"
+	@echo "... RuntimeReflection/AbstractProperty.s"
+	@echo "... RuntimeReflection/BaseObject.o"
+	@echo "... RuntimeReflection/BaseObject.i"
+	@echo "... RuntimeReflection/BaseObject.s"
+	@echo "... RuntimeReflection/ExampleRuntimeReflection.o"
+	@echo "... RuntimeReflection/ExampleRuntimeReflection.i"
+	@echo "... RuntimeReflection/ExampleRuntimeReflection.s"
+	@echo "... RuntimeReflection/Property.o"
+	@echo "... RuntimeReflection/Property.i"
+	@echo "... RuntimeReflection/Property.s"
+	@echo "... RuntimeReflection/PropertySystem.o"
+	@echo "... RuntimeReflection/PropertySystem.i"
+	@echo "... RuntimeReflection/PropertySystem.s"
+	@echo "... RuntimeReflection/RTTI.o"
+	@echo "... RuntimeReflection/RTTI.i"
+	@echo "... RuntimeReflection/RTTI.s"
+	@echo "... RuntimeReflection/RTTIClass.o"
+	@echo "... RuntimeReflection/RTTIClass.i"
+	@echo "... RuntimeReflection/RTTIClass.s"
+	@echo "... RuntimeReflection/TypedProperty.o"
+	@echo "... RuntimeReflection/TypedProperty.i"
+	@echo "... RuntimeReflection/TypedProperty.s"
 	@echo "... TUI/ascii_art.o"
 	@echo "... TUI/ascii_art.i"
 	@echo "... TUI/ascii_art.s"

@@ -26,13 +26,13 @@ namespace LD
         private:
             using BucketExecutor = LD::Detail::Conditional_T<(LD::Detail::IsLValueReference<T>::value),LD::ElementReference <LD::Detail::Decay_T<T>>,LD::Detail::Decay_T<T>>;
             T mCurrentExecutor;
-            PDP::Second<LD::Float> mPeriod;
-            PDP::Second<LD::Float> mElapsed;
-            PDP::Second<LD::Float> test = PDP::Second<LD::Float>{0};
+            LD::Second<LD::Float> mPeriod;
+            LD::Second<LD::Float> mElapsed;
+            LD::Second<LD::Float> test = LD::Second<LD::Float>{LD::SecondTag<LD::Float>{0}};
             //double mAccumulated;
 
             template<typename F, typename ... Context>
-            static auto Apply(F && object, const LD::ApplicaitonStartedEvent<Context...> & event) noexcept -> LD::TypedRequires<bool,LD::ConvertiblyCallable<F,bool(LD::ApplicaitonStartedEvent<Context...>)>::Value()>
+            static auto Apply(F && object, const LD::ApplicationStartedEvent<Context...> & event) noexcept -> LD::TypedRequires<bool,LD::ConvertiblyCallable<F,bool(LD::ApplicationStartedEvent<Context...>)>::Value()>
             {
 
                 return object(event);
@@ -40,7 +40,7 @@ namespace LD
 
 
             template<typename F, typename ... Context>
-            static auto Apply(F && object, const LD::ApplicaitonStartedEvent<Context...> & event) noexcept -> LD::TypedRequires<bool,LD::CT::Negate(LD::ConvertiblyCallable<F,bool(LD::ApplicaitonStartedEvent<Context...>)>::Value())>
+            static auto Apply(F && object, const LD::ApplicationStartedEvent<Context...> & event) noexcept -> LD::TypedRequires<bool,LD::CT::Negate(LD::ConvertiblyCallable<F,bool(LD::ApplicationStartedEvent<Context...>)>::Value())>
             {
                 return LD::ApplicationQuittingPredicate{};
             }
@@ -106,12 +106,12 @@ namespace LD
                 return ;
             }
         public:
-            inline constexpr Bucket() noexcept : mElapsed{PDP::Second<LD::Float>{0}},mPeriod{PDP::Second<LD::Float>{0}}
+            inline constexpr Bucket() noexcept : mElapsed{LD::Second<LD::Float>{LD::SecondTag<LD::Float>{0}}},mPeriod{LD::Second<LD::Float>{LD::SecondTag<LD::Float>{0}}}
             {
 
             }
 
-            inline constexpr Bucket(T && executor) noexcept: mElapsed{PDP::Second<LD::Float>{0}},mPeriod{PDP::Second<LD::Float>{0}},mCurrentExecutor{LD::Forward<T>(executor)}
+            inline constexpr Bucket(T && executor) noexcept: mElapsed{LD::Second<LD::Float>{LD::SecondTag<LD::Float>{0}}},mPeriod{LD::Second<LD::Float>{LD::SecondTag<LD::Float>{0}}},mCurrentExecutor{LD::Forward<T>(executor)}
             {
 
             }
@@ -122,7 +122,7 @@ namespace LD
                 return (*this);
             }
 
-            bool operator()(const LD::ApplicaitonStartedEvent<A...> & applicationStartedEvent) noexcept
+            bool operator()(const LD::ApplicationStartedEvent<A...> & applicationStartedEvent) noexcept
             {
                 return MultiTenantApplication<LD::CT::TypeList<Executors...>(A...)>::Bucket<T>::Apply(LD::Get(this->mCurrentExecutor),applicationStartedEvent);
             }
@@ -184,10 +184,10 @@ namespace LD
                     auto I,
                     auto && context,
                     ExecutorList & executors)
-                                       {
-                                           LD::Get<0>(LD::Get<I>(executors)) = LD::Get<I>(LD::Forward<decltype(context)>(context));
-                                           return true;
-                                       },LD::Forward<decltype(context)>(context),this->mExecutors);
+            {
+                LD::Get<0>(LD::Get<I>(executors)) = LD::Get<I>(LD::Forward<decltype(context)>(context));
+                return true;
+            },LD::Forward<decltype(context)>(context),this->mExecutors);
 
         }
 
@@ -198,29 +198,33 @@ namespace LD
                     auto I,
                     auto && context,
                     ExecutorList & executors)
-                                       {
-
-                                           LD::Get<I>(executors) = LD::Get<I>(context);
-                                           return true;
-                                       },executors,this->mExecutors);
+            {
+                LD::Get<I>(executors) = LD::Get<I>(context);
+                return true;
+            },executors,this->mExecutors);
         }
 
 
-        bool operator()(const LD::ApplicaitonStartedEvent<A...> & applicationStartedEvent) noexcept
+        bool operator()(const LD::ApplicationStartedEvent<A...> & applicationStartedEvent) noexcept
         {
             bool shouldrun = true;
             LD::For<NumberOfExecutors>([](
                     auto I,
                     ExecutorList & executors,
-                    const LD::ApplicaitonStartedEvent<A...> & applicationStartedEvent,
+                    const LD::ApplicationStartedEvent<A...> & applicationStartedEvent,
                     bool & runnable) noexcept
-                                       {
+            {
 
-                                           auto & currentExecutor = LD::Get<I>(executors);
-                                           bool shouldRun = currentExecutor(applicationStartedEvent);
-                                           runnable = runnable && shouldRun;
-                                           return true;
-                                       },this->mExecutors,applicationStartedEvent,shouldrun);
+
+                auto & currentExecutor = LD::Get<I>(executors);
+
+                bool shouldRun = currentExecutor(applicationStartedEvent);
+
+                runnable = runnable && shouldRun;
+
+                return true;
+
+            },this->mExecutors,applicationStartedEvent,shouldrun);
             return shouldrun;
         }
 
@@ -243,25 +247,30 @@ namespace LD
             return runnable;
         }
 
-        PDP::Second<LD::Float> operator()(const LD::ApplicationPeriodEvent<A...> & applicationPeriodEvent) noexcept
+        LD::Second<LD::Float> operator()(const LD::ApplicationPeriodEvent<A...> & applicationPeriodEvent) noexcept
         {
             bool runnable = true;
-            PDP::Second<LD::Float> period = PDP::Second<LD::Float>{0};
+            LD::Second<LD::Float> period = LD::Second<LD::Float >{LD::SecondTag<LD::Float >{0}};
             LD::For<NumberOfExecutors>([](
                     auto I,
                     ExecutorList & executors,
-                    PDP::Second<LD::Float> & period,
+                    LD::Second<LD::Float> & period,
                     const LD::ApplicationPeriodEvent<A...> & applicationPeriodEvent) noexcept
-                                       {
+            {
 
-                                           auto & currentExecutor = LD::Get<I>(executors);
 
-                                           PDP::Second<LD::Float> currentPeriod = currentExecutor(applicationPeriodEvent);
+                auto & currentExecutor = LD::Get<I>(executors);
 
-                                           period =  PDP::Second<LD::Float>{LD::GCD(currentPeriod.GetValue(),period.GetValue())};
 
-                                           return true;
-                                       },this->mExecutors,period,applicationPeriodEvent);
+                LD::Second<LD::Float> currentPeriod = currentExecutor(applicationPeriodEvent);
+
+
+                period =  LD::Second<LD::Float>{LD::GCD(currentPeriod.NativeRepresentation().Value(),period.NativeRepresentation().Value())};
+
+
+                return true;
+
+            },this->mExecutors,period,applicationPeriodEvent);
             return period;
         }
 

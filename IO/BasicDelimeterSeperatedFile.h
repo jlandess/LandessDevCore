@@ -5,7 +5,7 @@
 #ifndef LANDESSDEVCORE_BASICDELIMETERSEPERATEDFILE_H
 #define LANDESSDEVCORE_BASICDELIMETERSEPERATEDFILE_H
 #include "Definitions/Integer.hpp"
-#include "Algorithms/CompileTimeControlFlow.hpp"
+#include "TypeTraits/CompileTimeControlFlow.hpp"
 #include "FetchRequest.h"
 #include "Primitives/General/StringView.hpp"
 #include "Memory/ElementReference.h"

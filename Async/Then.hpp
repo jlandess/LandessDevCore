@@ -44,15 +44,31 @@ namespace LD
         namespace Detail
         {
             template<typename P, typename Fun>
-            struct _promise1 {
+            struct _promise1
+            {
+                static constexpr LD::UInteger Number = P::Number;
                 P p_;
                 Fun fun_;
 
                 template<typename ... A>
                 void set_value(A ... vs)
                 {
-                    p_.set_value(fun_(vs...));
+                    if constexpr(P::Number == 0)
+                    {
+                        p_.set_value(fun_(vs...));
+                    }else if constexpr(P::Number == 1)
+                    {
+                        fun_(vs...);
+                        p_.set_value();
+                    }
                 }
+
+                /*
+                void set_value()
+                {
+                    p_.set_value();
+                }
+                 */
 
                 template<typename E>
                 void set_exception(E e) { p_.set_exception(e); }

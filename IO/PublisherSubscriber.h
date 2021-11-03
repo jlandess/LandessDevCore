@@ -20,6 +20,9 @@
 #include "Async/Locks/DummyLock.hpp"
 #include "Async/Locks/DummySharedLock.hpp"
 #include "Async/Then.hpp"
+#include "Patterns/LazyLambda.hpp"
+#include "Algorithms/Base64Encoding.h"
+
 namespace LD
 {
     /*
@@ -189,52 +192,97 @@ namespace LD
             A && ... args) noexcept;
 
 
-    template<typename Subscription,typename V, typename F,typename KeyType , typename LockType ,typename ... A>
-    LD::Enable_If_T<
-            LD::Require<
-                    LD::CT::IsPrimitive(LD::CT::RemoveQualifiers(LD::Type<V>{})),
-                    LD::ConvertiblyCallable<F,void(V,LockType,A...)>::Value(),
-                    LD::CT::IsSharedLock(LD::Type<LockType>{})>,
-            LD::RequestResponse<bool(A...)>>
-    Subscribe(
+    template<typename Publisher, typename Key, typename T,class = LD::Enable_If_T<LD::Require<LD::CT::IsPrimitive(LD::CT::RemoveQualifiers(LD::Type<T>{}))>>>
+    auto Publish(Publisher & publisher, Key && key, T && object, LD::DateTime datetime = LD::DateTime{}) noexcept
+    {
+        auto jdDate = LD::DateTimeToJulianNumber(datetime);
+        LD::UInteger factoredJulianDateWithoutTime = (LD::UInteger)jdDate;
+        auto jdTime = jdDate-(LD::UInteger)jdDate;
+        auto memee1 = LD::ToImmutableString(LD::UInteger (jdTime* LD::Pow(10,15)));
+        std::cout << "Associatasdlwek;jfg;lzskd.njfgdl,s ;lfp[kasjklpd;sx,fzhj lvp;,zsjkldsfh; ifgj.h luasld.k,flhj oilkDZ<floh dslA:N<>:gf : " << jdTime << "\n";
+        std::cout << "Associatasdlwek;jfg;lzskd.njfgdl,s ;lfp[kasjklpd;sx,fzhj lvp;,zsjkldsfh; ifgj.h luasld.k,flhj oilkDZ<floh dslA:N<>:gf : " << memee1.Data() << "\n";
+        /**
+         * LD::ImmutableString{"."}+
+                LD::ToImmutableString(factredJulianDateTime)+
+                LD::ImmutableString{"."}+
+                LD::ToImmutableString(factoredJulianDateWithoutTime)+
+                LD::ImmutableString{"."}+
+         */
+         //std::cout << "FactoredJulianDateTime: " << floatingPointPortion << "\n";
+        auto finalizedKey = LD::Base64Encode(publisher.NodeIdentification())+
+                LD::ImmutableString{"."}+
+                LD::ToImmutableString(LD::UInteger(factoredJulianDateWithoutTime))+
+                LD::ImmutableString{"."}+
+                memee1+
+                LD::ImmutableString{"."}+
+                key;
+        auto primitiveAsString = LD::ToImmutableString(LD::Forward<T>(object));
+        publisher.Publish(key.Data(),finalizedKey.Data());
+        std::cout << "finalizedKey: " << finalizedKey.Data() << "\n";
+        publisher.Publish(finalizedKey.Data(),primitiveAsString.Data());
+        publisher.Publish("NWQzYzljMTU5YzlkYjA0YjI3ZjJhOTYxY2M4ZjAzZmVmOGIxOGYzNQ==","7");
+        return LD::Variant<LD::TransactionError,bool>{true};
+    }
+    template<typename Subscription,typename V,typename KeyType, typename ExecutionContext,typename Inserter,class = LD::Enable_If_T<LD::Require<LD::CT::IsPrimitive(LD::CT::RemoveQualifiers(LD::Type<V>{}))>>>
+    auto Subscribe(
             Subscription & subscription,
             KeyType && key,
             LD::Type<V>,
-            F && callBack,
-            LockType  lock,
-            A && ... args) noexcept
+            Inserter  inserters,
+            ExecutionContext context) noexcept
     {
-        auto context = LD::MakeTuple(V{},LockType{lock},LD::Forward<A>(args)...);
-        using ContextType = decltype(context);
-        LD::fixed_size_function<void(V,LockType,A...)> function{LD::Forward<F>(callBack)};
-        subscription.Subscribe(
-                LD::StringView{key.Data()},
-        [](
-                LD::StringView response,
-                ContextType passedInContext,
-                LD::fixed_size_function<void(V,LockType,A...)>  callback)
+
+        LD::LazyLambda lazy([](LD::StringView view, Inserter inserter) noexcept
         {
-            auto possibleInteger = LD::FromString(
-                    LD::Type<V>{},
-                    response,passedInContext,callback);
+            auto possiblePrimitive =  LD::FromString(LD::Type<V>{},view,Inserter{inserter});
 
-            auto onPrimitive = [](
-                    V primitive,
-                    ContextType & context,
-                    LD::fixed_size_function<void(V,LockType,A...)> & callback) noexcept
+            auto onPrimitive = [](V object, Inserter inserter) noexcept
             {
-                LD::Get(LD::Get<0>(context)) = primitive;
-                LD::Invoke(callback,context);
+                inserter = object;
             };
 
-            auto onError = [](LD::TransactionError, ContextType & context, LD::fixed_size_function<void(V,LockType,A...)> &) noexcept
+            auto onFailure = [](LD::TransactionError, Inserter) noexcept
             {
 
             };
 
-            LD::InvokeVisitation(LD::Overload{onPrimitive,onError},possibleInteger);
-        },ContextType{context},LD::fixed_size_function<void(V,LockType,A...)>{function});
-        return LD::CreateResponse(LD::Type<bool>{},bool{true},LD::Forward<A>(args)...);
+            LD::InvokeVisitation(LD::Overload{onPrimitive,onFailure},possiblePrimitive);
+
+
+        },Inserter{inserters});
+
+
+        return subscription.Subscribe(LD::StringView{(key).Data()},lazy);
+    }
+
+    template<typename Subscription,typename V,typename KeyType, typename ExecutionContext,typename Inserter,class = LD::Enable_If_T<LD::Require<LD::CT::IsPrimitive(LD::CT::RemoveQualifiers(LD::Type<V>{}))>>>
+    auto Subscribe123(
+            Subscription & subscription,
+            KeyType && key,
+            LD::Type<V>,
+            Inserter  inserters,
+            ExecutionContext context) noexcept
+    {
+        LD::LazyLambda lazy([](LD::StringView view, Inserter inserter, LD::ElementReference<Subscription> subscription) noexcept
+        {
+
+            std::cout << "Internal View: " << view << "\n";
+            /*
+            LD::Get(subscription).Subscribe(LD::StringView{view},LD::LazyLambda{[](LD::StringView internalView, Inserter inserter)
+            {
+                std::cout << "View: " << internalView << "\n";
+                //inserter = V{};
+
+            },Inserter{inserter}});
+             */
+            //sleep(10);
+            //LD::Get(subscription).Subscribe(LD::StringView {LD::ImmutableString{"abc"}.Data()},LD::LazyLambda{[](LD::StringView)
+           // {
+
+            //}},Inserter{inserter});
+
+        },Inserter{inserters},LD::ElementReference<Subscription>{subscription});
+        return subscription.Subscribe(LD::StringView{(key).Data()},lazy);
     }
 
     template<typename Subscription,typename V, typename KeyType ,typename ... A>

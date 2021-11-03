@@ -115,7 +115,7 @@ namespace LD
         {
             if constexpr (is_variant_v<T>)
             {
-                return LD::VariantOperations<T>::template Get<I>(LD::Forward<T>(t));
+                return LD::VariantOperations<LD::Detail::Decay_T<T>>::template Get<I>(LD::Forward<T>(t));
                 //return std::get<I>(LD::Forward<T>(t));
             }
             else
@@ -149,7 +149,7 @@ namespace LD
             if constexpr (is_variant_v<V>)
             {
 
-                return LD::VariantOperations<V>::Size();
+                return LD::VariantOperations<LD::Detail::Decay_T<V>>::Size();
                 //return std::variant_size_v<variant_access<V>>;
             }
             else
@@ -163,7 +163,9 @@ namespace LD
         {
             if constexpr (is_variant_v<V>)
             {
-                return v.index();
+                return LD::VariantOperations<LD::Detail::Decay_T<V>>::Index(v);
+                //return LD::VariantOperations<LD::Detail::Decay_T<V>>::Index(v);
+                //return v.index();
             }
             else
             {
@@ -191,7 +193,7 @@ namespace LD
             } else {
                 if (LD::Tuple(detail::index(vs)...) == LD::Tuple(Is...))
                 {
-                    return f(forward_like<Vs>(*VariantOperations<Vs>::template GetIf<Is>(&vs))...);
+                    return f(forward_like<Vs>(*VariantOperations<LD::Detail::Decay_T<Vs>>::template GetIf<Is>(&vs))...);
                     //return f(forward_like<Vs>(*get_if<Is>(&vs))...);
                 }
                 return LD::detail::Visit(n, m, LD::Forward<F>(f), LD::Forward<Vs>(vs)...);

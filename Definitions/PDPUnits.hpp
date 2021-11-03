@@ -973,120 +973,6 @@ inline PDP::Newton<T> operator *(const PDP::MetersPerSecondSquared<T> & accelera
 }
 
 
-//beginning of second literals
-/*
-inline PDP::Second<long double>  operator "" _ds(long double a)
-{
-    return PDP::Second<long double>(a*(1E-1));
-}
-
-inline PDP::Second<long double>  operator "" _cs(long double a)
-{
-    return PDP::Second<long double>(a*(1E-2));
-}
-
-inline PDP::Second<long double>  operator "" _ms(long double a)
-{
-    return PDP::Second<long double>(a*(1E-6));
-}
-
-inline PDP::Second<long double>  operator "" _us(long double a)
-{
-    return PDP::Second<long double>(a*(1E-9));
-}
-
-
-inline PDP::Second<long double>  operator "" _ns(long double a)
-{
-    return PDP::Second<long double>(a*(1E-12));
-}
-
-inline PDP::Second<long double>   operator "" _ps(long double a)
-{
-    return PDP::Second<long double>(a*(1E-15));
-}
-
-inline PDP::Second<long double>  operator "" _fs(long double a)
-{
-    return PDP::Second<long double>(a*(1E-18));
-}
-
-inline PDP::Second<long double>   operator "" _as(long double a)
-{
-    return PDP::Second<long double>(a*(1E-18));
-}
-
-inline PDP::Second<long double>   operator "" _zs(long double a)
-{
-    return PDP::Second<long double>(a*(1E-21));
-}
-
-inline PDP::Second<long double>  operator "" _ys(long double a)
-{
-    return PDP::Second<long double>(a*(1E-24));
-}
-
-
-inline PDP::Second<long double> operator "" _s(long double a)
-{
-    return PDP::Second<long double>(a);
-}
- */
-
-
-
-inline PDP::Second<long double>  operator "" _das(long double a)
-{
-    return PDP::Second<long double>(a*(1E1));
-}
-
-inline PDP::Second<long double>  operator "" _hs(long double a)
-{
-    return PDP::Second<long double>(a*(1E2));
-}
-
-
-inline PDP::Second<long double>  operator "" _ks(long double a)
-{
-    return PDP::Second<long double>(a*(1E3));
-}
-
-inline PDP::Second<long double>  operator "" _Ms(long double a)
-{
-    return PDP::Second<long double>(a*(1E6));
-}
-
-inline PDP::Second<long double>  operator "" _Gs(long double a)
-{
-    return PDP::Second<long double>(a*(1E9));
-}
-
-inline PDP::Second<long double>  operator "" _Ts(long double a)
-{
-    return PDP::Second<long double>(a*(1E12));
-}
-
-
-inline PDP::Second<long double>  operator "" _Ps(long double a)
-{
-    return PDP::Second<long double>(a*(1E15));
-}
-
-inline PDP::Second<long double>  operator "" _Es(long double a)
-{
-    return PDP::Second<long double>(a*(1E18));
-}
-
-inline PDP::Second<long double>  operator "" _Zs(long double a)
-{
-    return PDP::Second<long double>(a*(1E21));
-}
-
-
-inline PDP::Second<long double>  operator "" _Ys(long double a)
-{
-    return PDP::Second<long double>(a*(1E24));
-}
 
 
 
@@ -1103,15 +989,34 @@ inline PDP::Second<long double>  operator "" _Ys(long double a)
 
 
 
-inline PDP::Second<unsigned long long int>  operator "" _ds(unsigned long long int a)
-{
-    return PDP::Second<unsigned long long int>(a*(1E-1));
-}
 
-inline PDP::Second<unsigned long long int>  operator "" _cs(unsigned long long int a)
-{
-    return PDP::Second<unsigned long long int>(a*(1E-2));
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
 inline PDP::Second<unsigned long long int>  operator "" _ms(unsigned long long int a)
@@ -1120,102 +1025,48 @@ inline PDP::Second<unsigned long long int>  operator "" _ms(unsigned long long i
 }
  */
 
-inline PDP::Second <unsigned long long int>  operator "" _us(unsigned long long int a)
-{
-    return PDP::Second<unsigned long long int>(a*(1E-9));
-}
-
-
-inline PDP::SecondSquared<unsigned long long int>  operator "" _ns(unsigned long long int a)
-{
-    return PDP::SecondSquared<unsigned long long int>(a*(1E-12));
-}
-
-inline PDP::Second<unsigned long long int>   operator "" _ps(unsigned long long int a)
-{
-    return PDP::Second<unsigned long long int>(a*(1E-15));
-}
-
-inline PDP::Second<unsigned long long int>  operator "" _fs(unsigned long long int a)
-{
-    return PDP::Second<unsigned long long int>(a*(1E-18));
-}
-
-inline PDP::Second<unsigned long long int>   operator "" _as(unsigned long long int a)
-{
-    return PDP::Second<unsigned long long int>(a*(1E-18));
-}
-
-inline PDP::Second<unsigned long long int>   operator "" _zs(unsigned long long int a)
-{
-    return PDP::Second<unsigned long long int>(a*(1E-21));
-}
-
-inline PDP::Second<unsigned long long int>  operator "" _ys(unsigned long long int a)
-{
-    return PDP::Second<unsigned long long int>(a*(1E-24));
-}
-
-
-inline PDP::Second<unsigned long long int> operator "" _s(unsigned long long int a)
-{
-    return PDP::Second<unsigned long long int>(a);
-}
 
 
 
-inline PDP::Second<unsigned long long int>  operator "" _das(unsigned long long int a)
-{
-    return PDP::Second<unsigned long long int>(a*(1E1));
-}
-
-inline PDP::Second<unsigned long long int>  operator "" _hs(unsigned long long int a)
-{
-    return PDP::Second<unsigned long long int>(a*(1E2));
-}
 
 
-inline PDP::Second<unsigned long long int>  operator "" _ks(unsigned long long int a)
-{
-    return PDP::Second<unsigned long long int>(a*(1E3));
-}
-
-inline PDP::Second<unsigned long long int>  operator "" _Ms(unsigned long long int a)
-{
-    return PDP::Second<unsigned long long int>(a*(1E6));
-}
-
-inline PDP::Second<unsigned long long int>  operator "" _Gs(unsigned long long int a)
-{
-    return PDP::Second<unsigned long long int>(a*(1E9));
-}
-
-inline PDP::Second<unsigned long long int>  operator "" _Ts(unsigned long long int a)
-{
-    return PDP::Second<unsigned long long int>(a*(1E12));
-}
 
 
-inline PDP::Second<unsigned long long int>  operator "" _Ps(unsigned long long int a)
-{
-    return PDP::Second<unsigned long long int>(a*(1E15));
-}
-
-inline PDP::Second<unsigned long long int>  operator "" _Es(unsigned long long int a)
-{
-    return PDP::Second<unsigned long long int>(a*(1E18));
-}
-
-inline PDP::Second<unsigned long long int>  operator "" _Zs(unsigned long long int a)
-{
-    return PDP::Second<unsigned long long int>(a*(1E21));
-}
 
 
-inline PDP::Second<unsigned long long int>  operator "" _Ys(unsigned long long int a)
-{
-    return PDP::Second<unsigned long long int>(a*(1E24));
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //end of second literals
 
 

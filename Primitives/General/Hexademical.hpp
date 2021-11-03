@@ -5,10 +5,10 @@
 #ifndef LANDESSDEVCORE_HEXADEMICAL_HPP
 #define LANDESSDEVCORE_HEXADEMICAL_HPP
 #include "BitSet.hpp"
-#include "Algorithms/CompileTimeControlFlow.hpp"
+#include "TypeTraits//CompileTimeControlFlow.hpp"
 #include "Primitives/General/Immutable.hpp"
 #include "Primitives/General/StringView.hpp"
-#include "Algorithms/CompileTimeOperations.hpp"
+#include "TypeTraits//CompileTimeOperations.hpp"
 namespace LD
 {
     class HexElement

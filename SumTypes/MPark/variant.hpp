@@ -2229,6 +2229,50 @@ namespace LD
             return mpark::get<Index>(variant);
         }
 
+        inline static auto Index(const mpark::variant<A...> & variant) noexcept
+        {
+            return variant.index();
+        }
+
+        inline static constexpr LD::UInteger Size() noexcept
+        {
+            return mpark::variant_size_v<mpark::variant<A...>>;
+        }
+
+    };
+
+    template<typename ... A>
+    struct VariantOperations<mpark::variant<A...>&>
+    {
+        template<LD::UInteger Index>
+        inline static auto GetIf(mpark::variant<A...> * variant) noexcept
+        {
+            return mpark::get_if<Index>(variant);
+        }
+
+        template<LD::UInteger Index>
+        inline static auto Get(mpark::variant<A...> & variant) noexcept
+        {
+            return mpark::get<Index>(variant);
+        }
+
+        template<LD::UInteger Index>
+        inline static auto Get(mpark::variant<A...> && variant) noexcept
+        {
+            return mpark::get<Index>(variant);
+        }
+
+        template<LD::UInteger Index>
+        inline static auto Get(const mpark::variant<A...> & variant) noexcept
+        {
+            return mpark::get<Index>(variant);
+        }
+
+        inline static auto Index(const mpark::variant<A...> & variant) noexcept
+        {
+            return variant.index();
+        }
+
         inline static constexpr LD::UInteger Size() noexcept
         {
             return mpark::variant_size_v<mpark::variant<A...>>;

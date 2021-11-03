@@ -11,7 +11,7 @@
 #include "TypeTraits/IsVariant.hpp"
 #include "Unicode/UTF8.hpp"
 #include "Primitives/General/Span.hpp"
-#include "Algorithms/CompileTimeControlFlow.hpp"
+#include "TypeTraits/CompileTimeControlFlow.hpp"
 #include <simdjson/simdjson.h>
 #include "Reflection/Reflection.hpp"
 namespace LD

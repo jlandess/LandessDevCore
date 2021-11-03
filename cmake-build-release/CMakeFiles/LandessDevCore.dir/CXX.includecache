@@ -24,27 +24,9 @@ Primitives/General/Unit.hpp
 Chrono/Timer.h
 ../Algorithms/Chrono/Timer.h
 
-../Algorithms/CompileTimeControlFlow.hpp
-Functor/LightWeightDelegate.h
--
-Memory/ElementReference.h
-../Algorithms/Memory/ElementReference.h
-TypeTraits/Declval.hpp
-../Algorithms/TypeTraits/Declval.hpp
-TypeTraits/Detection.hpp
-../Algorithms/TypeTraits/Detection.hpp
-Primitives/General/Range.h
-../Algorithms/Primitives/General/Range.h
-Algorithms/Move.hpp
-../Algorithms/Algorithms/Move.hpp
-
-../Algorithms/CompileTimeOperations.hpp
-Definitions/Integer.hpp
-../Algorithms/Definitions/Integer.hpp
-
 ../Algorithms/DecimalToBinary.h
-CompileTimeControlFlow.hpp
-../Algorithms/CompileTimeControlFlow.hpp
+TypeTraits/CompileTimeControlFlow.hpp
+../Algorithms/TypeTraits/CompileTimeControlFlow.hpp
 Primitives/General/BitSet.hpp
 ../Algorithms/Primitives/General/BitSet.hpp
 
@@ -115,6 +97,14 @@ TypeTraits/Detection.hpp
 ../Algorithms/TypeTraits/Detection.hpp
 
 ../Algorithms/Overload.hpp
+
+../Algorithms/Periodic.hpp
+Definitions/Float.hpp
+../Algorithms/Definitions/Float.hpp
+Definitions/Integer.hpp
+../Algorithms/Definitions/Integer.hpp
+vdt/vdtmath.h
+../Algorithms/vdt/vdtmath.h
 
 ../Algorithms/Power.hpp
 Definitions/Integer.hpp
@@ -293,6 +283,10 @@ Memory/shared_ptr.hpp
 ../Async/Memory/shared_ptr.hpp
 TypeTraits/Iterable.h
 ../Async/TypeTraits/Iterable.h
+TypeTraits/IsReference.hpp
+../Async/TypeTraits/IsReference.hpp
+Memory/ElementReference.h
+../Async/Memory/ElementReference.h
 
 ../Async/Commitment.h
 Async/Atomic/Atomic.h
@@ -417,6 +411,18 @@ TypeTraits/Detection.hpp
 ../Definitions/TypeTraits/Detection.hpp
 Algorithms/Move.hpp
 ../Definitions/Algorithms/Move.hpp
+
+../Definitions/TimeExtension.hpp
+PDPUnits.hpp
+../Definitions/PDPUnits.hpp
+time.h
+-
+Primitives/General/Unit.hpp
+../Definitions/Primitives/General/Unit.hpp
+windows.h
+-
+unistd.h
+-
 
 ../Definitions/platform_detect.h
 TargetConditionals.h
@@ -593,8 +599,8 @@ Primitives/General/mapboxvariantvisitor.h
 ../IO/Primitives/General/mapboxvariantvisitor.h
 unqlite.h
 ../IO/unqlite.h
-Algorithms/CompileTimeControlFlow.hpp
-../IO/Algorithms/CompileTimeControlFlow.hpp
+TypeTraits/CompileTimeControlFlow.hpp
+../IO/TypeTraits/CompileTimeControlFlow.hpp
 Primitives/General/ContextualVariant.h
 ../IO/Primitives/General/ContextualVariant.h
 DatabaseOperationResult.h
@@ -617,6 +623,14 @@ Core/RequestResponse.hpp
 ../IO/unqlite.h
 stdarg.h
 -
+
+../MVC/Cusor.h
+Primitives/General/Vec2.hpp
+../MVC/Primitives/General/Vec2.hpp
+Primitives/General/StaticArray.hpp
+../MVC/Primitives/General/StaticArray.hpp
+TypeTraits/IntegralConstant.hpp
+../MVC/TypeTraits/IntegralConstant.hpp
 
 ../MVC/Mouse.hpp
 Primitives/General/Vec2.hpp
@@ -646,34 +660,6 @@ Primitives/General/StringView.hpp
 
 ../MVC/RenderingContext.hpp
 
-../MVC/Scheduling.hpp
-Definitions/Integer.hpp
-../MVC/Definitions/Integer.hpp
-Definitions/PDPUnits.hpp
-../MVC/Definitions/PDPUnits.hpp
-Memory/ElementReference.h
-../MVC/Memory/ElementReference.h
-SchedulingEvent.hpp
-../MVC/SchedulingEvent.hpp
-Primitives/General/mapboxvariantvisitor.h
-../MVC/Primitives/General/mapboxvariantvisitor.h
-Primitives/General/mapboxvariant.hpp
-../MVC/Primitives/General/mapboxvariant.hpp
-Core/HeteregenousTuple.hpp
-../MVC/Core/HeteregenousTuple.hpp
-MVC/TermBoxRenderingContext.hpp
-../MVC/MVC/TermBoxRenderingContext.hpp
-Algorithms/Sampler.hpp
-../MVC/Algorithms/Sampler.hpp
-Algorithms/fsm.hpp
--
-MVC/TermBoxConsoleApplication.hpp
-../MVC/MVC/TermBoxConsoleApplication.hpp
-Definitions/TimeExtension.hpp
-../MVC/Definitions/TimeExtension.hpp
-SchedulingQuittingPredicate.hpp
-../MVC/SchedulingQuittingPredicate.hpp
-
 ../MVC/SchedulingEvent.hpp
 Definitions/PDPUnits.hpp
 ../MVC/Definitions/PDPUnits.hpp
@@ -702,29 +688,9 @@ Core/HeteregenousTuple.hpp
 
 ../MVC/SchedulingQuittingPredicate.hpp
 
-../MVC/TermBoxConsoleApplication.hpp
-Definitions/PDPUnits.hpp
-../MVC/Definitions/PDPUnits.hpp
+../MVC/ScopedRenderContextState.hpp
 TermBoxRenderingContext.hpp
 ../MVC/TermBoxRenderingContext.hpp
-SchedulingEvent.hpp
-../MVC/SchedulingEvent.hpp
-TermBox/termbox.h
-../MVC/TermBox/termbox.h
-TypeTraits/TypeList.hpp
-../MVC/TypeTraits/TypeList.hpp
-MVC/Mouse.hpp
-../MVC/MVC/Mouse.hpp
-TermBoxCursorNavigator.hpp
-../MVC/TermBoxCursorNavigator.hpp
-
-../MVC/TermBoxCursorNavigator.hpp
-Memory/ElementReference.h
-../MVC/Memory/ElementReference.h
-Definitions/PDPUnits.hpp
-../MVC/Definitions/PDPUnits.hpp
-Primitives/General/mapboxvariant.hpp
-../MVC/Primitives/General/mapboxvariant.hpp
 
 ../MVC/TermBoxEnumerations.hpp
 
@@ -745,8 +711,8 @@ Primitives/General/StaticArray.hpp
 ../MVC/Primitives/General/StaticArray.hpp
 Primitives/General/Immutable.hpp
 ../MVC/Primitives/General/Immutable.hpp
-Algorithms/CompileTimeControlFlow.hpp
-../MVC/Algorithms/CompileTimeControlFlow.hpp
+TypeTraits/CompileTimeControlFlow.hpp
+../MVC/TypeTraits/CompileTimeControlFlow.hpp
 RenderingContext.hpp
 ../MVC/RenderingContext.hpp
 MVC/SchedulingEvent.hpp
@@ -770,6 +736,18 @@ Primitives/General/StringView.hpp
 Primitives/General/ContextualVariant.h
 ../MVC/Primitives/General/ContextualVariant.h
 
+../MVC/TermboxTextLabel.hpp
+Primitives/General/Immutable.hpp
+../MVC/Primitives/General/Immutable.hpp
+Primitives/General/mapboxvariant.hpp
+../MVC/Primitives/General/mapboxvariant.hpp
+Primitives/General/mapboxvariantvisitor.h
+../MVC/Primitives/General/mapboxvariantvisitor.h
+TermBoxRenderingContext.hpp
+../MVC/TermBoxRenderingContext.hpp
+ScopedRenderContextState.hpp
+../MVC/ScopedRenderContextState.hpp
+
 ../Memory/AutomaticReferenceCounting.h
 stdlib.h
 -
@@ -786,6 +764,44 @@ TypeTraits/IsKindOf.hpp
 Core/Tuple.hpp
 ../Memory/Core/Tuple.hpp
 
+../Memory/MemoryResource.hpp
+stdlib.h
+-
+Definitions/Integer.hpp
+../Memory/Definitions/Integer.hpp
+Primitives/General/StaticArray.hpp
+../Memory/Primitives/General/StaticArray.hpp
+
+../Memory/PolyMorphicAllocator.hpp
+MemoryResource.hpp
+../Memory/MemoryResource.hpp
+TypeTraits/Limit.hpp
+../Memory/TypeTraits/Limit.hpp
+TypeTraits/UsesAlloc.h
+../Memory/TypeTraits/UsesAlloc.h
+TypeTraits/IsBaseOf.hpp
+../Memory/TypeTraits/IsBaseOf.hpp
+
+../Memory/UniquePointer.h
+MemoryResource.hpp
+../Memory/MemoryResource.hpp
+PolyMorphicAllocator.hpp
+../Memory/PolyMorphicAllocator.hpp
+cstddef
+-
+algorithm
+-
+Async/Atomic/Atomic.h
+../Memory/Async/Atomic/Atomic.h
+Functor/LightWeightDelegate.h
+../Memory/Functor/LightWeightDelegate.h
+ElementReference.h
+../Memory/ElementReference.h
+TypeTraits/RemoveExtent.hpp
+../Memory/TypeTraits/RemoveExtent.hpp
+cassert
+-
+
 ../Memory/shared_ptr.hpp
 cstddef
 -
@@ -799,6 +815,10 @@ Async/Atomic/Atomic.h
 ../Memory/Async/Atomic/Atomic.h
 TypeTraits/Detection.hpp
 ../Memory/TypeTraits/Detection.hpp
+Memory/MemoryResource.hpp
+../Memory/Memory/MemoryResource.hpp
+Memory/PolyMorphicAllocator.hpp
+../Memory/Memory/PolyMorphicAllocator.hpp
 
 ../Network/Gateway.hpp
 IPV4Address.hpp
@@ -925,20 +945,20 @@ Primitives/General/Unit.hpp
 ../Primitives/General/Hexademical.hpp
 BitSet.hpp
 ../Primitives/General/BitSet.hpp
-Algorithms/CompileTimeControlFlow.hpp
-../Primitives/General/Algorithms/CompileTimeControlFlow.hpp
+TypeTraits/CompileTimeControlFlow.hpp
+../Primitives/General/TypeTraits/CompileTimeControlFlow.hpp
 Primitives/General/Immutable.hpp
 ../Primitives/General/Primitives/General/Immutable.hpp
 Primitives/General/StringView.hpp
 ../Primitives/General/Primitives/General/StringView.hpp
-Algorithms/CompileTimeOperations.hpp
-../Primitives/General/Algorithms/CompileTimeOperations.hpp
+TypeTraits/CompileTimeOperations.hpp
+../Primitives/General/TypeTraits/CompileTimeOperations.hpp
 
 ../Primitives/General/Immutable.hpp
 Primitives/General/typestring.hpp
 ../Primitives/General/Primitives/General/typestring.hpp
-Algorithms/CompileTimeControlFlow.hpp
-../Primitives/General/Algorithms/CompileTimeControlFlow.hpp
+TypeTraits/CompileTimeControlFlow.hpp
+../Primitives/General/TypeTraits/CompileTimeControlFlow.hpp
 Primitives/General/Hash.hpp
 ../Primitives/General/Primitives/General/Hash.hpp
 TypeTraits/IsImmutable.h
@@ -963,6 +983,10 @@ TypeTraits/IsPackConvertible.hpp
 ../Primitives/General/TypeTraits/IsPackConvertible.hpp
 TypeTraits/Limit.hpp
 ../Primitives/General/TypeTraits/Limit.hpp
+Primitives/General/StringView.hpp
+../Primitives/General/Primitives/General/StringView.hpp
+Algorithms/Exponential.hpp
+../Primitives/General/Algorithms/Exponential.hpp
 
 ../Primitives/General/ImproperFraction.hpp
 Algorithms/Abs.hpp
@@ -1017,12 +1041,16 @@ TypeTraits/FunctionalReflection.hpp
 ../Primitives/General/StaticArray.hpp
 Definitions/Integer.hpp
 ../Primitives/General/Definitions/Integer.hpp
+Definitions/Float.hpp
+../Primitives/General/Definitions/Float.hpp
 Functor/Lambda.h
 ../Primitives/General/Functor/Lambda.h
 Algorithms/GenericResize.h
 ../Primitives/General/Algorithms/GenericResize.h
-Algorithms/CompileTimeControlFlow.hpp
-../Primitives/General/Algorithms/CompileTimeControlFlow.hpp
+TypeTraits/CompileTimeControlFlow.hpp
+../Primitives/General/TypeTraits/CompileTimeControlFlow.hpp
+TypeTraits/CompileTimeControlFlow.hpp
+../Primitives/General/TypeTraits/CompileTimeControlFlow.hpp
 TypeTraits/IsImmutable.h
 ../Primitives/General/TypeTraits/IsImmutable.h
 TypeTraits/Iterable.h
@@ -1231,8 +1259,8 @@ utility
 ../Reflection/reflectable.hpp
 tagged_tuple.hpp
 ../Reflection/tagged_tuple.hpp
-Algorithms/CompileTimeControlFlow.hpp
-../Reflection/Algorithms/CompileTimeControlFlow.hpp
+TypeTraits/CompileTimeControlFlow.hpp
+../Reflection/TypeTraits/CompileTimeControlFlow.hpp
 Primitives/General/typestring.hpp
 ../Reflection/Primitives/General/typestring.hpp
 TypeTraits/SearchableVariadicPack.hpp
@@ -1309,6 +1337,24 @@ Type.h
 ../TypeTraits/Type.h
 Algorithms/FromString.hpp
 ../TypeTraits/Algorithms/FromString.hpp
+
+../TypeTraits/CompileTimeControlFlow.hpp
+Functor/LightWeightDelegate.h
+-
+Memory/ElementReference.h
+../TypeTraits/Memory/ElementReference.h
+TypeTraits/Declval.hpp
+../TypeTraits/TypeTraits/Declval.hpp
+TypeTraits/Detection.hpp
+../TypeTraits/TypeTraits/Detection.hpp
+Primitives/General/Range.h
+../TypeTraits/Primitives/General/Range.h
+Algorithms/Move.hpp
+../TypeTraits/Algorithms/Move.hpp
+
+../TypeTraits/CompileTimeOperations.hpp
+Definitions/Integer.hpp
+../TypeTraits/Definitions/Integer.hpp
 
 ../TypeTraits/Conditional.hpp
 
@@ -1450,6 +1496,14 @@ IsFunction.hpp
 Declval.hpp
 ../TypeTraits/Declval.hpp
 
+../TypeTraits/IsErasedOrConvertible.hpp
+TypeTraits/__or.hpp
+../TypeTraits/TypeTraits/__or.hpp
+IsConvertible.hpp
+../TypeTraits/IsConvertible.hpp
+IsSame.hpp
+../TypeTraits/IsSame.hpp
+
 ../TypeTraits/IsFunction.hpp
 IsClassType.hpp
 ../TypeTraits/IsClassType.hpp
@@ -1555,6 +1609,10 @@ Declval.hpp
 ../TypeTraits/Declval.hpp
 Conditional.hpp
 ../TypeTraits/Conditional.hpp
+TypeTraits/EnableIf.hpp
+../TypeTraits/TypeTraits/EnableIf.hpp
+TypeTraits/Detection.hpp
+../TypeTraits/TypeTraits/Detection.hpp
 
 ../TypeTraits/Limit.hpp
 climits
@@ -1610,6 +1668,18 @@ TypeTraits/Decay.hpp
 TypeTraits/Declval.hpp
 ../TypeTraits/TypeTraits/Declval.hpp
 
+../TypeTraits/UsesAlloc.h
+TypeTraits/__or.hpp
+../TypeTraits/TypeTraits/__or.hpp
+TypeTraits/IsConstructible.hpp
+../TypeTraits/TypeTraits/IsConstructible.hpp
+Detection.hpp
+../TypeTraits/Detection.hpp
+TypeTraits/IntegralConstant.hpp
+../TypeTraits/TypeTraits/IntegralConstant.hpp
+IsErasedOrConvertible.hpp
+../TypeTraits/IsErasedOrConvertible.hpp
+
 ../TypeTraits/VariadicPack.hpp
 Decay.hpp
 ../TypeTraits/Decay.hpp
@@ -1625,6 +1695,10 @@ TypeList.hpp
 ../TypeTraits/TypeList.hpp
 Type.h
 ../TypeTraits/Type.h
+
+../TypeTraits/__or.hpp
+Conditional.hpp
+../TypeTraits/Conditional.hpp
 
 ../TypeTraits/__two.hpp
 
@@ -1652,6 +1726,8 @@ Primitives/General/StringView.hpp
 
 ../Unicode/utf8/core.h
 
+/home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/Base64Encoding.h
+
 /home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/CTREImmutableExtension.hpp
 Primitives/General/ctre.hpp
 /home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/Primitives/General/ctre.hpp
@@ -1661,6 +1737,12 @@ Core/RequestResponse.hpp
 /home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/Core/RequestResponse.hpp
 Primitives/General/Immutable.hpp
 /home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/Primitives/General/Immutable.hpp
+
+/home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/Floor.hpp
+Definitions/Float.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/Definitions/Float.hpp
+Definitions/Integer.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/Definitions/Integer.hpp
 
 /home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/FromJSON.hpp
 simdjson/simdjson.h
@@ -1677,12 +1759,18 @@ Unicode/UTF8.hpp
 /home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/Unicode/UTF8.hpp
 Primitives/General/Span.hpp
 /home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/Primitives/General/Span.hpp
-Algorithms/CompileTimeControlFlow.hpp
-/home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/Algorithms/CompileTimeControlFlow.hpp
+TypeTraits/CompileTimeControlFlow.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/TypeTraits/CompileTimeControlFlow.hpp
 simdjson/simdjson.h
 -
 Reflection/Reflection.hpp
 /home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/Reflection/Reflection.hpp
+
+/home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/GetDecimalPlaces.hpp
+Definitions/Integer.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/Definitions/Integer.hpp
+Floor.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/Floor.hpp
 
 /home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/Overload.hpp
 
@@ -1742,6 +1830,14 @@ TypeTraits/Detection.hpp
 Algorithms/Forward.hpp
 /home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/Algorithms/Forward.hpp
 
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/AsyncRingBuffer.hpp
+atomic
+-
+memory
+-
+TypeTraits/Iterable.h
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/TypeTraits/Iterable.h
+
 /home/phoenixflower/Documents/Development/LandessDevCore/Async/Atomic/Atomic.h
 AtomicUnderlyingCore.h
 /home/phoenixflower/Documents/Development/LandessDevCore/Async/Atomic/AtomicUnderlyingCore.h
@@ -1793,6 +1889,10 @@ Memory/shared_ptr.hpp
 /home/phoenixflower/Documents/Development/LandessDevCore/Async/Memory/shared_ptr.hpp
 TypeTraits/Iterable.h
 /home/phoenixflower/Documents/Development/LandessDevCore/Async/TypeTraits/Iterable.h
+TypeTraits/IsReference.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/TypeTraits/IsReference.hpp
+Memory/ElementReference.h
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/Memory/ElementReference.h
 
 /home/phoenixflower/Documents/Development/LandessDevCore/Async/Execute.hpp
 SyncWait.hpp
@@ -1813,12 +1913,12 @@ Async/Thread.h
 /home/phoenixflower/Documents/Development/LandessDevCore/Async/Async/Thread.h
 Definitions/TimeExtension.hpp
 /home/phoenixflower/Documents/Development/LandessDevCore/Async/Definitions/TimeExtension.hpp
-Algorithms/CompileTimeControlFlow.hpp
-/home/phoenixflower/Documents/Development/LandessDevCore/Async/Algorithms/CompileTimeControlFlow.hpp
+TypeTraits/CompileTimeControlFlow.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/TypeTraits/CompileTimeControlFlow.hpp
 MVC/SchedulingEvent.hpp
 /home/phoenixflower/Documents/Development/LandessDevCore/Async/MVC/SchedulingEvent.hpp
-MVC/Scheduling.hpp
-/home/phoenixflower/Documents/Development/LandessDevCore/Async/MVC/Scheduling.hpp
+Patterns/Scheduling.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/Patterns/Scheduling.hpp
 Primitives/General/Unit.hpp
 /home/phoenixflower/Documents/Development/LandessDevCore/Async/Primitives/General/Unit.hpp
 
@@ -1829,6 +1929,22 @@ Then.hpp
 /home/phoenixflower/Documents/Development/LandessDevCore/Async/Let.hpp
 Then.hpp
 /home/phoenixflower/Documents/Development/LandessDevCore/Async/Then.hpp
+
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/RingBuffer.h
+TypeTraits/IsAssignable.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/TypeTraits/IsAssignable.hpp
+Definitions/Integer.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/Definitions/Integer.hpp
+Atomic/Atomic.h
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/Atomic/Atomic.h
+TypeTraits/Iterable.h
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/TypeTraits/Iterable.h
+Memory/ElementReference.h
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/Memory/ElementReference.h
+Memory/Optional.h
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/Memory/Optional.h
+TypeTraits/FunctionalReflection.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/TypeTraits/FunctionalReflection.hpp
 
 /home/phoenixflower/Documents/Development/LandessDevCore/Async/ScheduleAfter.hpp
 Primitives/General/Unit.hpp
@@ -1851,6 +1967,10 @@ Channel.hpp
 /home/phoenixflower/Documents/Development/LandessDevCore/Async/Channel.hpp
 Thread.h
 /home/phoenixflower/Documents/Development/LandessDevCore/Async/Thread.h
+
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/SharedState.hpp
+Memory/ElementReference.h
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/Memory/ElementReference.h
 
 /home/phoenixflower/Documents/Development/LandessDevCore/Async/SyncWait.hpp
 mutex
@@ -1951,6 +2071,8 @@ WhenPredicate.hpp
 /home/phoenixflower/Documents/Development/LandessDevCore/Async/WhenPredicate.hpp
 
 /home/phoenixflower/Documents/Development/LandessDevCore/Async/concurrentqueue.h
+TypeTraits/Iterable.h
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/TypeTraits/Iterable.h
 relacy/relacy_std.hpp
 /home/phoenixflower/Documents/Development/LandessDevCore/Async/relacy/relacy_std.hpp
 relacy_shims.h
@@ -1980,6 +2102,14 @@ thread
 internal/concurrentqueue_internal_debug.h
 /home/phoenixflower/Documents/Development/LandessDevCore/Async/internal/concurrentqueue_internal_debug.h
 
+/home/phoenixflower/Documents/Development/LandessDevCore/Core/CompileTimeMap.hpp
+utility
+-
+functional
+-
+cstdint
+-
+
 /home/phoenixflower/Documents/Development/LandessDevCore/Core/RequestResponse.hpp
 SumTypes/MPark/variant.hpp
 /home/phoenixflower/Documents/Development/LandessDevCore/Core/SumTypes/MPark/variant.hpp
@@ -1990,25 +2120,9 @@ Algorithms/Invoke.hpp
 TypeTraits/TypeList.hpp
 /home/phoenixflower/Documents/Development/LandessDevCore/Core/TypeTraits/TypeList.hpp
 
-/home/phoenixflower/Documents/Development/LandessDevCore/Definitions/PDPUnits.hpp
-TypeTraits/IsKindOf.hpp
-/home/phoenixflower/Documents/Development/LandessDevCore/Definitions/TypeTraits/IsKindOf.hpp
-TypeTraits/Detection.hpp
-/home/phoenixflower/Documents/Development/LandessDevCore/Definitions/TypeTraits/Detection.hpp
-Algorithms/Move.hpp
-/home/phoenixflower/Documents/Development/LandessDevCore/Definitions/Algorithms/Move.hpp
-
-/home/phoenixflower/Documents/Development/LandessDevCore/Definitions/TimeExtension.hpp
-PDPUnits.hpp
-/home/phoenixflower/Documents/Development/LandessDevCore/Definitions/PDPUnits.hpp
-time.h
--
-Primitives/General/Unit.hpp
-/home/phoenixflower/Documents/Development/LandessDevCore/Definitions/Primitives/General/Unit.hpp
-windows.h
--
-unistd.h
--
+/home/phoenixflower/Documents/Development/LandessDevCore/Examples/DependencyInjectionExample.hpp
+Services/Logging.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Examples/Services/Logging.hpp
 
 /home/phoenixflower/Documents/Development/LandessDevCore/Examples/IMGUIExample1.h
 
@@ -2053,6 +2167,14 @@ Primitives/General/mapboxvariantvisitor.h
 /home/phoenixflower/Documents/Development/LandessDevCore/IO/Primitives/General/mapboxvariantvisitor.h
 Primitives/General/Context.h
 /home/phoenixflower/Documents/Development/LandessDevCore/IO/Primitives/General/Context.h
+Async/Channel.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/IO/Async/Channel.hpp
+Patterns/Observer.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/IO/Patterns/Observer.hpp
+Primitives/General/mapboxvariant.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/IO/Primitives/General/mapboxvariant.hpp
+Algorithms/Visitation.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/IO/Algorithms/Visitation.hpp
 
 /home/phoenixflower/Documents/Development/LandessDevCore/IO/Database1.h
 TypeTraits/Detection.hpp
@@ -2139,6 +2261,10 @@ Async/Locks/DummySharedLock.hpp
 /home/phoenixflower/Documents/Development/LandessDevCore/IO/Async/Locks/DummySharedLock.hpp
 Async/Then.hpp
 /home/phoenixflower/Documents/Development/LandessDevCore/IO/Async/Then.hpp
+Patterns/LazyLambda.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/IO/Patterns/LazyLambda.hpp
+Algorithms/Base64Encoding.h
+/home/phoenixflower/Documents/Development/LandessDevCore/IO/Algorithms/Base64Encoding.h
 
 /home/phoenixflower/Documents/Development/LandessDevCore/IO/TieredDatabase.h
 TypeTraits/TypeList.hpp
@@ -2471,8 +2597,8 @@ type_traits
 -
 
 /home/phoenixflower/Documents/Development/LandessDevCore/IaaS/ArtifactRepository.hpp
-Algorithms/CompileTimeControlFlow.hpp
-/home/phoenixflower/Documents/Development/LandessDevCore/IaaS/Algorithms/CompileTimeControlFlow.hpp
+TypeTraits/CompileTimeControlFlow.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/IaaS/TypeTraits/CompileTimeControlFlow.hpp
 Memory/ElementReference.h
 /home/phoenixflower/Documents/Development/LandessDevCore/IaaS/Memory/ElementReference.h
 IO/Database1.h
@@ -2518,7 +2644,59 @@ Primitives/General/DateTime.h
 Algorithms/ToJSON.hpp
 /home/phoenixflower/Documents/Development/LandessDevCore/IaaS/HashiVault/Algorithms/ToJSON.hpp
 
+/home/phoenixflower/Documents/Development/LandessDevCore/MVC/SchedulingEvent.hpp
+Definitions/PDPUnits.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/MVC/Definitions/PDPUnits.hpp
+Functor/LightWeightDelegate.h
+/home/phoenixflower/Documents/Development/LandessDevCore/MVC/Functor/LightWeightDelegate.h
+Definitions/Integer.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/MVC/Definitions/Integer.hpp
+Functor/FastDelegate.h
+/home/phoenixflower/Documents/Development/LandessDevCore/MVC/Functor/FastDelegate.h
+Memory/ElementReference.h
+/home/phoenixflower/Documents/Development/LandessDevCore/MVC/Memory/ElementReference.h
+Core/HeteregenousTuple.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/MVC/Core/HeteregenousTuple.hpp
+Functor/fixed_size_function.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/MVC/Functor/fixed_size_function.hpp
+Algorithms/Sampler.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/MVC/Algorithms/Sampler.hpp
+Functor/Delegate.h
+/home/phoenixflower/Documents/Development/LandessDevCore/MVC/Functor/Delegate.h
+Chrono/Timer.h
+/home/phoenixflower/Documents/Development/LandessDevCore/MVC/Chrono/Timer.h
+MVC/TermBoxRenderingContext.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/MVC/MVC/TermBoxRenderingContext.hpp
+Core/HeteregenousTuple.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/MVC/Core/HeteregenousTuple.hpp
+
+/home/phoenixflower/Documents/Development/LandessDevCore/MVC/TermBoxConsoleApplication.hpp
+Definitions/PDPUnits.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/MVC/Definitions/PDPUnits.hpp
+TermBoxRenderingContext.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/MVC/TermBoxRenderingContext.hpp
+SchedulingEvent.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/MVC/SchedulingEvent.hpp
+TermBox/termbox.h
+/home/phoenixflower/Documents/Development/LandessDevCore/MVC/TermBox/termbox.h
+TypeTraits/TypeList.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/MVC/TypeTraits/TypeList.hpp
+MVC/Mouse.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/MVC/MVC/Mouse.hpp
+TermBoxCursorNavigator.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/MVC/TermBoxCursorNavigator.hpp
+
+/home/phoenixflower/Documents/Development/LandessDevCore/MVC/TermBoxCursorNavigator.hpp
+Memory/ElementReference.h
+/home/phoenixflower/Documents/Development/LandessDevCore/MVC/Memory/ElementReference.h
+Definitions/PDPUnits.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/MVC/Definitions/PDPUnits.hpp
+Primitives/General/mapboxvariant.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/MVC/Primitives/General/mapboxvariant.hpp
+
 /home/phoenixflower/Documents/Development/LandessDevCore/Memory/Optional.h
+Algorithms/Move.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Memory/Algorithms/Move.hpp
 cassert
 -
 stdexcept
@@ -2626,11 +2804,97 @@ stdint.h
 stdbool.h
 -
 
+/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/DependencyInjection.hpp
+Primitives/General/Tuple.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/Primitives/General/Tuple.hpp
+Memory/MemoryResource.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/Memory/MemoryResource.hpp
+Memory/PolyMorphicAllocator.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/Memory/PolyMorphicAllocator.hpp
+Memory/UniquePointer.h
+/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/Memory/UniquePointer.h
+ServiceLocator.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/ServiceLocator.hpp
+Primitives/General/Unit.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/Primitives/General/Unit.hpp
+Memory/shared_ptr.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/Memory/shared_ptr.hpp
+
+/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/LazyLambda.hpp
+TypeTraits/TypeList.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/TypeTraits/TypeList.hpp
+TypeTraits/FunctionalReflection.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/TypeTraits/FunctionalReflection.hpp
+Primitives/General/Tuple.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/Primitives/General/Tuple.hpp
+Algorithms/Invoke.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/Algorithms/Invoke.hpp
+
+/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/Observer.hpp
+TypeTraits/Detection.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/TypeTraits/Detection.hpp
+Primitives/General/Tuple.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/Primitives/General/Tuple.hpp
+Algorithms/Invoke.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/Algorithms/Invoke.hpp
+Algorithms/Forward.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/Algorithms/Forward.hpp
+
+/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/Scheduling.hpp
+Definitions/Integer.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/Definitions/Integer.hpp
+Definitions/PDPUnits.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/Definitions/PDPUnits.hpp
+Memory/ElementReference.h
+/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/Memory/ElementReference.h
+MVC/SchedulingEvent.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/MVC/SchedulingEvent.hpp
+Primitives/General/mapboxvariantvisitor.h
+/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/Primitives/General/mapboxvariantvisitor.h
+Primitives/General/mapboxvariant.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/Primitives/General/mapboxvariant.hpp
+Core/HeteregenousTuple.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/Core/HeteregenousTuple.hpp
+MVC/TermBoxRenderingContext.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/MVC/TermBoxRenderingContext.hpp
+Algorithms/Sampler.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/Algorithms/Sampler.hpp
+Algorithms/fsm.hpp
+-
+MVC/TermBoxConsoleApplication.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/MVC/TermBoxConsoleApplication.hpp
+Definitions/TimeExtension.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/Definitions/TimeExtension.hpp
+MVC/SchedulingQuittingPredicate.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/MVC/SchedulingQuittingPredicate.hpp
+Primitives/General/Unit.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/Primitives/General/Unit.hpp
+
+/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/ServiceLocator.hpp
+Algorithms/Forward.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/Algorithms/Forward.hpp
+Primitives/General/Tuple.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/Primitives/General/Tuple.hpp
+
+/home/phoenixflower/Documents/Development/LandessDevCore/Primitives/General/CircularQueue.hpp
+Algorithms/Forward.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Primitives/General/Algorithms/Forward.hpp
+Definitions/Integer.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Primitives/General/Definitions/Integer.hpp
+Algorithms/Move.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Primitives/General/Algorithms/Move.hpp
+TypeTraits/Iterable.h
+/home/phoenixflower/Documents/Development/LandessDevCore/Primitives/General/TypeTraits/Iterable.h
+TypeTraits/Detection.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Primitives/General/TypeTraits/Detection.hpp
+TypeTraits/IsConvertible.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Primitives/General/TypeTraits/IsConvertible.hpp
+
 /home/phoenixflower/Documents/Development/LandessDevCore/Primitives/General/Ratio.hpp
 Definitions/Integer.hpp
 /home/phoenixflower/Documents/Development/LandessDevCore/Primitives/General/Definitions/Integer.hpp
-Algorithms/CompileTimeOperations.hpp
-/home/phoenixflower/Documents/Development/LandessDevCore/Primitives/General/Algorithms/CompileTimeOperations.hpp
+TypeTraits/CompileTimeOperations.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Primitives/General/TypeTraits/CompileTimeOperations.hpp
 TypeTraits/Detection.hpp
 /home/phoenixflower/Documents/Development/LandessDevCore/Primitives/General/TypeTraits/Detection.hpp
 
@@ -2669,6 +2933,10 @@ Primitives/General/StringView.hpp
 /home/phoenixflower/Documents/Development/LandessDevCore/Primitives/General/Primitives/General/StringView.hpp
 Algorithms/FromString.hpp
 /home/phoenixflower/Documents/Development/LandessDevCore/Primitives/General/Algorithms/FromString.hpp
+Algorithms/Exponential.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Primitives/General/Algorithms/Exponential.hpp
+Algorithms/Periodic.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Primitives/General/Algorithms/Periodic.hpp
 
 /home/phoenixflower/Documents/Development/LandessDevCore/Primitives/General/ctre.hpp
 utility
@@ -3268,6 +3536,18 @@ TypeTraits/TypeList.hpp
 TypeTraits/FunctionalReflection.hpp
 /home/phoenixflower/Documents/Development/LandessDevCore/Reflection/TypeTraits/FunctionalReflection.hpp
 
+/home/phoenixflower/Documents/Development/LandessDevCore/Services/Logging.hpp
+Primitives/General/mapboxvariant.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Services/Primitives/General/mapboxvariant.hpp
+TypeTraits/Detection.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Services/TypeTraits/Detection.hpp
+Algorithms/Visitation.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Services/Algorithms/Visitation.hpp
+Patterns/DependencyInjection.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Services/Patterns/DependencyInjection.hpp
+TypeTraits/CanBeAnImmutableString.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Services/TypeTraits/CanBeAnImmutableString.hpp
+
 /home/phoenixflower/Documents/Development/LandessDevCore/SumTypes/MPark/config.hpp
 
 /home/phoenixflower/Documents/Development/LandessDevCore/SumTypes/MPark/in_place.hpp
@@ -3317,6 +3597,8 @@ lib.hpp
 /home/phoenixflower/Documents/Development/LandessDevCore/SumTypes/MPark/lib.hpp
 
 /home/phoenixflower/Documents/Development/LandessDevCore/main.cpp
+Async/RingBuffer.h
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/RingBuffer.h
 Examples/ReflectionDemoTypes.h
 /home/phoenixflower/Documents/Development/LandessDevCore/Examples/ReflectionDemoTypes.h
 Examples/IMGUIExample1.h
@@ -3399,6 +3681,10 @@ opendht.h
 -
 PBX/Mirta/Date.hpp
 -
+MVC/Cusor.h
+-
+MVC/TermboxTextLabel.hpp
+-
 IO/DHTBackend.hpp
 /home/phoenixflower/Documents/Development/LandessDevCore/IO/DHTBackend.hpp
 IO/TieredDatabase.h
@@ -3431,18 +3717,40 @@ Async/Let.hpp
 /home/phoenixflower/Documents/Development/LandessDevCore/Async/Let.hpp
 Async/ScheduleAfter.hpp
 /home/phoenixflower/Documents/Development/LandessDevCore/Async/ScheduleAfter.hpp
+Async/SharedState.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/SharedState.hpp
+Async/AsyncRingBuffer.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Async/AsyncRingBuffer.hpp
 Examples/WebServerExample.hpp
 /home/phoenixflower/Documents/Development/LandessDevCore/Examples/WebServerExample.hpp
 Examples/WebServerExample.hpp
 /home/phoenixflower/Documents/Development/LandessDevCore/Examples/WebServerExample.hpp
+Patterns/DependencyInjection.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/DependencyInjection.hpp
+Patterns/LazyLambda.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/LazyLambda.hpp
+Algorithms/GetDecimalPlaces.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/GetDecimalPlaces.hpp
+Algorithms/Base64Encoding.h
+/home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/Base64Encoding.h
+Patterns/Observer.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/Observer.hpp
+Patterns/Scheduling.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/Scheduling.hpp
+MVC/TermBoxConsoleApplication.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/MVC/TermBoxConsoleApplication.hpp
+Primitives/General/CircularQueue.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Primitives/General/CircularQueue.hpp
 IO/PublisherSubscriber.h
 /home/phoenixflower/Documents/Development/LandessDevCore/IO/PublisherSubscriber.h
 Async/Thread.h
 /home/phoenixflower/Documents/Development/LandessDevCore/Async/Thread.h
-Definitions/TimeExtension.hpp
-/home/phoenixflower/Documents/Development/LandessDevCore/Definitions/TimeExtension.hpp
-Primitives/General/Unit.hpp
-/home/phoenixflower/Documents/Development/LandessDevCore/Primitives/General/Unit.hpp
+Services/Logging.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Services/Logging.hpp
+Examples/DependencyInjectionExample.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Examples/DependencyInjectionExample.hpp
+Core/CompileTimeMap.hpp
+/home/phoenixflower/Documents/Development/LandessDevCore/Core/CompileTimeMap.hpp
 
 /usr/local/include/boost/exception_ptr.hpp
 boost/exception/detail/exception_ptr.hpp

@@ -4,7 +4,7 @@
 
 #ifndef LANDESSDEVCORE_DECIMALTOBINARY_H
 #define LANDESSDEVCORE_DECIMALTOBINARY_H
-#include "CompileTimeControlFlow.hpp"
+#include "TypeTraits/CompileTimeControlFlow.hpp"
 #include "Primitives/General/BitSet.hpp"
 namespace LD
 {

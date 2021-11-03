@@ -15,6 +15,11 @@ namespace LD
         {
             return function(LD::Get<Indices>(tuple)...);
         }
+        template<typename T, typename ... Args,LD::UInteger ...Indices >
+        auto InvokeConstructionFold(LD::IndexSequence<Indices...> sequence, const LD::Tuple<Args...> & tuple)
+        {
+            return T{LD::Get<Indices>(tuple)...};
+        }
         template<typename F, typename H,typename ... Args,LD::UInteger ...Indices >
         auto InvokeFold1(LD::IndexSequence<Indices...> sequence, F && function, H && a,const LD::Tuple<Args...> & tuple)
         {
@@ -30,9 +35,15 @@ namespace LD
 
     //return Delegate(PDP::Get<S>(Arguements) ...);
     template<typename F, typename ... Args>
-    auto Invoke(F && function, const LD::Tuple<Args...> & tuple)
+    auto Invoke(F && function, const LD::Tuple<Args...> & tuple) noexcept
     {
         return LD::Detail::InvokeFold(LD::MakeIndexSequence_T<sizeof...(Args)>{}, LD::Forward<F>(function), tuple);
+    }
+
+    template<typename T, typename ... Args>
+    T InvokeConstruction(const LD::Tuple<Args...> & tuple) noexcept
+    {
+        return LD::Detail::InvokeConstructionFold<T>(LD::MakeIndexSequence_T<sizeof...(Args)>{},tuple);
     }
     template<typename F, typename H, typename ... Args>
     auto Invoke1(F && function, H && a,const LD::Tuple<Args...> & tuple)

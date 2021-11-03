@@ -6,8 +6,7 @@
 #define LANDESSDEVCORE_RATIO_H
 
 #include "Definitions/Integer.hpp"
-#include "Algorithms/CompileTimeOperations.hpp"
-//#include "Definitions/Common.hpp"
+#include "TypeTraits/CompileTimeOperations.hpp"
 #include "TypeTraits/Detection.hpp"
 namespace LD
 {

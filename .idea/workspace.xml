@@ -57,48 +57,145 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a2ffdfb1-0050-446c-b0af-d02ece8e31b8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Algorithms/ExecutionContext.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Algorithms/VariantOperations.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Async/AnyOf.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Async/Connect.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Async/Execute.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Async/Just.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Async/Let.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Async/ScheduleAfter.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Async/Scheduler.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Async/SyncWait.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Async/Then.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Async/WhenAll.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Async/WhenAllPredicate.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Async/WhenAny.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Async/WhenOnlyPredicate.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Async/WhenPredicate.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IO/TypeTraits/IsSubscriptionToken.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Algorithms/DynamicProgramming.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Algorithms/DynamicProgramming.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Algorithms/GetQueueType.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Algorithms/Math/Approximations.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Algorithms/QualityOfServiceQueue.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/AsyncRingBuffer.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/RingBuffer.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/SharedState.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Async/TypeTraits/IsSubscriptionToken.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Core/CompileTimeMap.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Datastructures/Tree.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Encryption/Base64.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Encryption/Blowfish.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Encryption/Cbc.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Encryption/Crypt.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Encryption/Ctr.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Encryption/R5.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Encryption/R6.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Encryption/RSA.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Encryption/Saferp.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Examples/ApplicationLoopExample.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Examples/ApplicationLoopExample.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Examples/DependencyInjectionExample.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Examples/DependencyInjectionExample.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Examples/RunTimeReflectionExample.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Examples/RunTimeReflectionExample.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Examples/UnitsExample.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Examples/UnitsExample.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Game/BubbleTargeter.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Patterns/DependencyInjection.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Patterns/Factory.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Patterns/FlyWeight.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Patterns/LazyLambda.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Patterns/Observer.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Patterns/ServiceLocator.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Primitives/General/CircularQueue.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RuntimeReflection/AbstractProperty.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RuntimeReflection/AbstractProperty.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RuntimeReflection/BaseObject.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RuntimeReflection/BaseObject.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RuntimeReflection/ExampleRuntimeReflection.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RuntimeReflection/ExampleRuntimeReflection.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RuntimeReflection/Property.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RuntimeReflection/Property.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RuntimeReflection/PropertySystem.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RuntimeReflection/PropertySystem.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RuntimeReflection/PropertyTypes.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RuntimeReflection/RTTI.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RuntimeReflection/RTTI.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RuntimeReflection/RTTIClass.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RuntimeReflection/RTTIClass.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RuntimeReflection/TypedProperty.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RuntimeReflection/TypedProperty.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Services/Configuration.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Services/Logging.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TypeTraits/CompileTimeControlFlow.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TypeTraits/CompileTimeOperations.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Algorithms/Base64Encoding.h" beforeDir="false" afterPath="$PROJECT_DIR$/Algorithms/Base64Encoding.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Algorithms/BubbleTargeter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Algorithms/BubbleTargeter.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Algorithms/CompileTimeControlFlow.hpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Algorithms/CompileTimeOperations.hpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Algorithms/DecimalToBinary.h" beforeDir="false" afterPath="$PROJECT_DIR$/Algorithms/DecimalToBinary.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Algorithms/Exponential.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Algorithms/Exponential.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Algorithms/FromJSON.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Algorithms/FromJSON.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Algorithms/GetDecimalPlaces.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Algorithms/GetDecimalPlaces.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Algorithms/Invoke.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Algorithms/Invoke.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Algorithms/Visitation.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Algorithms/Visitation.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Async/Channel.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Async/Channel.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Async/GrandCentralDispatch.h" beforeDir="false" afterPath="$PROJECT_DIR$/Async/GrandCentralDispatch.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Async/Just.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Async/Just.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Async/Let.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Async/Let.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Async/ScheduleAfter.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Async/ScheduleAfter.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Async/SyncWait.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Async/SyncWait.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Async/Then.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Async/Then.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Async/concurrentqueue.h" beforeDir="false" afterPath="$PROJECT_DIR$/Async/concurrentqueue.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Tuple.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Tuple.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Definitions/PDPUnits.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Definitions/PDPUnits.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Definitions/TimeExtension.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Definitions/TimeExtension.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Examples/DelimeterSeperateFileExample.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/DelimeterSeperateFileExample.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Examples/TermBoxMenuExample.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/TermBoxMenuExample.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/Artillery.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Artillery.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/Chess.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Chess.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/MemoryBridge.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/MemoryBridge.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/Minesweeper.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Minesweeper.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/Pegboard.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Pegboard.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/TicTacToe.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/TicTacToe.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Graphics/DearImGUI/Window.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Graphics/DearImGUI/Window.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IO/BasicDelimeterSeperatedFile.h" beforeDir="false" afterPath="$PROJECT_DIR$/IO/BasicDelimeterSeperatedFile.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/IO/DHTBackend.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/IO/DHTBackend.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/IO/Database1.h" beforeDir="false" afterPath="$PROJECT_DIR$/IO/Database1.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/IO/PublisherSubscriber.h" beforeDir="false" afterPath="$PROJECT_DIR$/IO/PublisherSubscriber.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MVC/Scheduling.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/Scheduling.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IO/TypeTraits/IsSubscriptionToken.h" beforeDir="false" afterPath="$PROJECT_DIR$/IO/TypeTraits/IsSubscriptionToken.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IO/UnqliteDatabaseBackend.h" beforeDir="false" afterPath="$PROJECT_DIR$/IO/UnqliteDatabaseBackend.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IaaS/ArtifactRepository.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/IaaS/ArtifactRepository.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MVC/MultiTenantApplication.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/MultiTenantApplication.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MVC/Scheduling.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Patterns/Scheduling.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MVC/SchedulingEvent.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/SchedulingEvent.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MVC/TermBoxApplication.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/TermBoxApplication.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MVC/TermBoxConsoleApplication.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/TermBoxConsoleApplication.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MVC/TermBoxCursorNavigator.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/TermBoxCursorNavigator.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MVC/TermBoxMenu.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/TermBoxMenu.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MVC/TermBoxRenderingContext.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/TermBoxRenderingContext.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Memory/ElementReference.h" beforeDir="false" afterPath="$PROJECT_DIR$/Memory/ElementReference.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Memory/MemoryResource.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Memory/MemoryResource.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Memory/Optional.h" beforeDir="false" afterPath="$PROJECT_DIR$/Memory/Optional.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Memory/PolyMorphicAllocator.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Memory/PolyMorphicAllocator.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Memory/UniquePointer.h" beforeDir="false" afterPath="$PROJECT_DIR$/Memory/UniquePointer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Memory/shared_ptr.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Memory/shared_ptr.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Primitives/General/Context.h" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/Context.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Primitives/General/DateTime.h" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/DateTime.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Primitives/General/Hexademical.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/Hexademical.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Primitives/General/Immutable.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/Immutable.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Primitives/General/Ratio.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/Ratio.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Primitives/General/StaticArray.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/StaticArray.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Primitives/General/Tuple.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/Tuple.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Primitives/General/Unit.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/Unit.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Primitives/General/mapboxvariant.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Primitives/General/mapboxvariant.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/REST/WebServer.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/REST/WebServer.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reflection/reflectable.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Reflection/reflectable.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SumTypes/MPark/variant.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/SumTypes/MPark/variant.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TypeTraits/IsVariant.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/TypeTraits/IsVariant.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TypeTraits/Detection.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/TypeTraits/Detection.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TypeTraits/IsBaseOf.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/TypeTraits/IsBaseOf.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TypeTraits/IsConvertible.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/TypeTraits/IsConvertible.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TypeTraits/Iterable.h" beforeDir="false" afterPath="$PROJECT_DIR$/TypeTraits/Iterable.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TypeTraits/UsesAlloc.h" beforeDir="false" afterPath="$PROJECT_DIR$/TypeTraits/UsesAlloc.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/cmake_clean.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/depend.internal" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/link.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/progress.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/progress.marks" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/LandessDevCore" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/LandessDevCore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/LandessDevCore.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/LandessDevCore.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/Testing/Temporary/LastTest.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
@@ -144,7 +241,7 @@
     <property name="cmake.loaded.for.project" value="true" />
     <property name="codeWithMe.voiceChat.enabledByDefault" value="false" />
     <property name="full.screen.before.presentation.mode" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/IO/MJson" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Patterns" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -163,20 +260,20 @@
       <recent name="$PROJECT_DIR$/Graphics/DearImGUI" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Patterns" />
       <recent name="$PROJECT_DIR$/IaaS" />
       <recent name="$PROJECT_DIR$/Network/NDP" />
       <recent name="$PROJECT_DIR$/Graphics/DearImGUI" />
       <recent name="$PROJECT_DIR$/REST" />
-      <recent name="$PROJECT_DIR$/SPA" />
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+    <configuration name="LandessDevCore" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="LandessDevCore" TARGET_NAME="LandessDevCore" CONFIG_NAME="Release" RUN_TARGET_PROJECT_NAME="LandessDevCore" RUN_TARGET_NAME="LandessDevCore">
       <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LandessDevCore" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="LandessDevCore" TARGET_NAME="LandessDevCore" CONFIG_NAME="Release" RUN_TARGET_PROJECT_NAME="LandessDevCore" RUN_TARGET_NAME="LandessDevCore">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -385,7 +482,8 @@
       <workItem from="1626559289191" duration="12016000" />
       <workItem from="1626601213705" duration="106088000" />
       <workItem from="1629051768912" duration="256684000" />
-      <workItem from="1631091246249" duration="210111000" />
+      <workItem from="1631091246249" duration="605810000" />
+      <workItem from="1635020024337" duration="49210000" />
     </task>
     <servers />
   </component>

@@ -13,8 +13,21 @@
 #include "Primitives/General/mapboxvariant.hpp"
 #include "Primitives/General/mapboxvariantvisitor.h"
 #include "Primitives/General/Context.h"
+#include "Async/Channel.hpp"
+#include "Patterns/Observer.hpp"
+#include "Primitives/General/mapboxvariant.hpp"
+#include "Algorithms/Visitation.hpp"
 namespace LD
 {
+    class OpenDHTRegisterEvent
+    {
+
+    };
+
+    class OpenDHTDeRegisterEvent
+    {
+
+    };
     class OpenDHTBackend
     {
     private:
@@ -22,19 +35,36 @@ namespace LD
         mutable std::shared_ptr<std::mutex> mMutex;
         mutable std::shared_ptr<std::condition_variable> mCondition;
         mutable std::shared_ptr<bool> mReady;
+        LD::Atomic<LD::Integer> mRegistrationCount;
     public:
 
+        template<typename BackInserterType>
         class SubscriptionToken
         {
         private:
             dht::InfoHash mHash;
             std::size_t mToken;
             LD::ElementReference<OpenDHTBackend> mBackend;
+            LD::BasicObserver<LD::ElementReference<OpenDHTBackend>(LD::Variant<OpenDHTDeRegisterEvent,OpenDHTDeRegisterEvent>)> mObservee;
         public:
-            SubscriptionToken():mBackend{nullptr},mToken{0}{}
-            SubscriptionToken(LD::ElementReference<OpenDHTBackend> backend, dht::InfoHash hash, std::size_t token) noexcept:mBackend{backend},mHash{hash},mToken{token}
-            {
 
+            SubscriptionToken():mBackend{nullptr},mToken{0}{}
+            SubscriptionToken(LD::ElementReference<OpenDHTBackend> backend, dht::InfoHash hash, BackInserterType backInserter) noexcept:mBackend{backend},mHash{hash},mObservee{LD::ElementReference<OpenDHTBackend> {backend}}
+            {
+                auto listenLambda  = [backInserter](const std::vector<std::shared_ptr<dht::Value> > & answers) -> bool
+                {
+                    BackInserterType inserter = backInserter;
+                    for(const auto & answer: answers)
+                    {
+
+                        auto response = LD::StringView {(const char*)answer->data.data(),answer->data.size()};
+                        inserter = response;
+                    }
+                    return true;
+                };
+                backend->mNode.listen(hash,listenLambda).get();
+                //mObservee(LD::Variant<OpenDHTDeRegisterEvent,OpenDHTDeRegisterEvent>{LD::OpenDHTDeRegisterEvent{}});
+                mObservee(LD::OpenDHTDeRegisterEvent{});
             }
 
             SubscriptionToken(const SubscriptionToken &) = delete;
@@ -62,7 +92,7 @@ namespace LD
 
             ~SubscriptionToken()
             {
-                this->mBackend->mNode.cancelListen(this->mHash,this->mToken);
+                mObservee(LD::OpenDHTDeRegisterEvent{});
             }
         };
 
@@ -77,6 +107,8 @@ namespace LD
             this->mCondition = std::make_shared<std::condition_variable>();
 
             this->mNode.run(listeningPort.Value(), dht::crypto::generateIdentity(), true);
+
+
             auto onIPV4 = [](const LD::IPV4Address & address) noexcept -> LD::ImmutableString<64>
             {
                 return LD::ToImmutableString(address);
@@ -94,6 +126,21 @@ namespace LD
             //4222
             //this->mNode.bootstrap("127.0.0.1", "47008");
             //this->mNode.bootstrap("fd00:1700:81b8:401e:0:d9:191:4a34", "4222");
+        }
+
+        void operator()( LD::Variant<OpenDHTDeRegisterEvent,OpenDHTDeRegisterEvent>  event) noexcept
+        {
+            auto onRegister = [](LD::OpenDHTRegisterEvent) noexcept
+            {
+                return 1;
+            };
+
+            auto onDeRegister = [](LD::OpenDHTDeRegisterEvent) noexcept
+            {
+                return -1;
+            };
+
+            this->mRegistrationCount.store(this->mRegistrationCount.load(LD::MemoryOrder::AcquireRelease)+LD::Visit(LD::Overload{onRegister,onDeRegister},event),LD::MemoryOrder::AcquireRelease);
         }
 
         void Wait() const
@@ -135,7 +182,82 @@ namespace LD
                 return true;
             };
 
+            std::scoped_lock scopedLock{*this->mMutex};
             this->mNode.listen(room.data(), listenLambda);
+        }
+
+        auto Publish(LD::StringView key, LD::StringView value) noexcept
+        {
+            return this->Insert(key,value);
+        }
+
+
+        template<typename BackInserterType>
+        LD::Pair<dht::InfoHash,LD::UInteger> Listen(LD::StringView room,BackInserterType backInserter) noexcept
+        {
+            auto listenLambda  = [backInserter](const std::vector<std::shared_ptr<dht::Value> > & answers) -> bool
+            {
+                BackInserterType inserter = backInserter;
+                for(const auto & answer: answers)
+                {
+
+                    auto response = LD::StringView {(const char*)answer->data.data(),answer->data.size()};
+                    inserter = response;
+                }
+                return true;
+            };
+            dht::InfoHash hash = dht::InfoHash{}.get(room.data());
+            LD::UInteger token = this->mNode.listen(hash,listenLambda).get();
+            return LD::Pair<dht::InfoHash,LD::UInteger>{hash,token};
+        }
+
+        template<typename F>
+        LD::Pair<dht::InfoHash,LD::UInteger> ListenWithFunction(LD::StringView room,F function) noexcept
+        {
+            auto listenLambda  = [function](const std::vector<std::shared_ptr<dht::Value> > & answers) -> bool
+            {
+                F inserter = function;
+                for(const auto & answer: answers)
+                {
+
+                    auto response = LD::StringView {(const char*)answer->data.data(),answer->data.size()};
+                    inserter(response);
+                }
+                return true;
+            };
+            dht::InfoHash hash = dht::InfoHash{}.get(room.data());
+            LD::UInteger token = this->mNode.listen(hash,listenLambda).get();
+            return LD::Pair<dht::InfoHash,LD::UInteger>{hash,token};
+        }
+
+        void StopListen(dht::InfoHash hash, LD::UInteger token) noexcept
+        {
+
+        }
+        template<typename BackInserterType>
+        SubscriptionToken<BackInserterType>  Subscribe(LD::StringView room, BackInserterType inserter) noexcept
+        {
+            auto successHandler = [=](bool success) noexcept
+            {
+                //std::cout << "Success : " << success << "\n";
+                this->DoneDB(success);
+            };
+            //this->Wait();
+            auto ret = SubscriptionToken<BackInserterType>{
+                LD::ElementReference<OpenDHTBackend>{this},
+                dht::InfoHash {}.get(room.data()),
+                inserter};
+
+            //this->DoneDB(true);
+
+            return ret;
+        }
+
+        LD::ImmutableString<128> NodeIdentification() const noexcept
+        {
+            auto identity = this->mNode.getNodeId().toString();
+
+            return LD::ImmutableString<128>{LD::StringView {identity.data(),identity.size()}};
         }
 
         template<typename ... Args>
@@ -143,10 +265,10 @@ namespace LD
         {
             auto successHandler = [=](bool success) noexcept
             {
-                std::cout << "Success : " << success << "\n";
+                //std::cout << "Success : " << success << "\n";
                 this->DoneDB(success);
             };
-            printf("key %s , value %s \n",key.data(),data.data());
+            //printf("key %s , value %s \n",key.data(),data.data());
 
 
             /*
@@ -175,14 +297,28 @@ namespace LD
             using ReturnType = decltype(LD::Declval<F>()(LD::Declval<LD::StringView>(),LD::Declval<LD::StringView>()));
             bool successful = false;
 
+            LD::Optional<ReturnType> returnable;
+
+            std::future<std::vector<std::shared_ptr<dht::Value>>> info = this->mNode.get(dht::InfoHash{}.get(key.data()));
+
+            auto result = info.get();
+            if (result.size() > 0)
+            {
+                returnable = functor(key,LD::StringView{
+                                             (const char*)result[result.size()-1]->data.data(),
+                                             result[result.size()-1]->data.size()},
+                                     LD::Forward<Args>(arguments)...);
+            }
+
+            /*
             this->mNode.get(key.data(),
                      [&](const std::vector<std::shared_ptr<dht::Value>>& values)
             {
-                functor(key,LD::StringView{
+                returnable = functor(key,LD::StringView{
                     (const char*)values[values.size()-1]->data.data(),
                     values[values.size()-1]->data.size()},
                     LD::Forward<Args>(arguments)...);
-                std::cout << "Memes: " << *values[values.size()-1] << "\n";
+                //std::cout << "Memes: " << *values[values.size()-1] << "\n";
 
                 return true; // return false to stop the search
             },
@@ -194,13 +330,71 @@ namespace LD
              });
 
             this->Wait();
+             */
 
-            if (successful)
+            if (result.size() > 0 && returnable)
             {
-                return LD::CreateResponse(LD::Type<ReturnType>{},LD::TransactionError{},LD::Forward<Args>(arguments)...);
+                return LD::CreateResponse(LD::Type<ReturnType>{},ReturnType {*returnable},LD::Forward<Args>(arguments)...);
             }
 
             return LD::CreateResponse(LD::Type<ReturnType>{},LD::TransactionError{},LD::Forward<Args>(arguments)...);
+        }
+
+        template<typename Stream, typename IndexStreamer, typename Comparator>
+        LD::Variant<LD::TransactionError,LD::UInteger> QueryWithStream(
+                LD::StringView key,
+                Stream streamer,
+                IndexStreamer indexStreamer,
+                Comparator comparator,
+                LD::UInteger packetCount = 0) const noexcept //-> LD::RequestResponse<decltype(LD::Declval<F>()(LD::Declval<LD::StringView>(),LD::Declval<LD::StringView>()))(Args&&...)>
+        {
+
+            //using ReturnType = decltype(LD::Declval<F>()(LD::Declval<LD::StringView>(),LD::Declval<LD::StringView>()));
+            bool successful = false;
+
+
+            //LD::UInteger max = 0;
+            this->mNode.get(key.data(),
+                            [&,streamer,packetCount,indexStreamer,comparator](const std::vector<std::shared_ptr<dht::Value>>& values)
+            {
+                Stream stream = streamer;
+                IndexStreamer indexStream = indexStreamer;
+                Comparator currentComparator = comparator;
+                for(LD::UInteger n = 0;n< values.size();++n)
+                {
+                    //max = LD::Max(max,values[n]->id);
+                    //std::cout << "Sequence: " << values[n]-><< "\n";
+
+                    if (currentComparator(values[n]->id))
+                    {
+                        std::cout << "Packet ID: " << values[n]->id << "\n";
+                        stream = LD::StringView{(const char*)values[n]->data.data(),values[n]->data.size()};
+                    }
+                    if (values[n]->id > packetCount)
+                    {
+
+                    }
+
+                }
+                return true; // return false to stop the search
+            },
+            [&] (bool success)
+            {
+
+                successful = success;
+
+
+                this->DoneDB(success);
+            });
+
+            this->Wait();
+
+            if (successful)
+            {
+                return LD::UInteger {0};
+            }
+
+            return LD::TransactionError{};
         }
     };
 }
@@ -209,7 +403,9 @@ namespace LD
 {
     namespace CT
     {
-        constexpr bool IsSubsriptionToken(LD::Type<LD::OpenDHTBackend::SubscriptionToken> ) noexcept
+
+        template<typename IteratorType>
+        constexpr bool IsSubsriptionToken(LD::Type<LD::OpenDHTBackend::SubscriptionToken<IteratorType>> ) noexcept
         {
             return true;
         }
