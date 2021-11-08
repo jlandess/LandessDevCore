@@ -406,10 +406,16 @@
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Async/WhenPredicate.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Chrono/DateTime.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Chrono/Timer.cpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Chrono/Timer.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Core/CompileTimeHashMap.h">
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Core/CompileTimeMap.hpp">
@@ -442,6 +448,12 @@
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Encryption/Cbc.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Encryption/Certificate.cpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Encryption/Certificate.hpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Encryption/Crypt.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
@@ -472,6 +484,12 @@
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Examples/ApplicationLoopExample.h">
 			<Option target="LandessDevCore"/>
 		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Examples/AsyncExample.cpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Examples/AsyncExample.hpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Examples/CPUMetric.h">
 			<Option target="LandessDevCore"/>
 		</Unit>
@@ -479,6 +497,12 @@
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Examples/CalculusExample.hpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Examples/ConstexprMapExample.cpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Examples/ConstexprMapExample.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Examples/DelimeterSeperateFileExample.cpp">
@@ -503,6 +527,12 @@
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Examples/FibonnaciExample.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Examples/FiniteStateMachineExample.cpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Examples/FiniteStateMachineExample.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Examples/FullAdderExample.cpp">
@@ -1135,6 +1165,9 @@
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/MVC/TermBoxImmutableTextArea.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/MVC/TermBoxLogger.hpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/MVC/TermBoxMenu.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
@@ -1312,10 +1345,16 @@
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/PF/Status.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/Configuration.hpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/DependencyInjection.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/Factory.hpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/FiniteStateMachine.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/FlyWeight.hpp">
@@ -1355,9 +1394,6 @@
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Primitives/General/ContextualVariant.h">
-			<Option target="LandessDevCore"/>
-		</Unit>
-		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Primitives/General/DateTime.h">
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Primitives/General/FormattedDate.hpp">

@@ -257,7 +257,7 @@ namespace LD
 
         void SetHost(LD::SSHHost host) noexcept
         {
-            std::cout << LD::ToImmutableString(host.Address()).Data() << std::endl;
+            //std::cout << LD::ToImmutableString(host.Address()).Data() << std::endl;
             //ssh_options_set(this->mHandle.get(), SSH_OPTIONS_HOST, "2600:1700:6070:65df:3ce7:cfff:fe00:bc9a");
             ssh_options_set(this->mHandle.get(),SSH_OPTIONS_HOST,LD::ToImmutableString(host.Address()).Data());
             ssh_options_set(this->mHandle.get(), SSH_OPTIONS_LOG_VERBOSITY, &this->mVerbosity);

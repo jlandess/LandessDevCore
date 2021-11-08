@@ -414,12 +414,16 @@ namespace std {
 
 } // namespace std
 
+/*
 namespace LD
 {
     template <class ValueType>
     class TypeMap {
         // Internally, we'll use a hash table to store mapping from type
         // IDs to the values.
+        //mapbox::eternal::map<int, Color>
+        //mapbox::eternal::map<ValueType,17> Internaml;
+        //mapbox::eternal::map<int,bool,17> Intern;
         typedef std::unordered_map<int, ValueType> InternalMap;
     public:
         typedef typename InternalMap::iterator iterator;
@@ -459,4 +463,5 @@ namespace LD
     template <class ValueType>
     std::atomic_int TypeMap<ValueType>::LastTypeId(0);
 }
+ */
 #endif //LANDESSDEVCORE_COMPILETIMEMAP_HPP

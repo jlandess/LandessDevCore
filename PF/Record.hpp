@@ -10,7 +10,7 @@
 #include "PhoneNumber.h"
 #include "Status.hpp"
 #include "Address.hpp"
-#include "Primitives/General/DateTime.h"
+#include "Chrono/DateTime.h"
 #include "Encounter.hpp"
 #include "RecordNumber.hpp"
 #include "Prefix/NamePrefix.hpp"

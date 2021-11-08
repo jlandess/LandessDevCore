@@ -31,6 +31,7 @@
 
 #pragma once
 #include "TypeTraits/Iterable.h"
+#include "Memory/ElementReference.h"
 #if defined(__GNUC__)
 // Disable -Wconversion warnings (spuriously triggered when Traits::size_t and
 // Traits::index_t are set to < 32 bits, causing integer promotion, causing warnings

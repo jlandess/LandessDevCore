@@ -10,7 +10,7 @@
 #define TIMER_H_DEF
 #include "Definitions/Float.hpp"
 #include "Definitions/Integer.hpp"
-#include "Primitives/General/Unit.hpp"
+#include "Core/Unit.hpp"
 
 #ifdef WIN32   // Windows system specific
 #include <windows.h>

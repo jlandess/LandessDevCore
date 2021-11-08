@@ -10,6 +10,7 @@
 #include "TypeTraits/Iterable.h"
 #include "TypeTraits/IsReference.hpp"
 #include "Memory/ElementReference.h"
+#include "TypeTraits/FunctionalReflection.hpp"
 namespace LD
 {
     namespace Detail

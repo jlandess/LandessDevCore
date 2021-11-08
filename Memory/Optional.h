@@ -1562,6 +1562,8 @@ namespace LD
 {
     template<typename T>
     using Optional = PDP::Optional<T>;
+
+    constexpr auto nullopt = PDP::nullopt;
 }
 #endif // optional_CPP11_OR_GREATER
 

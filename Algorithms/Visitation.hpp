@@ -18,7 +18,7 @@
 #include "TypeTraits/FunctionalReflection.hpp"
 #include "TypeTraits/Detection.hpp"
 #include "Algorithms/Forward.hpp"
-
+#include "Algorithms/Invoke.hpp"
 namespace LD
 {
     namespace detail

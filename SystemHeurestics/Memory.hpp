@@ -4,7 +4,7 @@
 
 #ifndef LANDESSDEVCORE_MEMORY_HPP
 #define LANDESSDEVCORE_MEMORY_HPP
-#include "Primitives/General/Unit.hpp"
+#include "Core/Unit.hpp"
 
 namespace LD
 {

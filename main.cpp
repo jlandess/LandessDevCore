@@ -1,45 +1,22 @@
-
-
 #include "Async/RingBuffer.h"
 #include "Examples/ReflectionDemoTypes.h"
 #include "Examples/IMGUIExample1.h"
 #include "Examples/IMGUIExample2.h"
+#include "Examples/WebDavExample.h"
+#include "Examples/WebServerExample.hpp"
+#include "Examples/WebServerExample.hpp"
 #include "REST/CPR/cpr.h"
 #include "Primitives/General/StringView.hpp"
 #include "Primitives/General/ctre.hpp"
 #include <IO/UnqliteDatabaseBackend.h>
-#include <IO/Database.hpp>
-#include <IO/RedisBackend.h>
 #include <Algorithms/Benchmark.hpp>
-#include "REST/Proxmox/Parameters/NetworkBridge.hpp"
-#include "REST/Proxmox/Parameters/FeatureSet.hpp"
-#include "REST/Proxmox/Parameters/SSHKey.h"
-#include "REST/Proxmox/Parameters/Swap.hpp"
-#include "REST/Proxmox/ProxyAPI.h"
-#include "REST/Proxmox/Parameters/BridgeIndex.hpp"
-#include "REST/Proxmox/Parameters/BridgeName.hpp"
-#include "REST/Proxmox/Parameters/InterfaceIndex.hpp"
-#include "REST/Proxmox/Parameters/FirewallStatus.hpp"
-#include "Primitives/General/Unit.hpp"
-#include "Network/MacAddress.hpp"
+#include "Core/Unit.hpp"
 #include "Network/IPV4Address.hpp"
-#include "SumTypes/MPark/variant.hpp"
-#include "Reflection/NamedTuple.h"
 #include "Core/RequestResponse.hpp"
-#include "Network/SSH/SSH.hpp"
-#include "IO/json.hpp"
 #include "Memory/Optional.h"
-#include "Reflection/Reflection.hpp"
 #include "IaaS/DockerManifest.hpp"
 #include "Algorithms/ToJSON.hpp"
-#include "Async/GrandCentralDispatch.h"
 #include <webdav/client.hpp>
-#include "Algorithms/CTREImmutableExtension.hpp"
-#include "IaaS/ClusteringMetaData.hpp"
-#include "IO/Database1.h"
-#include "IO/JsonDatabaseBackend.h"
-#include "Process/Command.hpp"
-#include "Algorithms/TDD.hpp"
 #include <opendht.h>
 #include <PBX/Mirta/Date.hpp>
 #include <MVC/Cusor.h>
@@ -49,93 +26,19 @@
 #include "IaaS/ArtifactRepository.hpp"
 #include "Algorithms/FromJSON.hpp"
 #include "IaaS/HashiVault/HashiVault.hpp"
-#include "Examples/WebDavExample.h"
-#include "Async/Scheduler.hpp"
-#include "Async/Then.hpp"
-#include "Async/SyncWait.hpp"
-#include "Async/Just.hpp"
-#include "Algorithms/Visitation.hpp"
-#include "Async/WhenAll.hpp"
-#include "Async/WhenAny.hpp"
-#include "Async/Execute.hpp"
-#include "Async/Let.hpp"
-#include "Async/ScheduleAfter.hpp"
-#include "Async/SharedState.hpp"
-#include "Async/AsyncRingBuffer.hpp"
-#include "Examples/WebServerExample.hpp"
-#include "Examples/WebServerExample.hpp"
+
 #include "Patterns/DependencyInjection.hpp"
-#include "Patterns/LazyLambda.hpp"
 #include "Algorithms/GetDecimalPlaces.hpp"
-#include "Algorithms/Base64Encoding.h"
 #include "Patterns/Observer.hpp"
 #include "Patterns/Scheduling.hpp"
 #include "MVC/TermBoxConsoleApplication.hpp"
 #include "Primitives/General/CircularQueue.hpp"
-//{"data":"UPID:virtualhome:00004556:065341E5:6020F7FA:vzcreate:110:root@pam:"}
-//UPID:([a-zA-Z0-9]+):([0-9a-fA-F]+):([0-9a-fA-F]+):([0-9a-fA-F]+):(\\w+):(\\d+):(\\w+)@([a-zA-Z0-9:]+)
 #include "IO/PublisherSubscriber.h"
-#include "Async/Thread.h"
+
 #include "Services/Logging.hpp"
 #include "Examples/DependencyInjectionExample.hpp"
-void ParseResponse(LD::StringView view) noexcept
-{
-    if (auto [whole, nodeName, hex1, hex2,hex3,creationMethod,index,username,base] = ctre::match<LD::PVE::Detail::CreationRegex>(view); whole)
-    {
-        std::cout << nodeName.view() << std::endl;
-        std::cout << hex1.view() << std::endl;
-        std::cout << hex2.view() << std::endl;
-        std::cout << hex3.view() << std::endl;
-        std::cout << creationMethod.view() << std::endl;
-        std::cout << index.view() << std::endl;
-        std::cout << username.view() << std::endl;
-        std::cout << base.view() << std::endl;
-        //return LD::MakeContext(LD::TransactionResult{},LD::VW::DateTime{LD::Date(LD::Year<LD::UInteger>{LD::UInteger{year}},LD::Month<LD::UInteger>{month},LD::Day<LD::UInteger>{day}),LD::Time(hour,minute,second)},LD::Forward<A>(args)...);
-    }
-}
-
-
-
-class DNSResponse
-{
-private:
-    LD::ImmutableString<15> mDomainName;
-    LD::StaticArray<LD::Variant<LD::IPV4Address,LD::IPV6Address>,30> mIPAddress;
-    LD::UInteger mTTL;
-public:
-
-};
-
-
-
-namespace LD
-{
-
-    namespace Async
-    {
-
-        auto NewWorker(LD::Async::Scheduler & scheduler)
-        {
-            auto function =  [&](auto p)
-            {
-
-                auto function = [p = std::move(p)]() mutable
-                {
-                    p.set_value();
-                };
-
-                scheduler << function;
-            };
-
-            return LD::Async::Detail::Runnable<decltype(function),LD::Type<void>>{function};
-        }
-    }
-}
-
-
-
-
-
+#include "Core/CompileTimeMap.hpp"
+#include "MVC/TermBoxLogger.hpp"
 
 template<typename KeyType, typename FunctionType>
 class OpenDHTSubscriptionMember
@@ -268,17 +171,6 @@ public:
 };
 
 using OpenDHTSubscription = BasicOpenDHTSubscription<LD::ImmutableString<256>,LD::UInteger ,LD::StaticArray<LD::Tuple<dht::InfoHash,LD::UInteger,LD::UInteger>,15>,LD::CircularQueue<LD::UInteger ,15>>;
-/**
- *  LD::ConvertiblyCallable<Executor, bool(const LD::ApplicaitonStartedEvent<typename LD::Decay<Context>::type...> &)>::Value(),
-    LD::ConvertiblyCallable<Executor, bool(const LD::ApplicationFrameStartedEvent<typename LD::Decay<Context>::type...> &)>::Value(),
-    LD::ConvertiblyCallable<Executor, PDP::Second<LD::Float>(const LD::ApplicationPeriodEvent<typename LD::Decay<Context>::type...> &)>::Value(),
-    LD::ConvertiblyCallable<Executor, void(const LD::ApplicationExecutionEvent<typename LD::Decay<Context>::type...> &)>::Value(),
-    LD::ConvertiblyCallable<Executor, void(const LD::ApplicationFrameEndedEvent<typename LD::Decay<Context>::type...> &)>::Value(),
-    LD::ConvertiblyCallable<Executor, void(const LD::ApplicationQuittingEvent<typename LD::Decay<Context>::type...> &)>::Value(),
- * @param argc
- * @param argv
- * @return
- */
 
 class ExampleBasicApplication
 {
@@ -321,90 +213,7 @@ public:
 
     }
 };
-namespace LD
-{
-    struct TermBoxLoggerMessage
-    {
-        LD::ImmutableString<256> mMessage;
-        LD::Variant<DebugLog,ErrorLog,InfoLog,WarningLog> mState;
-    };
-    class TermBoxLogger: public AbstractLogger
-    {
-    private:
-        LD::CircularQueue<LD::TermBoxLoggerMessage,15> mMessages;
-        LD::BasicChannel<LD::CircularQueue<LD::TermBoxLoggerMessage,15>&> mMessageChannel;
-    public:
-        TermBoxLogger() noexcept: mMessageChannel{mMessages}
-        {
 
-        }
-        virtual void PrintInfo(LD::StringView view) noexcept
-        {
-            this->mMessageChannel << TermBoxLoggerMessage{LD::ImmutableString<256>{view},LD::InfoLog{}};
-        }
-        virtual void PrintError(LD::StringView view) noexcept
-        {
-            this->mMessageChannel << TermBoxLoggerMessage{LD::ImmutableString<256>{view},LD::ErrorLog{}};
-        }
-        virtual void PrintDebug(LD::StringView view) noexcept
-        {
-            this->mMessageChannel << TermBoxLoggerMessage{LD::ImmutableString<256>{view},LD::DebugLog{}};
-        }
-        virtual void PrintWarning(LD::StringView view) noexcept
-        {
-            this->mMessageChannel << TermBoxLoggerMessage{LD::ImmutableString<256>{view},LD::WarningLog{}};
-        }
-
-        template<typename ... A>
-        bool operator()(const LD::ApplicationStartedEvent<A...> & applicaitonStartedEvent)
-        {
-            return true;
-        }
-
-        template<typename ... A>
-        bool operator()(const LD::ApplicationFrameStartedEvent<A...> & frameStarted) noexcept
-        {
-            return true;
-        }
-
-        template<typename ... A>
-        LD::Second<LD::Float> operator()(const LD::ApplicationPeriodEvent<A...> & frameStarted) noexcept
-        {
-            return 1.0_s;
-        }
-
-        template<typename ... A>
-        void operator()(const LD::ApplicationExecutionEvent<A...> & applicationExecutionEvent) noexcept
-        {
-            LD::Optional<LD::TermBoxLoggerMessage> possibleMessage;
-            this->mMessageChannel >> possibleMessage;
-            if(possibleMessage)
-            {
-                LD::ImmutableString<256> message = (*possibleMessage).mMessage;
-                LD::ElementReference<LD::TermBoxRenderContext> renderingContext = LD::Get<LD::TermBoxRenderContext>(applicationExecutionEvent);
-
-                LD::TUI::ImmutableTextLabel debugOutput(LD::BasicVec2D<LD::Integer>{5,5},message);
-                renderingContext->Render(debugOutput);
-
-            }
-            //LD::ElementReference<LD::TermBoxRenderContext> renderingContext = LD::Get<LD::TermBoxRenderContext>(applicationExecutionEvent);
-            //LD::TUI::ImmutableTextLabel debugOutput(LD::BasicVec2D<LD::Integer>{0,0},LD::ImmutableString{"debugString"});
-            //renderingContext->Render(debugOutput);
-        }
-
-        template<typename ... A>
-        void operator()(const LD::ApplicationFrameEndedEvent<A...> &) noexcept
-        {
-
-        }
-
-        template<typename ... A>
-        void operator()(const LD::ApplicationQuittingEvent<A...> &) noexcept
-        {
-
-        }
-    };
-}
 
 template<typename T>
 class MultiApplication;
@@ -420,7 +229,7 @@ class MultiApplication<LD::CT::TypeList<T...>(A...)>
 {
 private:
     LD::Tuple<T...> mExecutors;
-    LD::StaticArray<int,sizeof...(T)> mExecutorParams;
+    LD::StaticArray<MultiApplicationParameter,sizeof...(T)> mExecutorParams;
 public:
     MultiApplication(T && ... executors) noexcept:mExecutors{LD::Forward<T>(executors)...}
     {
@@ -621,40 +430,11 @@ void Integrate(F && function, LD::Type<Integrand>) noexcept
 {
 
 }
-#include "Core/CompileTimeMap.hpp"
-struct Color {
-    constexpr inline Color() {
-    }
-    constexpr inline Color(unsigned char r_, unsigned char g_, unsigned char b_, float a_)
-            : r(r_), g(g_), b(b_), a(a_ > 1 ? 1 : a_ < 0 ? 0 : a_) {
-    }
-    unsigned char r = 0, g = 0, b = 0;
-    float a = 1.0f;
 
-    constexpr bool operator==(const Color& rhs) const {
-        return r == rhs.r && g == rhs.g && b == rhs.b &&
-               (a >= rhs.a ? a - rhs.a : rhs.a - a) < std::numeric_limits<float>::epsilon();
-    }
-};
-constexpr auto const multi_colors = mapbox::eternal::map<mapbox::eternal::string, Color>({
-    { "red", { 255, 0, 0, 1 } },
-    { "yellow", { 255, 255, 0, 1 } },
-    { "white", { 255, 255, 255, 1 } }, // comes before yellow!
-    { "yellow", { 255, 220, 0, 1 } },  // a darker yellow
-});
-
-void TypeMapExample()
-{
-    LD::TypeMap<std::string> tmap;
-    tmap.put<int>("integers!");
-    tmap.put<double>("doubles!");
-    std::cout << tmap.find<int>()->second << "\n";
-}
+#include "Examples/FiniteStateMachineExample.hpp"
 int main(int argc, char **argv)
 {
-    TypeMapExample();
-    multi_colors.find("red");
-    LD::Meter<LD::Float>{}*LD::Meter<LD::Float>{};
+    LD::Example::FiniteStateMachineExample();
     LD::PrintFLogger printfLogger;
     LD::BasicLogger logger{printfLogger};
     //logger << LD::InfoLog{} << "abc" << 7 << LD::ImmutableString{"cde"} << "\n";
@@ -671,6 +451,7 @@ int main(int argc, char **argv)
     LD::Example::DependencyInjectionExample(printfLogger);
 
     LD::OpenDHTBackend mBackend{LD::IPV6Address{"fd00:1700:81b8:401e:0:d9:191:4a34"},LD::Port{4225},LD::Port{4222}};
+
 
 
     LD::TermBoxLogger termBoxLogger;
@@ -702,8 +483,6 @@ int main(int argc, char **argv)
     std::cout << LD::Base64Decode(LD::ImmutableString{"NWQzYzljMTU5YzlkYjA0YjI3ZjJhOTYxY2M4ZjAzZmVmOGIxOGYzNQ=="}).Data() << "\n";
 
 
-
-
     LD::Ringbuffer<int> buffer;
     LD::BackInserter ringBufferInserter{buffer};
 
@@ -727,64 +506,8 @@ int main(int argc, char **argv)
     //LD::Variant<int>{}.get<0>();
 
     //LD::WebServerExample();
-    LD::Visit([](auto){ std::cout << "Visitiation:" << "\n";},mpark::variant<int>{7});
-    LD::Visit([](auto){ std::cout << "Visitiation:" << "\n";},mapbox::util::variant<int>{7});
-    LD::Visit([](auto){ std::cout << "Visitiation:" << "\n";},LD::Variant<int>{7});
 
     LD::VisitWithContext(LD::Overload{[](int, std::string){},[](float, std::string){}},LD::MakeTuple(std::string{}),mpark::variant<int,float>{});
-
-
-    LD::Async::Scheduler scheduler{8};
-    //scheduler << [](){std::cout << "thread is executing function" << "\n";};
-
-
-
-    auto asyncF1 = LD::Async::Then(LD::Async::NewWorker(scheduler),[](){ return  7;});
-
-
-
-
-    LD::Second<double> abc = 79_ms;
-
-
-    LD::Async::Then(LD::Async::ScheduleAfter(abc,LD::Async::NewWorker(scheduler)),[](LD::Second<double> timeElapsed ){ return 7;});
-
-
-    LD::Async::SyncWait(LD::Async::Then(LD::Async::Then(LD::Async::NewWorker(scheduler),[](){}),[](){std::cout << "and then" << "\n";}));
-    std::cout << "LetValue Example: " << LD::Async::SyncWait(LD::Async::LetValue(LD::Async::NewWorker(scheduler),7,[](int){ return 8;})) << "\n";
-    auto asyncF2 = LD::Async::Then(asyncF1,[](int number){ return 7*number;});
-
-    auto asyncF12 = LD::Async::Then(LD::Async::NewWorker(scheduler),[](){ });
-    auto syncWaitJust1 = LD::Async::Then(LD::Async::Then(LD::Async::NewWorker(scheduler),LD::Async::Just(6)),[](int a){ return std::sin(a);});
-
-    std::cout << "LawlRawr: " << LD::Async::SyncWait(syncWaitJust1) << "\n";
-
-    LD::Async::WhenAll(LD::Async::Then(LD::Async::NewWorker(scheduler),[](){ return  7;}),
-                        LD::Async::Then(asyncF1,[](int number){ return 7*number;}));
-    auto whenAllAreDone = LD::Async::WhenAll(
-            LD::Async::Then(LD::Async::NewWorker(scheduler),[](){ return  7;}),
-            LD::Async::Then(asyncF1,[](int number){ return 7*number;})
-            );
-
-
-    auto whenOneIsDone =  LD::Async::WhenAny(
-            LD::Async::Then(LD::Async::NewWorker(scheduler),[](){ return  7;}),
-            LD::Async::Then(LD::Async::NewWorker(scheduler),[](){ return  7.0;})
-            );
-
-
-
-
-    //LD::Async::SyncWait(asyncF12);
-    LD::Async::Execute(asyncF12);
-    LD::Tuple<int,int > res = LD::Async::SyncWait(whenAllAreDone);
-
-    std::cout << "Number: " << LD::Async::SyncWait(asyncF2) << "\n";
-
-    std::cout << LD::Get<0>(res) << " , " << LD::Get<1>(res) << "\n";
-
-
-
 
 
     OpenDHTSubscription subscription{mBackend};
@@ -793,22 +516,7 @@ int main(int argc, char **argv)
 
 
     subscription();
-    std::cout << LD::Float((11)/24.0) + LD::Float((50)/1440.0) + LD::Float (33/(86400.0)) << "\n";
 
-    auto jdNumber = LD::DateTimeToJulianNumber(LD::DateTime{});
-    auto memee1 = std::to_string(jdNumber);
-    LD::Float jdDate = LD::DateTimeToJulianDate(LD::DateTime{});
-    LD::UInteger jdDatePrecision = LD::GetDecimalPlaces(jdDate);
-    std::cout << "Floating Point: " << LD::ToImmutableString(LD::Float((11)/24.0) + LD::Float((50)/1440.0) + LD::Float (33/(86400.0))).Data() << "\n";
-    std::cout << "Associated Julian Date: " << memee1 << "\n";
-    std::cout << "Precision: " << LD::GetDecimalPlaces(jdNumber) << "\n";
-    std::cout << "Associated Julian Number: " << LD::ToImmutableString(jdNumber).Data() << "\n";
-    std::cout << "CurrentDate: " << LD::ToImmutableString(LD::DateTime{}).Data() << "\n";
-    std::cout << "Node Identification: " << mBackend.NodeIdentification().Data() << std::endl;
-
-    LD::UInteger factoredJulianNumber = (LD::UInteger)  ( (jdNumber - (LD::UInteger)jdNumber)*LD::Pow(10,15) );
-    std::cout << "FActored Julian Number: " << factoredJulianNumber<< "\n";
-    std::cout << "Fully Qualified Key: " << (mBackend.NodeIdentification() + LD::ImmutableString{"."} + LD::ToImmutableString(factoredJulianNumber) + LD::ImmutableString{"."} + LD::ToImmutableString((LD::UInteger)jdNumber)  ).Data() << "\n";
 
 
     //d05a3a0a907bfe16959e1b84ed116bf1e1dbb904
@@ -927,15 +635,7 @@ int main(int argc, char **argv)
     //LD::Tuple<decltype(lambda)> rawr;
     using LambdaType = decltype(lambda);
 
-    /*
-    auto f1 = LD::Async::async_algo(
-            LD::Async::NewWorker(scheduler),
-            LD::Subscribe1(mBackend,LD::ImmutableString{"key"},
-                           LD::ElementReference<decltype(lambda)> {lambda},
-                           LD::Type<LD::UInteger>{}));
-   // auto f4 = then(f1, [](LD::Channel<LD::UInteger> i){return  i;});
-    LD::Async::SyncWait<LD::UInteger>(f1);
-     */
+
 
 
     //sleep(5);

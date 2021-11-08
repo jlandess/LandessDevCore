@@ -24,7 +24,7 @@
 #include "MVC/TermBoxConsoleApplication.hpp"
 #include "Definitions/TimeExtension.hpp"
 #include "MVC/SchedulingQuittingPredicate.hpp"
-#include "Primitives/General/Unit.hpp"
+#include "Core/Unit.hpp"
 namespace LD
 {
     

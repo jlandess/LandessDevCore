@@ -8,7 +8,8 @@
 #define FIXED_SIZE_FUNCTION_HPP_INCLUDED
 
 
-
+#include "TypeTraits/IsSame.hpp"
+#include "Algorithms/Forward.hpp"
 namespace LD
 {
     enum class construct_type
@@ -229,7 +230,8 @@ namespace LD
 
         Ret operator()(Args... args)
         {
-            return vtable_.call ? vtable_.call(&storage_, std::forward<Args>(args)...) : throw std::bad_function_call();
+            //return vtable_.call ? vtable_.call(&storage_, std::forward<Args>(args)...) : throw std::bad_function_call();
+            return vtable_.call(&storage_, std::forward<Args>(args)...);
         }
 
         void swap(fixed_size_function& other)

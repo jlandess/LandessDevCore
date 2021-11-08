@@ -6,7 +6,7 @@
 #define LANDESSDEVCORE_BENCHMARK_HPP
 #include "Definitions/Float.hpp"
 #include "Definitions/Integer.hpp"
-#include "Primitives/General/Unit.hpp"
+#include "Core/Unit.hpp"
 #include "Chrono/Timer.h"
 namespace LD
 {

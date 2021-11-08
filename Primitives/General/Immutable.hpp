@@ -1150,4 +1150,9 @@ namespace LD
         }
     };
 }
+
+inline LD::ImmutableString<64> operator "" _IS(const char * text) noexcept
+{
+    return LD::ImmutableString<64>{LD::StringView {text}};
+}
 #endif /* Immutable_h */
