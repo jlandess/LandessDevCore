@@ -11,6 +11,7 @@
 #include "Algorithms/Visitation.hpp"
 #include "TypeTraits/IsVariant.hpp"
 #include "TypeTraits/CompileTimeControlFlow.hpp"
+#include "Patterns/ServiceLocator.hpp"
 namespace LD
 {
     template<typename Derived, typename StateVariant>
@@ -62,11 +63,11 @@ namespace LD
             return false;
         }
     }
-    template<typename Executor,typename State, typename ... Events>
-    class StateManager<Executor,State(Events...),LD::Enable_If_T<
+    template<typename Executor,typename State,  typename Evt>
+    class StateManager<Executor,State(Evt),LD::Enable_If_T<
             LD::Require<
                     LD::CT::IsVariant(LD::Type<State>{})
-                    >>>: public LD::FiniteStateMachine<StateManager<Executor,State(Events...)>,State>
+                    >>>: public LD::FiniteStateMachine<StateManager<Executor,State(Evt)>,State>
     {
     private:
         Executor mExecutor;
@@ -80,27 +81,32 @@ namespace LD
         template<typename PassedInState, typename Event>
         auto OnEvent(PassedInState & state,  Event &&  event) noexcept -> LD::Optional<State>
         {
+            //this is our executor to act on the state
             this->mExecutor(state);
 
             auto visitEvent = [&](const auto & passedInEvent) noexcept
             {
+                //pass in the event to determine if we get a transition
+                //todo pass in context
                 return state(passedInEvent);
             };
             //auto newState = state(event);
 
+            //generate the new event
             auto newState = LD::Visit(visitEvent,LD::Forward<Event>(event));
             if(newState)
             {
-                auto visitUpdatedState = [&](auto  newState)
+                auto transitionExecutor = [&](auto  newState)
                 {
+                    //perform state transition
                     this->mExecutor(state,newState);
                 };
 
                 //todo - consider allowing transition to new state based on transition
-                LD::Visit(visitUpdatedState,*newState);
+                LD::Visit(transitionExecutor,*newState);
 
 
-
+                //force the new transition by returning
                 return newState;
             }
 
@@ -154,31 +160,47 @@ namespace LD
     class EventDispatcher;
     //todo - use sfinae to determine if Event is a variant
     //todo - use sfinae to ensure the Executor can call every type specified in the state variant provided by the FSM, and return an optional event
-    template<typename FiniteStateMachineType, typename Executor, typename Event>
-    class EventDispatcher<FiniteStateMachineType,Executor(Event),
+    template<typename FiniteStateMachineType, typename Executor, typename Event, typename ... Context>
+    class EventDispatcher<FiniteStateMachineType(Context...),Executor(Event),
             LD::Enable_If_T<
                     LD::Require<
-                            LD::CT::IsVariant(LD::Type<Event>{}),
-                            LD::CT::CanExecutorDispatchEvent(LD::CT::RemoveQualifiers(LD::Type<Executor>{}),LD::CT::RemoveQualifiers(LD::Type<Event>{}),LD::CT::FiniteStateMachineType(LD::CT::RemoveQualifiers(LD::Type<FiniteStateMachineType>{})))
+                            true
+                            //LD::CT::IsVariant(LD::Type<Event>{}),
+                            //LD::CT::CanExecutorDispatchEvent(LD::CT::RemoveQualifiers(LD::Type<Executor>{}),LD::CT::RemoveQualifiers(LD::Type<Event>{}),LD::CT::FiniteStateMachineType(LD::CT::RemoveQualifiers(LD::Type<FiniteStateMachineType>{})))
                             >>>
     {
     private:
         FiniteStateMachineType mFSM;
         Executor mExecutor;
+        LD::BasicServiceRepository<Context...> mService;
     public:
-        EventDispatcher(FiniteStateMachineType && fsm, Executor && executor) noexcept:mFSM{LD::Forward<FiniteStateMachineType>(fsm)},mExecutor{LD::Forward<Executor>(executor)}
+        EventDispatcher(
+                FiniteStateMachineType && fsm,
+                Executor && executor,
+                Context && ... context) noexcept:mFSM{LD::Forward<FiniteStateMachineType>(fsm)},mExecutor{LD::Forward<Executor>(executor)}
         {
 
         }
         void operator()() noexcept
         {
-            auto eventGenerationFunctor = [&](auto && s) noexcept ->LD::Optional<Event>
+            auto eventGenerationFunctor = [&](auto && s) noexcept //->LD::Optional<Event>
             {
                 return this->mExecutor(LD::Forward<decltype(s)>(s));
             };
             auto generatedEvent = LD::Visit(eventGenerationFunctor,this->mFSM.State());
+
+            using EventType = LD::Detail::Decay_T<decltype(generatedEvent)>;
+
+            if constexpr(LD::CT::IsVariant(LD::Type<EventType>{}))
+            {
+
+            }else
+            {
+
+            }
             if (generatedEvent)
             {
+                //todo replace with a visit?
                 this->mFSM.Dispatch(*generatedEvent);
             }
         }

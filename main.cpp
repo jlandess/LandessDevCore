@@ -435,6 +435,7 @@ void Integrate(F && function, LD::Type<Integrand>) noexcept
 int main(int argc, char **argv)
 {
     LD::Example::FiniteStateMachineExample();
+    /*
     LD::PrintFLogger printfLogger;
     LD::BasicLogger logger{printfLogger};
     //logger << LD::InfoLog{} << "abc" << 7 << LD::ImmutableString{"cde"} << "\n";

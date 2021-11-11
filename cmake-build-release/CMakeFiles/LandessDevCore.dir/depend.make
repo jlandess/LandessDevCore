@@ -1469,6 +1469,7 @@ CMakeFiles/LandessDevCore.dir/Examples/FiniteStateMachineExample.cpp.o: ../IO/Fe
 CMakeFiles/LandessDevCore.dir/Examples/FiniteStateMachineExample.cpp.o: ../Memory/ElementReference.h
 CMakeFiles/LandessDevCore.dir/Examples/FiniteStateMachineExample.cpp.o: ../Memory/MemoryResource.hpp
 CMakeFiles/LandessDevCore.dir/Examples/FiniteStateMachineExample.cpp.o: ../Memory/Optional.h
+CMakeFiles/LandessDevCore.dir/Examples/FiniteStateMachineExample.cpp.o: ../Memory/OptionalReference.h
 CMakeFiles/LandessDevCore.dir/Examples/FiniteStateMachineExample.cpp.o: ../Memory/PolyMorphicAllocator.hpp
 CMakeFiles/LandessDevCore.dir/Examples/FiniteStateMachineExample.cpp.o: ../Memory/UniquePointer.h
 CMakeFiles/LandessDevCore.dir/Examples/FiniteStateMachineExample.cpp.o: ../Memory/shared_ptr.hpp

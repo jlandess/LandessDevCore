@@ -1366,6 +1366,9 @@
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/Observer.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/ResourceCache.hpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/ServiceLocator.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>

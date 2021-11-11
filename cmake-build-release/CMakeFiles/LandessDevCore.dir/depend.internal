@@ -1470,6 +1470,7 @@ CMakeFiles/LandessDevCore.dir/Examples/FiniteStateMachineExample.cpp.o
  ../Memory/ElementReference.h
  ../Memory/MemoryResource.hpp
  ../Memory/Optional.h
+ ../Memory/OptionalReference.h
  ../Memory/PolyMorphicAllocator.hpp
  ../Memory/UniquePointer.h
  ../Memory/shared_ptr.hpp

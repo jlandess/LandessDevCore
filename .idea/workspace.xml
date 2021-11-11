@@ -57,7 +57,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a2ffdfb1-0050-446c-b0af-d02ece8e31b8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Patterns/ResourceCache.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Encryption/Certificate.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Encryption/Certificate.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Examples/FiniteStateMachineExample.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/FiniteStateMachineExample.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Memory/OptionalReference.h" beforeDir="false" afterPath="$PROJECT_DIR$/Memory/OptionalReference.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Patterns/FiniteStateMachine.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Patterns/FiniteStateMachine.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Patterns/ServiceLocator.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Patterns/ServiceLocator.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/depend.internal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/LandessDevCore.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/LandessDevCore" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/LandessDevCore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/LandessDevCore.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/LandessDevCore.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -344,7 +358,7 @@
       <workItem from="1629051768912" duration="256684000" />
       <workItem from="1631091246249" duration="605810000" />
       <workItem from="1635020024337" duration="56258000" />
-      <workItem from="1636087843477" duration="77594000" />
+      <workItem from="1636087843477" duration="89863000" />
     </task>
     <servers />
   </component>

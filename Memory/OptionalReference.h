@@ -12,7 +12,7 @@
 #include <Memory/Optional.h>
 #include <Memory/ElementReference.h>
 
-namespace PDP
+namespace LD
 {
     template<typename T>
     class OptionalReference: public PDP::Optional<PDP::ElementReference<T>>
