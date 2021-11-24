@@ -295,7 +295,7 @@ namespace LD
         auto OnEvent(State&, const Event&)
         {
             
-            return PDP::nullopt;
+            return LD::nullopt;
             
         }
         
@@ -415,7 +415,7 @@ namespace LD
         auto OnEvent(State&, const Event&) noexcept
         {
 
-            return PDP::nullopt;
+            return LD::nullopt;
 
         }
 
@@ -620,7 +620,7 @@ namespace LD
         auto OnEvent(State&, const Event&) noexcept
         {
             
-            return PDP::nullopt;
+            return LD::nullopt;
             
         }
         
@@ -830,7 +830,7 @@ namespace LD
     };
     
     
-    template<typename T, typename U = LD::NullClass, template<typename> class F  = PDP::LightWeightDelegate> class Scheduler;
+    template<typename T, typename U = LD::NullClass, template<typename> class F  = LD::LightWeightDelegate> class Scheduler;
     
     /*
     template<typename T ,typename U, typename ... Args ,template<typename> class F>

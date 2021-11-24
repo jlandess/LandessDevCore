@@ -999,12 +999,14 @@ CMakeFiles/LandessDevCore.dir/Examples/DependencyInjectionExample.cpp.o
  ../Functor/LightWeightDelegateBase.h
  ../IO/DatabaseOperationResult.h
  ../IO/FetchRequest.h
+ ../IO/json.hpp
  ../Memory/ElementReference.h
  ../Memory/MemoryResource.hpp
  ../Memory/Optional.h
  ../Memory/PolyMorphicAllocator.hpp
  ../Memory/UniquePointer.h
  ../Memory/shared_ptr.hpp
+ ../Patterns/Configuration.hpp
  ../Patterns/DependencyInjection.hpp
  ../Patterns/ServiceLocator.hpp
  ../Primitives/General/Context.h
@@ -1467,6 +1469,7 @@ CMakeFiles/LandessDevCore.dir/Examples/FiniteStateMachineExample.cpp.o
  ../Functor/LightWeightDelegateBase.h
  ../IO/DatabaseOperationResult.h
  ../IO/FetchRequest.h
+ ../IO/json.hpp
  ../Memory/ElementReference.h
  ../Memory/MemoryResource.hpp
  ../Memory/Optional.h
@@ -1474,6 +1477,7 @@ CMakeFiles/LandessDevCore.dir/Examples/FiniteStateMachineExample.cpp.o
  ../Memory/PolyMorphicAllocator.hpp
  ../Memory/UniquePointer.h
  ../Memory/shared_ptr.hpp
+ ../Patterns/Configuration.hpp
  ../Patterns/DependencyInjection.hpp
  ../Patterns/FiniteStateMachine.hpp
  ../Patterns/ServiceLocator.hpp
@@ -2371,6 +2375,164 @@ CMakeFiles/LandessDevCore.dir/Examples/PVEGUIDeploymentExample.cpp.o
  ../VirtuWorks/QueueLog.hpp
  ../VirtuWorks/QueueLogStatus.hpp
  /home/phoenixflower/Documents/Development/LandessDevCore/Examples/PVEGUIDeploymentExample.cpp
+CMakeFiles/LandessDevCore.dir/Examples/PublisherSubscriberExample.cpp.o
+ ../Algorithms/Abs.hpp
+ ../Algorithms/DecimalToBinary.h
+ ../Algorithms/Exponential.hpp
+ ../Algorithms/FastLog10.hpp
+ ../Algorithms/Floor.hpp
+ ../Algorithms/Forward.hpp
+ ../Algorithms/FromJSON.hpp
+ ../Algorithms/FromString.hpp
+ ../Algorithms/GenericResize.h
+ ../Algorithms/Invoke.hpp
+ ../Algorithms/Move.hpp
+ ../Algorithms/Overload.hpp
+ ../Algorithms/Periodic.hpp
+ ../Algorithms/Power.hpp
+ ../Algorithms/StringAsNumber.h
+ ../Algorithms/Swap.hpp
+ ../Algorithms/ToJSON.hpp
+ ../Algorithms/VariantOperations.hpp
+ ../Algorithms/Visitation.hpp
+ ../Algorithms/vdt/asin.h
+ ../Algorithms/vdt/atan.h
+ ../Algorithms/vdt/atan2.h
+ ../Algorithms/vdt/cos.h
+ ../Algorithms/vdt/exp.h
+ ../Algorithms/vdt/identity.h
+ ../Algorithms/vdt/inv.h
+ ../Algorithms/vdt/log.h
+ ../Algorithms/vdt/sin.h
+ ../Algorithms/vdt/sincos.h
+ ../Algorithms/vdt/sqrt.h
+ ../Algorithms/vdt/tan.h
+ ../Algorithms/vdt/vdtcore_common.h
+ ../Algorithms/vdt/vdtmath.h
+ ../Async/Atomic/Atomic.h
+ ../Async/Atomic/AtomicCore.h
+ ../Async/Atomic/AtomicPrimitiveImplementation.h
+ ../Async/Atomic/AtomicUnderlyingCore.h
+ ../Async/Atomic/compiler_gcc.h
+ ../Async/Atomic/compiler_msvc.h
+ ../Async/Channel.hpp
+ ../Async/concurrentqueue.h
+ ../Core/RequestResponse.hpp
+ ../Core/Tuple.hpp
+ ../Core/Unit.hpp
+ ../Definitions/Float.hpp
+ ../Definitions/Integer.hpp
+ ../Definitions/platform_detect.h
+ ../Functor/Lambda.h
+ ../Functor/LightWeightDelegate.h
+ ../Functor/LightWeightDelegateBase.h
+ ../Functor/fixed_size_function.hpp
+ ../IO/DHTBackend.hpp
+ ../IO/DataLink.hpp
+ ../IO/DatabaseOperationResult.h
+ ../IO/FetchRequest.h
+ ../IO/json.hpp
+ ../Memory/ElementReference.h
+ ../Memory/MemoryResource.hpp
+ ../Memory/Optional.h
+ ../Memory/PolyMorphicAllocator.hpp
+ ../Memory/UniquePointer.h
+ ../Memory/shared_ptr.hpp
+ ../Network/IPV4Address.hpp
+ ../Network/IPV6Address.hpp
+ ../Network/IPV6HostSegment.hpp
+ ../Network/IPV6NetworkSegment.hpp
+ ../Network/MacAddress.hpp
+ ../Network/Port.hpp
+ ../Network/Prefix.hpp
+ ../Network/Subnet.hpp
+ ../Network/ipv6.h
+ ../Patterns/Configuration.hpp
+ ../Patterns/DependencyInjection.hpp
+ ../Patterns/Observer.hpp
+ ../Patterns/ServiceLocator.hpp
+ ../Primitives/General/BitSet.hpp
+ ../Primitives/General/CircularQueue.hpp
+ ../Primitives/General/Context.h
+ ../Primitives/General/ContextualVariant.h
+ ../Primitives/General/Hash.hpp
+ ../Primitives/General/Hexademical.hpp
+ ../Primitives/General/Immutable.hpp
+ ../Primitives/General/ImproperFraction.hpp
+ ../Primitives/General/Pair.h
+ ../Primitives/General/Range.h
+ ../Primitives/General/Ratio.hpp
+ ../Primitives/General/Span.hpp
+ ../Primitives/General/StaticArray.hpp
+ ../Primitives/General/StringView.hpp
+ ../Primitives/General/Tuple.hpp
+ ../Primitives/General/ctre.hpp
+ ../Primitives/General/mapboxrecursive_wrapper.hpp
+ ../Primitives/General/mapboxvariant.hpp
+ ../Primitives/General/mapboxvariantvisitor.h
+ ../Primitives/General/typestring.hpp
+ ../Reflection/NamedTuple.h
+ ../Reflection/Reflection.hpp
+ ../Services/Logging.hpp
+ ../SumTypes/MPark/config.hpp
+ ../SumTypes/MPark/in_place.hpp
+ ../SumTypes/MPark/lib.hpp
+ ../SumTypes/MPark/variant.hpp
+ ../TypeTraits/AddLValueReference.hpp
+ ../TypeTraits/AddPointer.hpp
+ ../TypeTraits/AddRValueReference.hpp
+ ../TypeTraits/CanBeAnImmutableString.hpp
+ ../TypeTraits/CompileTimeControlFlow.hpp
+ ../TypeTraits/CompileTimeOperations.hpp
+ ../TypeTraits/Conditional.hpp
+ ../TypeTraits/Decay.hpp
+ ../TypeTraits/Declval.hpp
+ ../TypeTraits/Detection.hpp
+ ../TypeTraits/EnableIf.hpp
+ ../TypeTraits/ExclusiveOr.hpp
+ ../TypeTraits/FunctionalReflection.hpp
+ ../TypeTraits/IntegerSequence.hpp
+ ../TypeTraits/IntegralConstant.hpp
+ ../TypeTraits/IsArray.hpp
+ ../TypeTraits/IsAssignable.hpp
+ ../TypeTraits/IsBaseOf.hpp
+ ../TypeTraits/IsClassType.hpp
+ ../TypeTraits/IsConst.hpp
+ ../TypeTraits/IsConstructible.hpp
+ ../TypeTraits/IsConvertible.hpp
+ ../TypeTraits/IsDestructible.hpp
+ ../TypeTraits/IsErasedOrConvertible.hpp
+ ../TypeTraits/IsFunction.hpp
+ ../TypeTraits/IsImmutable.h
+ ../TypeTraits/IsIntegralType.hpp
+ ../TypeTraits/IsNullPtr.hpp
+ ../TypeTraits/IsPackConvertible.hpp
+ ../TypeTraits/IsPointer.hpp
+ ../TypeTraits/IsReference.hpp
+ ../TypeTraits/IsSame.hpp
+ ../TypeTraits/IsString.hpp
+ ../TypeTraits/IsSwappable.hpp
+ ../TypeTraits/IsUnion.hpp
+ ../TypeTraits/IsVariant.hpp
+ ../TypeTraits/IsVoid.hpp
+ ../TypeTraits/IsVolatile.hpp
+ ../TypeTraits/Iterable.h
+ ../TypeTraits/Limit.hpp
+ ../TypeTraits/RemoveAllExtents.hpp
+ ../TypeTraits/RemoveCV.hpp
+ ../TypeTraits/RemoveConst.hpp
+ ../TypeTraits/RemoveExtent.hpp
+ ../TypeTraits/RemoveReference.hpp
+ ../TypeTraits/StaticallySized.h
+ ../TypeTraits/Type.h
+ ../TypeTraits/TypeList.hpp
+ ../TypeTraits/UsesAlloc.h
+ ../TypeTraits/VariadicPack.hpp
+ ../TypeTraits/__or.hpp
+ ../TypeTraits/__two.hpp
+ ../Unicode/UTF8.hpp
+ ../Unicode/utf8/core.h
+ /home/phoenixflower/Documents/Development/LandessDevCore/Examples/PublisherSubscriberExample.cpp
 CMakeFiles/LandessDevCore.dir/Examples/ReflectionExample.cpp.o
  ../Algorithms/Abs.hpp
  ../Algorithms/Exponential.hpp
@@ -2548,6 +2710,7 @@ CMakeFiles/LandessDevCore.dir/Examples/RunTimeReflectionExample.cpp.o
  ../TypeTraits/Declval.hpp
  ../TypeTraits/Detection.hpp
  ../TypeTraits/EnableIf.hpp
+ ../TypeTraits/FunctionalReflection.hpp
  ../TypeTraits/IntegerSequence.hpp
  ../TypeTraits/IntegralConstant.hpp
  ../TypeTraits/IsArray.hpp
@@ -3830,6 +3993,115 @@ CMakeFiles/LandessDevCore.dir/Memory/StackAllocator.cpp.o
 CMakeFiles/LandessDevCore.dir/Network/ssdp.cpp.o
  /home/phoenixflower/Documents/Development/LandessDevCore/Network/ssdp.cpp
  /home/phoenixflower/Documents/Development/LandessDevCore/Network/ssdp.h
+CMakeFiles/LandessDevCore.dir/Patterns/Configuration.cpp.o
+ ../Algorithms/Abs.hpp
+ ../Algorithms/Exponential.hpp
+ ../Algorithms/FastLog10.hpp
+ ../Algorithms/Floor.hpp
+ ../Algorithms/Forward.hpp
+ ../Algorithms/GenericResize.h
+ ../Algorithms/Move.hpp
+ ../Algorithms/Overload.hpp
+ ../Algorithms/Swap.hpp
+ ../Algorithms/VariantOperations.hpp
+ ../Algorithms/vdt/asin.h
+ ../Algorithms/vdt/atan.h
+ ../Algorithms/vdt/atan2.h
+ ../Algorithms/vdt/cos.h
+ ../Algorithms/vdt/exp.h
+ ../Algorithms/vdt/identity.h
+ ../Algorithms/vdt/inv.h
+ ../Algorithms/vdt/log.h
+ ../Algorithms/vdt/sin.h
+ ../Algorithms/vdt/sincos.h
+ ../Algorithms/vdt/sqrt.h
+ ../Algorithms/vdt/tan.h
+ ../Algorithms/vdt/vdtcore_common.h
+ ../Algorithms/vdt/vdtmath.h
+ ../Async/Atomic/Atomic.h
+ ../Async/Atomic/AtomicCore.h
+ ../Async/Atomic/AtomicPrimitiveImplementation.h
+ ../Async/Atomic/AtomicUnderlyingCore.h
+ ../Async/Atomic/compiler_gcc.h
+ ../Async/Atomic/compiler_msvc.h
+ ../Core/Tuple.hpp
+ ../Definitions/Float.hpp
+ ../Definitions/Integer.hpp
+ ../Definitions/platform_detect.h
+ ../Functor/Lambda.h
+ ../Functor/LightWeightDelegate.h
+ ../Functor/LightWeightDelegateBase.h
+ ../IO/DatabaseOperationResult.h
+ ../IO/FetchRequest.h
+ ../IO/json.hpp
+ ../Memory/ElementReference.h
+ ../Memory/MemoryResource.hpp
+ ../Memory/Optional.h
+ ../Memory/PolyMorphicAllocator.hpp
+ ../Memory/UniquePointer.h
+ ../Primitives/General/Context.h
+ ../Primitives/General/ContextualVariant.h
+ ../Primitives/General/Hash.hpp
+ ../Primitives/General/Immutable.hpp
+ ../Primitives/General/ImproperFraction.hpp
+ ../Primitives/General/Pair.h
+ ../Primitives/General/Range.h
+ ../Primitives/General/StaticArray.hpp
+ ../Primitives/General/StringView.hpp
+ ../Primitives/General/mapboxrecursive_wrapper.hpp
+ ../Primitives/General/mapboxvariant.hpp
+ ../Primitives/General/mapboxvariantvisitor.h
+ ../Primitives/General/typestring.hpp
+ ../TypeTraits/AddLValueReference.hpp
+ ../TypeTraits/AddPointer.hpp
+ ../TypeTraits/AddRValueReference.hpp
+ ../TypeTraits/CompileTimeControlFlow.hpp
+ ../TypeTraits/Conditional.hpp
+ ../TypeTraits/Decay.hpp
+ ../TypeTraits/Declval.hpp
+ ../TypeTraits/Detection.hpp
+ ../TypeTraits/EnableIf.hpp
+ ../TypeTraits/FunctionalReflection.hpp
+ ../TypeTraits/IntegerSequence.hpp
+ ../TypeTraits/IntegralConstant.hpp
+ ../TypeTraits/IsArray.hpp
+ ../TypeTraits/IsAssignable.hpp
+ ../TypeTraits/IsBaseOf.hpp
+ ../TypeTraits/IsClassType.hpp
+ ../TypeTraits/IsConst.hpp
+ ../TypeTraits/IsConstructible.hpp
+ ../TypeTraits/IsConvertible.hpp
+ ../TypeTraits/IsDestructible.hpp
+ ../TypeTraits/IsErasedOrConvertible.hpp
+ ../TypeTraits/IsFunction.hpp
+ ../TypeTraits/IsImmutable.h
+ ../TypeTraits/IsIntegralType.hpp
+ ../TypeTraits/IsNullPtr.hpp
+ ../TypeTraits/IsPackConvertible.hpp
+ ../TypeTraits/IsPointer.hpp
+ ../TypeTraits/IsReference.hpp
+ ../TypeTraits/IsSame.hpp
+ ../TypeTraits/IsString.hpp
+ ../TypeTraits/IsSwappable.hpp
+ ../TypeTraits/IsUnion.hpp
+ ../TypeTraits/IsVoid.hpp
+ ../TypeTraits/IsVolatile.hpp
+ ../TypeTraits/Iterable.h
+ ../TypeTraits/Limit.hpp
+ ../TypeTraits/RemoveAllExtents.hpp
+ ../TypeTraits/RemoveCV.hpp
+ ../TypeTraits/RemoveConst.hpp
+ ../TypeTraits/RemoveExtent.hpp
+ ../TypeTraits/RemoveReference.hpp
+ ../TypeTraits/StaticallySized.h
+ ../TypeTraits/Type.h
+ ../TypeTraits/TypeList.hpp
+ ../TypeTraits/UsesAlloc.h
+ ../TypeTraits/VariadicPack.hpp
+ ../TypeTraits/__or.hpp
+ ../TypeTraits/__two.hpp
+ /home/phoenixflower/Documents/Development/LandessDevCore/Patterns/Configuration.cpp
+ /home/phoenixflower/Documents/Development/LandessDevCore/Patterns/Configuration.hpp
 CMakeFiles/LandessDevCore.dir/REST/CPR/auth.cpp.o
  /home/phoenixflower/Documents/Development/LandessDevCore/REST/CPR/auth.cpp
  /home/phoenixflower/Documents/Development/LandessDevCore/REST/CPR/auth.h
@@ -3968,6 +4240,7 @@ CMakeFiles/LandessDevCore.dir/RuntimeReflection/ExampleRuntimeReflection.cpp.o
  ../TypeTraits/Declval.hpp
  ../TypeTraits/Detection.hpp
  ../TypeTraits/EnableIf.hpp
+ ../TypeTraits/FunctionalReflection.hpp
  ../TypeTraits/IntegerSequence.hpp
  ../TypeTraits/IntegralConstant.hpp
  ../TypeTraits/IsArray.hpp
@@ -4106,6 +4379,7 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  ../Functor/LightWeightDelegate.h
  ../Functor/LightWeightDelegateBase.h
  ../Functor/fixed_size_function.hpp
+ ../IO/DataLink.hpp
  ../IO/Database1.h
  ../IO/DatabaseOpenMode.h
  ../IO/DatabaseOperationResult.h
@@ -4245,6 +4519,7 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  /home/phoenixflower/Documents/Development/LandessDevCore/Examples/FiniteStateMachineExample.hpp
  /home/phoenixflower/Documents/Development/LandessDevCore/Examples/IMGUIExample1.h
  /home/phoenixflower/Documents/Development/LandessDevCore/Examples/IMGUIExample2.h
+ /home/phoenixflower/Documents/Development/LandessDevCore/Examples/PublisherSubscriberExample.h
  /home/phoenixflower/Documents/Development/LandessDevCore/Examples/ReflectionDemoTypes.h
  /home/phoenixflower/Documents/Development/LandessDevCore/Examples/WebDavExample.h
  /home/phoenixflower/Documents/Development/LandessDevCore/Examples/WebServerExample.hpp
@@ -4264,6 +4539,7 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  /home/phoenixflower/Documents/Development/LandessDevCore/Network/Port.hpp
  /home/phoenixflower/Documents/Development/LandessDevCore/Network/Subnet.hpp
  /home/phoenixflower/Documents/Development/LandessDevCore/Network/ipv6.h
+ /home/phoenixflower/Documents/Development/LandessDevCore/Patterns/Configuration.hpp
  /home/phoenixflower/Documents/Development/LandessDevCore/Patterns/DependencyInjection.hpp
  /home/phoenixflower/Documents/Development/LandessDevCore/Patterns/Observer.hpp
  /home/phoenixflower/Documents/Development/LandessDevCore/Patterns/Scheduling.hpp

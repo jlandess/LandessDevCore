@@ -28,6 +28,10 @@ namespace LD
 
             }
 
+            PolymorphicAllocator(LD::Mem::MemoryResource & resource) noexcept:mResource{&resource}
+            {
+
+            }
             MemoryResource * Resource() noexcept
             {
                 return this->mResource;

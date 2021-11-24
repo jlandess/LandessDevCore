@@ -39,6 +39,7 @@
 #include "Examples/DependencyInjectionExample.hpp"
 #include "Core/CompileTimeMap.hpp"
 #include "MVC/TermBoxLogger.hpp"
+#include "Examples/PublisherSubscriberExample.h"
 
 template<typename KeyType, typename FunctionType>
 class OpenDHTSubscriptionMember
@@ -240,7 +241,7 @@ public:
     auto OnEvent(State&, const Event&)
     {
 
-        return PDP::nullopt;
+        return LD::nullopt;
 
     }
 
@@ -339,10 +340,10 @@ public:
         return LD::QuittingState{};
     }
 };
-int TermBoxApplicationExample(LD::OpenDHTBackend & dht, LD::AbstractLogger & passedInLogger, LD::TermBoxLogger & passedInTBLogger)
+int TermBoxApplicationExample(LD::Configuration & config,LD::OpenDHTBackend & dht, LD::AbstractLogger & passedInLogger, LD::TermBoxLogger & passedInTBLogger)
 {
 
-    LD::BasicServiceExecutor<LD::AbstractLogger&> coreServices{passedInLogger};
+    LD::BasicServiceExecutor<void(LD::AbstractLogger&)> coreServices{config,passedInLogger};
 
     auto logger = coreServices.Make<LD::BasicLogger>();
 
@@ -434,7 +435,11 @@ void Integrate(F && function, LD::Type<Integrand>) noexcept
 #include "Examples/FiniteStateMachineExample.hpp"
 int main(int argc, char **argv)
 {
-    LD::Example::FiniteStateMachineExample();
+    LD::PrintFLogger printfLogger;
+    LD::BasicLogger logger{printfLogger};
+    LD::Example::DependencyInjectionExample(printfLogger);
+    LD::Example::PublisherSubscriber(printfLogger);
+    //LD::Example::FiniteStateMachineExample();
     /*
     LD::PrintFLogger printfLogger;
     LD::BasicLogger logger{printfLogger};
@@ -456,7 +461,20 @@ int main(int argc, char **argv)
 
 
     LD::TermBoxLogger termBoxLogger;
-    //TermBoxApplicationExample(mBackend,termBoxLogger,termBoxLogger);
+     auto j2 = R"(
+                {
+                "happy": true,
+                "pi": 3.141,
+                "key": 12.97,
+                "object" : {"key": 7 }
+                }
+            )"_json;
+            nlohmann::json mConfiguration{j2};
+
+            LD::JsonConfiguration configuration(LD::Mem::GetNewDeleteResourceReference(),mConfiguration);
+
+            LD::Configuration & config = (Configuration &) configuration;
+    //TermBoxApplicationExample(config,mBackend,termBoxLogger,termBoxLogger);
 
     /*
     LD::StaticArray<LD::ImmutableString<125>,25> subscriptionResults;

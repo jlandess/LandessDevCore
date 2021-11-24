@@ -253,6 +253,9 @@
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/VariantOperations.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/View.hpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Algorithms/Visitation.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
@@ -577,6 +580,12 @@
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Examples/PVEGUIDeploymentExample.h">
 			<Option target="LandessDevCore"/>
 		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Examples/PublisherSubscriberExample.cpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Examples/PublisherSubscriberExample.h">
+			<Option target="LandessDevCore"/>
+		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Examples/ReflectionDemoTypes.h">
 			<Option target="LandessDevCore"/>
 		</Unit>
@@ -811,7 +820,16 @@
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/IO/CachedDatabase.h">
 			<Option target="LandessDevCore"/>
 		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/IO/ConnectionBroker.hpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/IO/DHTBackend.hpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/IO/DataLink.hpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/IO/DataLinkManager.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/IO/Database.hpp">
@@ -1345,6 +1363,9 @@
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/PF/Status.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/Configuration.cpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/Configuration.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
@@ -1361,6 +1382,9 @@
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/LazyLambda.hpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/Monitor.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/Observer.hpp">

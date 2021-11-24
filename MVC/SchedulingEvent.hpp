@@ -772,7 +772,7 @@ namespace LD
     template<typename ...A>
     using Application = LD::ApplicationImpl<LD::VariadicPack<A...>>;
     
-    template<typename T, typename U ,template<typename> class F = PDP::LightWeightDelegate> class ApplicationEvent;
+    template<typename T, typename U ,template<typename> class F = LD::LightWeightDelegate> class ApplicationEvent;
     
     
     

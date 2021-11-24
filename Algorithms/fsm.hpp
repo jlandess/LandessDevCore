@@ -48,21 +48,21 @@ namespace mp
         {
             Derived& child = static_cast<Derived&>(*this);
 
-            auto new_state = LD::Match(state_,[&](auto & s)->PDP::Optional<StateVariant>
+            auto new_state = LD::Match(state_,[&](auto & s)->LD::Optional<StateVariant>
             {
 
                 return child.OnEvent(s, LD::Forward<Event>(event));
             });
-            LD::StaticArray<PDP::LightWeightDelegate<void(StateVariant & state, const PDP::optional_lite::Optional<StateVariant> & newState)>,2> codePaths;
-            auto emptyCodePath = [](StateVariant & state, const PDP::optional_lite::Optional<StateVariant> & newState){};
-            auto executingCodePath = [](StateVariant & state, const PDP::Optional<StateVariant> & newState)
+            LD::StaticArray<LD::LightWeightDelegate<void(StateVariant & state, const LD::optional_lite::Optional<StateVariant> & newState)>,2> codePaths;
+            auto emptyCodePath = [](StateVariant & state, const LD::optional_lite::Optional<StateVariant> & newState){};
+            auto executingCodePath = [](StateVariant & state, const LD::Optional<StateVariant> & newState)
             {
                 state = *LD::Move(newState);
             };
             bool shouldTransition = bool(new_state);
             decltype(emptyCodePath) * ptr;
-            codePaths[0] = PDP::LightWeightDelegate<void(StateVariant & state, const PDP::optional_lite::Optional<StateVariant> & newState)>{&emptyCodePath, &decltype(emptyCodePath)::operator()};
-            codePaths[1] = PDP::LightWeightDelegate<void(StateVariant & state, const PDP::optional_lite::Optional<StateVariant> & newState)>{&executingCodePath, &decltype(executingCodePath)::operator()};
+            codePaths[0] = LD::LightWeightDelegate<void(StateVariant & state, const LD::optional_lite::Optional<StateVariant> & newState)>{&emptyCodePath, &decltype(emptyCodePath)::operator()};
+            codePaths[1] = LD::LightWeightDelegate<void(StateVariant & state, const LD::optional_lite::Optional<StateVariant> & newState)>{&executingCodePath, &decltype(executingCodePath)::operator()};
             codePaths[shouldTransition](state_,new_state);
         }
     };

@@ -21,7 +21,7 @@ namespace LD
         //PDP::Optional<T> OptionalData;
         //T * Object;
         
-        PDP::Optional<T> OptionalData;
+        LD::Optional<T> OptionalData;
     public:
         Future()//:Object(nullptr)
         {
@@ -31,7 +31,7 @@ namespace LD
         
         Future(const T  value)
         {
-            OptionalData = PDP::Optional<T>(value);
+            OptionalData = LD::Optional<T>(value);
             //Object = (T*)value;
         }
         

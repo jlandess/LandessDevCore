@@ -10,6 +10,7 @@
 
 #include "TypeTraits/IsSame.hpp"
 #include "Algorithms/Forward.hpp"
+#include "Definitions/Integer.hpp"
 namespace LD
 {
     enum class construct_type

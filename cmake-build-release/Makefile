@@ -736,6 +736,33 @@ Examples/PVEGUIDeploymentExample.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/PVEGUIDeploymentExample.cpp.s
 .PHONY : Examples/PVEGUIDeploymentExample.cpp.s
 
+Examples/PublisherSubscriberExample.o: Examples/PublisherSubscriberExample.cpp.o
+
+.PHONY : Examples/PublisherSubscriberExample.o
+
+# target to build an object file
+Examples/PublisherSubscriberExample.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/PublisherSubscriberExample.cpp.o
+.PHONY : Examples/PublisherSubscriberExample.cpp.o
+
+Examples/PublisherSubscriberExample.i: Examples/PublisherSubscriberExample.cpp.i
+
+.PHONY : Examples/PublisherSubscriberExample.i
+
+# target to preprocess a source file
+Examples/PublisherSubscriberExample.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/PublisherSubscriberExample.cpp.i
+.PHONY : Examples/PublisherSubscriberExample.cpp.i
+
+Examples/PublisherSubscriberExample.s: Examples/PublisherSubscriberExample.cpp.s
+
+.PHONY : Examples/PublisherSubscriberExample.s
+
+# target to generate assembly for a file
+Examples/PublisherSubscriberExample.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Examples/PublisherSubscriberExample.cpp.s
+.PHONY : Examples/PublisherSubscriberExample.cpp.s
+
 Examples/ReflectionExample.o: Examples/ReflectionExample.cpp.o
 
 .PHONY : Examples/ReflectionExample.o
@@ -1869,6 +1896,33 @@ Network/ssdp.s: Network/ssdp.cpp.s
 Network/ssdp.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Network/ssdp.cpp.s
 .PHONY : Network/ssdp.cpp.s
+
+Patterns/Configuration.o: Patterns/Configuration.cpp.o
+
+.PHONY : Patterns/Configuration.o
+
+# target to build an object file
+Patterns/Configuration.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Patterns/Configuration.cpp.o
+.PHONY : Patterns/Configuration.cpp.o
+
+Patterns/Configuration.i: Patterns/Configuration.cpp.i
+
+.PHONY : Patterns/Configuration.i
+
+# target to preprocess a source file
+Patterns/Configuration.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Patterns/Configuration.cpp.i
+.PHONY : Patterns/Configuration.cpp.i
+
+Patterns/Configuration.s: Patterns/Configuration.cpp.s
+
+.PHONY : Patterns/Configuration.s
+
+# target to generate assembly for a file
+Patterns/Configuration.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Patterns/Configuration.cpp.s
+.PHONY : Patterns/Configuration.cpp.s
 
 Process/clock.posix.o: Process/clock.posix.c.o
 
@@ -3025,6 +3079,9 @@ help:
 	@echo "... Examples/PVEGUIDeploymentExample.o"
 	@echo "... Examples/PVEGUIDeploymentExample.i"
 	@echo "... Examples/PVEGUIDeploymentExample.s"
+	@echo "... Examples/PublisherSubscriberExample.o"
+	@echo "... Examples/PublisherSubscriberExample.i"
+	@echo "... Examples/PublisherSubscriberExample.s"
 	@echo "... Examples/ReflectionExample.o"
 	@echo "... Examples/ReflectionExample.i"
 	@echo "... Examples/ReflectionExample.s"
@@ -3151,6 +3208,9 @@ help:
 	@echo "... Network/ssdp.o"
 	@echo "... Network/ssdp.i"
 	@echo "... Network/ssdp.s"
+	@echo "... Patterns/Configuration.o"
+	@echo "... Patterns/Configuration.i"
+	@echo "... Patterns/Configuration.s"
 	@echo "... Process/clock.posix.o"
 	@echo "... Process/clock.posix.i"
 	@echo "... Process/clock.posix.s"

@@ -195,7 +195,7 @@ namespace PDP
         template<int ...S, typename ...A>
         Ret callFunc(seq<S...>)
         {
-            PDP::LightWeightDelegate<Ret(Args...)> currentDelegate(CurrentObject,CurrentMemberPointer);
+            LD::LightWeightDelegate<Ret(Args...)> currentDelegate(CurrentObject,CurrentMemberPointer);
             return currentDelegate(std::get<S>(Arguements) ...);
         }
     public:
@@ -239,7 +239,7 @@ namespace PDP
         template<int ...S>
         Ret callFunc(seq<S...>)
         {
-            PDP::LightWeightDelegate<Ret(Args...)> currentDelegate(CurrentObject,CurrentMemberPointer);
+            LD::LightWeightDelegate<Ret(Args...)> currentDelegate(CurrentObject,CurrentMemberPointer);
             return currentDelegate(std::get<S>(Arguements) ...);
         }
     public:
@@ -344,7 +344,7 @@ namespace PDP
     class LightWeightCommittedLightWeightPackagedTask<T(Args...)>
     {
     private:
-        PDP::LightWeightDelegate<T(Args...)> Delegate;
+        LD::LightWeightDelegate<T(Args...)> Delegate;
         LD::Commitment<T> CurrentCommittment;
         std::tuple<Args...> Arguements;
 
@@ -355,7 +355,7 @@ namespace PDP
             return Delegate(std::get<S>(Arguements) ...);
         }
     public:
-        LightWeightCommittedLightWeightPackagedTask(const LD::Commitment<T> & promise,const PDP::LightWeightDelegate<T(Args...)> & delegate, Args && ... arguements):Arguements(LD::Forward<Args>(arguements)...),Delegate(delegate),CurrentCommittment(promise)
+        LightWeightCommittedLightWeightPackagedTask(const LD::Commitment<T> & promise,const LD::LightWeightDelegate<T(Args...)> & delegate, Args && ... arguements):Arguements(LD::Forward<Args>(arguements)...),Delegate(delegate),CurrentCommittment(promise)
         {
 
         }
@@ -379,7 +379,7 @@ namespace PDP
     {
     private:
         LD::Promise<T> CurrentPromise;
-        PDP::LightWeightDelegate<T(Args...)> Delegate;
+        LD::LightWeightDelegate<T(Args...)> Delegate;
         std::tuple<Args...> Arguements;
 
 
@@ -389,7 +389,7 @@ namespace PDP
             return Delegate(std::get<S>(Arguements) ...);
         }
     public:
-        LightWeightDelegatedPackageTask(const LD::Promise<T> & promise,const PDP::LightWeightDelegate<T(Args...)> & delegate, Args && ... arguements):Arguements(LD::Forward<Args>(arguements)...),Delegate(delegate),CurrentPromise(promise)
+        LightWeightDelegatedPackageTask(const LD::Promise<T> & promise,const LD::LightWeightDelegate<T(Args...)> & delegate, Args && ... arguements):Arguements(LD::Forward<Args>(arguements)...),Delegate(delegate),CurrentPromise(promise)
         {
 
         }
@@ -404,7 +404,7 @@ namespace PDP
     };
 
 
-    template<typename T, template<typename> class Functor = PDP::LightWeightDelegate,class = void>
+    template<typename T, template<typename> class Functor = LD::LightWeightDelegate,class = void>
     class PackagedTask;
 
 

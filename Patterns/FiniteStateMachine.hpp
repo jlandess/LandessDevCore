@@ -42,6 +42,24 @@ namespace LD
                 this->mState = *LD::Move(newState);
             }
         }
+
+        template<typename Event, typename ... Services>
+        void Dispatch(Event&& event, LD::BasicServiceRepository<Services...> & serviceRepository) noexcept
+        {
+            Derived& child = static_cast<Derived&>(*this);
+
+
+            auto newStateFunctor = [&](auto && s) noexcept ->LD::Optional<StateVariant>
+            {
+                return child.OnEvent(s, LD::Forward<Event>(event),serviceRepository);
+            };
+            auto newState = LD::Visit(newStateFunctor,this->mState);
+
+            if (newState)
+            {
+                this->mState = *LD::Move(newState);
+            }
+        }
     };
 
 
@@ -78,6 +96,11 @@ namespace LD
 
         }
 
+        template<typename PassedInState, typename Event, typename ... Services>
+        auto OnEvent(PassedInState & state,  Event &&  event, LD::BasicServiceRepository<Services...> & serviceRepository) noexcept -> LD::Optional<State>
+        {
+            return LD::nullopt;
+        }
         template<typename PassedInState, typename Event>
         auto OnEvent(PassedInState & state,  Event &&  event) noexcept -> LD::Optional<State>
         {

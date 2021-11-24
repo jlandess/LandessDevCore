@@ -248,6 +248,15 @@ namespace LD
                    head_ - tail_ :
                    BUFSIZE - (tail_ - head_);
         }
+
+        CircularQueue & operator >> (LD::Optional<T> & possibleObject) noexcept
+        {
+            if (this->size() > 0)
+            {
+                possibleObject = this->remove();
+            }
+            return (*this);
+        }
         void Insert(const T& item) {
             buffer_[head_] = item;
             advance(head_);

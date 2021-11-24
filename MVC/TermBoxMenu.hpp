@@ -30,18 +30,18 @@ namespace LD
                 >>>
         {
         private:
-            LD::StaticArray<PDP::LightWeightDelegate<void(const LD::UInteger  &,const LD::ApplicationExecutionEvent<Context...> &)>,(sizeof...(ImmutableStrings)+1)> mEventHandlers;
+            LD::StaticArray<LD::LightWeightDelegate<void(const LD::UInteger  &,const LD::ApplicationExecutionEvent<Context...> &)>,(sizeof...(ImmutableStrings)+1)> mEventHandlers;
             LD::Tuple<ImmutableStrings...> mMenuItems;
             LD::Detail::tVec2<LD::Integer> mLocation;
             LD::ElementReference<Predicate> mPredicate;
 
             void InternalEmptyHandler(const LD::UInteger &,const LD::ApplicationExecutionEvent<Context...> &){}
         public:
-            typedef LD::StaticArray<PDP::LightWeightDelegate<void(const LD::UInteger  &,const LD::ApplicationExecutionEvent<Context...> &)>,(sizeof...(ImmutableStrings)+1)> EventHanlderType;
-            typedef PDP::LightWeightDelegate<void(const LD::UInteger  &,const LD::ApplicationExecutionEvent<Context...> &)> CallBackType;
+            typedef LD::StaticArray<LD::LightWeightDelegate<void(const LD::UInteger  &,const LD::ApplicationExecutionEvent<Context...> &)>,(sizeof...(ImmutableStrings)+1)> EventHanlderType;
+            typedef LD::LightWeightDelegate<void(const LD::UInteger  &,const LD::ApplicationExecutionEvent<Context...> &)> CallBackType;
             inline explicit constexpr ImmutableMenu() noexcept :mLocation{0,0}
             {
-                mEventHandlers[sizeof...(ImmutableStrings)] = PDP::LightWeightDelegate<void(const LD::UInteger &,const LD::ApplicationExecutionEvent<Context...> &)>{this,&ImmutableMenu::InternalEmptyHandler};
+                mEventHandlers[sizeof...(ImmutableStrings)] = LD::LightWeightDelegate<void(const LD::UInteger &,const LD::ApplicationExecutionEvent<Context...> &)>{this,&ImmutableMenu::InternalEmptyHandler};
             }
 
 
@@ -71,11 +71,11 @@ namespace LD
                     using CurrentType = LD::Detail::Decay_T<decltype(LD::Get<Index>(functors))>;
                     auto & member = LD::Get<Index>(functors);
                     CurrentType * ptr = (CurrentType*)&member;
-                    eventHandler[Index] = PDP::LightWeightDelegate<void(const LD::UInteger  &,const LD::ApplicationExecutionEvent<Context...> &)>{ptr,&CurrentType::operator()};
+                    eventHandler[Index] = LD::LightWeightDelegate<void(const LD::UInteger  &,const LD::ApplicationExecutionEvent<Context...> &)>{ptr,&CurrentType::operator()};
                     return true;
                 },functors,mEventHandlers);
 
-                mEventHandlers[sizeof...(ImmutableStrings)] = PDP::LightWeightDelegate<void(const LD::UInteger &,const LD::ApplicationExecutionEvent<Context...> &)>{this,&ImmutableMenu::InternalEmptyHandler};
+                mEventHandlers[sizeof...(ImmutableStrings)] = LD::LightWeightDelegate<void(const LD::UInteger &,const LD::ApplicationExecutionEvent<Context...> &)>{this,&ImmutableMenu::InternalEmptyHandler};
 
             }
 
@@ -104,7 +104,7 @@ namespace LD
                 auto tiedTuple = LD::Tie(handlers...);
                 LD::For<sizeof...(ImmutableStrings)>([](auto Index,
                         auto & tuple,
-                        LD::StaticArray<PDP::LightWeightDelegate<void(const LD::UInteger  &,const LD::ApplicationExecutionEvent<Context...> &)>,(sizeof...(ImmutableStrings)+1)> & handlers)
+                        LD::StaticArray<LD::LightWeightDelegate<void(const LD::UInteger  &,const LD::ApplicationExecutionEvent<Context...> &)>,(sizeof...(ImmutableStrings)+1)> & handlers)
                 {
                     using CurrentType = LD::Detail::Decay_T<decltype(LD::Get<Index>(tuple))>;
                     CurrentType * ptr = (CurrentType*)&LD::Get<Index>(tuple);
@@ -120,10 +120,10 @@ namespace LD
             {
                 LD::For<sizeof...(ImmutableStrings)>([](auto Index,
                         Handler & handler,
-                        LD::StaticArray<PDP::LightWeightDelegate<void(const LD::UInteger  &,const LD::ApplicationExecutionEvent<Context...> &)>,(sizeof...(ImmutableStrings)+1)> & handlers)
+                        LD::StaticArray<LD::LightWeightDelegate<void(const LD::UInteger  &,const LD::ApplicationExecutionEvent<Context...> &)>,(sizeof...(ImmutableStrings)+1)> & handlers)
                 {
                     Handler * ptr = (Handler*)&handler;
-                    handlers[Index] = PDP::LightWeightDelegate<void(const LD::UInteger &,const LD::ApplicationExecutionEvent<Context...> &)>{ptr,&Handler::operator()};
+                    handlers[Index] = LD::LightWeightDelegate<void(const LD::UInteger &,const LD::ApplicationExecutionEvent<Context...> &)>{ptr,&Handler::operator()};
                     return true;
                 },handler,this->mEventHandlers);
             }

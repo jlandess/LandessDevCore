@@ -9,25 +9,41 @@
 #ifndef DataStructures_OptionalReference_h
 #define DataStructures_OptionalReference_h
 
-#include <Memory/Optional.h>
-#include <Memory/ElementReference.h>
+#include "Optional.h"
+#include "ElementReference.h"
 
 namespace LD
 {
     template<typename T>
-    class OptionalReference: public PDP::Optional<PDP::ElementReference<T>>
+    class Optional<T&>
+    {
+    private:
+        LD::ElementReference<T> mReference;
+    public:
+        Optional() noexcept:mReference{nullptr}{}
+        Optional(T * object) noexcept:mReference{object}{}
+        Optional(T & object) noexcept:mReference{object}{}
+
+        T & operator*() noexcept{ return *mReference;}
+
+        const T & operator*() const noexcept{ return *mReference;}
+    };
+    template<typename T>
+    class OptionalReference: public LD::Optional<PDP::ElementReference<T>>
     {
     public:
         
-        inline OptionalReference(): PDP::Optional<PDP::ElementReference<T>>()
+        inline OptionalReference(): LD::Optional<PDP::ElementReference<T>>()
         {
             
         }
         
-        inline OptionalReference(const PDP::ElementReference<T> & elementReference): PDP::Optional<PDP::ElementReference<T>>(elementReference)
+        inline OptionalReference(const PDP::ElementReference<T> & elementReference): LD::Optional<PDP::ElementReference<T>>(elementReference)
         {
             
         }
     };
+
+
 }
 #endif

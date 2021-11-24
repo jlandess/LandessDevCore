@@ -1428,6 +1428,32 @@ CMakeFiles/LandessDevCore.dir/Encryption/Certificate.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/Encryption/Certificate.cpp.s"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/phoenixflower/Documents/Development/LandessDevCore/Encryption/Certificate.cpp -o CMakeFiles/LandessDevCore.dir/Encryption/Certificate.cpp.s
 
+CMakeFiles/LandessDevCore.dir/Patterns/Configuration.cpp.o: CMakeFiles/LandessDevCore.dir/flags.make
+CMakeFiles/LandessDevCore.dir/Patterns/Configuration.cpp.o: ../Patterns/Configuration.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/phoenixflower/Documents/Development/LandessDevCore/cmake-build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_105) "Building CXX object CMakeFiles/LandessDevCore.dir/Patterns/Configuration.cpp.o"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/LandessDevCore.dir/Patterns/Configuration.cpp.o -c /home/phoenixflower/Documents/Development/LandessDevCore/Patterns/Configuration.cpp
+
+CMakeFiles/LandessDevCore.dir/Patterns/Configuration.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LandessDevCore.dir/Patterns/Configuration.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/phoenixflower/Documents/Development/LandessDevCore/Patterns/Configuration.cpp > CMakeFiles/LandessDevCore.dir/Patterns/Configuration.cpp.i
+
+CMakeFiles/LandessDevCore.dir/Patterns/Configuration.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/Patterns/Configuration.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/phoenixflower/Documents/Development/LandessDevCore/Patterns/Configuration.cpp -o CMakeFiles/LandessDevCore.dir/Patterns/Configuration.cpp.s
+
+CMakeFiles/LandessDevCore.dir/Examples/PublisherSubscriberExample.cpp.o: CMakeFiles/LandessDevCore.dir/flags.make
+CMakeFiles/LandessDevCore.dir/Examples/PublisherSubscriberExample.cpp.o: ../Examples/PublisherSubscriberExample.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/phoenixflower/Documents/Development/LandessDevCore/cmake-build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_106) "Building CXX object CMakeFiles/LandessDevCore.dir/Examples/PublisherSubscriberExample.cpp.o"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/LandessDevCore.dir/Examples/PublisherSubscriberExample.cpp.o -c /home/phoenixflower/Documents/Development/LandessDevCore/Examples/PublisherSubscriberExample.cpp
+
+CMakeFiles/LandessDevCore.dir/Examples/PublisherSubscriberExample.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LandessDevCore.dir/Examples/PublisherSubscriberExample.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/phoenixflower/Documents/Development/LandessDevCore/Examples/PublisherSubscriberExample.cpp > CMakeFiles/LandessDevCore.dir/Examples/PublisherSubscriberExample.cpp.i
+
+CMakeFiles/LandessDevCore.dir/Examples/PublisherSubscriberExample.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LandessDevCore.dir/Examples/PublisherSubscriberExample.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/phoenixflower/Documents/Development/LandessDevCore/Examples/PublisherSubscriberExample.cpp -o CMakeFiles/LandessDevCore.dir/Examples/PublisherSubscriberExample.cpp.s
+
 # Object files for target LandessDevCore
 LandessDevCore_OBJECTS = \
 "CMakeFiles/LandessDevCore.dir/main.cpp.o" \
@@ -1533,7 +1559,9 @@ LandessDevCore_OBJECTS = \
 "CMakeFiles/LandessDevCore.dir/Examples/ConstexprMapExample.cpp.o" \
 "CMakeFiles/LandessDevCore.dir/Examples/FiniteStateMachineExample.cpp.o" \
 "CMakeFiles/LandessDevCore.dir/Examples/AsyncExample.cpp.o" \
-"CMakeFiles/LandessDevCore.dir/Encryption/Certificate.cpp.o"
+"CMakeFiles/LandessDevCore.dir/Encryption/Certificate.cpp.o" \
+"CMakeFiles/LandessDevCore.dir/Patterns/Configuration.cpp.o" \
+"CMakeFiles/LandessDevCore.dir/Examples/PublisherSubscriberExample.cpp.o"
 
 # External object files for target LandessDevCore
 LandessDevCore_EXTERNAL_OBJECTS =
@@ -1642,9 +1670,11 @@ LandessDevCore: CMakeFiles/LandessDevCore.dir/Examples/ConstexprMapExample.cpp.o
 LandessDevCore: CMakeFiles/LandessDevCore.dir/Examples/FiniteStateMachineExample.cpp.o
 LandessDevCore: CMakeFiles/LandessDevCore.dir/Examples/AsyncExample.cpp.o
 LandessDevCore: CMakeFiles/LandessDevCore.dir/Encryption/Certificate.cpp.o
+LandessDevCore: CMakeFiles/LandessDevCore.dir/Patterns/Configuration.cpp.o
+LandessDevCore: CMakeFiles/LandessDevCore.dir/Examples/PublisherSubscriberExample.cpp.o
 LandessDevCore: CMakeFiles/LandessDevCore.dir/build.make
 LandessDevCore: CMakeFiles/LandessDevCore.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/phoenixflower/Documents/Development/LandessDevCore/cmake-build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_105) "Linking CXX executable LandessDevCore"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/phoenixflower/Documents/Development/LandessDevCore/cmake-build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_107) "Linking CXX executable LandessDevCore"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/LandessDevCore.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

@@ -12,6 +12,7 @@
 
 #include "MemoryResource.hpp"
 #include "PolyMorphicAllocator.hpp"
+#include "TypeTraits/IsBaseOf.hpp"
 //#include "Definitions/Common.hpp"
 //#include <Types/MemoryBarriers.h>
 #include <cstddef>      // NULL
@@ -49,10 +50,13 @@ namespace LD
         void operator()(T * __ptr) const
         {
             //LD::Mem::PolymorphicAllocator<T> resourceAllocatr[mResource};
+            if(__ptr != nullptr)
+            {
+                LD::Mem::PolymorphicAllocator<T> poly{mResource};
+                poly.destroy(__ptr);
+                poly.deallocate(__ptr,1);
+            }
 
-            LD::Mem::PolymorphicAllocator<T> poly{mResource};
-            poly.destroy(__ptr);
-            poly.deallocate(__ptr,1);
         }
     };
     
@@ -90,6 +94,13 @@ namespace LD
         px(p),CurrentDeleter(deleterType)
         {
         }
+
+
+        UniquePointer(const UniquePointer& ptr) = delete;
+        UniquePointer& operator=(const UniquePointer & ptr) = delete;
+
+        template<typename U, class = LD::Enable_If_T<LD::Require<LD::Detail::IsBaseOf_V<T,U>>>>
+        UniquePointer(const UniquePointer<U,DeleterType>& ptr) = delete;
         /// @brief Copy constructor to convert from another pointer type
         /* TODO MSVC error C2248: 'unique_ptr<B>::px' : unique_ptr<A> cannot access private member declared in class 'unique_ptr<B>'
          template <class U>
@@ -100,13 +111,27 @@ namespace LD
          }
          */
         /// @brief Copy constructor (used by the copy-and-swap idiom)
-        UniquePointer(const UniquePointer& ptr) noexcept : // never throws
+        UniquePointer( UniquePointer&& ptr) noexcept : // never throws
         px(ptr.px)
         {
-            const_cast<UniquePointer&>(ptr).px = NULL; // const-cast to force ownership transfer!
+            ptr.px = nullptr; // const-cast to force ownership transfer!
+        }
+
+        template<typename U, class = LD::Enable_If_T<LD::Require<LD::Detail::IsBaseOf_V<T,U>>>>
+        UniquePointer(UniquePointer<U,DeleterType>&& ptr) noexcept : // never throws
+                px(ptr.px)
+        {
+            ptr.px = nullptr; // const-cast to force ownership transfer!
         }
         /// @brief Assignment operator using the copy-and-swap idiom (copy constructor and swap method)
-        UniquePointer& operator=(UniquePointer ptr) noexcept// never throws
+        //UniquePointer& operator=(UniquePointer && ptr) noexcept// never throws
+        //{
+            //swap(ptr);
+            //return *this;
+        //}
+
+        template<typename U, class = LD::Enable_If_T<LD::Require<LD::Detail::IsBaseOf_V<T,U>>>>
+        UniquePointer& operator=(UniquePointer<U,DeleterType> && ptr) noexcept// never throws
         {
             swap(ptr);
             return *this;
@@ -179,7 +204,10 @@ namespace LD
             px = NULL;
         }
         
-    
+
+        //template<class T,typename DeleterType = DefaultDelete<T> >
+
+        template<class X, typename Z> friend class UniquePointer;
     };
     
     template <typename T>
@@ -231,7 +259,7 @@ namespace LD
     }
 
     template<typename T, typename ... A>
-    LD::Enable_If_T<LD::Require<LD::IsConstructible<T,A...>::value>,LD::UniquePointer<T,LD::MemoryResourceDeleter>> AllocateUnique(LD::Mem::MemoryResource * resource, A && ... args) noexcept
+    LD::Enable_If_T<true,LD::UniquePointer<T,LD::MemoryResourceDeleter>> AllocateUnique(LD::Mem::MemoryResource * resource, A && ... args) noexcept
     {
         LD::Mem::PolymorphicAllocator<T> allocator{resource};
         T * buffer = allocator.allocate(1);

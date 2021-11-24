@@ -1151,6 +1151,15 @@ namespace LD
     };
 }
 
+namespace LD
+{
+    template<LD::UInteger Size>
+    LD::StringView ViewAsStringView(const LD::ImmutableString<Size> & string) noexcept
+    {
+        return LD::StringView{string.Data(),string.GetSize()};
+    }
+}
+
 inline LD::ImmutableString<64> operator "" _IS(const char * text) noexcept
 {
     return LD::ImmutableString<64>{LD::StringView {text}};

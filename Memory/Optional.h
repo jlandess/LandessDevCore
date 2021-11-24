@@ -14,7 +14,10 @@
 // THE SOFTWARE.
 
 #pragma once
-
+#include "Algorithms/Forward.hpp"
+#include "Algorithms/Move.hpp"
+#include "Functor/LightWeightDelegate.h"
+#include "TypeTraits/FunctionalReflection.hpp"
 #ifndef NONSTD_OPTIONAL_LITE_HPP
 #define NONSTD_OPTIONAL_LITE_HPP
 
@@ -201,7 +204,7 @@
 
 #if ! nonstd_lite_HAVE_IN_PLACE_TYPES
 
-namespace PDP
+namespace LD
 {
 
 
@@ -240,8 +243,8 @@ namespace PDP
 
 // mimic templated typedef:
 
-#define nonstd_lite_in_place_type_t( T)  PDP::in_place_t(&)( PDP::detail::in_place_type_tag<T>  )
-#define nonstd_lite_in_place_index_t(T)  PDP::in_place_t(&)( PDP::detail::in_place_index_tag<I> )
+#define nonstd_lite_in_place_type_t( T)  LD::in_place_t(&)( LD::detail::in_place_type_tag<T>  )
+#define nonstd_lite_in_place_index_t(T)  LD::in_place_t(&)( LD::detail::in_place_index_tag<I> )
 
 #define nonstd_lite_HAVE_IN_PLACE_TYPES  1
 
@@ -255,7 +258,7 @@ namespace PDP
 //
 
 
-namespace PDP
+namespace LD
 {
     namespace optional_lite
     {
@@ -1077,6 +1080,252 @@ namespace PDP
 
             }
 
+            template<typename X,typename R, typename ... P, typename V = T>
+            LD::Enable_If_T<
+            LD::Require<
+            LD::Detail::IsClass<X>::value,
+            LD::Either<LD::CT::IsSame(LD::Type<V>{},LD::Type<X>{}),LD::Detail::IsBaseOf_V<X,V>>
+            >,
+            LD::optional_lite::Optional<R>> Map(R (X::* function_to_bind)(P...) const, P && ... parameters) const
+            {
+                if (this->HasValue())
+                {
+                    const T & object = this->GetValue();
+                    const T * ptr = (const T*)&object;
+                    LD::LightWeightDelegate<R(P...)> delegate{ptr,function_to_bind};
+                    return LD::optional_lite::Optional<R>{delegate(LD::Forward<P>(parameters)...)};
+                }
+                return LD::optional_lite::Optional<R>{};
+            };
+
+            template<typename X,typename R, typename ... P, typename V = T>
+            LD::Enable_If_T<
+            LD::Require<
+            LD::Detail::IsClass<X>::value,
+            LD::Either<LD::CT::IsSame(LD::Type<V>{},LD::Type<X>{}),LD::Detail::IsBaseOf_V<X,V>>
+            >,
+            LD::optional_lite::Optional<R>> Map(R (X::* function_to_bind)(P...) const noexcept, P && ... parameters) const noexcept
+            {
+                if (this->HasValue())
+                {
+                    const T & object = this->GetValue();
+                    const T * ptr = (const T*)&object;
+                    LD::LightWeightDelegate<R(P...)> delegate{ptr,function_to_bind};
+                    return LD::optional_lite::Optional<R>{delegate(LD::Forward<P>(parameters)...)};
+                }
+                return LD::optional_lite::Optional<R>{};
+            };
+
+
+            template<typename X,typename R, typename ... P, typename V = T>
+            LD::Enable_If_T<
+            LD::Require<
+            LD::Detail::IsClass<X>::value,
+            LD::Either<LD::CT::IsSame(LD::Type<V>{},LD::Type<X>{}),LD::Detail::IsBaseOf_V<X,V>>
+            >,
+            LD::optional_lite::Optional<R>> Map(R (X::* function_to_bind)(P...)  , P && ... parameters)
+            {
+                if (this->HasValue())
+                {
+                    const T & object = this->GetValue();
+                    const T * ptr = (const T*)&object;
+                    LD::LightWeightDelegate<R(P...)> delegate{ptr,function_to_bind};
+                    return LD::optional_lite::Optional<R>{delegate(LD::Forward<P>(parameters)...)};
+                }
+                return LD::optional_lite::Optional<R>{};
+            };
+            template<typename X,typename R, typename ... P, typename V = T>
+            LD::Enable_If_T<
+            LD::Require<
+            LD::Detail::IsClass<X>::value,
+            LD::Either<LD::CT::IsSame(LD::Type<V>{},LD::Type<X>{}),LD::Detail::IsBaseOf_V<X,V>>
+            >,
+            LD::optional_lite::Optional<R>> Map(R (X::* function_to_bind)(P...)  noexcept, P && ... parameters)  noexcept
+            {
+                if (this->HasValue())
+                {
+                    const T & object = this->GetValue();
+                    const T * ptr = (const T*)&object;
+                    LD::LightWeightDelegate<R(P...)> delegate{ptr,function_to_bind};
+                    return LD::optional_lite::Optional<R>{delegate(LD::Forward<P>(parameters)...)};
+                }
+                return LD::optional_lite::Optional<R>{};
+            };
+
+
+            template<typename X,typename R, typename ... P, typename V = T>
+            LD::optional_lite::Optional<R> Map(R (*function_to_bind)(const V &,P...) , P && ... parameters) const
+            {
+                if (this->HasValue())
+                {
+                    const T & object = this->GetValue();
+                    //const T * ptr = (const T*)&object;
+                    //LD::LightWeightDelegate<R(P...)> delegate{function_to_bind};
+
+                    return LD::optional_lite::Optional<R>{function_to_bind(object,LD::Forward<P>(parameters)...)};
+                }
+                return LD::optional_lite::Optional<R>{};
+            };
+
+            template<typename X,typename R, typename ... P, typename V = T>
+            LD::optional_lite::Optional<R> Map(R (*function_to_bind)(const V &,P...) noexcept , P && ... parameters) const noexcept
+            {
+                if (this->HasValue())
+                {
+                    const T & object = this->GetValue();
+                    //const T * ptr = (const T*)&object;
+                    //LD::LightWeightDelegate<R(P...)> delegate{function_to_bind};
+
+                    return LD::optional_lite::Optional<R>{function_to_bind(object,LD::Forward<P>(parameters)...)};
+                }
+                return LD::optional_lite::Optional<R>{};
+            };
+
+            template<typename X,typename R, typename ... P, typename V = T>
+            LD::optional_lite::Optional<R> Map(R (*function_to_bind)( V &,P...) , P && ... parameters)
+            {
+                if (this->HasValue())
+                {
+                    T & object = this->GetValue();
+                    //const T * ptr = (const T*)&object;
+                    //LD::LightWeightDelegate<R(P...)> delegate{function_to_bind};
+
+                    return LD::optional_lite::Optional<R>{function_to_bind(object,LD::Forward<P>(parameters)...)};
+                }
+                return LD::optional_lite::Optional<R>{};
+            };
+
+            template<typename X,typename R, typename ... P, typename V = T>
+            LD::optional_lite::Optional<R> Map(R (*function_to_bind)( V &,P...) noexcept , P && ... parameters) noexcept
+            {
+                if (this->HasValue())
+                {
+                    T & object = this->GetValue();
+                    //const T * ptr = (const T*)&object;
+                    //LD::LightWeightDelegate<R(P...)> delegate{function_to_bind};
+
+                    return LD::optional_lite::Optional<R>{function_to_bind(object,LD::Forward<P>(parameters)...)};
+                }
+                return LD::optional_lite::Optional<R>{};
+            };
+
+            //auto Map(F && function, P && ... parameters) noexcept -> LD::optional_lite::Optional<Ret>
+            template<typename ... P,typename F ,typename V = T,
+                    typename Ret = decltype(LD::Declval<F>()(LD::Declval<V&>(),LD::Declval<P>()...))>
+            auto Map(F && function, P && ... parameters) noexcept -> LD::Detail::Conditional_T<LD::CT::IsSame(LD::Type<Ret>{},LD::Type<void>{}),void,LD::optional_lite::Optional<Ret>>
+            {
+
+                if (this->HasValue())
+                {
+                    T & object = this->GetValue();
+                    //const T * ptr = (const T*)&object;
+                    //LD::LightWeightDelegate<R(P...)> delegate{function_to_bind};
+
+                    if constexpr(LD::CT::IsSame(LD::Type<Ret>{},LD::Type<void>{}))
+                    {
+                        function(object,LD::Forward<P>(parameters)...);
+
+                    }else
+                    {
+                        return LD::optional_lite::Optional<Ret>{function(object,LD::Forward<P>(parameters)...)};
+                    }
+
+                }
+                if constexpr(!LD::CT::IsSame(LD::Type<Ret>{},LD::Type<void>{}))
+                {
+                    return LD::optional_lite::Optional<Ret>{};
+                }
+
+            };
+
+
+            template<typename ... P,typename F ,typename V = T,
+                    typename Ret = decltype(LD::Declval<F>()(LD::Declval<const V&>(),LD::Declval<P>()...))>
+            auto Map(F && function, P && ... parameters) const noexcept -> LD::optional_lite::Optional<Ret>
+            {
+                if (this->HasValue())
+                {
+                    const T & object = this->GetValue();
+                    //const T * ptr = (const T*)&object;
+                    //LD::LightWeightDelegate<R(P...)> delegate{function_to_bind};
+
+                    return LD::optional_lite::Optional<Ret>{function(object,LD::Forward<P>(parameters)...)};
+                }
+                return LD::optional_lite::Optional<Ret>{};
+            };
+
+            template<typename X,typename R, typename ... P, typename V = T>
+            LD::Enable_If_T<
+            LD::Require<
+            LD::Detail::IsClass<X>::value,
+            LD::Either<LD::CT::IsSame(LD::Type<V>{},LD::Type<X>{}),LD::Detail::IsBaseOf_V<X,V>>
+            >,
+            R> MapOr(R (X::* function_to_bind)(P...) , R && value,P && ... parameters)
+            {
+                if (this->HasValue())
+                {
+                    const T & object = this->GetValue();
+                    const T * ptr = (const T*)&object;
+                    LD::LightWeightDelegate<R(P...)> delegate{ptr,function_to_bind};
+                    return LD::optional_lite::Optional<R>{delegate(LD::Forward<P>(parameters)...)};
+                }
+                return value;
+            }
+            template<class X,typename R, typename ... P>
+            R AndThen(R (X::* function_to_bind)(P...) , P && ... parameters)
+            {
+                return LD::optional_lite::Optional<R>{};
+            }
+
+            template<class X,typename R, typename ... P>
+            LD::optional_lite::Optional<R> AndThen(R (X::* function_to_bind)(P...)  const , P && ... parameters)
+            {
+                return LD::optional_lite::Optional<R>{};
+            }
+
+
+            template<typename F>
+            void Else(F && function)
+            {
+
+            }
+
+            template<typename F, typename F1>
+            void MapOrElse(F && function, F1 &&)
+            {
+
+            }
+
+
+            T DisJunction(T && value)
+            {
+                if (this->HasValue())
+                {
+                    return (*this);
+                }
+                return LD::Forward<T>(value);
+            }
+
+            LD::optional_lite::Optional<T> Conjunction(T && value)
+            {
+                if(this->HasValue())
+                {
+                    return LD::optional_lite::Optional<T>{};
+                }
+                return LD::Forward<T>(value);
+            }
+
+            LD::optional_lite::Optional<T> Take() noexcept
+            {
+                if(this->HasValue())
+                {
+                    LD::optional_lite::Optional<T> optional{LD::Move((*this))};
+                    this->reset();
+                    return optional;
+                }
+                return LD::optional_lite::Optional<T>{};
+            };
+
 #endif
 
 #if optional_CPP11_OR_GREATER
@@ -1491,7 +1740,7 @@ namespace PDP
 
         {
 
-            return Optional<T>( PDP::in_place, std::forward<Args>(args)...);
+            return Optional<T>( LD::in_place, std::forward<Args>(args)...);
 
         }
 
@@ -1502,9 +1751,11 @@ namespace PDP
 
         {
 
-            return Optional<T>( PDP::in_place, il, std::forward<Args>(args)...);
+            return Optional<T>( LD::in_place, il, std::forward<Args>(args)...);
 
         }
+
+
 
 #else
 
@@ -1560,10 +1811,10 @@ namespace std
 
 namespace LD
 {
-    template<typename T>
-    using Optional = PDP::Optional<T>;
+    //template<typename T>
+    //using Optional = PDP::Optional<T>;
 
-    constexpr auto nullopt = PDP::nullopt;
+    //constexpr auto nullopt = PDP::nullopt;
 }
 #endif // optional_CPP11_OR_GREATER
 

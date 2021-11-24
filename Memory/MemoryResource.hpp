@@ -99,6 +99,12 @@ namespace LD
             return &resource;
         }
 
+        inline NewDeleteResource & GetNewDeleteResourceReference() noexcept
+        {
+            static NewDeleteResource resource;
+            return resource;
+        }
+
 
 
         MemoryResource::MemoryResource() noexcept :mUpstream{LD::Mem::GetNewDeleteResource()}

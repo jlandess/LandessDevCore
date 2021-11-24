@@ -614,6 +614,12 @@ namespace LD
         using type = typename tlist_erase_at_impl<idx, LD::CT::TypeList<Ts...>>::type;
     };
 
+    namespace CT
+    {
+        template<LD::UInteger Index, typename List>
+        using EraseAt = typename tlist_erase_at<Index,List>::type;
+    }
+
 //-----------------------------------------------------------------------------
 /// Pop front, this can be called on empty list
 

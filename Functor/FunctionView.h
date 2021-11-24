@@ -138,8 +138,10 @@ namespace LD
 #include "LightWeightDelegateBase.h"
 //#include "Definitions/Common.hpp"
 #include "Primitives/General/Tuple.hpp"
+
 namespace LD
 {
+    /*
     template<class R=fastdelegate::detail::DefaultVoid, class ...P>
     class fast_delegate_base {
     private:
@@ -261,6 +263,7 @@ namespace LD
             return (*(closure_.GetStaticFunction()))(args...);
         }
     };
+     */
 
     // fast_delegate<> is similar to std::function, but it has comparison operators.
     template<typename _Signature>

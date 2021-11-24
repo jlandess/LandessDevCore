@@ -191,7 +191,7 @@ namespace LD
             if constexpr (sum(n) == 0) {
                 return f(get<Is>(LD::Forward<Vs>(vs))...);
             } else {
-                if (LD::Tuple(detail::index(vs)...) == LD::Tuple(Is...))
+                if (LD::Tuple(LD::detail::index(vs)...) == LD::Tuple(Is...))
                 {
                     return f(forward_like<Vs>(*VariantOperations<LD::Detail::Decay_T<Vs>>::template GetIf<Is>(&vs))...);
                     //return f(forward_like<Vs>(*get_if<Is>(&vs))...);
@@ -207,13 +207,13 @@ namespace LD
     inline auto Visit(F&& f, Vs&& ... vs) noexcept
     {
 
-        if constexpr (((detail::variant_size<Vs>() == 1) && ...))
+        if constexpr (((LD::detail::variant_size<Vs>() == 1) && ...))
         {
-            return f(detail::forward_like<Vs>(*detail::get_if<0>(&vs))...);
+            return f(LD::detail::forward_like<Vs>(*LD::detail::get_if<0>(&vs))...);
         } else {
             return LD::detail::Visit(
-                    LD::IndexSequence<detail::zero<Vs>...>{},
-                    LD::IndexSequence<detail::variant_size<Vs>()...>{},
+                    LD::IndexSequence<LD::detail::zero<Vs>...>{},
+                    LD::IndexSequence<LD::detail::variant_size<Vs>()...>{},
                     LD::Forward<F>(f),
                     LD::Forward<Vs>(vs)...);
         }

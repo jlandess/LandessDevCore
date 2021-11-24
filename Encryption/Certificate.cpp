@@ -47,6 +47,51 @@ using ASN1_TIME_ptr = std::unique_ptr<ASN1_TIME, decltype(&ASN1_STRING_free)>;
     std::cout << cert_details << std::endl;
     std::cout << "========================================" << std::endl;
     std::cout << std::endl;
+
+       // Smart pointers to wrap openssl C types that need explicit free
+        using BIO_ptr = std::unique_ptr<BIO, decltype(&BIO_free)>;
+        using X509_ptr = std::unique_ptr<X509, decltype(&X509_free)>;
+        using ASN1_TIME_ptr = std::unique_ptr<ASN1_TIME, decltype(&ASN1_STRING_free)>;
+
+
+// Convert the contents of an openssl BIO to a std::string
+        std::string bio_to_string(const BIO_ptr& bio, const int& max_len)
+        {
+            // We are careful to do operations based on explicit lengths, not depending
+            // on null terminated character streams except where we ensure the terminator
+
+            // Create a buffer and zero it out
+            char buffer[max_len];
+            memset(buffer, 0, max_len);
+            // Read one smaller than the buffer to make sure we end up with a null
+            // terminator no matter what
+            BIO_read(bio.get(), buffer, max_len - 1);
+            return std::string(buffer);
+        }
+
+
+
+        int convert_ASN1TIME(ASN1_TIME *t, char* buf, size_t len)
+        {
+            int rc;
+            BIO *b = BIO_new(BIO_s_mem());
+            rc = ASN1_TIME_print(b, t);
+
+            if (rc <= 0) {
+                //log_error("fetchdaemon", "ASN1_TIME_print failed or wrote no data.\n");
+                BIO_free(b);
+                return EXIT_FAILURE;
+            }
+            rc = BIO_gets(b, buf, len);
+
+            if (rc <= 0) {
+                //log_error("fetchdaemon", "BIO_gets call failed to transfer contents to buf");
+                BIO_free(b);
+                return EXIT_FAILURE;
+            }
+            BIO_free(b);
+            return EXIT_SUCCESS;
+        }
 */
 
 //

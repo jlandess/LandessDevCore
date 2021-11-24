@@ -63,7 +63,7 @@ namespace LD
         inline const bool WasBroken() const;
         
         
-        inline const PDP::Optional<T> GetItem() const;
+        inline const LD::Optional<T> GetItem() const;
         
     };
     
@@ -105,7 +105,7 @@ namespace LD
         inline const bool WasBroken() const;
         
         
-        inline const PDP::Optional<bool> GetItem() const;
+        inline const LD::Optional<bool> GetItem() const;
     };
     
     template<typename T>
@@ -142,7 +142,7 @@ namespace LD
     }
     
     template<typename T>
-    inline const PDP::Optional<T> SharedCommittedFuture<T>::GetItem() const
+    inline const LD::Optional<T> SharedCommittedFuture<T>::GetItem() const
     {
         //DataToStream->try_dequeue(possibleItem);
 
@@ -150,10 +150,10 @@ namespace LD
         
         if(DataToStream->try_dequeue(possibleItem))
         {
-            return PDP::Optional<T>(possibleItem);
+            return LD::Optional<T>(possibleItem);
         }
 
-        return PDP::Optional<T>();
+        return LD::Optional<T>();
     }
     class BrokenCommitment
     {
@@ -205,7 +205,7 @@ namespace LD
          @return PDP::Optional - The possible value that may return from the function, in the case that nothing is ready to be streaming, you'll simply get an empty PDP::Optional object
          @brief This is necessary because due to the how multi-core IPC works it is not always on time and may take a few extra cycles to execute in order to get the necessary information transferred from one core to the other.
          */
-        inline const PDP::Optional<T> GetItem() const
+        inline const LD::Optional<T> GetItem() const
         {
             //return this->CurrentCommittedFuture->GetItem();
             //return {};
@@ -214,14 +214,14 @@ namespace LD
 
             if(this->CurrentCommittedFuture->try_dequeue(possibleItem))
             {
-                return PDP::Optional<T>(possibleItem);
+                return LD::Optional<T>(possibleItem);
             }
 
 
-            return PDP::Optional<T>();
+            return LD::Optional<T>();
         }
 
-        explicit  operator mapbox::util::variant<LD::NullClass,PDP::Optional<T>,LD::BrokenCommitment> () const
+        explicit  operator mapbox::util::variant<LD::NullClass,LD::Optional<T>,LD::BrokenCommitment> () const
         {
             mapbox::util::variant<LD::NullClass,PDP::ElementReference<T>,LD::BrokenCommitment> currentState;
             if(this->HasCompleted())
@@ -282,7 +282,7 @@ namespace LD
          @return PDP::Optional - The possible value that may return from the function, in the case that nothing is ready to be streaming, you'll simply get an empty PDP::Optional object
          @brief This is necessary because due to the how multi-core IPC works it is not always on time and may take a few extra cycles to execute in order to get the necessary information transferred from one core to the other.
          */
-        inline const PDP::Optional<bool> GetItem() const;
+        inline const LD::Optional<bool> GetItem() const;
         
         
         

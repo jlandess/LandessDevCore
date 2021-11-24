@@ -67,7 +67,7 @@ namespace LD
             const V & dx = 0.001) noexcept
     {
 
-        using Branch = PDP::LightWeightDelegate<Res(const Step & step, const V & dx, F &&)>;
+        using Branch = LD::LightWeightDelegate<Res(const Step & step, const V & dx, F &&)>;
         Res sum = Res{};
         const T & a = ainput;
         const U & b = binput;

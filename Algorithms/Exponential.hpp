@@ -84,11 +84,11 @@ namespace LD
 
 
 
-        PDP::LightWeightDelegate<T(const T & a, const T & b)> codePaths[4];
-        codePaths[0] = PDP::LightWeightDelegate<T(const T & a, const U & b)>{&firstPath, &decltype(firstPath)::operator()};
-        codePaths[1] = PDP::LightWeightDelegate<T(const T & a, const U & b)>{&secondPath, &decltype(secondPath)::operator()};
-        codePaths[2] = PDP::LightWeightDelegate<T(const T & a, const U & b)>{&thirdPath, &decltype(thirdPath)::operator()};
-        codePaths[3] = PDP::LightWeightDelegate<T(const T & a, const U & b)>{&fourthPath, &decltype(fourthPath)::operator()};
+        LD::LightWeightDelegate<T(const T & a, const T & b)> codePaths[4];
+        codePaths[0] = LD::LightWeightDelegate<T(const T & a, const U & b)>{&firstPath, &decltype(firstPath)::operator()};
+        codePaths[1] = LD::LightWeightDelegate<T(const T & a, const U & b)>{&secondPath, &decltype(secondPath)::operator()};
+        codePaths[2] = LD::LightWeightDelegate<T(const T & a, const U & b)>{&thirdPath, &decltype(thirdPath)::operator()};
+        codePaths[3] = LD::LightWeightDelegate<T(const T & a, const U & b)>{&fourthPath, &decltype(fourthPath)::operator()};
 
         LD::UInteger selectedIndex = (a==0 && b!=0 )*0; + (b==0 && a!=1)*1 + (a < b && a!=0 && b!=0)*2 + (!(a< b) && a!=0 && b!=0)*3;
 
@@ -136,10 +136,10 @@ namespace LD
         };
 
 
-        PDP::LightWeightDelegate<T(const T &, const U &, const FractionType &, const FractionType &)> codePaths[3];
-        codePaths[0] = PDP::LightWeightDelegate<T(const T &, const U &, const FractionType &, const FractionType &)>{&firstCodePath, &decltype(firstCodePath)::operator()};
-        codePaths[1] = PDP::LightWeightDelegate<T(const T &, const U &, const FractionType &, const FractionType &)>{&secondCodePath, &decltype(secondCodePath)::operator()};
-        codePaths[2] = PDP::LightWeightDelegate<T(const T &, const U &, const FractionType &, const FractionType &)>{&thirdCodePath, &decltype(thirdCodePath)::operator()};
+        LD::LightWeightDelegate<T(const T &, const U &, const FractionType &, const FractionType &)> codePaths[3];
+        codePaths[0] = LD::LightWeightDelegate<T(const T &, const U &, const FractionType &, const FractionType &)>{&firstCodePath, &decltype(firstCodePath)::operator()};
+        codePaths[1] = LD::LightWeightDelegate<T(const T &, const U &, const FractionType &, const FractionType &)>{&secondCodePath, &decltype(secondCodePath)::operator()};
+        codePaths[2] = LD::LightWeightDelegate<T(const T &, const U &, const FractionType &, const FractionType &)>{&thirdCodePath, &decltype(thirdCodePath)::operator()};
 
 
         if (first.GetNumerator() == 0 && first.GetDenominator() == 0)

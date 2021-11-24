@@ -124,6 +124,16 @@ namespace LD
             return (*this);
         }
 
+        Channel<T> & operator >> (LD::Optional<T> & optionalObject) noexcept
+        {
+            T object;
+            if (this->mQueue->try_dequeue(object))
+            {
+                optionalObject = object;
+            }
+            return (*this);
+        }
+
         LD::UInteger Size() const noexcept
         {
             return this->mQueue->size_approx();
