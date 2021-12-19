@@ -1133,6 +1133,7 @@ CMakeFiles/LandessDevCore.dir/Examples/DeploymentExample.cpp.o
  ../IaaS/HashiVault/HashiVault.hpp
  ../Memory/ElementReference.h
  ../Memory/Optional.h
+ ../Memory/OptionalReference.h
  ../Network/Gateway.hpp
  ../Network/Gateway6.hpp
  ../Network/IPV4Address.hpp
@@ -1477,6 +1478,7 @@ CMakeFiles/LandessDevCore.dir/Examples/FiniteStateMachineExample.cpp.o
  ../Memory/PolyMorphicAllocator.hpp
  ../Memory/UniquePointer.h
  ../Memory/shared_ptr.hpp
+ ../Patterns/ApplicationLoop.hpp
  ../Patterns/Configuration.hpp
  ../Patterns/DependencyInjection.hpp
  ../Patterns/FiniteStateMachine.hpp
@@ -1762,6 +1764,7 @@ CMakeFiles/LandessDevCore.dir/Examples/IMGUIExample1.cpp.o
  ../Memory/ElementReference.h
  ../Memory/MemoryResource.hpp
  ../Memory/Optional.h
+ ../Memory/OptionalReference.h
  ../Memory/PolyMorphicAllocator.hpp
  ../Memory/shared_ptr.hpp
  ../PBX/Mirta/Date.hpp
@@ -2390,11 +2393,13 @@ CMakeFiles/LandessDevCore.dir/Examples/PublisherSubscriberExample.cpp.o
  ../Algorithms/Overload.hpp
  ../Algorithms/Periodic.hpp
  ../Algorithms/Power.hpp
+ ../Algorithms/Sampler.hpp
  ../Algorithms/StringAsNumber.h
  ../Algorithms/Swap.hpp
  ../Algorithms/ToJSON.hpp
  ../Algorithms/VariantOperations.hpp
  ../Algorithms/Visitation.hpp
+ ../Algorithms/fsm.hpp
  ../Algorithms/vdt/asin.h
  ../Algorithms/vdt/atan.h
  ../Algorithms/vdt/atan2.h
@@ -2417,24 +2422,46 @@ CMakeFiles/LandessDevCore.dir/Examples/PublisherSubscriberExample.cpp.o
  ../Async/Atomic/compiler_msvc.h
  ../Async/Channel.hpp
  ../Async/concurrentqueue.h
+ ../Chrono/Timer.h
+ ../Core/HeteregenousTuple.hpp
+ ../Core/NullClass.hpp
  ../Core/RequestResponse.hpp
  ../Core/Tuple.hpp
  ../Core/Unit.hpp
  ../Definitions/Float.hpp
  ../Definitions/Integer.hpp
+ ../Definitions/PDPUnits.hpp
+ ../Definitions/TimeExtension.hpp
  ../Definitions/platform_detect.h
+ ../Examples/ReflectionDemoTypes.h
+ ../Functor/Delegate.h
+ ../Functor/FastDelegate.h
+ ../Functor/FunctionView.h
  ../Functor/Lambda.h
  ../Functor/LightWeightDelegate.h
  ../Functor/LightWeightDelegateBase.h
  ../Functor/fixed_size_function.hpp
+ ../IO/ConnectionBroker.hpp
  ../IO/DHTBackend.hpp
  ../IO/DataLink.hpp
+ ../IO/Database1.h
  ../IO/DatabaseOperationResult.h
  ../IO/FetchRequest.h
  ../IO/json.hpp
+ ../MVC/Mouse.hpp
+ ../MVC/Renderable.hpp
+ ../MVC/RenderableConcept.hpp
+ ../MVC/RenderingContext.hpp
+ ../MVC/SchedulingEvent.hpp
+ ../MVC/SchedulingQuittingPredicate.hpp
+ ../MVC/TermBoxConsoleApplication.hpp
+ ../MVC/TermBoxCursorNavigator.hpp
+ ../MVC/TermBoxEnumerations.hpp
+ ../MVC/TermBoxRenderingContext.hpp
  ../Memory/ElementReference.h
  ../Memory/MemoryResource.hpp
  ../Memory/Optional.h
+ ../Memory/OptionalReference.h
  ../Memory/PolyMorphicAllocator.hpp
  ../Memory/UniquePointer.h
  ../Memory/shared_ptr.hpp
@@ -2449,7 +2476,9 @@ CMakeFiles/LandessDevCore.dir/Examples/PublisherSubscriberExample.cpp.o
  ../Network/ipv6.h
  ../Patterns/Configuration.hpp
  ../Patterns/DependencyInjection.hpp
+ ../Patterns/LazyLambda.hpp
  ../Patterns/Observer.hpp
+ ../Patterns/Scheduling.hpp
  ../Patterns/ServiceLocator.hpp
  ../Primitives/General/BitSet.hpp
  ../Primitives/General/CircularQueue.hpp
@@ -2466,22 +2495,28 @@ CMakeFiles/LandessDevCore.dir/Examples/PublisherSubscriberExample.cpp.o
  ../Primitives/General/StaticArray.hpp
  ../Primitives/General/StringView.hpp
  ../Primitives/General/Tuple.hpp
+ ../Primitives/General/Vec2.hpp
  ../Primitives/General/ctre.hpp
  ../Primitives/General/mapboxrecursive_wrapper.hpp
  ../Primitives/General/mapboxvariant.hpp
  ../Primitives/General/mapboxvariantvisitor.h
  ../Primitives/General/typestring.hpp
+ ../Reflection/ConstexprFor.hpp
  ../Reflection/NamedTuple.h
  ../Reflection/Reflection.hpp
+ ../Reflection/reflectable.hpp
+ ../Reflection/tagged_tuple.hpp
  ../Services/Logging.hpp
  ../SumTypes/MPark/config.hpp
  ../SumTypes/MPark/in_place.hpp
  ../SumTypes/MPark/lib.hpp
  ../SumTypes/MPark/variant.hpp
+ ../TermBox/termbox.h
  ../TypeTraits/AddLValueReference.hpp
  ../TypeTraits/AddPointer.hpp
  ../TypeTraits/AddRValueReference.hpp
  ../TypeTraits/CanBeAnImmutableString.hpp
+ ../TypeTraits/CanBeMadeFromStringView.hpp
  ../TypeTraits/CompileTimeControlFlow.hpp
  ../TypeTraits/CompileTimeOperations.hpp
  ../TypeTraits/Conditional.hpp
@@ -2505,6 +2540,8 @@ CMakeFiles/LandessDevCore.dir/Examples/PublisherSubscriberExample.cpp.o
  ../TypeTraits/IsFunction.hpp
  ../TypeTraits/IsImmutable.h
  ../TypeTraits/IsIntegralType.hpp
+ ../TypeTraits/IsKindOf.hpp
+ ../TypeTraits/IsMemberPointer.hpp
  ../TypeTraits/IsNullPtr.hpp
  ../TypeTraits/IsPackConvertible.hpp
  ../TypeTraits/IsPointer.hpp
@@ -2513,6 +2550,7 @@ CMakeFiles/LandessDevCore.dir/Examples/PublisherSubscriberExample.cpp.o
  ../TypeTraits/IsString.hpp
  ../TypeTraits/IsSwappable.hpp
  ../TypeTraits/IsUnion.hpp
+ ../TypeTraits/IsUnique.hpp
  ../TypeTraits/IsVariant.hpp
  ../TypeTraits/IsVoid.hpp
  ../TypeTraits/IsVolatile.hpp
@@ -2523,11 +2561,13 @@ CMakeFiles/LandessDevCore.dir/Examples/PublisherSubscriberExample.cpp.o
  ../TypeTraits/RemoveConst.hpp
  ../TypeTraits/RemoveExtent.hpp
  ../TypeTraits/RemoveReference.hpp
+ ../TypeTraits/SearchableVariadicPack.hpp
  ../TypeTraits/StaticallySized.h
  ../TypeTraits/Type.h
  ../TypeTraits/TypeList.hpp
  ../TypeTraits/UsesAlloc.h
  ../TypeTraits/VariadicPack.hpp
+ ../TypeTraits/VariantTypes.h
  ../TypeTraits/__or.hpp
  ../TypeTraits/__two.hpp
  ../Unicode/UTF8.hpp
@@ -3121,6 +3161,7 @@ CMakeFiles/LandessDevCore.dir/Examples/WebDavExample.cpp.o
  ../IaaS/HashiVault/HashiVault.hpp
  ../Memory/ElementReference.h
  ../Memory/Optional.h
+ ../Memory/OptionalReference.h
  ../Primitives/General/Context.h
  ../Primitives/General/ContextualVariant.h
  ../Primitives/General/Hash.hpp
@@ -3993,6 +4034,8 @@ CMakeFiles/LandessDevCore.dir/Memory/StackAllocator.cpp.o
 CMakeFiles/LandessDevCore.dir/Network/ssdp.cpp.o
  /home/phoenixflower/Documents/Development/LandessDevCore/Network/ssdp.cpp
  /home/phoenixflower/Documents/Development/LandessDevCore/Network/ssdp.h
+CMakeFiles/LandessDevCore.dir/Patterns/ApplicationLoop.cpp.o
+ /home/phoenixflower/Documents/Development/LandessDevCore/Patterns/ApplicationLoop.cpp
 CMakeFiles/LandessDevCore.dir/Patterns/Configuration.cpp.o
  ../Algorithms/Abs.hpp
  ../Algorithms/Exponential.hpp
@@ -4401,6 +4444,8 @@ CMakeFiles/LandessDevCore.dir/main.cpp.o
  ../Memory/AutomaticReferenceCounting.h
  ../Memory/ElementReference.h
  ../Memory/MemoryResource.hpp
+ ../Memory/Optional.h
+ ../Memory/OptionalReference.h
  ../Memory/PolyMorphicAllocator.hpp
  ../Memory/UniquePointer.h
  ../Memory/shared_ptr.hpp

@@ -41,14 +41,15 @@ namespace LD
     class TopicalOpenDHTConnection: public LD::DataLink
     {
     private:
-        OpenDHTBackend & mInstance;
+        OpenDHTBackend * mInstance;
         Topic mTopic;
         Queue mQueue;
     public:
-        TopicalOpenDHTConnection(OpenDHTBackend & back, dht::InfoHash hash, Topic && topic) noexcept;
+        TopicalOpenDHTConnection(OpenDHTBackend * back, dht::InfoHash hash, Topic && topic) noexcept;
 
         virtual LD::UInteger Write(unsigned char * data, LD::UInteger size) noexcept;
         virtual LD::UInteger Read(unsigned char * data, LD::UInteger size) noexcept;
+        virtual LD::UInteger Read(LD::LightWeightDelegate<bool(unsigned char)>) noexcept;
     };
     class OpenDHTBackend
     {
@@ -332,7 +333,7 @@ namespace LD
         }
 
         template<typename Topic, typename Queue, typename LocalBuffer>
-        LD::TopicalOpenDHTConnection<Topic,Queue,LocalBuffer>  TopicalDataLink(Topic && topic, LD::Type<Queue>, LD::Type<LocalBuffer>) noexcept;
+        LD::SharedPointer<LD::TopicalOpenDHTConnection<Topic,Queue,LocalBuffer>>  TopicalDataLink(Topic && topic, LD::Type<Queue>, LD::Type<LocalBuffer>) noexcept;
         template<typename BackInserterType>
         SubscriptionToken<BackInserterType>  Subscribe(LD::StringView room, BackInserterType inserter) noexcept
         {
@@ -532,39 +533,29 @@ namespace LD
         friend class TopicalOpenDHTConnection;
     };
 
+    //inline LD::Channel<LD::ImmutableString<64>> * biteMe = new LD::Channel<LD::ImmutableString<64>>{};
     template<typename Topic, typename Queue, typename LocalBuffer>
-    TopicalOpenDHTConnection<Topic,Queue,LocalBuffer>::TopicalOpenDHTConnection(OpenDHTBackend &backend,dht::InfoHash hash, Topic && topic) noexcept :mInstance{backend},mTopic{LD::Forward<Topic>(topic)}
+    TopicalOpenDHTConnection<Topic,Queue,LocalBuffer>::TopicalOpenDHTConnection(OpenDHTBackend * backend,dht::InfoHash hash, Topic && topic) noexcept :mInstance{backend},mTopic{LD::Forward<Topic>(topic)}
     {
         auto listenLambda  = [&](const std::vector<std::shared_ptr<dht::Value> > & answers) -> bool
         {
             LD::BackInserter inserter{this->mQueue};
             for(const auto & answer: answers)
             {
+                //std::cout << "Reply: " << LD::StringView {(const char*)answer->data.data(),answer->data.size()} << "\n";
                 auto response = LD::StringView {(const char*)answer->data.data(),answer->data.size()};
-                inserter = response;
-                //this->mQueue << response;
-                //simdjson::dom::parser parser;
-                //simdjson::dom::element parsedResponse = parser.parse(response);
-                //auto possibleRes = parsedResponse["value"];
-                //if (!possibleRes.error())
-                //{
-                    //V result;
-                    //possibleRes.get(result);
-                    //inserter = result;
-                //}
+                LocalBuffer buffer{response};
+                inserter = buffer;
             }
             return true;
         };
-        backend.mNode.listen(hash,listenLambda).get();
-        //backend.listen(hash,listenLambda).get();
+        backend->mNode.listen(hash,listenLambda).get();
     }
 
     template<typename Topic, typename Queue, typename LocalBuffer>
     LD::UInteger TopicalOpenDHTConnection<Topic,Queue,LocalBuffer>::Write(unsigned char *data, LD::UInteger size) noexcept
     {
-        //ViewAsStringView(this->mTopic);
-        auto transaction = this->mInstance.Insert(ViewAsStringView(this->mTopic),LD::StringView{(char*)data,size});
-
+        auto transaction = this->mInstance->Insert(ViewAsStringView(this->mTopic),LD::StringView{(char*)data,size});
         auto onWrite = [=](auto) noexcept
         {
             return size;
@@ -575,33 +566,63 @@ namespace LD
             return LD::UInteger {};
         };
         return LD::InvokeVisitation(LD::Overload{onWrite,onFailure},transaction);
-        //return 0;
     }
 
     template<typename Topic, typename Queue, typename LocalBuffer>
     LD::UInteger TopicalOpenDHTConnection<Topic,Queue,LocalBuffer>::Read(unsigned char *data, LD::UInteger size) noexcept
     {
         LD::Optional<LocalBuffer> localBuffer;
+
         this->mQueue >> localBuffer;
-        LD::UInteger indexesTraversed = 0;
+
         if(localBuffer)
         {
             auto & buffer = *localBuffer;
-            indexesTraversed = 0;
-            for(auto it = buffer.Begin();it!=buffer.End(),indexesTraversed<size;++it,++indexesTraversed)
+            LD::UInteger indexesTraversed = 0;
+            for(LD::UInteger n = 0;n<size;++n)
+            {
+                data[n] = '\0';
+            }
+
+            for(auto it = LD::Begin(buffer);it!=LD::End(buffer) && indexesTraversed<size;++it,++indexesTraversed)
             {
                 data[indexesTraversed] = *it;
             }
+            return indexesTraversed;
         }
-        return indexesTraversed;
+
+        return 0;
     }
 
     template<typename Topic, typename Queue, typename LocalBuffer>
-    LD::TopicalOpenDHTConnection<Topic,Queue,LocalBuffer>  OpenDHTBackend::TopicalDataLink(Topic && topic, LD::Type<Queue>, LD::Type<LocalBuffer>) noexcept
+    LD::UInteger TopicalOpenDHTConnection<Topic,Queue,LocalBuffer>::Read(LD::LightWeightDelegate<bool(unsigned char)> callback) noexcept
+    {
+        LD::Optional<LocalBuffer> localBuffer;
+
+        this->mQueue >> localBuffer;
+
+        if(localBuffer)
+        {
+            auto & buffer = *localBuffer;
+            LD::UInteger indexesTraversed = 0;
+
+            for(auto it = LD::Begin(buffer);it!=LD::End(buffer);++it,++indexesTraversed)
+            {
+                callback(*it);
+
+            }
+            return indexesTraversed;
+        }
+
+        return 0;
+    }
+
+    template<typename Topic, typename Queue, typename LocalBuffer>
+    LD::SharedPointer<LD::TopicalOpenDHTConnection<Topic,Queue,LocalBuffer>>  OpenDHTBackend::TopicalDataLink(Topic && topic, LD::Type<Queue>, LD::Type<LocalBuffer>) noexcept
     {
         auto hash = dht::InfoHash{}.get(topic.Data());
 
-        return TopicalOpenDHTConnection<Topic,Queue,LocalBuffer>{*this,hash,LD::Forward<Topic>(topic)};
+        return LD::MakeShared<LD::TopicalOpenDHTConnection<Topic,Queue,LocalBuffer>>(this,hash,LD::Forward<Topic>(topic));//TopicalOpenDHTConnection<Topic,Queue,LocalBuffer>{this,hash,LD::Forward<Topic>(topic)};
     }
 }
 

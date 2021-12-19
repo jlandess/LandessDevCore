@@ -1897,6 +1897,33 @@ Network/ssdp.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Network/ssdp.cpp.s
 .PHONY : Network/ssdp.cpp.s
 
+Patterns/ApplicationLoop.o: Patterns/ApplicationLoop.cpp.o
+
+.PHONY : Patterns/ApplicationLoop.o
+
+# target to build an object file
+Patterns/ApplicationLoop.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Patterns/ApplicationLoop.cpp.o
+.PHONY : Patterns/ApplicationLoop.cpp.o
+
+Patterns/ApplicationLoop.i: Patterns/ApplicationLoop.cpp.i
+
+.PHONY : Patterns/ApplicationLoop.i
+
+# target to preprocess a source file
+Patterns/ApplicationLoop.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Patterns/ApplicationLoop.cpp.i
+.PHONY : Patterns/ApplicationLoop.cpp.i
+
+Patterns/ApplicationLoop.s: Patterns/ApplicationLoop.cpp.s
+
+.PHONY : Patterns/ApplicationLoop.s
+
+# target to generate assembly for a file
+Patterns/ApplicationLoop.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LandessDevCore.dir/build.make CMakeFiles/LandessDevCore.dir/Patterns/ApplicationLoop.cpp.s
+.PHONY : Patterns/ApplicationLoop.cpp.s
+
 Patterns/Configuration.o: Patterns/Configuration.cpp.o
 
 .PHONY : Patterns/Configuration.o
@@ -3208,6 +3235,9 @@ help:
 	@echo "... Network/ssdp.o"
 	@echo "... Network/ssdp.i"
 	@echo "... Network/ssdp.s"
+	@echo "... Patterns/ApplicationLoop.o"
+	@echo "... Patterns/ApplicationLoop.i"
+	@echo "... Patterns/ApplicationLoop.s"
 	@echo "... Patterns/Configuration.o"
 	@echo "... Patterns/Configuration.i"
 	@echo "... Patterns/Configuration.s"

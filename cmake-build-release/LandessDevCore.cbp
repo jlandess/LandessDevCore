@@ -1363,6 +1363,12 @@
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/PF/Status.hpp">
 			<Option target="LandessDevCore"/>
 		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/ApplicationLoop.cpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
+		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/ApplicationLoop.hpp">
+			<Option target="LandessDevCore"/>
+		</Unit>
 		<Unit filename="/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/Configuration.cpp">
 			<Option target="LandessDevCore"/>
 		</Unit>

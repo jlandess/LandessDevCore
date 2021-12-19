@@ -289,6 +289,9 @@ namespace LD
         T*                  px; //!< Native pointer
         shared_ptr_count    pn; //!< Reference counter
         LD::Mem::MemoryResource * mResource;
+    public:
+        template<typename Z>
+        friend class SharedPointer;
     };
     
     
@@ -424,9 +427,7 @@ namespace LD
     };
 
     template<typename T, typename ... Pack>
-    LD::Enable_If_T<LD::Require<
-            LD::IsConstructible<T,LD::Decay<Pack>...>::value
-            >,LD::SharedPointer<T>> MakeShared(Pack && ... arguements) noexcept
+    LD::SharedPointer<T> MakeShared(Pack && ... arguements) noexcept
     {
                 //new (noexcept(T(LD::Forward<Pack>(arguements)...))) T(LD::Forward<Pack>(arguements)...);
         T * p = new (std::nothrow) T(LD::Forward<Pack>(arguements)...);
@@ -447,15 +448,29 @@ namespace LD
         return LD::SharedPointer<T>(new T{LD::Forward<Pack>(arguements)...});
     }
 
-    template<typename T, typename Allocator>
-    LD::Enable_If_T<LD::Require<LD::Detail::IsBaseOf<Allocator,LD::Mem::MemoryResource>::value>,LD::SharedPointer<T>> AllocateShared(Allocator & memoryResource, T && object) noexcept
+    template<typename T, typename U>
+    LD::SharedPointer<T> MakeSharedOne(LD::Mem::MemoryResource & memoryResource,U && object) noexcept
     {
         LD::Mem::PolymorphicAllocator<T> allocator(&memoryResource);
         T * allocation = allocator.allocate(1);
-        allocator.construct(allocation,LD::Forward<T>(object));
+        if (allocation != nullptr)
+        {
+            allocator.construct(allocation,LD::Forward<U>(object));
+            return LD::SharedPointer<T>{allocation,allocator.Resource()};
+        }
+        return LD::SharedPointer<T>();
+    }
+
+    template<typename T, typename Allocator>
+    LD::SharedPointer<LD::Detail::Decay_T<T>> AllocateShared(Allocator & memoryResource, T && object) noexcept
+    {
+        LD::Mem::PolymorphicAllocator<LD::Detail::Decay_T<T>> allocator(&memoryResource);
+        LD::Detail::Decay_T<T> * allocation = allocator.allocate(1);
+
         if (allocation == nullptr)
         {
-            return LD::SharedPointer<T>{allocation,allocator.Resource()};
+            allocator.construct(allocation,LD::Forward<T>(object));
+            //return LD::SharedPointer<T>{allocation,allocator.Resource()};
         }
         return LD::SharedPointer<T>{nullptr};
     }

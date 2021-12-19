@@ -130,8 +130,9 @@ namespace LD
             //return *this;
         //}
 
-        template<typename U, class = LD::Enable_If_T<LD::Require<LD::Detail::IsBaseOf_V<T,U>>>>
-        UniquePointer& operator=(UniquePointer<U,DeleterType> && ptr) noexcept// never throws
+        //template<typename U, class = LD::Enable_If_T<LD::Require<LD::Detail::IsBaseOf_V<T,U>>>>
+        template<typename U, typename V = T>
+        LD::Enable_If_T<LD::Require<LD::Detail::IsBaseOf_V<V,U>>,UniquePointer&> operator=(UniquePointer<U,DeleterType> && ptr) noexcept// never throws
         {
             swap(ptr);
             return *this;

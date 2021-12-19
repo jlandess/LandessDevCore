@@ -138,7 +138,7 @@ namespace LD
     };
     
     // fast_delegate<> is similar to std::function, but it has comparison operators.
-    template<typename _Signature, bool ExceptStatus = false>
+    template<typename _Signature, bool ExceptStatus = true>
     class LightWeightDelegate;
     
     template<typename R, bool ExceptSTatus,typename ...P>
@@ -220,7 +220,7 @@ namespace LD
         }
 
         template<class X, class Y>
-        static LightWeightDelegate<R(P...)> Bind(X & pthis, R (Y::* function_to_bind)(P...) noexcept) noexcept
+        static LightWeightDelegate<R(P...),true> Bind(X & pthis, R (Y::* function_to_bind)(P...) noexcept) noexcept
         {
             return LightWeightDelegate<R(P...),true>(&pthis,function_to_bind);
         }

@@ -6,16 +6,40 @@
 #include "Async/Channel.hpp"
 
 #include <iostream>
-#include <sstream>
 #include <sys/ipc.h>
 #include <sys/shm.h>
-#include <stdio.h>
 #include "Primitives/General/CircularQueue.hpp"
 #include "Patterns/Configuration.hpp"
 #include "Patterns/DependencyInjection.hpp"
+#include "IO/ConnectionBroker.hpp"
+#include "IO/Database1.h"
+#include "Examples/ReflectionDemoTypes.h"
+#include "Patterns/LazyLambda.hpp"
+#include "Patterns/Scheduling.hpp"
 namespace LD
 {
 
+    class Dowhatiwantmofo
+    {
+    public:
+
+        bool operator()(unsigned  char character) noexcept
+        {
+            //std::cout << "being called" << "\n";
+            std::cout << character;
+            return true;
+        }
+    };
+
+    template<>
+    class BackInserter<Dowhatiwantmofo>
+    {
+    private:
+        Dowhatiwantmofo & mObject;
+    public:
+        BackInserter(Dowhatiwantmofo & object  ) noexcept:mObject{object}{}
+        BackInserter<Dowhatiwantmofo> & operator = (unsigned char character)noexcept{ mObject(character);return (*this);}
+    };
     namespace Example
     {
         int Send(const std::string& filename, const std::string& msg) noexcept // if you have no return value,
@@ -97,13 +121,14 @@ namespace LD
             LD::UInteger mPort;
             LD::UInteger mBootstrap;
             LD::ImmutableString<64> mHostName;
-            LD::Variant<LD::NullType,LD::OpenDHTBackend> mBackend;
+            LD::Optional<LD::Variant<LD::OpenDHTBackend>> mBackend;
         public:
             ConfigurableDHT(LD::Configuration & config,int & test, LD::BasicLogger & logger):mTest{test}
             {
                 LD::Optional<LD::Integer> bootstrapPort = config("bootstrap",LD::Type<LD::Integer>{});
                 LD::Optional<LD::Integer> bindPort = config("bind",LD::Type<LD::Integer>{});
                 LD::Optional<LD::StringView> host = config("host",LD::Type<LD::StringView>{});
+                LD::Optional<LD::StringView> type = config("type",LD::Type<LD::StringView>{});
                 if (host)
                 {
                     logger << "Found hostname: " << *host << "\n";
@@ -114,9 +139,13 @@ namespace LD
                     logger << "Found Value From Config: " << *bootstrapPort << "\n";
                 }
 
-                if (host && bootstrapPort && bindPort)
+                if (type && *type == "OpenDHT")
                 {
-                    logger << "OpenDHT node can be created" << "\n";
+                    if (host && bootstrapPort && bindPort)
+                    {
+                        //logger << "OpenDHT node can be created" << "\n";
+                        //this->mBackend = LD::Variant<LD::OpenDHTBackend>{LD::Move(LD::OpenDHTBackend{LD::IPV6Address{"fd00:1700:81b8:401e:0:d9:191:4a34"},LD::Port{4225},LD::Port{4222}})};
+                    }
                 }
                 logger << "Test Number: " << this->mTest << "\n";
                 //std::cout << "Test Number: " <<  mTest << "\n";
@@ -127,10 +156,10 @@ namespace LD
                 return LD::Sqrt(this->mTest);
             }
         };
+
+
         void PublisherSubscriber(LD::AbstractLogger & passedInLogger) noexcept
         {
-
-
             LD::BasicLogger log{passedInLogger};
             LD::Optional<std::string> example = std::string {"abc"};
 
@@ -148,13 +177,20 @@ namespace LD
                 "pi": 3.141,
                 "key": 12.97,
                 "messagebroker" :{"host": "fd00:1700:81b8:401e:0:d9:191:4a34", "bind": 4225, "bootstrap": 4222, "type": "OpenDHT" },
-                "object" : {"key": 75 }
+                "object" : {"key": 75 },
+                "connections":{"outbound":{"type": "TCP", "port": 22000, "hostname": "1.1.1.1", "client": true, "server": false}}
                 }
             )"_json;
 
-            nlohmann::json mConfiguration{j2};
+            //nlohmann::json mConfiguration{j2};
 
-            LD::JsonConfiguration configuration(LD::Mem::GetNewDeleteResourceReference(),mConfiguration);
+            LD::JsonConfiguration configuration(LD::Mem::GetNewDeleteResourceReference(),j2);
+
+            LD::JsonConfiguration brokerConfig(LD::Mem::GetNewDeleteResourceReference(),j2["messagebroker"]);
+            LD::JsonConfiguration connectionsConfig(LD::Mem::GetNewDeleteResourceReference(),j2["connections"]);
+            LD::BasicConnectionBroker<LD::StaticArray<LD::SharedPointer<LD::DataLink>,12>> broker{brokerConfig,connectionsConfig};
+            LD::Optional<LD::DataLink&> possibleLink =  broker.Link("abcOne");
+
             LD::BasicServiceExecutor<void(LD::AbstractLogger&)> coreServices{configuration,passedInLogger};
             auto logger = coreServices.Make<LD::BasicLogger>();
 
@@ -162,42 +198,69 @@ namespace LD
 
             LD::Optional<ConfigurableDHT> test =  executionContext.Make<ConfigurableDHT>("messagebroker");
 
-            LD::OpenDHTBackend backend{LD::IPV6Address{"fd00:1700:81b8:401e:0:d9:191:4a34"},LD::Port{4225},LD::Port{4222}};
 
 
-            auto topicalDataLink = backend.TopicalDataLink(
-                    LD::ImmutableString{"topic1"},
-                    LD::Type<LD::CircularQueue<LD::ImmutableString<64>,12>>{},
-                    LD::Type<LD::ImmutableString<64>>{});
-
-            LD::DataLink & link = topicalDataLink;
-            link.Write((unsigned char*)"jkl",4);
-
-            LD::Channel<LD::UInteger> channel;
-            LD::Channel<LD::UInteger> channel1;
-            auto token = backend.SubscribeOne("abc",LD::Type<LD::UInteger>{},channel);
-
-            auto token1 = backend.SubscribeOne("cde",LD::Type<LD::UInteger>{},channel1);
-            nlohmann::json json;
-            json["value"] = 7;
-
-            backend.Publish("abc",json.dump());
-            backend.Publish("cde",49);
-            //backend.ListenWithFunction("abc",[&](auto a)
-            //{
-              //  logger << a << "\n";
-            //});
-            LD::Optional<LD::UInteger> possibleResult =  ReadSubscription(token);
-            if (possibleResult)
+            auto applicationHasStarted = [&](const LD::ApplicationStartedEvent<LD::Second<LD::Float>> & applicaitonStartedEvent) noexcept ->bool
             {
-                log << "Value: " << *possibleResult << "\n";
-            }
+                //LD::Get<LD::TermBoxRenderContext>(applicaitonStartedEvent)->EnableMouse();
 
-            LD::Optional<LD::UInteger> possibleResult1 =  ReadSubscription(token1);
-            if (possibleResult1)
+                possibleLink.Map([](LD::DataLink & link) noexcept
+                {
+                    LD::ToJson(link,LD::Pyramid{LD::Square{19},LD::Triangle{7,6}});
+                });
+                return LD::ApplicationRunningPredicate{};
+            };
+            auto applicationFrameHasStarted = [&](const LD::ApplicationFrameStartedEvent<LD::Second<LD::Float>> & frameStartedEvent ) noexcept -> bool
             {
-                log << "Value1: " << *possibleResult1 << "\n";
-            }
+                log << "Frame Started" << "\n";
+                return LD::ApplicationQuittingPredicate{ (*LD::Get<LD::Second<LD::Float>>(frameStartedEvent)) > 10_s};;
+            };
+            auto applicationPeriodRequest = [](const LD::ApplicationPeriodEvent<LD::Second<LD::Float>> &) noexcept -> LD::Second<LD::Float>
+            {
+                return 1.0_s;
+            };
+
+            auto applicationExecution = [&](const LD::ApplicationExecutionEvent<LD::Second<LD::Float>> & applicationExecutionEvent ) noexcept
+            {
+
+                possibleLink.Map([](LD::DataLink & link, auto & log)
+                {
+                    LD::Pyramid possiblePyramid;
+                    LD::Optional<LD::Pyramid&> pyramid =  LD::FromJSON(link,possiblePyramid);
+                    if(pyramid)
+                    {
+
+                        log << "Found pyramid" << "\n";
+                        log << "Possible Pyramid Base Length: " << possiblePyramid.Base().Length()<< "\n";
+
+                    }
+
+                },log);
+            };
+
+            auto applicationFrameEnded = [](const LD::ApplicationFrameEndedEvent<LD::Second<LD::Float>> & applicationFrameEndedEvent) noexcept
+            {
+                (*LD::Get<LD::Second<LD::Float>>(applicationFrameEndedEvent))+=1.0_s;
+            };
+
+            auto applicationQuit = [](const LD::ApplicationQuittingEvent<LD::Second<LD::Float>> &) noexcept
+            {
+
+            };
+
+            auto generatedApp = LD::Overload{
+                applicationHasStarted,
+                applicationFrameHasStarted,
+                applicationPeriodRequest,
+                applicationExecution,
+                applicationFrameEnded,
+                applicationQuit};
+
+            LD::BasicApplication<decltype(generatedApp)(LD::Second<LD::Float>)> application{generatedApp};
+
+            LD::Timer currentTimer;
+            LD::Second<LD::Float> accumulatedTime = 0.0_s;
+            LD::ApplicationLoop(application,currentTimer,accumulatedTime);
         }
     }
 }

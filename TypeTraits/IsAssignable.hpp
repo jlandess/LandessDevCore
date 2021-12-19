@@ -55,7 +55,7 @@ namespace LD
                     typename LD::Detail::AddLValueReference<typename LD::Detail::AddConst<_Tp>::type>::type> {};
 
 //#if _LIBCPP_STD_VER > 14 && !defined(_LIBCPP_HAS_NO_VARIABLE_TEMPLATES)
-    template <class _Tp>  bool IsCopyAssignable_V
+    template <class _Tp>  constexpr bool IsCopyAssignable_V
             = IsCopyAssignable<_Tp>::value;
 //#endif
 

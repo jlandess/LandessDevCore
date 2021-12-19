@@ -4,6 +4,7 @@
 
 #ifndef LANDESSDEVCORE_ISBASEOF_HPP
 #define LANDESSDEVCORE_ISBASEOF_HPP
+#include "IntegralConstant.hpp"
 namespace LD
 {
     namespace Detail
@@ -29,7 +30,10 @@ namespace LD
         };
 
 
-        template<typename B, typename D>  constexpr bool IsBaseOf_V =  IsBaseOf<B,D>::value;
+        //template<typename B, typename D>  constexpr bool IsBaseOf_V =  IsBaseOf<B,D>::value;
+        //__is_base_of
+        template<typename B, typename D>  constexpr bool IsBaseOf_V =  LD::Detail::IntegralConstant<bool,__is_base_of(B,D)>::value;
+
     }
 }
 #endif //LANDESSDEVCORE_ISBASEOF_HPP

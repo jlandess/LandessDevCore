@@ -18,6 +18,8 @@
 #include "TypeTraits/CompileTimeControlFlow.hpp"
 #include "TypeTraits/IsImmutable.h"
 #include "TypeTraits/Iterable.h"
+#include "TypeTraits/Detection.hpp"
+#include "TypeTraits/IsConstructible.hpp"
 namespace LD
 {
 
@@ -413,7 +415,14 @@ namespace LD
         //Iterator<StaticArray<int,10>>
         void PushBack(const T &  object) noexcept
         {
+
             this->InternalBuffer[this->Size++] = object;
+        }
+
+        void Emplace(T &&  object) noexcept
+        {
+
+            this->InternalBuffer[this->Size++] = LD::Move(object);
         }
 
         void Resize(LD::UInteger requestedSize) noexcept
@@ -692,11 +701,22 @@ namespace LD
             return (*this);
         }
          */
-        BackInserter<LD::StaticArray<T,Size>> & operator = (const T &  object) noexcept
+        template<typename U>
+        LD::Enable_If_T<LD::Require<LD::IsCopyConstructible<U>::value>,BackInserter<LD::StaticArray<T,Size>>> & operator = (const U &  object) noexcept
         {
             //std::cout << "Size : " << mArray.GetSize() << std::endl;
             //mArray[mArray.GetSize()] = object;
             mArray.PushBack(object);
+            return (*this);
+        }
+
+        template<typename U>
+        LD::Enable_If_T<LD::Require<LD::IsMoveConstructible<U>::value>,BackInserter<LD::StaticArray<T,Size>>> & operator = ( U &&  object) noexcept
+        {
+            //std::cout << "Size : " << mArray.GetSize() << std::endl;
+            //mArray[mArray.GetSize()] = object;
+            //mArray.PushBack(object);
+            mArray.Emplace(LD::Move(LD::Forward<U>(object)));
             return (*this);
         }
         constexpr BackInserter<LD::StaticArray<T,Size>> operator++() noexcept

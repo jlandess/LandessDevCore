@@ -17,8 +17,10 @@
 #include <openssl/x509.h>
 #include "Memory/OptionalReference.h"
 #include "Patterns/Configuration.hpp"
+#include "Patterns/ApplicationLoop.hpp"
 namespace LD
 {
+
     namespace Example
     {
         class ApplicationInitializedState;
@@ -668,9 +670,11 @@ namespace LD
             auto executors = LD::Overload{eventGenerator,stateTransitionExecutor,polymorhpicStateExecutor};
 
 
+            //we're saying here that the state is a function of the event
             using FSM = LD::StateManager<decltype(stateManagerExecutor)&,ApplicationState(ApplicationStartedEvent)>;
             using Evnt =  EventExecutor;
             //ApplicationState
+            //we're saying here that the events generated are generated in terms of the current application state
             LD::EventDispatcher<FSM&(), Evnt&(ApplicationState)> eventDispatcher
             {
                 stateManager,

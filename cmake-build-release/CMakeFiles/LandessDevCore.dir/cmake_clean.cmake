@@ -64,6 +64,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/LandessDevCore.dir/Memory/StackAllocator.cpp.o"
   "CMakeFiles/LandessDevCore.dir/Network/ipv6.c.o"
   "CMakeFiles/LandessDevCore.dir/Network/ssdp.cpp.o"
+  "CMakeFiles/LandessDevCore.dir/Patterns/ApplicationLoop.cpp.o"
   "CMakeFiles/LandessDevCore.dir/Patterns/Configuration.cpp.o"
   "CMakeFiles/LandessDevCore.dir/Process/clock.posix.c.o"
   "CMakeFiles/LandessDevCore.dir/Process/drain.c.o"

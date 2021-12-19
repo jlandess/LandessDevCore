@@ -94,6 +94,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/phoenixflower/Documents/Development/LandessDevCore/Memory/PoolAllocator.cpp" "/home/phoenixflower/Documents/Development/LandessDevCore/cmake-build-release/CMakeFiles/LandessDevCore.dir/Memory/PoolAllocator.cpp.o"
   "/home/phoenixflower/Documents/Development/LandessDevCore/Memory/StackAllocator.cpp" "/home/phoenixflower/Documents/Development/LandessDevCore/cmake-build-release/CMakeFiles/LandessDevCore.dir/Memory/StackAllocator.cpp.o"
   "/home/phoenixflower/Documents/Development/LandessDevCore/Network/ssdp.cpp" "/home/phoenixflower/Documents/Development/LandessDevCore/cmake-build-release/CMakeFiles/LandessDevCore.dir/Network/ssdp.cpp.o"
+  "/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/ApplicationLoop.cpp" "/home/phoenixflower/Documents/Development/LandessDevCore/cmake-build-release/CMakeFiles/LandessDevCore.dir/Patterns/ApplicationLoop.cpp.o"
   "/home/phoenixflower/Documents/Development/LandessDevCore/Patterns/Configuration.cpp" "/home/phoenixflower/Documents/Development/LandessDevCore/cmake-build-release/CMakeFiles/LandessDevCore.dir/Patterns/Configuration.cpp.o"
   "/home/phoenixflower/Documents/Development/LandessDevCore/REST/CPR/auth.cpp" "/home/phoenixflower/Documents/Development/LandessDevCore/cmake-build-release/CMakeFiles/LandessDevCore.dir/REST/CPR/auth.cpp.o"
   "/home/phoenixflower/Documents/Development/LandessDevCore/REST/CPR/bearer.cpp" "/home/phoenixflower/Documents/Development/LandessDevCore/cmake-build-release/CMakeFiles/LandessDevCore.dir/REST/CPR/bearer.cpp.o"

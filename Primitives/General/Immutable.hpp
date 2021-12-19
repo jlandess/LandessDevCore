@@ -56,17 +56,6 @@ namespace LD
 
         constexpr ImmutableString() noexcept:string{'\0'}
         {
-            //for(LD::UInteger n = 0;n<N;++n)
-            //{
-                //this->string[n] = '\0';
-            //}
-            /*
-            LD::For<0,N+1>([](auto I, LD::ImmutableString<N> * instance)
-            {
-                instance->string[I] = '\0';
-                return true;
-            },this);
-             */
         }
 
         constexpr ImmutableString(const char & value) noexcept: string{value}{}
@@ -238,22 +227,22 @@ namespace LD
             return N;
         }
 
-        constexpr const char * Begin() const
+        constexpr const char * Begin() const noexcept
         {
             return string;
         }
 
-        constexpr const char * End() const
+        constexpr const char * End() const noexcept
         {
-            return &string[N];
+            return &string[this->GetSize()];
 
         }
 
-        constexpr const bool operator < (const LD::ImmutableString<N> & string) const
+        constexpr const bool operator < (const LD::ImmutableString<N> & string) const noexcept
         {
             const bool comparable = true;
 
-            LD::For<0,N>([](auto I, const LD::ImmutableString<N> * instance,const LD::ImmutableString<N> & string, bool & result)
+            LD::For<0,N>([](auto I, const LD::ImmutableString<N> * instance,const LD::ImmutableString<N> & string, bool & result) noexcept
             {
                 const bool comparsionResult = instance->string[I] < string.string[I];
                 result = (result && (comparsionResult));
@@ -268,7 +257,7 @@ namespace LD
                 LD::Require<
                         (N < M)
                 >,
-                const bool> operator < (const LD::ImmutableString<M> & string) const
+                const bool> operator < (const LD::ImmutableString<M> & string) const noexcept
         {
             return true;
         }
@@ -278,7 +267,7 @@ namespace LD
                 LD::Require<
                         (N > M)
                 >,
-                const bool> operator < (const LD::ImmutableString<M> & string) const
+                const bool> operator < (const LD::ImmutableString<M> & string) const noexcept
         {
             return false;
         }
@@ -305,11 +294,11 @@ namespace LD
             },foundEdgeOfTrim,this->string,character);
             return (*this);
         }
-        const bool operator > (const LD::ImmutableString<N> & string) const
+        const bool operator > (const LD::ImmutableString<N> & string) const noexcept
         {
             const bool comparable = true;
 
-            LD::For<N>([](auto I, const LD::ImmutableString<N> * instance,const LD::ImmutableString<N> & string, bool & result)
+            LD::For<N>([](auto I, const LD::ImmutableString<N> * instance,const LD::ImmutableString<N> & string, bool & result) noexcept
             {
                const bool comparsionResult = instance->string[I] > string.string[I];
                result = (result && (comparsionResult));
@@ -324,7 +313,7 @@ namespace LD
                 LD::Require<
                         (N > M)
                 >,
-                const bool> operator > (const LD::ImmutableString<M> & string) const
+                const bool> operator > (const LD::ImmutableString<M> & string) const noexcept
         {
             return true;
         }
@@ -334,14 +323,14 @@ namespace LD
                 LD::Require<
                         (N < M)
                 >,
-                const bool> operator > (const LD::ImmutableString<M> & string) const
+                const bool> operator > (const LD::ImmutableString<M> & string) const noexcept
         {
             return false;
         }
 
 
 
-        const bool operator <= (const LD::ImmutableString<N> & string) const
+        const bool operator <= (const LD::ImmutableString<N> & string) const noexcept
         {
             return ((*this) == string) || ((*this) < string);
         }
@@ -351,7 +340,7 @@ namespace LD
                 LD::Require<
                         (N > M)
                 >,
-                const bool> operator <= (const LD::ImmutableString<M> & string) const
+                const bool> operator <= (const LD::ImmutableString<M> & string) const noexcept
         {
             return false;
         }
@@ -361,13 +350,13 @@ namespace LD
                 LD::Require<
                         (N < M)
                 >,
-                const bool> operator <= (const LD::ImmutableString<M> & string) const
+                const bool> operator <= (const LD::ImmutableString<M> & string) const noexcept
         {
             return true;
         }
 
 
-        const bool operator >= (const LD::ImmutableString<N> & string) const
+        const bool operator >= (const LD::ImmutableString<N> & string) const noexcept
         {
             return ((*this) == string) || ((*this) > string);
         }
@@ -377,7 +366,7 @@ namespace LD
                 LD::Require<
                         (N < M)
                 >,
-                const bool> operator >= (const LD::ImmutableString<M> & string) const
+                const bool> operator >= (const LD::ImmutableString<M> & string) const noexcept
         {
             return false;
         }
@@ -387,7 +376,7 @@ namespace LD
                 LD::Require<
                         (N > M)
                 >,
-                const bool> operator >= (const LD::ImmutableString<M> & string) const
+                const bool> operator >= (const LD::ImmutableString<M> & string) const noexcept
         {
             return true;
         }
@@ -398,16 +387,16 @@ namespace LD
                 LD::Require<
                         (N != M)
                 >,
-                const bool> operator == (const LD::ImmutableString<M> & string) const
+                const bool> operator == (const LD::ImmutableString<M> & string) const noexcept
         {
             return false;
         }
 
-        constexpr const bool operator == (const LD::ImmutableString<N> & string) const
+        constexpr const bool operator == (const LD::ImmutableString<N> & string) const noexcept
         {
             bool comparable = true;
 
-            LD::For<0,N>([](auto I, const LD::ImmutableString<N> * instance,const LD::ImmutableString<N> & string, bool & result)
+            LD::For<0,N>([](auto I, const LD::ImmutableString<N> * instance,const LD::ImmutableString<N> & string, bool & result) noexcept
             {
                 const bool comparsionResult = instance->string[I] == string.string[I];
                 result = (result && (comparsionResult));
@@ -417,11 +406,11 @@ namespace LD
             return comparable;
         }
 
-        constexpr const bool operator != (const LD::ImmutableString<N> & string) const
+        constexpr const bool operator != (const LD::ImmutableString<N> & string) const noexcept
         {
             const bool comparable = true;
 
-            LD::For<N>([](auto I, const LD::ImmutableString<N> * instance,const LD::ImmutableString<N> & string, bool & result)
+            LD::For<N>([](auto I, const LD::ImmutableString<N> * instance,const LD::ImmutableString<N> & string, bool & result) noexcept
             {
                const bool comparsionResult = !(instance->string[I] == string.string[I]);
                result = (result && (comparsionResult));
@@ -436,7 +425,7 @@ namespace LD
                 LD::Require<
                         (N != M)
                 >,
-                const bool> operator != (const LD::ImmutableString<M> & string) const
+                const bool> operator != (const LD::ImmutableString<M> & string) const noexcept
         {
             return true;
         }
@@ -545,10 +534,10 @@ namespace LD
             },this->Buffer,value);
         }
 
-        constexpr const T & operator[](const UInteger & n) const {return Buffer[n];}
+        constexpr const T & operator[](const UInteger & n) const noexcept{return Buffer[n];}
 
-        constexpr  T & operator[](const UInteger & n)  {return Buffer[n];}
-        constexpr const T * Data() const
+        constexpr  T & operator[](const UInteger & n)  noexcept{return Buffer[n];}
+        constexpr const T * Data() const noexcept
         {
             //return string.data();
 
@@ -557,13 +546,13 @@ namespace LD
         }
 
         template<typename ... Args,typename = typename LD::Enable_If_T<((sizeof...(Args) == N) && LD::IsPackConvertible<LD::VariadicPack<Args...>, T>::value)>>
-        constexpr ImmutableArray(Args && ...arguements)
+        constexpr ImmutableArray(Args && ...arguements) noexcept
         {
             auto tuple = LD::MakeTuple(LD::Forward<Args>(arguements)...);
 
             //AssignImmutableArrayFromArguements(PDP::Forward<Args>(arguements)...);
 
-            LD::For<0,N>([](auto I, LD::ImmutableArray<T,N> * instance, auto && tuple)
+            LD::For<0,N>([](auto I, LD::ImmutableArray<T,N> * instance, auto && tuple) noexcept
             {
                 instance->Buffer[I] = LD::Get<I>(tuple);
 
@@ -571,7 +560,7 @@ namespace LD
             },this,tuple);
         }
 
-        constexpr const T * Begin() const
+        constexpr const T * Begin() const noexcept
         {
             return Buffer;
 
@@ -586,7 +575,7 @@ namespace LD
 }
 
 template<LD::UInteger N, LD::UInteger M, typename T>
-constexpr LD::ImmutableArray<T,N+M> operator+(const LD::ImmutableArray<T,N>& a, const LD::ImmutableArray<T,M> & b)
+constexpr LD::ImmutableArray<T,N+M> operator+(const LD::ImmutableArray<T,N>& a, const LD::ImmutableArray<T,M> & b) noexcept
 {
     LD::ImmutableArray<T,N+M> ret;
 
@@ -598,7 +587,7 @@ constexpr LD::ImmutableArray<T,N+M> operator+(const LD::ImmutableArray<T,N>& a, 
     },a,ret);
 
 
-    LD::For<N,(N+M)>([](auto I, const LD::ImmutableArray<T,M> & input, LD::ImmutableArray<T,N+M> & output)
+    LD::For<N,(N+M)>([](auto I, const LD::ImmutableArray<T,M> & input, LD::ImmutableArray<T,N+M> & output) noexcept
     {
 
         output[I] = input[I-N-1];
@@ -612,19 +601,19 @@ constexpr LD::ImmutableArray<T,N+M> operator+(const LD::ImmutableArray<T,N>& a, 
 namespace LD
 {
     template<LD::UInteger Index, LD::UInteger Size>
-    const char & Get(const LD::ImmutableString<Size> & immutableString)
+    const char & Get(const LD::ImmutableString<Size> & immutableString) noexcept
     {
         return immutableString[Index];
     }
 
     template<LD::UInteger Index, LD::UInteger Size>
-     char & Get(LD::ImmutableString<Size> & immutableString)
+     char & Get(LD::ImmutableString<Size> & immutableString) noexcept
     {
         return immutableString[Index];
     }
 
     template<LD::UInteger StringSize>
-    LD::ImmutableString<StringSize-1> ToImmutableString(const char (&lit)[StringSize])
+    LD::ImmutableString<StringSize-1> ToImmutableString(const char (&lit)[StringSize]) noexcept
     {
         LD::ImmutableString<StringSize-1> str;
         LD::For<(StringSize-1)>([](auto Index,const char (&lit)[StringSize],LD::ImmutableString<StringSize-1> & str)
@@ -642,7 +631,7 @@ namespace LD
 
 
     template<char ... Characters>
-    constexpr LD::ImmutableString<sizeof...(Characters)> ToImmutableString(const LD::TypeString<Characters...> & typeString)
+    constexpr LD::ImmutableString<sizeof...(Characters)> ToImmutableString(const LD::TypeString<Characters...> & typeString) noexcept
     {
 
         char returnable[sizeof...(Characters)+1] = {0};
@@ -655,7 +644,7 @@ namespace LD
         return LD::ImmutableString<sizeof...(Characters)>{returnable};
     }
     template<typename T>
-    constexpr LD::Enable_If_T<LD::Require<LD::Detail::IsSame<T,bool>::value>,LD::ImmutableString<5>> ToImmutableString(const T & booleanValue)
+    constexpr LD::Enable_If_T<LD::Require<LD::Detail::IsSame<T,bool>::value>,LD::ImmutableString<5>> ToImmutableString(const T & booleanValue) noexcept
     {
         LD::StaticArray<LD::ImmutableString<5>,2> results;
 
@@ -680,7 +669,7 @@ namespace LD
         return results[booleanValue];
     }
     template<typename T>
-    constexpr LD::Enable_If_T<LD::Require<LD::Detail::IsSame<T,unsigned char>::value>,LD::ImmutableString<1>> ToImmutableString(const T & character)
+    constexpr LD::Enable_If_T<LD::Require<LD::Detail::IsSame<T,unsigned char>::value>,LD::ImmutableString<1>> ToImmutableString(const T & character) noexcept
     {
         LD::ImmutableString<1> mString;
         mString[0] = character;
@@ -707,7 +696,7 @@ namespace LD
                        const LD::UInteger & isInf,
                        const LD::UInteger & isNan,
                        const LD::UInteger & amountToAllocate,
-                       const LD::UInteger & amountOfDigits)
+                       const LD::UInteger & amountOfDigits) noexcept
                     {
                         const LD::Integer rem = num % base;
                         ret[(amountToAllocate-1)-Index-1] = (((rem > 9)* ((rem-10) + 'a')) + (!(rem > 9)* (rem + '0'))) * (!isInf && !isNan);
@@ -926,7 +915,7 @@ namespace LD
                 const LD::UInteger & isInf,
                 const LD::UInteger & isNan,
                 const LD::UInteger & amountToAllocate,
-                const LD::UInteger & amountOfDigits)
+                const LD::UInteger & amountOfDigits) noexcept
         {
             const LD::Integer rem = num % base;
             ret[(amountToAllocate-1)-Index-1] = (((rem > 9)* ((rem-10) + 'a')) + (!(rem > 9)* (rem + '0'))) * (!isInf && !isNan);
@@ -968,7 +957,7 @@ namespace LD
                        const LD::UInteger & isNan,
                        const LD::UInteger & amountToAllocate,
                        const LD::UInteger & amountOfDigits,
-                       const LD::UInteger & isNegative)
+                       const LD::UInteger & isNegative) noexcept
                     {
                         const LD::Integer rem = num % base;
                         ret[(amountToAllocate-1)-Index-1] = (((rem > 9)* ((rem-10) + 'a')) + (!(rem > 9)* (rem + '0'))) * (!isInf && !isNan);
